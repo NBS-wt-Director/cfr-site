@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, readFile, mkdir, stat } from 'fs/promises';
+import { writeFile, readFile, mkdir, stat, rename } from 'fs/promises';
 import { join } from 'path';
 import mammoth from 'mammoth';
 import { parseProgramDocument, createProgramJson, type DbProgram, namesMatch } from '@/lib/programParser';
@@ -533,27 +533,27 @@ export async function POST(request: NextRequest) {
             const fileBuffer = await fileResponse.arrayBuffer();
             
             if (fileBuffer.byteLength > 0) {
-              // Формат: p_[id]_[m/номер]_[ddmmyyyyHHMMSS].jpeg
-              // ID программы будет известен позже, пока используем временный формат с именем папки
-              const safeName = folder.name.replace(/[^a-zA-Z0-9а-яА-ЯёЁ]/g, '_');
-              const timestamp = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14); // ddmmyyyyHHMMSS
-              const ext = 'jpeg'; // Всегда jpeg
               // Временный формат until программа не создана в БД
-              const localFileName = `p_${safeName}_${imgIdx}_${timestamp}.${ext}`;
-              const localPath = join(uploadsDir, localFileName);
+              const safeName = folder.name.replace(/[^a-zA-Z0-9а-яА-ЯёЁ]/g, '_');
+              const timestamp = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14);
+              const ext = 'jpeg';
+              // Временное имя файла (потом переименуем)
+              const tempFileName = `temp_${safeName}_${imgIdx}_${timestamp}.${ext}`;
+              const tempPath = join(uploadsDir, tempFileName);
               
-              await writeFile(localPath, Buffer.from(fileBuffer));
+              await writeFile(tempPath, Buffer.from(fileBuffer));
               
               uploadedImages.push({
                 name: img.name,
                 path: img.path,
-                localPath: `/uploads/${localFileName}`,
-                fileName: localFileName,
+                tempPath: `/uploads/${tempFileName}`,
+                tempFileName: tempFileName,
                 timestamp,
-                isMain: imgIdx === 0 // Флаг главного фото
+                isMain: imgIdx === 0, // Флаг главного фото
+                imgIdx: imgIdx // Сохраняем индекс для переименования
               });
               
-              addLog(`   ✅ ${localFileName}`);
+              addLog(`   ✅ Загружено (временное имя): ${tempFileName}`);
             }
           }
         } catch (e: any) {
@@ -578,7 +578,7 @@ export async function POST(request: NextRequest) {
         descriptionFileName: descriptionFileName,
         // Загруженные изображения
         uploadedImages: uploadedImages,
-        previewImage: uploadedImages[0]?.localPath || null,
+        previewImage: uploadedImages[0]?.tempPath || null,
         // Для совместимости
         docxFiles: docxFiles.map((f: any) => ({
           name: f.name,
@@ -644,7 +644,7 @@ export async function POST(request: NextRequest) {
           // Сопоставляем главное фото и галерею с загруженными файлами
           // Первое загруженное фото = главное фото программы
           // Все остальные загруженные фото = галерея
-          const mainImagePath = programUploadedImages[0]?.localPath || null;
+          const mainImagePath = programUploadedImages[0]?.tempPath || null;
           
           // Для галереи используем все фото, начиная со второго (индекс 1)
           const galleryWithPaths = parsed.gallery.map((photo: any, idx: number) => {
@@ -652,7 +652,7 @@ export async function POST(request: NextRequest) {
             const uploadedPhoto = programUploadedImages[idx + 1];
             return {
               ...photo,
-              fullPath: uploadedPhoto?.localPath || null
+              fullPath: uploadedPhoto?.tempPath || null
             };
           });
 
@@ -696,12 +696,20 @@ export async function POST(request: NextRequest) {
     let skippedCount = 0;
     let updatedCount = 0;
     
+    // Массив для хранения информации о переименовании файлов
+    const fileRenames: Array<{
+      programName: string;
+      programId: number;
+      oldPath: string;
+      newPath: string;
+    }> = [];
+    
     for (const parsedProgram of parsedPrograms) {
-      // Формируем photoAlbum с реальными путями к загруженным файлам
+      // Формируем photoAlbum с временными путями к загруженным файлам
       // Первое фото (индекс 0) - главное, остальные - галерея
       const uploadedImages = parsedProgram.uploadedImages || [];
       const photoAlbum = uploadedImages.slice(1).map((img: any, idx: number) => ({
-        image: img.localPath,
+        image: img.tempPath,
         caption: parsedProgram.parsed?.gallery?.[idx]?.caption || ''
       }));
       
@@ -716,11 +724,84 @@ export async function POST(request: NextRequest) {
       };
       
       const result = await saveProgramToDb(programData, dbData, addLog);
+      
+      // После сохранения получаем ID программы и планируем переименование файлов
+      if (result.existingProgram || result.action === 'created' || result.action === 'updated') {
+        const programId = result.existingProgram?.id || dbData.programs?.[dbData.programs?.length - 1]?.id;
+        
+        if (programId && uploadedImages.length > 0) {
+          // Переименовываем каждый файл
+          for (const img of uploadedImages) {
+            if (img.tempFileName) {
+              const isMain = img.isMain;
+              const imgIndex = img.imgIdx;
+              const ext = img.tempPath.split('.').pop() || 'jpeg';
+              
+              // Новый формат: p-[id]-m.[ext] для главного, p-[id]-a-[n].[ext] для галереи
+              const newFileName = isMain 
+                ? `p-${programId}-m.${ext}`
+                : `p-${programId}-a-${imgIndex}.${ext}`;
+              
+              fileRenames.push({
+                programName: parsedProgram.name,
+                programId: programId,
+                oldPath: img.tempPath,
+                newPath: `/uploads/${newFileName}`
+              });
+            }
+          }
+        }
+      }
+      
       if (result.action === 'created') savedCount++;
       else if (result.action === 'updated') updatedCount++;
       else if (result.action === 'skipped') skippedCount++;
     }
     
+    // Переименовываем файлы и обновляем пути в БД
+    if (fileRenames.length > 0) {
+      addLog(`\n📁 Переименование файлов (${fileRenames.length} файлов)...`);
+      
+      for (const fileRename of fileRenames) {
+        try {
+          const oldFullPath = join(process.cwd(), 'public', fileRename.oldPath.replace('/uploads/', ''));
+          const newFullPath = join(process.cwd(), 'public', fileRename.newPath.replace('/uploads/', ''));
+          
+          // Переименовываем файл
+          await rename(oldFullPath, newFullPath);
+          addLog(`   ✅ ${fileRename.oldPath} -> ${fileRename.newPath}`);
+        } catch (e: any) {
+          addLog(`   ❌ Ошибка переименования ${fileRename.oldPath}: ${e.message}`);
+        }
+      }
+      
+      // Обновляем пути в БД
+      for (const fileRename of fileRenames) {
+        const programs = dbData.programs || [];
+        for (const prog of programs) {
+          if (prog.id === fileRename.programId) {
+            // Проверяем главное изображение
+            if (prog.image === fileRename.oldPath) {
+              prog.image = fileRename.newPath;
+            }
+            // Проверяем галерею
+            if (prog.photoAlbum) {
+              for (const photo of prog.photoAlbum) {
+                if (photo.image === fileRename.oldPath) {
+                  photo.image = fileRename.newPath;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // Сохраняем обновлённую БД с новыми путями
+      const dbPath = join(process.cwd(), 'db.json');
+      await writeFile(dbPath, JSON.stringify(dbData, null, 2), 'utf-8');
+      addLog(`   ✅ БД обновлена с новыми путями к файлам`);
+    }
+
     // Сохраняем обновлённую БД
     if (savedCount > 0 || updatedCount > 0) {
       const dbPath = join(process.cwd(), 'db.json');

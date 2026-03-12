@@ -1,4 +1,4 @@
-public/uploads/ 
+#public/uploads/ 
 *.mov   
 *.mp4 
 node_modules
