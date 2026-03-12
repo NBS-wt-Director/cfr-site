@@ -1,0 +1,48 @@
+{
+  "name": "shifu-panda",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+        "dev": "next dev ",
+        "dev:turbo": "next dev ",
+        "build": "next build ",
+        "build:webpack": "next build",
+        "start": "next start",
+        "preview": "npm run build && npm start",
+        "ssl": "./deploy/ssl-selfsigned.sh",
+        "pm2:start": "pm2 start deploy/ecosystem.config.js",
+        "pm2:restart": "pm2 restart ecosystem.config.js",
+        "pm2:logs": "pm2 logs shifu-panda --lines 50",
+        "analyze": "node scripts/analyze.js",
+        "analyze:fix": "node scripts/analyze.js --verbose",
+        "analyze:dev": "node scripts/analyze.js --dev",
+        "add-path-comments": "node add-path-comments.js",
+        "deploy": "node deploy.mjs",
+        "add-path-comments:watch": "nodemon --watch . --ext js,ts,jsx,tsx,mjs,cjs,vue,svelte --exec \"npm run add-path-comments\""
+    },
+    "dependencies": {
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "lowdb": "^7.0.1",
+        "lucide-react": "^0.441.0",
+        "mammoth": "^1.11.0",
+        "next": "^16.1.6",
+        "nodemailer": "^8.0.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "tailwind-merge": "^3.4.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.33",
+        "@types/react": "^18.3.28",
+        "@types/react-dom": "^18.3.7",
+        "autoprefixer": "^10.4.0",
+        "eslint": "^10.0.1",
+        "eslint-config-next": "^0.2.4",
+        "glob": "^13.0.6",
+        "nodemon": "^3.1.11",
+        "postcss": "^8.4.0",
+        "tailwindcss": "^3.4.0",
+        "typescript": "^5"
+    }
+}

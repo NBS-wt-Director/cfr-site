@@ -1,0 +1,210 @@
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: rgb(17, 24, 39);
+  background: linear-gradient(135deg, rgb(251, 191, 36), rgb(234, 179, 8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9), rgba(243, 244, 246, 0.9));
+  border-radius: 1rem;
+  border: 2px solid rgb(229, 231, 235);
+  margin-bottom: 1.5rem;
+}
+
+.section h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.formGroup > label {
+  display: block;
+  font-weight: 600;
+  color: rgb(55, 65, 81);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(251, 191, 36);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: rgb(251, 191, 36);
+}
+
+.select:disabled {
+  background: rgb(243, 244, 246);
+  cursor: not-allowed;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(229, 231, 235);
+  transition: all 0.2s ease;
+}
+
+.checkbox:hover {
+  border-color: rgb(251, 191, 36);
+}
+
+.checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: rgb(251, 191, 36);
+}
+
+.checkbox span {
+  font-weight: 500;
+  color: rgb(55, 65, 81);
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(229, 231, 235);
+}
+
+.orderItem span {
+  font-weight: 500;
+  color: rgb(55, 65, 81);
+}
+
+.orderButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.orderBtn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderBtn:hover:not(:disabled) {
+  background: rgb(251, 191, 36);
+  border-color: rgb(251, 191, 36);
+}
+
+.orderBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.saveBtn {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgb(229, 231, 235);
+  color: rgb(107, 114, 128);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+}
+
+.saveBtnActive {
+  background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74));
+  color: white;
+  cursor: pointer;
+}
+
+.saveBtnActive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}

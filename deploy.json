@@ -1,0 +1,16 @@
+{
+  "server": {
+    "host": "your-server-ip-or-domain",
+    "port": 22,
+    "username": "deploy",
+    "password": "your-password"
+  },
+  "git": {
+    "remote": "origin",
+    "branch": "main"
+  },
+  "project": {
+    "name": "shifu-panda",
+    "path": "/var/www/shifu-panda"
+  }
+}

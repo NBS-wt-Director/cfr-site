@@ -1,0 +1,66 @@
+.page {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
+  }
+  
+  .content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .authContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgb(17, 24, 39) 0%, rgb(31, 41, 55) 100%);
+  }
+  
+  .authCard {
+    background: white;
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+  
+  .authCard h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .authCard input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .authCard button {
+    width: 100%;
+    padding: 1rem;
+    background: #fbbf24;
+    color: #111827;
+    border: none;
+    border-radius: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 1024px) {
+    .mainGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

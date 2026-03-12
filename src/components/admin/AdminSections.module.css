@@ -1,0 +1,174 @@
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: rgb(17, 24, 39);
+  }
+  
+  .resetBtn {
+    background: rgba(251, 191, 36, 0.2);
+    color: rgb(251, 191, 36);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .resetBtn:hover {
+    background: rgba(251, 191, 36, 0.3);
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    min-height: 400px;
+  }
+  
+  .tile {
+    position: relative;
+    height: 180px;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    cursor: grab;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(229, 231, 235, 0.5);
+    overflow: hidden;
+    user-select: none;
+  }
+  
+  .tile:active {
+    cursor: grabbing;
+  }
+  
+  .tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tile.dragging {
+    transform: rotate(5deg);
+    opacity: 0.8;
+  }
+  
+  /* Цветовые схемы */
+  .tile.yellow-orange { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+  .tile.green-blue { background: linear-gradient(135deg, #10b981, #059669); }
+  .tile.emerald-teal { background: linear-gradient(135deg, #34d399, #059669); }
+  .tile.gray-white { background: linear-gradient(135deg, #6b7280, #f3f4f6); color: #111827; }
+  .tile.indigo-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+  .tile.red-pink { background: linear-gradient(135deg, #ef4444, #dc2626); }
+  .tile.blue-sky { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .tile.purple-violet { background: linear-gradient(135deg, #a855f7, #9333ea); }
+  .tile.orange-gold { background: linear-gradient(135deg, #f97316, #ea580c); }
+  .tile.default { background: linear-gradient(135deg, #6b7280, #4b5563); }
+  
+  .dragHandle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+    cursor: grab;
+    opacity: 0.7;
+    z-index: 10;
+  }
+  
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 2.5rem;
+  }
+  
+  .titleInput {
+    flex: 1;
+  }
+  
+  .input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.3);
+    color: inherit;
+    text-align: center;
+  }
+  
+  .input:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  
+  .colorSelector {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  
+  .colorOption {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--color, #6b7280);
+  }
+  
+  .colorOption:hover {
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .activeColor {
+    transform: scale(1.3) !important;
+    border-color: white !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8);
+  }
+  
+  .index {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.875rem;
+  }
+  
+  .status {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(6, 78, 59, 0.1);
+    border-radius: 1rem;
+    border-left: 4px solid rgb(6, 78, 59);
+    color: rgb(6, 78, 59);
+    font-weight: 600;
+    text-align: center;
+  }
+  

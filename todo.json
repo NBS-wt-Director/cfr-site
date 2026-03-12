@@ -1,0 +1,46 @@
+{
+  "выполнено": [
+    {
+      "дата": "2026-03-04",
+      "задача": "Убраны уголки (cornerFold) у всех карточек программ и тренеров",
+      "файлы": [
+        "src/components/ui/ProgramCard.tsx",
+        "src/components/ui/TrainerCard.tsx",
+        "src/components/home/HomePrograms.tsx",
+        "src/components/home/HomeTrainers.tsx",
+        "src/app/programs/page.tsx",
+        "src/app/trainers/page.tsx"
+      ]
+    },
+    {
+      "дата": "2026-03-04",
+      "задача": "Убрано отображение количества фотографий у всех карточек",
+      "файлы": [
+        "src/components/ui/ProgramCard.tsx",
+        "src/components/ui/TrainerCard.tsx",
+        "src/components/home/HomePrograms.tsx",
+        "src/components/home/HomeTrainers.tsx",
+        "src/app/programs/page.tsx",
+        "src/app/trainers/page.tsx"
+      ]
+    },
+    {
+      "дата": "2026-03-04",
+      "задача": "Исправлена ошибка SSR в not-found.tsx - добавлены проверки isClient",
+      "файлы": ["src/app/not-found.tsx"]
+    },
+    {
+      "дата": "2026-03-04",
+      "задача": "Изменён формат URL картинок при автозагрузке на p_[имя]_[индекс]_[timestamp].jpeg",
+      "файлы": ["src/app/api/autoupload/route.ts"],
+      "примечание": "Временный формат. Полный формат с ID программы требует переименования файлов после создания программы в БД"
+    },
+    {
+      "дата": "2026-03-04",
+      "задача": "Создан скрипт деплоя deploy.js и конфигурация deploy.json",
+      "файлы": ["deploy.js", "deploy.json"],
+      "примечание": "Скрипт создаёт коммит, пушит, подключается к серверу и сверяет коммиты"
+    }
+  ],
+  "выполнить": []
+}

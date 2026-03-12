@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "showContacts": true,
+  "showSocial": true,
+  "showCopyright": true,
+  "copyrightText": "© 2026 Шифу Панда. Екатеринбург. Все права защищены.",
+  "showDevInfo": false,
+  "links": []
+}

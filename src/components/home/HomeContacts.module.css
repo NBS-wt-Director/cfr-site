@@ -1,0 +1,65 @@
+.contacts {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: linear-gradient(to right, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39));
+  }
+  
+  .contactItem {
+    display: block;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .contactItem:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgb(251, 191, 36);
+  }
+  
+  .contactItem h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .contactItem:hover h3 {
+    color: rgb(251, 191, 36);
+  }
+  
+  .contactItem p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .contactItem:hover p {
+    color: rgb(254, 243, 199);
+  }
+  
+  .contactItem p.underline {
+    text-decoration: underline;
+  }
+  
+  /* Карта */
+  .contacts img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .contacts img:hover {
+    transform: scale(1.02);
+  }
+  

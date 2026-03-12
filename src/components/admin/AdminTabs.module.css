@@ -1,0 +1,51 @@
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgb(248, 250, 252) 0%, rgb(241, 245, 249) 100%);
+    border-radius: 1.5rem;
+    border: 1px solid rgb(229, 231, 235);
+  }
+  
+  .tabButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    height: auto;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgb(55, 65, 81);
+  }
+  
+  .tabButton:hover {
+    background: rgba(251, 191, 36, 0.1);
+  }
+  
+  /* Активная вкладка */
+  .tabButton.active {
+    background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  .tabButton.active .tabIcon,
+  .tabButton.active .tabLabel {
+    color: white;
+  }
+  
+  .tabIcon {
+    font-size: 1.25rem;
+  }
+  
+  .tabLabel {
+    font-size: 0.9rem;
+  }
+  

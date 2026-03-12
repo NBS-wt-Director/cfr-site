@@ -1,0 +1,21 @@
+.heroSection {
+    /* Никаких отступов - только SectionSpacer */
+  }
+  
+  .programsSection {
+    /* Никаких отступов - только SectionSpacer */
+  }
+  
+  /* Адаптивность сетки */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .flex.gap-4 > * {
+      flex: 1 !important;
+    }
+  }
+  

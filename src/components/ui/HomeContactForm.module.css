@@ -1,0 +1,127 @@
+.form {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 2rem;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .field {
+    margin-bottom: 2rem;
+  }
+  
+  .field label {
+    display: block;
+    font-weight: 700;
+    color: rgb(31, 41, 55);
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+  }
+  
+  .field input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 1rem;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .field input:focus {
+    outline: none;
+    border-color: rgb(251, 191, 36);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+  }
+  
+  .reasonButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .reasonBtn {
+    padding: 0.75rem 1rem;
+    border: 2px solid rgb(229, 231, 235);
+    background: white;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .reasonBtn:hover {
+    border-color: rgb(251, 191, 36);
+    background: rgb(254, 252, 232);
+  }
+  
+  .reasonBtn.active {
+    background: rgb(251, 191, 36);
+    border-color: rgb(234, 179, 8);
+    color: rgb(17, 24, 39);
+  }
+  
+  .submitButton {
+    width: 100%;
+    background: linear-gradient(to right, rgb(254, 243, 199), rgb(251, 191, 36));
+    color: rgb(17, 24, 39);
+    padding: 1.25rem;
+    border-radius: 1.5rem;
+    font-weight: 900;
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .submitButton:hover {
+    background: linear-gradient(to right, rgb(251, 191, 36), rgb(234, 179, 8));
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .thanks {
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  
+  .thanksTitle {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(to right, rgb(6, 78, 59), rgb(20, 83, 45));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+  }
+  
+  .thanksText {
+    font-size: 1.25rem;
+    color: rgb(55, 65, 81);
+    margin-bottom: 2rem;
+  }
+  
+  .resetButton {
+    background: rgb(251, 191, 36);
+    color: rgb(17, 24, 39);
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .resetButton:hover {
+    background: rgb(234, 179, 8);
+    transform: translateY(-1px);
+  }
+  

@@ -1,0 +1,12 @@
+.news {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: linear-gradient(to bottom right, rgb(238, 242, 255), rgb(224, 231, 255));
+  }
+  
+  .news h2 {
+    background: linear-gradient(to right, rgb(79, 70, 229), rgb(168, 85, 247), rgb(236, 72, 153));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  

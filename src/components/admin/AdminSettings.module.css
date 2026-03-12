@@ -1,0 +1,349 @@
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    height: 100%;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: rgb(17, 24, 39);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px);
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+  }
+  
+  .settingsCard {
+    background: rgba(248, 250, 252, 0.7);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+  }
+  
+  .settingsCard h4 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.125rem;
+    color: rgb(17, 24, 39);
+    border-bottom: 2px solid rgb(251, 191, 36);
+    padding-bottom: 0.5rem;
+  }
+  
+  .formGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .input {
+    padding: 0.875rem;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: rgb(251, 191, 36);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+  }
+  
+
+  .logoPreview {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .faviconPreview {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  
+  .noImage {
+    color: rgb(107, 114, 128);
+    font-style: italic;
+    text-align: center;
+  }
+  
+  .fileInput {
+    padding: 0.75rem;
+  }
+  
+  .emailList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(243, 244, 246, 0.5);
+    border-radius: 0.75rem;
+    border: 1px solid rgb(229, 231, 235);
+  }
+  
+  .emailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .removeEmailBtn {
+    background: rgb(239, 68, 68);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .addEmailRow {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .addEmailBtn {
+    background: linear-gradient(135deg, rgb(6, 78, 59), rgb(20, 83, 45));
+    color: white;
+    border: none;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  .addEmailBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .testSection {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+  
+  .testEmailBtn {
+    background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .testEmailBtn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  }
+  
+  .testEmailBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .saveSection {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(6, 78, 59, 0.1), rgba(20, 83, 45, 0.1));
+    border-radius: 1rem;
+    border: 2px solid rgba(6, 78, 59, 0.3);
+    text-align: center;
+  }
+  
+  .saveBtn {
+    background: linear-gradient(135deg, rgb(6, 78, 59), rgb(20, 83, 45));
+    color: white;
+    border: none;
+    padding: 1.25rem 3rem;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.3);
+  }
+  
+  .saveBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .saveBtnActive {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(6, 78, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0); }
+  }
+  
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* AdminDividers styles */
+.description {
+  margin-bottom: 1.5rem;
+  color: rgb(107, 114, 128);
+  line-height: 1.6;
+}
+
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(243, 244, 246, 0.5);
+  border-radius: 1rem;
+  color: rgb(107, 114, 128);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.cardHeader h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: rgb(17, 24, 39);
+  border: none;
+  padding: 0;
+}
+
+.deleteBtn {
+  background: rgb(239, 68, 68);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background: rgb(220, 38, 38);
+  transform: translateY(-1px);
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.select {
+  padding: 0.875rem;
+  border: 2px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: rgb(251, 191, 36);
+}
+
+.dividerPreview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(229, 231, 235);
+}
+
+.arrow {
+  color: rgb(251, 191, 36);
+  font-size: 1.25rem;
+}
+
+.preview {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewContent {
+  font-weight: 600;
+}
+
+.addBtn {
+  background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s;
+}
+
+.addBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.helperText {
+  color: rgb(107, 114, 128);
+  font-size: 0.8rem;
+}
+  

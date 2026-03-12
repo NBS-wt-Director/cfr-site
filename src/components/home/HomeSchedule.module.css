@@ -1,0 +1,13 @@
+.schedule {
+    @apply py-24 bg-gradient-to-br from-yellow-50 to-orange-50;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  

@@ -1,0 +1,939 @@
+.container { 
+  padding: 24px; 
+  max-width: 900px; 
+  margin: 0 auto; 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+}
+
+.header { 
+  margin-bottom: 28px; 
+  text-align: center; 
+}
+.header h3 { 
+  margin: 0 0 8px; 
+  color: #1a1a1a; 
+  font-size: 24px; 
+  font-weight: 600; 
+}
+.header p { 
+  margin: 0; 
+  color: #666; 
+  font-size: 14px; 
+}
+
+.field { 
+  margin-bottom: 20px; 
+}
+.field label { 
+  display: block; 
+  margin-bottom: 6px; 
+  font-weight: 500; 
+  color: #333; 
+  font-size: 14px; 
+}
+.required { 
+  color: #dc3545; 
+}
+.input { 
+  width: 100%; 
+  padding: 14px 16px; 
+  border: 2px solid #e1e5e9; 
+  border-radius: 12px; 
+  font-size: 15px; 
+  transition: all 0.2s;
+}
+.input:focus { 
+  outline: none; 
+  border-color: #007bff; 
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.1); 
+}
+.input::placeholder { 
+  color: #999; 
+}
+.input.valid { 
+  border-color: #28a745; 
+}
+.input.valid:focus { 
+  box-shadow: 0 0 0 3px rgba(40,167,69,0.1); 
+}
+.input.invalid { 
+  border-color: #dc3545; 
+  animation: shake 0.5s; 
+}
+@keyframes shake { 
+  0%, 100% { transform: translateX(0); } 
+  25% { transform: translateX(-5px); } 
+  75% { transform: translateX(5px); } 
+}
+.field small { 
+  display: block; 
+  margin-top: 6px; 
+  color: #666; 
+  font-size: 13px; 
+  line-height: 1.4; 
+}
+
+.authBtn, .scanBtn { 
+  padding: 16px 32px; 
+  border: none; 
+  border-radius: 12px; 
+  font-size: 16px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: all 0.2s; 
+  width: 100%; 
+  margin-top: 12px;
+}
+.authBtn { 
+  background: #6c757d; 
+  color: white; 
+}
+.authBtn:hover:not(:disabled) { 
+  background: #5a6268; 
+  transform: translateY(-1px); 
+}
+.authBtn.success { 
+  background: #28a745; 
+}
+.authBtn.success:hover { 
+  background: #218838; 
+}
+.authBtn:disabled { 
+  background: #ccc; 
+  cursor: not-allowed; 
+  transform: none; 
+}
+
+.scanTypeSection { 
+  display: flex; 
+  gap: 12px; 
+  margin: 24px 0; 
+  padding: 16px; 
+  background: #f8f9fa; 
+  border-radius: 12px; 
+}
+.scanTypeBtn { 
+  flex: 1; 
+  padding: 14px 20px; 
+  border: 2px solid #e9ecef; 
+  background: white; 
+  border-radius: 10px; 
+  font-weight: 500; 
+  cursor: pointer; 
+  transition: all 0.2s;
+}
+.scanTypeBtn:hover:not(:disabled) { 
+  border-color: #007bff; 
+  background: #f0f8ff; 
+}
+.scanTypeBtn.active { 
+  background: #007bff !important; 
+  color: white; 
+  border-color: #007bff; 
+}
+.scanTypeBtn:disabled { 
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+
+.scanBtn { 
+  background: linear-gradient(135deg, #007bff, #0056b3); 
+  color: white; 
+}
+.scanBtn:hover:not(:disabled) { 
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 25px rgba(0,123,255,0.3); 
+}
+.scanBtn.processing { 
+  background: linear-gradient(135deg, #28a745, #20c997); 
+}
+.scanBtn:disabled { 
+  background: #ccc; 
+  cursor: not-allowed; 
+}
+
+.progressSection { 
+  margin: 24px 0; 
+}
+.progressBar { 
+  width: 100%; 
+  height: 10px; 
+  background: #f0f2f5; 
+  border-radius: 6px; 
+  overflow: hidden; 
+  margin-bottom: 12px; 
+}
+.progressFill { 
+  height: 100%; 
+  background: linear-gradient(90deg, #007bff, #28a745); 
+  transition: width 0.3s; 
+  border-radius: 6px; 
+}
+.progressSection span { 
+  font-weight: 500; 
+  color: #333; 
+}
+
+.resultsSection { 
+  margin: 24px 0; 
+  background: #f8f9fa; 
+  padding: 20px; 
+  border-radius: 12px; 
+}
+.resultsSection h4 { 
+  margin: 0 0 16px; 
+  color: #1a1a1a; 
+}
+.statsGrid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+  gap: 16px; 
+}
+.statCard { 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+  color: white; 
+  padding: 24px; 
+  border-radius: 16px; 
+  text-align: center; 
+}
+.statNumber { 
+  font-size: 36px; 
+  font-weight: 700; 
+  margin-bottom: 4px; 
+}
+.statLabel { 
+  font-size: 14px; 
+  opacity: 0.95; 
+}
+.targetFolder { 
+  margin-top: 16px; 
+  padding: 12px; 
+  background: white; 
+  border: 1px solid #dee2e6; 
+  border-radius: 8px; 
+  font-size: 14px; 
+}
+
+.logSection { 
+  margin-top: 24px; 
+}
+.logSection h4 { 
+  margin: 0 0 12px; 
+  color: #333; 
+}
+.log { 
+  max-height: 300px; 
+  overflow-y: auto; 
+  background: #f8f9fa; 
+  border: 1px solid #dee2e6; 
+  border-radius: 12px; 
+  padding: 20px; 
+  font-family: 'SF Mono', Menlo, Monaco, monospace; 
+  font-size: 13px; 
+  line-height: 1.5;
+}
+.logEntry { 
+  margin-bottom: 8px; 
+  word-break: break-word; 
+}
+
+.status { 
+  text-align: center; 
+  padding: 20px; 
+  margin-top: 24px; 
+}
+.statusBadge { 
+  padding: 10px 24px; 
+  border-radius: 25px; 
+  font-size: 14px; 
+  font-weight: 600; 
+  text-transform: uppercase;
+}
+.status.idle { 
+  background: #e7f3ff; 
+  color: #0c63e4; 
+}
+.status.auth { 
+  background: #fff3cd; 
+  color: #856404; 
+}
+.status.scanning { 
+  background: #d1ecf1; 
+  color: #0c5460; 
+  animation: pulse 1.5s infinite; 
+}
+.status.success { 
+  background: #d4edff; 
+  color: #155724; 
+}
+.status.error { 
+  background: #f8d7da; 
+  color: #721c24; 
+}
+@keyframes pulse { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0.7; } 
+}
+
+/* Новые стили для авторизации */
+.authSection {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px solid #e1e5e9;
+}
+
+.authStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #d4edda;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.successBadge {
+  color: #155724;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.logoutLink {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.scanSection {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px solid #e1e5e9;
+}
+
+.hint {
+  margin-top: 16px;
+  padding: 16px;
+  background: #e7f3ff;
+  border-radius: 12px;
+  color: #0c63e4;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Список элементов */
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.itemCard {
+  background: white;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.itemName {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.itemBadges {
+  display: flex;
+  gap: 8px;
+}
+
+.badgeDocx {
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badgeImages {
+  background: #f3e5f5;
+  color: #7b1fa2;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badgeTotal {
+  background: #e0e0e0;
+  color: #616161;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.fileDocx {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+/* Содержимое DOCX */
+.docxContent {
+  background: #fafafa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.docxHeader {
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #bbdefb;
+}
+
+.docxText {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.docxLine {
+  padding: 4px 0;
+  color: #333;
+}
+
+.separator {
+  display: block;
+  color: #ff9800;
+  font-weight: bold;
+  margin: 4px 0;
+  font-size: 11px;
+}
+
+/* Секция описания */
+.descriptionSection {
+  background: #fff;
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.descriptionHeader {
+  background: #4caf50;
+  color: white;
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+.descriptionContent {
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.descriptionText {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.descriptionLine {
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.noText {
+  color: #f44336;
+  padding: 12px;
+  background: #ffebee;
+  border-radius: 8px;
+}
+
+/* Превью изображения */
+.previewSection {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.noPreview {
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  color: #666;
+  text-align: center;
+}
+
+/* Секция загруженных фото */
+.uploadedImagesSection {
+  margin-top: 12px;
+}
+
+.imagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.uploadedImageItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.uploadedImage {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+.imageName {
+  font-size: 10px;
+  padding: 4px;
+  text-align: center;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fileGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fileGroupLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+}
+
+.fileList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fileItem {
+  background: #f5f5f5;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #333;
+}
+
+.itemPath {
+  font-size: 12px;
+  color: #999;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* Аккаунт Яндекса */
+.accountInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  border: 2px solid #ffb74d;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.accountDetails {
+  flex: 1;
+}
+
+.accountName {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.accountLogin {
+  font-size: 13px;
+  color: #666;
+}
+
+.changeAccountBtn {
+  background: #fff;
+  border: 2px solid #ffb74d;
+  color: #e65100;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.changeAccountBtn:hover {
+  background: #fff3e0;
+  border-color: #ff9800;
+}
+
+.checkFolderBtn {
+  background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex: 1;
+}
+
+.checkFolderBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.checkFolderBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* === СТИЛИ ДЛЯ ПРЕДПРОСМОТРА РАСПАРСЕННЫХ ПРОГРАММ === */
+.parsedSection {
+  margin: 24px 0;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 20px;
+  border-radius: 16px;
+  border: 3px solid #4caf50;
+}
+
+.parsedSection h4 {
+  margin: 0 0 20px;
+  color: #1b5e20;
+  font-size: 18px;
+}
+
+.parsedProgramCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.parsedProgramCard:last-child {
+  margin-bottom: 0;
+}
+
+.parsedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.parsedName {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.parsedBadge {
+  background: #4caf50;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.parsedMainImage {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.parsedMainImage img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.parsedDescription {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.parsedDescription strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.parsedDescription p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.parsedTrainers {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #e3f2fd;
+  border-radius: 12px;
+}
+
+.parsedTrainers strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #1565c0;
+}
+
+.trainerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trainerBadge {
+  background: white;
+  border: 2px solid #90caf9;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #1565c0;
+}
+
+.trainerBadge.trainerMatched {
+  background: #c8e6c9;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.trainerBadge.trainerUnmatched {
+  background: #ffcdd2;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+/* Ссылка на тренера */
+.trainerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #c8e6c9;
+  border: 2px solid #4caf50;
+  padding: 6px 12px;
+  border-radius: 24px;
+  font-size: 13px;
+  color: #2e7d32;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.trainerLink:hover {
+  background: #a5d6a7;
+  transform: translateY(-1px);
+}
+
+.trainerLinkAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.trainerLinkCheck {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.unmatchedWarning {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff3e0;
+  border-radius: 8px;
+  color: #e65100;
+  font-size: 13px;
+}
+
+.parsedWorkouts {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff3e0;
+  border-radius: 12px;
+}
+
+.parsedWorkouts strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #e65100;
+}
+
+.workoutList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workoutItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ffe0b2;
+}
+
+.workoutDay {
+  font-weight: 600;
+  color: #e65100;
+  min-width: 120px;
+}
+
+.workoutTime {
+  color: #333;
+}
+
+.workoutParams {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.paramTag {
+  background: #ffcc80;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #e65100;
+}
+
+.parsedGallery {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #f3e5f5;
+  border-radius: 12px;
+}
+
+.parsedGallery strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #7b1fa2;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.galleryItem {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e1bee7;
+}
+
+.galleryPhoto {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.galleryPlaceholder {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  font-size: 24px;
+}
+
+.galleryCaption {
+  padding: 8px;
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+}
+
+.captionText {
+  display: block;
+  color: #7b1fa2;
+  font-style: italic;
+}
+
+.saveProgramBtn {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.saveProgramBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}

@@ -1,0 +1,642 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 64px;
+  gap: 1rem;
+}
+
+/* 1. ЛОГОТИП */
+.logoSection {
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Меню разделов главной страницы */
+.homeMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 200px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.homeMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.homeMenuItem:hover {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.logoLink {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.logoLink:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* 2. КНОПКА ЗВОНКА */
+.callButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 0; /* исправлено скругление */
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.callButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* 3. ЗАГОЛОВОК */
+.titleSection {
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.titleSection .secondLine {
+  display: block;
+  text-align: center;
+}
+
+.pageTitle {
+  font-size: 27px !important;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Вторая строка заголовка */
+.secondLine {
+  display: block;
+  font-size: 22px !important;
+  font-weight: 500;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+  padding: 4px 16px;
+  background: rgba(107, 114, 128, 0.15);
+  border-radius: 6px;
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Анимации логотипа/заголовка */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.rotate {
+  animation: rotate 4s linear infinite;
+}
+
+/* Анимации второй строки */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.slideIn {
+  animation: slideIn 1s ease-out forwards;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(30) forwards;
+}
+
+/* 4. МЕНЮ */
+.menuSection {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menuToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menuToggle:hover {
+  background: #e5e7eb;
+}
+
+.menuToggle.menuOpen {
+  background: #1f2937;
+  color: white;
+  border-color: #1f2937;
+}
+
+.chevron {
+  transition: transform 0.2s;
+}
+
+.menuToggle.menuOpen .chevron {
+  transform: rotate(180deg);
+}
+
+/* Выпадающее меню */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.dropdownMenu.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menuItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.menuItem:hover {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.menuDivider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+/* Подменю */
+.menuItemWithSubmenu {
+  position: relative;
+}
+
+.menuItemButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menuItemButton:hover {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.submenuChevron {
+  transition: transform 0.2s;
+}
+
+.submenuChevronOpen {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  padding-left: 1rem;
+  margin-top: 0.25rem;
+}
+
+.submenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.submenuItem:hover {
+  background: #f3f4f6;
+  color: #3b82f6;
+}
+
+/* Мобильная кнопка */
+.mobileToggle {
+  display: none;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Мобильное меню */
+.mobileMenu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: white;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mobileMenu.mobileOpen {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileMenuContent {
+  padding: 1rem;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.mobileMenuItem {
+  display: block;
+  padding: 1rem;
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.mobileMenuItem:hover {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.mobileSubTitle {
+  padding: 1rem 1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mobileCallButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Мобильный аккордеон */
+.mobileAccordion {
+  margin-bottom: 0.5rem;
+}
+
+.mobileAccordionButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.mobileChevron {
+  transition: transform 0.2s;
+}
+
+.mobileChevronOpen {
+  transform: rotate(180deg);
+}
+
+.mobileAccordionContent {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 998;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .topRow {
+    padding: 0.5rem 1rem;
+  }
+  
+  .callButton span {
+    display: none;
+  }
+  
+  .callButton {
+    padding: 0.625rem;
+  }
+  
+  .pageTitle {
+    font-size: 27px !important;
+  }
+  
+  .secondLine {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .topRow {
+    height: 56px;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Сохраняем заголовок в мобильной версии */
+  .titleSection {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 0 0.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 22px !important;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.2;
+    white-space: normal; /* перенос текста */
+    overflow: visible;
+    text-align: center;
+  }
+  
+  .secondLine {
+    font-size: 16px !important;
+  }
+  
+  .menuSection {
+    display: none;
+  }
+  
+  .mobileToggle {
+    display: flex;
+  }
+  
+  .mobileMenu {
+    top: 56px;
+  }
+}
+
+/* ---------- Новые стили ---------- */
+
+/* 1. Слайдер галереи */
+.gallerySection {
+  padding: 2rem;
+  background: #f9fafb;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 2. Новости */
+.newsArticle {
+  width: 75%; /* A4 3:4 */
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.newsVideo {
+  max-width: 100%;
+  max-height: 200px; /* ограничение 2 мин видео можно контролировать на стороне JS */
+  margin-bottom: 1rem;
+}
+
+/* 3. Реакции к новостям */
+.reactions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.reactionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.reactionBtn:hover {
+  transform: scale(1.2);
+}
+
+/* 4. Карточки программ и тренеров */
+.programCard, .trainerCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.programCard .btn, .trainerCard .btn {
+  margin-top: auto;
+  align-self: stretch;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0; /* исправлено скругление */
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.programCard .btn:hover, .trainerCard .btn:hover {
+  background: #2563eb;
+}
+
+/* 5. Ограничение заголовков карточек до 2 строк в мобильном режиме */
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 6. Мобильная версия заголовка хедера */
+@media (max-width: 768px) {
+  .headerTitleMobile {
+    font-size: 22px;
+    white-space: normal;
+    text-align: center;
+  }
+}

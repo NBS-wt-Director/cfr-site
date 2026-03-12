@@ -1,0 +1,155 @@
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    height: 100%;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .section h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: rgb(17, 24, 39);
+  }
+  
+  .fieldGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .field label {
+    font-weight: 600;
+    color: rgb(55, 65, 81);
+  }
+  
+  .input {
+    padding: 1rem;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: rgb(251, 191, 36);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+  }
+  
+  .socialList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .socialItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(243, 244, 246, 0.5);
+    border-radius: 1rem;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+  }
+  
+  .socialIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(251, 191, 36), rgb(234, 179, 8));
+    color: rgb(17, 24, 39);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.875rem;
+  }
+  
+  .socialFields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .socialFields .input {
+    flex: 1;
+  }
+  
+  .actions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgb(229, 231, 235);
+    text-align: center;
+  }
+  
+  .saveBtn {
+    background: rgba(107, 114, 128, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+  }
+  
+  .saveBtnActive {
+    background: linear-gradient(135deg, rgb(6, 78, 59), rgb(20, 83, 45)) !important;
+    color: white !important;
+    border-color: rgb(6, 78, 59) !important;
+    cursor: pointer !important;
+    animation: pulse 2s infinite;
+  }
+  
+  .saveBtnActive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.4);
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(6, 78, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0); }
+  }
+  
+  .status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(6, 78, 59, 0.1);
+    border-radius: 1rem;
+    border-left: 4px solid rgb(6, 78, 59);
+    color: rgb(6, 78, 59);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .fieldGroup {
+      grid-template-columns: 1fr;
+    }
+    
+    .socialItem {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    
+    .socialFields {
+      gap: 1rem;
+    }
+  }
+  

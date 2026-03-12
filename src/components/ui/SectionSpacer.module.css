@@ -1,0 +1,75 @@
+.spacer {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Увеличенные размеры */
+  .xs { height: 1.5rem; }
+  .sm { height: 3rem; }
+  .md { height: 5rem; }
+  .lg { height: 8rem; }
+  .xl { height: 12rem; }
+  .xxl { height: 16rem; }
+  
+  /* Фоновые градиенты */
+  .gradientBlue {
+    background: linear-gradient(to right, #eff6ff, #dbeafe, #bfdbfe, #eff6ff);
+  }
+  
+  .gradientRed {
+    background: linear-gradient(to right, #fef2f2, #fee2e2, #fecaca, #fef2f2);
+  }
+  
+  .gradientOrange {
+    background: linear-gradient(to right, #fff7ed, #ffedd5, #fed7aa, #fff7ed);
+  }
+  
+  .gradientGray {
+    background: linear-gradient(to right, #f9fafb, #f3f4f6, #e5e7eb, #f9fafb);
+  }
+  
+  .default {
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  }
+  
+  /* Контейнер для контента (картинки) */
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 2rem;
+  }
+  
+  .contentImage {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  
+  .contentImage:hover {
+    opacity: 1;
+  }
+  
+  /* Настройки текста */
+  .textContent {
+    font-weight: 700;
+    text-align: center;
+    color: #6b7280;
+  }
+  
+  /* Шрифты */
+  .fontSmall { font-size: 0.875rem; }
+  .fontMedium { font-size: 1rem; }
+  .fontLarge { font-size: 1.25rem; }
+  .fontXLarge { font-size: 1.5rem; }
+  

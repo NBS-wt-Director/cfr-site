@@ -1,0 +1,447 @@
+/* ✅ 100% АНАЛОГ AdminPrograms.module.css с заменой имен классов */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    height: 100%;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: rgb(17, 24, 39);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px);
+  }
+  
+  /* ФОРМА ДОБАВЛЕНИЯ */
+  .addSection {
+    background: rgba(248, 250, 252, 0.7);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+  }
+  
+  .addSection h4 {
+    margin: 0 0 1.5rem 0;
+    color: rgb(17, 24, 39);
+    font-size: 1.125rem;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .input, .textarea {
+    padding: 0.875rem;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .input:focus, .textarea:focus {
+    outline: none;
+    border-color: rgb(251, 191, 36);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+  }
+  
+  .textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .imagePreview {
+    width: 100%;
+    height: 150px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgb(229, 231, 235);
+  }
+  
+  .previewImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Предпросмотр обрезки */
+  .cropPreview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .previewImgCrop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .cropOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .error {
+    color: rgb(239, 68, 68);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 8px 0;
+    padding: 8px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+  }
+  
+  .fileInput {
+    padding: 0.75rem;
+  }
+  
+  /* Переключатель типа медиа */
+  .mediaTypeToggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .toggleBtn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    background: white;
+    color: rgb(107, 114, 128);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .toggleBtn:hover {
+    border-color: rgb(59, 130, 246);
+    color: rgb(59, 130, 246);
+  }
+  
+  .toggleBtnActive {
+    background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+    color: white;
+    border-color: transparent;
+  }
+  
+  .toggleBtnActive:hover {
+    color: white;
+  }
+  
+  /* Поле ссылки VK */
+  .vkLinkField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .vkPreview {
+    width: 100%;
+    height: 150px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #f3f4f6;
+    border: 2px dashed rgb(229, 231, 235);
+  }
+  
+  .vkPreview .previewImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Видео в превью */
+  .imagePreview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Индикатор видео */
+  .videoIndicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 2rem;
+  }
+  
+  /* ОСНОВНАЯ СЕТКА */
+  .mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+  }
+  
+  /* ФОРМА РЕДАКТИРОВАНИЯ */
+  .formSection {
+    background: rgba(248, 250, 252, 0.5);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .editForm {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 2px solid rgb(251, 191, 36);
+  }
+  
+  .formFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formActions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .noSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgb(107, 114, 128);
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  /* ПЛИТКИ */
+  .newsList {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .newsList h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    color: rgb(17, 24, 39);
+  }
+  
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgb(229, 231, 235), transparent);
+    margin: 1rem 0;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
+  .newsCard {
+    background: rgba(243, 244, 246, 0.7);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: default;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(229, 231, 235, 0.7);
+    position: relative;
+    overflow: visible;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .newsCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    border-color: rgb(59, 130, 246);
+  }
+  
+  .cardButtons {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 6px;
+    opacity: 1;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .editBtn, .deleteBtn, .saveNewsBtn, .deleteNewsBtn, .cancelBtn, .addBtn {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 0.9rem;
+  }
+  
+  .editBtn, .saveNewsBtn {
+    background: linear-gradient(135deg, rgb(6, 78, 59), rgb(20, 83, 45));
+    color: white;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .deleteBtn, .deleteNewsBtn {
+    background: linear-gradient(135deg, rgb(239, 68, 68), rgb(220, 38, 38));
+    color: white;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cancelBtn {
+    background: rgba(107, 114, 128, 0.2);
+    color: rgb(107, 114, 128);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+  }
+  
+  .addBtn {
+    background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+    color: white;
+    grid-column: 1 / -1;
+  }
+  
+  .addBtn:disabled, .saveBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .saveNewsBtn {
+    flex: 1;
+  }
+  
+  .deleteNewsBtn {
+    flex: 1;
+  }
+  
+  .newsImage {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .newsInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .newsInfo h5 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: rgb(17, 24, 39);
+  }
+  
+  .newsInfo p {
+    margin: 0 0 1rem 0;
+    color: rgb(75, 85, 99);
+    line-height: 1.5;
+    flex: 1;
+  }
+  
+  .newsMeta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: rgb(107, 114, 128);
+  }
+  
+  .saveSection {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(6, 78, 59, 0.05);
+    border-radius: 1rem;
+    text-align: center;
+  }
+  
+  .saveBtn {
+    background: rgba(107, 114, 128, 0.3);
+    color: white;
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    width: 100%;
+  }
+  
+  .saveBtnActive {
+    background: linear-gradient(135deg, rgb(6, 78, 59), rgb(20, 83, 45)) !important;
+    animation: pulse 2s infinite;
+  }
+  
+  .status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(6, 78, 59, 0.1);
+    border-radius: 1rem;
+    border-left: 4px solid rgb(6, 78, 59);
+    color: rgb(6, 78, 59);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(6, 78, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(6, 78, 59, 0); }
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .mainGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

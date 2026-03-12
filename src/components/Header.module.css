@@ -1,0 +1,242 @@
+.header {
+  @apply bg-white/95 backdrop-blur-xl shadow-xl border-b border-gray-200 fixed top-0 left-0 right-0 z-50;
+  padding: 0 !important;
+  /* ✅ 60px меню + 37px заголовок (+7px) + уведомление (если есть) */
+  height: auto;
+  min-height: 97px;
+  margin-bottom: 97px; /* ✅ ПРОСТРАНСТВО под header */
+}
+
+.header.withNotification {
+  min-height: 130px;
+  margin-bottom: 130px;
+}
+
+.topRow {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.bottomRow {
+  padding: 0 1.5rem;
+  height: 37px; /* ✅ Заголовок +7px (30px -> 37px) */
+  border-top: 1px solid rgba(0,0,0,0.05);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.pageTitleContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pageTitle {
+  font-size: 2.25rem !important; /* ✅ 36px (+6px от 30px) */
+  line-height: 1.2 !important;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.02em;
+  width: 100%;
+}
+
+.logoLink { @apply flex-shrink-0 relative overflow-hidden; }
+.logo { 
+  @apply h-10 w-auto object-contain transition-all duration-300;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+.logoPlaceholder {
+  width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 1rem; color: white;
+}
+
+.mobileToggle { 
+  @apply lg:hidden p-1.5 rounded-lg hover:bg-gray-100 transition-colors; 
+}
+.desktopNav { @apply hidden lg:flex items-center flex-1 justify-center gap-0; }
+.navList { @apply flex items-center gap-6 p-1; }
+
+.navLink { 
+  font-size: 0.95rem; font-weight: 600; color: #374151; padding: 0.375rem 0.875rem;
+  border-radius: 0.375rem; transition: all 0.3s ease; position: relative;
+  text-decoration: none;
+}
+.navLink:hover { 
+  color: #3b82f6; background-color: rgba(59,130,246,0.1); 
+}
+
+.dropdown { position: relative; display: inline-block; }
+.dropdownToggle {
+  cursor: pointer; padding: 0.375rem 0.875rem; border-radius: 0.375rem; font-weight: 600;
+  color: #1f2937; background-color: transparent; transition: all 0.2s ease;
+  display: flex; align-items: center; gap: 0.25rem; font-size: 0.95rem;
+}
+.dropdownToggle:hover { background-color: #dbeafe; color: #3b82f6; }
+
+.dropdownMenu {
+  position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%);
+  min-width: 200px; background: white; border-radius: 0.75rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12); opacity: 0; visibility: hidden;
+  transform: translateX(-50%) translateY(-8px); transition: all 0.25s ease;
+  z-index: 1000; padding: 0.5rem 0; border: 1px solid rgba(0,0,0,0.08);
+}
+.dropdownMenu.open {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+.dropdownLink {
+  display: block; padding: 0.625rem 1rem; color: #374151; font-weight: 500;
+  border-left: 3px solid transparent; transition: all 0.2s ease; text-decoration: none;
+}
+.dropdownLink:hover { background-color: #dbeafe; color: #3b82f6; border-left-color: #3b82f6; }
+.dropdownHeader {
+  background: linear-gradient(to right, #dbeafe, #bfdbfe) !important;
+  font-weight: 700 !important; color: #3b82f6 !important; border-left-color: #3b82f6 !important;
+}
+
+.mobileMenu {
+  position: fixed; top: 90px; left: 0; right: 0; background: white;
+  transform: translateY(-100%); opacity: 0; visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top: 1px solid #e5e7eb;
+}
+.mobileMenu.mobileOpen { transform: translateY(0); opacity: 1; visibility: visible; }
+.mobileOverlay { 
+  position: fixed; inset: 0; background-color: rgba(0,0,0,0.3); backdrop-filter: blur(4px); 
+}
+.mobileNavList { padding: 1.5rem; }
+.mobileNavList li { margin-bottom: 0.25rem; }
+.mobileNavLink {
+  display: block; padding: 1rem; font-size: 1.125rem; font-weight: 600;
+  color: #1f2937; border-radius: 0.75rem; transition: all 0.2s ease; text-decoration: none;
+}
+.mobileNavLink:hover { background-color: #dbeafe; color: #3b82f6; }
+.mobileDropdown { position: relative; margin-bottom: 0.5rem; }
+.mobileDropdownToggle {
+  display: block; padding: 1rem; font-size: 1.125rem; font-weight: 700;
+  color: #1f2937; cursor: pointer; border-radius: 0.75rem; transition: all 0.2s ease;
+  border-left: 4px solid #3b82f6;
+}
+.mobileDropdownToggle:hover { background-color: #dbeafe; color: #3b82f6; }
+.mobileDropdownMenu {
+  margin-top: 0.5rem; margin-left: 1.5rem; background-color: #f8fafc; 
+  border-radius: 0.75rem; padding: 0.75rem; border: 1px solid #dbeafe;
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+}
+.mobileDropdownToggle.active + .mobileDropdownMenu { max-height: 400px; }
+.mobileDropdownLink {
+  display: block; padding: 0.75rem 1rem; color: #475569; font-size: 1rem;
+  border-radius: 0.5rem; transition: all 0.2s ease; text-decoration: none; margin-bottom: 0.25rem;
+}
+.mobileDropdownLink:hover { background-color: #bfdbfe; color: #3b82f6; }
+.mobileCallButton {
+  margin: 1.5rem; padding: 1rem 1.5rem; background: linear-gradient(to right, #fbbf24, #f59e0b);
+  color: #1f2937; font-weight: 700; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(251,191,36,0.4);
+  transition: all 0.3s ease; font-size: 1.125rem; border: none; cursor: pointer; width: auto;
+}
+.mobileCallButton:hover { 
+  transform: translateY(-2px); box-shadow: 0 8px 20px rgba(251,191,36,0.5); 
+}
+
+.logoSkeleton, .navSkeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%; animation: loading 1.5s infinite;
+}
+.logoSkeleton { width: 40px; height: 40px; border-radius: 0.5rem; }
+.navSkeleton { flex: 1; max-width: 400px; height: 36px; border-radius: 0.375rem; margin: 0 1.5rem; }
+@keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+@media (max-width: 1024px) { .topRow, .bottomRow { padding-left: 1.25rem; padding-right: 1.25rem; } }
+@media (max-width: 768px) {
+  .header { min-height: 80px !important; margin-bottom: 80px !important; }
+  .header.withNotification { min-height: 130px !important; margin-bottom: 130px !important; }
+  .topRow { height: 52px !important; padding: 0.375rem 1rem !important; }
+  .bottomRow { height: 28px !important; padding: 0 1rem !important; }
+  .pageTitle { font-size: 1rem !important; } /* ✅ Маленький заголовок на мобильном */
+  .mobileMenu { top: 80px !important; }
+}
+@media (max-width: 640px) { 
+  .topRow, .bottomRow { padding-left: 0.75rem; padding-right: 0.75rem; } 
+}
+
+.notificationBanner {
+  background: linear-gradient(90deg, #ff6b6b, #feca57);
+  color: white;
+  padding: 12px 0;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+  position: relative;
+  z-index: 100;
+  animation: slideDown 0.5s ease-out;
+}
+
+.notificationContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.notificationIcon {
+  font-size: 18px;
+}
+
+.notificationText {
+  flex: 1;
+  text-align: center;
+}
+
+.notificationClose {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.notificationClose:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .notificationContent {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 0 16px;
+  }
+  
+  .notificationText {
+    font-size: 14px;
+  }
+}

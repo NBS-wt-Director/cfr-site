@@ -1,0 +1,70 @@
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  overflow: hidden;
+}
+
+.item {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.header:hover {
+  background: rgba(251, 191, 36, 0.05);
+}
+
+.header h4 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+}
+
+.icon {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgb(107, 114, 128);
+  transition: all 0.3s ease;
+}
+
+.icon.rotated {
+  transform: rotate(180deg);
+  color: rgb(6, 78, 59);
+}
+
+.active {
+  background: rgba(6, 78, 59, 0.05);
+}
+
+.content {
+  padding: 0 1.5rem 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: auto;
+  }
+}
