@@ -36,6 +36,11 @@ interface ScheduleImage {
   image?: string;
 }
 
+interface PriceImage {
+  id: number;
+  image?: string;
+}
+
 interface Section {
   id: string;
   title: string;
@@ -180,7 +185,7 @@ export default function HomePage() {
               />
             )}
             <section id="prices">
-              <HomePrices openImageModal={openImageModal} />
+              <HomePrices openImageModal={openImageModal} prices={data.prices || []} />
             </section>
           </>
         );

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FileInput from '@/components/ui/FileInput';
 import styles from './AdminSchedulePrices.module.css';
 
@@ -12,7 +12,6 @@ interface NewsItem {
   id: number;
   title: string;
   description: string;
-  image: string;
 }
 
 interface AdminSchedulePricesProps {
@@ -33,14 +32,22 @@ export default function AdminSchedulePrices({
   onAddNews 
 }: AdminSchedulePricesProps) {
   
-  // ✅ ЛОКАЛЬНЫЕ состояния - НЕ сбрасываются
-  const [localSchedule, setLocalSchedule] = useState<SchedulePriceItem[]>([
-    { id: 1, image: '/расписание1.jpg' },
-    { id: 2, image: '/расписание2.jpg' }
-  ]);
-  const [localPrices, setLocalPrices] = useState<SchedulePriceItem[]>([
-    { id: 1, image: '/цены1.jpg' }
-  ]);
+  // ✅ ИСПОЛЬЗУЕМ PROPS, а не хардкод
+  const [localSchedule, setLocalSchedule] = useState<SchedulePriceItem[]>(
+    initialSchedule.length > 0 ? initialSchedule : []
+  );
+  const [localPrices, setLocalPrices] = useState<SchedulePriceItem[]>(
+    initialPrices.length > 0 ? initialPrices : []
+  );
+  
+  // ✅ СИНХРОНИЗАЦИЯ с props при изменении
+  useEffect(() => {
+    if (initialSchedule.length > 0) setLocalSchedule(initialSchedule);
+  }, [initialSchedule]);
+  
+  useEffect(() => {
+    if (initialPrices.length > 0) setLocalPrices(initialPrices);
+  }, [initialPrices]);
   
   // ✅ File состояния
   const [scheduleImage, setScheduleImage] = useState<File | null>(null);
@@ -49,13 +56,6 @@ export default function AdminSchedulePrices({
   const [schedule2ImagePreview, setSchedule2ImagePreview] = useState('');
   const [pricesImage, setPricesImage] = useState<File | null>(null);
   const [pricesImagePreview, setPricesImagePreview] = useState('');
-  
-  // ✅ Очередь сохранения файлов
-  const [pendingSave, setPendingSave] = useState<{
-    schedule1?: File;
-    schedule2?: File;
-    prices1?: File;
-  }>({});
   
   const [publishNews, setPublishNews] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -72,7 +72,7 @@ export default function AdminSchedulePrices({
     }
   });
 
-  const createNews = (type: 'schedule' | 'prices', image: string) => {
+  const createNews = (type: 'schedule' | 'prices') => {
     if (!publishNews) return;
     
     const now = new Date();
@@ -90,115 +90,97 @@ export default function AdminSchedulePrices({
     const newsItem: NewsItem = {
       id: Date.now(),
       title,
-      description,
-      image
+      description
     };
     
     onAddNews(newsItem);
   };
 
+  // ✅ Загрузка файла через общий API
+  const uploadImage = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const res = await fetch('/api/upload', { method: 'POST', body: formData });
+    if (!res.ok) throw new Error('Upload failed');
+    const data = await res.json();
+    return data.url || data.path;
+  };
+
   // ✅ РАСПИСАНИЕ #1
-  const updateScheduleImage = () => {
+  const updateScheduleImage = async () => {
     if (!scheduleImage) return;
-    
-    const newSchedule = localSchedule.map((item, index) => 
-      index === 0 ? { ...item, image: '/расписание1.jpg' } : item
-    );
-    
-    setLocalSchedule(newSchedule);
-    setPendingSave(prev => ({ ...prev, schedule1: scheduleImage }));
-    setHasChanges(true);
-    
-    if (publishNews) createNews('schedule', '/расписание1.jpg');
-    
+    try {
+      const url = await uploadImage(scheduleImage);
+      const newSchedule = localSchedule.map((item: SchedulePriceItem, index: number) => 
+        index === 0 ? { ...item, image: url } : item
+      );
+      setLocalSchedule(newSchedule);
+      setHasChanges(true);
+      if (publishNews) createNews('schedule');
+    } catch (e) {
+      console.error('Upload error:', e);
+      alert('Ошибка загрузки изображения');
+    }
     setScheduleImage(null);
     setScheduleImagePreview('');
   };
 
   // ✅ РАСПИСАНИЕ #2
-  const updateSchedule2Image = () => {
+  const updateSchedule2Image = async () => {
     if (!schedule2Image) return;
-    
-    const newSchedule = localSchedule.map((item, index) => 
-      index === 1 ? { ...item, image: '/расписание2.jpg' } : item
-    );
-    
-    setLocalSchedule(newSchedule);
-    setPendingSave(prev => ({ ...prev, schedule2: schedule2Image }));
-    setHasChanges(true);
-    
-    if (publishNews) createNews('schedule', '/расписание2.jpg');
-    
+    try {
+      const url = await uploadImage(schedule2Image);
+      const newSchedule = localSchedule.map((item: SchedulePriceItem, index: number) => 
+        index === 1 ? { ...item, image: url } : item
+      );
+      setLocalSchedule(newSchedule);
+      setHasChanges(true);
+      if (publishNews) createNews('schedule');
+    } catch (e) {
+      console.error('Upload error:', e);
+      alert('Ошибка загрузки изображения');
+    }
     setSchedule2Image(null);
     setSchedule2ImagePreview('');
   };
 
   // ✅ ЦЕНЫ #1
-  const updatePricesImage = () => {
+  const updatePricesImage = async () => {
     if (!pricesImage) return;
-    
-    const newPrices = localPrices.map((item, index) => 
-      index === 0 ? { ...item, image: '/цены1.jpg' } : item
-    );
-    
-    setLocalPrices(newPrices);
-    setPendingSave(prev => ({ ...prev, prices1: pricesImage }));
-    setHasChanges(true);
-    
-    if (publishNews) createNews('prices', '/цены1.jpg');
-    
+    try {
+      const url = await uploadImage(pricesImage);
+      const newPrices = localPrices.map((item: SchedulePriceItem, index: number) => 
+        index === 0 ? { ...item, image: url } : item
+      );
+      setLocalPrices(newPrices);
+      setHasChanges(true);
+      if (publishNews) createNews('prices');
+    } catch (e) {
+      console.error('Upload error:', e);
+      alert('Ошибка загрузки изображения');
+    }
     setPricesImage(null);
     setPricesImagePreview('');
   };
 
   const deleteItem = (id: number, type: 'schedule' | 'prices') => {
     if (type === 'schedule') {
-      const newSchedule = localSchedule.filter(item => item.id !== id);
+      const newSchedule = localSchedule.filter((item: SchedulePriceItem) => item.id !== id);
       setLocalSchedule(newSchedule);
       setHasChanges(true);
-      if (publishNews) createNews('schedule', '/deleted-image.jpg');
     } else {
-      const newPrices = localPrices.filter(item => item.id !== id);
+      const newPrices = localPrices.filter((item: SchedulePriceItem) => item.id !== id);
       setLocalPrices(newPrices);
       setHasChanges(true);
-      if (publishNews) createNews('prices', '/deleted-image.jpg');
     }
   };
 
-  // ✅ ГЛАВНОЕ - СОХРАНЕНИЕ ФАЙЛОВ + БД
+  // ✅ ГЛАВНОЕ - СОХРАНЕНИЕ В БД
   const saveChanges = async () => {
     try {
-      // ✅ 1. СОХРАНЯЕМ РАСПИСАНИЯ
-      if (pendingSave.schedule1 || pendingSave.schedule2) {
-        const formData = new FormData();
-        if (pendingSave.schedule1) formData.append('scheduleFiles', pendingSave.schedule1);
-        if (pendingSave.schedule2) formData.append('scheduleFiles', pendingSave.schedule2);
-        
-        await fetch('/api/admin/save-schedule', {
-          method: 'POST',
-          body: formData,
-        });
-      }
-
-      // ✅ 2. СОХРАНЯЕМ ЦЕНЫ
-      if (pendingSave.prices1) {
-        const formData = new FormData();
-        formData.append('priceFiles', pendingSave.prices1);
-        
-        await fetch('/api/admin/save-prices', {
-          method: 'POST',
-          body: formData,
-        });
-      }
-
-      // ✅ 3. СОХРАНЯЕМ ССЫЛКИ В БД
       onSaveSchedule(localSchedule);
       onSavePrices(localPrices);
-      
-      // ✅ 4. СБРАСЫВАЕМ
       setHasChanges(false);
-      setPendingSave({});
-      
     } catch (error) {
       console.error('Ошибка сохранения:', error);
     }
@@ -226,7 +208,7 @@ export default function AdminSchedulePrices({
               className={styles.updateBtn}
               disabled={!scheduleImage}
             >
-              🔄 Заменить → public/расписание1.jpg
+              🔄 Загрузить расписание #1
             </button>
           </div>
 
@@ -245,7 +227,7 @@ export default function AdminSchedulePrices({
               className={styles.updateBtn}
               disabled={!schedule2Image}
             >
-              🔄 Заменить → public/расписание2.jpg
+              🔄 Загрузить расписание #2
             </button>
           </div>
 
@@ -264,7 +246,7 @@ export default function AdminSchedulePrices({
               className={styles.updateBtn}
               disabled={!pricesImage}
             >
-              🔄 Заменить → public/цены1.jpg
+              🔄 Загрузить цены #1
             </button>
           </div>
         </div>
@@ -283,7 +265,7 @@ export default function AdminSchedulePrices({
             className={`${styles.saveBtn} ${hasChanges ? styles.saveBtnActive : ''}`}
             disabled={!hasChanges}
           >
-            💾 Сохранить в public/ ({localSchedule.length + localPrices.length})
+            💾 Сохранить в БД ({localSchedule.length + localPrices.length})
           </button>
         </div>
       </div>
@@ -387,7 +369,7 @@ export default function AdminSchedulePrices({
 
       <div className={styles.status}>
         {publishNews && '📰 Автоновости включены | '}
-        {hasChanges && `✨ ${Object.keys(pendingSave).length} файлов ждут сохранения`}
+        {hasChanges ? '✨ Изменения ждут сохранения' : '✅ Все сохранено'}
       </div>
     </div>
   );
