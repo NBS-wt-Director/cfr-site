@@ -7,7 +7,6 @@ interface NewsItem {
   image: string;
   title: string;
   text: string;
-  description: string;
 }
 
 interface HomeNewsProps {
@@ -49,12 +48,7 @@ export default function HomeNews({
                     <h3 className="text-button font-bold text-gray-900 mb-4 line-clamp-2 leading-tight">
                       {item.title}
                     </h3>
-                    {item.description && (
-                      <p className="text-gray-700 mb-4 leading-relaxed text-lg font-medium">
-                        {item.description}
-                      </p>
-                    )}
-                    <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                    <p className="text-gray-600 mb-6 leading-relaxed text-lg whitespace-pre-wrap">
                       {item.text}
                     </p>
                   </div>

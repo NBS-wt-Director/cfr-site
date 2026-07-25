@@ -8,7 +8,6 @@ interface NewsItem {
   image: string;
   title: string;
   text: string;
-  description: string;
 }
 
 interface AdminNewsProps {
@@ -39,8 +38,7 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
   const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
   const [newNews, setNewNews] = useState({
     title: '',
-    text: '',
-    description: ''
+    text: ''
   });
   const [newImage, setNewImage] = useState<File | null>(null);
   const [newImagePreview, setNewImagePreview] = useState('');
@@ -54,8 +52,7 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
       id: item.id,
       image: item.image || '',
       title: item.title || '',
-      text: item.text || '',
-      description: item.description || item.text || ''
+      text: item.text || ''
     }));
     setLocalNews(safeNews);
   }, [initialNews]);
@@ -75,8 +72,7 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
         id: Date.now(),
         image: imageUrl,
         title: newNews.title,
-        text: newNews.text,
-        description: newNews.description || newNews.text
+        text: newNews.text
       };
       
       const newNewsList = [newsItem, ...localNews];
@@ -130,7 +126,7 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
   };
 
   const resetNewNews = () => {
-    setNewNews({ title: '', text: '', description: '' });
+    setNewNews({ title: '', text: '' });
     setNewImage(null);
     setNewImagePreview('');
   };
@@ -170,18 +166,8 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
                 value={newNews.text}
                 onChange={(e) => setNewNews({...newNews, text: e.target.value})}
                 className={styles.textarea}
-                rows={4}
-                placeholder="Текст новости..."
-              />
-            </div>
-            <div className={styles.field}>
-              <label>Описание (многострочное)</label>
-              <textarea
-                value={newNews.description}
-                onChange={(e) => setNewNews({...newNews, description: e.target.value})}
-                className={styles.textarea}
                 rows={6}
-                placeholder="Полное описание новости..."
+                placeholder="Текст новости..."
               />
             </div>
             <div className={styles.field}>
@@ -239,18 +225,6 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
                       })}
                       className={styles.textarea} 
                       rows={8} 
-                    />
-                  </div>
-                  <div className={styles.field}>
-                    <label>Описание (многострочное)</label>
-                    <textarea 
-                      value={editingNews.description || editingNews.text}
-                      onChange={(e) => setEditingNews({
-                        ...editingNews, 
-                        description: e.target.value
-                      })}
-                      className={styles.textarea} 
-                      rows={6} 
                     />
                   </div>
                   <div className={styles.field}>
@@ -327,7 +301,6 @@ export default function AdminNews({ news: initialNews = [], onSave }: AdminNewsP
                   )}
                   <div className={styles.newsInfo}>
                     <h5>{item.title}</h5>
-                    {item.description && <p className="text-sm text-gray-500 mb-1">{item.description.substring(0, 80)}{item.description.length > 80 ? '...' : ''}</p>}
                     <p>{safeTextPreview(item.text)}</p>
                     <div className={styles.newsMeta}>
                       <span>🆔 {item.id}</span>

@@ -11,7 +11,7 @@ interface SchedulePriceItem {
 interface NewsItem {
   id: number;
   title: string;
-  description: string;
+  text: string;
 }
 
 interface AdminSchedulePricesProps {
@@ -64,11 +64,11 @@ export default function AdminSchedulePrices({
   const [templates, setTemplates] = useState({
     schedule: {
       title: 'Обновлено расписание [%DATE%]',
-      description: 'Расписание занятий обновлено [%DATE%]. Проверяйте актуальное время проведения групповых занятий!'
+      text: 'Расписание занятий обновлено [%DATE%]. Проверяйте актуальное время проведения групповых занятий!'
     },
     prices: {
       title: 'Обновлены цены [%DATE%]',
-      description: 'Цены на абонементы и услуги обновлены [%DATE%]. Ознакомьтесь с актуальными тарифами!'
+      text: 'Цены на абонементы и услуги обновлены [%DATE%]. Ознакомьтесь с актуальными тарифами!'
     }
   });
 
@@ -85,12 +85,12 @@ export default function AdminSchedulePrices({
     });
     
     const title = templates[type].title.replace('%DATE%', timeStr);
-    const description = templates[type].description.replace('%DATE%', timeStr);
+    const text = templates[type].text.replace('%DATE%', timeStr);
     
     const newsItem: NewsItem = {
       id: Date.now(),
       title,
-      description
+      text
     };
     
     onAddNews(newsItem);
@@ -330,10 +330,10 @@ export default function AdminSchedulePrices({
               placeholder="Обновлено расписание [%DATE%]"
             />
             <textarea
-              value={templates.schedule.description}
+              value={templates.schedule.text}
               onChange={(e) => setTemplates({
                 ...templates,
-                schedule: { ...templates.schedule, description: e.target.value }
+                schedule: { ...templates.schedule, text: e.target.value }
               })}
               className={styles.templateInput}
               rows={3}
@@ -354,10 +354,10 @@ export default function AdminSchedulePrices({
               placeholder="Обновлены цены [%DATE%]"
             />
             <textarea
-              value={templates.prices.description}
+              value={templates.prices.text}
               onChange={(e) => setTemplates({
                 ...templates,
-                prices: { ...templates.prices, description: e.target.value }
+                prices: { ...templates.prices, text: e.target.value }
               })}
               className={styles.templateInput}
               rows={3}
