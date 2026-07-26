@@ -1,32 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
+import { getDb, saveDb } from '@/lib/db';
 
-const ADMIN_PASSWORD = 'цфр2026';
-
-function authenticate(req: NextRequest): boolean {
-  const auth = req.headers.get('authorization');
-  if (!auth || auth !== `Basic ${Buffer.from(ADMIN_PASSWORD).toString('base64')}`) {
-    return false;
-  }
-  return true;
-}
-
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
-  if (!authenticate(req)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const body = await req.json();
-    const data = await db.getData();
-    const index = data.trainers.findIndex((t: any) => t.id === parseInt(params.id));
+    const { id } = await params;
+    const data = getDb();
+    const trainerId = parseInt(id);
+    const index = data.trainers.findIndex((t: any) => t.id === trainerId);
     
     if (index === -1) {
       return NextResponse.json({ error: 'Trainer not found' }, { status: 404 });
     }
     
     data.trainers[index] = { ...data.trainers[index], ...body };
-    await db.updateTrainers(data.trainers);
+    saveDb(data);
     
     return NextResponse.json(data.trainers[index]);
   } catch (error) {
@@ -34,15 +22,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
-  if (!authenticate(req)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const data = await db.getData();
-    const newTrainers = data.trainers.filter((t: any) => t.id !== parseInt(params.id));
-    await db.updateTrainers(newTrainers);
+    const { id } = await params;
+    const data = getDb();
+    const trainerId = parseInt(id);
+    const newTrainers = data.trainers.filter((t: any) => t.id !== trainerId);
+    saveDb(data);
     
     return NextResponse.json({ success: true });
   } catch (error) {
