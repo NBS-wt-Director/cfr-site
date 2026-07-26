@@ -151,11 +151,10 @@ export default function NewsPage() {
                       />
                     )
                   ) : item.image ? (
-                    <Image
+                    <img
                       src={item.image}
                       alt={item.text || item.title}
-                      fill
-                      className="object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : null}
                 </div>
