@@ -13,7 +13,7 @@
         "ssl": "./deploy/ssl-selfsigned.sh",
         "pm2:start": "pm2 start deploy/ecosystem.config.js",
         "pm2:restart": "pm2 restart ecosystem.config.js",
-        "pm2:logs": "pm2 logs shifu-panda --lines 50",
+        "pm2:logs": "pm2 logs cfrsite --lines 50",
         "analyze": "node scripts/analyze.js",
         "analyze:fix": "node scripts/analyze.js --verbose",
         "analyze:dev": "node scripts/analyze.js --dev",
