@@ -4,11 +4,8 @@
   "private": true,
     "scripts": {
     "dev": "next dev -p 3011",
-    "dev:webpack": "next dev -p 3011 --webpack",
-    "build": "next build",
-    "build:webpack": "next build",
-    "build:legacy": "next build",
-    "start": "next start -p 3011",
+    "build": "next build --webpack",
+    "start": "next start --no-turbopack -p 3000",
         "preview": "npm run build && npm start",
         "ssl": "./deploy/ssl-selfsigned.sh",
         "pm2:start": "pm2 start deploy/ecosystem.config.js",
