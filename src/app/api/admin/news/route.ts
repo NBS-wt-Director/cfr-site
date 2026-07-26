@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
+import { getDb, saveDb } from '@/lib/db';
 
 const ADMIN_PASSWORD = 'цфр2026';
 
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const data = await db.getData();
+  const data = getDb();
   return NextResponse.json(data.news);
 }
 
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const data = await db.getData();
+    const data = getDb();
     const newId = Math.max(...data.news.map((n: any) => n.id), 0) + 1;
     const newNews = { 
       id: newId, 
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     };
     
     data.news.push(newNews);
-    await db.updateNews(data.news);
+    saveDb(data);
     
     return NextResponse.json(newNews, { status: 201 });
   } catch (error) {

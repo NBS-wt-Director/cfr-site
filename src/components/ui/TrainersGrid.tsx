@@ -1,8 +1,7 @@
 import TrainerCard from './TrainerCard';
-import { Trainer } from '@/lib/db';
 
 interface Props {
-  trainers: Trainer[];
+  trainers: any[];
 }
 
 export default function TrainersGrid({ trainers }: Props) {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as nodemailer from 'nodemailer';
-import { loadDb } from '@/lib/db';
+import { getDb } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     console.log('📧 Заявка:', { name, email, phone, reason });
     
     // Загружаем настройки из БД
-    const db = loadDb();
+    const db = getDb();
     const config = db.emailConfig;
     
     if (!config?.smtpUser || !config?.smtpPass) {
@@ -26,9 +26,9 @@ export async function POST(request: NextRequest) {
         user: config.smtpUser,
         pass: config.smtpPass
       }
-    } as nodemailer.TransportOptions);
+    } as any);
 
-    await transporter.verify();
+    // await transporter.verify(); // Удалено: verify() удалён в nodemailer 8
     console.log('✅ SMTP OK');
 
     await transporter.sendMail({

@@ -24,7 +24,10 @@ export default function HomePrograms({
   openImageModal = () => {}
 }: HomeProgramsProps) {
   const safePrograms: Program[] = Array.isArray(programs) 
-    ? programs.filter((p): p is Program => p && p.id && p.name && p.image)
+    ? programs.filter((p): p is Program => {
+        if (!p || typeof p !== 'object') return false
+        return Boolean(p.id) && Boolean(p.name) && Boolean(p.image)
+      })
     : [];
 
   // Фиксированная сетка 3 колонки

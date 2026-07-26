@@ -1,10 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
-import { NewsItem } from '@/lib/db';
 
 interface Props {
-  news: NewsItem[];
+  news: any[];
 }
 
 export default function NewsCarousel({ news }: Props) {

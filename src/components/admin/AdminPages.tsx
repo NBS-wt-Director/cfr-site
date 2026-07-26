@@ -64,9 +64,10 @@ export default function AdminPages() {
     setMediaPreview('');
   };
 
-  const handleMediaUpload = async (file: File, preview: string) => {
+  const handleMediaUpload = async (file: File | null, preview: string) => {
     setUploading(true);
     try {
+      if (!file) { setUploading(false); return; }
       const url = await uploadFile(file);
       setEditingPage(prev => prev ? { ...prev, media: url } : null);
       setMediaPreview(preview);

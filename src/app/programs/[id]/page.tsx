@@ -216,8 +216,8 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
               {/* Главное изображение */}
               <div className="relative aspect-video bg-gray-100 rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src={program.photoAlbum[galleryIndex]?.image} 
-                  alt={program.photoAlbum[galleryIndex]?.caption || `Фото ${galleryIndex + 1}`}
+                  src={(program.photoAlbum as any[])[galleryIndex]?.image} 
+                  alt={(program.photoAlbum as any[])[galleryIndex]?.caption || `Фото ${galleryIndex + 1}`}
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23f3f4f6" width="400" height="300"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%239ca3af" font-size="20">Фото не найдено</text></svg>';
@@ -225,9 +225,9 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                 />
                 
                 {/* Кнопка назад */}
-                {program.photoAlbum.length > 1 && (
+                {(program.photoAlbum as any[]).length > 1 && (
                   <button 
-                    onClick={() => setGalleryIndex(prev => prev === 0 ? program.photoAlbum.length - 1 : prev - 1)}
+                    onClick={() => setGalleryIndex(prev => prev === 0 ? (program.photoAlbum as any[]).length - 1 : prev - 1)}
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all hover:scale-110"
                   >
                     <ChevronLeft size={32} className="text-gray-800" />
@@ -235,9 +235,9 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                 )}
                 
                 {/* Кнопка вперёд */}
-                {program.photoAlbum.length > 1 && (
+                {(program.photoAlbum as any[]).length > 1 && (
                   <button 
-                    onClick={() => setGalleryIndex(prev => prev === program.photoAlbum.length - 1 ? 0 : prev + 1)}
+                    onClick={() => setGalleryIndex(prev => prev === (program.photoAlbum as any[]).length - 1 ? 0 : prev + 1)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all hover:scale-110"
                   >
                     <ChevronRight size={32} className="text-gray-800" />
@@ -246,14 +246,14 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                 
                 {/* Счётчик */}
                 <div className="absolute bottom-4 right-4 bg-black/70 text-white px-4 py-2 rounded-full font-semibold">
-                  {galleryIndex + 1} / {program.photoAlbum.length}
+                  {galleryIndex + 1} / {(program.photoAlbum as any[]).length}
                 </div>
               </div>
               
               {/* Миниатюры */}
-              {program.photoAlbum.length > 1 && (
+              {(program.photoAlbum as any[]).length > 1 && (
                 <div className="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center">
-                  {program.photoAlbum.map((photo: any, idx: number) => (
+                  {(program.photoAlbum as any[]).map((photo: any, idx: number) => (
                     <button 
                       key={idx}
                       onClick={() => setGalleryIndex(idx)}

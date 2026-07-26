@@ -216,7 +216,7 @@ export default function Footer({ onCallClick }: FooterProps) {
               ))}
               
               {/* Дополнительные ссылки из настроек футера */}
-              {footerSettings?.showLinks && footerLinks.map((link, idx) => (
+              {footerSettings?.links && footerLinks.map((link, idx) => (
                 <a 
                   key={idx}
                   href={link.href}

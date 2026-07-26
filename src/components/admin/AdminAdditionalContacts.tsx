@@ -82,7 +82,7 @@ export default function AdminAdditionalContacts({ data: initialData, onSave }: A
     setHasChanges(true);
   };
 
-  const updateMap = (field: keyof YandexMapSettings, value: boolean | number | string) => {
+  const updateMap = (field: keyof YandexMapSettings, value: boolean | number | string | number[]) => {
     setData({ 
       ...data, 
       yandexMap: { ...data.yandexMap, [field]: value } 

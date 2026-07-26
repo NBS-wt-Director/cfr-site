@@ -279,7 +279,7 @@ export default function SchedulePage() {
                           {getProgramImage(workout) && (
                             <div className="w-12 h-12 rounded-xl overflow-hidden relative flex-shrink-0">
                               <Image
-                                src={getProgramImage(workout)}
+                                src={getProgramImage(workout)!}
                                 alt={getProgramName(workout)}
                                 fill
                                 className="object-cover"

@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as nodemailer from 'nodemailer';
-import { loadDb } from '@/lib/db';
+import { getDb } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   try {
     const errorData = await request.json();
 
     // Загружаем настройки из БД
-    const db = loadDb();
+    const db = getDb();
     const config = db.emailConfig;
     
     if (!config?.smtpUser || !config?.smtpPass) {

@@ -288,7 +288,7 @@ export default function SiteHeader({
             {customPages.map((page) => (
               <Link 
                 key={page.id} 
-                href={page.href} 
+                href={page.href || '#'} 
                 className={styles.menuItem}
                 onClick={() => setDesktopMenuOpen(false)}
               >
@@ -314,7 +314,7 @@ export default function SiteHeader({
                     {programsForMenu.map((program) => (
                       <Link 
                         key={program.id} 
-                        href={program.href} 
+                        href={program.href || '#'} 
                         className={styles.submenuItem}
                         onClick={() => {
                           setDesktopMenuOpen(false);
@@ -347,7 +347,7 @@ export default function SiteHeader({
                     {trainersForMenu.map((trainer) => (
                       <Link 
                         key={trainer.id} 
-                        href={trainer.href} 
+                        href={trainer.href || '#'} 
                         className={styles.submenuItem}
                         onClick={() => {
                           setDesktopMenuOpen(false);
@@ -420,7 +420,7 @@ export default function SiteHeader({
           {customPages.map((page) => (
             <Link 
               key={page.id} 
-              href={page.href} 
+              href={page.href || '#'} 
               className={styles.mobileMenuItem}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -443,7 +443,7 @@ export default function SiteHeader({
                   {programsForMenu.map((program) => (
                     <Link 
                       key={program.id} 
-                      href={program.href} 
+                      href={program.href || '#'} 
                       className={styles.mobileMenuItem}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -470,7 +470,7 @@ export default function SiteHeader({
                   {trainersForMenu.map((trainer) => (
                     <Link 
                       key={trainer.id} 
-                      href={trainer.href} 
+                      href={trainer.href || '#'} 
                       className={styles.mobileMenuItem}
                       onClick={() => setMobileMenuOpen(false)}
                     >

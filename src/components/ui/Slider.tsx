@@ -1,10 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Circle } from 'lucide-react';
-import { Slider, Trainer, type Slider as SliderType } from '@/lib/db';
 
 interface Props {
-  slides: Slider[];
+  slides: any[];
 }
 
 export default function SliderComponent({ slides }: Props) {

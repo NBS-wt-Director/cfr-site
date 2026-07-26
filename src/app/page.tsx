@@ -56,6 +56,15 @@ type DbData = {
   news?: any[];
   contacts?: any;
   sections?: Section[];
+  prices?: any[];
+  sliderSettings?: any;
+  globalDivider?: {
+    enabled: boolean;
+    height: string;
+    background: string;
+    textContent: string;
+    fontSize: string;
+  };
 };
 
 export default function HomePage() {
@@ -131,7 +140,7 @@ export default function HomePage() {
   const sectionsOrder = data.sections || defaultSections;
 
   // ✅ Получаем настройки глобального разделителя из БД
-  const globalDivider = data.globalDivider || {
+  const globalDivider: any = data.globalDivider || {
     enabled: true,
     height: 'xxl',
     background: 'gradientBlue',
@@ -202,7 +211,7 @@ export default function HomePage() {
             )}
             <section id="programs">
               <HomePrograms 
-                programs={Array.isArray(data?.programs) ? data.programs : []}
+                programs={(data?.programs || []) as any}
                 openCallModal={openCallModal}
                 openImageModal={openImageModal}
               />

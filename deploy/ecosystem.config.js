@@ -2,7 +2,7 @@ module.exports = {
     apps: [{
       name: 'cfrsite',
       script: './node_modules/next/dist/bin/next',
-      args: 'start -p 3000',
+      args: 'start --no-turbopack -p 3000',
       cwd: '/home/cfr_balloo/sites/cfrsite',
       instances: 1,
       exec_mode: 'fork',

@@ -160,7 +160,7 @@ export default function TrainerPage({ params }: { params: Promise<{ id: string }
               📸 Фотоальбом
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {trainer.photoAlbum.map((photo: Photo, idx: number) => (
+              {(trainer.photoAlbum as any).map((photo: any, idx: number) => (
                 <div 
                   key={idx} 
                   className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-3 overflow-hidden cursor-pointer"

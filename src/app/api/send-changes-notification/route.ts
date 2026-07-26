@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as nodemailer from 'nodemailer';
-import { loadDb } from '@/lib/db';
+import { getDb } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
-  const db = loadDb();
+  const db = getDb();
   const config = db.emailConfig;
   
   const transporter = nodemailer.createTransport({

@@ -28,7 +28,7 @@ export default function AdminStorage() {
   const [exporting, setExporting] = useState(false);
   const [importing, setImporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [backups, setBackups] = useState<{name: string, date: string}[]>([]);
+  const [backups, setBackups] = useState<{name: string, date: string, path?: string}[]>([]);
 
   const formatSize = (bytes: number): string => {
     if (bytes < 1024) return `${bytes} Б`;
@@ -335,7 +335,7 @@ export default function AdminStorage() {
                   <span className="text-sm">{backup.name}</span>
                   <div className="flex gap-2">
                     <button
-                      onClick={() => restoreBackup(backup.path)}
+                      onClick={() => restoreBackup(backup.path!)}
                       className="text-xs bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                     >
                       Восстановить
