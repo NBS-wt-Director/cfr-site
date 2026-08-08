@@ -1,0 +1,1348 @@
+{
+  "account": {
+    "root_tag": "Account",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Number",
+        "type": "integer"
+      },
+      {
+        "name": "CreateDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "IsPerpetual",
+        "type": "boolean"
+      },
+      {
+        "name": "BeginDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "DaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "IsUnlimited",
+        "type": "boolean"
+      },
+      {
+        "name": "TrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "FreeTrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "OriginalCost",
+        "type": "integer"
+      },
+      {
+        "name": "Discount",
+        "type": "integer"
+      },
+      {
+        "name": "DiscountPercent",
+        "type": "integer"
+      },
+      {
+        "name": "AddDaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "AccountTypeName",
+        "type": "string"
+      },
+      {
+        "name": "AccountTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "Groups",
+        "type": "string"
+      },
+      {
+        "name": "Reservations",
+        "type": "string"
+      },
+      {
+        "name": "Stages",
+        "type": "string"
+      },
+      {
+        "name": "Visits",
+        "type": "string"
+      },
+      {
+        "name": "BurnRes",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Annotation",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Account.xml",
+      "Account001.xml"
+    ]
+  },
+  "branch": {
+    "root_tag": "Branch",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Branch.xml"
+    ]
+  },
+  "charge": {
+    "root_tag": "Charge",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Description",
+        "type": "string"
+      },
+      {
+        "name": "Packets",
+        "type": "string"
+      },
+      {
+        "name": "Annotation",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Charge.xml"
+    ]
+  },
+  "client": {
+    "root_tag": "Client",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Sex",
+        "type": "UUID"
+      },
+      {
+        "name": "AgreementNumber",
+        "type": "integer"
+      },
+      {
+        "name": "Barcode",
+        "type": "string"
+      },
+      {
+        "name": "Archive",
+        "type": "boolean"
+      },
+      {
+        "name": "MobilePhone1",
+        "type": "integer"
+      },
+      {
+        "name": "LastName",
+        "type": "string"
+      },
+      {
+        "name": "CardUses",
+        "type": "string"
+      },
+      {
+        "name": "Informers",
+        "type": "string"
+      },
+      {
+        "name": "Tags",
+        "type": "string"
+      },
+      {
+        "name": "Deposit",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Comments",
+        "type": "string"
+      },
+      {
+        "name": "Tasks",
+        "type": "string"
+      },
+      {
+        "name": "StatusChanges",
+        "type": "string"
+      },
+      {
+        "name": "Files",
+        "type": "string"
+      },
+      {
+        "name": "BirthDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "ID_Foto",
+        "type": "UUID"
+      },
+      {
+        "name": "Annotation",
+        "type": "string"
+      },
+      {
+        "name": "Email",
+        "type": "string"
+      },
+      {
+        "name": "ID_Status",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Friend",
+        "type": "UUID"
+      },
+      {
+        "name": "ParentMobilePhone1",
+        "type": "integer"
+      },
+      {
+        "name": "ParentLastName",
+        "type": "string"
+      },
+      {
+        "name": "ParentName",
+        "type": "string"
+      },
+      {
+        "name": "ParentMobilePhone2",
+        "type": "integer"
+      }
+    ],
+    "source_files": [
+      "Client.xml",
+      "Client001.xml"
+    ]
+  },
+  "daybalance": {
+    "root_tag": "DayBalance",
+    "item_tag": "Item",
+    "fields": [],
+    "source_files": [
+      "DayBalance.xml"
+    ]
+  },
+  "group": {
+    "root_tag": "Group",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      },
+      {
+        "name": "ID_Style",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Teacher",
+        "type": "UUID"
+      },
+      {
+        "name": "OwnSalaryOptions",
+        "type": "boolean"
+      },
+      {
+        "name": "OwnSecondSalaryOptions",
+        "type": "boolean"
+      },
+      {
+        "name": "Clients",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Group.xml"
+    ]
+  },
+  "hall": {
+    "root_tag": "Hall",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Hall.xml"
+    ]
+  },
+  "individualaccount": {
+    "root_tag": "IndividualAccount",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Number",
+        "type": "integer"
+      },
+      {
+        "name": "CreateDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "ID_Style",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Teacher",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "OriginalCost",
+        "type": "integer"
+      },
+      {
+        "name": "Discount",
+        "type": "integer"
+      },
+      {
+        "name": "DiscountPercent",
+        "type": "integer"
+      },
+      {
+        "name": "TrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "FreeTrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "BeginDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "DaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "AddDaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "IsPerpetual",
+        "type": "boolean"
+      },
+      {
+        "name": "IsUnlimited",
+        "type": "boolean"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "AccountTypeName",
+        "type": "string"
+      },
+      {
+        "name": "AccountTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Schedule",
+        "type": "string"
+      },
+      {
+        "name": "BurnRes",
+        "type": "string"
+      },
+      {
+        "name": "Stages",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "IndividualAccount.xml"
+    ]
+  },
+  "individualtraining": {
+    "root_tag": "IndividualTraining",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Style",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Teacher",
+        "type": "UUID"
+      },
+      {
+        "name": "Prepayment",
+        "type": "integer"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "IndividualTrainingTypeName",
+        "type": "string"
+      },
+      {
+        "name": "IndividualTrainingTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "Schedule",
+        "type": "string"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Visits",
+        "type": "string"
+      },
+      {
+        "name": "Deposit",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "IndividualTraining.xml"
+    ]
+  },
+  "informer": {
+    "root_tag": "Informer",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Informer.xml"
+    ]
+  },
+  "message": {
+    "root_tag": "Message",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Time",
+        "type": "datetime"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "Target",
+        "type": "string"
+      },
+      {
+        "name": "Phone",
+        "type": "integer"
+      },
+      {
+        "name": "Text",
+        "type": "string"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      },
+      {
+        "name": "Cost",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Message.xml"
+    ]
+  },
+  "note": {
+    "root_tag": "Note",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Closed",
+        "type": "boolean"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Date",
+        "type": "datetime"
+      },
+      {
+        "name": "CloseDate",
+        "type": "datetime"
+      },
+      {
+        "name": "Text",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Note.xml"
+    ]
+  },
+  "param": {
+    "root_tag": "Param",
+    "item_tag": "Item",
+    "fields": [],
+    "source_files": [
+      "Param.xml"
+    ]
+  },
+  "passport": {
+    "root_tag": "Passport",
+    "item_tag": "Item",
+    "fields": [],
+    "source_files": [
+      "Passport.xml"
+    ]
+  },
+  "product": {
+    "root_tag": "Product",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Barcode",
+        "type": "string"
+      },
+      {
+        "name": "Measurement",
+        "type": "string"
+      },
+      {
+        "name": "Unit",
+        "type": "string"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      },
+      {
+        "name": "PurchaseCost",
+        "type": "integer"
+      },
+      {
+        "name": "Markup",
+        "type": "integer"
+      },
+      {
+        "name": "MarkupPercent",
+        "type": "integer"
+      },
+      {
+        "name": "PurchasePackets",
+        "type": "string"
+      },
+      {
+        "name": "StoragePackets",
+        "type": "string"
+      },
+      {
+        "name": "SalePackets",
+        "type": "string"
+      },
+      {
+        "name": "Deposit",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Annotation",
+        "type": "float"
+      }
+    ],
+    "source_files": [
+      "Product.xml"
+    ]
+  },
+  "rent": {
+    "root_tag": "Rent",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "Prepayment",
+        "type": "integer"
+      },
+      {
+        "name": "RentTypeName",
+        "type": "string"
+      },
+      {
+        "name": "RentTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "TenantType",
+        "type": "string"
+      },
+      {
+        "name": "Schedule",
+        "type": "string"
+      },
+      {
+        "name": "LastName",
+        "type": "string"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "MobilePhone",
+        "type": "integer"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Deposit",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Rent.xml"
+    ]
+  },
+  "rentaccount": {
+    "root_tag": "RentAccount",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "OriginalCost",
+        "type": "integer"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "TenantType",
+        "type": "string"
+      },
+      {
+        "name": "AccountTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "Discount",
+        "type": "integer"
+      },
+      {
+        "name": "BeginDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "DaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "TrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "FreeTrainingCount",
+        "type": "integer"
+      },
+      {
+        "name": "Number",
+        "type": "integer"
+      },
+      {
+        "name": "CreateDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "DiscountPercent",
+        "type": "integer"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "IsPerpetual",
+        "type": "boolean"
+      },
+      {
+        "name": "IsUnlimited",
+        "type": "boolean"
+      },
+      {
+        "name": "AddDaysCount",
+        "type": "integer"
+      },
+      {
+        "name": "AccountTypeName",
+        "type": "string"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Schedule",
+        "type": "string"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Stages",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "RentAccount.xml"
+    ]
+  },
+  "reservation": {
+    "root_tag": "Reservation",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Status",
+        "type": "UUID"
+      },
+      {
+        "name": "ReservationType",
+        "type": "string"
+      },
+      {
+        "name": "ClientType",
+        "type": "string"
+      },
+      {
+        "name": "LastName",
+        "type": "string"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "BirthDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "ParentLastName",
+        "type": "string"
+      },
+      {
+        "name": "ParentMobilePhone1",
+        "type": "integer"
+      },
+      {
+        "name": "Informers",
+        "type": "string"
+      },
+      {
+        "name": "Schedule",
+        "type": "string"
+      },
+      {
+        "name": "Comments",
+        "type": "string"
+      },
+      {
+        "name": "Tasks",
+        "type": "string"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "Time",
+        "type": "datetime"
+      },
+      {
+        "name": "ID_Group",
+        "type": "UUID"
+      },
+      {
+        "name": "MobilePhone1",
+        "type": "integer"
+      },
+      {
+        "name": "Tags",
+        "type": "string"
+      },
+      {
+        "name": "StatusChanges",
+        "type": "string"
+      },
+      {
+        "name": "MiddleName",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Reservation.xml"
+    ]
+  },
+  "reservationstatus": {
+    "root_tag": "ReservationStatus",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Position",
+        "type": "integer"
+      },
+      {
+        "name": "Description",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "ReservationStatus.xml"
+    ]
+  },
+  "schedulechange": {
+    "root_tag": "ScheduleChange",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Time",
+        "type": "datetime"
+      },
+      {
+        "name": "ID_View",
+        "type": "UUID"
+      },
+      {
+        "name": "Type",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "ScheduleChange.xml"
+    ]
+  },
+  "sex": {
+    "root_tag": "Sex",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Abbreviation",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Sex.xml"
+    ]
+  },
+  "singletraining": {
+    "root_tag": "SingleTraining",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "VisitDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "PaymentType",
+        "type": "string"
+      },
+      {
+        "name": "ID_Client",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Group",
+        "type": "UUID"
+      },
+      {
+        "name": "Cost",
+        "type": "integer"
+      },
+      {
+        "name": "SingleTrainingTypeName",
+        "type": "integer"
+      },
+      {
+        "name": "SingleTrainingTypeCost",
+        "type": "integer"
+      },
+      {
+        "name": "Bonus",
+        "type": "string"
+      },
+      {
+        "name": "Deposit",
+        "type": "string"
+      },
+      {
+        "name": "Annotation",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "SingleTraining.xml",
+      "SingleTraining001.xml",
+      "SingleTraining002.xml",
+      "SingleTraining003.xml",
+      "SingleTraining004.xml",
+      "SingleTraining005.xml",
+      "SingleTraining006.xml",
+      "SingleTraining007.xml",
+      "SingleTraining008.xml",
+      "SingleTraining009.xml",
+      "SingleTraining010.xml",
+      "SingleTraining011.xml",
+      "SingleTraining012.xml",
+      "SingleTraining013.xml",
+      "SingleTraining014.xml"
+    ]
+  },
+  "style": {
+    "root_tag": "Style",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Style.xml"
+    ]
+  },
+  "substitute": {
+    "root_tag": "Substitute",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Date",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "ID_Group",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Teacher",
+        "type": "UUID"
+      },
+      {
+        "name": "SumType",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Substitute.xml"
+    ]
+  },
+  "tablessummary": {
+    "root_tag": "TablesSummary",
+    "item_tag": "Item",
+    "fields": [],
+    "source_files": [
+      "TablesSummary.xml"
+    ]
+  },
+  "tag": {
+    "root_tag": "Tag",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Position",
+        "type": "integer"
+      },
+      {
+        "name": "Colour",
+        "type": "string"
+      },
+      {
+        "name": "Description",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Tag.xml"
+    ]
+  },
+  "task": {
+    "root_tag": "Task",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Closed",
+        "type": "boolean"
+      },
+      {
+        "name": "Time",
+        "type": "datetime"
+      },
+      {
+        "name": "CloseTime",
+        "type": "datetime"
+      },
+      {
+        "name": "CloseText",
+        "type": "string"
+      },
+      {
+        "name": "TaskType",
+        "type": "string"
+      },
+      {
+        "name": "Text",
+        "type": "string"
+      },
+      {
+        "name": "ID_Creator",
+        "type": "UUID"
+      },
+      {
+        "name": "ID_Closer",
+        "type": "UUID"
+      },
+      {
+        "name": "Created",
+        "type": "datetime"
+      },
+      {
+        "name": "ID_User",
+        "type": "UUID"
+      }
+    ],
+    "source_files": [
+      "Task.xml"
+    ]
+  },
+  "teacher": {
+    "root_tag": "Teacher",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "LastName",
+        "type": "string"
+      },
+      {
+        "name": "ID_Foto",
+        "type": "UUID"
+      },
+      {
+        "name": "BirthDate",
+        "type": "date (DD.MM.YYYY)"
+      },
+      {
+        "name": "MobilePhone1",
+        "type": "integer"
+      },
+      {
+        "name": "OwnSalaryOptions",
+        "type": "boolean"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      },
+      {
+        "name": "ID_Sex",
+        "type": "UUID"
+      },
+      {
+        "name": "Styles",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "Teacher.xml"
+    ]
+  },
+  "teacherbalance": {
+    "root_tag": "TeacherBalance",
+    "item_tag": "Item",
+    "fields": [],
+    "source_files": [
+      "TeacherBalance.xml"
+    ]
+  },
+  "teacherbalancetype": {
+    "root_tag": "TeacherBalanceType",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "name": "Factor",
+        "type": "integer"
+      },
+      {
+        "name": "OnlyNotGiven",
+        "type": "boolean"
+      },
+      {
+        "name": "ShortName",
+        "type": "string"
+      },
+      {
+        "name": "Annotation",
+        "type": "string"
+      },
+      {
+        "name": "OnlyGiven",
+        "type": "boolean"
+      }
+    ],
+    "source_files": [
+      "TeacherBalanceType.xml"
+    ]
+  },
+  "user": {
+    "root_tag": "User",
+    "item_tag": "Item",
+    "fields": [
+      {
+        "name": "ID",
+        "type": "UUID"
+      },
+      {
+        "name": "PasswordMD5",
+        "type": "string"
+      },
+      {
+        "name": "Rights",
+        "type": "string"
+      },
+      {
+        "name": "Login",
+        "type": "string"
+      },
+      {
+        "name": "IsAdmin",
+        "type": "boolean"
+      },
+      {
+        "name": "OwnSalaryOptions",
+        "type": "boolean"
+      },
+      {
+        "name": "LastComputerID",
+        "type": "string"
+      },
+      {
+        "name": "Status",
+        "type": "string"
+      },
+      {
+        "name": "ScheduleDropboxApp",
+        "type": "string"
+      },
+      {
+        "name": "Protocols",
+        "type": "string"
+      }
+    ],
+    "source_files": [
+      "User.xml"
+    ]
+  }
+}

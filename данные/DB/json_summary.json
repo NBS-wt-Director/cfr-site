@@ -1,0 +1,1118 @@
+{
+  "account": {
+    "record_count": 3275,
+    "fields": [
+      "AccountTypeCost",
+      "AccountTypeName",
+      "AddDaysCount",
+      "Annotation",
+      "BeginDate",
+      "Bonus",
+      "BurnRes",
+      "CreateDate",
+      "DaysCount",
+      "Discount",
+      "DiscountPercent",
+      "FreeTrainingCount",
+      "Groups",
+      "ID",
+      "ID_Client",
+      "IsPerpetual",
+      "IsUnlimited",
+      "Number",
+      "OriginalCost",
+      "PaymentType",
+      "Reservations",
+      "Stages",
+      "TrainingCount",
+      "Visits"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Number": "integer",
+      "CreateDate": "date (DD.MM.YYYY)",
+      "IsPerpetual": "boolean",
+      "BeginDate": "date (DD.MM.YYYY)",
+      "DaysCount": "integer",
+      "IsUnlimited": "boolean",
+      "TrainingCount": "integer",
+      "FreeTrainingCount": "integer",
+      "PaymentType": "string",
+      "ID_Client": "UUID",
+      "OriginalCost": "integer",
+      "Discount": "integer",
+      "DiscountPercent": "integer",
+      "AddDaysCount": "integer",
+      "AccountTypeName": "string",
+      "AccountTypeCost": "integer",
+      "Groups": "string",
+      "Reservations": "string",
+      "Stages": "string",
+      "Visits": "string",
+      "BurnRes": "string",
+      "Bonus": "string",
+      "Annotation": "string"
+    },
+    "sample_values": {
+      "ID": "21ba6046-ca44-4450-8e5f-9154c7db4e2a",
+      "Number": "1",
+      "CreateDate": "20.02.2019",
+      "IsPerpetual": "False",
+      "BeginDate": "20.02.2019",
+      "DaysCount": "60",
+      "IsUnlimited": "False",
+      "TrainingCount": "12",
+      "FreeTrainingCount": "0",
+      "PaymentType": "Cash",
+      "ID_Client": "42adc8c0-c4e7-44dd-9143-d82d7fa4e732",
+      "OriginalCost": "3140",
+      "Discount": "0",
+      "DiscountPercent": "0",
+      "AddDaysCount": "0",
+      "AccountTypeName": "1 со скидкой 5%",
+      "AccountTypeCost": "3140",
+      "Annotation": "18.02 12=13"
+    },
+    "source_files": [
+      "Account.xml",
+      "Account001.xml"
+    ]
+  },
+  "branch": {
+    "record_count": 1,
+    "fields": [
+      "ID",
+      "Name"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string"
+    },
+    "sample_values": {
+      "ID": "00000000-0000-0000-0000-000000000000",
+      "Name": "Главный"
+    },
+    "source_files": [
+      "Branch.xml"
+    ]
+  },
+  "charge": {
+    "record_count": 6,
+    "fields": [
+      "Annotation",
+      "Description",
+      "ID",
+      "Name",
+      "Packets"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Description": "string",
+      "Packets": "string",
+      "Annotation": "string"
+    },
+    "sample_values": {
+      "ID": "19b785b1-d6e0-4cb1-bf23-1d02155efdc5",
+      "Name": "Реклама",
+      "Description": "Всевозможные затраты на рекламу",
+      "Annotation": "максидом"
+    },
+    "source_files": [
+      "Charge.xml"
+    ]
+  },
+  "client": {
+    "record_count": 2605,
+    "fields": [
+      "AgreementNumber",
+      "Annotation",
+      "Archive",
+      "Barcode",
+      "BirthDate",
+      "Bonus",
+      "CardUses",
+      "Comments",
+      "Deposit",
+      "Email",
+      "Files",
+      "ID",
+      "ID_Foto",
+      "ID_Friend",
+      "ID_Sex",
+      "ID_Status",
+      "Informers",
+      "LastName",
+      "MobilePhone1",
+      "ParentLastName",
+      "ParentMobilePhone1",
+      "ParentMobilePhone2",
+      "ParentName",
+      "StatusChanges",
+      "Tags",
+      "Tasks"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "ID_Sex": "UUID",
+      "AgreementNumber": "integer",
+      "Barcode": "string",
+      "Archive": "boolean",
+      "MobilePhone1": "integer",
+      "LastName": "string",
+      "CardUses": "string",
+      "Informers": "string",
+      "Tags": "string",
+      "Deposit": "string",
+      "Bonus": "string",
+      "Comments": "string",
+      "Tasks": "string",
+      "StatusChanges": "string",
+      "Files": "string",
+      "BirthDate": "date (DD.MM.YYYY)",
+      "ID_Foto": "UUID",
+      "Annotation": "string",
+      "Email": "string",
+      "ID_Status": "UUID",
+      "ID_Friend": "UUID",
+      "ParentMobilePhone1": "integer",
+      "ParentLastName": "string",
+      "ParentName": "string",
+      "ParentMobilePhone2": "integer"
+    },
+    "sample_values": {
+      "ID": "d54d1f64-f095-4b6e-a5b4-48b191ee78de",
+      "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+      "AgreementNumber": "1",
+      "Archive": "True",
+      "MobilePhone1": "89089198464",
+      "LastName": "Абдулатова Наталья Анатольевна",
+      "BirthDate": "10.03.1993",
+      "ID_Foto": "a26ef15a-f4fb-4763-ad0b-35d8d2ef6269",
+      "Annotation": "КОБ, Здоровая спина",
+      "ID_Status": "4ef9a219-ba02-46f8-abca-b527156eba65",
+      "ID_Friend": "0d6367ef-03d1-4e09-bd15-8ff6b1c6f2eb",
+      "ParentMobilePhone1": "89043862990",
+      "ParentLastName": "Ершена Анна",
+      "ParentName": "Анастасия",
+      "ParentMobilePhone2": "89002044261"
+    },
+    "source_files": [
+      "Client.xml",
+      "Client001.xml"
+    ]
+  },
+  "daybalance": {
+    "record_count": 0,
+    "fields": [],
+    "field_types": {},
+    "sample_values": {},
+    "source_files": [
+      "DayBalance.xml"
+    ]
+  },
+  "group": {
+    "record_count": 157,
+    "fields": [
+      "Clients",
+      "Colour",
+      "ID",
+      "ID_Style",
+      "ID_Teacher",
+      "OwnSalaryOptions",
+      "OwnSecondSalaryOptions",
+      "Status"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Colour": "string",
+      "Status": "string",
+      "ID_Style": "UUID",
+      "ID_Teacher": "UUID",
+      "OwnSalaryOptions": "boolean",
+      "OwnSecondSalaryOptions": "boolean",
+      "Clients": "string"
+    },
+    "sample_values": {
+      "ID": "1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f",
+      "Colour": "FF000080",
+      "Status": "Admission",
+      "ID_Style": "a71bf4fd-5fff-41f0-80b2-1b6d9d24bc58",
+      "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+      "OwnSalaryOptions": "True",
+      "OwnSecondSalaryOptions": "False"
+    },
+    "source_files": [
+      "Group.xml"
+    ]
+  },
+  "hall": {
+    "record_count": 2,
+    "fields": [
+      "ID",
+      "Name",
+      "Status"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Status": "string"
+    },
+    "sample_values": {
+      "ID": "a3e4bd6e-0478-422d-93b0-ae554e6d3715",
+      "Name": "БОЛЬШОЙ ЗАЛ",
+      "Status": "Active"
+    },
+    "source_files": [
+      "Hall.xml"
+    ]
+  },
+  "individualaccount": {
+    "record_count": 105,
+    "fields": [
+      "AccountTypeCost",
+      "AccountTypeName",
+      "AddDaysCount",
+      "BeginDate",
+      "Bonus",
+      "BurnRes",
+      "Colour",
+      "CreateDate",
+      "DaysCount",
+      "Discount",
+      "DiscountPercent",
+      "FreeTrainingCount",
+      "ID",
+      "ID_Client",
+      "ID_Style",
+      "ID_Teacher",
+      "IsPerpetual",
+      "IsUnlimited",
+      "Number",
+      "OriginalCost",
+      "PaymentType",
+      "Schedule",
+      "Stages",
+      "TrainingCount"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Number": "integer",
+      "CreateDate": "date (DD.MM.YYYY)",
+      "ID_Style": "UUID",
+      "ID_Teacher": "UUID",
+      "ID_Client": "UUID",
+      "OriginalCost": "integer",
+      "Discount": "integer",
+      "DiscountPercent": "integer",
+      "TrainingCount": "integer",
+      "FreeTrainingCount": "integer",
+      "BeginDate": "date (DD.MM.YYYY)",
+      "DaysCount": "integer",
+      "AddDaysCount": "integer",
+      "IsPerpetual": "boolean",
+      "IsUnlimited": "boolean",
+      "PaymentType": "string",
+      "AccountTypeName": "string",
+      "AccountTypeCost": "integer",
+      "Colour": "string",
+      "Schedule": "string",
+      "BurnRes": "string",
+      "Stages": "string",
+      "Bonus": "string"
+    },
+    "sample_values": {
+      "ID": "389af946-9188-4c80-8de3-84ea2fb86e4d",
+      "Number": "1",
+      "CreateDate": "14.02.2019",
+      "ID_Style": "010f2246-4942-49d4-8844-226a88a5a33d",
+      "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+      "ID_Client": "2e093c4f-64a8-4e8a-a8e5-5f3630d565ae",
+      "OriginalCost": "18000",
+      "Discount": "0",
+      "DiscountPercent": "0",
+      "TrainingCount": "10",
+      "FreeTrainingCount": "1",
+      "BeginDate": "14.02.2019",
+      "DaysCount": "60",
+      "AddDaysCount": "0",
+      "IsPerpetual": "False",
+      "IsUnlimited": "False",
+      "PaymentType": "Cash",
+      "AccountTypeName": "Стандарт",
+      "AccountTypeCost": "18000",
+      "Colour": "FF000080"
+    },
+    "source_files": [
+      "IndividualAccount.xml"
+    ]
+  },
+  "individualtraining": {
+    "record_count": 2112,
+    "fields": [
+      "Bonus",
+      "Colour",
+      "Deposit",
+      "ID",
+      "ID_Client",
+      "ID_Style",
+      "ID_Teacher",
+      "IndividualTrainingTypeCost",
+      "IndividualTrainingTypeName",
+      "PaymentType",
+      "Prepayment",
+      "Schedule",
+      "Visits"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "ID_Client": "UUID",
+      "ID_Style": "UUID",
+      "ID_Teacher": "UUID",
+      "Prepayment": "integer",
+      "PaymentType": "string",
+      "IndividualTrainingTypeName": "string",
+      "IndividualTrainingTypeCost": "integer",
+      "Schedule": "string",
+      "Colour": "string",
+      "Bonus": "string",
+      "Visits": "string",
+      "Deposit": "string"
+    },
+    "sample_values": {
+      "ID": "47769da8-07d2-4ce9-8767-f8cc1ccfb20c",
+      "ID_Client": "2e093c4f-64a8-4e8a-a8e5-5f3630d565ae",
+      "ID_Style": "010f2246-4942-49d4-8844-226a88a5a33d",
+      "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+      "Prepayment": "600",
+      "PaymentType": "Cash",
+      "IndividualTrainingTypeName": "Стандарт",
+      "IndividualTrainingTypeCost": "600",
+      "Colour": "FF008080"
+    },
+    "source_files": [
+      "IndividualTraining.xml"
+    ]
+  },
+  "informer": {
+    "record_count": 7,
+    "fields": [
+      "ID",
+      "Name"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string"
+    },
+    "sample_values": {
+      "ID": "c62ee4cb-68d5-4889-b608-03c385f3ae5f",
+      "Name": "друзья"
+    },
+    "source_files": [
+      "Informer.xml"
+    ]
+  },
+  "message": {
+    "record_count": 121,
+    "fields": [
+      "Cost",
+      "ID",
+      "ID_Client",
+      "Phone",
+      "Status",
+      "Target",
+      "Text",
+      "Time"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Time": "datetime",
+      "ID_Client": "UUID",
+      "Target": "string",
+      "Phone": "integer",
+      "Text": "string",
+      "Status": "string",
+      "Cost": "string"
+    },
+    "sample_values": {
+      "ID": "2e512dfa-218b-42df-95f0-835772b6704d",
+      "Time": "13.04.2019 19:44:30",
+      "ID_Client": "c3122a78-4bf1-435a-a238-cf6c8410c80a",
+      "Target": "2 группы",
+      "Phone": "79122475459",
+      "Text": "Приглашаем Вас завтра (14.04) на День культуры здоровья в 13.00. В программе: игры,беседа,викторина,тренировки. Ваш ЦФР",
+      "Status": "AUTH_FAILED",
+      "Cost": "0 USD"
+    },
+    "source_files": [
+      "Message.xml"
+    ]
+  },
+  "note": {
+    "record_count": 37,
+    "fields": [
+      "CloseDate",
+      "Closed",
+      "Colour",
+      "Date",
+      "ID",
+      "Text"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Closed": "boolean",
+      "Colour": "string",
+      "Date": "datetime",
+      "CloseDate": "datetime",
+      "Text": "string"
+    },
+    "sample_values": {
+      "ID": "3fe1ef49-f4c1-46a1-aa7f-5e65fed1448b",
+      "Closed": "False",
+      "Colour": "FFAFEEEE",
+      "Date": "24.03.2019 14:44:27",
+      "CloseDate": "08.07.2021 11:21:05",
+      "Text": "пыуаы"
+    },
+    "source_files": [
+      "Note.xml"
+    ]
+  },
+  "param": {
+    "record_count": 0,
+    "fields": [],
+    "field_types": {},
+    "sample_values": {},
+    "source_files": [
+      "Param.xml"
+    ]
+  },
+  "passport": {
+    "record_count": 0,
+    "fields": [],
+    "field_types": {},
+    "sample_values": {},
+    "source_files": [
+      "Passport.xml"
+    ]
+  },
+  "product": {
+    "record_count": 51,
+    "fields": [
+      "Annotation",
+      "Barcode",
+      "Bonus",
+      "Deposit",
+      "ID",
+      "Markup",
+      "MarkupPercent",
+      "Measurement",
+      "Name",
+      "PurchaseCost",
+      "PurchasePackets",
+      "SalePackets",
+      "Status",
+      "StoragePackets",
+      "Unit"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Barcode": "string",
+      "Measurement": "string",
+      "Unit": "string",
+      "Status": "string",
+      "PurchaseCost": "integer",
+      "Markup": "integer",
+      "MarkupPercent": "integer",
+      "PurchasePackets": "string",
+      "StoragePackets": "string",
+      "SalePackets": "string",
+      "Deposit": "string",
+      "Bonus": "string",
+      "Annotation": "float"
+    },
+    "sample_values": {
+      "ID": "b46ad0a8-5fd9-4126-894b-3a4862cf9fbf",
+      "Name": "Виброплатформа",
+      "Measurement": "10 мин",
+      "Unit": "Piece",
+      "Status": "Active",
+      "PurchaseCost": "100",
+      "Markup": "0",
+      "MarkupPercent": "0",
+      "Annotation": "30.04"
+    },
+    "source_files": [
+      "Product.xml"
+    ]
+  },
+  "rent": {
+    "record_count": 73,
+    "fields": [
+      "Bonus",
+      "Colour",
+      "Deposit",
+      "ID",
+      "ID_Client",
+      "LastName",
+      "MobilePhone",
+      "Name",
+      "PaymentType",
+      "Prepayment",
+      "RentTypeCost",
+      "RentTypeName",
+      "Schedule",
+      "TenantType"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "PaymentType": "string",
+      "ID_Client": "UUID",
+      "Prepayment": "integer",
+      "RentTypeName": "string",
+      "RentTypeCost": "integer",
+      "TenantType": "string",
+      "Schedule": "string",
+      "LastName": "string",
+      "Name": "string",
+      "MobilePhone": "integer",
+      "Colour": "string",
+      "Bonus": "string",
+      "Deposit": "string"
+    },
+    "sample_values": {
+      "ID": "6d9e7923-36ec-4f40-9f2b-e65488535462",
+      "PaymentType": "Cash",
+      "ID_Client": "54d91785-0984-471b-bbd0-cecadba7e675",
+      "Prepayment": "1300",
+      "RentTypeName": "БОЛЬШОЙ ЗАЛ",
+      "RentTypeCost": "1300",
+      "TenantType": "Client",
+      "LastName": "Аренда",
+      "Name": "Николай",
+      "MobilePhone": "89122477626",
+      "Colour": "FF9932CC"
+    },
+    "source_files": [
+      "Rent.xml"
+    ]
+  },
+  "rentaccount": {
+    "record_count": 3,
+    "fields": [
+      "AccountTypeCost",
+      "AccountTypeName",
+      "AddDaysCount",
+      "BeginDate",
+      "Bonus",
+      "Colour",
+      "CreateDate",
+      "DaysCount",
+      "Discount",
+      "DiscountPercent",
+      "FreeTrainingCount",
+      "ID",
+      "ID_Client",
+      "IsPerpetual",
+      "IsUnlimited",
+      "Number",
+      "OriginalCost",
+      "PaymentType",
+      "Schedule",
+      "Stages",
+      "TenantType",
+      "TrainingCount"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "OriginalCost": "integer",
+      "ID_Client": "UUID",
+      "TenantType": "string",
+      "AccountTypeCost": "integer",
+      "Discount": "integer",
+      "BeginDate": "date (DD.MM.YYYY)",
+      "DaysCount": "integer",
+      "TrainingCount": "integer",
+      "FreeTrainingCount": "integer",
+      "Number": "integer",
+      "CreateDate": "date (DD.MM.YYYY)",
+      "DiscountPercent": "integer",
+      "PaymentType": "string",
+      "IsPerpetual": "boolean",
+      "IsUnlimited": "boolean",
+      "AddDaysCount": "integer",
+      "AccountTypeName": "string",
+      "Colour": "string",
+      "Schedule": "string",
+      "Bonus": "string",
+      "Stages": "string"
+    },
+    "sample_values": {
+      "ID": "31e1e83d-0dc6-45dd-b225-8452a580f397",
+      "OriginalCost": "3000",
+      "ID_Client": "64cf114b-d9f6-4b9b-8612-0bee853f1a2d",
+      "TenantType": "Client",
+      "AccountTypeCost": "3000",
+      "Discount": "0",
+      "BeginDate": "14.02.2026",
+      "DaysCount": "30",
+      "TrainingCount": "1",
+      "FreeTrainingCount": "0",
+      "Number": "1",
+      "CreateDate": "14.02.2026",
+      "DiscountPercent": "0",
+      "PaymentType": "Cash",
+      "IsPerpetual": "False",
+      "IsUnlimited": "False",
+      "AddDaysCount": "0",
+      "AccountTypeName": "Единый",
+      "Colour": "FF008000"
+    },
+    "source_files": [
+      "RentAccount.xml"
+    ]
+  },
+  "reservation": {
+    "record_count": 40,
+    "fields": [
+      "BirthDate",
+      "ClientType",
+      "Comments",
+      "ID",
+      "ID_Client",
+      "ID_Group",
+      "ID_Status",
+      "Informers",
+      "LastName",
+      "MiddleName",
+      "MobilePhone1",
+      "Name",
+      "ParentLastName",
+      "ParentMobilePhone1",
+      "ReservationType",
+      "Schedule",
+      "StatusChanges",
+      "Tags",
+      "Tasks",
+      "Time"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "ID_Status": "UUID",
+      "ReservationType": "string",
+      "ClientType": "string",
+      "LastName": "string",
+      "Name": "string",
+      "BirthDate": "date (DD.MM.YYYY)",
+      "ParentLastName": "string",
+      "ParentMobilePhone1": "integer",
+      "Informers": "string",
+      "Schedule": "string",
+      "Comments": "string",
+      "Tasks": "string",
+      "ID_Client": "UUID",
+      "Time": "datetime",
+      "ID_Group": "UUID",
+      "MobilePhone1": "integer",
+      "Tags": "string",
+      "StatusChanges": "string",
+      "MiddleName": "string"
+    },
+    "sample_values": {
+      "ID": "ae47b5bf-481e-4175-8c1c-a191deda31a6",
+      "ID_Status": "170b1799-7ad1-4ba0-9257-c84d7870bdfb",
+      "ReservationType": "Group",
+      "ClientType": "NewClient",
+      "LastName": "Филипьев",
+      "Name": "Лазарь",
+      "BirthDate": "18.11.2010",
+      "ParentLastName": "Филипьева Ксения",
+      "ParentMobilePhone1": "89126515939",
+      "ID_Client": "ca1b6c84-7d39-489a-95da-8aca55672e8b",
+      "Time": "28.03.2021 16:00:00",
+      "ID_Group": "e217989a-91ec-4ab2-b951-8add5783a362",
+      "MobilePhone1": "89089117470",
+      "MiddleName": "Анатольевна"
+    },
+    "source_files": [
+      "Reservation.xml"
+    ]
+  },
+  "reservationstatus": {
+    "record_count": 53,
+    "fields": [
+      "Colour",
+      "Description",
+      "ID",
+      "Name",
+      "Position"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Colour": "string",
+      "Name": "string",
+      "Position": "integer",
+      "Description": "string"
+    },
+    "sample_values": {
+      "ID": "170b1799-7ad1-4ba0-9257-c84d7870bdfb",
+      "Colour": "FF95CAFE",
+      "Name": "первичный контакт",
+      "Position": "1",
+      "Description": "болеет с 29.03.21"
+    },
+    "source_files": [
+      "ReservationStatus.xml"
+    ]
+  },
+  "schedulechange": {
+    "record_count": 1751,
+    "fields": [
+      "ID",
+      "ID_View",
+      "Time",
+      "Type"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Time": "datetime",
+      "ID_View": "UUID",
+      "Type": "string"
+    },
+    "sample_values": {
+      "ID": "1bc33427-cf78-4f4a-9058-73841c6281c0",
+      "Time": "27.12.2020 16:00:00",
+      "ID_View": "e217989a-91ec-4ab2-b951-8add5783a362",
+      "Type": "Cancel"
+    },
+    "source_files": [
+      "ScheduleChange.xml"
+    ]
+  },
+  "sex": {
+    "record_count": 2,
+    "fields": [
+      "Abbreviation",
+      "ID",
+      "Name"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Abbreviation": "string"
+    },
+    "sample_values": {
+      "ID": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+      "Name": "мужской",
+      "Abbreviation": "м"
+    },
+    "source_files": [
+      "Sex.xml"
+    ]
+  },
+  "singletraining": {
+    "record_count": 71873,
+    "fields": [
+      "Annotation",
+      "Bonus",
+      "Cost",
+      "Deposit",
+      "ID",
+      "ID_Client",
+      "ID_Group",
+      "PaymentType",
+      "SingleTrainingTypeCost",
+      "SingleTrainingTypeName",
+      "VisitDate"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "VisitDate": "date (DD.MM.YYYY)",
+      "PaymentType": "string",
+      "ID_Client": "UUID",
+      "ID_Group": "UUID",
+      "Cost": "integer",
+      "SingleTrainingTypeName": "integer",
+      "SingleTrainingTypeCost": "integer",
+      "Bonus": "string",
+      "Deposit": "string",
+      "Annotation": "string"
+    },
+    "sample_values": {
+      "ID": "36a18d35-8fef-4f76-96a3-3292b091bdd8",
+      "VisitDate": "03.02.2019",
+      "PaymentType": "Cash",
+      "ID_Client": "b0ba485e-3ed5-4f64-8bad-011a8cede69f",
+      "ID_Group": "3dfbbe5d-99dd-4071-9ab0-79c843af11ba",
+      "Cost": "350",
+      "SingleTrainingTypeName": "1",
+      "SingleTrainingTypeCost": "350",
+      "Annotation": "др сертиф"
+    },
+    "source_files": [
+      "SingleTraining.xml",
+      "SingleTraining001.xml",
+      "SingleTraining002.xml",
+      "SingleTraining003.xml",
+      "SingleTraining004.xml",
+      "SingleTraining005.xml",
+      "SingleTraining006.xml",
+      "SingleTraining007.xml",
+      "SingleTraining008.xml",
+      "SingleTraining009.xml",
+      "SingleTraining010.xml",
+      "SingleTraining011.xml",
+      "SingleTraining012.xml",
+      "SingleTraining013.xml",
+      "SingleTraining014.xml"
+    ]
+  },
+  "style": {
+    "record_count": 123,
+    "fields": [
+      "ID",
+      "Name"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string"
+    },
+    "sample_values": {
+      "ID": "a71bf4fd-5fff-41f0-80b2-1b6d9d24bc58",
+      "Name": "ОФП меч"
+    },
+    "source_files": [
+      "Style.xml"
+    ]
+  },
+  "substitute": {
+    "record_count": 276,
+    "fields": [
+      "Date",
+      "ID",
+      "ID_Group",
+      "ID_Teacher",
+      "SumType"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Date": "date (DD.MM.YYYY)",
+      "ID_Group": "UUID",
+      "ID_Teacher": "UUID",
+      "SumType": "string"
+    },
+    "sample_values": {
+      "ID": "be970fd7-f756-4f31-9911-240d16858355",
+      "Date": "15.01.2021",
+      "ID_Group": "106110c1-7398-4778-810a-2be9d8b68853",
+      "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+      "SumType": "Target"
+    },
+    "source_files": [
+      "Substitute.xml"
+    ]
+  },
+  "tablessummary": {
+    "record_count": 0,
+    "fields": [],
+    "field_types": {},
+    "sample_values": {},
+    "source_files": [
+      "TablesSummary.xml"
+    ]
+  },
+  "tag": {
+    "record_count": 11,
+    "fields": [
+      "Colour",
+      "Description",
+      "ID",
+      "Name",
+      "Position"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Position": "integer",
+      "Colour": "string",
+      "Description": "string"
+    },
+    "sample_values": {
+      "ID": "afca937a-6988-49aa-a2f3-4f18115cdfcc",
+      "Name": "VIP",
+      "Position": "1",
+      "Colour": "FFFFC300",
+      "Description": "дала 04.02.21 сертификат (есть еще 2 занятия)"
+    },
+    "source_files": [
+      "Tag.xml"
+    ]
+  },
+  "task": {
+    "record_count": 7,
+    "fields": [
+      "CloseText",
+      "CloseTime",
+      "Closed",
+      "Created",
+      "ID",
+      "ID_Closer",
+      "ID_Creator",
+      "ID_User",
+      "TaskType",
+      "Text",
+      "Time"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Closed": "boolean",
+      "Time": "datetime",
+      "CloseTime": "datetime",
+      "CloseText": "string",
+      "TaskType": "string",
+      "Text": "string",
+      "ID_Creator": "UUID",
+      "ID_Closer": "UUID",
+      "Created": "datetime",
+      "ID_User": "UUID"
+    },
+    "sample_values": {
+      "ID": "cc2e4432-806e-42c0-8b0d-219709876342",
+      "Closed": "True",
+      "Time": "12.03.2021 11:00:00",
+      "CloseTime": "12.03.2021 13:19:01",
+      "CloseText": "Выполнено",
+      "TaskType": "Other",
+      "Text": "- Выдать подарок ТМ",
+      "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+      "ID_Closer": "25421898-cff8-4b1b-9861-0bd753b4db32",
+      "Created": "11.03.2021 21:34:44",
+      "ID_User": "b4104ac7-9734-46ac-b3b3-4345c5ac4b0c"
+    },
+    "source_files": [
+      "Task.xml"
+    ]
+  },
+  "teacher": {
+    "record_count": 27,
+    "fields": [
+      "BirthDate",
+      "ID",
+      "ID_Foto",
+      "ID_Sex",
+      "LastName",
+      "MobilePhone1",
+      "OwnSalaryOptions",
+      "Status",
+      "Styles"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "LastName": "string",
+      "ID_Foto": "UUID",
+      "BirthDate": "date (DD.MM.YYYY)",
+      "MobilePhone1": "integer",
+      "OwnSalaryOptions": "boolean",
+      "Status": "string",
+      "ID_Sex": "UUID",
+      "Styles": "string"
+    },
+    "sample_values": {
+      "ID": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+      "LastName": "Кравец Оксана Борисовна",
+      "ID_Foto": "e66e30d1-0c41-44e8-ae5a-73714a60e6f6",
+      "BirthDate": "19.12.1969",
+      "MobilePhone1": "89222266659",
+      "OwnSalaryOptions": "True",
+      "Status": "Active",
+      "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2"
+    },
+    "source_files": [
+      "Teacher.xml"
+    ]
+  },
+  "teacherbalance": {
+    "record_count": 0,
+    "fields": [],
+    "field_types": {},
+    "sample_values": {},
+    "source_files": [
+      "TeacherBalance.xml"
+    ]
+  },
+  "teacherbalancetype": {
+    "record_count": 5,
+    "fields": [
+      "Annotation",
+      "Factor",
+      "ID",
+      "Name",
+      "OnlyGiven",
+      "OnlyNotGiven",
+      "ShortName"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "Name": "string",
+      "Factor": "integer",
+      "OnlyNotGiven": "boolean",
+      "ShortName": "string",
+      "Annotation": "string",
+      "OnlyGiven": "boolean"
+    },
+    "sample_values": {
+      "ID": "1b87dea5-e378-4c41-9183-6a67bab80ce9",
+      "Name": "штраф",
+      "Factor": "-1",
+      "OnlyNotGiven": "True",
+      "ShortName": "штраф",
+      "Annotation": "выплачивается преподавателю за занятие, когда к нему не пришло ни одного человека",
+      "OnlyGiven": "True"
+    },
+    "source_files": [
+      "TeacherBalanceType.xml"
+    ]
+  },
+  "user": {
+    "record_count": 5,
+    "fields": [
+      "ID",
+      "IsAdmin",
+      "LastComputerID",
+      "Login",
+      "OwnSalaryOptions",
+      "PasswordMD5",
+      "Protocols",
+      "Rights",
+      "ScheduleDropboxApp",
+      "Status"
+    ],
+    "field_types": {
+      "ID": "UUID",
+      "PasswordMD5": "string",
+      "Rights": "string",
+      "Login": "string",
+      "IsAdmin": "boolean",
+      "OwnSalaryOptions": "boolean",
+      "LastComputerID": "string",
+      "Status": "string",
+      "ScheduleDropboxApp": "string",
+      "Protocols": "string"
+    },
+    "sample_values": {
+      "ID": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+      "PasswordMD5": "81dc9bdb52d04dc20036dbd8313ed055",
+      "Rights": "<Rights>\n  <AllowEditUsers>true</AllowEditUsers>\n  <AllowEditBranches>true</AllowEditBranches>\n  <AllowEditOptions>true</AllowEditOptions>\n  <AllowEditTables>true</AllowEditTables>\n  <AllowRemoveTableItems>true</AllowRemoveTableItems>\n  <AllowEditPackets>true</AllowEditPackets>\n  <AllowEditCharges>true</AllowEditCharges>\n  <AllowShowPacketsPurchaseCost>true</AllowShowPacketsPurchaseCost>\n  <AllowShowIndividualTeacherPay>true</AllowShowIndividualTeacherPay>\n  <AllowEditNotes>true</AllowEditNotes>\n  <AllowExportToExcel>true</AllowExportToExcel>\n  <AllowCopyCells>true</AllowCopyCells>\n  <AllowShowHistory>true</AllowShowHistory>\n  <AllowShowBin>true</AllowShowBin>\n  <AllowShowClientContacts>true</AllowShowClientContacts>\n  <AllowRemoveRes>true</AllowRemoveRes>\n  <AllowRemoveVisits>true</AllowRemoveVisits>\n  <AllowRemoveDepositItems>true</AllowRemoveDepositItems>\n  <AllowEditTasks>true</AllowEditTasks>\n  <AllowRemoveTasks>true</AllowRemoveTasks>\n  <AllowCopyRows>true</AllowCopyRows>\n  <AllowEditAccountProperties>true</AllowEditAccountProperties>\n  <AllowEditExistAccountProperties>true</AllowEditExistAccountProperties>\n  <AllowEditAccountVisits>true</AllowEditAccountVisits>\n  <AllowCreateAccountsInPast>true</AllowCreateAccountsInPast>\n  <AllowCheckVisitsInPast>true</AllowCheckVisitsInPast>\n  <AllowCheckVisitsBadAccounts>true</AllowCheckVisitsBadAccounts>\n  <AllowAgendaChangeDate>true</AllowAgendaChangeDate>\n  <AllowAgendaShowBalance>true</AllowAgendaShowBalance>\n  <Views>\n    <DanceStudio.DSAgendaView>true</DanceStudio.DSAgendaView>\n    <DanceStudio.DSCheckVisitsView>true</DanceStudio.DSCheckVisitsView>\n    <DanceStudio.DSTablesView>true</DanceStudio.DSTablesView>\n    <DanceStudio.DSStatisticsView>true</DanceStudio.DSStatisticsView>\n    <DanceStudio.DSGeneratorsView>true</DanceStudio.DSGeneratorsView>\n    <DanceStudio.DSHallView>true</DanceStudio.DSHallView>\n    <DanceStudio.DSGroupView>true</DanceStudio.DSGroupView>\n    <DanceStudio.DSTeacherView>true</DanceStudio.DSTeacherView>\n    <DanceStudio.DSSubstituteView>true</DanceStudio.DSSubstituteView>\n    <DanceStudio.DSTeacherBalanceView>true</DanceStudio.DSTeacherBalanceView>\n    <DanceStudio.DSReservationView>true</DanceStudio.DSReservationView>\n    <DanceStudio.DSClientView>true</DanceStudio.DSClientView>\n    <DanceStudio.DSTableUnionView1>true</DanceStudio.DSTableUnionView1>\n    <DanceStudio.DSAccountView>true</DanceStudio.DSAccountView>\n    <DanceStudio.DSSingleTrainingView>true</DanceStudio.DSSingleTrainingView>\n    <DanceStudio.DSTableUnionView2>true</DanceStudio.DSTableUnionView2>\n    <DanceStudio.DSIndividualAccountView>true</DanceStudio.DSIndividualAccountView>\n    <DanceStudio.DSIndividualTrainingView>true</DanceStudio.DSIndividualTrainingView>\n    <DanceStudio.DSTableUnionView3>true</DanceStudio.DSTableUnionView3>\n    <DanceStudio.DSRentAccountView>true</DanceStudio.DSRentAccountView>\n    <DanceStudio.DSRentView>true</DanceStudio.DSRentView>\n    <DanceStudio.DSProductView>true</DanceStudio.DSProductView>\n    <DanceStudio.DSChargeView>true</DanceStudio.DSChargeView>\n    <DanceStudio.DSDayStatisticView>true</DanceStudio.DSDayStatisticView>\n    <DanceStudio.DSPeriodStatisticView>true</DanceStudio.DSPeriodStatisticView>\n    <DanceStudio.DSFunnelView>true</DanceStudio.DSFunnelView>\n    <DanceStudio.DSAgreementView>true</DanceStudio.DSAgreementView>\n    <DanceStudio.DSClientInformationView>true</DanceStudio.DSClientInformationView>\n    <DanceStudio.DSPrintAccountView>true</DanceStudio.DSPrintAccountView>\n    <DanceStudio.DSCashInOrderView>true</DanceStudio.DSCashInOrderView>\n    <DanceStudio.DSReturnMoneyApplicationView>true</DanceStudio.DSReturnMoneyApplicationView>\n    <DanceStudio.DSSalesListView>true</DanceStudio.DSSalesListView>\n    <DanceStudio.DSTeacherPayView>true</DanceStudio.DSTeacherPayView>\n    <DanceStudio.DSReceptionistPayView>true</DanceStudio.DSReceptionistPayView>\n    <DanceStudio.DSVisitsView>true</DanceStudio.DSVisitsView>\n    <DanceStudio.DSIndividualVisitsView>true</DanceStudio.DSIndividualVisitsView>\n    <DanceStudio.DSRentCostView>true</DanceStudio.DSRentCostView>\n    <DanceStudio.DSClientObligationsView>true</DanceStudio.DSClientObligationsView>\n    <DanceStudio.DSBalanceView>true</DanceStudio.DSBalanceView>\n  </Views>\n</Rights>",
+      "Login": "Директор",
+      "IsAdmin": "True",
+      "OwnSalaryOptions": "False",
+      "LastComputerID": "670B-E878-DD76-F952-3316-7A51-88E7-9917",
+      "Status": "Active",
+      "ScheduleDropboxApp": "centr-fr@yandex.ru"
+    },
+    "source_files": [
+      "User.xml"
+    ]
+  }
+}

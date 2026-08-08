@@ -1,0 +1,6 @@
+{
+  "queue_folder": "C:\\dance_studio_sync\\queue",
+  "data_folder": "C:\\DanceStudio\\Data",
+  "interval_seconds": 60,
+  "api_endpoint": "http://localhost:3000/api/bridge/receive"
+}

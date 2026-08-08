@@ -1,0 +1,417 @@
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: rgb(17, 24, 39);
+}
+
+.description {
+  margin: 0.5rem 0 1rem 0;
+  color: rgb(107, 114, 128);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.hint {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: rgb(107, 114, 128);
+}
+
+/* Импорт */
+.importRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(229, 231, 235);
+}
+
+.importLabel {
+  font-size: 0.9rem;
+  color: rgb(107, 114, 128);
+  font-weight: 600;
+}
+
+.fileInput {
+  font-size: 0.9rem;
+}
+
+.importingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 0.75rem;
+  color: rgb(59, 130, 246);
+  font-weight: 600;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-top: 3px solid rgb(59, 130, 246);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.importResultCard {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.importResultCard h5 {
+  margin: 0 0 0.75rem 0;
+  color: rgb(22, 163, 74);
+  font-size: 1rem;
+}
+
+.importStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.importStat {
+  text-align: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 0.5rem;
+}
+
+.importStatValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: rgb(17, 24, 39);
+}
+
+.importStatLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.25rem;
+}
+
+.importErrors {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(239, 68, 68, 0.08);
+  border-radius: 0.5rem;
+}
+
+.importErrors h6 {
+  margin: 0 0 0.5rem 0;
+  color: rgb(220, 38, 38);
+  font-size: 0.9rem;
+}
+
+.importErrorItem {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.85rem;
+  color: rgb(185, 28, 28);
+}
+
+/* Вкладки */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgb(229, 231, 235);
+  padding-bottom: 0;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgb(107, 114, 128);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: rgb(55, 65, 81);
+}
+
+.tabActive {
+  color: rgb(59, 130, 246);
+  border-bottom-color: rgb(59, 130, 246);
+}
+
+/* Карточки */
+.createCard {
+  background: rgba(248, 250, 252, 0.7);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.createCard h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.05rem;
+  color: rgb(17, 24, 39);
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  padding: 0.75rem;
+  border: 2px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  background: white;
+  flex: 1;
+  min-width: 150px;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(59, 130, 246);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.createBtn {
+  background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235));
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.createBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.createBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Credentials */
+.credentialsCard {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.credentialsCard h5 {
+  margin: 0 0 0.75rem 0;
+  color: rgb(22, 163, 74);
+  font-size: 1rem;
+}
+
+.credRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.credLabel {
+  font-weight: 600;
+  color: rgb(55, 65, 81);
+  min-width: 60px;
+}
+
+.credValue {
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+  background: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgb(229, 231, 235);
+}
+
+.copyBtn {
+  background: none;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.copyBtn:hover { background: rgb(243, 244, 246); }
+
+.credHint {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: rgb(107, 114, 128);
+}
+
+/* Список */
+.listCard {
+  background: rgba(248, 250, 252, 0.7);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.listCard h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.05rem;
+  color: rgb(17, 24, 39);
+  display: inline-block;
+}
+
+.refreshBtn {
+  background: rgb(107, 114, 128);
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: all 0.2s;
+}
+
+.refreshBtn:hover { background: rgb(75, 85, 99); }
+
+.loading {
+  color: rgb(107, 114, 128);
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty {
+  color: rgb(107, 114, 128);
+  text-align: center;
+  padding: 2rem;
+  background: rgba(243, 244, 246, 0.5);
+  border-radius: 0.75rem;
+}
+
+/* Таблица */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 2px solid rgb(229, 231, 235);
+  color: rgb(107, 114, 128);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgb(229, 231, 235);
+  color: rgb(55, 65, 81);
+}
+
+.table tr:hover td {
+  background: rgba(243, 244, 246, 0.5);
+}
+
+.deleteBtn {
+  background: rgb(239, 68, 68);
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover { background: rgb(220, 38, 38); }
+
+/* Импорт */
+.importRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(229, 231, 235);
+}
+
+.importLabel {
+  font-size: 0.9rem;
+  color: rgb(107, 114, 128);
+  font-weight: 600;
+}
+
+.fileInput {
+  font-size: 0.9rem;
+}
+
+/* Сообщение */
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.msgSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  color: rgb(22, 163, 74);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.msgError {
+  background: rgba(239, 68, 68, 0.1);
+  color: rgb(220, 38, 38);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+@media (max-width: 640px) {
+  .formRow { flex-direction: column; }
+  .tabs { flex-wrap: wrap; }
+}

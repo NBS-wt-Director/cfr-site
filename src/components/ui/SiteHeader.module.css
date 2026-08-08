@@ -75,26 +75,70 @@
   border-radius: 8px;
 }
 
-/* 2. КНОПКА ЗВОНКА */
-.callButton {
+/* 2. КНОПКА ЗВОНКА и ЛК */
+.rightButtons {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  flex-shrink: 0;
+}
+
+.callButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
   border: none;
-  border-radius: 0; /* исправлено скругление */
-  font-weight: 600;
-  font-size: 0.875rem;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.3s;
-  white-space: nowrap;
 }
 
 .callButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.lkButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #F59E0B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.lkButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  background: #D97706;
+}
+
+.lkButtonText {
+  /* На мобильных скрываем текст */
+}
+
+@media (max-width: 768px) {
+  .lkButtonText {
+    display: none;
+  }
+  
+  .lkButton {
+    padding: 0.625rem;
+    border-radius: 8px;
+  }
 }
 
 /* 3. ЗАГОЛОВОК */
@@ -413,7 +457,7 @@
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding: 1rem;
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
@@ -422,6 +466,43 @@
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.mobileLkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: #F59E0B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mobileLkButton:hover {
+  background: #D97706;
+}
+
+.mobileLkButtonText {
+  /* Текст будет скрываться на очень маленьких экранах */
+}
+
+@media (max-width: 480px) {
+  .mobileLkButtonText {
+    display: none;
+  }
+  
+  .mobileLkButton {
+    font-size: 0.875rem;
+  }
 }
 
 /* Мобильный аккордеон */

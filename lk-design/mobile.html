@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛК Мобильная версия — ЦФР / Шифу Панда</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar" role="toolbar" aria-label="Панель инструментов">
+    <button class="toolbar-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему" title="Переключить тему (D)">
+      <span class="btn-icon">🌙</span>
+      <span class="btn-label">Тема</span>
+    </button>
+    <button class="toolbar-btn" onclick="window.print()" aria-label="Печать" title="Печать (Ctrl+P)">
+      <span class="btn-icon">🖨️</span>
+      <span class="btn-label">Печать</span>
+    </button>
+  </div>
+
+  <!-- ============================================================
+       РАМКА ТЕЛЕФОНА
+       ============================================================ -->
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+      <div class="phone-screen-inner" id="phoneScreen">
+
+        <!-- ===== ГЛОБАЛЬНАЯ ШАПКА САЙТА ===== -->
+        <header class="site-header">
+          <button class="menu-burger-btn" onclick="openSiteMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="logo">🐼</div>
+          <span class="header-title" id="headerTitle">Личный кабинет</span>
+          <div class="header-right">
+            <button class="btn-call" onclick="alert('Заказать звонок')">📞</button>
+          </div>
+        </header>
+
+        <!-- ===== LOGIN PAGE ===== -->
+        <div id="page-login" class="login-page">
+          <div class="login-card">
+            <div class="login-logo">🐼</div>
+            <h1>Личный кабинет</h1>
+            <p class="subtitle">Войдите, чтобы видеть абонементы, посещения и оплаты</p>
+            <form onsubmit="return false;">
+              <div class="field">
+                <label>Номер телефона</label>
+                <input type="tel" placeholder="+7 (___) ___-__-__" value="+7 (900) 000-00-00">
+              </div>
+              <div class="field">
+                <label>Номер договора</label>
+                <input type="text" placeholder="Номер договора" value="0000">
+              </div>
+              <div class="error" id="loginError">Неверный номер телефона или номер договора</div>
+              <button class="login-btn" onclick="doLogin()">Войти</button>
+            </form>
+            <p class="help">Нет доступа? Позвоните: <a href="tel:+79022584547">+7 (902) 258-45-47</a></p>
+          </div>
+        </div>
+
+        <!-- ===== MAIN LK ===== -->
+        <div id="lk-main" style="display:none;">
+
+          <!-- ===== LK CONTENT ===== -->
+          <div class="lk-main-area">
+
+              <!-- TOP BAR — person switcher -->
+              <div class="lk-topbar">
+                <button class="lk-person-nav-btn" id="personLeftBtn" onclick="scrollPersons(-1)">←</button>
+                <div class="lk-person-scroll">
+                  <div class="lk-person-track" id="personTrack">
+                    <button class="lk-person-btn active" data-person="self" onclick="switchPerson(this)">
+                      <span class="person-name">Я</span>
+                    </button>
+                    <button class="lk-person-btn" data-person="child1" onclick="switchPerson(this)">
+                      <span class="person-name">Миша</span>
+                    </button>
+                    <button class="lk-person-btn" data-person="child2" onclick="switchPerson(this)">
+                      <span class="person-name">Катя</span>
+                    </button>
+                  </div>
+                </div>
+                <button class="lk-person-nav-btn" id="personRightBtn" onclick="scrollPersons(1)">→</button>
+              </div>
+
+              <!-- USER INFO BAR -->
+              <div class="lk-user-bar">
+                <div class="avatar">ИИ</div>
+                <div class="user-info">
+                  <div class="user-name">Иван Иванов</div>
+                  <div class="user-phone">+7 (900) 000-00-00 · Договор №0000</div>
+                </div>
+              </div>
+
+              <!-- PAGE CONTENT -->
+              <div class="lk-page-content" id="pageContent">
+
+                <!-- ===== DASHBOARD ===== -->
+                <div id="page-dashboard" class="lk-page active">
+                  <div class="birthday-banner">
+                    <span class="icon">🎉</span>
+                    <div>
+                      <div class="title">🎂 С днём рождения, Иван!</div>
+                      <div class="subtitle">Приходи на ближайшую тренировку и получи подарок!</div>
+                    </div>
+                  </div>
+
+                  <div class="next-class">
+                    <span class="icon">📅</span>
+                    <div>
+                      <div class="title">Ближайшая тренировка</div>
+                      <div class="detail">Пн, 18:00 — Кунг-фу (8–12 лет), тренер Алексей</div>
+                    </div>
+                  </div>
+
+                  <div class="stats-grid">
+                    <!-- Остаток: N тренировок (снизу — суммарно за 31 день) -->
+                    <div class="stat-card stat-card-expandable" onclick="toggleStatExpand(this)">
+                      <div class="icon">🎫</div>
+                      <div class="value">~ 5 тренировок</div>
+                      <div class="label">Остаток · суммарно за 31 день: 4 700 ₽</div>
+                      <div class="stat-expand-hint">Нажмите для подробностей ▾</div>
+                      <div class="stat-expand-content">
+                        <div class="expand-note">Точное количество зависит от цены программ, на которые вы ходите</div>
+                      </div>
+                    </div>
+                    <!-- Оплачено / потрачено — обе цифры видны -->
+                    <div class="stat-card stat-card-expandable" onclick="toggleStatExpand(this)">
+                      <div class="icon">💰</div>
+                      <div class="value" style="font-size:14px;">3 140 ₽ / 2 400 ₽</div>
+                      <div class="label">Оплачено / потрачено</div>
+                      <div class="stat-expand-hint">Нажмите для подробностей ▾</div>
+                      <div class="stat-expand-content">
+                        <div class="expand-note">Оплачено — положено на счёт, потрачено — по тренировкам</div>
+                      </div>
+                    </div>
+                    <!-- За 31 день -->
+                    <div class="stat-card stat-card-expandable" onclick="toggleStatExpand(this)">
+                      <div class="icon">📅</div>
+                      <div class="value">5</div>
+                      <div class="label">Посещений за 31 день</div>
+                      <div class="stat-expand-hint">Нажмите для подробностей ▾</div>
+                      <div class="stat-expand-content">
+                        <div class="expand-note">За весь срок: 48 посещений</div>
+                      </div>
+                    </div>
+                    <!-- Бонусы -->
+                    <div class="stat-card">
+                      <div class="icon">⭐</div>
+                      <div class="value">500 ₽</div>
+                      <div class="label">Бонусы</div>
+                    </div>
+                  </div>
+
+                  <div class="lk-page-title">📅 Последние посещения</div>
+                  <div class="recent-list">
+                    <div class="item"><span class="date">04.08</span><span class="info"><strong>Кунг-фу</strong> · тренер Алексей</span></div>
+                    <div class="item"><span class="date">01.08</span><span class="info"><strong>Кунг-фу</strong> · тренер Алексей</span></div>
+                    <div class="item"><span class="date">28.07</span><span class="info"><strong>Персональная</strong> · тренер Елена</span></div>
+                    <div class="item"><span class="date">25.07</span><span class="info"><strong>Кунг-фу</strong> · тренер Алексей</span></div>
+                    <div class="item"><span class="date">21.07</span><span class="info"><strong>Кунг-фу</strong> · тренер Алексей</span></div>
+                  </div>
+
+                  <button class="btn-primary" onclick="nav('page-visits', document.querySelector('[data-page=page-visits]'))" style="margin-top:12px;">Посмотреть все посещения</button>
+                </div>
+
+                <!-- ===== ПОСЕЩЕНИЯ ===== -->
+                <div id="page-visits" class="lk-page">
+                  <div class="lk-page-title">📅 История посещений</div>
+                  <div class="filters">
+                    <select><option>Все месяцы</option><option>Август 2026</option><option>Июль 2026</option></select>
+                    <select><option>Все программы</option><option>Кунг-фу</option><option>Персональная</option></select>
+                  </div>
+                  <div class="table-wrap">
+                    <table class="table">
+                      <thead><tr><th>Дата</th><th>Программа</th><th>Стоимость</th></tr></thead>
+                      <tbody>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>04.08.2026</td><td>Кунг-фу</td><td>500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">04.08.2026, 18:00</span></div>
+                              <div class="detail-item"><span class="detail-label">Программа</span><span class="detail-value">Кунг-фу</span></div>
+                              <div class="detail-item"><span class="detail-label">Тренер</span><span class="detail-value">Алексей</span></div>
+                              <div class="detail-item"><span class="detail-label">Зал</span><span class="detail-value">Большой зал</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Групповая</span></div>
+                              <div class="detail-item"><span class="detail-label">Стоимость</span><span class="detail-value">500 ₽</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>01.08.2026</td><td>Кунг-фу</td><td>500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">01.08.2026, 18:00</span></div>
+                              <div class="detail-item"><span class="detail-label">Программа</span><span class="detail-value">Кунг-фу</span></div>
+                              <div class="detail-item"><span class="detail-label">Тренер</span><span class="detail-value">Алексей</span></div>
+                              <div class="detail-item"><span class="detail-label">Зал</span><span class="detail-value">Большой зал</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Групповая</span></div>
+                              <div class="detail-item"><span class="detail-label">Стоимость</span><span class="detail-value">500 ₽</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>28.07.2026</td><td>Персональная</td><td>1 500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">28.07.2026, 16:00</span></div>
+                              <div class="detail-item"><span class="detail-label">Программа</span><span class="detail-value">Персональная</span></div>
+                              <div class="detail-item"><span class="detail-label">Тренер</span><span class="detail-value">Елена</span></div>
+                              <div class="detail-item"><span class="detail-label">Зал</span><span class="detail-value">Малый зал</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Персональная</span></div>
+                              <div class="detail-item"><span class="detail-label">Стоимость</span><span class="detail-value">1 500 ₽</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>25.07.2026</td><td>Кунг-фу</td><td>500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">25.07.2026, 18:00</span></div>
+                              <div class="detail-item"><span class="detail-label">Программа</span><span class="detail-value">Кунг-фу</span></div>
+                              <div class="detail-item"><span class="detail-label">Тренер</span><span class="detail-value">Алексей</span></div>
+                              <div class="detail-item"><span class="detail-label">Зал</span><span class="detail-value">Большой зал</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Групповая</span></div>
+                              <div class="detail-item"><span class="detail-label">Стоимость</span><span class="detail-value">500 ₽</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>21.07.2026</td><td>Кунг-фу</td><td>500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">21.07.2026, 18:00</span></div>
+                              <div class="detail-item"><span class="detail-label">Программа</span><span class="detail-value">Кунг-фу</span></div>
+                              <div class="detail-item"><span class="detail-label">Тренер</span><span class="detail-value">Алексей</span></div>
+                              <div class="detail-item"><span class="detail-label">Зал</span><span class="detail-value">Большой зал</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Групповая</span></div>
+                              <div class="detail-item"><span class="detail-label">Стоимость</span><span class="detail-value">500 ₽</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pagination">
+                    <button disabled>←</button><button class="active">1</button><button>2</button><button>3</button>
+                    <span style="color:#6B7280;font-size:13px;">из 12</span><button>→</button>
+                  </div>
+                  <div class="totals">Всего: <strong>48</strong> · Стоимость: <strong>12 500 ₽</strong></div>
+                </div>
+
+                <!-- ===== ОПЛАТЫ И СПИСАНИЯ ===== -->
+                <div id="page-payments" class="lk-page">
+                  <div class="lk-page-title">💰 Оплаты и списания</div>
+                  <div class="info-card" style="margin-bottom:16px;">
+                    <div class="row"><span class="label">Всего оплачено</span><span class="value">15 200 ₽</span></div>
+                    <div class="row"><span class="label">Всего потрачено (31 день)</span><span class="value">2 400 ₽</span></div>
+                    <div class="row"><span class="label">Баланс</span><span class="value" style="color:#059669;">3 800 ₽</span></div>
+                  </div>
+                  <div class="table-wrap">
+                    <table class="table">
+                      <thead><tr><th>Дата</th><th>Тип</th><th>Сумма</th></tr></thead>
+                      <tbody>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>20.06.2026</td><td>Оплата</td><td style="color:#059669;font-weight:700;">+3 140 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">20.06.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Оплата</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#059669;">+3 140 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Абонемент «Кунг-фу» 12 занятий</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>15.05.2026</td><td>Оплата</td><td style="color:#059669;font-weight:700;">+1 500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">15.05.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Оплата</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#059669;">+1 500 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Персональная тренировка</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>10.04.2026</td><td>Пополнение</td><td style="color:#059669;font-weight:700;">+5 000 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">10.04.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Пополнение</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#059669;">+5 000 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Пополнение баланса</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>05.03.2026</td><td>Списание · Тренировка</td><td style="color:#DC2626;font-weight:700;">-1 200 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">05.03.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Списание</span></div>
+                              <div class="detail-item"><span class="detail-label">Подтип</span><span class="detail-value">Тренировка</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#DC2626;">-1 200 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Кунг-фу · 05.03.2026</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>01.03.2026</td><td>Списание · Возврат</td><td style="color:#059669;font-weight:700;">+500 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">01.03.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Списание</span></div>
+                              <div class="detail-item"><span class="detail-label">Подтип</span><span class="detail-value">Возврат</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#059669;">+500 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Возврат за пропуск</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>20.02.2026</td><td>Списание · Окончание срока</td><td style="color:#F59E0B;font-weight:700;">—</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">20.02.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Списание</span></div>
+                              <div class="detail-item"><span class="detail-label">Подтип</span><span class="detail-value">Окончание срока</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#F59E0B;">—</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Абонемент «Кунг-фу» 12 занятий — истёк</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="table-row-expandable" onclick="toggleTableRow(this)">
+                          <td>15.02.2026</td><td>Списание · Тренировка</td><td style="color:#DC2626;font-weight:700;">-800 ₽</td>
+                        </tr>
+                        <tr class="table-row-detail">
+                          <td colspan="3">
+                            <div class="detail-card">
+                              <div class="detail-item"><span class="detail-label">Дата</span><span class="detail-value">15.02.2026</span></div>
+                              <div class="detail-item"><span class="detail-label">Тип</span><span class="detail-value">Списание</span></div>
+                              <div class="detail-item"><span class="detail-label">Подтип</span><span class="detail-value">Тренировка</span></div>
+                              <div class="detail-item"><span class="detail-label">Сумма</span><span class="detail-value" style="color:#DC2626;">-800 ₽</span></div>
+                              <div class="detail-item"><span class="detail-label">Описание</span><span class="detail-value">Персональная · 15.02.2026</span></div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- ===== СЕРТИФИКАТЫ (в разработке) ===== -->
+                <div id="page-certs" class="lk-page">
+                  <div class="lk-page-title">📜 Сертификаты</div>
+                  <div class="placeholder">
+                    <div class="big-icon">📜</div>
+                    <h3>Сертификаты — в разработке</h3>
+                    <p>Раздел появится после интеграции с CRM. Показ сертификатов, их остатков и истории использования.</p>
+                    <div class="features"><span class="feature">📋 Номера</span><span class="feature">💰 Остатки</span><span class="feature">📅 История</span></div>
+                    <div class="hint">Раздел в разработке</div>
+                  </div>
+                </div>
+
+                <!-- ===== АБОНЕМЕНТЫ (в разработке) ===== -->
+                <div id="page-accounts" class="lk-page">
+                  <div class="lk-page-title">🎫 Абонементы</div>
+                  <div class="info-card">
+                    <div class="header-row"><span class="card-title">🥋 Кунг-фу (12)</span><span class="badge active">Активен</span></div>
+                    <div class="row"><span class="label">Остаток</span><span class="value">4 700 ₽</span></div>
+                    <div class="row"><span class="label">Тренировок осталось</span><span class="value" style="color:#059669;">≈ 4 занятия</span></div>
+                    <div class="row"><span class="label">Куплен</span><span class="value">20.06.2026</span></div>
+                    <div class="row"><span class="label">До</span><span class="value">20.08.2026</span></div>
+                    <div class="progress">
+                      <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:67%;"></div></div>
+                      <div class="progress-text">8 из 12 · осталось 4</div>
+                    </div>
+                  </div>
+                  <div class="totals">Онлайн-оплата недоступна. Для продления: <a href="tel:+79022584547">+7 (902) 258-45-47</a></div>
+                </div>
+
+                <!-- ===== ДЗ (в разработке) ===== -->
+                <div id="page-homework" class="lk-page">
+                  <div class="lk-page-title">📝 Домашнее задание</div>
+                  <div class="placeholder">
+                    <div class="big-icon">📝</div>
+                    <h3>ДЗ — в разработке</h3>
+                    <p>Задания от тренера и отметки выполнения.</p>
+                    <div class="features"><span class="feature">📋 Задания</span><span class="feature">✅ Выполнение</span><span class="feature">💬 Комментарии</span></div>
+                    <div class="hint">Раздел появится, если тренер назначит ДЗ</div>
+                  </div>
+                </div>
+
+                <!-- ===== ДНЕВНИК (в разработке) ===== -->
+                <div id="page-diary" class="lk-page">
+                  <div class="lk-page-title">📓 Дневник самоконтроля</div>
+                  <div class="placeholder">
+                    <div class="big-icon">📓</div>
+                    <h3>Дневник — в разработке</h3>
+                    <p>Вес, замеры, самочувствие, заметки.</p>
+                    <div class="features"><span class="feature">📏 Замеры</span><span class="feature">📈 Графики</span><span class="feature">😊 Самочувствие</span></div>
+                    <div class="hint">Раздел в разработке</div>
+                  </div>
+                </div>
+
+              </div><!-- / lk-page-content -->
+            </div><!-- / lk-main-area -->
+
+          <!-- ===== BOTTOM NAVIGATION ===== -->
+          <nav class="bottom-nav">
+            <button class="bottom-nav-item active" onclick="nav('page-dashboard', document.querySelector('[data-page=page-dashboard]'))">
+              <span class="nav-icon">📊</span><span>Обзор</span>
+            </button>
+            <button class="bottom-nav-item" onclick="nav('page-visits', document.querySelector('[data-page=page-visits]'))">
+              <span class="nav-icon">📅</span><span>Посещения</span>
+            </button>
+            <button class="bottom-nav-item" onclick="nav('page-payments', document.querySelector('[data-page=page-payments]'))">
+              <span class="nav-icon">💰</span><span>Оплаты</span>
+            </button>
+            <button class="bottom-nav-item" onclick="openBottomSheet()">
+              <span class="nav-icon">🚧</span><span>Ещё</span>
+            </button>
+          </nav>
+
+          <!-- ===== BOTTOM SHEET — "В РАЗРАБОТКЕ" ===== -->
+          <div class="bottom-sheet-overlay" id="bottomSheetOverlay" onclick="closeBottomSheet()"></div>
+          <div class="bottom-sheet-panel" id="bottomSheetPanel">
+            <div class="bottom-sheet-handle"></div>
+            <div class="bottom-sheet-header">
+              <h3>🚧 В разработке</h3>
+              <button class="bottom-sheet-close" onclick="closeBottomSheet()">✕</button>
+            </div>
+            <div class="bottom-sheet-content">
+              <div class="bottom-sheet-item" onclick="nav('page-certs', document.querySelector('[data-page=page-certs]')); closeBottomSheet();">
+                <span class="item-icon">📜</span>
+                <div class="item-info">
+                  <div class="item-title">Сертификаты</div>
+                  <div class="item-desc">Показ сертификатов и остатков</div>
+                </div>
+                <span class="item-badge">Скоро</span>
+              </div>
+              <div class="bottom-sheet-item" onclick="nav('page-accounts', document.querySelector('[data-page=page-accounts]')); closeBottomSheet();">
+                <span class="item-icon">🎫</span>
+                <div class="item-info">
+                  <div class="item-title">Абонементы</div>
+                  <div class="item-desc">Показ абонементов и продление</div>
+                </div>
+                <span class="item-badge">Скоро</span>
+              </div>
+              <div class="bottom-sheet-item" onclick="nav('page-homework', document.querySelector('[data-page=page-homework]')); closeBottomSheet();">
+                <span class="item-icon">📝</span>
+                <div class="item-info">
+                  <div class="item-title">Домашнее задание</div>
+                  <div class="item-desc">Задания от тренера</div>
+                </div>
+                <span class="item-badge">Скоро</span>
+              </div>
+              <div class="bottom-sheet-item" onclick="nav('page-diary', document.querySelector('[data-page=page-diary]')); closeBottomSheet();">
+                <span class="item-icon">📓</span>
+                <div class="item-info">
+                  <div class="item-title">Дневник самоконтроля</div>
+                  <div class="item-desc">Вес, замеры, самочувствие</div>
+                </div>
+                <span class="item-badge">Скоро</span>
+              </div>
+              <div class="bottom-sheet-item" onclick="doLogout()" style="background: #FEE2E2;">
+                <span class="item-icon">🚪</span>
+                <div class="item-info">
+                  <div class="item-title">Выйти</div>
+                  <div class="item-desc">Выход из личного кабинета</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== САЙТОВОЕ МЕНЮ ===== -->
+          <div class="site-menu-overlay" id="siteMenuOverlay" onclick="closeSiteMenu()"></div>
+          <div class="site-menu-panel" id="siteMenuPanel">
+            <div class="site-menu-header">
+              <span>Меню</span>
+              <button onclick="closeSiteMenu()">✕</button>
+            </div>
+            <div class="site-menu-content">
+              <div class="menu-section-title">Навигация</div>
+              <a href="#">🏠 Главная</a>
+              <a href="#">📅 Расписание</a>
+              <a href="#">🥋 Программы</a>
+              <a href="#">👥 Тренеры</a>
+              <a href="#">📞 Контакты</a>
+              <a href="#">📰 Новости</a>
+              <a href="#">🖼️ Галерея</a>
+            </div>
+          </div>
+
+        </div><!-- / lk-main -->
+
+      </div><!-- / phone-screen-inner -->
+    </div><!-- / phone-screen -->
+  </div><!-- / phone-frame -->
+
+  <script>
+    // ============================================================
+    // DARK / LIGHT THEME
+    // ============================================================
+    (function() {
+      const saved = localStorage.getItem('lk-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.querySelector('.btn-icon').textContent = saved === 'dark' ? '☀️' : '🌙';
+      }
+    })();
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('lk-theme', next);
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.querySelector('.btn-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+
+    // ===== LOGIN =====
+    function doLogin() {
+      document.getElementById('page-login').style.display = 'none';
+      document.getElementById('lk-main').style.display = 'block';
+      nav('page-dashboard', document.querySelector('[data-page=page-dashboard]'));
+    }
+
+    function doLogout() {
+      document.getElementById('page-login').style.display = 'flex';
+      document.getElementById('lk-main').style.display = 'none';
+    }
+
+    // ===== EXPANDABLE STAT CARDS (click to expand) =====
+    function toggleStatExpand(card) {
+      card.classList.toggle('expanded');
+    }
+
+    // ===== EXPANDABLE TABLE ROWS (acorTable) — only one open at a time =====
+    function toggleTableRow(row) {
+      const detail = row.nextElementSibling;
+      if (!detail || !detail.classList.contains('table-row-detail')) return;
+
+      if (row.classList.contains('expanded')) {
+        // Already expanded — close it
+        row.classList.remove('expanded');
+        detail.classList.remove('expanded');
+      } else {
+        // Not expanded — close all others and open this one
+        document.querySelectorAll('.table-row-expandable.expanded').forEach(r => {
+          const d = r.nextElementSibling;
+          if (d && d.classList.contains('table-row-detail')) {
+            r.classList.remove('expanded');
+            d.classList.remove('expanded');
+          }
+        });
+        row.classList.add('expanded');
+        detail.classList.add('expanded');
+      }
+    }
+
+    // ===== NAVIGATION =====
+    function nav(pageId, navBtn) {
+      // Hide all pages
+      document.querySelectorAll('.lk-page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(pageId);
+      if (!target) return;
+      target.classList.add('active');
+
+      // Update bottom nav
+      const pageToNav = { 'page-dashboard': 0, 'page-visits': 1, 'page-payments': 2 };
+      const navIndex = pageToNav[pageId];
+      document.querySelectorAll('.bottom-nav-item').forEach((item, i) => {
+        item.classList.toggle('active', i === navIndex);
+      });
+
+      // Update header title
+      const titles = {
+        'page-dashboard': 'Личный кабинет',
+        'page-visits': 'Посещения',
+        'page-payments': 'Оплаты',
+        'page-certs': 'Сертификаты',
+        'page-accounts': 'Абонементы',
+        'page-homework': 'Домашнее задание',
+        'page-diary': 'Дневник'
+      };
+      const headerTitleEl = document.getElementById('headerTitle');
+      if (headerTitleEl) headerTitleEl.textContent = titles[pageId] || 'Личный кабинет';
+
+      // Scroll to top
+      const pageContent = document.getElementById('pageContent');
+      if (pageContent) pageContent.scrollTop = 0;
+    }
+
+    // ===== ACCORDION "В разработке" =====
+    function toggleAccordion(toggleBtn) {
+      const content = toggleBtn.nextElementSibling;
+      toggleBtn.classList.toggle('accordionChevronOpen');
+      content.classList.toggle('accordionOpen');
+    }
+
+    // ===== PERSON SWITCHER =====
+    let currentPersonIndex = 0;
+    let personTrack = null;
+    let personBtns = [];
+
+    function initPersonSwitcher() {
+      personTrack = document.getElementById('personTrack');
+      if (personTrack) {
+        personBtns = personTrack.querySelectorAll('.lk-person-btn');
+        updatePersonNavButtons();
+      }
+    }
+
+    function switchPerson(btn) {
+      personBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPersonIndex = Array.from(personBtns).indexOf(btn);
+      updatePersonNavButtons();
+    }
+
+    function scrollPersons(direction) {
+      currentPersonIndex += direction;
+      if (currentPersonIndex < 0) currentPersonIndex = 0;
+      if (currentPersonIndex >= personBtns.length) currentPersonIndex = personBtns.length - 1;
+
+      personBtns.forEach(b => b.classList.remove('active'));
+      personBtns[currentPersonIndex].classList.add('active');
+
+      personBtns[currentPersonIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+      updatePersonNavButtons();
+    }
+
+    function updatePersonNavButtons() {
+      const leftBtn = document.getElementById('personLeftBtn');
+      const rightBtn = document.getElementById('personRightBtn');
+      if (leftBtn) leftBtn.disabled = currentPersonIndex === 0;
+      if (rightBtn) rightBtn.disabled = currentPersonIndex >= personBtns.length - 1;
+    }
+
+    // Init person switcher after DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPersonSwitcher);
+    } else {
+      initPersonSwitcher();
+    }
+
+    // ===== BOTTOM SHEET =====
+    function openBottomSheet() {
+      document.getElementById('bottomSheetOverlay').classList.add('open');
+      setTimeout(() => {
+        document.getElementById('bottomSheetPanel').classList.add('open');
+      }, 10);
+    }
+
+    function closeBottomSheet() {
+      document.getElementById('bottomSheetPanel').classList.remove('open');
+      setTimeout(() => {
+        document.getElementById('bottomSheetOverlay').classList.remove('open');
+      }, 300);
+    }
+
+    // ===== SITE MENU =====
+    function openSiteMenu() {
+      document.getElementById('siteMenuOverlay').classList.add('open');
+      document.getElementById('siteMenuPanel').classList.add('open');
+    }
+
+    function closeSiteMenu() {
+      document.getElementById('siteMenuOverlay').classList.remove('open');
+      document.getElementById('siteMenuPanel').classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>

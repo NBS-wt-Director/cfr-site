@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import path from 'path';
+import { authenticateAdmin } from '@/lib/auth';
 
 const footerFilePath = path.join(process.cwd(), 'data', 'footer.json');
 const defaultFooter = {
@@ -20,7 +21,9 @@ async function getFooterDb() {
   return db;
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
   try {
     const db = await getFooterDb();
     return NextResponse.json(db.data || defaultFooter);
@@ -30,7 +33,15 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
+
+  const contentType = request.headers.get('content-type');
+  if (!contentType?.includes('application/json')) {
+    return NextResponse.json({ error: 'Неверный Content-Type' }, { status: 415 });
+  }
+
   try {
     const db = await getFooterDb();
     const footerSettings = await request.json();

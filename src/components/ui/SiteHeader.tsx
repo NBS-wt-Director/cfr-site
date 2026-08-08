@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown, User } from 'lucide-react';
 import styles from './SiteHeader.module.css';
 
 interface MenuItem {
@@ -202,14 +202,27 @@ export default function SiteHeader({
           )}
         </div>
 
-        {/* 2. КНОПКА ЗВОНКА */}
-        <button 
-          className={styles.callButton}
-          onClick={handleCallClick}
-        >
-          <Phone size={18} />
-          <span>Заказать звонок</span>
-        </button>
+        {/* 2. КНОПКА ЗВОНКА (квадратная с иконкой) и ЛК */}
+        <div className={styles.rightButtons}>
+          <button 
+            className={styles.callButton}
+            onClick={handleCallClick}
+            title="Заказать звонок"
+          >
+            <Phone size={20} />
+          </button>
+
+          {headerSettings?.lkEnabled !== false && (
+            <Link 
+              href="/lk" 
+              className={styles.lkButton}
+              title="Личный кабинет"
+            >
+              <User size={18} />
+              <span className={styles.lkButtonText}>Личный кабинет</span>
+            </Link>
+          )}
+        </div>
 
         {/* 3. ЗАГОЛОВОК СТРАНИЦЫ */}
         <div className={styles.titleSection}>
@@ -492,6 +505,17 @@ export default function SiteHeader({
             <Phone size={20} />
             Заказать звонок
           </button>
+
+          {headerSettings?.lkEnabled !== false && (
+            <Link 
+              href="/lk" 
+              className={styles.mobileLkButton}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <User size={20} />
+              <span className={styles.mobileLkButtonText}>Личный кабинет</span>
+            </Link>
+          )}
         </div>
       </div>
 

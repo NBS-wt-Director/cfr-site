@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getAllTrainers } from '@/lib/db-new';
 
 export async function GET() {
   try {
-    const data = getDb();
-    const trainers = data.trainers || [];
+    const trainers = await getAllTrainers();
     return NextResponse.json(trainers);
   } catch (error) {
     console.error('API trainers error:', error);

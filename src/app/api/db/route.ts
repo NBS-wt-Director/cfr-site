@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDb, saveDb } from '@/lib/db';
+import { getDbAsync, saveDbAsync } from '@/lib/db';
 
 export async function GET() {
   try {
-    const data = getDb(); // ✅ getDb вместо loadDb
+    const data = await getDbAsync();
     return NextResponse.json(data);
   } catch (error) {
     console.error('API db error:', error);
@@ -14,7 +14,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-    const success = saveDb(data);
+    const success = await saveDbAsync(data);
     return NextResponse.json({ success });
   } catch (error) {
     return NextResponse.json({ success: false });

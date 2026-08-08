@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
+import { authenticateAdmin } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
   try {
     const formData = await request.formData();
     const scheduleFiles = formData.getAll('scheduleFiles') as File[];

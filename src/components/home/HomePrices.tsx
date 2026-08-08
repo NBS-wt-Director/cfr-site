@@ -19,7 +19,7 @@ export default function HomePrices({
   // Используем изображения из БД или дефолтные
   const fixedPrices = prices.length > 0 
     ? prices.filter(p => p.image)
-    : [{ id: 1, image: '/цены1.jpg' }];
+    : [{ id: 1, image: '/api/price-image?file=цены1.jpg' }];
 
   return (
     <section id="prices" className={styles.prices}>

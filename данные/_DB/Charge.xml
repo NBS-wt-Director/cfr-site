@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Charge>
+  <Item>
+    <ID>19b785b1-d6e0-4cb1-bf23-1d02155efdc5</ID>
+    <Name>Реклама</Name>
+    <Description>Всевозможные затраты на рекламу</Description>
+    <Items>
+      <Item>
+        <ID>de172b38-54f0-4d73-8cc9-cc1468e09683</ID>
+        <Name>Листовки</Name>
+      </Item>
+      <Item>
+        <ID>03db63f0-80ca-4604-af53-c6a0811c49ac</ID>
+        <Name>Баннер</Name>
+      </Item>
+      <Item>
+        <ID>5aac301a-d1cd-49f6-bcea-544d8a152dc9</ID>
+        <Name>Объявления</Name>
+      </Item>
+    </Items>
+    <Packets />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:39:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:38:58">
+    <ID>b3840615-5efc-4445-999b-f8b189cb4e0d</ID>
+    <Name>Уборка</Name>
+    <Description>Затраты на уборку помещения и прилегающей территории</Description>
+    <Items>
+      <Item>
+        <ID>faff5a5f-f28e-4ef9-b825-6fe509558926</ID>
+        <Name>Зар. плата дворнику</Name>
+      </Item>
+      <Item>
+        <ID>4ae4f1c3-65d7-4660-808c-597439dc8517</ID>
+        <Name>Зар. плата уборщице</Name>
+      </Item>
+      <Item>
+        <ID>00f5881b-a4a8-4f1e-b07c-49926135b3e9</ID>
+        <Name>Вывоз мусора</Name>
+      </Item>
+    </Items>
+    <Packets Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:39:59">
+      <Item>
+        <ID>9472699d-59c8-4ca3-870d-7cbe406a1690</ID>
+        <Time>24.03.2019 14:39:41</Time>
+        <ItemID>4ae4f1c3-65d7-4660-808c-597439dc8517</ItemID>
+        <Sum>7000</Sum>
+        <Count>1</Count>
+        <Annotation>мерим</Annotation>
+      </Item>
+    </Packets>
+  </Item>
+  <Item>
+    <ID>b2118fa7-93dd-4d06-b675-a30ab70ca959</ID>
+    <Name>Канцтовары</Name>
+    <Description>Затраты на покупку канцтоваров</Description>
+    <Items>
+      <Item>
+        <ID>70329e5c-f26a-4a5d-bd70-76778d44b5fd</ID>
+        <Name>Степлер</Name>
+      </Item>
+      <Item>
+        <ID>d92c828b-69c5-4f6a-a0d5-6f03ac9c43c3</ID>
+        <Name>Бумага</Name>
+      </Item>
+      <Item>
+        <ID>807d1039-d05d-42da-87ac-7386a4bc8430</ID>
+        <Name>Скрепки</Name>
+      </Item>
+      <Item>
+        <ID>be8b63a3-760c-43a8-b24c-af4371963a4f</ID>
+        <Name>Ручки</Name>
+      </Item>
+      <Item>
+        <ID>e492d2b4-80f2-419a-beb2-e9bead58abf6</ID>
+        <Name>Карандаши</Name>
+      </Item>
+      <Item>
+        <ID>837f7f98-0c77-4d43-9fa6-a846ede330f4</ID>
+        <Name>Скотч</Name>
+      </Item>
+    </Items>
+    <Packets />
+  </Item>
+  <Item>
+    <ID>f7391bb9-2e91-42c3-bd55-bdd8ca655004</ID>
+    <Name>Аренда помещения</Name>
+    <Description>Ежемесечная выплата арендодателю</Description>
+    <Items>
+      <Item>
+        <ID>c0dc171d-ee41-4dd3-b1d3-bf68058cd865</ID>
+        <Name>Аренда</Name>
+      </Item>
+    </Items>
+    <Packets />
+  </Item>
+  <Item>
+    <ID>197f2976-1b90-4f74-90fb-fbb70d11a1de</ID>
+    <Name>Инвентарь</Name>
+    <Description>Закупка мебели и спортинвентаря</Description>
+    <Items>
+      <Item>
+        <ID>3855e07d-1581-4c69-85c0-ad9477c0dc62</ID>
+        <Name>Пуфики</Name>
+      </Item>
+      <Item>
+        <ID>b8034896-a599-4826-a0a1-976ff5e27d26</ID>
+        <Name>Коврики</Name>
+      </Item>
+      <Item>
+        <ID>2a7b2300-12cf-4b98-9abb-2f3a01f8d2c9</ID>
+        <Name>Скакалки</Name>
+      </Item>
+      <Item>
+        <ID>92edf6c0-2161-47bb-b3f7-6aaa193b4e4f</ID>
+        <Name>Гири</Name>
+      </Item>
+    </Items>
+    <Packets />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:43:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:40:27">
+    <ID>b21ac292-eee3-4d50-ab58-bdb90d6151b5</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:42:42">стаканчики</Name>
+    <Description Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:42:57">Затраты на покупку стаканчиков для клиентов</Description>
+    <Annotation Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:43:08">максидом</Annotation>
+    <Items Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:43:08">
+      <Item>
+        <ID>bc8593d8-1108-4092-9ce3-9088ed0aac34</ID>
+        <Name>стаканчики</Name>
+        <Description>прозрачные для питья</Description>
+      </Item>
+    </Items>
+    <Packets Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 14:43:08">
+      <Item>
+        <ID>2dbf0511-806f-42e5-b35f-2a69fc416a3f</ID>
+        <Time>21.03.2019 14:42:38</Time>
+        <ItemID>bc8593d8-1108-4092-9ce3-9088ed0aac34</ItemID>
+        <Sum>720</Sum>
+        <Count>10</Count>
+        <Annotation>прозрачные 0,2</Annotation>
+      </Item>
+    </Packets>
+  </Item>
+</Charge>

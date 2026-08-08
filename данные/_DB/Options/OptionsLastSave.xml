@@ -1,0 +1,1286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Options>
+  <HighlightFreezeAccounts>True</HighlightFreezeAccounts>
+  <HighlightUsedAccounts>True</HighlightUsedAccounts>
+  <HighlightAlmostUsedAccounts>True</HighlightAlmostUsedAccounts>
+  <HighlightRemindAccounts>True</HighlightRemindAccounts>
+  <HighlightNotCameReservations>True</HighlightNotCameReservations>
+  <DenyIncompleteMobile>True</DenyIncompleteMobile>
+  <DenyDoubleFirstDigitMobile>False</DenyDoubleFirstDigitMobile>
+  <MobilePhoneFormat>8 (000) 000 0000</MobilePhoneFormat>
+  <ShowWhatsapp>True</ShowWhatsapp>
+  <ShowViber>True</ShowViber>
+  <ShowTelegram>True</ShowTelegram>
+  <HomePhoneFormat>0000000</HomePhoneFormat>
+  <ValidateEmail>True</ValidateEmail>
+  <EnableBonus>False</EnableBonus>
+  <ScheduleShowTimeBegin>01.01.0001 7:00:00</ScheduleShowTimeBegin>
+  <ScheduleShowTimeEnd>01.01.0001 22:00:00</ScheduleShowTimeEnd>
+  <ScheduleShowTimeRowHeight>01.01.0001 1:00:00</ScheduleShowTimeRowHeight>
+  <ScheduleItemDuration>01.01.0001 0:55:00</ScheduleItemDuration>
+  <ScheduleForbidDuplicateTime>True</ScheduleForbidDuplicateTime>
+  <ScheduleShortPreview>True</ScheduleShortPreview>
+  <ScheduleAllHallShow>False</ScheduleAllHallShow>
+  <ScheduleUseGradient>True</ScheduleUseGradient>
+  <ScheduleUseInRent>True</ScheduleUseInRent>
+  <AccountCosts>
+    <Item>
+      <TrainingCount>0</TrainingCount>
+      <DaysCount>0</DaysCount>
+      <StyleName></StyleName>
+      <GroupName></GroupName>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Group></ID_Group>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Июнь</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>июнь 6 тр</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>Лето</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>25</TrainingCount>
+      <DaysCount>91</DaysCount>
+      <StyleName>Оздоровительное УШУ ( 6-12)</StyleName>
+      <GroupName>Оздоровительное УШУ ( 6-12) Кравец Оксана Борисовна</GroupName>
+      <ID_Style>1b1d7754-ea9f-4226-a18e-ac4cb5c0411e</ID_Style>
+      <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Июнь</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>июнь 6 тр</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>Лето</Name>
+          <Cost>11500</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>8</TrainingCount>
+      <DaysCount>30</DaysCount>
+      <StyleName>ТЦ. 3 год</StyleName>
+      <GroupName>ТЦ. 3 год Кравец Оксана Борисовна</GroupName>
+      <ID_Style>cc61a62a-c9e0-41c2-95d2-1eafc8f0065d</ID_Style>
+      <ID_Group>6d4fbe76-4a20-46d7-905a-b454b7b803f7</ID_Group>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Июнь</Name>
+          <Cost>5200</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>июнь 6 тр</Name>
+          <Cost>3900</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+        <Item>
+          <Name>Лето</Name>
+          <Cost>0</Cost>
+          <Bonus>true</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+  </AccountCosts>
+  <SingleTrainingCosts>
+    <Item>
+      <ID_Style>e406efab-b84c-4198-affa-2e9ad36ae2ba</ID_Style>
+      <ID_Group>00000000-0000-0000-0000-000000000000</ID_Group>
+      <Costs>
+        <Item>
+          <Name>5%, пм</Name>
+          <Cost>680</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>5%, пс</Name>
+          <Cost>620</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>5%, 1,5</Name>
+          <Cost>860</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>12, пм</Name>
+          <Cost>650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>12, пс</Name>
+          <Cost>590</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>12, 1,5</Name>
+          <Cost>800</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>без %, пм</Name>
+          <Cost>720</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>без %, пс</Name>
+          <Cost>650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>без %, 1,5</Name>
+          <Cost>910</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>50%, пм</Name>
+          <Cost>360</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>50%, пс</Name>
+          <Cost>320</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>50%, 1,5</Name>
+          <Cost>450</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>8дг</Name>
+          <Cost>550</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>ИЗО</Name>
+          <Cost>500</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>50%, трен.зал</Name>
+          <Cost>380</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Трен.зал</Name>
+          <Cost>760</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Бесплатно</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Разовое, 1 час</Name>
+          <Cost>900</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Разовое, 1,5</Name>
+          <Cost>1000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Семинар</Name>
+          <Cost>1050</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Семинар %</Name>
+          <Cost>950</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+      <StyleName>Новые цены</StyleName>
+      <GroupName></GroupName>
+    </Item>
+  </SingleTrainingCosts>
+  <AccountGroupTakePlace>False</AccountGroupTakePlace>
+  <HighlightDebtAccounts>True</HighlightDebtAccounts>
+  <HighlightDebtSingles>True</HighlightDebtSingles>
+  <IndividualAccountCosts>
+    <Item>
+      <TrainingCount>10</TrainingCount>
+      <DaysCount>-1</DaysCount>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>00000000-0000-0000-0000-000000000000</ID_Teacher>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Стандарт</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Премиум</Name>
+          <Cost>28000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+      <StyleName></StyleName>
+      <TeacherName></TeacherName>
+    </Item>
+    <Item>
+      <TrainingCount>10</TrainingCount>
+      <DaysCount>0</DaysCount>
+      <StyleName></StyleName>
+      <TeacherName></TeacherName>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>00000000-0000-0000-0000-000000000000</ID_Teacher>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Стандарт</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Премиум</Name>
+          <Cost>45500</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>10</TrainingCount>
+      <DaysCount>-1</DaysCount>
+      <StyleName></StyleName>
+      <TeacherName>Бобров Константин Сергеевич</TeacherName>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Стандарт</Name>
+          <Cost>20000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Премиум</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>10</TrainingCount>
+      <DaysCount>-1</DaysCount>
+      <StyleName></StyleName>
+      <TeacherName>Половникова Тамара</TeacherName>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+      <Time>
+        <From></From>
+        <To></To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Стандарт</Name>
+          <Cost>20000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Премиум</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>16250</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+  </IndividualAccountCosts>
+  <IndividualTrainingCosts>
+    <Item>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+      <Costs>
+        <Item>
+          <Name>Взрослая ПТ 1 час</Name>
+          <Cost>3300</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Взрослая ПТ 30 мин</Name>
+          <Cost>1650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>5000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит 1 чел</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Двойной Сплит</Name>
+          <Cost>4000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Двойной сплит 1 чел</Name>
+          <Cost>2000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детская ПТ 1 час</Name>
+          <Cost>2700</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Массаж 1 час</Name>
+          <Cost>2800</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Массаж 45 мин</Name>
+          <Cost>2600</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детская ПТ 30 мин</Name>
+          <Cost>1650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детский массаж 30 мин</Name>
+          <Cost>1900</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж c</Name>
+          <Cost>2200</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>бесплатно</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Консультация</Name>
+          <Cost>1000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+      <StyleName></StyleName>
+      <TeacherName>Кравец Оксана Борисовна</TeacherName>
+    </Item>
+    <Item>
+      <StyleName></StyleName>
+      <TeacherName>Кузнецов Александр Вячеславович</TeacherName>
+      <ID_Style>00000000-0000-0000-0000-000000000000</ID_Style>
+      <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+      <Costs>
+        <Item>
+          <Name>Взрослая ПТ 1 час</Name>
+          <Cost>3300</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Взрослая ПТ 30 мин</Name>
+          <Cost>1650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит</Name>
+          <Cost>5000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Сплит 1 чел</Name>
+          <Cost>1625</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Двойной Сплит</Name>
+          <Cost>4000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Двойной сплит 1 чел</Name>
+          <Cost>2000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детская ПТ 1 час</Name>
+          <Cost>2700</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Массаж 1 час</Name>
+          <Cost>2800</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Массаж 45 мин</Name>
+          <Cost>2600</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детская ПТ 30 мин</Name>
+          <Cost>1650</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Детский массаж 30 мин</Name>
+          <Cost>1900</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>массаж c</Name>
+          <Cost>2200</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>бесплатно</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <Name>Консультация</Name>
+          <Cost>0</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+  </IndividualTrainingCosts>
+  <HighlightUsedIndividualAccounts>True</HighlightUsedIndividualAccounts>
+  <HighlightAlmostUsedIndividualAccounts>True</HighlightAlmostUsedIndividualAccounts>
+  <HighlightDebtIndividualAccounts>True</HighlightDebtIndividualAccounts>
+  <HighlightRemindIndividualAccounts>True</HighlightRemindIndividualAccounts>
+  <HighlightDebtIndividuals>True</HighlightDebtIndividuals>
+  <RentAccountCosts>
+    <Item>
+      <TrainingCount>8</TrainingCount>
+      <DaysCount>30</DaysCount>
+      <Days>1,2,3,4,5</Days>
+      <ID_Hall>00000000-0000-0000-0000-000000000000</ID_Hall>
+      <Time>
+        <From>09:00</From>
+        <To>18:00</To>
+      </Time>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>2000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>8</TrainingCount>
+      <Days>1,2,3,4,5</Days>
+      <Time>
+        <From>08:00</From>
+        <To>21:00</To>
+      </Time>
+      <DaysCount>30</DaysCount>
+      <ID_Hall>00000000-0000-0000-0000-000000000000</ID_Hall>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>3000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>12</TrainingCount>
+      <Days>1,2,3,4,5</Days>
+      <Time>
+        <From>09:00</From>
+        <To>18:00</To>
+      </Time>
+      <DaysCount>30</DaysCount>
+      <ID_Hall>00000000-0000-0000-0000-000000000000</ID_Hall>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>3000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>12</TrainingCount>
+      <Days>1,2,3,4,5</Days>
+      <Time>
+        <From>18:00</From>
+        <To>21:00</To>
+      </Time>
+      <DaysCount>30</DaysCount>
+      <ID_Hall>00000000-0000-0000-0000-000000000000</ID_Hall>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>4000</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>-1</TrainingCount>
+      <Days>6,7</Days>
+      <Time>
+        <From>09:00</From>
+        <To>21:00</To>
+      </Time>
+      <DaysCount>30</DaysCount>
+      <ID_Hall>00000000-0000-0000-0000-000000000000</ID_Hall>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>5500</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <TrainingCount>4</TrainingCount>
+      <Days>6</Days>
+      <Time>
+        <From>12:00</From>
+        <To>14:00</To>
+      </Time>
+      <DaysCount>-1</DaysCount>
+      <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+      <Costs>
+        <Item>
+          <Name>Единый</Name>
+          <Cost>10400</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+  </RentAccountCosts>
+  <RentCosts>
+    <Item>
+      <Days>1,2,3,4,5,6,7</Days>
+      <Time>
+        <From>00:00</From>
+        <To>00:00</To>
+      </Time>
+      <Costs>
+        <Item>
+          <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+          <Name>БОЛЬШОЙ ЗАЛ</Name>
+          <Cost>1900</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <ID_Hall>427ce918-0289-4317-81fd-909c64200f77</ID_Hall>
+          <Name>МАЛЫЙ ЗАЛ</Name>
+          <Cost>1600</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+    <Item>
+      <Days>1,2,3,4,5,6,7</Days>
+      <Time>
+        <From>00:00</From>
+        <To>00:00</To>
+      </Time>
+      <Costs>
+        <Item>
+          <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+          <Name>БОЛЬШОЙ ЗАЛ</Name>
+          <Cost>1300</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+        <Item>
+          <ID_Hall>427ce918-0289-4317-81fd-909c64200f77</ID_Hall>
+          <Name>МАЛЫЙ ЗАЛ</Name>
+          <Cost>1100</Cost>
+          <Bonus>True</Bonus>
+        </Item>
+      </Costs>
+    </Item>
+  </RentCosts>
+  <HighlightUsedRentAccounts>True</HighlightUsedRentAccounts>
+  <HighlightAlmostUsedRentAccounts>True</HighlightAlmostUsedRentAccounts>
+  <HighlightDebtRentAccounts>True</HighlightDebtRentAccounts>
+  <HighlightRemindRentAccounts>True</HighlightRemindRentAccounts>
+  <HighlightDebtRents>True</HighlightDebtRents>
+  <HighlightDebtProducts>True</HighlightDebtProducts>
+  <AccountRecalculate>False</AccountRecalculate>
+  <AccountRecalculatePercent>50</AccountRecalculatePercent>
+  <AccountActivate>False</AccountActivate>
+  <AccountActivateValue>31</AccountActivateValue>
+  <AccountActivateIsDay>True</AccountActivateIsDay>
+  <AccountActivateImmediately>False</AccountActivateImmediately>
+  <AccountActivateImmediatelyValue>31</AccountActivateImmediatelyValue>
+  <AccountSkipHighlight>True</AccountSkipHighlight>
+  <AccountSkipTrainingSubtract>False</AccountSkipTrainingSubtract>
+  <TeacherSalaryOptions>
+    <GroupOptions>
+      <Type>VisitsCountSum</Type>
+      <FixedPay>300</FixedPay>
+      <AccountPercent>50</AccountPercent>
+      <AccountSelectType>ByCreateDate</AccountSelectType>
+      <AccountCostWithDiscount>true</AccountCostWithDiscount>
+      <AccountCostDivide>false</AccountCostDivide>
+      <AccountCostDivideDays>30</AccountCostDivideDays>
+      <AccountCostDivideExtend>false</AccountCostDivideExtend>
+      <AccountPayForUngroupVisits>false</AccountPayForUngroupVisits>
+      <AccountPayForUngroupVisitsSum>100</AccountPayForUngroupVisitsSum>
+      <AccountPayForSingleTrainings>false</AccountPayForSingleTrainings>
+      <AccountPayForSingleTrainingsPercent>50</AccountPayForSingleTrainingsPercent>
+      <AccountIncludeFreeSingles>false</AccountIncludeFreeSingles>
+      <VisitPercent>50</VisitPercent>
+      <VisitSinglePercent>50</VisitSinglePercent>
+      <VisitPayByUnlimitedAccount>false</VisitPayByUnlimitedAccount>
+      <VisitPayByUnlimitedAccountSum>100</VisitPayByUnlimitedAccountSum>
+      <MinTeacherPay>0</MinTeacherPay>
+      <IncludeFreeSingles>false</IncludeFreeSingles>
+      <UseScheduleForSalary>false</UseScheduleForSalary>
+      <RangePays>
+        <Item>
+          <ID>93b3e912-7d65-4ce9-bcc9-5b7d0c773874</ID>
+          <From>1</From>
+          <To>1</To>
+          <PayType>Fixed</PayType>
+          <Pay>150</Pay>
+        </Item>
+        <Item>
+          <ID>373031a5-08ce-4441-b05f-3d2d5f833ed1</ID>
+          <From>2</From>
+          <To>2</To>
+          <PayType>Fixed</PayType>
+          <Pay>300</Pay>
+        </Item>
+        <Item>
+          <ID>c9661302-c62d-4977-99d2-54b4ee5fc5f9</ID>
+          <From>3</From>
+          <To>3</To>
+          <PayType>Fixed</PayType>
+          <Pay>540</Pay>
+        </Item>
+        <Item>
+          <ID>6130a9bf-1b76-41db-9d01-0f8754355080</ID>
+          <From>4</From>
+          <To>4</To>
+          <PayType>Fixed</PayType>
+          <Pay>720</Pay>
+        </Item>
+        <Item>
+          <ID>305227d8-7a6a-4911-af8c-7aad00df389d</ID>
+          <From>5</From>
+          <To>5</To>
+          <PayType>Fixed</PayType>
+          <Pay>1000</Pay>
+        </Item>
+        <Item>
+          <ID>005fcc7f-d3cd-4eac-8d0b-0041fcf91277</ID>
+          <From>6</From>
+          <To>6</To>
+          <PayType>Fixed</PayType>
+          <Pay>1200</Pay>
+        </Item>
+        <Item>
+          <ID>32ebd949-752a-4245-923a-415e0d33ff8f</ID>
+          <From>7</From>
+          <To>7</To>
+          <PayType>Fixed</PayType>
+          <Pay>1400</Pay>
+        </Item>
+        <Item>
+          <ID>0a907e4f-30b8-453d-b8df-684e119bb50b</ID>
+          <From>8</From>
+          <To>8</To>
+          <PayType>Fixed</PayType>
+          <Pay>1800</Pay>
+        </Item>
+        <Item>
+          <ID>b12fb051-5149-481c-9329-062d85b013e7</ID>
+          <From>9</From>
+          <To>9</To>
+          <PayType>Fixed</PayType>
+          <Pay>2025</Pay>
+        </Item>
+        <Item>
+          <ID>dd877a5d-99a3-406a-a506-004f20a6bb84</ID>
+          <From>10</From>
+          <To>10</To>
+          <PayType>Fixed</PayType>
+          <Pay>2500</Pay>
+        </Item>
+        <Item>
+          <ID>f5e792cd-4a49-4484-95fa-ce759da01bc8</ID>
+          <From>11</From>
+          <To>11</To>
+          <PayType>Fixed</PayType>
+          <Pay>2750</Pay>
+        </Item>
+        <Item>
+          <ID>a0974dab-8d87-4777-b9cb-61435daaf091</ID>
+          <From>12</From>
+          <To>12</To>
+          <PayType>Fixed</PayType>
+          <Pay>3000</Pay>
+        </Item>
+        <Item>
+          <ID>1717575f-da90-4010-94e5-05795eb2e37c</ID>
+          <From>13</From>
+          <To>13</To>
+          <PayType>Fixed</PayType>
+          <Pay>3250</Pay>
+        </Item>
+        <Item>
+          <ID>e06bd1f4-eb6b-4b3b-a2db-d1913a5c0916</ID>
+          <From>14</From>
+          <To>14</To>
+          <PayType>Fixed</PayType>
+          <Pay>3500</Pay>
+        </Item>
+      </RangePays>
+    </GroupOptions>
+    <IndividualAccountOptions>
+      <Type>VisitPercent</Type>
+      <FixedPay>700</FixedPay>
+      <AccountPercent>50</AccountPercent>
+      <AccountSelectType>ByCreateDate</AccountSelectType>
+      <AccountCostWithDiscount>false</AccountCostWithDiscount>
+      <AccountCostDivide>false</AccountCostDivide>
+      <AccountCostDivideDays>30</AccountCostDivideDays>
+      <AccountCostDivideExtend>false</AccountCostDivideExtend>
+      <VisitPercent>80</VisitPercent>
+      <MinTeacherPay>0</MinTeacherPay>
+      <UseScheduleForSalary>false</UseScheduleForSalary>
+    </IndividualAccountOptions>
+    <IndividualTrainingOptions>
+      <Type>Percent</Type>
+      <FixedPay>700</FixedPay>
+      <VisitPercent>100</VisitPercent>
+      <UseScheduleForSalary>false</UseScheduleForSalary>
+    </IndividualTrainingOptions>
+    <ForfeitPay>0</ForfeitPay>
+  </TeacherSalaryOptions>
+  <UserSalaryOptions>
+    <UserSalaryDaysOptions>
+      <WeekDays>1,2,3,4,5,6,7</WeekDays>
+      <Dates />
+      <PayType>HourPlus</PayType>
+      <HourPay>150</HourPay>
+      <HourMinTimeEnable>false</HourMinTimeEnable>
+      <HourMinTime>0001-01-01T09:00:00</HourMinTime>
+      <HourMaxTimeEnable>false</HourMaxTimeEnable>
+      <HourMaxTime>0001-01-01T22:00:00</HourMaxTime>
+      <HourReworkingEnable>false</HourReworkingEnable>
+      <HourReworkingPay>50</HourReworkingPay>
+      <ShiftPay>1200</ShiftPay>
+      <ShiftMinDuration>30</ShiftMinDuration>
+      <AccountPercentEnable>true</AccountPercentEnable>
+      <AccountPercent>5</AccountPercent>
+      <AccountPercentSelect>AllAccounts</AccountPercentSelect>
+      <SecondAccountPercentEnable>false</SecondAccountPercentEnable>
+      <SecondAccountVisitPercentEnable>false</SecondAccountVisitPercentEnable>
+      <SecondAccountPercent>3</SecondAccountPercent>
+      <SecondAccountVisitPercent>10</SecondAccountVisitPercent>
+      <SecondAccountVisitDays>90</SecondAccountVisitDays>
+      <SinglePercentEnable>false</SinglePercentEnable>
+      <SinglePercent>5</SinglePercent>
+      <SinglePercentSelect>AllSingles</SinglePercentSelect>
+      <ProductPercentEnable>false</ProductPercentEnable>
+      <ProductPercent>5</ProductPercent>
+      <LeadAccountPercentEnable>false</LeadAccountPercentEnable>
+      <LeadAccountPercent>5</LeadAccountPercent>
+      <LeadAccount2PercentEnable>false</LeadAccount2PercentEnable>
+      <LeadAccount2Percent>2</LeadAccount2Percent>
+    </UserSalaryDaysOptions>
+  </UserSalaryOptions>
+  <ValidateDBCounters>False</ValidateDBCounters>
+  <KKMPrintGroupAccounts>True</KKMPrintGroupAccounts>
+  <KKMPrintGroupAccountsText>Абонемент #type (#trainings занятий)</KKMPrintGroupAccountsText>
+  <KKMPrintGroupSingles>True</KKMPrintGroupSingles>
+  <KKMPrintGroupSinglesText>Групповое занятие #type</KKMPrintGroupSinglesText>
+  <KKMPrintIndividualAccounts>True</KKMPrintIndividualAccounts>
+  <KKMPrintIndividualAccountsText>Абонемент #type (#trainings занятий)</KKMPrintIndividualAccountsText>
+  <KKMPrintIndividualSingles>True</KKMPrintIndividualSingles>
+  <KKMPrintIndividualSinglesText>Индивидуальное занятие #type</KKMPrintIndividualSinglesText>
+  <KKMPrintRentAccounts>True</KKMPrintRentAccounts>
+  <KKMPrintRentAccountsText>Абонемент #type (#trainings занятий)</KKMPrintRentAccountsText>
+  <KKMPrintRentSingles>True</KKMPrintRentSingles>
+  <KKMPrintRentSinglesText>Разовая аренда #type</KKMPrintRentSinglesText>
+  <KKMPrintProducts>True</KKMPrintProducts>
+  <KKMPrintProductsText>#type</KKMPrintProductsText>
+  <KKMPrintCerts>True</KKMPrintCerts>
+  <KKMPrintCertsText>Подарочный сертификат</KKMPrintCertsText>
+  <KKMPrintRefund>True</KKMPrintRefund>
+  <KKMPrintRefundText>Возврат - #table #type</KKMPrintRefundText>
+  <KKMPrintClientInput>True</KKMPrintClientInput>
+  <KKMPrintClientInputText>Пополнение лицевого счета</KKMPrintClientInputText>
+  <KKMPrintClientOutput>True</KKMPrintClientOutput>
+  <KKMPrintClientOutputText>Вывод с лицевого счета</KKMPrintClientOutputText>
+  <KKMPrintAccountProlong>True</KKMPrintAccountProlong>
+  <KKMPrintAccountProlongText>Продление срока действия абонемента</KKMPrintAccountProlongText>
+  <KKMPrintAccountFreeze>True</KKMPrintAccountFreeze>
+  <KKMPrintAccountFreezeText>Заморозка абонемента</KKMPrintAccountFreezeText>
+  <KKMServiceTaxType></KKMServiceTaxType>
+  <KKMProductTaxType></KKMProductTaxType>
+  <KKMServiceTaxTypeNumber></KKMServiceTaxTypeNumber>
+  <KKMProductTaxTypeNumber></KKMProductTaxTypeNumber>
+  <KKMServicePaymentItem></KKMServicePaymentItem>
+  <KKMProductPaymentItem></KKMProductPaymentItem>
+  <KKMCertPaymentItem>P</KKMCertPaymentItem>
+  <KKMServicePaymentType></KKMServicePaymentType>
+  <KKMProductPaymentType></KKMProductPaymentType>
+  <KKMCertPaymentType>A</KKMCertPaymentType>
+  <KKMUseCertPaymentType>PR</KKMUseCertPaymentType>
+  <KKMPrintSaleInPast>False</KKMPrintSaleInPast>
+  <KKMPrintCash>True</KKMPrintCash>
+  <KKMPrintNonCash>True</KKMPrintNonCash>
+  <KKMPrintPrepayment>False</KKMPrintPrepayment>
+  <KKMPrintCert>True</KKMPrintCert>
+  <KKMPrintFIO>True</KKMPrintFIO>
+  <KKMForbidErrorSales>True</KKMForbidErrorSales>
+  <MangoApiKey></MangoApiKey>
+  <MangoApiSalt></MangoApiSalt>
+  <SmsLogin></SmsLogin>
+  <AmoSubdomain></AmoSubdomain>
+  <AmoClientId></AmoClientId>
+  <FitnessKitServer></FitnessKitServer>
+  <FitnessKitApiKey></FitnessKitApiKey>
+  <ZoomToken></ZoomToken>
+  <ZoomPasswordType>1</ZoomPasswordType>
+  <ZoomPassword>1234</ZoomPassword>
+  <ZoomShowButton>1</ZoomShowButton>
+  <DropboxAppName>centr-fr@yandex.ru</DropboxAppName>
+  <DropboxRefreshToken>m6i12_GX56QAAAAAAAAAAehSDBye8gBWi3H8t4IAMQ5K7TAy_2vnCBOCLWNcUrNe</DropboxRefreshToken>
+  <DropboxToken></DropboxToken>
+  <DropboxLkAppName></DropboxLkAppName>
+  <DropboxLkRefreshToken></DropboxLkRefreshToken>
+  <ClientProfilePasswordType>Agreement</ClientProfilePasswordType>
+  <ClientProfileCommonPassword>1234</ClientProfileCommonPassword>
+  <ClientProfileGenerateBarcode>True</ClientProfileGenerateBarcode>
+  <ClientProfileGenerateBarcodeType>1</ClientProfileGenerateBarcodeType>
+  <ClientProfileShowAppFoto>True</ClientProfileShowAppFoto>
+  <ClientProfileShowUserFoto>True</ClientProfileShowUserFoto>
+  <ClientProfileHideEmptyAccountPeriod>False</ClientProfileHideEmptyAccountPeriod>
+  <ClientProfileUnsubscribe>False</ClientProfileUnsubscribe>
+  <ClientProfileUnsubscribeMinutes>30</ClientProfileUnsubscribeMinutes>
+  <ClientProfileShowBall>True</ClientProfileShowBall>
+  <ClientProfilePayLink></ClientProfilePayLink>
+  <PassportSeriesFormat>00 00</PassportSeriesFormat>
+  <PassportNumberFormat>000 000</PassportNumberFormat>
+  <PassportSubdivisionCodeFormat>000-000</PassportSubdivisionCodeFormat>
+  <Currency>руб.</Currency>
+  <DenyClientWithoutPhone>True</DenyClientWithoutPhone>
+  <DenyReservationWithoutPhone>True</DenyReservationWithoutPhone>
+  <DenyReservationWithoutTime>False</DenyReservationWithoutTime>
+  <DenyReservationInCompletedGroup>True</DenyReservationInCompletedGroup>
+  <DefaultReservationClientType>NewClient</DefaultReservationClientType>
+  <DefaultReservationType>Group</DefaultReservationType>
+  <BonusCurrencyEqual>1</BonusCurrencyEqual>
+  <BonusType>0</BonusType>
+  <BonusFirstAccountValue>3</BonusFirstAccountValue>
+  <BonusFirstAccountIsPercent>True</BonusFirstAccountIsPercent>
+  <BonusProlongGoodValue>15</BonusProlongGoodValue>
+  <BonusProlongGoodIsPercent>True</BonusProlongGoodIsPercent>
+  <BonusProlongBadValue>5</BonusProlongBadValue>
+  <BonusProlongBadIsPercent>True</BonusProlongBadIsPercent>
+  <BonusEverySaleValue>5</BonusEverySaleValue>
+  <BonusEverySaleIsPercent>True</BonusEverySaleIsPercent>
+  <BonusSumValue>10000</BonusSumValue>
+  <BonusSumBall>500</BonusSumBall>
+  <BonusDenyOnDiscount>False</BonusDenyOnDiscount>
+  <BonusDenyCloseGroup>False</BonusDenyCloseGroup>
+  <BonusDenyPartialPay>False</BonusDenyPartialPay>
+  <BonusDenyBonusPay>False</BonusDenyBonusPay>
+  <BonusDenyCashPay>False</BonusDenyCashPay>
+  <BonusDenyNonCashPay>False</BonusDenyNonCashPay>
+  <BonusDenyPrepaymentPay>False</BonusDenyPrepaymentPay>
+  <BonusDenyCertPay>False</BonusDenyCertPay>
+  <BonusMinSale>False</BonusMinSale>
+  <BonusMinSaleSum>0</BonusMinSaleSum>
+  <BonusFreeAccount>False</BonusFreeAccount>
+  <BonusFreeAccountValue>10</BonusFreeAccountValue>
+  <BonusFreeAccountIsPercent>True</BonusFreeAccountIsPercent>
+  <BonusFriend>False</BonusFriend>
+  <BonusFriendSum>300</BonusFriendSum>
+  <BonusFriendMin>False</BonusFriendMin>
+  <BonusFriendMinSum>100</BonusFriendMinSum>
+  <BonusMinSpend>False</BonusMinSpend>
+  <BonusMinSpendValue>10</BonusMinSpendValue>
+  <BonusMinSpendIsPercent>True</BonusMinSpendIsPercent>
+  <BonusMaxSpend>False</BonusMaxSpend>
+  <BonusMaxSpendValue>50</BonusMaxSpendValue>
+  <BonusMaxSpendIsPercent>True</BonusMaxSpendIsPercent>
+  <BonusSpendMinDays>False</BonusSpendMinDays>
+  <BonusSpendMinDaysValue>7</BonusSpendMinDaysValue>
+  <BonusBurn>False</BonusBurn>
+  <BonusBurnMonths>12</BonusBurnMonths>
+  <ClientAgeMonth>5</ClientAgeMonth>
+  <WhatsappAction>0</WhatsappAction>
+  <DefaultSex>87364c6f-a6d3-483f-931e-84b6a8b8d8d2</DefaultSex>
+  <AgreementValid>False</AgreementValid>
+  <AgreementValidMonths>12</AgreementValidMonths>
+  <UserPaymentTypeForm>False</UserPaymentTypeForm>
+  <AutoSatisfyDebts>True</AutoSatisfyDebts>
+  <ShowGroupWebHeader>False</ShowGroupWebHeader>
+  <CheckUpdates>True</CheckUpdates>
+  <AccountNames>
+    <Item>Июнь</Item>
+    <Item>июнь 6 тр</Item>
+    <Item>Лето</Item>
+  </AccountNames>
+  <SingleTrainingNames>
+    <Item>5%, пм</Item>
+    <Item>5%, пс</Item>
+    <Item>5%, 1,5</Item>
+    <Item>12, пм</Item>
+    <Item>12, пс</Item>
+    <Item>12, 1,5</Item>
+    <Item>без %, пм</Item>
+    <Item>без %, пс</Item>
+    <Item>без %, 1,5</Item>
+    <Item>50%, пм</Item>
+    <Item>50%, пс</Item>
+    <Item>50%, 1,5</Item>
+    <Item>8дг</Item>
+    <Item>ИЗО</Item>
+    <Item>50%, трен.зал</Item>
+    <Item>Трен.зал</Item>
+    <Item>Бесплатно</Item>
+    <Item>Разовое, 1 час</Item>
+    <Item>Разовое, 1,5</Item>
+    <Item>Семинар</Item>
+    <Item>Семинар %</Item>
+  </SingleTrainingNames>
+  <IndividualAccountNames>
+    <Item>Стандарт</Item>
+    <Item>Премиум</Item>
+    <Item>массаж</Item>
+    <Item>Сплит</Item>
+  </IndividualAccountNames>
+  <IndividualTrainingNames>
+    <Item>Взрослая ПТ 1 час</Item>
+    <Item>Взрослая ПТ 30 мин</Item>
+    <Item>Сплит</Item>
+    <Item>Сплит 1 чел</Item>
+    <Item>Двойной Сплит</Item>
+    <Item>Двойной сплит 1 чел</Item>
+    <Item>Детская ПТ 1 час</Item>
+    <Item>Массаж 1 час</Item>
+    <Item>Массаж 45 мин</Item>
+    <Item>Детская ПТ 30 мин</Item>
+    <Item>Детский массаж 30 мин</Item>
+    <Item>массаж c</Item>
+    <Item>бесплатно</Item>
+    <Item>Консультация</Item>
+  </IndividualTrainingNames>
+  <RentAccountNames>
+    <Item>Единый</Item>
+  </RentAccountNames>
+  <ProlongCosts>
+    <Item>
+      <Name>Бесплатное</Name>
+      <Days>1</Days>
+      <Cost>0</Cost>
+      <IsDefault>True</IsDefault>
+    </Item>
+    <Item>
+      <Days>7</Days>
+      <Name>На неделю</Name>
+      <Cost>100</Cost>
+      <IsDefault>False</IsDefault>
+    </Item>
+    <Item>
+      <Days>30</Days>
+      <Name>На месяц</Name>
+      <Cost>250</Cost>
+      <IsDefault>False</IsDefault>
+    </Item>
+  </ProlongCosts>
+  <FreezeCosts>
+    <Item>
+      <Days>1</Days>
+      <Name>Бесплатная</Name>
+      <Cost>0</Cost>
+      <IsDefault>True</IsDefault>
+    </Item>
+    <Item>
+      <Days>7</Days>
+      <Name>На неделю</Name>
+      <Cost>50</Cost>
+      <IsDefault>False</IsDefault>
+    </Item>
+    <Item>
+      <Days>30</Days>
+      <Name>На месяц</Name>
+      <Cost>100</Cost>
+      <IsDefault>False</IsDefault>
+    </Item>
+  </FreezeCosts>
+  <ReceptionistPayForHour>100</ReceptionistPayForHour>
+  <ScheduleShowHallsOrder />
+  <ScheduleExportFileType>1</ScheduleExportFileType>
+  <ScheduleExportCellClickAction>0</ScheduleExportCellClickAction>
+  <ScheduleExportScript></ScheduleExportScript>
+  <ScheduleExportFormat>0</ScheduleExportFormat>
+  <ScheduleWebExportFormat>0</ScheduleWebExportFormat>
+  <ScheduleExportOnlyRegular>False</ScheduleExportOnlyRegular>
+  <ScheduleExportOnlyGroups>False</ScheduleExportOnlyGroups>
+  <ScheduleExportBorderColor>FF0AAFEB</ScheduleExportBorderColor>
+  <ScheduleExportColumnHeaderBackgroundColor>FFABDEFF</ScheduleExportColumnHeaderBackgroundColor>
+  <ScheduleExportCellBackgroundColor1>FFFFFFFF</ScheduleExportCellBackgroundColor1>
+  <ScheduleExportCellBackgroundColor2>FFD9F0FF</ScheduleExportCellBackgroundColor2>
+  <ScheduleExportTabBackgroundColor>FF09AFEB</ScheduleExportTabBackgroundColor>
+  <ScheduleWebExportCellBackgroundColor>FFFAFAFA</ScheduleWebExportCellBackgroundColor>
+  <ScheduleWebExportItemBackgroundColor>FFF2F2F2</ScheduleWebExportItemBackgroundColor>
+  <ScheduleExportRoundBorder>False</ScheduleExportRoundBorder>
+  <ScheduleExportGroupNumber>False</ScheduleExportGroupNumber>
+  <ScheduleExportGroupLevel>True</ScheduleExportGroupLevel>
+  <ScheduleExportTeacher>True</ScheduleExportTeacher>
+  <ScheduleExportHall>False</ScheduleExportHall>
+  <ScheduleExportIndividualDetail>False</ScheduleExportIndividualDetail>
+  <ScheduleExportIndividualFio>False</ScheduleExportIndividualFio>
+  <ScheduleExportRentDetail>False</ScheduleExportRentDetail>
+  <ScheduleExportRentFio>False</ScheduleExportRentFio>
+  <ScheduleExportWebHeight>False</ScheduleExportWebHeight>
+  <ScheduleExportWebHeightValue>600</ScheduleExportWebHeightValue>
+  <ScheduleExportWebBlockRewrite>True</ScheduleExportWebBlockRewrite>
+  <ScheduleExportWebResDays>7</ScheduleExportWebResDays>
+  <ScheduleExportWebSubscribe>False</ScheduleExportWebSubscribe>
+  <ScheduleExportWebSubscribeMinutes>45</ScheduleExportWebSubscribeMinutes>
+  <ScheduleExportWebLateSubscribe>True</ScheduleExportWebLateSubscribe>
+  <ScheduleExportWebLateSubscribeMinutes>15</ScheduleExportWebLateSubscribeMinutes>
+  <ScheduleExportWebUnsubscribe>False</ScheduleExportWebUnsubscribe>
+  <ScheduleExportWebUnsubscribeMinutes>30</ScheduleExportWebUnsubscribeMinutes>
+  <ScheduleExportWebValidateClientExist>True</ScheduleExportWebValidateClientExist>
+  <ScheduleExportWebPromtSymbols>5</ScheduleExportWebPromtSymbols>
+  <ScheduleExportWebShowFreePlaces>False</ScheduleExportWebShowFreePlaces>
+  <ScheduleExportWebShowStyleDesc>True</ScheduleExportWebShowStyleDesc>
+  <ScheduleExportWebClientSwitcherText>уже посещал(а) занятия</ScheduleExportWebClientSwitcherText>
+  <ScheduleExportWebSuccessText>Вы успешно записаны на занятие.</ScheduleExportWebSuccessText>
+  <ScheduleExportWebUnsubscribeText>Запись на занятие отменена.</ScheduleExportWebUnsubscribeText>
+  <ScheduleExportWebSuccessScript></ScheduleExportWebSuccessScript>
+  <ScheduleFilterAge>True</ScheduleFilterAge>
+  <ScheduleFilterStyle>True</ScheduleFilterStyle>
+  <ScheduleFilterTeacher>True</ScheduleFilterTeacher>
+  <ScheduleFilterHall>True</ScheduleFilterHall>
+  <DropboxAppKey>tqt5v9glfc6525v</DropboxAppKey>
+  <DropboxAppSecret>wrbvk0al3trqajg</DropboxAppSecret>
+  <DropboxLkAppKey></DropboxLkAppKey>
+  <DropboxLkAppSecret></DropboxLkAppSecret>
+  <DropboxLkToken></DropboxLkToken>
+  <PersonalDataAccept>Предоставляя свои персональные данные Пользователь даёт согласие на обработку, хранение и использование своих персональных данных на основании ФЗ № 152-ФЗ «О персональных данных» от 27.07.2006 г. в следующих целях:
+- осуществление клиентской поддержки;
+- получения Пользователем информации о маркетинговых событиях;
+- проведения аудита и прочих внутренних исследований с целью повышения качества предоставляемых услуг.
+
+Под персональными данными подразумевается любая информация личного характера, позволяющая установить личность Пользователя, такая как:
+- фамилия, имя, отчество;
+- дата рождения;
+- контактный телефон;
+- адрес электронной почты;
+- почтовый адрес.
+
+Персональные данные Пользователей хранятся исключительно на электронных носителях и обрабатываются с использованием автоматизированных систем, за исключением случаев, когда неавтоматизированная обработка персональных данных необходима в связи с исполнением требований законодательства.
+
+Компания обязуется не передавать полученные персональные данные третьим лицам, за исключением следующих случаев:
+- по запросам уполномоченных органов государственной власти РФ только по основаниям и в порядке, установленным законодательством РФ;
+- стратегическим партнерам, которые работают с Компанией для предоставления продуктов и услуг, или тем из них, которые помогают Компании реализовывать продукты и услуги потребителям.</PersonalDataAccept>
+  <CaptureFormHeader>ОСТАВИТЬ ЗАЯВКУ</CaptureFormHeader>
+  <CaptureFormSubHeader></CaptureFormSubHeader>
+  <CaptureFormFieldsXml></CaptureFormFieldsXml>
+  <CaptureFormBackground>FFFFFFFF</CaptureFormBackground>
+  <CaptureFormWidth>400</CaptureFormWidth>
+  <CaptureFormOpenButton>True</CaptureFormOpenButton>
+  <CaptureFormOpenButtonText>Узнать больше</CaptureFormOpenButtonText>
+  <CaptureFormOpenButtonColor>FFED1C24</CaptureFormOpenButtonColor>
+  <CaptureFormOpenButtonRound>True</CaptureFormOpenButtonRound>
+  <CaptureFormSendButtonText>Отправить</CaptureFormSendButtonText>
+  <CaptureFormSendButtonColor>FF1CB841</CaptureFormSendButtonColor>
+  <CaptureFormSendButtonRound>True</CaptureFormSendButtonRound>
+  <CaptureFormSuccessHeader>Заявка успешно отправлена</CaptureFormSuccessHeader>
+  <CaptureFormSuccessSubHeader>Мы свяжемся с Вами в ближайшее время.</CaptureFormSuccessSubHeader>
+  <CaptureFormEmailNotify>False</CaptureFormEmailNotify>
+  <CaptureFormEmail></CaptureFormEmail>
+  <GroupClientsManualMode>False</GroupClientsManualMode>
+  <Views>
+    <View Type="DanceStudio.DSHallView" DefaultFilter="NonClosedHalls" />
+    <View Type="DanceStudio.DSGroupView" DefaultFilter="NonClosedGroups" />
+    <View Type="DanceStudio.DSTeacherView" DefaultFilter="NonClosedTeachers" />
+    <View Type="DanceStudio.DSSubstituteView" DefaultFilter="" />
+    <View Type="DanceStudio.DSTeacherBalanceView" DefaultFilter="" />
+    <View Type="DanceStudio.DSReservationView" DefaultFilter="" />
+    <View Type="DanceStudio.DSClientView" DefaultFilter="" />
+    <View Type="DanceStudio.DSAccountView" DefaultFilter="OpenedAccounts" />
+    <View Type="DanceStudio.DSSingleTrainingView" DefaultFilter="" />
+    <View Type="DanceStudio.DSIndividualAccountView" DefaultFilter="LastIndividualAccounts" />
+    <View Type="DanceStudio.DSIndividualTrainingView" DefaultFilter="" />
+    <View Type="DanceStudio.DSRentAccountView" DefaultFilter="LastRentAccounts" />
+    <View Type="DanceStudio.DSRentView" DefaultFilter="" />
+    <View Type="DanceStudio.DSProductView" DefaultFilter="NonClosedProducts" />
+    <View Type="DanceStudio.DSChargeView" DefaultFilter="NonClosedCharges" />
+  </Views>
+  <NeedUpdateUtc>False</NeedUpdateUtc>
+  <AgendaShowProductPurchases>False</AgendaShowProductPurchases>
+  <AgendaShowTeacherBalance>False</AgendaShowTeacherBalance>
+  <AgendaShowUserBalance>False</AgendaShowUserBalance>
+  <AgendaShowCharge>False</AgendaShowCharge>
+  <AgendaSortGroups>BySchedule</AgendaSortGroups>
+  <TaskTriggerOptions>
+    <Triggers />
+    <MinDays>30</MinDays>
+    <MinLastVisitDays>180</MinLastVisitDays>
+    <NonStatuses>7d1c89d1-fcbf-474c-a9b8-a5b8f7c99e6c 4ef9a219-ba02-46f8-abca-b527156eba65</NonStatuses>
+  </TaskTriggerOptions>
+  <ReservationTimeSelectStatus>ad0119c1-3708-486e-8994-93285fa651f9</ReservationTimeSelectStatus>
+  <ReservationNewClientSingleStatus>60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ReservationNewClientSingleStatus>
+  <ReservationNewClientAccountStatus>11af989c-537b-4dff-8a6f-1563ae2f93a8</ReservationNewClientAccountStatus>
+  <SmsPassword></SmsPassword>
+  <SmsHeader>DanceStudio</SmsHeader>
+  <SmsUseParentMobile>True</SmsUseParentMobile>
+  <SmsUseHomePhone>False</SmsUseHomePhone>
+  <SmsExportCorrectPhone>True</SmsExportCorrectPhone>
+  <SmsCountry>0</SmsCountry>
+  <SmsResNotifyOn>False</SmsResNotifyOn>
+  <SmsResNotifyType>0</SmsResNotifyType>
+  <SmsResNotifyTime>01.01.0001 15:00:00</SmsResNotifyTime>
+  <SmsResNotifyBeforeDays>1</SmsResNotifyBeforeDays>
+  <SmsResNotifyOnlyLeads>True</SmsResNotifyOnlyLeads>
+  <SmsResNotifyLeadsOnlySms>True</SmsResNotifyLeadsOnlySms>
+  <SmsResNotifyTemplateHeader>Запись на занятие</SmsResNotifyTemplateHeader>
+  <SmsResNotifyTemplate>ClientName, доброго дня.
+Вы записаны на занятие "ScheduleItemStyle".
+Ждём Вас завтра в ScheduleItemTime.</SmsResNotifyTemplate>
+  <SmsBirthNotifyOn>False</SmsBirthNotifyOn>
+  <SmsBirthNotifyType>0</SmsBirthNotifyType>
+  <SmsBirthNotifyTime>01.01.0001 12:00:00</SmsBirthNotifyTime>
+  <SmsBirthNotifyTemplateHeader>С Днем Рождения!</SmsBirthNotifyTemplateHeader>
+  <SmsBirthNotifyTemplate>С Днем Рождения, ClientName!
+Всей студией желаем Вам счастливого Дня рождения и еще один год, наполненный приключениями!
+Ваша DanceStudio.</SmsBirthNotifyTemplate>
+  <SmsAccountPeriodNotifyOn>False</SmsAccountPeriodNotifyOn>
+  <SmsAccountPeriodNotifyType>0</SmsAccountPeriodNotifyType>
+  <SmsAccountPeriodNotifyTime>01.01.0001 13:00:00</SmsAccountPeriodNotifyTime>
+  <SmsAccountPeriodNotifyBeforeDays>3</SmsAccountPeriodNotifyBeforeDays>
+  <SmsAccountPeriodNotifyTemplateHeader>Абонемент скоро закончится</SmsAccountPeriodNotifyTemplateHeader>
+  <SmsAccountPeriodNotifyTemplate>ClientName, доброго дня.
+Ваш абонемент заканчивается AccountEndDate.
+Рекомендуем продлить абонемент.</SmsAccountPeriodNotifyTemplate>
+  <SmsAccountTrainingNotifyOn>False</SmsAccountTrainingNotifyOn>
+  <SmsAccountTrainingNotifyType>0</SmsAccountTrainingNotifyType>
+  <SmsAccountTrainingNotifyTime>01.01.0001 14:00:00</SmsAccountTrainingNotifyTime>
+  <SmsAccountTrainingNotifyBeforeCount>1</SmsAccountTrainingNotifyBeforeCount>
+  <SmsAccountTrainingNotifyTemplateHeader>Абонемент скоро закончится</SmsAccountTrainingNotifyTemplateHeader>
+  <SmsAccountTrainingNotifyTemplate>ClientName, доброго дня.
+На Вашем абонементе осталось AccountTrainingCount занятие.
+Рекомендуем продлить абонемент.</SmsAccountTrainingNotifyTemplate>
+  <ClientProfileShowBallType>0</ClientProfileShowBallType>
+  <AmoClientSecret></AmoClientSecret>
+  <AmoUri></AmoUri>
+  <AmoEmail></AmoEmail>
+  <AmoApiKey></AmoApiKey>
+  <AmoPipelines />
+  <AmoContactRelations />
+  <AmoReservationBadCloseStatus>4ef9a219-ba02-46f8-abca-b527156eba65</AmoReservationBadCloseStatus>
+  <AmoCloseLeadOnAccountCreate>True</AmoCloseLeadOnAccountCreate>
+  <AmoCloseLeadOnSingleCreate>True</AmoCloseLeadOnSingleCreate>
+  <AmoCloseLeadOnFreeSingleCreate>True</AmoCloseLeadOnFreeSingleCreate>
+  <ZoomTeacherTitle>Ссылка на занятие</ZoomTeacherTitle>
+  <ZoomTeacherTemplate>TeacherName, доброго дня.
+Ссылка на трансляцию зянятия "ScheduleItemStyle":
+ZoomTeacherLink
+
+Занятие запланировано на ScheduleItemDate ScheduleItemTime.</ZoomTeacherTemplate>
+  <ZoomClientTitle>Ссылка на занятие</ZoomClientTitle>
+  <ZoomClientTemplate>ClientName, доброго дня.
+Ссылка на трансляцию зянятия "ScheduleItemStyle":
+ZoomClientLink
+ZoomPassword
+
+Ждём Вас ScheduleItemDate в ScheduleItemTime.</ZoomClientTemplate>
+  <BonusAccountType>0</BonusAccountType>
+  <TaskDenyLead>False</TaskDenyLead>
+  <TaskDefaultDay>1</TaskDefaultDay>
+  <TaskDefaultTime>01.01.0001 12:00:00</TaskDefaultTime>
+  <MangoSyncContacts>True</MangoSyncContacts>
+  <MangoTelProtocol>False</MangoTelProtocol>
+  <WhatsappTemplate>ClientName, доброго дня.
+</WhatsappTemplate>
+</Options>

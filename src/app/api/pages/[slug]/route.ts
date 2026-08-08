@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
-
-const pagesFilePath = path.join(process.cwd(), 'data', 'pages.json');
+import { getPageBySlug } from '@/lib/db-new';
 
 export async function GET(
   request: Request,
@@ -10,12 +7,7 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
-    const fileContent = fs.readFileSync(pagesFilePath, 'utf-8');
-    const pages = JSON.parse(fileContent);
-    const pagesArray = Array.isArray(pages) ? pages : (pages.pages || []);
-    
-    // Ищем страницу по slug
-    const page = pagesArray.find((p: any) => p.slug === slug || p.slug === `/${slug}`);
+    const page = await getPageBySlug(slug);
     
     if (!page) {
       return NextResponse.json({ error: 'Page not found' }, { status: 404 });

@@ -3,7 +3,7 @@ import { writeFile, readFile, mkdir, stat, rename } from 'fs/promises';
 import { join } from 'path';
 import mammoth from 'mammoth';
 import { parseProgramDocument, createProgramJson, type DbProgram, namesMatch } from '@/lib/programParser';
-import { getDb } from '@/lib/db';
+import { getDbAsync } from '@/lib/db';
 
 const READ_JSON_FILE = 'read.json';
 
@@ -613,7 +613,7 @@ export async function POST(request: NextRequest) {
     addLog('\n🔄 ШАГ 6: Парсинг программ...');
     
     // Получаем существующих тренеров из БД
-    const dbData = getDb();
+    const dbData = await getDbAsync();
     const existingTrainers = (dbData.trainers || []).map((t: any) => ({
       id: t.id,
       name: t.name,

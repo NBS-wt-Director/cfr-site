@@ -1,16 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateAdmin } from '@/lib/auth';
 
 const FOLDER_NAME = 'форматированные данные для сайта';
 const YANDEX_DISK_API = 'https://cloud-api.yandex.net/v1/disk';
 
 export async function GET(request: NextRequest) {
+  // Admin API ключ авторизация
+  const adminAuth = authenticateAdmin(request);
+  if (adminAuth !== true) return adminAuth;
+
   const authHeader = request.headers.get('Authorization');
   
   if (!authHeader || !authHeader.startsWith('OAuth ')) {
     return NextResponse.json({ error: 'Требуется авторизация' }, { status: 401 });
   }
   
-  const token = authHeader.replace('OAuth ', '');
+  const token = authHeader.replace('OAuth ', '').trim();
+  
+  if (!token || token.length < 10) {
+    return NextResponse.json({ error: 'Невалидный токен' }, { status: 401 });
+  }
   
   try {
     // Проверяем существование папки

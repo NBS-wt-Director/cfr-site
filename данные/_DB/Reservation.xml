@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Reservation>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.02.2020 16:56:19" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.02.2020 16:52:07">
+    <ID>ae47b5bf-481e-4175-8c1c-a191deda31a6</ID>
+    <ID_Status>170b1799-7ad1-4ba0-9257-c84d7870bdfb</ID_Status>
+    <ReservationType>Group</ReservationType>
+    <ClientType>NewClient</ClientType>
+    <LastName>Филипьев</LastName>
+    <Name>Лазарь</Name>
+    <BirthDate>18.11.2010</BirthDate>
+    <ParentLastName>Филипьева Ксения</ParentLastName>
+    <ParentMobilePhone1>89126515939</ParentMobilePhone1>
+    <Informers />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="090c0a8f-5d4d-4374-9b2d-e77c14e35be4" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="13.02.2020 16:56:19" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.03.2021 16:49:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2021 14:41:40">
+    <ID>02be6073-eb43-4c7b-892a-f72b2e2a7070</ID>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.03.2021 16:49:38">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.03.2021 16:49:05">ca1b6c84-7d39-489a-95da-8aca55672e8b</ID_Client>
+    <LastName Updated="20|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.03.2021 16:48:58">Кокошинская Наталья</LastName>
+    <Time>28.03.2021 16:00:00</Time>
+    <ID_Group>e217989a-91ec-4ab2-b951-8add5783a362</ID_Group>
+    <MobilePhone1>89089117470</MobilePhone1>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.03.2021 16:49:39">
+      <Item ID="a58a3ec9-6eca-41cf-a1a5-b62a36698388" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="26.03.2021 14:43:38" />
+      <Item ID="5f4a197b-35e2-445f-98eb-36c7ed2a5ebf" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="28.03.2021 16:49:38" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.04.2021 20:54:07" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 10:59:05">
+    <ID>fedae5a7-b123-46e3-a987-72a6aff07c2a</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 18:13:46">a34daadf-0d78-4970-8b60-e6502dd8d4fd</ID_Client>
+    <Time>31.03.2021 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>e2d6202b-4c36-4125-842d-10428fb2df01</ID_Group>
+    <ID_Status Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.04.2021 20:54:07">11af989c-537b-4dff-8a6f-1563ae2f93a8</ID_Status>
+    <LastName>Вальтер Марк</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.04.2021 20:54:07">
+      <Item ID="2e71fcf4-e1aa-481a-8692-0f9dd403f0e8" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="31.03.2021 11:02:47" />
+      <Item ID="b62d7c10-4b02-45dd-9525-9eb5966be332" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="31.03.2021 18:14:37" />
+      <Item ID="9639dbc0-60cb-45c8-b96f-97f337462f37" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="11af989c-537b-4dff-8a6f-1563ae2f93a8" Created="02.04.2021 20:54:07" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 18:11:52" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 11:02:50">
+    <ID>1ce066e4-295f-47d5-b4c8-c13f34ce63e3</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 18:11:40">75dd4a3c-5769-4210-a1c0-4a2bcf622c0f</ID_Client>
+    <Time>31.03.2021 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>430c9c96-633a-468f-8f63-44074fcc1102</ID_Group>
+    <ID_Status Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 18:11:52">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <LastName>Муртазина Зухра</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 18:11:52">
+      <Item ID="a5ad73ad-1227-4043-ad26-cf4eb536fb24" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="31.03.2021 11:03:10" />
+      <Item ID="42aa0a8f-1747-4e16-9a89-95935dbe054e" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="31.03.2021 18:11:52" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.04.2021 21:05:44" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 14:35:53" Removed="true">
+    <ID>8531583f-b2a2-4d56-b99d-b8a231400e77</ID>
+    <Time>03.04.2021 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <LastName>Давыдовская Майя</LastName>
+    <ID_Client>91d1fafd-cd49-439c-92b1-965e1b752805</ID_Client>
+    <ClientType>ExistClient</ClientType>
+    <ID_Group>3efa379f-ad3d-456b-b0aa-6a9ef24a3da3</ID_Group>
+    <ID_Status>60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.04.2021 19:55:27">
+      <Item ID="660e60d0-88cf-4428-8e17-3994dd69e9fe" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="31.03.2021 14:36:36" />
+      <Item ID="da838288-727f-440a-b301-e1a6404ef3c3" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="03.04.2021 19:55:27" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2021 18:15:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 13:22:47">
+    <ID>cf3c3b1d-25eb-4501-91c4-0a49094e919f</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2021 18:15:07">9b0124b3-039a-4a84-a167-a6f1dc956744</ID_Client>
+    <Time>09.04.2021 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Status Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2021 18:15:16">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <MobilePhone1>89506494525</MobilePhone1>
+    <LastName>Кокарева Наталья</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2021 18:15:16">
+      <Item ID="60b5c005-95e9-485d-a4f8-e726b089104b" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="06.04.2021 13:24:21" />
+      <Item ID="d8cf4e55-53cc-4a97-bad4-abb1325b1f97" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="09.04.2021 18:15:16" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2021 16:31:49">
+    <ID>a0cf9325-a327-49a6-ba08-45fb5459ccef</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:49">0d4edceb-82f4-4c5a-84a5-0a19f2637a95</ID_Client>
+    <LastName Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:14">Шакирева Наталья</LastName>
+    <BirthDate Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:24">14.10.1977</BirthDate>
+    <Time>17.04.2021 9:30:00</Time>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <MobilePhone1 Updated="21|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:31">89221135924</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:54">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 08:53:54">
+      <Item ID="a7361c07-1f2f-4d75-ab3a-86d43514574f" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="14.04.2021 16:32:21" />
+      <Item ID="fb9544e1-6c66-47da-88af-aad1532e7eef" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="17.04.2021 08:53:54" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 19:41:20" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.04.2021 19:40:38">
+    <ID>9e4a7a25-2dcc-4158-881d-9e66eceb6026</ID>
+    <ClientType>NewClient</ClientType>
+    <Time>19.04.2021 19:30:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>d07c7c18-2acd-412e-ae0e-b2b28488de68</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <LastName>Бояркин Александр</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="eedef031-b9fd-4143-a1be-762a8beefeb8" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="17.04.2021 19:41:20" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.04.2021 08:37:10" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.04.2021 16:59:48">
+    <ID>4cfc9094-25e9-4c93-806b-33e2396f71ff</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>NewClient</ClientType>
+    <LastName>Долгодворова Алёна</LastName>
+    <Time>20.04.2021 8:30:00</Time>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.04.2021 08:37:07"></ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="ad83b024-0580-4f4b-8946-20a72d147bd1" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="19.04.2021 17:00:53" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.04.2021 14:14:00" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.04.2021 14:13:08">
+    <ID>8135f083-7352-40e1-b851-1b7dfa588537</ID>
+    <ClientType>NewClient</ClientType>
+    <Time>27.04.2021 8:30:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <MobilePhone1>89221575442</MobilePhone1>
+    <LastName>Черемных Александр</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="cfc4b104-1758-4219-b3e9-7c59482d5ec9" ID_Creator="25421898-cff8-4b1b-9861-0bd753b4db32" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="24.04.2021 14:14:00" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:57:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:54:55" Removed="true">
+    <ID>346859ee-b25b-4f6e-8ede-8994c3f4508a</ID>
+    <Time>27.04.2021 15:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <LastName>Певаыпвв</LastName>
+    <Name>Впвппввп</Name>
+    <ClientType>NewClient</ClientType>
+    <ID_Group>15d958c7-553c-4990-a882-0c4337faa2eb</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <MobilePhone1>84432112211</MobilePhone1>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="8c088952-91f4-406b-a01c-e665df4b6c77" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="27.04.2021 08:56:38" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.06.2021 20:39:20" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.06.2021 20:38:39">
+    <ID>69b0b3c1-1466-400a-abbc-8a1fe8f5acf1</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client>84f85b6c-e986-40eb-af8b-3719e75cc3c7</ID_Client>
+    <Time>11.06.2021 17:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:35:26" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:32:42">
+    <ID>500b6af7-31f6-43f9-bdfc-937d8051a714</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:35:14">425e87d2-04d0-49c9-b142-a84aff2cf290</ID_Client>
+    <LastName>Круглов</LastName>
+    <Name>Юра</Name>
+    <BirthDate>24.10.2012</BirthDate>
+    <Time>11.06.2021 17:00:00</Time>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <MobilePhone1>89221356920</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:35:25">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:35:26">
+      <Item ID="cc7bc090-9f84-48c9-b35a-4b4deeb1a0e8" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="11.06.2021 17:35:02" />
+      <Item ID="fc87c8d9-c6ad-4364-9732-0bda072a89d3" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="11.06.2021 17:35:25" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:36:43" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:35:34">
+    <ID>37191393-6e62-4c30-9778-3c404013e564</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:36:36">55a95b07-0736-4659-b0d5-1227309334ac</ID_Client>
+    <LastName>Круглов</LastName>
+    <Name>Егор</Name>
+    <BirthDate>28.05.2016</BirthDate>
+    <Time>11.06.2021 17:00:00</Time>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <MobilePhone1>89221356920</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:36:43">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.06.2021 17:36:43">
+      <Item ID="cd997347-cd8d-4446-870c-ddc48c77ec61" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="11.06.2021 17:36:33" />
+      <Item ID="166d8e80-85a5-4192-9dda-514760c3996a" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="11.06.2021 17:36:43" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:13:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:11:59">
+    <ID>f38ff0e3-1072-4d0a-9037-bcea5e1993ac</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:12:46">301cd7c4-6f83-4013-bec2-85d1af49992a</ID_Client>
+    <LastName>Лошкарева</LastName>
+    <Name>Дарья</Name>
+    <Time>16.06.2021 19:00:00</Time>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:13:27">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:13:27">
+      <Item ID="9e9e719d-4f36-46a3-b3f4-5528174b08ca" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="16.06.2021 19:12:36" />
+      <Item ID="62187756-4e9d-4797-91e1-ca1fb8fcfa83" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="16.06.2021 19:13:27" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:25:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:25:06">
+    <ID>35cb047a-8899-4e3f-a890-996794b09678</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:25:47">5fe24941-9ee5-4184-84cc-d63e1c7da1d6</ID_Client>
+    <LastName>Полетаева</LastName>
+    <Name>Юля</Name>
+    <MiddleName>Анатольевна</MiddleName>
+    <BirthDate>26.05.1997</BirthDate>
+    <Time>16.06.2021 19:00:00</Time>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <MobilePhone1>89527294190</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:25:52">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2021 19:25:53">
+      <Item ID="9c1e4897-d4d5-435b-aa0d-fca12c505b78" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="16.06.2021 19:25:43" />
+      <Item ID="053f6309-ee9d-48db-809e-ef97dbb5d419" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="16.06.2021 19:25:52" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2023 16:28:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:51:02">
+    <ID>d67ea26c-8216-4574-bdaa-4bef9618c369</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2023 16:28:02">804a36ba-4e72-4e68-afab-7a6224b0755d</ID_Client>
+    <Time>23.06.2021 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:51:31">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <LastName>Кузнецова</LastName>
+    <Name>Светлана</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:51:31">
+      <Item ID="ce3ef288-f2e7-4fa4-b942-b712ca6b8f5d" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="23.06.2021 19:51:16" />
+      <Item ID="155a9697-21fa-4a6c-96e5-826833d7dd82" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="23.06.2021 19:51:31" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:53:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:52:02">
+    <ID>ff7a6600-cf24-483b-b924-a4218db120f9</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:53:14">09400983-0943-4102-abd7-de380295410e</ID_Client>
+    <LastName>Барыкина</LastName>
+    <Name>Евгения</Name>
+    <BirthDate>26.10.1990</BirthDate>
+    <Time>23.06.2021 19:00:00</Time>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <MobilePhone1>89616893816</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:53:24">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.06.2021 19:53:24">
+      <Item ID="d5b3609b-5895-44f2-bf4d-e74238b8f596" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="23.06.2021 19:53:12" />
+      <Item ID="d4dd2a35-52d4-4ac5-99e7-9c0f488a1ca2" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="23.06.2021 19:53:24" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.07.2021 17:08:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.07.2021 17:08:04">
+    <ID>6d7a1fcb-c438-42c3-807a-ebd5abeb8c86</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.07.2021 17:08:33">1984ddc3-ceaa-42ba-afa1-0edecc63fd4f</ID_Client>
+    <Time>05.07.2021 17:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>f5427302-6b4f-46ea-b936-0003995c8436</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.07.2021 17:08:59">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <LastName>Самарцева</LastName>
+    <Name>Екатерина</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.07.2021 17:08:59">
+      <Item ID="2a0a4a69-e488-4d4e-941d-88a023b8f0b0" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="05.07.2021 17:08:26" />
+      <Item ID="73c76d9b-3c0e-4805-8dda-385a20d9e1df" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="05.07.2021 17:08:59" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.07.2021 20:01:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.07.2021 20:52:05">
+    <ID>8d9985db-8b59-4291-af53-ba08b511c25c</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.07.2021 20:52:55">766c5647-1bc4-4a74-9da5-61c24630bd23</ID_Client>
+    <Time>11.07.2021 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Status Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.07.2021 20:01:09">11af989c-537b-4dff-8a6f-1563ae2f93a8</ID_Status>
+    <ParentMobilePhone1>89041722904</ParentMobilePhone1>
+    <LastName>Рубцова Виктория</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.07.2021 20:01:09">
+      <Item ID="412ba026-ac20-4e5d-876b-103b748e3679" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="07.07.2021 20:52:44" />
+      <Item ID="e7aad859-53b4-4c90-9edd-371f0c33d38f" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="11.07.2021 19:17:24" />
+      <Item ID="5af3e6f7-ead4-4d50-a253-06f1cfc2b3cf" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="11af989c-537b-4dff-8a6f-1563ae2f93a8" Created="14.07.2021 20:01:09" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 19:59:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 19:58:50">
+    <ID>73a29e18-38dd-4a66-a08c-877af85ce210</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 19:59:09">e596ad9f-a651-48f0-b009-ed32a49ef44b</ID_Client>
+    <Time>11.08.2021 20:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 19:59:17">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <LastName>Плешкова</LastName>
+    <Name>Екатерина</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 19:59:17">
+      <Item ID="9ae70d41-6523-48c1-a9c4-5f9cb41797bf" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="11.08.2021 19:59:02" />
+      <Item ID="b465d1f2-915b-4f3c-92b0-92524fe295b9" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="11.08.2021 19:59:17" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 18:14:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 18:12:59">
+    <ID>c4933c8d-faec-4245-8995-438b96f933ff</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 18:13:54">be4bc523-4090-4fc8-be11-31a78251c187</ID_Client>
+    <BirthDate>16.04.2013</BirthDate>
+    <Time>02.09.2021 17:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 18:14:07">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <MobilePhone1>89221160011</MobilePhone1>
+    <LastName>Новосельцева</LastName>
+    <Name>Маруся</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 18:14:07">
+      <Item ID="17003762-832a-490e-989c-ee58efb3409b" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="02.09.2021 18:13:38" />
+      <Item ID="8bf3c424-24b6-48db-8b2f-c3acfc2b3ce3" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="02.09.2021 18:14:07" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 18:48:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.09.2021 18:03:26">
+    <ID>a13a3ecf-73a5-4640-b603-85e1cc24ad02</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 18:48:17">0e15c9f5-4a1c-4212-976b-ca2368b1d716</ID_Client>
+    <LastName>Екимов Всеволод</LastName>
+    <Time>11.09.2021 19:00:00</Time>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ParentMobilePhone1>89227102250</ParentMobilePhone1>
+    <ID_Status>170b1799-7ad1-4ba0-9257-c84d7870bdfb</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="25c2df14-82a6-494c-b61a-05d6a526f307" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="08.09.2021 18:05:22" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 20:08:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.09.2021 18:12:05">
+    <ID>57028a93-d73b-418a-bc65-2bc2d966fb5a</ID>
+    <ClientType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 19:18:54">ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 19:18:54">30a1d08e-ac0f-4b68-a890-bb9e8f266768</ID_Client>
+    <Time>11.09.2021 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 20:08:22">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <ParentMobilePhone1>89126756780</ParentMobilePhone1>
+    <LastName>Петрова Валерия</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 20:08:22">
+      <Item ID="c8fd6ba7-968c-490a-b8ca-6c2d7ca0a91c" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="08.09.2021 18:12:39" />
+      <Item ID="15db17d9-a37d-413b-a0e1-251be390d7f6" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="11.09.2021 20:08:22" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 18:48:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2021 18:48:38">
+    <ID>976ade09-934d-4edb-bdb2-922b812e06ce</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>NewClient</ClientType>
+    <LastName>Екимов Всеволод</LastName>
+    <Time>18.09.2021 19:00:00</Time>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Status>170b1799-7ad1-4ba0-9257-c84d7870bdfb</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="9b2b72e5-8688-4c93-8de0-66c53f9713de" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="11.09.2021 18:48:54" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2021 17:45:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2021 17:44:12">
+    <ID>a0918886-2ca7-483a-8903-ba3c9cbfe5bc</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2021 17:45:11">be64efa4-e68b-48a8-8475-c7d0366ca651</ID_Client>
+    <BirthDate>09.02.1972</BirthDate>
+    <Time>20.09.2021 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2021 17:45:27">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <MobilePhone1>89222265778</MobilePhone1>
+    <LastName>Питьева</LastName>
+    <Name>Галина</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2021 17:45:27">
+      <Item ID="d1565190-5223-4c7e-896a-f447357af3ed" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="20.09.2021 17:45:04" />
+      <Item ID="71fa6048-8675-4f3b-9e7c-004ba79ba1e2" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="20.09.2021 17:45:27" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2021 17:01:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2021 16:58:31">
+    <ID>401668c2-ff75-4745-94d3-b65d08197f38</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2021 17:00:52">e6891961-a372-4eb1-a409-39f819056285</ID_Client>
+    <LastName>Верещагина</LastName>
+    <Name>Светлана</Name>
+    <BirthDate>24.02.1989</BirthDate>
+    <Time>27.09.2021 17:00:00</Time>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <MobilePhone1>89220340994</MobilePhone1>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2021 17:01:02">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2021 17:01:02">
+      <Item ID="ad76a932-6bdd-44da-8a21-8ba67c1dfb04" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="27.09.2021 17:00:48" />
+      <Item ID="f796d086-1150-41ed-9100-b5d90f289a58" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="27.09.2021 17:01:02" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:01:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:00:47">
+    <ID>77cab076-30b1-48e1-9652-aef1a7a7f1f8</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:01:37">ef920e24-9072-457b-bd8b-17b84af7b012</ID_Client>
+    <LastName>Чижова</LastName>
+    <Name>Арина</Name>
+    <BirthDate>10.01.2003</BirthDate>
+    <Time>19.10.2021 19:00:00</Time>
+    <ID_Group>b677263e-81a2-4a97-91d7-433ebdf9e1bc</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:01:50">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:01:50">
+      <Item ID="039925dc-8966-4ea7-bdde-0d2e312e730b" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="19.10.2021 19:01:21" />
+      <Item ID="06ed46a5-cd63-4e33-b891-01718c4ffdbc" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="19.10.2021 19:01:50" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:09:49" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:09:06">
+    <ID>293f6964-ca3c-4d25-bad5-1e3e2fe5f582</ID>
+    <ReservationType>Group</ReservationType>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:09:41">27d6bc92-0c94-4f15-b948-428e345f2c24</ID_Client>
+    <LastName>Винокурова</LastName>
+    <Name>Елена</Name>
+    <MiddleName>Викторовна</MiddleName>
+    <BirthDate>24.08.1983</BirthDate>
+    <Time>19.10.2021 19:00:00</Time>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:09:49">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.10.2021 19:09:49">
+      <Item ID="34deb0bd-5348-4200-95df-1089fd282462" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="19.10.2021 19:09:39" />
+      <Item ID="a78bd8f1-5643-424b-a3ee-9f70a2806451" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="19.10.2021 19:09:49" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="7|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.10.2022 11:40:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 16:36:31">
+    <ID>394715a4-44c8-4492-a8ac-f1ed5f12a9f7</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 19:03:18">186ba6a7-8152-420e-8cdd-ec14c623b839</ID_Client>
+    <BirthDate Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 19:02:17">15.08.1987</BirthDate>
+    <Time>01.12.2021 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Status Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.10.2022 11:40:07">11af989c-537b-4dff-8a6f-1563ae2f93a8</ID_Status>
+    <MobilePhone1 Updated="21|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 19:03:10">89089154233</MobilePhone1>
+    <LastName Updated="8|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 19:02:04">Сметкова Екатерина</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.10.2022 11:40:07">
+      <Item ID="1a6c7d0b-27aa-45d2-844d-ff7fa990e7d2" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="01.12.2021 16:37:52" />
+      <Item ID="82ade2f9-b2c9-4516-b368-03fca6272339" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="01.12.2021 19:03:30" />
+      <Item ID="8da66e3c-2d98-488c-957e-e7485f30cf47" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="11af989c-537b-4dff-8a6f-1563ae2f93a8" Created="22.10.2022 16:40:09" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.01.2022 13:34:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.01.2022 13:23:07">
+    <ID>810af58a-c5ac-49d2-ae98-99ed0bb3f4f3</ID>
+    <ClientType>NewClient</ClientType>
+    <Time>31.01.2022 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Status>170b1799-7ad1-4ba0-9257-c84d7870bdfb</ID_Status>
+    <MobilePhone1>89126494920</MobilePhone1>
+    <LastName>Дейчман</LastName>
+    <Name>Юлия</Name>
+    <MiddleName>Игоревна</MiddleName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="c06774e5-6173-4fd8-b877-c628f6c684d3" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="170b1799-7ad1-4ba0-9257-c84d7870bdfb" Created="24.01.2022 18:34:30" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:15:23" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2022 13:49:22">
+    <ID>f2dafccc-812a-4af3-93b2-43b78d2c2696</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client>47e6390a-0ad0-46b1-8047-f73e695cc076</ID_Client>
+    <Time Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:15:22">13.04.2022 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>05ba6736-ebd2-4671-abf2-53c7a7466286</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <LastName>Пас</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="edb1ecd4-5294-4408-9cc7-9f6071abb3b3" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="31.03.2022 18:49:53" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="8|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.04.2022 14:43:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2022 11:05:29">
+    <ID>15cc8218-e727-4e93-8c92-51d20603bba6</ID>
+    <Time Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2022 11:07:14">13.04.2022 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <LastName>Росс Елена</LastName>
+    <ClientType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.04.2022 14:27:14">ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.04.2022 14:27:14">1eb80119-86c8-41d6-b38d-e14ad03d7d22</ID_Client>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2022 11:07:14">9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Status Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.04.2022 14:43:02">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <MobilePhone1>89530437660</MobilePhone1>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.04.2022 14:43:02">
+      <Item ID="8897ad5a-3145-4d8d-b8e7-146f14d0d794" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="c21b8873-29d7-447c-a3f2-64a7ca359d28" Created="07.04.2022 16:06:21" />
+      <Item ID="d0118765-cd6f-4726-a58b-42bd960230eb" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="07.04.2022 16:07:20" />
+      <Item ID="1d7fbb98-db59-4fca-9b0f-6a465737f3f3" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="13.04.2022 19:43:04" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:14:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:13:51">
+    <ID>8fc1d2ad-d3d8-4457-b7f0-afa3a633257e</ID>
+    <ClientType>NewClient</ClientType>
+    <Time Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:14:56">16.04.2022 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:14:56">f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:14:32">ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <MobilePhone1>89221106633</MobilePhone1>
+    <LastName>Морозов Денис</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2022 05:14:33">
+      <Item ID="d06b543b-4edd-4af4-8b56-b201f6f79da7" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="c21b8873-29d7-447c-a3f2-64a7ca359d28" Created="09.04.2022 10:14:23" />
+      <Item ID="93f62ca1-14c7-4678-ac83-b056c2332929" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="09.04.2022 10:14:34" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.05.2022 10:07:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.05.2022 12:55:03">
+    <ID>b1d708aa-79c0-400b-9b14-fe2045e8b6b1</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.05.2022 10:03:31">2d22b55c-a81c-417f-bec6-24704824754f</ID_Client>
+    <Time>16.05.2022 15:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>62323fb6-c12e-4cb3-8fc0-1371626c9559</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.05.2022 10:07:03">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <LastName>Семенова  Марина</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.05.2022 10:07:03">
+      <Item ID="61dc1ba9-44a5-4784-af00-56b1956b9cdb" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="13.05.2022 17:56:07" />
+      <Item ID="d24b94cd-3ae5-4300-8a07-ca98fba0bdf3" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="16.05.2022 15:07:04" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 13:48:18" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.06.2022 11:16:14">
+    <ID>e0fcd2c6-4f0c-4661-b7ee-4c91f77a2185</ID>
+    <ClientType>ExistClient</ClientType>
+    <ID_Client Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 13:47:16">b1a795c8-aa0a-442f-aafa-7c99c8d4a196</ID_Client>
+    <BirthDate>30.06.2022</BirthDate>
+    <Time>30.06.2022 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>c7c7114c-21f3-4016-8617-4359e91bc317</ID_Group>
+    <ID_Status Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 13:48:18">60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID_Status>
+    <MobilePhone1>89126495352</MobilePhone1>
+    <LastName>Юношева Олеся</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 13:48:18">
+      <Item ID="6a04ca67-4cf0-4151-9bdd-95e6669b078b" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="26.06.2022 16:19:30" />
+      <Item ID="019a9d4c-58a1-424d-99ff-ea146ff27230" ID_Creator="00000000-0000-0000-0000-000000000000" ID_Status="60ce10f1-e5cd-4f5a-96fd-ca4e23974946" Created="10.07.2022 18:48:20" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.09.2022 13:25:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.09.2022 13:24:58">
+    <ID>3a2b1569-5a9b-4dbd-a81a-f87ea8b93ea5</ID>
+    <ClientType>NewClient</ClientType>
+    <Time>04.09.2022 17:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>73fb1bb4-535f-4a48-92d7-37c632c66010</ID_Group>
+    <ID_Status>c21b8873-29d7-447c-a3f2-64a7ca359d28</ID_Status>
+    <LastName>Алена</LastName>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="cb62a765-d6e2-4d3f-8c57-7307e309ba87" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="c21b8873-29d7-447c-a3f2-64a7ca359d28" Created="01.09.2022 18:25:34" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.10.2022 13:30:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.10.2022 13:28:16">
+    <ID>6f6e3610-60e9-46ab-81c0-f3b71e2aa476</ID>
+    <ClientType>NewClient</ClientType>
+    <Time>21.10.2022 15:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>62323fb6-c12e-4cb3-8fc0-1371626c9559</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <MobilePhone1>89222279902</MobilePhone1>
+    <Name>Ольга</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="faeadbdc-4ef4-4cba-a45b-c379317c9403" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="20.10.2022 18:30:05" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.10.2022 12:28:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.10.2022 12:50:00">
+    <ID>c69a7b95-7603-495a-ab34-879977706687</ID>
+    <ClientType>NewClient</ClientType>
+    <Time Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.10.2022 12:28:31">31.10.2022 18:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Status>c21b8873-29d7-447c-a3f2-64a7ca359d28</ID_Status>
+    <MobilePhone1>89089075599</MobilePhone1>
+    <Name>Нэлли</Name>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="48ad75bd-2d3c-440c-9d77-a516ba0c561a" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="c21b8873-29d7-447c-a3f2-64a7ca359d28" Created="25.10.2022 17:50:51" />
+    </StatusChanges>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.08.2023 13:06:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.08.2023 13:06:27">
+    <ID>c5806893-a55b-4439-8d76-9cb3fce26a5b</ID>
+    <Time>09.08.2023 19:00:00</Time>
+    <ReservationType>Group</ReservationType>
+    <Name>Константин</Name>
+    <ClientType>NewClient</ClientType>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Status>ad0119c1-3708-486e-8994-93285fa651f9</ID_Status>
+    <MobilePhone1>89122935343</MobilePhone1>
+    <Informers />
+    <Tags />
+    <Schedule />
+    <Comments />
+    <Tasks />
+    <StatusChanges>
+      <Item ID="bcfc5816-10ce-42b3-9522-52c44a6afa37" ID_Creator="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ID_Status="ad0119c1-3708-486e-8994-93285fa651f9" Created="08.08.2023 18:06:57" />
+    </StatusChanges>
+  </Item>
+</Reservation>

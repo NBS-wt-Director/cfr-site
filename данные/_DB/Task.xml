@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Task>
+  <Item Updated="3|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:19:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.03.2021 21:34:44">
+    <ID>cc2e4432-806e-42c0-8b0d-219709876342</ID>
+    <Closed Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:19:01">True</Closed>
+    <Time>12.03.2021 11:00:00</Time>
+    <CloseTime Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:19:01">12.03.2021 13:19:01</CloseTime>
+    <CloseText Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:19:01">Выполнено</CloseText>
+    <TaskType>Other</TaskType>
+    <Text Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.03.2021 21:34:55">- Выдать подарок ТМ
+</Text>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <ID_Closer Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:19:01">25421898-cff8-4b1b-9861-0bd753b4db32</ID_Closer>
+    <Created>11.03.2021 21:34:44</Created>
+  </Item>
+  <Item Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 15:42:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.03.2021 21:35:14">
+    <ID>72bca32a-2ac5-4396-be72-12ff47151f23</ID>
+    <Closed Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 15:42:44">True</Closed>
+    <Time>12.03.2021 12:00:00</Time>
+    <CloseTime Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 15:42:44">12.03.2021 15:42:44</CloseTime>
+    <CloseText Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 15:42:44"></CloseText>
+    <TaskType>Other</TaskType>
+    <Text>- Изменить расписание в дансе, в экселе и распечатать
+</Text>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <ID_Closer Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 15:42:44">b4104ac7-9734-46ac-b3b3-4345c5ac4b0c</ID_Closer>
+    <Created>11.03.2021 21:34:59</Created>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:18:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.03.2021 21:35:25">
+    <ID>95c347ef-e6b8-4179-928f-986ca270258f</ID>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <ID_Closer Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:18:19">25421898-cff8-4b1b-9861-0bd753b4db32</ID_Closer>
+    <Created>11.03.2021 21:35:17</Created>
+    <Time>12.03.2021 12:00:00</Time>
+    <TaskType>Other</TaskType>
+    <Text>- Дописать визитки про 8 тренировок</Text>
+    <Closed Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:18:19">True</Closed>
+    <CloseTime Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:18:19">12.03.2021 13:18:19</CloseTime>
+    <CloseText Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 13:18:19">Выполнено</CloseText>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 11:29:26" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 10:53:51" Removed="true">
+    <ID>a64539f5-7002-4262-b9bc-30f9f4e0548b</ID>
+    <ID_User>b4104ac7-9734-46ac-b3b3-4345c5ac4b0c</ID_User>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <Created>06.04.2021 10:53:22</Created>
+    <Time>06.04.2021 12:00:00</Time>
+    <TaskType>Other</TaskType>
+    <Text>отправить письмо Ардашевой</Text>
+    <Closed>False</Closed>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:29:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:25:27" Removed="true">
+    <ID>7132c7d2-c866-48f1-98a8-239c42baa51c</ID>
+    <Time>06.04.2021 17:26:00</Time>
+    <ID_User>25421898-cff8-4b1b-9861-0bd753b4db32</ID_User>
+    <TaskType>Other</TaskType>
+    <Text>546</Text>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <Created>06.04.2021 17:25:16</Created>
+    <Closed>False</Closed>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:29:28" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:27:12" Removed="true">
+    <ID>6b5acad8-3fef-45bc-b28f-90cc360e671d</ID>
+    <Time>06.04.2021 17:27:00</Time>
+    <ID_User>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_User>
+    <TaskType>Other</TaskType>
+    <Text>3534</Text>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <Created>06.04.2021 17:27:04</Created>
+    <Closed>False</Closed>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:30:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 17:28:25" Removed="true">
+    <ID>93121551-ca7d-402f-b92d-7ba3d2aae309</ID>
+    <Time>06.04.2021 17:34:07</Time>
+    <TaskType>Other</TaskType>
+    <Text>ождл</Text>
+    <ID_Creator>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID_Creator>
+    <Created>06.04.2021 17:28:21</Created>
+    <Closed>False</Closed>
+  </Item>
+</Task>

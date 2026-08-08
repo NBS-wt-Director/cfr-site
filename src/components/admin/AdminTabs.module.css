@@ -9,43 +9,119 @@
     border: 1px solid rgb(229, 231, 235);
   }
   
-  .tabButton {
+  /* ============================================
+     СТИЛИ ДЛЯ ГРУППИРОВКИ ВКЛАДОК
+     ============================================ */
+  
+  .groupsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .group {
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 1rem;
+    overflow: hidden;
+    background: white;
+    transition: all 0.3s ease;
+  }
+  
+  .groupOpen {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .groupActive {
+    border-color: rgb(59, 130, 246);
+    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .groupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(31, 41, 55);
+    transition: background 0.2s ease;
+  }
+  
+  .groupHeader:hover {
+    background: rgba(241, 245, 249, 0.5);
+  }
+  
+  .groupTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .groupIcon {
+    font-size: 1.25rem;
+  }
+  
+  .groupArrow {
+    font-size: 0.75rem;
+    color: rgb(107, 114, 128);
+    transition: transform 0.3s ease;
+  }
+  
+  .groupOpen .groupArrow {
+    transform: rotate(180deg);
+  }
+  
+  .groupTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(248, 250, 252, 0.5);
+    border-top: 1px solid rgb(241, 245, 249);
+  }
+  
+  .groupTabButton {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 1rem;
-    font-weight: 600;
-    height: auto;
+    padding: 0.6rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    font-size: 0.875rem;
     white-space: nowrap;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: none;
+    transition: all 0.2s ease;
+    background: white;
+    border: 1px solid rgb(229, 231, 235);
     cursor: pointer;
     color: rgb(55, 65, 81);
   }
   
-  .tabButton:hover {
+  .groupTabButton:hover {
     background: rgba(251, 191, 36, 0.1);
+    border-color: rgb(251, 191, 36);
   }
   
-  /* Активная вкладка */
-  .tabButton.active {
+  .groupTabActive {
     background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
     color: white;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
   }
   
-  .tabButton.active .tabIcon,
-  .tabButton.active .tabLabel {
-    color: white;
+  .groupTabActive:hover {
+    background: linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 100%);
   }
   
-  .tabIcon {
-    font-size: 1.25rem;
+  .groupTabIcon {
+    font-size: 1rem;
   }
   
-  .tabLabel {
-    font-size: 0.9rem;
+  .groupTabLabel {
+    font-size: 0.875rem;
   }
   

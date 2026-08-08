@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Product>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.02.2019 14:06:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.02.2019 14:04:17">
+    <ID>b46ad0a8-5fd9-4126-894b-3a4862cf9fbf</ID>
+    <Name>Виброплатформа</Name>
+    <Measurement>10 мин</Measurement>
+    <Unit>Piece</Unit>
+    <PurchaseCost Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.02.2019 14:06:37">100</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <Barcode Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.02.2019 14:06:37"></Barcode>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.02.2019 17:41:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.02.2019 17:40:45">
+    <ID>6e2133f2-9626-49e0-9d39-c3a7f8dd872f</ID>
+    <Name>Полотенце аренда</Name>
+    <Measurement>50*100</Measurement>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+  </Item>
+  <Item Updated="8|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 16:58:10">
+    <ID>bb6f5d9a-a662-4178-a179-29bd59248d6c</ID>
+    <Name>носки</Name>
+    <Barcode Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:16"></Barcode>
+    <Unit>Piece</Unit>
+    <PurchaseCost>45</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:16">
+      <Item>
+        <ID>4dc6a1f9-6968-471b-8e3e-0880899bd569</ID>
+        <Time>15.03.2019 17:08:59</Time>
+        <Count>3</Count>
+        <PurchaseCost>45</PurchaseCost>
+        <RetailCost>45</RetailCost>
+        <Paid>45</Paid>
+        <UserID>910267f7-b5ae-4903-87da-ffbcf2a8a19f</UserID>
+      </Item>
+    </PurchasePackets>
+    <StoragePackets Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:44">
+      <Item>
+        <ID>ed4d7ba5-8763-4fda-8051-84d99fac0b31</ID>
+        <Time>15.03.2019 17:08:59</Time>
+        <Count>2</Count>
+        <PurchaseCost>45</PurchaseCost>
+        <RetailCost>0</RetailCost>
+        <ConnectedPacketID>4dc6a1f9-6968-471b-8e3e-0880899bd569</ConnectedPacketID>
+        <UserID>910267f7-b5ae-4903-87da-ffbcf2a8a19f</UserID>
+      </Item>
+    </StoragePackets>
+    <SalePackets Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:44">
+      <Item>
+        <ID>a1e516cd-2bd4-4f38-9840-7dd73cafcb83</ID>
+        <Time>15.03.2019 17:09:44</Time>
+        <Count>1</Count>
+        <PurchaseCost>45</PurchaseCost>
+        <RetailCost>45</RetailCost>
+        <Paid>45</Paid>
+        <ClientID>d722d969-c690-4d3f-8095-0eb532fb33ee</ClientID>
+        <ConnectedPacketID>ed4d7ba5-8763-4fda-8051-84d99fac0b31</ConnectedPacketID>
+        <UserID>910267f7-b5ae-4903-87da-ffbcf2a8a19f</UserID>
+      </Item>
+    </SalePackets>
+    <Deposit Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:09:44">
+      <Item ID="46d6d2f5-003e-40fa-81ba-58dd87c67afd" Time="15.03.2019 17:09:44" ItemType="Pay" Sum="45" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" PacketID="a1e516cd-2bd4-4f38-9840-7dd73cafcb83" />
+      <Item ID="b9b6f5cb-7734-4faa-b445-a2334198a4c2" Time="15.03.2019 17:09:44" ItemType="WriteOff" Sum="45" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PacketID="a1e516cd-2bd4-4f38-9840-7dd73cafcb83" />
+    </Deposit>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.04.2019 20:46:04" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.04.2019 20:44:02">
+    <ID>d321eda0-a45f-408a-83d1-feeaf9319a45</ID>
+    <Name>носки</Name>
+    <Unit>Piece</Unit>
+    <Annotation Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.04.2019 20:46:04">30.04  </Annotation>
+    <PurchaseCost>55</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.05.2019 18:53:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.05.2019 18:52:49">
+    <ID>fc9ae6e6-2105-48f5-b6fb-5f70b73776ae</ID>
+    <Name>Виброплатформа</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>100</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.05.2019 18:35:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.05.2019 18:35:39">
+    <ID>1977979d-b7c7-472b-9f20-bcc1f67cb1f8</ID>
+    <Name>носки</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>55</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.06.2019 19:53:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.06.2019 19:53:28">
+    <ID>816c2293-4249-4d8a-833a-d3a409cc9536</ID>
+    <Name>Виброплатформа</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>100</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.06.2019 20:53:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.06.2019 20:53:22">
+    <ID>9c2cd107-feae-47b0-b1c8-5a7e67e20c7c</ID>
+    <Name>Полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.06.2019 21:01:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.06.2019 21:01:11">
+    <ID>ccd96e63-57b2-4767-a235-9b85c9e5c1e5</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.07.2019 15:00:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.07.2019 14:59:39">
+    <ID>e99e7c65-4388-4769-a2db-d99a0d1887f7</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.07.2019 20:31:04" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.07.2019 20:30:38">
+    <ID>548bb95b-63f2-4e2e-945c-df123ca4b019</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2019 20:23:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2019 20:23:26">
+    <ID>abe7b722-ddec-4f47-bbb6-b233e965fd86</ID>
+    <Name>ВП</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>100</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.07.2019 18:38:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.07.2019 18:38:45">
+    <ID>582a6cfa-aa51-4c7d-8e96-8fbe321f5157</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.07.2019 18:39:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.07.2019 18:38:56">
+    <ID>49e9a765-aec4-4b70-86d6-56781042e45f</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.07.2019 18:51:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.07.2019 18:51:12">
+    <ID>aba88a2b-23eb-4142-82ee-942bf4873a2f</ID>
+    <Name>ВП</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>100</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 19:46:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 19:46:47">
+    <ID>602018e0-9a0c-40de-b9cc-6b46d6156bc3</ID>
+    <Name>носки</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>55</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 19:48:23" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 19:48:15">
+    <ID>bc4e0200-9dd7-48e6-b52b-7bb1741689ea</ID>
+    <Name>носки</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>55</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 21:58:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2019 21:58:14">
+    <ID>d298ca3c-7073-49f0-86c3-6c33eefbf94d</ID>
+    <Name>носки</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>55</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2019 19:47:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2019 19:47:42">
+    <ID>c0e5ce66-e6f8-4982-8a62-469d9d708934</ID>
+    <Name>полотенце</Name>
+    <Unit>Piece</Unit>
+    <PurchaseCost>40</PurchaseCost>
+    <Markup>0</Markup>
+    <MarkupPercent>0</MarkupPercent>
+    <PurchasePackets />
+    <StoragePackets />
+    <SalePackets />
+    <Deposit />
+    <Bonus />
+  </Item>
+</Product>

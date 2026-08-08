@@ -1,0 +1,1396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rent>
+  <Item Updated="10|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2019 20:36:47">
+    <ID>6d9e7923-36ec-4f40-9f2b-e65488535462</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>54d91785-0984-471b-bbd0-cecadba7e675</ID_Client>
+    <Prepayment>1300</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1300</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <Schedule />
+    <Visits Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53">
+      <Item ID="a145a113-e97c-4122-b76f-430a147a669c" Created="04.03.2019 20:37:04" Date="03.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="ff77362c-aa19-4dbe-a473-110f02a689aa" Created="10.03.2019 12:43:29" Date="10.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="89c1d170-bb5e-4042-b806-05d7abe8afc8" Created="17.03.2019 18:12:19" Date="17.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="451bda54-6de1-42a2-a5bc-16197cda0a88" Created="31.03.2019 09:45:53" Date="24.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="4cdf6a36-eb45-4046-8114-15193fea321c" Created="31.03.2019 09:45:53" Date="31.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+    </Visits>
+    <Deposit Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53">
+      <Item ID="a8809eaf-c6a0-4e93-bd59-6462d603c57a" Time="04.03.2019 20:37:04" ItemType="Pay" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="5070d305-0ee2-4287-8bff-48a34ae5161c" Time="04.03.2019 20:37:04" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="a145a113-e97c-4122-b76f-430a147a669c" />
+      <Item ID="0ecfac6a-804a-46a6-8b9c-98946e0c09ab" Time="10.03.2019 12:43:18" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="ff95e88c-da46-4da9-bd0f-0234ec96f545" Time="10.03.2019 12:43:27" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="188d79dd-236c-420a-837c-c24b36d2081a" Time="10.03.2019 12:43:27" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="940eb8bb-b965-4ec7-a3aa-a35a85f15691" Time="10.03.2019 12:43:27" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="9f82f083-0a54-444e-b02e-6d474cbcc606" Time="17.03.2019 18:12:13" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="8b34bf6f-67fb-4e8c-82ab-1c844e3b0549" Time="17.03.2019 18:12:32" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="9861a305-a279-4190-b317-1527290865e1" Time="17.03.2019 18:12:32" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="13e8b08f-9146-43a0-b076-eb090c940f23" Time="17.03.2019 18:12:32" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="2eb11b9b-b62a-45fc-be3e-4af8c6e023b8" Time="31.03.2019 09:45:32" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="1df965e8-c0cf-49cc-9df2-ef41efebb53e" Time="24.03.2019 09:45:45" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="1ca9e43a-515d-47c1-9cf5-86ddcdb2a9d6" Time="24.03.2019 09:45:45" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="e6a68631-08ac-4110-95f6-da08dc50d593" Time="24.03.2019 09:45:45" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="42660ec9-9f29-4ce4-bb3b-f583ad236666" Time="31.03.2019 09:45:46" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+      <Item ID="32ccb580-556f-4966-9d9f-45aab662895c" Time="31.03.2019 09:45:49" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="3b746417-40f8-4e9e-9f7f-6bf60cc1a8f8" Time="31.03.2019 09:45:49" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+      <Item ID="a0a6c326-0755-4d00-9a39-6bb817be89df" Time="31.03.2019 09:45:49" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+    </Deposit>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2021 18:19:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2021 18:17:02" Removed="true">
+    <ID>ca48128f-79af-49a3-a7c3-281108afdc12</ID>
+    <PaymentType>Cash</PaymentType>
+    <LastName>Аренда</LastName>
+    <Name>Николай</Name>
+    <Prepayment>1100</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1300</RentTypeCost>
+    <TenantType>NonClient</TenantType>
+    <MobilePhone>89122477626</MobilePhone>
+    <Colour>FF9932CC</Colour>
+    <Schedule>
+      <Item>
+        <Day>Sunday</Day>
+        <Time>
+          <From>08:30</From>
+          <To>10:00</To>
+        </Time>
+        <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+        <Frequency>Regular</Frequency>
+        <Range>
+          <From>31.01.2021</From>
+        </Range>
+        <Date>31.01.2021</Date>
+      </Item>
+    </Schedule>
+    <Visits>
+      <Item ID="dde56c43-084f-4473-9923-f78f18707013" Created="26.01.2021 18:18:41" Date="24.01.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+    </Visits>
+    <Deposit>
+      <Item ID="b59d2a88-683b-49b9-8d48-9f4f1b4903f4" Time="26.01.2021 18:18:41" ItemType="Pay" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="bca2fb56-906b-4322-9d20-58c0fc5820d6" Time="26.01.2021 18:18:41" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="dde56c43-084f-4473-9923-f78f18707013" />
+      <Item ID="1fb13aeb-8198-49da-84a1-3d8c99b051c7" Time="26.01.2021 18:18:41" ItemType="Debt" Sum="200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="dde56c43-084f-4473-9923-f78f18707013" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:33:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2021 18:19:43" Removed="true">
+    <ID>9ce84b2a-3877-4b8c-9191-b1eb6fad0f35</ID>
+    <Colour>FFFFB6C1</Colour>
+    <MobilePhone>89122477626</MobilePhone>
+    <TenantType>NonClient</TenantType>
+    <Prepayment>1100</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <LastName>Аренда Николай</LastName>
+    <Schedule>
+      <Item>
+        <Day>Sunday</Day>
+        <Time>
+          <From>08:30</From>
+          <To>10:00</To>
+        </Time>
+        <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+        <Frequency>Regular</Frequency>
+        <Range>
+          <From>31.01.2021</From>
+        </Range>
+        <Date>31.01.2021</Date>
+      </Item>
+    </Schedule>
+    <Visits>
+      <Item ID="95036cd6-3085-41ee-92b8-63fa3ec39ae4" Created="26.01.2021 18:21:10" Date="24.01.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:33:38">
+      <Item ID="4ae83197-8d72-4fc9-9c69-56d4e16fa5c5" Time="26.01.2021 18:21:10" ItemType="Pay" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="bafb87ae-3547-43dc-9f39-7bd277603275" Time="26.01.2021 18:21:10" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="95036cd6-3085-41ee-92b8-63fa3ec39ae4" />
+      <Item ID="5d3731aa-8aba-46c0-a35d-21cd03f44363" Time="31.01.2021 09:29:11" ItemType="Undebt" Sum="0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="a90b7252-4ce6-4a51-8248-8d89a5f89f44" Time="31.01.2021 09:29:11" ItemType="WriteOff" Sum="0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:33:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:29:30" Removed="true">
+    <ID>452c4559-fcf6-46f3-ba25-5aec8b668ed3</ID>
+    <Colour>00FFFFFF</Colour>
+    <MobilePhone>89122477626</MobilePhone>
+    <TenantType>NonClient</TenantType>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <LastName>Аренда Николай</LastName>
+    <Schedule />
+    <Visits>
+      <Item ID="c2dfbac2-9de7-4e49-b2a4-b670926309a3" Created="31.01.2021 09:31:11" Date="31.01.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:31:31">
+      <Item ID="e7a9cb79-72ee-49b3-8598-90b23a11da16" Time="31.01.2021 09:31:11" ItemType="Debt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="c2dfbac2-9de7-4e49-b2a4-b670926309a3" />
+      <Item ID="adbd5647-db08-428b-9827-88140dbd2b99" Time="31.01.2021 09:31:31" ItemType="In" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="0908a215-d363-4029-bb24-2f0b645f2351" Time="31.01.2021 09:31:31" ItemType="Undebt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="e48cc096-600a-4dd9-a200-9c8484129591" Time="31.01.2021 09:31:31" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="7|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2021 14:09:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:33:39">
+    <ID>e67c2148-f9ed-4cfb-8180-0416c2f7a2c0</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:36:56">FFFFEFD5</Colour>
+    <Schedule Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2021 14:09:09">
+      <Item>
+        <Day>Sunday</Day>
+        <Time>
+          <From>08:30</From>
+          <To>10:00</To>
+        </Time>
+        <ID_Hall>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID_Hall>
+        <Frequency>Regular</Frequency>
+        <Range>
+          <From>31.01.2021</From>
+          <To>04.04.2021</To>
+        </Range>
+        <Date>31.01.2021</Date>
+      </Item>
+    </Schedule>
+    <Visits>
+      <Item ID="92b0ad6f-0147-4e91-a288-722d8ff96931" Created="31.01.2021 09:34:07" Date="31.01.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+      <Item ID="60e43ba8-fc1d-43b6-ad6b-7b0d1b9f19a2" Created="31.01.2021 09:34:07" Date="24.01.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.01.2021 09:34:20">
+      <Item ID="3bd52ee8-488e-4285-a0c0-d0f10d871dd1" Time="31.01.2021 09:34:07" ItemType="Debt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="92b0ad6f-0147-4e91-a288-722d8ff96931" />
+      <Item ID="721be66d-3487-4945-b241-c9288df9ae7c" Time="31.01.2021 09:34:07" ItemType="Debt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="60e43ba8-fc1d-43b6-ad6b-7b0d1b9f19a2" />
+      <Item ID="e8ffbc8e-4aeb-4cf5-aa15-ef2140b21cdf" Time="31.01.2021 09:34:16" ItemType="Undebt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="92b0ad6f-0147-4e91-a288-722d8ff96931" />
+      <Item ID="8d89b706-5b6d-4eac-a4dc-c380408f0642" Time="31.01.2021 09:34:16" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="92b0ad6f-0147-4e91-a288-722d8ff96931" />
+      <Item ID="d14dc314-5fe9-4bc7-92d1-41bfa063ec1f" Time="31.01.2021 09:34:20" ItemType="Undebt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="60e43ba8-fc1d-43b6-ad6b-7b0d1b9f19a2" />
+      <Item ID="686a165a-4833-403c-8890-5a01bee500a3" Time="31.01.2021 09:34:20" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="60e43ba8-fc1d-43b6-ad6b-7b0d1b9f19a2" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.02.2021 10:53:34" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.02.2021 10:53:16">
+    <ID>501ed84d-3f8f-4eb2-a842-491a0af3b63a</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Colour>FF0000FF</Colour>
+    <Schedule />
+    <Visits>
+      <Item ID="98bcc4ed-6e4e-45e4-8a1b-df0f57672830" Created="07.02.2021 10:53:34" Date="07.02.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit>
+      <Item ID="d31c8654-9fe2-4d79-8791-ad766e244261" Time="07.02.2021 10:53:34" ItemType="WriteOff" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="98bcc4ed-6e4e-45e4-8a1b-df0f57672830" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.02.2021 22:49:23" Created="1|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.02.2021 22:49:15">
+    <ID>9500760a-cf85-4168-8d5a-a9010e6070f4</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="19d42367-bf54-48ef-a61b-483ca898d906" Created="07.02.2021 22:49:23" Date="07.02.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit>
+      <Item ID="fc1589ce-5b60-496e-bdc3-71b9b13773fe" Time="07.02.2021 22:49:23" ItemType="WriteOff" Sum="1100" UserID="b4104ac7-9734-46ac-b3b3-4345c5ac4b0c" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="19d42367-bf54-48ef-a61b-483ca898d906" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.02.2021 08:45:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.02.2021 08:45:08">
+    <ID>94d063bb-b1ea-4922-a21b-2b59a55b6b35</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="f12ae508-daab-4660-a8b9-ebb203157c0c" Created="14.02.2021 08:45:19" Date="14.02.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit>
+      <Item ID="236d2a40-5dcd-45e6-8c80-963e845d4a8d" Time="14.02.2021 08:45:19" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="f12ae508-daab-4660-a8b9-ebb203157c0c" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.02.2021 10:13:45" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.02.2021 10:12:30" Removed="true">
+    <ID>a33a8379-28e3-49bc-ab13-01d5009f2c64</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="58890019-8805-4d9a-85f3-66e665fd6720" Created="21.02.2021 10:13:02" Date="21.02.2021" Name="" Cost="0" TotalCost="0" />
+    </Visits>
+    <Deposit />
+    <Bonus />
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.02.2021 08:27:31" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.02.2021 10:14:06">
+    <ID>1645b4e1-5f6b-4443-82e7-0e17ef441292</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.02.2021 08:27:27">
+      <Item ID="d7733b15-80b9-405d-9550-b6acdc96b672" Created="21.02.2021 10:14:34" Date="21.02.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+      <Item ID="7b7168a6-d1bf-470d-bfef-16f7785c0178" Created="28.02.2021 08:27:27" Date="28.02.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.02.2021 08:27:31">
+      <Item ID="a156cbce-b7da-4918-bdcd-d78388cb061e" Time="21.02.2021 10:14:20" ItemType="WriteOff" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="d7733b15-80b9-405d-9550-b6acdc96b672" />
+      <Item ID="8d11a84a-de75-4eef-a291-fb9f5499347f" Time="21.02.2021 10:14:34" ItemType="Debt" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="d7733b15-80b9-405d-9550-b6acdc96b672" />
+      <Item ID="d07d569c-1861-428a-b79a-8cd4e03a8e7c" Time="21.02.2021 10:15:05" ItemType="Undebt" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="d7733b15-80b9-405d-9550-b6acdc96b672" />
+      <Item ID="f4258cc2-0008-4bb7-a222-3964dcc9aa46" Time="21.02.2021 10:15:05" ItemType="WriteOff" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="d7733b15-80b9-405d-9550-b6acdc96b672" />
+      <Item ID="37afe00a-4904-49e1-b622-158ad246b095" Time="28.02.2021 08:27:27" ItemType="Debt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="7b7168a6-d1bf-470d-bfef-16f7785c0178" />
+      <Item ID="294f8135-e861-49b4-9ab1-b095a0e74478" Time="28.02.2021 08:27:31" ItemType="Undebt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="7b7168a6-d1bf-470d-bfef-16f7785c0178" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.03.2021 10:04:36" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.03.2021 10:04:16">
+    <ID>fa34820f-491d-434b-8d46-78bfde3e0bf5</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1100</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>6d5abf34-bc9d-452b-975a-b75baff8101b</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="9e4fcea5-9857-4ad5-8804-176397ac299f" Created="07.03.2021 10:04:36" Date="07.03.2021" Name="БОЛЬШОЙ ЗАЛ" Cost="1100" TotalCost="1100" />
+    </Visits>
+    <Deposit>
+      <Item ID="966aae7b-a2d5-4f0d-8557-8cc6a287d6d1" Time="07.03.2021 10:04:36" ItemType="WriteOff" Sum="1100" UserID="25421898-cff8-4b1b-9861-0bd753b4db32" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="9e4fcea5-9857-4ad5-8804-176397ac299f" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.06.2023 12:58:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.06.2023 12:58:17">
+    <ID>ea623d90-f7e6-4fb5-9562-6e1c9bfd6ca5</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>1500</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>1f18f542-6c24-488e-baa8-b09ab4ea2994</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="551bfa14-3c88-4b21-8c4a-2b98d323a610" Created="21.06.2023 17:58:38" Date="18.06.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1500" TotalCost="1500" />
+    </Visits>
+    <Deposit>
+      <Item ID="991944ee-28f2-4556-8f89-db0ed8dafa24" Time="21.06.2023 17:58:38" ItemType="Pay" Sum="1500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="269256f5-9a90-4aab-9742-d9df2a519fc5" Time="21.06.2023 17:58:38" ItemType="WriteOff" Sum="1500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="551bfa14-3c88-4b21-8c4a-2b98d323a610" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:32:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.09.2023 14:56:45" Removed="true">
+    <ID>fb3c2732-ca2c-40e8-9d4b-3f57e6eab048</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>850</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>850</RentTypeCost>
+    <TenantType>NonClient</TenantType>
+    <Schedule />
+    <Visits>
+      <Item ID="788e4305-d540-4063-8dd5-242ee278a02b" Created="23.09.2023 19:57:26" Date="09.09.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="850" TotalCost="850" />
+    </Visits>
+    <Deposit>
+      <Item ID="700c9afd-a3b0-4f58-a81b-69bf4d8511bf" Time="23.09.2023 19:57:26" ItemType="Pay" Sum="850" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="bfa4e1fc-786d-4c65-95a6-cbfad23eec98" Time="23.09.2023 19:57:26" ItemType="WriteOff" Sum="850" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="788e4305-d540-4063-8dd5-242ee278a02b" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:32:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.09.2023 14:57:36" Removed="true">
+    <ID>326465d5-e0d2-4711-ad2c-fcc77bed12ea</ID>
+    <Prepayment>1275</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>NonClient</TenantType>
+    <Schedule />
+    <Visits>
+      <Item ID="ce717c18-3115-4045-9989-918d35f0bcab" Created="23.09.2023 19:57:50" Date="23.09.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="8f83182a-98b2-482c-a9ea-e263fb0dc984" Time="23.09.2023 19:57:50" ItemType="Pay" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="17121f91-3393-4400-927b-afaec7196897" Time="23.09.2023 19:57:50" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ce717c18-3115-4045-9989-918d35f0bcab" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:33:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:33:25">
+    <ID>18e568a3-cdaf-4a42-9bcb-45e977f05884</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>850</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="0b714528-2697-467a-9f37-b0e6aa448d64" Created="02.10.2023 20:33:51" Date="09.09.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="850" TotalCost="850" />
+    </Visits>
+    <Deposit>
+      <Item ID="56d95b18-17e9-4b7a-b8c3-27120640be2a" Time="02.10.2023 20:33:51" ItemType="WriteOff" Sum="850" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="0b714528-2697-467a-9f37-b0e6aa448d64" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:34:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:33:53">
+    <ID>6c2b04ff-997e-40c7-be74-624a8ac951e1</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="d2570964-2486-4db6-b03c-cd4b2b34edf0" Created="02.10.2023 20:34:08" Date="23.09.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="42cb0a96-f830-444b-9a0a-3acb59ae810d" Time="02.10.2023 20:34:08" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="d2570964-2486-4db6-b03c-cd4b2b34edf0" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:34:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2023 20:34:10">
+    <ID>c3304b5e-9e35-4431-8f42-b9784dc2c8c0</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="ac14afd5-f7ad-4522-9590-1548e7336252" Created="02.10.2023 20:34:45" Date="30.09.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="90c9d126-2f6d-43bd-8be1-09df8660ec9d" Time="02.10.2023 20:34:45" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="ac14afd5-f7ad-4522-9590-1548e7336252" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|07.10.2023 15:55:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|07.10.2023 15:54:57">
+    <ID>28b75d28-ffd5-4c98-b428-fbca34f93726</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="fdec1157-f610-4643-a82f-b57614e58a75" Created="07.10.2023 15:55:06" Date="07.10.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="2e9c79e3-f8cc-460a-b53c-58e3ddd56288" Time="07.10.2023 15:55:06" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="fdec1157-f610-4643-a82f-b57614e58a75" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="11|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:59:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:57:52" Removed="true">
+    <ID>38ab2e6c-842b-4c6e-b715-4c9a8d898451</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:59:36" />
+    <Deposit Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:59:36" />
+    <Bonus />
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:58:16" Removed="true">
+    <ID>61941d3f-4959-4da6-94b3-25918b7d92d0</ID>
+    <Prepayment>1000</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:33" />
+    <Deposit Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:33" />
+    <Bonus />
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 17:59:40" Removed="true">
+    <ID>98e7c83c-8b21-4779-8865-82051e61261a</ID>
+    <Prepayment>1000</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:17" />
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:17">
+      <Item ID="3984b8fb-624d-4bbf-845e-c8994fa0d249" Time="14.10.2023 17:59:53" ItemType="Pay" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:36">
+    <ID>ced879c4-d191-4f85-b492-a8fe2b1f8c85</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="9b1a075b-307a-4fc4-8068-15aacd0f55d9" Created="14.10.2023 18:00:45" Date="14.10.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="719beddf-1b87-4fb0-83bc-b089960cbff9" Time="14.10.2023 18:00:45" ItemType="Pay" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="4d147742-78ee-40be-a7b2-c6dc15ae3785" Time="14.10.2023 18:00:45" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="9b1a075b-307a-4fc4-8068-15aacd0f55d9" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:48">
+    <ID>fe7e9fec-fe1a-40ef-9606-0e3800c644d5</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="e5053ea8-6725-4ae1-9b66-0e6e62c2b841" Created="14.10.2023 18:00:55" Date="14.10.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="4c28195d-8098-49ba-9d32-9e154dc930a3" Time="14.10.2023 18:00:55" ItemType="Pay" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="ec900118-8984-4785-9edf-80b37cfac4a7" Time="14.10.2023 18:00:55" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e5053ea8-6725-4ae1-9b66-0e6e62c2b841" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:02:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:00:58">
+    <ID>c22295f5-0f86-43c9-94bf-0d159e209eec</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="2f052220-3966-4630-ba2b-591764ceacc8" Created="14.10.2023 18:01:06" Date="10.10.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:02:14">
+      <Item ID="fc5323cd-b10f-4502-ba70-0055b96ab2b2" Time="14.10.2023 18:01:06" ItemType="Debt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2f052220-3966-4630-ba2b-591764ceacc8" />
+      <Item ID="fef45335-3040-4b45-b12f-b75b29e9bef9" Time="10.10.2023 18:02:13" ItemType="PayDebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="67eecb80-ad8f-4089-b308-559f75bf94d8" Time="10.10.2023 18:02:13" ItemType="Undebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2f052220-3966-4630-ba2b-591764ceacc8" />
+      <Item ID="7218992f-b3c8-46f4-b712-583fde7848dc" Time="10.10.2023 18:02:13" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2f052220-3966-4630-ba2b-591764ceacc8" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:01:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:01:11">
+    <ID>2c26f95d-4517-4ca1-8102-a8c4fcc48c99</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="3c01ab8d-fd3e-40d7-9bff-a83a588689b0" Created="14.10.2023 18:01:42" Date="10.10.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:01:50">
+      <Item ID="5d741f0a-dd03-4d2a-8675-9b1d3d9cf6fd" Time="14.10.2023 18:01:42" ItemType="Debt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="3c01ab8d-fd3e-40d7-9bff-a83a588689b0" />
+      <Item ID="f1bc1106-3ddd-4936-ad00-21901c048eeb" Time="10.10.2023 18:01:49" ItemType="PayDebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="b2da6d9d-087d-433b-b63d-6698d0c81c75" Time="10.10.2023 18:01:49" ItemType="Undebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="3c01ab8d-fd3e-40d7-9bff-a83a588689b0" />
+      <Item ID="36047ea3-2dda-4538-bf6c-4725ed411f77" Time="10.10.2023 18:01:49" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="3c01ab8d-fd3e-40d7-9bff-a83a588689b0" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:26:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.10.2023 18:26:17">
+    <ID>5b4f8d3c-bca7-4bb2-be23-f54247a9b026</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="226ecf92-6c62-44b3-81fd-2a8786299619" Created="14.10.2023 18:26:27" Date="14.10.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="eab5fc67-ebc8-46c2-8f27-91dc9ac206e0" Time="14.10.2023 18:26:27" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="226ecf92-6c62-44b3-81fd-2a8786299619" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.10.2023 16:45:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.10.2023 16:44:58">
+    <ID>56b12757-2079-43ba-9301-32b858815f43</ID>
+    <PaymentType>Cash</PaymentType>
+    <Prepayment>0</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="282ab10b-30c2-489d-a303-2c376f89bc7f" Created="26.10.2023 16:45:11" Date="21.10.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="b2760a7d-be4d-46af-9c35-a644926f5d3b" Time="26.10.2023 16:45:11" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="282ab10b-30c2-489d-a303-2c376f89bc7f" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:36:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:36:33" Removed="true">
+    <ID>c79d7a47-294c-4eef-8e77-1a4a7b38e592</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <Colour>FF7FFF00</Colour>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:36:52" />
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:36:52" />
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:37:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 20:37:01">
+    <ID>e3409d3a-de1e-4ab3-b774-f438fceed5e1</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="f0868c4a-be74-4226-aa25-575716678288" Created="03.11.2023 20:37:10" Date="28.10.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="7c7e59b7-dbe7-48fb-92ef-e336b5dd57d1" Time="03.11.2023 20:37:10" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="f0868c4a-be74-4226-aa25-575716678288" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:45:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:45:07">
+    <ID>fb7827b8-5545-4ade-8e2b-1bc51e1ca013</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="316f51b5-d31e-4d5b-ba71-282f81d7947f" Created="04.11.2023 18:45:16" Date="04.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="81cb89c2-524c-43da-bdcc-29ef169b74d9" Time="04.11.2023 18:45:16" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="316f51b5-d31e-4d5b-ba71-282f81d7947f" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:45:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:45:23">
+    <ID>35f638ae-2a57-42c6-8829-d66d764d636c</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="46878936-e905-4aab-ade3-c2ed7486f15d" Created="04.11.2023 18:45:30" Date="04.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="021a0d9d-5cf3-4c47-b728-55fdf0042c23" Time="04.11.2023 18:45:30" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="46878936-e905-4aab-ade3-c2ed7486f15d" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:46:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.11.2023 18:46:36">
+    <ID>ec3a4fc7-cf15-43d5-92fb-567ded9bd86b</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="4221da8d-7fe9-4638-93e0-64f0c528d9cf" Created="04.11.2023 18:46:44" Date="04.11.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="8402ea8d-65a2-4e8c-8302-cf496ae2ddcb" Time="04.11.2023 18:46:44" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4221da8d-7fe9-4638-93e0-64f0c528d9cf" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:17:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:16:55">
+    <ID>26fe394b-8cdb-4330-9db0-5788c13b7fe9</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="5086e584-8007-464d-91c0-dc32790ff594" Created="11.11.2023 14:17:03" Date="11.11.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="a78e446b-e1dc-461b-aa10-548fac30a6f3" Time="11.11.2023 14:17:03" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="5086e584-8007-464d-91c0-dc32790ff594" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:17:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:17:18">
+    <ID>a84275ca-739f-4e18-86d9-e1672c05dbba</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="d9fcb449-d11b-4dc0-a90e-788bbed7a2e3" Created="11.11.2023 14:17:27" Date="11.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="51d1d417-4a28-41c6-a886-659ac7b1e3a5" Time="11.11.2023 14:17:27" ItemType="Pay" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="7749284c-5928-4665-af47-ec2d24055041" Time="11.11.2023 14:17:27" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="d9fcb449-d11b-4dc0-a90e-788bbed7a2e3" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:17:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.11.2023 14:17:31">
+    <ID>7bf09887-fe5e-4668-aba7-1227a5edcc4b</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="ddec44bd-5ded-4e3b-848e-8a41be6cb2d9" Created="11.11.2023 14:17:40" Date="11.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit>
+      <Item ID="0651ca5f-f8f6-4f54-81fe-aaaccbe4591a" Time="11.11.2023 14:17:40" ItemType="Pay" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="6e8e9dda-96d8-4ebe-8ecb-f5ba3f148a20" Time="11.11.2023 14:17:40" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="ddec44bd-5ded-4e3b-848e-8a41be6cb2d9" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.11.2023 19:27:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.11.2023 19:27:37">
+    <ID>657718f7-91fd-419b-858e-bc5a4194b092</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="2583fa66-f281-4dd2-9ae6-f0bdda38d68b" Created="18.11.2023 19:27:45" Date="18.11.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="c65a764f-1539-48ac-973b-df9711dfb089" Time="18.11.2023 19:27:45" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2583fa66-f281-4dd2-9ae6-f0bdda38d68b" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.02.2024 15:01:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.11.2023 14:11:14">
+    <ID>79e28015-736a-487b-a51a-4845924e711d</ID>
+    <Prepayment>500</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Colour>FFB8860B</Colour>
+    <Schedule />
+    <Visits>
+      <Item ID="12f1d2ff-e470-4e91-9861-52c5dd4d5f87" Created="25.11.2023 14:11:45" Date="18.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.02.2024 15:01:24">
+      <Item ID="01e86aef-8a04-4fd8-8ac9-7047a30580af" Time="25.11.2023 14:11:45" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="12f1d2ff-e470-4e91-9861-52c5dd4d5f87" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|28.11.2023 16:14:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.11.2023 14:12:13">
+    <ID>e0b2d515-fbbd-4aec-a78a-160a8c671e46</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="96f75190-dbd2-4ea7-9eaf-d8c41c13f863" Created="25.11.2023 14:12:39" Date="25.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+      <Item ID="4af13fed-5aa0-4230-9efc-82d197b43805" Created="25.11.2023 14:12:39" Date="25.11.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|28.11.2023 16:14:08">
+      <Item ID="c057de89-4c1b-4f93-87c7-966921a89c46" Time="25.11.2023 14:12:39" ItemType="Debt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="96f75190-dbd2-4ea7-9eaf-d8c41c13f863" />
+      <Item ID="3d1ec971-5e79-4364-aafc-869e67cb5b0f" Time="25.11.2023 14:12:39" ItemType="Debt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4af13fed-5aa0-4230-9efc-82d197b43805" />
+      <Item ID="a0c37c00-1f2f-4a30-9e25-ac26527ad2e6" Time="28.11.2023 16:14:08" ItemType="Undebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="96f75190-dbd2-4ea7-9eaf-d8c41c13f863" />
+      <Item ID="5e380e71-30d0-4910-b791-d4cdc04e0a2e" Time="28.11.2023 16:14:08" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="96f75190-dbd2-4ea7-9eaf-d8c41c13f863" />
+      <Item ID="dc8a533a-188e-4804-9b38-fcf29bcad027" Time="28.11.2023 16:14:08" ItemType="Undebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4af13fed-5aa0-4230-9efc-82d197b43805" />
+      <Item ID="b39462c0-036e-41a9-bf2e-0a443a0b5f2e" Time="28.11.2023 16:14:08" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4af13fed-5aa0-4230-9efc-82d197b43805" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.11.2023 14:14:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.11.2023 14:14:22">
+    <ID>feee501d-a5f8-4ba0-b645-9ad96de73821</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="a74ce8a7-2ead-451c-b746-3626d01c7818" Created="25.11.2023 14:14:30" Date="25.11.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="299a7bcf-5ea7-4512-a0a7-95d80eac601c" Time="25.11.2023 14:14:30" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="a74ce8a7-2ead-451c-b746-3626d01c7818" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|07.12.2023 13:51:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|07.12.2023 13:51:00">
+    <ID>0210c5d7-e458-4ab4-bf64-f15bc78978e9</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="45089620-2ad0-469a-aeae-fc50fd5d46ce" Created="07.12.2023 13:51:07" Date="02.12.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="4960b99b-5939-4726-8147-b0c80bebf5d0" Time="07.12.2023 13:51:07" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="45089620-2ad0-469a-aeae-fc50fd5d46ce" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.02.2024 14:56:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.12.2023 17:24:15">
+    <ID>8b4c1069-7291-45a1-8201-b5260e989204</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>13e02144-57cb-4636-bf3b-4f28d6128f77</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="20c600db-b046-4d16-b62a-5f630b144b71" Created="16.12.2023 17:24:26" Date="16.12.2023" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.02.2024 14:56:15">
+      <Item ID="c09a6a2d-9c1c-496a-a51c-662970cd021c" Time="16.12.2023 17:24:26" ItemType="Debt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="20c600db-b046-4d16-b62a-5f630b144b71" />
+      <Item ID="06593c7e-18af-4f78-b81d-448109979897" Time="17.02.2024 14:56:15" ItemType="Undebt" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="20c600db-b046-4d16-b62a-5f630b144b71" />
+      <Item ID="17ba99ac-b1d0-4ffd-bd0a-ab71e5803c03" Time="17.02.2024 14:56:15" ItemType="WriteOff" Sum="500" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="20c600db-b046-4d16-b62a-5f630b144b71" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.12.2023 20:06:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.12.2023 20:06:41">
+    <ID>a62b8665-3f90-475b-a991-9dab622325e6</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="5f524c98-9a2c-4d72-bbbe-73585a4afbcf" Created="16.12.2023 20:06:48" Date="16.12.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="e7469b66-8e20-48c2-9d79-cde1f7e4ebf0" Time="16.12.2023 20:06:48" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="5f524c98-9a2c-4d72-bbbe-73585a4afbcf" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.12.2023 13:15:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.12.2023 13:15:04">
+    <ID>86523812-0d1b-4e14-b9d6-7d213733a4c1</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="4466133b-cf18-4c32-af94-140c878759ce" Created="23.12.2023 13:15:13" Date="09.12.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="1b4da5e1-911d-41af-9e6d-196d5a832e81" Time="23.12.2023 13:15:13" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4466133b-cf18-4c32-af94-140c878759ce" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.12.2023 13:15:26" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.12.2023 13:15:20">
+    <ID>01eb47c0-c3c1-4d6e-8481-bbe2831cf228</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="0661b3cc-669d-44f6-af29-de11c0c2a997" Created="23.12.2023 13:15:26" Date="23.12.2023" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="24a45960-a271-48fd-a18b-730ccf6e80ec" Time="23.12.2023 13:15:26" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="0661b3cc-669d-44f6-af29-de11c0c2a997" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|13.01.2024 21:03:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|13.01.2024 21:03:44">
+    <ID>8b6ef1dc-b3f8-4bce-a6a3-dc63a89706db</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="07e512f2-d661-488e-9b6a-3f35ba50ab94" Created="13.01.2024 21:03:52" Date="13.01.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="d6fd1f35-a8f4-44b2-a005-448dd14d75f4" Time="13.01.2024 21:03:52" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="07e512f2-d661-488e-9b6a-3f35ba50ab94" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.01.2024 19:22:41" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.01.2024 19:22:31">
+    <ID>ef67888e-5173-4b02-bde6-4e75f7bef1b4</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="40ef4f56-642c-448d-82c5-fdb659f7faf7" Created="20.01.2024 19:22:41" Date="20.01.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="903035f1-52c3-4639-8f0d-d259f594eb11" Time="20.01.2024 19:22:41" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="40ef4f56-642c-448d-82c5-fdb659f7faf7" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.02.2024 20:30:12" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.02.2024 20:29:49">
+    <ID>22bedc59-4502-490e-8691-4322ec2bb75d</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="2783f436-cf46-46f0-91c2-4b713664c542" Created="10.02.2024 20:30:12" Date="10.02.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="d75841b6-aa2e-4542-9f47-14f8f41e6625" Time="10.02.2024 20:30:12" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2783f436-cf46-46f0-91c2-4b713664c542" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.02.2024 20:30:41" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.02.2024 20:30:25">
+    <ID>7fb48054-8538-46eb-b06d-8763d6c3135b</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="f09296e5-e3c5-4474-a57f-0f5aa336ba85" Created="10.02.2024 20:30:41" Date="27.01.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="c7586c87-44f1-4798-8c49-b6b164e69c3d" Time="10.02.2024 20:30:41" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="f09296e5-e3c5-4474-a57f-0f5aa336ba85" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.03.2024 20:46:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.03.2024 20:46:18">
+    <ID>741962f1-36e5-4dc0-9a1c-34fa15b932f6</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="3c691b6c-392d-4c83-b9cb-6eb0b37032c0" Created="02.03.2024 20:46:27" Date="17.02.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="f755c346-5775-42a4-86b8-e1f68271a233" Time="02.03.2024 20:46:27" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="3c691b6c-392d-4c83-b9cb-6eb0b37032c0" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.03.2024 20:46:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.03.2024 20:46:32">
+    <ID>bbccf6be-801b-4af8-951d-984d33228d9f</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="c732c3a1-9f5b-4578-b016-e873b67b67e8" Created="02.03.2024 20:46:42" Date="24.02.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="92782e69-12ce-497f-86c3-4675b71ca035" Time="02.03.2024 20:46:42" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="c732c3a1-9f5b-4578-b016-e873b67b67e8" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.03.2024 16:00:18" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.03.2024 16:00:10">
+    <ID>71a122fc-4114-4a57-a225-d35130c1d2a9</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="6ce90f50-2107-43c3-8d95-457951ff047b" Created="16.03.2024 16:00:18" Date="16.03.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="1ee4e3eb-1336-40e3-8719-fe8feacb3eff" Time="16.03.2024 16:00:18" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="6ce90f50-2107-43c3-8d95-457951ff047b" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.03.2024 13:25:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.03.2024 13:25:46">
+    <ID>ae6a0808-ef85-4d8e-94f9-075411b456bc</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="2159743c-7f82-462b-a25a-ee87ea5ba3d8" Created="23.03.2024 13:25:54" Date="23.03.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="58694161-f82e-4989-9984-54a4509ce336" Time="23.03.2024 13:25:54" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2159743c-7f82-462b-a25a-ee87ea5ba3d8" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.03.2024 20:27:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.03.2024 20:27:02">
+    <ID>8eb4e889-08b8-4df6-94ed-59c876df4598</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="b0ac923a-c872-46ff-830b-b44d2254ec81" Created="30.03.2024 20:27:10" Date="30.03.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="2494abc5-1141-42a3-b814-9c2cc9b9d20a" Time="30.03.2024 20:27:10" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="b0ac923a-c872-46ff-830b-b44d2254ec81" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.04.2024 19:46:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.04.2024 19:46:16">
+    <ID>19937c52-841c-47ad-bd43-be275165b92e</ID>
+    <Prepayment>1275</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1275</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8992df94-dc47-4d72-832b-5aee698ff511</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="16958009-b47e-4582-8ea4-08c1430767ed" Created="20.04.2024 19:46:25" Date="20.04.2024" Name="БОЛЬШОЙ ЗАЛ" Cost="1275" TotalCost="1275" />
+    </Visits>
+    <Deposit>
+      <Item ID="f3828cc9-d501-4200-97f3-c0b5f5b3cf94" Time="20.04.2024 19:46:25" ItemType="Pay" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="54f8b2bd-5f18-4b99-a439-3e90ac695241" Time="20.04.2024 19:46:25" ItemType="WriteOff" Sum="1275" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="16958009-b47e-4582-8ea4-08c1430767ed" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|27.12.2024 21:39:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|24.12.2024 14:46:11">
+    <ID>8a961881-681e-412f-a0cc-61cba916d24c</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>85a2b762-9920-482d-adfd-7312694f5a14</ID_Client>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|24.12.2024 14:48:15">
+      <Item ID="e562399b-de06-41d6-9a64-0887191beee9" Created="24.12.2024 14:48:15" Date="21.12.2024" Name="МАЛЫЙ ЗАЛ" Cost="500" TotalCost="500" />
+    </Visits>
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|27.12.2024 21:39:36">
+      <Item ID="b55790d0-17ce-4772-8bb5-655f53d6ba2c" Time="24.12.2024 14:48:07" ItemType="WriteOff" Sum="86.0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e562399b-de06-41d6-9a64-0887191beee9" />
+      <Item ID="0ef3ad4d-cbb8-4911-921b-8f68847990bf" Time="24.12.2024 14:48:07" ItemType="Debt" Sum="414.0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e562399b-de06-41d6-9a64-0887191beee9" />
+      <Item ID="e06c81c2-84d9-4ed0-9cd1-5be2d2839edc" Time="27.12.2024 21:39:36" ItemType="Undebt" Sum="414.0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e562399b-de06-41d6-9a64-0887191beee9" />
+      <Item ID="766d3fe9-9ffb-495f-ad57-fe0441d8090b" Time="27.12.2024 21:39:36" ItemType="WriteOff" Sum="414.0" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e562399b-de06-41d6-9a64-0887191beee9" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2025 15:44:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2025 15:43:58">
+    <ID>38cdd86f-e33a-4e8e-985f-c6b5119b3b9b</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>8b24d2d6-282b-4f8a-ac71-51f35fef7996</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>NonCash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>300</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="f8bc8d56-22df-4ecd-a16c-fa8ef55fd7c4" Created="02.10.2025 15:44:07" Date="01.10.2025" Name="МАЛЫЙ ЗАЛ" Cost="300" TotalCost="300" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2025 15:44:33">
+      <Item ID="50642c3b-0a5c-4581-a53e-d5eb51f2c9bb" Time="02.10.2025 15:44:07" ItemType="Debt" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="f8bc8d56-22df-4ecd-a16c-fa8ef55fd7c4" />
+      <Item ID="5c8d415d-c3b0-4020-8df2-208250247d74" Time="02.10.2025 15:44:32" ItemType="PayDebt" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="6dcce66a-2d2d-47ae-919a-b379f44f3613" Time="02.10.2025 15:44:32" ItemType="Undebt" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="f8bc8d56-22df-4ecd-a16c-fa8ef55fd7c4" />
+      <Item ID="d7e54e31-53e8-49cf-ad10-b2942434fa02" Time="02.10.2025 15:44:32" ItemType="WriteOff" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="f8bc8d56-22df-4ecd-a16c-fa8ef55fd7c4" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.10.2025 21:39:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.10.2025 21:39:50">
+    <ID>8584178d-6e39-4e39-bbd6-0850cc1dc539</ID>
+    <Prepayment>300</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>300</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>8b24d2d6-282b-4f8a-ac71-51f35fef7996</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="75914f89-d3d3-4574-8dfa-e2b45d31a9e8" Created="10.10.2025 21:39:57" Date="10.10.2025" Name="МАЛЫЙ ЗАЛ" Cost="300" TotalCost="300" />
+    </Visits>
+    <Deposit>
+      <Item ID="cb501b48-d1ac-4582-977a-0d21ffcca32d" Time="10.10.2025 21:39:57" ItemType="Pay" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="9e051227-61d3-4003-9110-3e6a77872c73" Time="10.10.2025 21:39:57" ItemType="WriteOff" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="75914f89-d3d3-4574-8dfa-e2b45d31a9e8" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.10.2025 21:43:04" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.10.2025 21:42:10">
+    <ID>bcb6d226-9f47-4521-8333-ed491a691fb5</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>3d301015-25b6-45af-81d4-83476c2c814b</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>МАЛЫЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1000</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="a16ad4cf-9a4d-4276-a981-67a45f084675" Created="10.10.2025 21:43:04" Date="10.10.2025" Name="МАЛЫЙ ЗАЛ" Cost="1000" TotalCost="1000" />
+    </Visits>
+    <Deposit>
+      <Item ID="7b8420c3-9e20-4f0a-a0e8-4da05bb7c6d7" Time="10.10.2025 21:43:04" ItemType="WriteOff" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="a16ad4cf-9a4d-4276-a981-67a45f084675" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.10.2025 22:00:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.10.2025 22:00:32">
+    <ID>0af4f2aa-ffa5-4a67-b5c4-d175da6c8ffb</ID>
+    <Prepayment>600</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>600</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>3da39e65-6350-420b-acdc-50da22386b3e</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="d23e5895-5d0b-4fb0-8dae-4c56d13dfee6" Created="15.10.2025 22:00:37" Date="15.10.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="600" TotalCost="600" />
+    </Visits>
+    <Deposit>
+      <Item ID="de405425-65be-4bf6-abf2-954ba4f566cf" Time="15.10.2025 22:00:37" ItemType="Pay" Sum="600" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="cd7ddc2e-454c-4793-921a-ce5d8b116ad7" Time="15.10.2025 22:00:37" ItemType="WriteOff" Sum="600" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="d23e5895-5d0b-4fb0-8dae-4c56d13dfee6" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.10.2025 19:14:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.10.2025 19:11:15" Removed="true">
+    <ID>a00d93d2-bb32-4bc6-91d6-b4409b5d2368</ID>
+    <Prepayment>2400</Prepayment>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="6b40c093-2a60-4813-8015-72a58aff7037" Created="17.10.2025 19:12:13" Date="19.10.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit>
+      <Item ID="ca92dd3e-27aa-48d6-94c9-60930cfdd4e8" Time="17.10.2025 19:12:13" ItemType="Pay" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="2cd3be38-31d4-4044-9d7c-1753c12c3ac4" Time="17.10.2025 19:12:13" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="6b40c093-2a60-4813-8015-72a58aff7037" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="16|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:45:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.10.2025 19:14:14" Removed="true">
+    <ID>03ca4577-9638-4c64-9443-02ee237d4ace</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits Updated="8|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:45:13" />
+    <Deposit Updated="9|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:45:13">
+      <Item ID="840275cf-931b-4fd2-ad8e-0f991cca98e6" Time="16.10.2025 19:15:24" ItemType="PayDebt" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:42:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|17.10.2025 19:14:36" Removed="true">
+    <ID>3c7eac32-bc47-4512-af51-16b6c1aa925f</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:42:31" />
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:42:31" />
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:41:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|24.10.2025 19:11:01" Removed="true">
+    <ID>8b5c2675-be32-434e-a82f-bf24ff79a9ea</ID>
+    <Prepayment>1800</Prepayment>
+    <PaymentType>NonCash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1800</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Colour>FF00FFFF</Colour>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:41:38" />
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:41:38">
+      <Item ID="e5ffcb3f-f355-4036-9dab-446f0f431e57" Time="24.10.2025 19:11:25" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="7|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:29:17" Removed="true">
+    <ID>e2115197-3b92-4237-a4fe-a134ff5de733</ID>
+    <Prepayment>5000</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>64cf114b-d9f6-4b9b-8612-0bee853f1a2d</ID_Client>
+    <Schedule />
+    <Visits Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:06" />
+    <Deposit Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:06">
+      <Item ID="b7429fdf-890d-4d0f-9e49-ebe71167f34b" Time="12.11.2025 18:29:41" ItemType="Pay" Sum="5000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:46" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:10">
+    <ID>5d8015d4-decf-4d43-b2ce-e59776367b82</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>64cf114b-d9f6-4b9b-8612-0bee853f1a2d</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="254b772f-2c33-4dba-b9fc-2f7ce461745a" Created="12.11.2025 18:30:23" Date="04.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="e92458ff-db43-4854-922f-8d54c0434abc" Created="12.11.2025 18:30:23" Date="04.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="383d7845-4236-49bd-8580-9a04152a58a6" Created="12.11.2025 18:30:23" Date="04.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="105427e7-56d9-4b47-91f7-ede63d75e6b2" Created="12.11.2025 18:30:23" Date="04.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:30:46">
+      <Item ID="9e902a35-56d8-46cf-919e-38e280ede69d" Time="12.11.2025 18:30:23" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="254b772f-2c33-4dba-b9fc-2f7ce461745a" />
+      <Item ID="e03cdeff-c7d5-487b-bf8c-ce2fba7526b6" Time="12.11.2025 18:30:23" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e92458ff-db43-4854-922f-8d54c0434abc" />
+      <Item ID="695e0a7b-9e85-4bbe-b659-a83ef1bee7d1" Time="12.11.2025 18:30:23" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="383d7845-4236-49bd-8580-9a04152a58a6" />
+      <Item ID="15ab7dd8-9973-42df-8dee-b908a2d386fb" Time="12.11.2025 18:30:23" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="105427e7-56d9-4b47-91f7-ede63d75e6b2" />
+      <Item ID="6de419e3-3379-47f7-9e23-f9f50652c20d" Time="04.11.2025 18:30:45" ItemType="PayDebt" Sum="5000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="343fffaa-e948-4523-bd95-77717a1d2c94" Time="04.11.2025 18:30:45" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="254b772f-2c33-4dba-b9fc-2f7ce461745a" />
+      <Item ID="6b858b5c-abe4-4dd7-a0b9-281645ea2cfc" Time="04.11.2025 18:30:45" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="254b772f-2c33-4dba-b9fc-2f7ce461745a" />
+      <Item ID="e9564292-055a-46c3-8bc0-feb50f3d990a" Time="04.11.2025 18:30:45" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e92458ff-db43-4854-922f-8d54c0434abc" />
+      <Item ID="a56b0811-3080-4226-a416-c9276590de79" Time="04.11.2025 18:30:45" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="e92458ff-db43-4854-922f-8d54c0434abc" />
+      <Item ID="5b03959a-e4f6-420e-933f-9600f8006cc2" Time="04.11.2025 18:30:45" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="383d7845-4236-49bd-8580-9a04152a58a6" />
+      <Item ID="df46e122-7b4f-4539-a7cd-52d0c2fde7c0" Time="04.11.2025 18:30:45" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="383d7845-4236-49bd-8580-9a04152a58a6" />
+      <Item ID="c79523d7-16d9-4fe9-99ec-7cf1ffc76292" Time="04.11.2025 18:30:45" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="105427e7-56d9-4b47-91f7-ede63d75e6b2" />
+      <Item ID="ece1440c-ea43-4e03-ab3c-a51f344dc029" Time="04.11.2025 18:30:45" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="105427e7-56d9-4b47-91f7-ede63d75e6b2" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:54:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:46:18">
+    <ID>f80d2066-7dde-4ba4-8387-69e16c2929d1</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1000</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="69078c2e-c300-449f-bc7a-7fccb36582bb" Created="12.11.2025 18:47:32" Date="19.10.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1000" TotalCost="1000" />
+      <Item ID="a4bdd66d-ade0-407c-b8f1-e0d71b2223b9" Created="12.11.2025 18:47:32" Date="19.10.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1000" TotalCost="1000" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:54:47">
+      <Item ID="9dfbeb17-af44-4e85-9ad7-ab0d40f46d36" Time="12.11.2025 18:47:32" ItemType="Debt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="69078c2e-c300-449f-bc7a-7fccb36582bb" />
+      <Item ID="883bfe4f-97db-4bca-b748-0cde53db9d0f" Time="12.11.2025 18:47:32" ItemType="Debt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="a4bdd66d-ade0-407c-b8f1-e0d71b2223b9" />
+      <Item ID="eb554796-3a69-4e37-9024-3c0654906b51" Time="16.10.2025 18:54:46" ItemType="PayDebt" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="fa390a74-03c3-4575-89ab-b34467eaca27" Time="16.10.2025 18:54:46" ItemType="Undebt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="69078c2e-c300-449f-bc7a-7fccb36582bb" />
+      <Item ID="c468434f-645a-4dca-93d9-115c1cbb6457" Time="16.10.2025 18:54:46" ItemType="WriteOff" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="69078c2e-c300-449f-bc7a-7fccb36582bb" />
+      <Item ID="0ffd9950-3fba-4e06-8c61-fe5234c1468f" Time="16.10.2025 18:54:46" ItemType="Undebt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="a4bdd66d-ade0-407c-b8f1-e0d71b2223b9" />
+      <Item ID="0672ca93-8344-4efa-b489-ed7b9d0faa77" Time="16.10.2025 18:54:46" ItemType="WriteOff" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="a4bdd66d-ade0-407c-b8f1-e0d71b2223b9" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 19:00:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 18:55:37">
+    <ID>7bb7a0e7-d65b-44b9-b207-a46a85952b1c</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1500</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="4cf866d9-3ebb-4f64-8d36-81f66a0034ec" Created="12.11.2025 18:59:48" Date="25.10.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1500" TotalCost="1500" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 19:00:08">
+      <Item ID="9b0fc5d1-cf0d-4542-a5ad-77844177dc31" Time="12.11.2025 18:59:48" ItemType="WriteOff" Sum="400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4cf866d9-3ebb-4f64-8d36-81f66a0034ec" />
+      <Item ID="8dbeb22e-f9ae-41d1-ad76-f52904b2e1d1" Time="12.11.2025 18:59:48" ItemType="Debt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4cf866d9-3ebb-4f64-8d36-81f66a0034ec" />
+      <Item ID="2c11da48-3fcd-472c-9b13-def5d208c12c" Time="24.10.2025 19:00:07" ItemType="PayDebt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="820cf3c0-0d5b-4266-8218-eeb7e7c18c0b" Time="24.10.2025 19:00:07" ItemType="Undebt" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4cf866d9-3ebb-4f64-8d36-81f66a0034ec" />
+      <Item ID="6c5be0b3-aa34-4281-8a70-f9f8a4d85222" Time="24.10.2025 19:00:07" ItemType="WriteOff" Sum="1100" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="4cf866d9-3ebb-4f64-8d36-81f66a0034ec" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 19:04:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 19:02:34">
+    <ID>213bb1ae-0284-4488-b749-aaced5138cb5</ID>
+    <Prepayment>0</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1000</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="cc4bb90a-152c-496b-806e-9d47571aa32d" Created="12.11.2025 19:04:01" Date="09.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1000" TotalCost="1000" />
+      <Item ID="fe24849a-88f5-46db-bb9c-348f7109b403" Created="12.11.2025 19:04:01" Date="09.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1000" TotalCost="1000" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.11.2025 19:04:17">
+      <Item ID="5001c791-2c4d-4344-8dee-7fc86455e8b6" Time="12.11.2025 19:04:01" ItemType="WriteOff" Sum="700" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="cc4bb90a-152c-496b-806e-9d47571aa32d" />
+      <Item ID="7849864b-0166-4e0f-aa30-fab9d8ab7e48" Time="12.11.2025 19:04:01" ItemType="Debt" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="cc4bb90a-152c-496b-806e-9d47571aa32d" />
+      <Item ID="09a96f60-5b9e-4f88-b9dd-042daf6e8d9f" Time="12.11.2025 19:04:01" ItemType="Debt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="fe24849a-88f5-46db-bb9c-348f7109b403" />
+      <Item ID="0fa130a5-1840-4595-a769-44fa2ffc4eeb" Time="09.11.2025 19:04:16" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="45144683-edb7-4f45-9d37-0390f27d54b0" Time="09.11.2025 19:04:16" ItemType="Undebt" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="cc4bb90a-152c-496b-806e-9d47571aa32d" />
+      <Item ID="b90b171a-9228-4cfe-a2c6-13082d4ff60a" Time="09.11.2025 19:04:16" ItemType="WriteOff" Sum="300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="cc4bb90a-152c-496b-806e-9d47571aa32d" />
+      <Item ID="bd5a8249-fedd-4f10-8e97-af74d5d5551a" Time="09.11.2025 19:04:16" ItemType="Undebt" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="fe24849a-88f5-46db-bb9c-348f7109b403" />
+      <Item ID="36cf1709-647c-43ba-bc78-a89703809428" Time="09.11.2025 19:04:16" ItemType="WriteOff" Sum="1000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="fe24849a-88f5-46db-bb9c-348f7109b403" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.11.2025 19:58:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.11.2025 19:58:35">
+    <ID>a4686285-4d74-44e9-8f0d-7713bfe6f9b8</ID>
+    <Prepayment>2400</Prepayment>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="9df02151-544a-4584-8ccd-cbde74930218" Created="30.11.2025 19:58:51" Date="30.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="b11f9962-49ed-45cd-9812-2f455aa8f14a" Created="30.11.2025 19:58:51" Date="30.11.2025" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit>
+      <Item ID="f3cb5fa0-1d49-4e3c-94b6-83e682f75cef" Time="30.11.2025 19:58:51" ItemType="Pay" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="e86929e8-25b3-4791-9cd9-c51ef30c14b7" Time="30.11.2025 19:58:51" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="9df02151-544a-4584-8ccd-cbde74930218" />
+      <Item ID="2b88afbe-6f48-4e9d-bf54-23270eb6f3f7" Time="30.11.2025 19:58:51" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="b11f9962-49ed-45cd-9812-2f455aa8f14a" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.01.2026 19:38:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.01.2026 19:37:55">
+    <ID>da387294-6e14-42c8-bf4a-d4562e14927b</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>Cash</PaymentType>
+    <Colour>FF90EE90</Colour>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="13e0cdb5-594c-48a3-946d-884820de88da" Created="10.01.2026 19:38:15" Date="10.01.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="6aaeda90-12b5-42e1-ba23-1ce9ea7265eb" Created="10.01.2026 19:38:15" Date="10.01.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.01.2026 19:38:25">
+      <Item ID="d9ae3bc8-c6c2-463f-baf9-4e8300193b2d" Time="10.01.2026 19:38:15" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="13e0cdb5-594c-48a3-946d-884820de88da" />
+      <Item ID="1cbe82b8-c9c4-4511-af80-ff7007b7f7cd" Time="10.01.2026 19:38:15" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="6aaeda90-12b5-42e1-ba23-1ce9ea7265eb" />
+      <Item ID="89eebdb7-bb0c-4c13-bcc3-2e30d014fbaa" Time="08.01.2026 19:38:25" ItemType="PayDebt" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="9c27764a-a02d-4f8a-8b88-eec3d798c0f3" Time="08.01.2026 19:38:25" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="13e0cdb5-594c-48a3-946d-884820de88da" />
+      <Item ID="767bbb9f-ef5a-49de-b7de-ac1f79083b8b" Time="08.01.2026 19:38:25" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="13e0cdb5-594c-48a3-946d-884820de88da" />
+      <Item ID="29ce760e-dd79-4665-9e44-dc9a90a2bfa0" Time="08.01.2026 19:38:25" ItemType="Undebt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="6aaeda90-12b5-42e1-ba23-1ce9ea7265eb" />
+      <Item ID="a2816203-43f5-43c9-a992-6015752ab360" Time="08.01.2026 19:38:25" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="6aaeda90-12b5-42e1-ba23-1ce9ea7265eb" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.02.2026 12:17:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.02.2026 12:16:59">
+    <ID>adbb4e84-a0ef-4456-ba19-b3f10676a2f5</ID>
+    <Prepayment>2400</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="eaa11817-b529-441b-8096-ec165eca8c3c" Created="15.02.2026 12:17:24" Date="15.02.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="71a85b93-a6a3-4597-9bd8-89bc0dbf24ec" Created="15.02.2026 12:17:24" Date="15.02.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit>
+      <Item ID="d07c1264-5f02-4d81-90f1-8e02a0ec76fe" Time="15.02.2026 12:17:24" ItemType="Pay" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="759152aa-336f-401b-8646-cd6ec109195f" Time="15.02.2026 12:17:24" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="eaa11817-b529-441b-8096-ec165eca8c3c" />
+      <Item ID="043f78c3-fd59-47b1-81e4-a8ff96b11abd" Time="15.02.2026 12:17:24" ItemType="WriteOff" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="71a85b93-a6a3-4597-9bd8-89bc0dbf24ec" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2026 15:26:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2026 15:24:33">
+    <ID>b36a6f0b-5a95-477a-8321-7997e6ca642c</ID>
+    <Prepayment>0</Prepayment>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <TenantType>Client</TenantType>
+    <PaymentType>NonCash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1200</RentTypeCost>
+    <Schedule />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2026 15:26:06">
+      <Item ID="52a7c17f-fb8a-4405-8ba7-7fe0d63da1b1" Created="18.02.2026 15:26:06" Date="25.01.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+      <Item ID="835e1070-eaec-4880-9bcd-25bed0877d66" Created="18.02.2026 15:26:06" Date="25.01.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1200" TotalCost="1200" />
+    </Visits>
+    <Deposit Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2026 15:26:06">
+      <Item ID="188d18ca-b851-48ab-9905-c950e2dffedd" Time="22.01.2026 15:25:21" ItemType="PayDebt" Sum="2400" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" />
+      <Item ID="7f48524a-dd91-48c2-b732-6c91b9168887" Time="18.02.2026 15:25:59" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="52a7c17f-fb8a-4405-8ba7-7fe0d63da1b1" />
+      <Item ID="5a4e5f2d-1080-4b3a-830f-4c041826d9ce" Time="18.02.2026 15:26:03" ItemType="Debt" Sum="1200" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="835e1070-eaec-4880-9bcd-25bed0877d66" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.05.2026 15:40:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.05.2026 15:40:28">
+    <ID>423e975f-8f47-43e0-9711-221f1b209eed</ID>
+    <Prepayment>2600</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1300</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <ID_Client>5d2aae05-7310-40ec-af6c-0a72782a6641</ID_Client>
+    <Schedule />
+    <Visits>
+      <Item ID="2701a63d-3ea8-4a1f-8069-ff35b37199fa" Created="03.05.2026 15:40:39" Date="03.05.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="ed580eac-e0b7-406e-8357-71c8684ec782" Created="03.05.2026 15:40:39" Date="03.05.2026" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+    </Visits>
+    <Deposit>
+      <Item ID="e1470326-29fd-4a83-91c0-9013a0ff78d9" Time="03.05.2026 15:40:39" ItemType="Pay" Sum="2600" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" PaymentType="Cash" />
+      <Item ID="d3815389-e0f8-49c7-9225-a4f9457f31cd" Time="03.05.2026 15:40:39" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="2701a63d-3ea8-4a1f-8069-ff35b37199fa" />
+      <Item ID="1bb267e2-2745-4f24-817e-7bed17e1d7f3" Time="03.05.2026 15:40:39" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="670B-E878-DD76-F952-3316-7A51-88E7-9917" VisitID="ed580eac-e0b7-406e-8357-71c8684ec782" />
+    </Deposit>
+    <Bonus />
+  </Item>
+</Rent>

@@ -1,0 +1,1608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User>
+  <Item Updated="11079|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.07.2026 20:53:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.02.2019 16:10:19">
+    <ID>910267f7-b5ae-4903-87da-ffbcf2a8a19f</ID>
+    <PasswordMD5>81dc9bdb52d04dc20036dbd8313ed055</PasswordMD5>
+    <Rights Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.12.2020 20:36:04">&lt;Rights&gt;
+  &lt;AllowEditUsers&gt;true&lt;/AllowEditUsers&gt;
+  &lt;AllowEditBranches&gt;true&lt;/AllowEditBranches&gt;
+  &lt;AllowEditOptions&gt;true&lt;/AllowEditOptions&gt;
+  &lt;AllowEditTables&gt;true&lt;/AllowEditTables&gt;
+  &lt;AllowRemoveTableItems&gt;true&lt;/AllowRemoveTableItems&gt;
+  &lt;AllowEditPackets&gt;true&lt;/AllowEditPackets&gt;
+  &lt;AllowEditCharges&gt;true&lt;/AllowEditCharges&gt;
+  &lt;AllowShowPacketsPurchaseCost&gt;true&lt;/AllowShowPacketsPurchaseCost&gt;
+  &lt;AllowShowIndividualTeacherPay&gt;true&lt;/AllowShowIndividualTeacherPay&gt;
+  &lt;AllowEditNotes&gt;true&lt;/AllowEditNotes&gt;
+  &lt;AllowExportToExcel&gt;true&lt;/AllowExportToExcel&gt;
+  &lt;AllowCopyCells&gt;true&lt;/AllowCopyCells&gt;
+  &lt;AllowShowHistory&gt;true&lt;/AllowShowHistory&gt;
+  &lt;AllowShowBin&gt;true&lt;/AllowShowBin&gt;
+  &lt;AllowShowClientContacts&gt;true&lt;/AllowShowClientContacts&gt;
+  &lt;AllowRemoveRes&gt;true&lt;/AllowRemoveRes&gt;
+  &lt;AllowRemoveVisits&gt;true&lt;/AllowRemoveVisits&gt;
+  &lt;AllowRemoveDepositItems&gt;true&lt;/AllowRemoveDepositItems&gt;
+  &lt;AllowEditTasks&gt;true&lt;/AllowEditTasks&gt;
+  &lt;AllowRemoveTasks&gt;true&lt;/AllowRemoveTasks&gt;
+  &lt;AllowCopyRows&gt;true&lt;/AllowCopyRows&gt;
+  &lt;AllowEditAccountProperties&gt;true&lt;/AllowEditAccountProperties&gt;
+  &lt;AllowEditExistAccountProperties&gt;true&lt;/AllowEditExistAccountProperties&gt;
+  &lt;AllowEditAccountVisits&gt;true&lt;/AllowEditAccountVisits&gt;
+  &lt;AllowCreateAccountsInPast&gt;true&lt;/AllowCreateAccountsInPast&gt;
+  &lt;AllowCheckVisitsInPast&gt;true&lt;/AllowCheckVisitsInPast&gt;
+  &lt;AllowCheckVisitsBadAccounts&gt;true&lt;/AllowCheckVisitsBadAccounts&gt;
+  &lt;AllowAgendaChangeDate&gt;true&lt;/AllowAgendaChangeDate&gt;
+  &lt;AllowAgendaShowBalance&gt;true&lt;/AllowAgendaShowBalance&gt;
+  &lt;Views&gt;
+    &lt;DanceStudio.DSAgendaView&gt;true&lt;/DanceStudio.DSAgendaView&gt;
+    &lt;DanceStudio.DSCheckVisitsView&gt;true&lt;/DanceStudio.DSCheckVisitsView&gt;
+    &lt;DanceStudio.DSTablesView&gt;true&lt;/DanceStudio.DSTablesView&gt;
+    &lt;DanceStudio.DSStatisticsView&gt;true&lt;/DanceStudio.DSStatisticsView&gt;
+    &lt;DanceStudio.DSGeneratorsView&gt;true&lt;/DanceStudio.DSGeneratorsView&gt;
+    &lt;DanceStudio.DSHallView&gt;true&lt;/DanceStudio.DSHallView&gt;
+    &lt;DanceStudio.DSGroupView&gt;true&lt;/DanceStudio.DSGroupView&gt;
+    &lt;DanceStudio.DSTeacherView&gt;true&lt;/DanceStudio.DSTeacherView&gt;
+    &lt;DanceStudio.DSSubstituteView&gt;true&lt;/DanceStudio.DSSubstituteView&gt;
+    &lt;DanceStudio.DSTeacherBalanceView&gt;true&lt;/DanceStudio.DSTeacherBalanceView&gt;
+    &lt;DanceStudio.DSReservationView&gt;true&lt;/DanceStudio.DSReservationView&gt;
+    &lt;DanceStudio.DSClientView&gt;true&lt;/DanceStudio.DSClientView&gt;
+    &lt;DanceStudio.DSTableUnionView1&gt;true&lt;/DanceStudio.DSTableUnionView1&gt;
+    &lt;DanceStudio.DSAccountView&gt;true&lt;/DanceStudio.DSAccountView&gt;
+    &lt;DanceStudio.DSSingleTrainingView&gt;true&lt;/DanceStudio.DSSingleTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView2&gt;true&lt;/DanceStudio.DSTableUnionView2&gt;
+    &lt;DanceStudio.DSIndividualAccountView&gt;true&lt;/DanceStudio.DSIndividualAccountView&gt;
+    &lt;DanceStudio.DSIndividualTrainingView&gt;true&lt;/DanceStudio.DSIndividualTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView3&gt;true&lt;/DanceStudio.DSTableUnionView3&gt;
+    &lt;DanceStudio.DSRentAccountView&gt;true&lt;/DanceStudio.DSRentAccountView&gt;
+    &lt;DanceStudio.DSRentView&gt;true&lt;/DanceStudio.DSRentView&gt;
+    &lt;DanceStudio.DSProductView&gt;true&lt;/DanceStudio.DSProductView&gt;
+    &lt;DanceStudio.DSChargeView&gt;true&lt;/DanceStudio.DSChargeView&gt;
+    &lt;DanceStudio.DSDayStatisticView&gt;true&lt;/DanceStudio.DSDayStatisticView&gt;
+    &lt;DanceStudio.DSPeriodStatisticView&gt;true&lt;/DanceStudio.DSPeriodStatisticView&gt;
+    &lt;DanceStudio.DSFunnelView&gt;true&lt;/DanceStudio.DSFunnelView&gt;
+    &lt;DanceStudio.DSAgreementView&gt;true&lt;/DanceStudio.DSAgreementView&gt;
+    &lt;DanceStudio.DSClientInformationView&gt;true&lt;/DanceStudio.DSClientInformationView&gt;
+    &lt;DanceStudio.DSPrintAccountView&gt;true&lt;/DanceStudio.DSPrintAccountView&gt;
+    &lt;DanceStudio.DSCashInOrderView&gt;true&lt;/DanceStudio.DSCashInOrderView&gt;
+    &lt;DanceStudio.DSReturnMoneyApplicationView&gt;true&lt;/DanceStudio.DSReturnMoneyApplicationView&gt;
+    &lt;DanceStudio.DSSalesListView&gt;true&lt;/DanceStudio.DSSalesListView&gt;
+    &lt;DanceStudio.DSTeacherPayView&gt;true&lt;/DanceStudio.DSTeacherPayView&gt;
+    &lt;DanceStudio.DSReceptionistPayView&gt;true&lt;/DanceStudio.DSReceptionistPayView&gt;
+    &lt;DanceStudio.DSVisitsView&gt;true&lt;/DanceStudio.DSVisitsView&gt;
+    &lt;DanceStudio.DSIndividualVisitsView&gt;true&lt;/DanceStudio.DSIndividualVisitsView&gt;
+    &lt;DanceStudio.DSRentCostView&gt;true&lt;/DanceStudio.DSRentCostView&gt;
+    &lt;DanceStudio.DSClientObligationsView&gt;true&lt;/DanceStudio.DSClientObligationsView&gt;
+    &lt;DanceStudio.DSBalanceView&gt;true&lt;/DanceStudio.DSBalanceView&gt;
+  &lt;/Views&gt;
+&lt;/Rights&gt;</Rights>
+    <Login>Директор</Login>
+    <IsAdmin>True</IsAdmin>
+    <OwnSalaryOptions>False</OwnSalaryOptions>
+    <SalaryOptions>
+      <UserSalaryDaysOptions>
+        <WeekDays>1,2,3,4,5,6,7</WeekDays>
+        <Dates />
+        <PayType>HourPlus</PayType>
+        <HourPay>150</HourPay>
+        <HourMinTimeEnable>false</HourMinTimeEnable>
+        <HourMinTime>0001-01-01T09:00:00</HourMinTime>
+        <HourMaxTimeEnable>false</HourMaxTimeEnable>
+        <HourMaxTime>0001-01-01T22:00:00</HourMaxTime>
+        <HourReworkingEnable>false</HourReworkingEnable>
+        <HourReworkingPay>50</HourReworkingPay>
+        <ShiftPay>1200</ShiftPay>
+        <ShiftMinDuration>30</ShiftMinDuration>
+        <AccountPercentEnable>true</AccountPercentEnable>
+        <AccountPercent>5</AccountPercent>
+        <AccountPercentSelect>AllAccounts</AccountPercentSelect>
+        <SecondAccountPercentEnable>false</SecondAccountPercentEnable>
+        <SecondAccountVisitPercentEnable>false</SecondAccountVisitPercentEnable>
+        <SecondAccountPercent>3</SecondAccountPercent>
+        <SecondAccountVisitPercent>10</SecondAccountVisitPercent>
+        <SecondAccountVisitDays>90</SecondAccountVisitDays>
+        <SinglePercentEnable>false</SinglePercentEnable>
+        <SinglePercent>5</SinglePercent>
+        <SinglePercentSelect>AllSingles</SinglePercentSelect>
+        <ProductPercentEnable>false</ProductPercentEnable>
+        <ProductPercent>5</ProductPercent>
+        <LeadAccountPercentEnable>false</LeadAccountPercentEnable>
+        <LeadAccountPercent>5</LeadAccountPercent>
+        <LeadAccount2PercentEnable>false</LeadAccount2PercentEnable>
+        <LeadAccount2Percent>2</LeadAccount2Percent>
+      </UserSalaryDaysOptions>
+    </SalaryOptions>
+    <ScheduleDropboxApp Updated="2332|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.07.2026 20:53:06"></ScheduleDropboxApp>
+    <LastComputerID Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.09.2023 17:38:55">670B-E878-DD76-F952-3316-7A51-88E7-9917</LastComputerID>
+    <Status>Active</Status>
+    <Protocols Updated="11077|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.07.2026 20:53:06">
+      <Item Date="09.04.2026 17:46:12" Type="Connect" />
+      <Item Date="09.04.2026 20:10:39" Type="Disconnect" />
+      <Item Date="09.04.2026 20:12:50" Type="Connect" />
+      <Item Date="09.04.2026 20:13:16" Type="Disconnect" />
+      <Item Date="10.04.2026 11:59:16" Type="Connect" />
+      <Item Date="10.04.2026 16:17:23" Type="Disconnect" />
+      <Item Date="10.04.2026 17:10:36" Type="Connect" />
+      <Item Date="10.04.2026 17:48:27" Type="Disconnect" />
+      <Item Date="10.04.2026 17:53:06" Type="Connect" />
+      <Item Date="10.04.2026 18:03:17" Type="Disconnect" />
+      <Item Date="10.04.2026 18:23:22" Type="Connect" />
+      <Item Date="10.04.2026 20:11:51" Type="Disconnect" />
+      <Item Date="10.04.2026 20:11:57" Type="Connect" />
+      <Item Date="10.04.2026 20:14:01" Type="Disconnect" />
+      <Item Date="10.04.2026 21:15:54" Type="Connect" />
+      <Item Date="10.04.2026 21:25:16" Type="Disconnect" />
+      <Item Date="10.04.2026 21:27:30" Type="Connect" />
+      <Item Date="10.04.2026 21:27:59" Type="Disconnect" />
+      <Item Date="11.04.2026 08:37:24" Type="Connect" />
+      <Item Date="11.04.2026 09:31:17" Type="Disconnect" />
+      <Item Date="11.04.2026 10:33:24" Type="Connect" />
+      <Item Date="11.04.2026 19:56:11" Type="Disconnect" />
+      <Item Date="12.04.2026 15:11:13" Type="Connect" />
+      <Item Date="12.04.2026 19:09:14" Type="Disconnect" />
+      <Item Date="12.04.2026 19:18:01" Type="Connect" />
+      <Item Date="12.04.2026 19:19:07" Type="Disconnect" />
+      <Item Date="13.04.2026 13:41:23" Type="Connect" />
+      <Item Date="13.04.2026 14:28:36" Type="Disconnect" />
+      <Item Date="13.04.2026 15:40:49" Type="Connect" />
+      <Item Date="13.04.2026 21:42:13" Type="Connect" />
+      <Item Date="13.04.2026 21:43:28" Type="Disconnect" />
+      <Item Date="14.04.2026 08:35:15" Type="Connect" />
+      <Item Date="14.04.2026 09:09:42" Type="Disconnect" />
+      <Item Date="14.04.2026 15:10:24" Type="Connect" />
+      <Item Date="14.04.2026 18:52:06" Type="Connect" />
+      <Item Date="14.04.2026 19:56:14" Type="Connect" />
+      <Item Date="14.04.2026 20:40:10" Type="Disconnect" />
+      <Item Date="15.04.2026 12:17:10" Type="Connect" />
+      <Item Date="15.04.2026 13:55:37" Type="Disconnect" />
+      <Item Date="15.04.2026 13:57:20" Type="Connect" />
+      <Item Date="15.04.2026 14:27:20" Type="Disconnect" />
+      <Item Date="15.04.2026 14:49:14" Type="Connect" />
+      <Item Date="15.04.2026 16:10:50" Type="Connect" />
+      <Item Date="15.04.2026 16:12:42" Type="Connect" />
+      <Item Date="15.04.2026 21:13:30" Type="Connect" />
+      <Item Date="15.04.2026 21:27:50" Type="Disconnect" />
+      <Item Date="15.04.2026 21:27:55" Type="Connect" />
+      <Item Date="15.04.2026 21:28:10" Type="Disconnect" />
+      <Item Date="16.04.2026 09:34:29" Type="Connect" />
+      <Item Date="16.04.2026 09:35:27" Type="Disconnect" />
+      <Item Date="16.04.2026 15:26:32" Type="Connect" />
+      <Item Date="16.04.2026 17:50:33" Type="Connect" />
+      <Item Date="16.04.2026 20:01:18" Type="Disconnect" />
+      <Item Date="17.04.2026 14:16:48" Type="Connect" />
+      <Item Date="17.04.2026 16:12:54" Type="Connect" />
+      <Item Date="17.04.2026 21:15:41" Type="Disconnect" />
+      <Item Date="18.04.2026 10:54:48" Type="Connect" />
+      <Item Date="18.04.2026 18:18:52" Type="Connect" />
+      <Item Date="18.04.2026 19:33:28" Type="Connect" />
+      <Item Date="18.04.2026 20:27:52" Type="Disconnect" />
+      <Item Date="19.04.2026 13:52:14" Type="Connect" />
+      <Item Date="19.04.2026 18:19:24" Type="Disconnect" />
+      <Item Date="20.04.2026 18:24:51" Type="Connect" />
+      <Item Date="20.04.2026 21:06:49" Type="Disconnect" />
+      <Item Date="20.04.2026 21:06:57" Type="Connect" />
+      <Item Date="20.04.2026 21:18:47" Type="Disconnect" />
+      <Item Date="21.04.2026 09:27:30" Type="Connect" />
+      <Item Date="21.04.2026 11:47:37" Type="Disconnect" />
+      <Item Date="21.04.2026 11:59:52" Type="Connect" />
+      <Item Date="21.04.2026 12:00:42" Type="Disconnect" />
+      <Item Date="21.04.2026 15:31:55" Type="Connect" />
+      <Item Date="21.04.2026 20:08:30" Type="Connect" />
+      <Item Date="21.04.2026 20:56:10" Type="Disconnect" />
+      <Item Date="22.04.2026 16:02:33" Type="Connect" />
+      <Item Date="22.04.2026 21:15:19" Type="Connect" />
+      <Item Date="22.04.2026 21:38:11" Type="Disconnect" />
+      <Item Date="23.04.2026 09:28:24" Type="Connect" />
+      <Item Date="23.04.2026 09:31:40" Type="Disconnect" />
+      <Item Date="23.04.2026 16:59:36" Type="Connect" />
+      <Item Date="23.04.2026 21:32:29" Type="Disconnect" />
+      <Item Date="24.04.2026 15:59:21" Type="Connect" />
+      <Item Date="24.04.2026 16:00:03" Type="Disconnect" />
+      <Item Date="24.04.2026 19:40:00" Type="Connect" />
+      <Item Date="24.04.2026 20:19:47" Type="Disconnect" />
+      <Item Date="25.04.2026 10:38:45" Type="Connect" />
+      <Item Date="25.04.2026 11:09:00" Type="Disconnect" />
+      <Item Date="25.04.2026 11:16:32" Type="Connect" />
+      <Item Date="25.04.2026 14:53:36" Type="Disconnect" />
+      <Item Date="25.04.2026 15:43:43" Type="Connect" />
+      <Item Date="25.04.2026 19:24:12" Type="Disconnect" />
+      <Item Date="26.04.2026 13:46:51" Type="Connect" />
+      <Item Date="26.04.2026 19:40:28" Type="Disconnect" />
+      <Item Date="27.04.2026 14:41:09" Type="Connect" />
+      <Item Date="27.04.2026 15:21:26" Type="Disconnect" />
+      <Item Date="27.04.2026 16:47:50" Type="Connect" />
+      <Item Date="27.04.2026 20:35:15" Type="Disconnect" />
+      <Item Date="27.04.2026 20:54:07" Type="Connect" />
+      <Item Date="27.04.2026 21:23:47" Type="Disconnect" />
+      <Item Date="28.04.2026 13:32:14" Type="Connect" />
+      <Item Date="28.04.2026 20:38:22" Type="Disconnect" />
+      <Item Date="29.04.2026 13:38:05" Type="Connect" />
+      <Item Date="29.04.2026 14:28:12" Type="Disconnect" />
+      <Item Date="29.04.2026 17:40:42" Type="Connect" />
+      <Item Date="29.04.2026 21:16:02" Type="Disconnect" />
+      <Item Date="30.04.2026 08:26:36" Type="Connect" />
+      <Item Date="30.04.2026 08:43:04" Type="Disconnect" />
+      <Item Date="30.04.2026 15:36:58" Type="Connect" />
+      <Item Date="30.04.2026 18:29:41" Type="Connect" />
+      <Item Date="30.04.2026 18:36:37" Type="Disconnect" />
+      <Item Date="30.04.2026 18:36:44" Type="Connect" />
+      <Item Date="30.04.2026 20:16:21" Type="Disconnect" />
+      <Item Date="01.05.2026 15:51:40" Type="Connect" />
+      <Item Date="01.05.2026 16:30:03" Type="Disconnect" />
+      <Item Date="01.05.2026 16:30:10" Type="Connect" />
+      <Item Date="01.05.2026 16:31:09" Type="Disconnect" />
+      <Item Date="01.05.2026 16:31:16" Type="Connect" />
+      <Item Date="01.05.2026 20:15:55" Type="Disconnect" />
+      <Item Date="02.05.2026 10:29:50" Type="Connect" />
+      <Item Date="02.05.2026 13:33:39" Type="Disconnect" />
+      <Item Date="02.05.2026 16:13:00" Type="Connect" />
+      <Item Date="02.05.2026 17:53:59" Type="Disconnect" />
+      <Item Date="02.05.2026 17:54:43" Type="Connect" />
+      <Item Date="02.05.2026 20:16:02" Type="Disconnect" />
+      <Item Date="03.05.2026 12:20:22" Type="Connect" />
+      <Item Date="03.05.2026 19:16:34" Type="Disconnect" />
+      <Item Date="03.05.2026 19:16:40" Type="Connect" />
+      <Item Date="03.05.2026 19:58:01" Type="Disconnect" />
+      <Item Date="04.05.2026 14:13:51" Type="Connect" />
+      <Item Date="04.05.2026 14:46:57" Type="Disconnect" />
+      <Item Date="04.05.2026 16:11:04" Type="Connect" />
+      <Item Date="04.05.2026 16:26:26" Type="Connect" />
+      <Item Date="04.05.2026 21:22:12" Type="Disconnect" />
+      <Item Date="04.05.2026 21:23:31" Type="Connect" />
+      <Item Date="04.05.2026 21:24:46" Type="Disconnect" />
+      <Item Date="05.05.2026 08:29:56" Type="Connect" />
+      <Item Date="05.05.2026 09:56:19" Type="Disconnect" />
+      <Item Date="05.05.2026 15:27:27" Type="Connect" />
+      <Item Date="05.05.2026 18:23:55" Type="Disconnect" />
+      <Item Date="05.05.2026 18:24:03" Type="Connect" />
+      <Item Date="05.05.2026 18:57:20" Type="Connect" />
+      <Item Date="05.05.2026 22:40:52" Type="Disconnect" />
+      <Item Date="06.05.2026 15:11:09" Type="Connect" />
+      <Item Date="06.05.2026 20:05:34" Type="Disconnect" />
+      <Item Date="06.05.2026 20:07:14" Type="Connect" />
+      <Item Date="06.05.2026 21:24:14" Type="Disconnect" />
+      <Item Date="07.05.2026 08:47:24" Type="Connect" />
+      <Item Date="07.05.2026 11:46:18" Type="Connect" />
+      <Item Date="07.05.2026 12:04:39" Type="Disconnect" />
+      <Item Date="07.05.2026 12:04:46" Type="Connect" />
+      <Item Date="07.05.2026 14:34:51" Type="Disconnect" />
+      <Item Date="07.05.2026 14:38:46" Type="Connect" />
+      <Item Date="07.05.2026 14:39:04" Type="Disconnect" />
+      <Item Date="07.05.2026 15:00:17" Type="Connect" />
+      <Item Date="07.05.2026 18:51:40" Type="Connect" />
+      <Item Date="07.05.2026 20:12:07" Type="Disconnect" />
+      <Item Date="08.05.2026 14:57:17" Type="Connect" />
+      <Item Date="08.05.2026 21:23:34" Type="Disconnect" />
+      <Item Date="10.05.2026 14:48:06" Type="Connect" />
+      <Item Date="10.05.2026 19:16:26" Type="Disconnect" />
+      <Item Date="10.05.2026 19:25:18" Type="Connect" />
+      <Item Date="10.05.2026 19:29:30" Type="Disconnect" />
+      <Item Date="11.05.2026 17:31:26" Type="Connect" />
+      <Item Date="11.05.2026 21:13:35" Type="Disconnect" />
+      <Item Date="12.05.2026 08:37:39" Type="Connect" />
+      <Item Date="12.05.2026 16:34:47" Type="Disconnect" />
+      <Item Date="12.05.2026 17:49:33" Type="Connect" />
+      <Item Date="12.05.2026 20:47:58" Type="Disconnect" />
+      <Item Date="13.05.2026 14:37:02" Type="Connect" />
+      <Item Date="13.05.2026 15:51:55" Type="Disconnect" />
+      <Item Date="13.05.2026 17:28:32" Type="Connect" />
+      <Item Date="13.05.2026 20:53:37" Type="Disconnect" />
+      <Item Date="13.05.2026 21:01:43" Type="Connect" />
+      <Item Date="13.05.2026 21:19:24" Type="Disconnect" />
+      <Item Date="14.05.2026 08:30:33" Type="Connect" />
+      <Item Date="14.05.2026 10:07:51" Type="Disconnect" />
+      <Item Date="14.05.2026 10:50:57" Type="Connect" />
+      <Item Date="14.05.2026 20:04:20" Type="Disconnect" />
+      <Item Date="15.05.2026 14:40:47" Type="Connect" />
+      <Item Date="15.05.2026 19:55:53" Type="Connect" />
+      <Item Date="15.05.2026 20:19:43" Type="Disconnect" />
+      <Item Date="15.05.2026 20:20:05" Type="Connect" />
+      <Item Date="15.05.2026 20:41:02" Type="Disconnect" />
+      <Item Date="15.05.2026 20:42:02" Type="Connect" />
+      <Item Date="15.05.2026 21:09:10" Type="Disconnect" />
+      <Item Date="15.05.2026 21:12:25" Type="Connect" />
+      <Item Date="15.05.2026 21:13:30" Type="Disconnect" />
+      <Item Date="16.05.2026 09:07:49" Type="Connect" />
+      <Item Date="16.05.2026 16:53:19" Type="Connect" />
+      <Item Date="16.05.2026 19:13:18" Type="Disconnect" />
+      <Item Date="17.05.2026 15:51:47" Type="Connect" />
+      <Item Date="17.05.2026 16:47:51" Type="Disconnect" />
+      <Item Date="17.05.2026 17:05:54" Type="Connect" />
+      <Item Date="17.05.2026 17:37:21" Type="Disconnect" />
+      <Item Date="18.05.2026 17:25:56" Type="Connect" />
+      <Item Date="18.05.2026 17:28:05" Type="Disconnect" />
+      <Item Date="18.05.2026 17:43:07" Type="Connect" />
+      <Item Date="18.05.2026 20:05:59" Type="Connect" />
+      <Item Date="18.05.2026 22:24:34" Type="Disconnect" />
+      <Item Date="19.05.2026 15:34:27" Type="Connect" />
+      <Item Date="19.05.2026 17:26:01" Type="Connect" />
+      <Item Date="19.05.2026 19:35:18" Type="Disconnect" />
+      <Item Date="19.05.2026 19:35:26" Type="Connect" />
+      <Item Date="19.05.2026 20:37:12" Type="Disconnect" />
+      <Item Date="20.05.2026 16:03:03" Type="Connect" />
+      <Item Date="20.05.2026 20:50:36" Type="Disconnect" />
+      <Item Date="25.05.2026 17:24:42" Type="Connect" />
+      <Item Date="25.05.2026 19:02:06" Type="Connect" />
+      <Item Date="25.05.2026 19:57:56" Type="Disconnect" />
+      <Item Date="26.05.2026 17:01:20" Type="Connect" />
+      <Item Date="26.05.2026 19:48:12" Type="Connect" />
+      <Item Date="26.05.2026 21:26:01" Type="Disconnect" />
+      <Item Date="27.05.2026 17:48:29" Type="Connect" />
+      <Item Date="27.05.2026 21:16:42" Type="Disconnect" />
+      <Item Date="28.05.2026 12:06:50" Type="Connect" />
+      <Item Date="28.05.2026 20:16:31" Type="Disconnect" />
+      <Item Date="29.05.2026 18:29:19" Type="Connect" />
+      <Item Date="29.05.2026 20:42:28" Type="Disconnect" />
+      <Item Date="30.05.2026 09:27:49" Type="Connect" />
+      <Item Date="30.05.2026 17:02:11" Type="Disconnect" />
+      <Item Date="30.05.2026 17:16:38" Type="Connect" />
+      <Item Date="30.05.2026 18:35:14" Type="Disconnect" />
+      <Item Date="30.05.2026 18:36:15" Type="Connect" />
+      <Item Date="30.05.2026 18:42:22" Type="Disconnect" />
+      <Item Date="01.06.2026 16:55:57" Type="Connect" />
+      <Item Date="01.06.2026 21:15:52" Type="Disconnect" />
+      <Item Date="02.06.2026 09:33:37" Type="Connect" />
+      <Item Date="02.06.2026 09:43:41" Type="Disconnect" />
+      <Item Date="02.06.2026 12:07:31" Type="Connect" />
+      <Item Date="02.06.2026 20:07:15" Type="Disconnect" />
+      <Item Date="02.06.2026 20:07:30" Type="Connect" />
+      <Item Date="02.06.2026 21:25:53" Type="Disconnect" />
+      <Item Date="03.06.2026 13:55:48" Type="Connect" />
+      <Item Date="03.06.2026 21:16:08" Type="Disconnect" />
+      <Item Date="04.06.2026 16:10:48" Type="Connect" />
+      <Item Date="04.06.2026 21:31:29" Type="Disconnect" />
+      <Item Date="05.06.2026 15:45:19" Type="Connect" />
+      <Item Date="05.06.2026 22:13:21" Type="Disconnect" />
+      <Item Date="06.06.2026 09:24:46" Type="Connect" />
+      <Item Date="06.06.2026 19:31:49" Type="Disconnect" />
+      <Item Date="07.06.2026 15:23:16" Type="Connect" />
+      <Item Date="07.06.2026 19:30:57" Type="Disconnect" />
+      <Item Date="08.06.2026 15:52:13" Type="Connect" />
+      <Item Date="08.06.2026 21:09:32" Type="Disconnect" />
+      <Item Date="09.06.2026 15:24:49" Type="Connect" />
+      <Item Date="09.06.2026 20:31:22" Type="Disconnect" />
+      <Item Date="10.06.2026 12:10:51" Type="Connect" />
+      <Item Date="10.06.2026 21:24:30" Type="Disconnect" />
+      <Item Date="11.06.2026 08:33:54" Type="Connect" />
+      <Item Date="11.06.2026 08:55:29" Type="Disconnect" />
+      <Item Date="11.06.2026 14:15:41" Type="Connect" />
+      <Item Date="11.06.2026 21:42:24" Type="Disconnect" />
+      <Item Date="12.06.2026 14:51:01" Type="Connect" />
+      <Item Date="12.06.2026 15:57:00" Type="Disconnect" />
+      <Item Date="12.06.2026 18:48:51" Type="Connect" />
+      <Item Date="12.06.2026 21:18:28" Type="Disconnect" />
+      <Item Date="12.06.2026 21:31:36" Type="Connect" />
+      <Item Date="12.06.2026 22:05:55" Type="Disconnect" />
+      <Item Date="13.06.2026 10:31:08" Type="Connect" />
+      <Item Date="13.06.2026 12:16:50" Type="Disconnect" />
+      <Item Date="13.06.2026 14:52:59" Type="Connect" />
+      <Item Date="13.06.2026 16:08:14" Type="Disconnect" />
+      <Item Date="13.06.2026 17:01:36" Type="Connect" />
+      <Item Date="13.06.2026 20:09:37" Type="Disconnect" />
+      <Item Date="15.06.2026 16:05:17" Type="Connect" />
+      <Item Date="15.06.2026 21:35:00" Type="Disconnect" />
+      <Item Date="15.06.2026 21:38:15" Type="Connect" />
+      <Item Date="15.06.2026 21:38:35" Type="Disconnect" />
+      <Item Date="16.06.2026 14:34:15" Type="Connect" />
+      <Item Date="16.06.2026 15:08:38" Type="Disconnect" />
+      <Item Date="16.06.2026 15:56:27" Type="Connect" />
+      <Item Date="16.06.2026 17:38:27" Type="Disconnect" />
+      <Item Date="16.06.2026 17:38:41" Type="Connect" />
+      <Item Date="16.06.2026 20:07:55" Type="Disconnect" />
+      <Item Date="16.06.2026 20:30:03" Type="Connect" />
+      <Item Date="16.06.2026 20:34:42" Type="Disconnect" />
+      <Item Date="16.06.2026 20:38:20" Type="Connect" />
+      <Item Date="16.06.2026 20:38:42" Type="Disconnect" />
+      <Item Date="17.06.2026 16:26:38" Type="Connect" />
+      <Item Date="17.06.2026 21:45:35" Type="Disconnect" />
+      <Item Date="17.06.2026 21:45:44" Type="Connect" />
+      <Item Date="17.06.2026 21:52:13" Type="Disconnect" />
+      <Item Date="18.06.2026 14:27:46" Type="Connect" />
+      <Item Date="18.06.2026 15:44:42" Type="Disconnect" />
+      <Item Date="18.06.2026 15:44:52" Type="Connect" />
+      <Item Date="18.06.2026 15:57:27" Type="Disconnect" />
+      <Item Date="18.06.2026 15:57:40" Type="Connect" />
+      <Item Date="18.06.2026 20:31:37" Type="Disconnect" />
+      <Item Date="19.06.2026 14:57:49" Type="Connect" />
+      <Item Date="19.06.2026 20:28:04" Type="Disconnect" />
+      <Item Date="19.06.2026 20:53:49" Type="Connect" />
+      <Item Date="19.06.2026 21:01:10" Type="Disconnect" />
+      <Item Date="20.06.2026 10:34:27" Type="Connect" />
+      <Item Date="20.06.2026 19:17:11" Type="Disconnect" />
+      <Item Date="21.06.2026 15:02:02" Type="Connect" />
+      <Item Date="21.06.2026 17:13:55" Type="Disconnect" />
+      <Item Date="21.06.2026 17:14:04" Type="Connect" />
+      <Item Date="21.06.2026 19:28:13" Type="Connect" />
+      <Item Date="21.06.2026 19:35:33" Type="Disconnect" />
+      <Item Date="22.06.2026 16:09:42" Type="Connect" />
+      <Item Date="22.06.2026 18:10:29" Type="Disconnect" />
+      <Item Date="22.06.2026 18:37:14" Type="Connect" />
+      <Item Date="22.06.2026 18:52:00" Type="Disconnect" />
+      <Item Date="22.06.2026 18:52:07" Type="Connect" />
+      <Item Date="22.06.2026 21:13:48" Type="Disconnect" />
+      <Item Date="23.06.2026 09:34:48" Type="Connect" />
+      <Item Date="23.06.2026 09:37:22" Type="Disconnect" />
+      <Item Date="23.06.2026 16:08:20" Type="Connect" />
+      <Item Date="23.06.2026 21:31:03" Type="Disconnect" />
+      <Item Date="24.06.2026 12:24:39" Type="Connect" />
+      <Item Date="24.06.2026 13:13:54" Type="Disconnect" />
+      <Item Date="24.06.2026 15:01:05" Type="Connect" />
+      <Item Date="24.06.2026 21:28:24" Type="Disconnect" />
+      <Item Date="25.06.2026 08:45:46" Type="Connect" />
+      <Item Date="25.06.2026 08:57:35" Type="Disconnect" />
+      <Item Date="25.06.2026 16:58:02" Type="Connect" />
+      <Item Date="25.06.2026 21:10:30" Type="Disconnect" />
+      <Item Date="26.06.2026 12:07:44" Type="Connect" />
+      <Item Date="26.06.2026 14:38:36" Type="Disconnect" />
+      <Item Date="26.06.2026 14:59:56" Type="Connect" />
+      <Item Date="26.06.2026 22:20:16" Type="Disconnect" />
+      <Item Date="27.06.2026 10:24:35" Type="Connect" />
+      <Item Date="27.06.2026 19:12:04" Type="Disconnect" />
+      <Item Date="28.06.2026 17:49:23" Type="Connect" />
+      <Item Date="28.06.2026 20:00:31" Type="Disconnect" />
+      <Item Date="28.06.2026 20:02:45" Type="Connect" />
+      <Item Date="28.06.2026 20:05:35" Type="Disconnect" />
+      <Item Date="29.06.2026 16:47:20" Type="Connect" />
+      <Item Date="29.06.2026 21:23:53" Type="Disconnect" />
+      <Item Date="29.06.2026 21:26:50" Type="Connect" />
+      <Item Date="29.06.2026 21:28:04" Type="Disconnect" />
+      <Item Date="30.06.2026 09:52:13" Type="Connect" />
+      <Item Date="30.06.2026 10:37:18" Type="Disconnect" />
+      <Item Date="30.06.2026 14:45:58" Type="Connect" />
+      <Item Date="30.06.2026 14:46:25" Type="Disconnect" />
+      <Item Date="30.06.2026 14:46:32" Type="Connect" />
+      <Item Date="30.06.2026 20:46:23" Type="Disconnect" />
+      <Item Date="01.07.2026 13:30:56" Type="Connect" />
+      <Item Date="01.07.2026 18:33:59" Type="Disconnect" />
+      <Item Date="01.07.2026 18:53:14" Type="Connect" />
+      <Item Date="01.07.2026 21:23:50" Type="Disconnect" />
+      <Item Date="02.07.2026 17:01:10" Type="Connect" />
+      <Item Date="02.07.2026 18:40:12" Type="Disconnect" />
+      <Item Date="02.07.2026 18:49:12" Type="Connect" />
+      <Item Date="02.07.2026 19:10:03" Type="Disconnect" />
+      <Item Date="02.07.2026 19:11:12" Type="Connect" />
+      <Item Date="02.07.2026 19:15:41" Type="Disconnect" />
+      <Item Date="03.07.2026 17:34:24" Type="Connect" />
+      <Item Date="03.07.2026 18:18:15" Type="Disconnect" />
+      <Item Date="03.07.2026 18:19:39" Type="Connect" />
+      <Item Date="04.07.2026 00:28:59" Type="Disconnect" />
+      <Item Date="04.07.2026 00:29:09" Type="Connect" />
+      <Item Date="04.07.2026 02:40:16" Type="Connect" />
+      <Item Date="04.07.2026 03:20:19" Type="Disconnect" />
+      <Item Date="04.07.2026 10:13:29" Type="Connect" />
+      <Item Date="04.07.2026 17:28:25" Type="Connect" />
+      <Item Date="04.07.2026 18:31:20" Type="Disconnect" />
+      <Item Date="05.07.2026 14:43:27" Type="Connect" />
+      <Item Date="05.07.2026 17:09:00" Type="Disconnect" />
+      <Item Date="05.07.2026 17:22:33" Type="Connect" />
+      <Item Date="05.07.2026 18:57:56" Type="Disconnect" />
+      <Item Date="06.07.2026 17:22:32" Type="Connect" />
+      <Item Date="06.07.2026 20:09:37" Type="Disconnect" />
+      <Item Date="07.07.2026 09:42:51" Type="Connect" />
+      <Item Date="07.07.2026 18:43:30" Type="Connect" />
+      <Item Date="07.07.2026 20:27:35" Type="Disconnect" />
+      <Item Date="08.07.2026 13:51:18" Type="Connect" />
+      <Item Date="08.07.2026 15:43:11" Type="Disconnect" />
+      <Item Date="08.07.2026 15:53:07" Type="Connect" />
+      <Item Date="08.07.2026 21:14:29" Type="Disconnect" />
+      <Item Date="09.07.2026 09:04:33" Type="Connect" />
+      <Item Date="09.07.2026 09:38:28" Type="Disconnect" />
+      <Item Date="09.07.2026 16:00:21" Type="Connect" />
+      <Item Date="09.07.2026 19:54:31" Type="Disconnect" />
+      <Item Date="10.07.2026 15:45:39" Type="Connect" />
+      <Item Date="10.07.2026 21:27:04" Type="Disconnect" />
+      <Item Date="11.07.2026 10:11:13" Type="Connect" />
+      <Item Date="11.07.2026 10:47:05" Type="Connect" />
+      <Item Date="11.07.2026 11:50:18" Type="Disconnect" />
+      <Item Date="11.07.2026 17:22:32" Type="Connect" />
+      <Item Date="11.07.2026 19:12:57" Type="Disconnect" />
+      <Item Date="12.07.2026 15:48:51" Type="Connect" />
+      <Item Date="12.07.2026 19:03:12" Type="Connect" />
+      <Item Date="12.07.2026 19:22:20" Type="Connect" />
+      <Item Date="12.07.2026 19:54:28" Type="Disconnect" />
+      <Item Date="13.07.2026 13:56:04" Type="Connect" />
+      <Item Date="13.07.2026 14:26:12" Type="Disconnect" />
+      <Item Date="13.07.2026 14:26:18" Type="Connect" />
+      <Item Date="13.07.2026 14:30:05" Type="Disconnect" />
+      <Item Date="13.07.2026 16:24:46" Type="Connect" />
+      <Item Date="13.07.2026 21:12:12" Type="Connect" />
+      <Item Date="13.07.2026 21:13:17" Type="Disconnect" />
+      <Item Date="14.07.2026 09:34:07" Type="Connect" />
+      <Item Date="14.07.2026 10:05:07" Type="Disconnect" />
+      <Item Date="14.07.2026 14:33:43" Type="Connect" />
+      <Item Date="14.07.2026 19:11:47" Type="Disconnect" />
+      <Item Date="14.07.2026 19:11:55" Type="Connect" />
+      <Item Date="14.07.2026 19:58:08" Type="Disconnect" />
+      <Item Date="14.07.2026 20:00:52" Type="Connect" />
+      <Item Date="14.07.2026 20:15:02" Type="Disconnect" />
+      <Item Date="15.07.2026 12:41:22" Type="Connect" />
+      <Item Date="15.07.2026 12:42:05" Type="Disconnect" />
+      <Item Date="15.07.2026 12:42:13" Type="Connect" />
+      <Item Date="15.07.2026 12:43:52" Type="Disconnect" />
+      <Item Date="15.07.2026 13:47:07" Type="Connect" />
+      <Item Date="15.07.2026 14:56:02" Type="Disconnect" />
+      <Item Date="15.07.2026 14:56:11" Type="Connect" />
+      <Item Date="15.07.2026 21:28:10" Type="Disconnect" />
+      <Item Date="15.07.2026 21:30:28" Type="Connect" />
+      <Item Date="15.07.2026 21:33:45" Type="Disconnect" />
+      <Item Date="16.07.2026 14:49:29" Type="Connect" />
+      <Item Date="16.07.2026 16:34:02" Type="Disconnect" />
+      <Item Date="16.07.2026 16:55:27" Type="Connect" />
+      <Item Date="16.07.2026 17:18:00" Type="Disconnect" />
+      <Item Date="16.07.2026 17:37:14" Type="Connect" />
+      <Item Date="16.07.2026 19:35:14" Type="Disconnect" />
+      <Item Date="16.07.2026 19:35:31" Type="Connect" />
+      <Item Date="16.07.2026 19:36:32" Type="Disconnect" />
+      <Item Date="16.07.2026 19:59:41" Type="Connect" />
+      <Item Date="16.07.2026 20:00:07" Type="Disconnect" />
+      <Item Date="17.07.2026 14:12:24" Type="Connect" />
+      <Item Date="17.07.2026 14:23:41" Type="Connect" />
+      <Item Date="17.07.2026 14:32:12" Type="Disconnect" />
+      <Item Date="17.07.2026 14:52:15" Type="Connect" />
+      <Item Date="17.07.2026 21:53:47" Type="Disconnect" />
+      <Item Date="18.07.2026 08:43:03" Type="Connect" />
+      <Item Date="18.07.2026 12:17:06" Type="Disconnect" />
+      <Item Date="18.07.2026 15:56:11" Type="Connect" />
+      <Item Date="18.07.2026 20:18:28" Type="Disconnect" />
+      <Item Date="19.07.2026 14:58:24" Type="Connect" />
+      <Item Date="19.07.2026 19:59:08" Type="Disconnect" />
+      <Item Date="20.07.2026 13:05:21" Type="Connect" />
+      <Item Date="20.07.2026 13:12:16" Type="Connect" />
+      <Item Date="20.07.2026 13:19:21" Type="Connect" />
+      <Item Date="20.07.2026 13:21:58" Type="Disconnect" />
+      <Item Date="20.07.2026 13:32:54" Type="Connect" />
+      <Item Date="20.07.2026 13:45:27" Type="Disconnect" />
+      <Item Date="20.07.2026 16:59:43" Type="Connect" />
+      <Item Date="20.07.2026 21:04:41" Type="Connect" />
+      <Item Date="20.07.2026 21:28:12" Type="Disconnect" />
+      <Item Date="21.07.2026 13:40:16" Type="Connect" />
+      <Item Date="21.07.2026 14:18:26" Type="Disconnect" />
+      <Item Date="21.07.2026 14:44:09" Type="Connect" />
+      <Item Date="21.07.2026 21:13:26" Type="Connect" />
+      <Item Date="21.07.2026 21:24:16" Type="Disconnect" />
+      <Item Date="22.07.2026 14:52:54" Type="Connect" />
+      <Item Date="22.07.2026 17:30:27" Type="Disconnect" />
+      <Item Date="22.07.2026 18:00:26" Type="Connect" />
+      <Item Date="22.07.2026 21:16:06" Type="Connect" />
+      <Item Date="22.07.2026 21:18:57" Type="Disconnect" />
+      <Item Date="23.07.2026 08:37:37" Type="Connect" />
+      <Item Date="23.07.2026 08:50:14" Type="Disconnect" />
+      <Item Date="23.07.2026 12:08:42" Type="Connect" />
+      <Item Date="23.07.2026 17:06:14" Type="Disconnect" />
+      <Item Date="23.07.2026 17:32:03" Type="Connect" />
+      <Item Date="23.07.2026 19:03:13" Type="Connect" />
+      <Item Date="23.07.2026 20:21:11" Type="Disconnect" />
+      <Item Date="24.07.2026 14:40:13" Type="Connect" />
+      <Item Date="24.07.2026 21:28:45" Type="Disconnect" />
+      <Item Date="25.07.2026 08:34:52" Type="Connect" />
+      <Item Date="25.07.2026 10:54:01" Type="Connect" />
+      <Item Date="25.07.2026 12:10:21" Type="Disconnect" />
+      <Item Date="25.07.2026 15:45:24" Type="Connect" />
+      <Item Date="25.07.2026 15:50:11" Type="Disconnect" />
+      <Item Date="25.07.2026 16:07:34" Type="Connect" />
+      <Item Date="25.07.2026 16:10:35" Type="Disconnect" />
+      <Item Date="25.07.2026 16:30:56" Type="Connect" />
+      <Item Date="25.07.2026 19:26:29" Type="Disconnect" />
+      <Item Date="26.07.2026 12:18:26" Type="Connect" />
+      <Item Date="26.07.2026 14:40:42" Type="Connect" />
+      <Item Date="26.07.2026 19:33:42" Type="Disconnect" />
+      <Item Date="27.07.2026 15:16:18" Type="Connect" />
+      <Item Date="27.07.2026 21:17:40" Type="Disconnect" />
+      <Item Date="28.07.2026 14:04:48" Type="Connect" />
+      <Item Date="28.07.2026 20:31:05" Type="Disconnect" />
+      <Item Date="28.07.2026 23:16:00" Type="Connect" />
+      <Item Date="28.07.2026 23:43:12" Type="Disconnect" />
+      <Item Date="28.07.2026 23:43:20" Type="Connect" />
+      <Item Date="28.07.2026 23:43:49" Type="Disconnect" />
+      <Item Date="28.07.2026 23:44:02" Type="Connect" />
+      <Item Date="29.07.2026 01:28:54" Type="Connect" />
+      <Item Date="29.07.2026 01:31:28" Type="Disconnect" />
+      <Item Date="29.07.2026 01:32:23" Type="Connect" />
+      <Item Date="29.07.2026 02:29:07" Type="Disconnect" />
+      <Item Date="29.07.2026 13:07:25" Type="Connect" />
+      <Item Date="29.07.2026 16:29:04" Type="Disconnect" />
+      <Item Date="29.07.2026 17:07:15" Type="Connect" />
+      <Item Date="29.07.2026 21:15:25" Type="Disconnect" />
+      <Item Date="29.07.2026 21:15:37" Type="Connect" />
+      <Item Date="29.07.2026 21:30:26" Type="Disconnect" />
+      <Item Date="30.07.2026 14:44:09" Type="Connect" />
+      <Item Date="30.07.2026 15:00:43" Type="Connect" />
+      <Item Date="30.07.2026 18:22:22" Type="Disconnect" />
+      <Item Date="30.07.2026 18:50:04" Type="Connect" />
+      <Item Date="30.07.2026 19:50:59" Type="Disconnect" />
+      <Item Date="30.07.2026 19:57:28" Type="Connect" />
+      <Item Date="30.07.2026 20:04:12" Type="Disconnect" />
+      <Item Date="30.07.2026 20:06:46" Type="Connect" />
+      <Item Date="30.07.2026 20:09:08" Type="Disconnect" />
+      <Item Date="31.07.2026 15:16:05" Type="Connect" />
+      <Item Date="31.07.2026 20:53:06" Type="Connect" />
+    </Protocols>
+  </Item>
+  <Item Updated="1204|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 16:02:02" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.01.2020 08:33:47">
+    <ID>25421898-cff8-4b1b-9861-0bd753b4db32</ID>
+    <PasswordMD5 Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:46:08">a9b7ba70783b617e9998dc4dd82eb3c5</PasswordMD5>
+    <Rights Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:54:29">&lt;Rights&gt;
+  &lt;AllowEditUsers&gt;false&lt;/AllowEditUsers&gt;
+  &lt;AllowEditBranches&gt;true&lt;/AllowEditBranches&gt;
+  &lt;AllowEditOptions&gt;false&lt;/AllowEditOptions&gt;
+  &lt;AllowEditTables&gt;true&lt;/AllowEditTables&gt;
+  &lt;AllowRemoveTableItems&gt;false&lt;/AllowRemoveTableItems&gt;
+  &lt;AllowEditPackets&gt;false&lt;/AllowEditPackets&gt;
+  &lt;AllowEditCharges&gt;false&lt;/AllowEditCharges&gt;
+  &lt;AllowShowPacketsPurchaseCost&gt;false&lt;/AllowShowPacketsPurchaseCost&gt;
+  &lt;AllowShowIndividualTeacherPay&gt;false&lt;/AllowShowIndividualTeacherPay&gt;
+  &lt;AllowEditNotes&gt;false&lt;/AllowEditNotes&gt;
+  &lt;AllowExportToExcel&gt;true&lt;/AllowExportToExcel&gt;
+  &lt;AllowCopyCells&gt;true&lt;/AllowCopyCells&gt;
+  &lt;AllowShowHistory&gt;true&lt;/AllowShowHistory&gt;
+  &lt;AllowShowBin&gt;false&lt;/AllowShowBin&gt;
+  &lt;AllowShowClientContacts&gt;true&lt;/AllowShowClientContacts&gt;
+  &lt;AllowRemoveVisits&gt;true&lt;/AllowRemoveVisits&gt;
+  &lt;AllowRemoveDepositItems&gt;false&lt;/AllowRemoveDepositItems&gt;
+  &lt;AllowEditTasks&gt;false&lt;/AllowEditTasks&gt;
+  &lt;AllowRemoveTasks&gt;false&lt;/AllowRemoveTasks&gt;
+  &lt;AllowCopyRows&gt;true&lt;/AllowCopyRows&gt;
+  &lt;AllowEditAccountProperties&gt;false&lt;/AllowEditAccountProperties&gt;
+  &lt;AllowEditExistAccountProperties&gt;false&lt;/AllowEditExistAccountProperties&gt;
+  &lt;AllowEditAccountVisits&gt;true&lt;/AllowEditAccountVisits&gt;
+  &lt;AllowCreateAccountsInPast&gt;false&lt;/AllowCreateAccountsInPast&gt;
+  &lt;AllowCheckVisitsInPast&gt;false&lt;/AllowCheckVisitsInPast&gt;
+  &lt;AllowCheckVisitsBadAccounts&gt;true&lt;/AllowCheckVisitsBadAccounts&gt;
+  &lt;AllowAgendaChangeDate&gt;false&lt;/AllowAgendaChangeDate&gt;
+  &lt;AllowAgendaShowBalance&gt;true&lt;/AllowAgendaShowBalance&gt;
+  &lt;Views&gt;
+    &lt;DanceStudio.DSAgendaView&gt;true&lt;/DanceStudio.DSAgendaView&gt;
+    &lt;DanceStudio.DSCheckVisitsView&gt;true&lt;/DanceStudio.DSCheckVisitsView&gt;
+    &lt;DanceStudio.DSTablesView&gt;true&lt;/DanceStudio.DSTablesView&gt;
+    &lt;DanceStudio.DSStatisticsView&gt;false&lt;/DanceStudio.DSStatisticsView&gt;
+    &lt;DanceStudio.DSGeneratorsView&gt;false&lt;/DanceStudio.DSGeneratorsView&gt;
+    &lt;DanceStudio.DSHallView&gt;true&lt;/DanceStudio.DSHallView&gt;
+    &lt;DanceStudio.DSGroupView&gt;true&lt;/DanceStudio.DSGroupView&gt;
+    &lt;DanceStudio.DSTeacherView&gt;true&lt;/DanceStudio.DSTeacherView&gt;
+    &lt;DanceStudio.DSSubstituteView&gt;true&lt;/DanceStudio.DSSubstituteView&gt;
+    &lt;DanceStudio.DSTeacherBalanceView&gt;true&lt;/DanceStudio.DSTeacherBalanceView&gt;
+    &lt;DanceStudio.DSReservationView&gt;true&lt;/DanceStudio.DSReservationView&gt;
+    &lt;DanceStudio.DSClientView&gt;true&lt;/DanceStudio.DSClientView&gt;
+    &lt;DanceStudio.DSTableUnionView1&gt;true&lt;/DanceStudio.DSTableUnionView1&gt;
+    &lt;DanceStudio.DSAccountView&gt;true&lt;/DanceStudio.DSAccountView&gt;
+    &lt;DanceStudio.DSSingleTrainingView&gt;true&lt;/DanceStudio.DSSingleTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView2&gt;true&lt;/DanceStudio.DSTableUnionView2&gt;
+    &lt;DanceStudio.DSIndividualAccountView&gt;true&lt;/DanceStudio.DSIndividualAccountView&gt;
+    &lt;DanceStudio.DSIndividualTrainingView&gt;true&lt;/DanceStudio.DSIndividualTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView3&gt;true&lt;/DanceStudio.DSTableUnionView3&gt;
+    &lt;DanceStudio.DSRentAccountView&gt;true&lt;/DanceStudio.DSRentAccountView&gt;
+    &lt;DanceStudio.DSRentView&gt;true&lt;/DanceStudio.DSRentView&gt;
+    &lt;DanceStudio.DSProductView&gt;true&lt;/DanceStudio.DSProductView&gt;
+    &lt;DanceStudio.DSChargeView&gt;true&lt;/DanceStudio.DSChargeView&gt;
+    &lt;DanceStudio.DSDayStatisticView&gt;false&lt;/DanceStudio.DSDayStatisticView&gt;
+    &lt;DanceStudio.DSPeriodStatisticView&gt;false&lt;/DanceStudio.DSPeriodStatisticView&gt;
+    &lt;DanceStudio.DSFunnelView&gt;true&lt;/DanceStudio.DSFunnelView&gt;
+    &lt;DanceStudio.DSAgreementView&gt;false&lt;/DanceStudio.DSAgreementView&gt;
+    &lt;DanceStudio.DSClientInformationView&gt;false&lt;/DanceStudio.DSClientInformationView&gt;
+    &lt;DanceStudio.DSPrintAccountView&gt;false&lt;/DanceStudio.DSPrintAccountView&gt;
+    &lt;DanceStudio.DSCashInOrderView&gt;false&lt;/DanceStudio.DSCashInOrderView&gt;
+    &lt;DanceStudio.DSReturnMoneyApplicationView&gt;false&lt;/DanceStudio.DSReturnMoneyApplicationView&gt;
+    &lt;DanceStudio.DSSalesListView&gt;false&lt;/DanceStudio.DSSalesListView&gt;
+    &lt;DanceStudio.DSTeacherPayView&gt;false&lt;/DanceStudio.DSTeacherPayView&gt;
+    &lt;DanceStudio.DSReceptionistPayView&gt;false&lt;/DanceStudio.DSReceptionistPayView&gt;
+    &lt;DanceStudio.DSVisitsView&gt;false&lt;/DanceStudio.DSVisitsView&gt;
+    &lt;DanceStudio.DSIndividualVisitsView&gt;false&lt;/DanceStudio.DSIndividualVisitsView&gt;
+    &lt;DanceStudio.DSRentCostView&gt;false&lt;/DanceStudio.DSRentCostView&gt;
+    &lt;DanceStudio.DSClientObligationsView&gt;false&lt;/DanceStudio.DSClientObligationsView&gt;
+    &lt;DanceStudio.DSBalanceView&gt;false&lt;/DanceStudio.DSBalanceView&gt;
+  &lt;/Views&gt;
+&lt;/Rights&gt;</Rights>
+    <Login Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:44:47">админ Софья</Login>
+    <IsAdmin>True</IsAdmin>
+    <OwnSalaryOptions>False</OwnSalaryOptions>
+    <SalaryOptions>
+      <UserSalaryDaysOptions>
+        <WeekDays>1,2,3,4,5,6,7</WeekDays>
+        <Dates />
+        <PayType>HourPlus</PayType>
+        <HourPay>150</HourPay>
+        <HourMinTimeEnable>false</HourMinTimeEnable>
+        <HourMinTime>0001-01-01T09:00:00</HourMinTime>
+        <HourMaxTimeEnable>false</HourMaxTimeEnable>
+        <HourMaxTime>0001-01-01T22:00:00</HourMaxTime>
+        <HourReworkingEnable>false</HourReworkingEnable>
+        <HourReworkingPay>50</HourReworkingPay>
+        <ShiftPay>1200</ShiftPay>
+        <ShiftMinDuration>30</ShiftMinDuration>
+        <AccountPercentEnable>true</AccountPercentEnable>
+        <AccountPercent>5</AccountPercent>
+        <AccountPercentSelect>AllAccounts</AccountPercentSelect>
+        <SecondAccountPercentEnable>false</SecondAccountPercentEnable>
+        <SecondAccountVisitPercentEnable>false</SecondAccountVisitPercentEnable>
+        <SecondAccountPercent>3</SecondAccountPercent>
+        <SecondAccountVisitPercent>10</SecondAccountVisitPercent>
+        <SecondAccountVisitDays>90</SecondAccountVisitDays>
+        <SinglePercentEnable>false</SinglePercentEnable>
+        <SinglePercent>5</SinglePercent>
+        <SinglePercentSelect>AllSingles</SinglePercentSelect>
+        <ProductPercentEnable>false</ProductPercentEnable>
+        <ProductPercent>5</ProductPercent>
+        <LeadAccountPercentEnable>false</LeadAccountPercentEnable>
+        <LeadAccountPercent>5</LeadAccountPercent>
+        <LeadAccount2PercentEnable>false</LeadAccount2PercentEnable>
+        <LeadAccount2Percent>2</LeadAccount2Percent>
+      </UserSalaryDaysOptions>
+    </SalaryOptions>
+    <ScheduleDropboxApp Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 12:45:18">centr-fr@yandex.ru</ScheduleDropboxApp>
+    <LastComputerID Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.01.2020 08:33:46">EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823</LastComputerID>
+    <Status>Active</Status>
+    <Protocols Updated="1199|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2021 16:02:02">
+      <Item Date="21.03.2021 18:27:20" Type="Connect" />
+      <Item Date="21.03.2021 20:24:45" Type="Disconnect" />
+      <Item Date="21.03.2021 20:30:33" Type="Connect" />
+      <Item Date="21.03.2021 20:45:16" Type="Disconnect" />
+      <Item Date="21.03.2021 21:52:58" Type="Connect" />
+      <Item Date="21.03.2021 22:06:09" Type="Disconnect" />
+      <Item Date="26.03.2021 15:13:45" Type="Connect" />
+      <Item Date="26.03.2021 15:15:47" Type="Disconnect" />
+      <Item Date="26.03.2021 16:16:41" Type="Connect" />
+      <Item Date="26.03.2021 20:28:49" Type="Disconnect" />
+      <Item Date="27.03.2021 08:09:27" Type="Connect" />
+      <Item Date="27.03.2021 18:26:52" Type="Disconnect" />
+      <Item Date="28.03.2021 15:35:42" Type="Connect" />
+      <Item Date="28.03.2021 16:47:57" Type="Disconnect" />
+      <Item Date="28.03.2021 17:24:14" Type="Connect" />
+      <Item Date="28.03.2021 18:16:29" Type="Disconnect" />
+      <Item Date="28.03.2021 18:42:46" Type="Connect" />
+      <Item Date="28.03.2021 19:14:28" Type="Disconnect" />
+      <Item Date="28.03.2021 19:15:08" Type="Connect" />
+      <Item Date="28.03.2021 19:15:52" Type="Disconnect" />
+      <Item Date="29.03.2021 14:39:53" Type="Connect" />
+      <Item Date="29.03.2021 17:44:30" Type="Disconnect" />
+      <Item Date="29.03.2021 17:59:08" Type="Connect" />
+      <Item Date="29.03.2021 20:12:29" Type="Disconnect" />
+      <Item Date="31.03.2021 10:13:25" Type="Connect" />
+      <Item Date="31.03.2021 11:23:40" Type="Disconnect" />
+      <Item Date="31.03.2021 11:28:01" Type="Connect" />
+      <Item Date="31.03.2021 11:28:41" Type="Disconnect" />
+      <Item Date="31.03.2021 11:29:40" Type="Connect" />
+      <Item Date="31.03.2021 12:35:43" Type="Disconnect" />
+      <Item Date="31.03.2021 14:34:46" Type="Connect" />
+      <Item Date="31.03.2021 17:09:46" Type="Disconnect" />
+      <Item Date="31.03.2021 17:11:10" Type="Connect" />
+      <Item Date="31.03.2021 17:23:57" Type="Disconnect" />
+      <Item Date="31.03.2021 17:24:51" Type="Connect" />
+      <Item Date="31.03.2021 17:31:35" Type="Disconnect" />
+      <Item Date="31.03.2021 17:31:41" Type="Connect" />
+      <Item Date="31.03.2021 18:15:30" Type="Disconnect" />
+      <Item Date="31.03.2021 18:31:42" Type="Connect" />
+      <Item Date="31.03.2021 18:32:51" Type="Disconnect" />
+      <Item Date="31.03.2021 18:52:33" Type="Connect" />
+      <Item Date="31.03.2021 20:14:54" Type="Disconnect" />
+      <Item Date="02.04.2021 10:07:13" Type="Connect" />
+      <Item Date="02.04.2021 11:02:39" Type="Disconnect" />
+      <Item Date="02.04.2021 14:47:48" Type="Connect" />
+      <Item Date="02.04.2021 17:53:07" Type="Disconnect" />
+      <Item Date="03.04.2021 07:52:06" Type="Connect" />
+      <Item Date="03.04.2021 09:48:09" Type="Disconnect" />
+      <Item Date="03.04.2021 09:49:08" Type="Connect" />
+      <Item Date="03.04.2021 10:00:42" Type="Disconnect" />
+      <Item Date="03.04.2021 10:01:22" Type="Connect" />
+      <Item Date="03.04.2021 11:02:49" Type="Disconnect" />
+      <Item Date="05.04.2021 16:10:25" Type="Connect" />
+      <Item Date="05.04.2021 19:37:31" Type="Disconnect" />
+      <Item Date="07.04.2021 10:17:13" Type="Connect" />
+      <Item Date="07.04.2021 12:02:48" Type="Disconnect" />
+      <Item Date="09.04.2021 18:00:12" Type="Connect" />
+      <Item Date="09.04.2021 18:06:50" Type="Disconnect" />
+      <Item Date="09.04.2021 18:11:11" Type="Connect" />
+      <Item Date="09.04.2021 19:15:16" Type="Disconnect" />
+      <Item Date="10.04.2021 07:44:00" Type="Connect" />
+      <Item Date="10.04.2021 09:12:48" Type="Disconnect" />
+      <Item Date="10.04.2021 09:21:14" Type="Connect" />
+      <Item Date="10.04.2021 13:51:33" Type="Disconnect" />
+      <Item Date="10.04.2021 14:56:01" Type="Connect" />
+      <Item Date="10.04.2021 15:27:02" Type="Disconnect" />
+      <Item Date="12.04.2021 14:59:22" Type="Connect" />
+      <Item Date="12.04.2021 19:45:31" Type="Disconnect" />
+      <Item Date="13.04.2021 15:46:12" Type="Connect" />
+      <Item Date="13.04.2021 19:51:30" Type="Disconnect" />
+      <Item Date="13.04.2021 19:52:43" Type="Connect" />
+      <Item Date="13.04.2021 21:13:51" Type="Disconnect" />
+      <Item Date="13.04.2021 21:24:47" Type="Connect" />
+      <Item Date="13.04.2021 21:34:01" Type="Disconnect" />
+      <Item Date="17.04.2021 16:41:56" Type="Connect" />
+      <Item Date="17.04.2021 17:51:06" Type="Disconnect" />
+      <Item Date="17.04.2021 18:00:41" Type="Connect" />
+      <Item Date="17.04.2021 19:39:53" Type="Disconnect" />
+      <Item Date="17.04.2021 19:40:23" Type="Connect" />
+      <Item Date="17.04.2021 20:02:05" Type="Disconnect" />
+      <Item Date="18.04.2021 19:48:45" Type="Connect" />
+      <Item Date="18.04.2021 20:13:28" Type="Disconnect" />
+      <Item Date="18.04.2021 20:15:00" Type="Connect" />
+      <Item Date="18.04.2021 20:34:29" Type="Disconnect" />
+      <Item Date="19.04.2021 15:14:15" Type="Connect" />
+      <Item Date="19.04.2021 18:54:05" Type="Disconnect" />
+      <Item Date="19.04.2021 18:56:43" Type="Connect" />
+      <Item Date="19.04.2021 19:01:30" Type="Disconnect" />
+      <Item Date="19.04.2021 19:08:10" Type="Connect" />
+      <Item Date="19.04.2021 19:17:25" Type="Disconnect" />
+      <Item Date="20.04.2021 15:45:40" Type="Connect" />
+      <Item Date="20.04.2021 15:57:21" Type="Disconnect" />
+      <Item Date="20.04.2021 15:59:06" Type="Connect" />
+      <Item Date="20.04.2021 16:01:25" Type="Disconnect" />
+      <Item Date="20.04.2021 16:03:07" Type="Connect" />
+      <Item Date="20.04.2021 16:32:46" Type="Disconnect" />
+      <Item Date="20.04.2021 16:43:03" Type="Connect" />
+      <Item Date="20.04.2021 16:57:13" Type="Disconnect" />
+      <Item Date="20.04.2021 17:09:34" Type="Connect" />
+      <Item Date="20.04.2021 22:10:54" Type="Disconnect" />
+      <Item Date="21.04.2021 10:07:55" Type="Connect" />
+      <Item Date="21.04.2021 10:29:05" Type="Disconnect" />
+      <Item Date="22.04.2021 07:41:44" Type="Connect" />
+      <Item Date="22.04.2021 09:40:40" Type="Disconnect" />
+      <Item Date="22.04.2021 09:41:26" Type="Connect" />
+      <Item Date="22.04.2021 10:14:22" Type="Disconnect" />
+      <Item Date="22.04.2021 11:57:53" Type="Connect" />
+      <Item Date="22.04.2021 12:49:49" Type="Disconnect" />
+      <Item Date="24.04.2021 07:34:24" Type="Connect" />
+      <Item Date="24.04.2021 11:08:46" Type="Disconnect" />
+      <Item Date="24.04.2021 14:12:24" Type="Connect" />
+      <Item Date="24.04.2021 18:16:05" Type="Disconnect" />
+      <Item Date="27.04.2021 14:53:45" Type="Connect" />
+      <Item Date="27.04.2021 15:19:38" Type="Disconnect" />
+      <Item Date="27.04.2021 15:58:06" Type="Connect" />
+      <Item Date="27.04.2021 19:23:43" Type="Disconnect" />
+      <Item Date="27.04.2021 19:24:37" Type="Connect" />
+      <Item Date="27.04.2021 20:12:52" Type="Disconnect" />
+      <Item Date="27.04.2021 20:17:41" Type="Connect" />
+      <Item Date="27.04.2021 21:50:54" Type="Disconnect" />
+      <Item Date="28.04.2021 10:08:52" Type="Connect" />
+      <Item Date="28.04.2021 11:08:16" Type="Disconnect" />
+      <Item Date="29.04.2021 07:40:55" Type="Connect" />
+      <Item Date="29.04.2021 10:49:27" Type="Disconnect" />
+      <Item Date="01.05.2021 08:12:34" Type="Connect" />
+      <Item Date="01.05.2021 10:56:34" Type="Disconnect" />
+      <Item Date="01.05.2021 11:23:22" Type="Connect" />
+      <Item Date="01.05.2021 11:39:55" Type="Disconnect" />
+      <Item Date="01.05.2021 14:48:53" Type="Connect" />
+      <Item Date="01.05.2021 18:13:38" Type="Disconnect" />
+      <Item Date="02.05.2021 16:00:39" Type="Connect" />
+      <Item Date="02.05.2021 17:59:06" Type="Disconnect" />
+      <Item Date="02.05.2021 19:04:23" Type="Connect" />
+      <Item Date="02.05.2021 19:05:52" Type="Disconnect" />
+      <Item Date="04.05.2021 14:49:03" Type="Connect" />
+      <Item Date="04.05.2021 14:52:05" Type="Disconnect" />
+      <Item Date="04.05.2021 14:56:53" Type="Connect" />
+      <Item Date="04.05.2021 16:59:11" Type="Disconnect" />
+      <Item Date="04.05.2021 17:25:20" Type="Connect" />
+      <Item Date="04.05.2021 20:33:34" Type="Disconnect" />
+      <Item Date="04.05.2021 21:37:31" Type="Connect" />
+      <Item Date="04.05.2021 21:51:15" Type="Disconnect" />
+      <Item Date="05.05.2021 16:18:57" Type="Connect" />
+      <Item Date="05.05.2021 19:12:52" Type="Disconnect" />
+      <Item Date="06.05.2021 18:24:10" Type="Connect" />
+      <Item Date="06.05.2021 19:17:36" Type="Disconnect" />
+      <Item Date="07.05.2021 15:02:24" Type="Connect" />
+      <Item Date="07.05.2021 19:32:47" Type="Disconnect" />
+      <Item Date="07.05.2021 21:17:24" Type="Connect" />
+      <Item Date="07.05.2021 21:26:42" Type="Disconnect" />
+      <Item Date="07.05.2021 21:45:15" Type="Connect" />
+      <Item Date="07.05.2021 22:38:16" Type="Disconnect" />
+      <Item Date="08.05.2021 07:44:27" Type="Connect" />
+      <Item Date="08.05.2021 10:11:36" Type="Disconnect" />
+      <Item Date="08.05.2021 10:21:43" Type="Connect" />
+      <Item Date="08.05.2021 10:33:01" Type="Disconnect" />
+      <Item Date="08.05.2021 10:33:30" Type="Connect" />
+      <Item Date="08.05.2021 10:36:41" Type="Disconnect" />
+      <Item Date="08.05.2021 10:39:12" Type="Connect" />
+      <Item Date="08.05.2021 10:40:17" Type="Disconnect" />
+      <Item Date="08.05.2021 10:41:38" Type="Connect" />
+      <Item Date="08.05.2021 10:42:10" Type="Disconnect" />
+      <Item Date="08.05.2021 10:43:23" Type="Connect" />
+      <Item Date="08.05.2021 11:13:32" Type="Disconnect" />
+      <Item Date="12.05.2021 10:14:59" Type="Connect" />
+      <Item Date="12.05.2021 11:06:44" Type="Disconnect" />
+      <Item Date="12.05.2021 11:07:23" Type="Connect" />
+      <Item Date="12.05.2021 11:08:15" Type="Disconnect" />
+      <Item Date="19.05.2021 15:15:07" Type="Connect" />
+      <Item Date="19.05.2021 20:50:25" Type="Disconnect" />
+      <Item Date="22.05.2021 08:37:49" Type="Connect" />
+      <Item Date="22.05.2021 10:40:23" Type="Disconnect" />
+      <Item Date="24.05.2021 18:05:22" Type="Connect" />
+      <Item Date="24.05.2021 19:14:28" Type="Disconnect" />
+      <Item Date="24.05.2021 19:57:29" Type="Connect" />
+      <Item Date="24.05.2021 21:37:16" Type="Disconnect" />
+      <Item Date="25.05.2021 17:56:15" Type="Connect" />
+      <Item Date="25.05.2021 21:24:23" Type="Disconnect" />
+      <Item Date="27.05.2021 08:52:33" Type="Connect" />
+      <Item Date="27.05.2021 10:13:02" Type="Disconnect" />
+      <Item Date="28.05.2021 17:58:17" Type="Connect" />
+      <Item Date="28.05.2021 21:08:35" Type="Disconnect" />
+      <Item Date="28.05.2021 21:09:39" Type="Connect" />
+      <Item Date="28.05.2021 21:10:46" Type="Disconnect" />
+      <Item Date="29.05.2021 09:35:09" Type="Connect" />
+      <Item Date="29.05.2021 11:53:49" Type="Disconnect" />
+      <Item Date="02.06.2021 14:43:54" Type="Connect" />
+      <Item Date="02.06.2021 18:24:19" Type="Disconnect" />
+      <Item Date="03.06.2021 07:34:52" Type="Connect" />
+      <Item Date="03.06.2021 08:11:55" Type="Disconnect" />
+      <Item Date="03.06.2021 08:26:10" Type="Connect" />
+      <Item Date="03.06.2021 11:43:44" Type="Disconnect" />
+      <Item Date="05.06.2021 07:38:20" Type="Connect" />
+      <Item Date="05.06.2021 07:39:30" Type="Disconnect" />
+      <Item Date="05.06.2021 08:10:44" Type="Connect" />
+      <Item Date="05.06.2021 12:00:05" Type="Disconnect" />
+      <Item Date="07.06.2021 17:30:49" Type="Connect" />
+      <Item Date="07.06.2021 17:31:43" Type="Disconnect" />
+      <Item Date="07.06.2021 18:03:25" Type="Connect" />
+      <Item Date="07.06.2021 20:13:43" Type="Disconnect" />
+      <Item Date="10.06.2021 15:09:09" Type="Connect" />
+      <Item Date="10.06.2021 22:01:18" Type="Disconnect" />
+      <Item Date="12.06.2021 15:09:48" Type="Connect" />
+      <Item Date="12.06.2021 21:53:16" Type="Disconnect" />
+      <Item Date="13.06.2021 16:27:40" Type="Connect" />
+      <Item Date="13.06.2021 18:06:00" Type="Disconnect" />
+      <Item Date="15.06.2021 07:45:52" Type="Connect" />
+      <Item Date="15.06.2021 07:53:49" Type="Disconnect" />
+      <Item Date="19.06.2021 07:40:24" Type="Connect" />
+      <Item Date="19.06.2021 11:49:26" Type="Disconnect" />
+      <Item Date="20.06.2021 19:32:24" Type="Connect" />
+      <Item Date="20.06.2021 20:00:06" Type="Disconnect" />
+      <Item Date="20.06.2021 20:06:39" Type="Connect" />
+      <Item Date="20.06.2021 21:15:58" Type="Disconnect" />
+      <Item Date="20.06.2021 21:17:13" Type="Connect" />
+      <Item Date="20.06.2021 21:18:47" Type="Disconnect" />
+      <Item Date="22.06.2021 07:41:20" Type="Connect" />
+      <Item Date="22.06.2021 08:05:14" Type="Disconnect" />
+      <Item Date="24.06.2021 17:23:55" Type="Connect" />
+      <Item Date="24.06.2021 18:50:49" Type="Disconnect" />
+      <Item Date="24.06.2021 18:51:28" Type="Connect" />
+      <Item Date="24.06.2021 21:39:00" Type="Disconnect" />
+      <Item Date="26.06.2021 07:44:37" Type="Connect" />
+      <Item Date="26.06.2021 14:02:48" Type="Disconnect" />
+      <Item Date="26.06.2021 15:18:51" Type="Connect" />
+      <Item Date="26.06.2021 19:12:02" Type="Disconnect" />
+      <Item Date="28.06.2021 19:21:22" Type="Connect" />
+      <Item Date="28.06.2021 21:55:49" Type="Disconnect" />
+      <Item Date="01.07.2021 17:53:17" Type="Connect" />
+      <Item Date="01.07.2021 18:47:52" Type="Disconnect" />
+      <Item Date="01.07.2021 18:55:23" Type="Connect" />
+      <Item Date="01.07.2021 18:56:06" Type="Disconnect" />
+      <Item Date="01.07.2021 18:57:42" Type="Connect" />
+      <Item Date="01.07.2021 19:51:59" Type="Disconnect" />
+      <Item Date="01.07.2021 20:03:13" Type="Connect" />
+      <Item Date="01.07.2021 20:40:23" Type="Disconnect" />
+      <Item Date="03.07.2021 07:43:05" Type="Connect" />
+      <Item Date="03.07.2021 07:49:52" Type="Disconnect" />
+      <Item Date="03.07.2021 07:50:41" Type="Connect" />
+      <Item Date="03.07.2021 10:12:33" Type="Disconnect" />
+      <Item Date="03.07.2021 12:33:54" Type="Connect" />
+      <Item Date="03.07.2021 13:18:42" Type="Disconnect" />
+      <Item Date="03.07.2021 15:36:46" Type="Connect" />
+      <Item Date="03.07.2021 18:50:48" Type="Disconnect" />
+      <Item Date="09.07.2021 15:16:21" Type="Connect" />
+      <Item Date="09.07.2021 15:17:31" Type="Disconnect" />
+      <Item Date="09.07.2021 15:17:50" Type="Connect" />
+      <Item Date="09.07.2021 22:08:20" Type="Disconnect" />
+      <Item Date="13.07.2021 15:19:08" Type="Connect" />
+      <Item Date="13.07.2021 21:43:00" Type="Disconnect" />
+      <Item Date="18.07.2021 18:57:57" Type="Connect" />
+      <Item Date="18.07.2021 19:11:09" Type="Disconnect" />
+      <Item Date="18.07.2021 19:15:48" Type="Connect" />
+      <Item Date="18.07.2021 19:53:39" Type="Disconnect" />
+      <Item Date="20.07.2021 08:30:26" Type="Connect" />
+      <Item Date="20.07.2021 08:49:43" Type="Disconnect" />
+      <Item Date="20.07.2021 09:36:24" Type="Connect" />
+      <Item Date="20.07.2021 10:20:34" Type="Disconnect" />
+      <Item Date="20.07.2021 10:22:01" Type="Connect" />
+      <Item Date="20.07.2021 10:24:12" Type="Disconnect" />
+      <Item Date="22.07.2021 07:49:15" Type="Connect" />
+      <Item Date="22.07.2021 10:24:17" Type="Disconnect" />
+      <Item Date="22.07.2021 11:30:48" Type="Connect" />
+      <Item Date="22.07.2021 12:32:39" Type="Disconnect" />
+      <Item Date="23.07.2021 15:26:32" Type="Connect" />
+      <Item Date="23.07.2021 19:44:14" Type="Disconnect" />
+      <Item Date="23.07.2021 20:16:19" Type="Connect" />
+      <Item Date="23.07.2021 20:17:23" Type="Disconnect" />
+      <Item Date="23.07.2021 20:58:14" Type="Connect" />
+      <Item Date="23.07.2021 22:38:19" Type="Disconnect" />
+      <Item Date="24.07.2021 08:31:09" Type="Connect" />
+      <Item Date="24.07.2021 13:23:16" Type="Disconnect" />
+      <Item Date="24.07.2021 13:34:07" Type="Connect" />
+      <Item Date="24.07.2021 16:57:58" Type="Disconnect" />
+      <Item Date="29.07.2021 08:15:32" Type="Connect" />
+      <Item Date="29.07.2021 09:01:11" Type="Disconnect" />
+      <Item Date="29.07.2021 09:07:02" Type="Connect" />
+      <Item Date="29.07.2021 09:10:03" Type="Disconnect" />
+      <Item Date="29.07.2021 09:32:56" Type="Connect" />
+      <Item Date="29.07.2021 10:28:27" Type="Disconnect" />
+      <Item Date="29.07.2021 10:50:47" Type="Connect" />
+      <Item Date="29.07.2021 11:28:16" Type="Disconnect" />
+      <Item Date="30.07.2021 14:58:03" Type="Connect" />
+      <Item Date="30.07.2021 16:57:06" Type="Disconnect" />
+      <Item Date="30.07.2021 17:37:01" Type="Connect" />
+      <Item Date="30.07.2021 17:38:55" Type="Disconnect" />
+      <Item Date="30.07.2021 17:57:53" Type="Connect" />
+      <Item Date="30.07.2021 18:34:20" Type="Disconnect" />
+      <Item Date="30.07.2021 19:05:52" Type="Connect" />
+      <Item Date="30.07.2021 19:31:18" Type="Disconnect" />
+      <Item Date="30.07.2021 20:20:19" Type="Connect" />
+      <Item Date="30.07.2021 22:39:25" Type="Disconnect" />
+      <Item Date="31.07.2021 08:19:10" Type="Connect" />
+      <Item Date="31.07.2021 08:58:30" Type="Disconnect" />
+      <Item Date="31.07.2021 09:46:55" Type="Connect" />
+      <Item Date="31.07.2021 10:18:30" Type="Disconnect" />
+      <Item Date="03.08.2021 18:39:34" Type="Connect" />
+      <Item Date="03.08.2021 18:42:33" Type="Disconnect" />
+      <Item Date="03.08.2021 18:55:24" Type="Connect" />
+      <Item Date="03.08.2021 19:42:56" Type="Disconnect" />
+      <Item Date="03.08.2021 19:50:41" Type="Connect" />
+      <Item Date="03.08.2021 21:27:54" Type="Disconnect" />
+      <Item Date="04.08.2021 18:42:51" Type="Connect" />
+      <Item Date="04.08.2021 19:13:16" Type="Disconnect" />
+      <Item Date="06.08.2021 17:19:27" Type="Connect" />
+      <Item Date="06.08.2021 17:33:20" Type="Disconnect" />
+      <Item Date="06.08.2021 17:51:31" Type="Connect" />
+      <Item Date="06.08.2021 22:55:15" Type="Disconnect" />
+      <Item Date="07.08.2021 08:13:27" Type="Connect" />
+      <Item Date="07.08.2021 10:08:38" Type="Disconnect" />
+      <Item Date="18.08.2021 18:08:08" Type="Connect" />
+      <Item Date="18.08.2021 22:38:23" Type="Disconnect" />
+      <Item Date="19.08.2021 18:06:17" Type="Connect" />
+      <Item Date="19.08.2021 18:12:40" Type="Disconnect" />
+      <Item Date="20.08.2021 14:50:08" Type="Connect" />
+      <Item Date="20.08.2021 15:25:08" Type="Disconnect" />
+      <Item Date="20.08.2021 16:25:50" Type="Connect" />
+      <Item Date="20.08.2021 16:26:26" Type="Disconnect" />
+      <Item Date="20.08.2021 16:52:57" Type="Connect" />
+      <Item Date="20.08.2021 22:40:34" Type="Disconnect" />
+      <Item Date="21.08.2021 16:02:37" Type="Connect" />
+      <Item Date="21.08.2021 20:14:07" Type="Disconnect" />
+      <Item Date="25.08.2021 16:46:44" Type="Connect" />
+      <Item Date="25.08.2021 19:27:26" Type="Disconnect" />
+      <Item Date="25.08.2021 19:29:35" Type="Connect" />
+      <Item Date="25.08.2021 19:37:04" Type="Disconnect" />
+      <Item Date="27.08.2021 15:16:49" Type="Connect" />
+      <Item Date="27.08.2021 17:52:07" Type="Disconnect" />
+      <Item Date="27.08.2021 18:02:45" Type="Connect" />
+      <Item Date="27.08.2021 18:15:22" Type="Disconnect" />
+      <Item Date="27.08.2021 18:18:21" Type="Connect" />
+      <Item Date="27.08.2021 19:08:22" Type="Disconnect" />
+      <Item Date="27.08.2021 19:23:50" Type="Connect" />
+      <Item Date="27.08.2021 22:40:23" Type="Disconnect" />
+      <Item Date="01.09.2021 16:25:21" Type="Connect" />
+      <Item Date="01.09.2021 20:16:00" Type="Disconnect" />
+      <Item Date="11.09.2021 08:03:57" Type="Connect" />
+      <Item Date="11.09.2021 10:50:28" Type="Disconnect" />
+      <Item Date="11.09.2021 11:34:27" Type="Connect" />
+      <Item Date="11.09.2021 17:11:23" Type="Disconnect" />
+      <Item Date="14.09.2021 16:03:43" Type="Connect" />
+      <Item Date="14.09.2021 17:28:05" Type="Disconnect" />
+      <Item Date="14.09.2021 17:33:35" Type="Connect" />
+      <Item Date="14.09.2021 20:44:21" Type="Disconnect" />
+      <Item Date="14.09.2021 20:46:53" Type="Connect" />
+      <Item Date="14.09.2021 20:49:31" Type="Disconnect" />
+      <Item Date="15.09.2021 16:48:53" Type="Connect" />
+      <Item Date="15.09.2021 20:18:25" Type="Disconnect" />
+      <Item Date="23.09.2021 07:29:21" Type="Connect" />
+      <Item Date="23.09.2021 08:22:41" Type="Disconnect" />
+      <Item Date="25.09.2021 07:29:29" Type="Connect" />
+      <Item Date="25.09.2021 07:29:57" Type="Disconnect" />
+      <Item Date="28.09.2021 14:41:07" Type="Connect" />
+      <Item Date="28.09.2021 19:56:49" Type="Disconnect" />
+      <Item Date="01.10.2021 11:06:42" Type="Connect" />
+      <Item Date="01.10.2021 11:10:13" Type="Disconnect" />
+      <Item Date="01.10.2021 11:53:03" Type="Connect" />
+      <Item Date="01.10.2021 12:00:19" Type="Disconnect" />
+      <Item Date="05.10.2021 14:45:46" Type="Connect" />
+      <Item Date="05.10.2021 15:36:09" Type="Disconnect" />
+      <Item Date="05.10.2021 16:05:45" Type="Connect" />
+      <Item Date="05.10.2021 21:33:30" Type="Disconnect" />
+      <Item Date="07.10.2021 17:18:15" Type="Connect" />
+      <Item Date="07.10.2021 21:34:02" Type="Disconnect" />
+      <Item Date="08.10.2021 10:02:49" Type="Connect" />
+      <Item Date="08.10.2021 10:31:23" Type="Disconnect" />
+      <Item Date="08.10.2021 10:32:08" Type="Connect" />
+      <Item Date="08.10.2021 10:39:15" Type="Disconnect" />
+      <Item Date="08.10.2021 11:06:57" Type="Connect" />
+      <Item Date="08.10.2021 11:30:10" Type="Disconnect" />
+      <Item Date="08.10.2021 14:37:05" Type="Connect" />
+      <Item Date="08.10.2021 19:10:48" Type="Disconnect" />
+      <Item Date="08.10.2021 19:12:26" Type="Connect" />
+      <Item Date="08.10.2021 19:13:06" Type="Disconnect" />
+      <Item Date="08.10.2021 19:13:12" Type="Connect" />
+      <Item Date="08.10.2021 19:13:30" Type="Disconnect" />
+      <Item Date="08.10.2021 19:14:10" Type="Connect" />
+      <Item Date="08.10.2021 19:14:26" Type="Disconnect" />
+      <Item Date="08.10.2021 19:14:36" Type="Connect" />
+      <Item Date="08.10.2021 19:15:34" Type="Disconnect" />
+      <Item Date="09.10.2021 07:32:30" Type="Connect" />
+      <Item Date="09.10.2021 09:56:09" Type="Disconnect" />
+      <Item Date="10.10.2021 16:38:38" Type="Connect" />
+      <Item Date="10.10.2021 21:12:57" Type="Disconnect" />
+      <Item Date="11.10.2021 17:02:59" Type="Connect" />
+      <Item Date="11.10.2021 21:23:41" Type="Disconnect" />
+      <Item Date="12.10.2021 14:20:54" Type="Connect" />
+      <Item Date="12.10.2021 15:53:33" Type="Disconnect" />
+      <Item Date="12.10.2021 16:25:06" Type="Connect" />
+      <Item Date="12.10.2021 17:14:46" Type="Disconnect" />
+      <Item Date="12.10.2021 17:16:29" Type="Connect" />
+      <Item Date="12.10.2021 17:23:28" Type="Disconnect" />
+      <Item Date="12.10.2021 18:32:09" Type="Connect" />
+      <Item Date="12.10.2021 20:25:53" Type="Disconnect" />
+      <Item Date="13.10.2021 15:26:20" Type="Connect" />
+      <Item Date="13.10.2021 17:00:38" Type="Disconnect" />
+      <Item Date="13.10.2021 17:22:00" Type="Connect" />
+      <Item Date="13.10.2021 19:42:29" Type="Disconnect" />
+      <Item Date="13.10.2021 19:46:37" Type="Connect" />
+      <Item Date="13.10.2021 20:16:00" Type="Disconnect" />
+      <Item Date="14.10.2021 07:39:16" Type="Connect" />
+      <Item Date="14.10.2021 11:18:30" Type="Disconnect" />
+      <Item Date="14.10.2021 11:18:51" Type="Connect" />
+      <Item Date="14.10.2021 11:19:33" Type="Disconnect" />
+      <Item Date="16.10.2021 07:26:37" Type="Connect" />
+      <Item Date="16.10.2021 11:05:01" Type="Disconnect" />
+      <Item Date="16.10.2021 15:39:24" Type="Connect" />
+      <Item Date="16.10.2021 16:41:53" Type="Disconnect" />
+      <Item Date="18.10.2021 17:05:50" Type="Connect" />
+      <Item Date="18.10.2021 21:51:40" Type="Disconnect" />
+      <Item Date="21.10.2021 07:30:13" Type="Connect" />
+      <Item Date="21.10.2021 09:57:53" Type="Disconnect" />
+      <Item Date="23.10.2021 12:45:18" Type="Connect" />
+      <Item Date="23.10.2021 18:42:43" Type="Disconnect" />
+      <Item Date="24.10.2021 19:15:35" Type="Connect" />
+      <Item Date="24.10.2021 19:44:08" Type="Disconnect" />
+      <Item Date="24.10.2021 19:56:06" Type="Connect" />
+      <Item Date="24.10.2021 20:57:32" Type="Disconnect" />
+      <Item Date="25.10.2021 16:04:49" Type="Connect" />
+      <Item Date="25.10.2021 18:14:23" Type="Disconnect" />
+      <Item Date="25.10.2021 18:17:20" Type="Connect" />
+      <Item Date="25.10.2021 20:02:23" Type="Disconnect" />
+      <Item Date="26.10.2021 17:42:50" Type="Connect" />
+      <Item Date="26.10.2021 21:08:44" Type="Disconnect" />
+      <Item Date="27.10.2021 18:28:16" Type="Connect" />
+      <Item Date="27.10.2021 18:36:11" Type="Disconnect" />
+      <Item Date="27.10.2021 18:37:31" Type="Connect" />
+      <Item Date="27.10.2021 19:47:35" Type="Disconnect" />
+      <Item Date="28.10.2021 07:53:11" Type="Connect" />
+      <Item Date="28.10.2021 09:50:42" Type="Disconnect" />
+      <Item Date="28.10.2021 09:58:44" Type="Connect" />
+      <Item Date="28.10.2021 11:31:01" Type="Disconnect" />
+      <Item Date="30.10.2021 07:52:07" Type="Connect" />
+      <Item Date="30.10.2021 09:51:15" Type="Disconnect" />
+      <Item Date="30.10.2021 10:13:14" Type="Connect" />
+      <Item Date="30.10.2021 10:18:45" Type="Disconnect" />
+      <Item Date="30.10.2021 10:22:56" Type="Connect" />
+      <Item Date="02.11.2021 07:24:10" Type="Connect" />
+      <Item Date="02.11.2021 10:50:48" Type="Disconnect" />
+      <Item Date="02.11.2021 11:01:01" Type="Connect" />
+      <Item Date="02.11.2021 11:45:34" Type="Disconnect" />
+      <Item Date="04.11.2021 07:30:30" Type="Connect" />
+      <Item Date="04.11.2021 10:18:28" Type="Disconnect" />
+      <Item Date="06.11.2021 06:58:28" Type="Connect" />
+      <Item Date="06.11.2021 19:14:17" Type="Disconnect" />
+      <Item Date="11.11.2021 17:37:54" Type="Connect" />
+      <Item Date="11.11.2021 19:18:58" Type="Disconnect" />
+      <Item Date="11.11.2021 19:25:18" Type="Connect" />
+      <Item Date="11.11.2021 20:29:35" Type="Disconnect" />
+      <Item Date="12.11.2021 14:46:24" Type="Connect" />
+      <Item Date="12.11.2021 14:46:57" Type="Disconnect" />
+      <Item Date="12.11.2021 15:13:49" Type="Connect" />
+      <Item Date="12.11.2021 17:46:31" Type="Disconnect" />
+      <Item Date="12.11.2021 18:27:25" Type="Connect" />
+      <Item Date="12.11.2021 21:45:40" Type="Disconnect" />
+      <Item Date="13.11.2021 07:21:38" Type="Connect" />
+      <Item Date="13.11.2021 07:23:09" Type="Disconnect" />
+      <Item Date="13.11.2021 07:49:24" Type="Connect" />
+      <Item Date="13.11.2021 16:46:58" Type="Disconnect" />
+      <Item Date="15.11.2021 19:18:49" Type="Connect" />
+      <Item Date="15.11.2021 22:37:22" Type="Disconnect" />
+      <Item Date="17.11.2021 19:38:40" Type="Connect" />
+      <Item Date="17.11.2021 19:41:02" Type="Disconnect" />
+      <Item Date="17.11.2021 19:42:41" Type="Connect" />
+      <Item Date="17.11.2021 20:23:05" Type="Disconnect" />
+      <Item Date="17.11.2021 20:54:28" Type="Connect" />
+      <Item Date="17.11.2021 21:51:26" Type="Disconnect" />
+      <Item Date="18.11.2021 07:25:29" Type="Connect" />
+      <Item Date="18.11.2021 10:27:38" Type="Disconnect" />
+      <Item Date="18.11.2021 10:44:35" Type="Connect" />
+      <Item Date="18.11.2021 11:14:17" Type="Disconnect" />
+      <Item Date="18.11.2021 17:26:51" Type="Connect" />
+      <Item Date="18.11.2021 19:22:43" Type="Disconnect" />
+      <Item Date="18.11.2021 20:03:47" Type="Connect" />
+      <Item Date="18.11.2021 21:21:28" Type="Disconnect" />
+      <Item Date="19.11.2021 14:50:08" Type="Connect" />
+      <Item Date="19.11.2021 14:50:59" Type="Disconnect" />
+      <Item Date="19.11.2021 15:19:56" Type="Connect" />
+      <Item Date="19.11.2021 17:20:34" Type="Disconnect" />
+      <Item Date="19.11.2021 17:55:48" Type="Connect" />
+      <Item Date="19.11.2021 18:54:36" Type="Disconnect" />
+      <Item Date="22.11.2021 16:55:04" Type="Connect" />
+      <Item Date="22.11.2021 20:01:00" Type="Disconnect" />
+      <Item Date="25.11.2021 08:05:20" Type="Connect" />
+      <Item Date="25.11.2021 11:42:10" Type="Disconnect" />
+      <Item Date="25.11.2021 16:43:39" Type="Connect" />
+      <Item Date="25.11.2021 17:06:12" Type="Disconnect" />
+      <Item Date="25.11.2021 17:08:36" Type="Connect" />
+      <Item Date="25.11.2021 17:09:08" Type="Disconnect" />
+      <Item Date="25.11.2021 17:40:15" Type="Connect" />
+      <Item Date="25.11.2021 19:34:49" Type="Connect" />
+      <Item Date="25.11.2021 21:16:54" Type="Disconnect" />
+      <Item Date="26.11.2021 14:45:58" Type="Connect" />
+      <Item Date="26.11.2021 17:18:22" Type="Disconnect" />
+      <Item Date="27.11.2021 07:36:51" Type="Connect" />
+      <Item Date="27.11.2021 16:35:02" Type="Disconnect" />
+      <Item Date="29.11.2021 16:18:50" Type="Connect" />
+      <Item Date="29.11.2021 19:57:30" Type="Disconnect" />
+      <Item Date="01.12.2021 14:46:12" Type="Connect" />
+      <Item Date="01.12.2021 16:02:02" Type="Disconnect" />
+    </Protocols>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|8FB8-D258-BCDC-E8AE-77FB-DF07-C362-FB62|11.08.2015 10:38:38">
+    <ID>5039c33b-8f21-4253-9977-ffd1f87ea9fe</ID>
+    <PasswordMD5>5731209a9dc0c556ebac4f3a7834458f</PasswordMD5>
+    <Rights>&lt;Rights&gt;
+  &lt;AllowEditUsers&gt;true&lt;/AllowEditUsers&gt;
+  &lt;AllowEditBranches&gt;true&lt;/AllowEditBranches&gt;
+  &lt;AllowEditOptions&gt;true&lt;/AllowEditOptions&gt;
+  &lt;AllowEditTables&gt;true&lt;/AllowEditTables&gt;
+  &lt;AllowRemoveTableItems&gt;true&lt;/AllowRemoveTableItems&gt;
+  &lt;AllowEditPackets&gt;true&lt;/AllowEditPackets&gt;
+  &lt;AllowShowPacketsPurchaseCost&gt;true&lt;/AllowShowPacketsPurchaseCost&gt;
+  &lt;AllowShowIndividualTeacherPay&gt;false&lt;/AllowShowIndividualTeacherPay&gt;
+  &lt;AllowEditNotes&gt;true&lt;/AllowEditNotes&gt;
+  &lt;AllowExportToExcel&gt;true&lt;/AllowExportToExcel&gt;
+  &lt;AllowCopyCells&gt;true&lt;/AllowCopyCells&gt;
+  &lt;AllowShowHistory&gt;true&lt;/AllowShowHistory&gt;
+  &lt;AllowShowBin&gt;true&lt;/AllowShowBin&gt;
+  &lt;AllowRemoveDepositItems&gt;true&lt;/AllowRemoveDepositItems&gt;
+  &lt;AllowCreateAccountsInPast&gt;true&lt;/AllowCreateAccountsInPast&gt;
+  &lt;Views&gt;
+    &lt;DanceStudio.DSAgendaView&gt;true&lt;/DanceStudio.DSAgendaView&gt;
+    &lt;DanceStudio.DSTablesView&gt;true&lt;/DanceStudio.DSTablesView&gt;
+    &lt;DanceStudio.DSStatisticsView&gt;true&lt;/DanceStudio.DSStatisticsView&gt;
+    &lt;DanceStudio.DSGeneratorsView&gt;true&lt;/DanceStudio.DSGeneratorsView&gt;
+    &lt;DanceStudio.DSStyleView&gt;true&lt;/DanceStudio.DSStyleView&gt;
+    &lt;DanceStudio.DSHallView&gt;true&lt;/DanceStudio.DSHallView&gt;
+    &lt;DanceStudio.DSGroupView&gt;true&lt;/DanceStudio.DSGroupView&gt;
+    &lt;DanceStudio.DSPassportView&gt;true&lt;/DanceStudio.DSPassportView&gt;
+    &lt;DanceStudio.DSTeacherView&gt;true&lt;/DanceStudio.DSTeacherView&gt;
+    &lt;DanceStudio.DSSubstituteView&gt;true&lt;/DanceStudio.DSSubstituteView&gt;
+    &lt;DanceStudio.DSTeacherBalanceView&gt;true&lt;/DanceStudio.DSTeacherBalanceView&gt;
+    &lt;DanceStudio.DSClientView&gt;true&lt;/DanceStudio.DSClientView&gt;
+    &lt;DanceStudio.DSAccountView&gt;true&lt;/DanceStudio.DSAccountView&gt;
+    &lt;DanceStudio.DSSingleTrainingView&gt;true&lt;/DanceStudio.DSSingleTrainingView&gt;
+    &lt;DanceStudio.DSIndividualTrainingView&gt;true&lt;/DanceStudio.DSIndividualTrainingView&gt;
+    &lt;DanceStudio.DSRentView&gt;true&lt;/DanceStudio.DSRentView&gt;
+    &lt;DanceStudio.DSProductView&gt;true&lt;/DanceStudio.DSProductView&gt;
+    &lt;DanceStudio.DSDayStatisticView&gt;true&lt;/DanceStudio.DSDayStatisticView&gt;
+    &lt;DanceStudio.DSPeriodStatisticView&gt;true&lt;/DanceStudio.DSPeriodStatisticView&gt;
+    &lt;DanceStudio.DSAgreementView&gt;true&lt;/DanceStudio.DSAgreementView&gt;
+    &lt;DanceStudio.DSClientInformationView&gt;true&lt;/DanceStudio.DSClientInformationView&gt;
+    &lt;DanceStudio.DSPrintAccountView&gt;true&lt;/DanceStudio.DSPrintAccountView&gt;
+    &lt;DanceStudio.DSTeacherPayView&gt;true&lt;/DanceStudio.DSTeacherPayView&gt;
+    &lt;DanceStudio.DSReceptionistPayView&gt;true&lt;/DanceStudio.DSReceptionistPayView&gt;
+    &lt;DanceStudio.DSGroupContactsView&gt;true&lt;/DanceStudio.DSGroupContactsView&gt;
+    &lt;DanceStudio.DSRentCostView&gt;true&lt;/DanceStudio.DSRentCostView&gt;
+    &lt;DanceStudio.DSVisitsView&gt;true&lt;/DanceStudio.DSVisitsView&gt;
+  &lt;/Views&gt;
+&lt;/Rights&gt;</Rights>
+    <Login>levkino</Login>
+    <Protocols />
+  </Item>
+  <Item Updated="97|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 14:54:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:47:45">
+    <ID>b4104ac7-9734-46ac-b3b3-4345c5ac4b0c</ID>
+    <PasswordMD5 Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:47:45">08f90c1a417155361a5c4b8d297e0d78</PasswordMD5>
+    <Rights Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:54:33">&lt;Rights&gt;
+  &lt;AllowEditUsers&gt;false&lt;/AllowEditUsers&gt;
+  &lt;AllowEditBranches&gt;false&lt;/AllowEditBranches&gt;
+  &lt;AllowEditOptions&gt;false&lt;/AllowEditOptions&gt;
+  &lt;AllowEditTables&gt;true&lt;/AllowEditTables&gt;
+  &lt;AllowRemoveTableItems&gt;false&lt;/AllowRemoveTableItems&gt;
+  &lt;AllowEditPackets&gt;false&lt;/AllowEditPackets&gt;
+  &lt;AllowEditCharges&gt;false&lt;/AllowEditCharges&gt;
+  &lt;AllowShowPacketsPurchaseCost&gt;true&lt;/AllowShowPacketsPurchaseCost&gt;
+  &lt;AllowShowIndividualTeacherPay&gt;true&lt;/AllowShowIndividualTeacherPay&gt;
+  &lt;AllowEditNotes&gt;false&lt;/AllowEditNotes&gt;
+  &lt;AllowExportToExcel&gt;true&lt;/AllowExportToExcel&gt;
+  &lt;AllowCopyCells&gt;true&lt;/AllowCopyCells&gt;
+  &lt;AllowShowHistory&gt;true&lt;/AllowShowHistory&gt;
+  &lt;AllowShowBin&gt;false&lt;/AllowShowBin&gt;
+  &lt;AllowShowClientContacts&gt;true&lt;/AllowShowClientContacts&gt;
+  &lt;AllowRemoveVisits&gt;false&lt;/AllowRemoveVisits&gt;
+  &lt;AllowRemoveDepositItems&gt;false&lt;/AllowRemoveDepositItems&gt;
+  &lt;AllowEditTasks&gt;false&lt;/AllowEditTasks&gt;
+  &lt;AllowRemoveTasks&gt;false&lt;/AllowRemoveTasks&gt;
+  &lt;AllowCopyRows&gt;true&lt;/AllowCopyRows&gt;
+  &lt;AllowEditAccountProperties&gt;false&lt;/AllowEditAccountProperties&gt;
+  &lt;AllowEditExistAccountProperties&gt;false&lt;/AllowEditExistAccountProperties&gt;
+  &lt;AllowEditAccountVisits&gt;true&lt;/AllowEditAccountVisits&gt;
+  &lt;AllowCreateAccountsInPast&gt;false&lt;/AllowCreateAccountsInPast&gt;
+  &lt;AllowCheckVisitsInPast&gt;false&lt;/AllowCheckVisitsInPast&gt;
+  &lt;AllowCheckVisitsBadAccounts&gt;true&lt;/AllowCheckVisitsBadAccounts&gt;
+  &lt;AllowAgendaChangeDate&gt;false&lt;/AllowAgendaChangeDate&gt;
+  &lt;AllowAgendaShowBalance&gt;true&lt;/AllowAgendaShowBalance&gt;
+  &lt;Views&gt;
+    &lt;DanceStudio.DSAgendaView&gt;true&lt;/DanceStudio.DSAgendaView&gt;
+    &lt;DanceStudio.DSCheckVisitsView&gt;true&lt;/DanceStudio.DSCheckVisitsView&gt;
+    &lt;DanceStudio.DSTablesView&gt;true&lt;/DanceStudio.DSTablesView&gt;
+    &lt;DanceStudio.DSStatisticsView&gt;false&lt;/DanceStudio.DSStatisticsView&gt;
+    &lt;DanceStudio.DSGeneratorsView&gt;false&lt;/DanceStudio.DSGeneratorsView&gt;
+    &lt;DanceStudio.DSHallView&gt;true&lt;/DanceStudio.DSHallView&gt;
+    &lt;DanceStudio.DSGroupView&gt;true&lt;/DanceStudio.DSGroupView&gt;
+    &lt;DanceStudio.DSTeacherView&gt;true&lt;/DanceStudio.DSTeacherView&gt;
+    &lt;DanceStudio.DSSubstituteView&gt;true&lt;/DanceStudio.DSSubstituteView&gt;
+    &lt;DanceStudio.DSTeacherBalanceView&gt;true&lt;/DanceStudio.DSTeacherBalanceView&gt;
+    &lt;DanceStudio.DSReservationView&gt;true&lt;/DanceStudio.DSReservationView&gt;
+    &lt;DanceStudio.DSClientView&gt;true&lt;/DanceStudio.DSClientView&gt;
+    &lt;DanceStudio.DSTableUnionView1&gt;true&lt;/DanceStudio.DSTableUnionView1&gt;
+    &lt;DanceStudio.DSAccountView&gt;true&lt;/DanceStudio.DSAccountView&gt;
+    &lt;DanceStudio.DSSingleTrainingView&gt;true&lt;/DanceStudio.DSSingleTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView2&gt;true&lt;/DanceStudio.DSTableUnionView2&gt;
+    &lt;DanceStudio.DSIndividualAccountView&gt;true&lt;/DanceStudio.DSIndividualAccountView&gt;
+    &lt;DanceStudio.DSIndividualTrainingView&gt;true&lt;/DanceStudio.DSIndividualTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView3&gt;true&lt;/DanceStudio.DSTableUnionView3&gt;
+    &lt;DanceStudio.DSRentAccountView&gt;true&lt;/DanceStudio.DSRentAccountView&gt;
+    &lt;DanceStudio.DSRentView&gt;true&lt;/DanceStudio.DSRentView&gt;
+    &lt;DanceStudio.DSProductView&gt;true&lt;/DanceStudio.DSProductView&gt;
+    &lt;DanceStudio.DSChargeView&gt;true&lt;/DanceStudio.DSChargeView&gt;
+    &lt;DanceStudio.DSDayStatisticView&gt;false&lt;/DanceStudio.DSDayStatisticView&gt;
+    &lt;DanceStudio.DSPeriodStatisticView&gt;false&lt;/DanceStudio.DSPeriodStatisticView&gt;
+    &lt;DanceStudio.DSFunnelView&gt;false&lt;/DanceStudio.DSFunnelView&gt;
+    &lt;DanceStudio.DSAgreementView&gt;false&lt;/DanceStudio.DSAgreementView&gt;
+    &lt;DanceStudio.DSClientInformationView&gt;false&lt;/DanceStudio.DSClientInformationView&gt;
+    &lt;DanceStudio.DSPrintAccountView&gt;false&lt;/DanceStudio.DSPrintAccountView&gt;
+    &lt;DanceStudio.DSCashInOrderView&gt;false&lt;/DanceStudio.DSCashInOrderView&gt;
+    &lt;DanceStudio.DSReturnMoneyApplicationView&gt;false&lt;/DanceStudio.DSReturnMoneyApplicationView&gt;
+    &lt;DanceStudio.DSSalesListView&gt;false&lt;/DanceStudio.DSSalesListView&gt;
+    &lt;DanceStudio.DSTeacherPayView&gt;false&lt;/DanceStudio.DSTeacherPayView&gt;
+    &lt;DanceStudio.DSReceptionistPayView&gt;false&lt;/DanceStudio.DSReceptionistPayView&gt;
+    &lt;DanceStudio.DSVisitsView&gt;false&lt;/DanceStudio.DSVisitsView&gt;
+    &lt;DanceStudio.DSIndividualVisitsView&gt;false&lt;/DanceStudio.DSIndividualVisitsView&gt;
+    &lt;DanceStudio.DSRentCostView&gt;false&lt;/DanceStudio.DSRentCostView&gt;
+    &lt;DanceStudio.DSClientObligationsView&gt;false&lt;/DanceStudio.DSClientObligationsView&gt;
+    &lt;DanceStudio.DSBalanceView&gt;false&lt;/DanceStudio.DSBalanceView&gt;
+  &lt;/Views&gt;
+&lt;/Rights&gt;</Rights>
+    <Login Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:46:25">админ Катя</Login>
+    <IsAdmin>True</IsAdmin>
+    <OwnSalaryOptions>False</OwnSalaryOptions>
+    <SalaryOptions>
+      <UserSalaryDaysOptions>
+        <WeekDays>1,2,3,4,5,6,7</WeekDays>
+        <Dates />
+        <PayType>HourPlus</PayType>
+        <HourPay>150</HourPay>
+        <HourMinTimeEnable>false</HourMinTimeEnable>
+        <HourMinTime>0001-01-01T09:00:00</HourMinTime>
+        <HourMaxTimeEnable>false</HourMaxTimeEnable>
+        <HourMaxTime>0001-01-01T22:00:00</HourMaxTime>
+        <HourReworkingEnable>false</HourReworkingEnable>
+        <HourReworkingPay>50</HourReworkingPay>
+        <ShiftPay>1200</ShiftPay>
+        <ShiftMinDuration>30</ShiftMinDuration>
+        <AccountPercentEnable>true</AccountPercentEnable>
+        <AccountPercent>5</AccountPercent>
+        <AccountPercentSelect>AllAccounts</AccountPercentSelect>
+        <SecondAccountPercentEnable>false</SecondAccountPercentEnable>
+        <SecondAccountVisitPercentEnable>false</SecondAccountVisitPercentEnable>
+        <SecondAccountPercent>3</SecondAccountPercent>
+        <SecondAccountVisitPercent>10</SecondAccountVisitPercent>
+        <SecondAccountVisitDays>90</SecondAccountVisitDays>
+        <SinglePercentEnable>false</SinglePercentEnable>
+        <SinglePercent>5</SinglePercent>
+        <SinglePercentSelect>AllSingles</SinglePercentSelect>
+        <ProductPercentEnable>false</ProductPercentEnable>
+        <ProductPercent>5</ProductPercent>
+        <LeadAccountPercentEnable>false</LeadAccountPercentEnable>
+        <LeadAccountPercent>5</LeadAccountPercent>
+        <LeadAccount2PercentEnable>false</LeadAccount2PercentEnable>
+        <LeadAccount2Percent>2</LeadAccount2Percent>
+      </UserSalaryDaysOptions>
+    </SalaryOptions>
+    <LastComputerID Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.12.2020 20:48:35">EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823</LastComputerID>
+    <Status>Active</Status>
+    <Protocols Updated="92|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 14:54:08">
+      <Item Date="09.12.2020 20:48:35" Type="Connect" />
+      <Item Date="09.12.2020 20:49:01" Type="Disconnect" />
+      <Item Date="10.12.2020 16:58:19" Type="Connect" />
+      <Item Date="10.12.2020 21:19:18" Type="Disconnect" />
+      <Item Date="11.12.2020 17:46:36" Type="Connect" />
+      <Item Date="11.12.2020 19:46:07" Type="Disconnect" />
+      <Item Date="12.12.2020 07:54:53" Type="Connect" />
+      <Item Date="12.12.2020 10:52:55" Type="Disconnect" />
+      <Item Date="14.12.2020 18:52:47" Type="Connect" />
+      <Item Date="14.12.2020 20:26:59" Type="Disconnect" />
+      <Item Date="17.12.2020 07:57:13" Type="Connect" />
+      <Item Date="17.12.2020 08:00:35" Type="Disconnect" />
+      <Item Date="17.12.2020 08:01:03" Type="Connect" />
+      <Item Date="17.12.2020 08:31:02" Type="Connect" />
+      <Item Date="17.12.2020 10:13:23" Type="Disconnect" />
+      <Item Date="17.12.2020 10:30:08" Type="Connect" />
+      <Item Date="17.12.2020 15:40:06" Type="Disconnect" />
+      <Item Date="17.12.2020 15:46:34" Type="Connect" />
+      <Item Date="17.12.2020 18:39:49" Type="Disconnect" />
+      <Item Date="18.12.2020 10:18:59" Type="Connect" />
+      <Item Date="18.12.2020 11:55:41" Type="Disconnect" />
+      <Item Date="18.12.2020 17:25:23" Type="Connect" />
+      <Item Date="18.12.2020 18:53:56" Type="Disconnect" />
+      <Item Date="19.12.2020 16:28:36" Type="Connect" />
+      <Item Date="19.12.2020 18:48:05" Type="Disconnect" />
+      <Item Date="19.12.2020 22:16:40" Type="Connect" />
+      <Item Date="19.12.2020 22:16:52" Type="Disconnect" />
+      <Item Date="22.12.2020 14:54:02" Type="Connect" />
+      <Item Date="22.12.2020 14:54:28" Type="Disconnect" />
+      <Item Date="23.12.2020 10:09:40" Type="Connect" />
+      <Item Date="23.12.2020 11:39:19" Type="Disconnect" />
+      <Item Date="23.12.2020 11:40:09" Type="Connect" />
+      <Item Date="23.12.2020 11:42:21" Type="Disconnect" />
+      <Item Date="24.12.2020 18:47:19" Type="Connect" />
+      <Item Date="24.12.2020 19:22:01" Type="Disconnect" />
+      <Item Date="24.12.2020 19:38:37" Type="Connect" />
+      <Item Date="24.12.2020 21:12:29" Type="Disconnect" />
+      <Item Date="25.12.2020 15:00:14" Type="Connect" />
+      <Item Date="25.12.2020 16:52:46" Type="Disconnect" />
+      <Item Date="26.12.2020 17:25:39" Type="Connect" />
+      <Item Date="26.12.2020 19:46:45" Type="Disconnect" />
+      <Item Date="27.12.2020 16:32:48" Type="Connect" />
+      <Item Date="27.12.2020 20:15:37" Type="Disconnect" />
+      <Item Date="02.01.2021 15:45:08" Type="Connect" />
+      <Item Date="02.01.2021 18:09:41" Type="Disconnect" />
+      <Item Date="04.01.2021 16:58:19" Type="Connect" />
+      <Item Date="04.01.2021 20:04:21" Type="Disconnect" />
+      <Item Date="05.01.2021 07:44:11" Type="Connect" />
+      <Item Date="05.01.2021 10:51:19" Type="Disconnect" />
+      <Item Date="05.01.2021 11:02:37" Type="Connect" />
+      <Item Date="05.01.2021 12:36:00" Type="Disconnect" />
+      <Item Date="05.01.2021 14:54:44" Type="Connect" />
+      <Item Date="05.01.2021 14:55:45" Type="Disconnect" />
+      <Item Date="06.01.2021 22:40:06" Type="Connect" />
+      <Item Date="06.01.2021 22:44:32" Type="Disconnect" />
+      <Item Date="06.01.2021 23:08:13" Type="Connect" />
+      <Item Date="06.01.2021 23:08:42" Type="Disconnect" />
+      <Item Date="07.01.2021 07:54:13" Type="Connect" />
+      <Item Date="07.01.2021 07:59:14" Type="Disconnect" />
+      <Item Date="14.01.2021 22:46:34" Type="Connect" />
+      <Item Date="14.01.2021 22:58:24" Type="Disconnect" />
+      <Item Date="18.01.2021 15:19:35" Type="Connect" />
+      <Item Date="18.01.2021 17:16:30" Type="Disconnect" />
+      <Item Date="23.01.2021 15:59:22" Type="Connect" />
+      <Item Date="23.01.2021 18:46:02" Type="Disconnect" />
+      <Item Date="06.02.2021 15:50:24" Type="Connect" />
+      <Item Date="06.02.2021 17:54:41" Type="Disconnect" />
+      <Item Date="07.02.2021 22:16:18" Type="Connect" />
+      <Item Date="07.02.2021 22:50:02" Type="Disconnect" />
+      <Item Date="17.02.2021 10:08:06" Type="Connect" />
+      <Item Date="17.02.2021 10:20:19" Type="Disconnect" />
+      <Item Date="17.02.2021 13:55:35" Type="Connect" />
+      <Item Date="17.02.2021 13:57:41" Type="Disconnect" />
+      <Item Date="21.02.2021 16:46:41" Type="Connect" />
+      <Item Date="21.02.2021 19:05:00" Type="Disconnect" />
+      <Item Date="25.02.2021 23:13:07" Type="Connect" />
+      <Item Date="25.02.2021 23:14:17" Type="Disconnect" />
+      <Item Date="27.02.2021 16:48:06" Type="Connect" />
+      <Item Date="27.02.2021 16:54:30" Type="Disconnect" />
+      <Item Date="04.03.2021 16:56:25" Type="Connect" />
+      <Item Date="04.03.2021 17:19:49" Type="Disconnect" />
+      <Item Date="10.03.2021 20:53:13" Type="Connect" />
+      <Item Date="10.03.2021 21:18:50" Type="Disconnect" />
+      <Item Date="11.03.2021 16:42:16" Type="Connect" />
+      <Item Date="11.03.2021 17:57:01" Type="Disconnect" />
+      <Item Date="12.03.2021 15:07:03" Type="Connect" />
+      <Item Date="12.03.2021 15:43:11" Type="Disconnect" />
+      <Item Date="18.03.2021 16:52:09" Type="Connect" />
+      <Item Date="18.03.2021 17:02:55" Type="Disconnect" />
+      <Item Date="22.04.2021 14:52:06" Type="Connect" />
+      <Item Date="22.04.2021 14:54:08" Type="Disconnect" />
+    </Protocols>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.06.2021 10:49:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.06.2021 10:49:47">
+    <ID>19219c84-d072-4458-9630-b0b8e2299341</ID>
+    <PasswordMD5 Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.06.2021 10:49:47">2be9bd7a3434f7038ca27d1918de58bd</PasswordMD5>
+    <Rights Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.06.2021 10:49:31">&lt;Rights&gt;
+  &lt;AllowEditUsers&gt;true&lt;/AllowEditUsers&gt;
+  &lt;AllowEditBranches&gt;true&lt;/AllowEditBranches&gt;
+  &lt;AllowEditOptions&gt;true&lt;/AllowEditOptions&gt;
+  &lt;AllowEditTables&gt;true&lt;/AllowEditTables&gt;
+  &lt;AllowRemoveTableItems&gt;true&lt;/AllowRemoveTableItems&gt;
+  &lt;AllowEditPackets&gt;false&lt;/AllowEditPackets&gt;
+  &lt;AllowEditCharges&gt;false&lt;/AllowEditCharges&gt;
+  &lt;AllowShowPacketsPurchaseCost&gt;true&lt;/AllowShowPacketsPurchaseCost&gt;
+  &lt;AllowShowIndividualTeacherPay&gt;false&lt;/AllowShowIndividualTeacherPay&gt;
+  &lt;AllowEditNotes&gt;true&lt;/AllowEditNotes&gt;
+  &lt;AllowExportToExcel&gt;true&lt;/AllowExportToExcel&gt;
+  &lt;AllowCopyCells&gt;true&lt;/AllowCopyCells&gt;
+  &lt;AllowShowHistory&gt;true&lt;/AllowShowHistory&gt;
+  &lt;AllowShowBin&gt;true&lt;/AllowShowBin&gt;
+  &lt;AllowShowClientContacts&gt;true&lt;/AllowShowClientContacts&gt;
+  &lt;AllowRemoveRes&gt;true&lt;/AllowRemoveRes&gt;
+  &lt;AllowRemoveVisits&gt;false&lt;/AllowRemoveVisits&gt;
+  &lt;AllowRemoveDepositItems&gt;false&lt;/AllowRemoveDepositItems&gt;
+  &lt;AllowEditTasks&gt;true&lt;/AllowEditTasks&gt;
+  &lt;AllowRemoveTasks&gt;true&lt;/AllowRemoveTasks&gt;
+  &lt;AllowCopyRows&gt;true&lt;/AllowCopyRows&gt;
+  &lt;AllowEditAccountProperties&gt;true&lt;/AllowEditAccountProperties&gt;
+  &lt;AllowEditExistAccountProperties&gt;true&lt;/AllowEditExistAccountProperties&gt;
+  &lt;AllowEditAccountVisits&gt;true&lt;/AllowEditAccountVisits&gt;
+  &lt;AllowCreateAccountsInPast&gt;false&lt;/AllowCreateAccountsInPast&gt;
+  &lt;AllowCheckVisitsInPast&gt;true&lt;/AllowCheckVisitsInPast&gt;
+  &lt;AllowCheckVisitsBadAccounts&gt;false&lt;/AllowCheckVisitsBadAccounts&gt;
+  &lt;AllowAgendaChangeDate&gt;true&lt;/AllowAgendaChangeDate&gt;
+  &lt;AllowAgendaShowBalance&gt;true&lt;/AllowAgendaShowBalance&gt;
+  &lt;Views&gt;
+    &lt;DanceStudio.DSAgendaView&gt;true&lt;/DanceStudio.DSAgendaView&gt;
+    &lt;DanceStudio.DSCheckVisitsView&gt;true&lt;/DanceStudio.DSCheckVisitsView&gt;
+    &lt;DanceStudio.DSTablesView&gt;true&lt;/DanceStudio.DSTablesView&gt;
+    &lt;DanceStudio.DSStatisticsView&gt;true&lt;/DanceStudio.DSStatisticsView&gt;
+    &lt;DanceStudio.DSGeneratorsView&gt;true&lt;/DanceStudio.DSGeneratorsView&gt;
+    &lt;DanceStudio.DSHallView&gt;true&lt;/DanceStudio.DSHallView&gt;
+    &lt;DanceStudio.DSGroupView&gt;true&lt;/DanceStudio.DSGroupView&gt;
+    &lt;DanceStudio.DSTeacherView&gt;true&lt;/DanceStudio.DSTeacherView&gt;
+    &lt;DanceStudio.DSSubstituteView&gt;true&lt;/DanceStudio.DSSubstituteView&gt;
+    &lt;DanceStudio.DSTeacherBalanceView&gt;true&lt;/DanceStudio.DSTeacherBalanceView&gt;
+    &lt;DanceStudio.DSReservationView&gt;true&lt;/DanceStudio.DSReservationView&gt;
+    &lt;DanceStudio.DSClientView&gt;true&lt;/DanceStudio.DSClientView&gt;
+    &lt;DanceStudio.DSTableUnionView1&gt;true&lt;/DanceStudio.DSTableUnionView1&gt;
+    &lt;DanceStudio.DSAccountView&gt;true&lt;/DanceStudio.DSAccountView&gt;
+    &lt;DanceStudio.DSSingleTrainingView&gt;true&lt;/DanceStudio.DSSingleTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView2&gt;true&lt;/DanceStudio.DSTableUnionView2&gt;
+    &lt;DanceStudio.DSIndividualAccountView&gt;true&lt;/DanceStudio.DSIndividualAccountView&gt;
+    &lt;DanceStudio.DSIndividualTrainingView&gt;true&lt;/DanceStudio.DSIndividualTrainingView&gt;
+    &lt;DanceStudio.DSTableUnionView3&gt;true&lt;/DanceStudio.DSTableUnionView3&gt;
+    &lt;DanceStudio.DSRentAccountView&gt;true&lt;/DanceStudio.DSRentAccountView&gt;
+    &lt;DanceStudio.DSRentView&gt;true&lt;/DanceStudio.DSRentView&gt;
+    &lt;DanceStudio.DSProductView&gt;true&lt;/DanceStudio.DSProductView&gt;
+    &lt;DanceStudio.DSChargeView&gt;true&lt;/DanceStudio.DSChargeView&gt;
+    &lt;DanceStudio.DSDayStatisticView&gt;true&lt;/DanceStudio.DSDayStatisticView&gt;
+    &lt;DanceStudio.DSPeriodStatisticView&gt;true&lt;/DanceStudio.DSPeriodStatisticView&gt;
+    &lt;DanceStudio.DSFunnelView&gt;true&lt;/DanceStudio.DSFunnelView&gt;
+    &lt;DanceStudio.DSAgreementView&gt;true&lt;/DanceStudio.DSAgreementView&gt;
+    &lt;DanceStudio.DSClientInformationView&gt;true&lt;/DanceStudio.DSClientInformationView&gt;
+    &lt;DanceStudio.DSPrintAccountView&gt;true&lt;/DanceStudio.DSPrintAccountView&gt;
+    &lt;DanceStudio.DSCashInOrderView&gt;true&lt;/DanceStudio.DSCashInOrderView&gt;
+    &lt;DanceStudio.DSReturnMoneyApplicationView&gt;true&lt;/DanceStudio.DSReturnMoneyApplicationView&gt;
+    &lt;DanceStudio.DSSalesListView&gt;true&lt;/DanceStudio.DSSalesListView&gt;
+    &lt;DanceStudio.DSTeacherPayView&gt;true&lt;/DanceStudio.DSTeacherPayView&gt;
+    &lt;DanceStudio.DSReceptionistPayView&gt;true&lt;/DanceStudio.DSReceptionistPayView&gt;
+    &lt;DanceStudio.DSVisitsView&gt;true&lt;/DanceStudio.DSVisitsView&gt;
+    &lt;DanceStudio.DSIndividualVisitsView&gt;true&lt;/DanceStudio.DSIndividualVisitsView&gt;
+    &lt;DanceStudio.DSRentCostView&gt;true&lt;/DanceStudio.DSRentCostView&gt;
+    &lt;DanceStudio.DSClientObligationsView&gt;true&lt;/DanceStudio.DSClientObligationsView&gt;
+    &lt;DanceStudio.DSBalanceView&gt;true&lt;/DanceStudio.DSBalanceView&gt;
+  &lt;/Views&gt;
+&lt;/Rights&gt;</Rights>
+    <Login Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.06.2021 10:49:01">админ Алиса</Login>
+    <IsAdmin>True</IsAdmin>
+    <OwnSalaryOptions>False</OwnSalaryOptions>
+    <SalaryOptions>
+      <UserSalaryDaysOptions>
+        <WeekDays>1,2,3,4,5,6,7</WeekDays>
+        <Dates />
+        <PayType>HourPlus</PayType>
+        <HourPay>150</HourPay>
+        <HourMinTimeEnable>false</HourMinTimeEnable>
+        <HourMinTime>0001-01-01T09:00:00</HourMinTime>
+        <HourMaxTimeEnable>false</HourMaxTimeEnable>
+        <HourMaxTime>0001-01-01T22:00:00</HourMaxTime>
+        <HourReworkingEnable>false</HourReworkingEnable>
+        <HourReworkingPay>50</HourReworkingPay>
+        <ShiftPay>1200</ShiftPay>
+        <ShiftMinDuration>30</ShiftMinDuration>
+        <AccountPercentEnable>true</AccountPercentEnable>
+        <AccountPercent>5</AccountPercent>
+        <AccountPercentSelect>AllAccounts</AccountPercentSelect>
+        <SecondAccountPercentEnable>false</SecondAccountPercentEnable>
+        <SecondAccountVisitPercentEnable>false</SecondAccountVisitPercentEnable>
+        <SecondAccountPercent>3</SecondAccountPercent>
+        <SecondAccountVisitPercent>10</SecondAccountVisitPercent>
+        <SecondAccountVisitDays>90</SecondAccountVisitDays>
+        <SinglePercentEnable>false</SinglePercentEnable>
+        <SinglePercent>5</SinglePercent>
+        <SinglePercentSelect>AllSingles</SinglePercentSelect>
+        <ProductPercentEnable>false</ProductPercentEnable>
+        <ProductPercent>5</ProductPercent>
+        <LeadAccountPercentEnable>false</LeadAccountPercentEnable>
+        <LeadAccountPercent>5</LeadAccountPercent>
+        <LeadAccount2PercentEnable>false</LeadAccount2PercentEnable>
+        <LeadAccount2Percent>2</LeadAccount2Percent>
+      </UserSalaryDaysOptions>
+    </SalaryOptions>
+    <Status>Active</Status>
+    <Protocols />
+  </Item>
+</User>

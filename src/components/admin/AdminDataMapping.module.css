@@ -1,0 +1,269 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(17, 24, 39);
+  margin: 0 0 0.5rem;
+}
+
+.header p {
+  color: rgb(107, 114, 128);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Переключатель типа */
+.typeSelector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.typeButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid rgb(229, 231, 235);
+  background: white;
+  color: rgb(55, 65, 81);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.typeButton:hover {
+  border-color: rgb(59, 130, 246);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.typeButton.active {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Статистика */
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  flex: 1;
+  min-width: 150px;
+  padding: 1rem;
+  background: white;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(59, 130, 246);
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+}
+
+/* Ошибки и успех */
+.error {
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgb(239, 68, 68);
+  border-radius: 0.75rem;
+  color: rgb(220, 38, 38);
+  margin-bottom: 1rem;
+}
+
+.success {
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgb(34, 197, 94);
+  border-radius: 0.75rem;
+  color: rgb(22, 163, 74);
+  margin-bottom: 1rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: rgb(107, 114, 128);
+  font-size: 1.1rem;
+}
+
+/* Сетка маппинга */
+.mappingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .mappingGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.column {
+  background: white;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.columnHeader {
+  padding: 1rem 1.5rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgb(31, 41, 55);
+  background: rgba(248, 250, 252, 0.5);
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.columnContent {
+  padding: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Элемент */
+.item {
+  padding: 1rem;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.item.mapped {
+  border-color: rgb(34, 197, 94);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.item.deleted {
+  border-color: rgb(239, 68, 68);
+  background: rgba(239, 68, 68, 0.05);
+  opacity: 0.6;
+}
+
+.item.included {
+  border-color: rgb(59, 130, 246);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.itemName {
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.itemActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select {
+  padding: 0.5rem;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  background: white;
+  color: rgb(55, 65, 81);
+}
+
+.select:focus {
+  outline: none;
+  border-color: rgb(59, 130, 246);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.deleteBtn,
+.includeBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.1);
+  color: rgb(220, 38, 38);
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background: rgb(239, 68, 68);
+  color: white;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.includeBtn {
+  background: rgba(59, 130, 246, 0.1);
+  color: rgb(37, 99, 235);
+}
+
+.includeBtn:hover {
+  background: rgb(59, 130, 246);
+  color: white;
+}
+
+/* Бейджи статуса */
+.statusBadge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(34, 197, 94, 0.1);
+  color: rgb(22, 163, 74);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statusBadgeDeleted {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: rgb(220, 38, 38);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statusBadgeIncluded {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(59, 130, 246, 0.1);
+  color: rgb(37, 99, 235);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}

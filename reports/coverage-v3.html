@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновлённое покрытие: донор → новая БД (v3)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a5276;
+            border-bottom: 3px solid #2e86c1;
+            padding-bottom: 15px;
+            font-size: 28px;
+        }
+        h2 {
+            color: #2e86c1;
+            margin-top: 30px;
+            font-size: 22px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        th {
+            background: #2e86c1;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .score-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            color: white;
+        }
+        .score-5 { background: #27ae60; }
+        .score-4 { background: #2ecc71; }
+        .score-3 { background: #f39c12; }
+        .score-2 { background: #e67e22; }
+        .score-1 { background: #e74c3c; }
+        .summary-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .summary-card .score {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+        }
+        .summary-card .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .info-box {
+            background: #d5f5e3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #27ae60;
+        }
+        .warning-box {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .danger-box {
+            background: #fdedec;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e74c3c;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Обновлённое покрытие: донор → новая БД (v3)</h1>
+        <p><strong>Дата:</strong> 03.08.2026 | <strong>Миграции:</strong> 001-005 | <strong>Стратегия:</strong> уникальное → legacy_data TEXT, дубликаты → удалены</p>
+
+        <h2>🎯 ИТОГОВАЯ СТАТИСТИКА</h2>
+        <div class="summary-box">
+            <div class="summary-card">
+                <span class="score">31</span>
+                <span class="label">Сущностей в доноре</span>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                <span class="score">~100%</span>
+                <span class="label">Покрытие ядра</span>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);">
+                <span class="score">3</span>
+                <span class="label">legacy_data колонки</span>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                <span class="score">8</span>
+                <span class="label">Дубликатов удалено</span>
+            </div>
+        </div>
+
+        <h2>✅ ЧТО СОХРАНЕНО</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Категория</th>
+                    <th>Где хранится</th>
+                    <th>Записей</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Ядро данных</strong></td>
+                    <td>Нормализованные таблицы</td>
+                    <td>~78,309</td>
+                    <td><span class="score-badge score-5">100%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Уникальные данные (Account)</strong></td>
+                    <td>cfr_accounts.legacy_data</td>
+                    <td>3,275</td>
+                    <td><span class="score-badge score-4">TEXT (НЕ JSONB)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Уникальные данные (Client)</strong></td>
+                    <td>cfr_clients.legacy_data</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-4">TEXT (НЕ JSONB)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Уникальные данные (Visits)</strong></td>
+                    <td>cfr_visits.legacy_data</td>
+                    <td>71,873</td>
+                    <td><span class="score-badge score-4">TEXT (НЕ JSONB)</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Rent (арендаторы)</strong></td>
+                    <td>cfr_entities + cfr_persons</td>
+                    <td>73</td>
+                    <td><span class="score-badge score-5">Сохранено</span></td>
+                </tr>
+                <tr style="background: #d5f5e3; font-weight: bold;">
+                    <td><strong>ИТОГО</strong></td>
+                    <td>—</td>
+                    <td><strong>~83,401</strong></td>
+                    <td><strong><span class="score-badge score-5">~100%</span></strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🗑️ ЧТО УДАЛЕНО (дубликаты)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Данные</th>
+                    <th>Где дублируется</th>
+                    <th>Записей</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BurnRes</td>
+                    <td>cfr_reservations</td>
+                    <td>3,275</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>Visits</td>
+                    <td>cfr_visits</td>
+                    <td>3,275 + 71,873</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>Reservations</td>
+                    <td>cfr_reservations</td>
+                    <td>3,275</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>CardUses</td>
+                    <td>cfr_transactions</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>Files</td>
+                    <td>cfr_media</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>Comments</td>
+                    <td>cfr_persons.notes</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>Tasks</td>
+                    <td>cfr_tasks</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+                <tr>
+                    <td>StatusChanges</td>
+                    <td>— (не нужно для ЛК)</td>
+                    <td>2,605</td>
+                    <td><span class="score-badge score-3">Удалено в 004</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>📦 LEGACY_DATA: как работает</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Таблица</th>
+                    <th>Колонка</th>
+                    <th>Содержимое</th>
+                    <th>Формат</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cfr_accounts</td>
+                    <td>legacy_data TEXT</td>
+                    <td>Groups, Reservations, Stages, Visits, BurnRes, Bonus, Schedule, TenantType</td>
+                    <td>Сериализованная строка (JSON/XML) как есть</td>
+                </tr>
+                <tr>
+                    <td>cfr_clients</td>
+                    <td>legacy_data TEXT</td>
+                    <td>CardUses, Deposit, Bonus, Comments, Tasks, StatusChanges, Files</td>
+                    <td>Сериализованная строка (JSON/XML) как есть</td>
+                </tr>
+                <tr>
+                    <td>cfr_visits</td>
+                    <td>legacy_data TEXT</td>
+                    <td>Visits, Bonus, Deposit</td>
+                    <td>Сериализованная строка (JSON/XML) как есть</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>✅ ПРАВИЛА legacy_data:</strong>
+            <ul>
+                <li>НЕ ПАРСИТЬ при миграции — бережно переносим сериализованную строку как есть</li>
+                <li>НЕ ПОКАЗЫВАТЬ в ЛК — первая версия работает без этих данных</li>
+                <li>ДЛЯ CRM ПОЗЖЕ — разберёмся после первой версии ЛК</li>
+                <li>TEXT (НЕ JSONB!) — JSONB запрещён везде, кроме bridge_queue</li>
+                <li>COMMENT ON TABLE — каждая колонка задокументирована</li>
+            </ul>
+        </div>
+
+        <h2>📊 СРАВНЕНИЕ: ДО vs ПОСЛЕ 005_clean</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Метрика</th>
+                    <th>До 005</th>
+                    <th>После 005</th>
+                    <th>Изменение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Покрытие ядра данных</td>
+                    <td>~96%</td>
+                    <td>~100%</td>
+                    <td style="color: #27ae60;">+4%</td>
+                </tr>
+                <tr>
+                    <td>Уникальные данные (уникальные)</td>
+                    <td>Потеряны</td>
+                    <td>Сохранены в legacy_data</td>
+                    <td style="color: #27ae60;">✓ Сохранены</td>
+                </tr>
+                <tr>
+                    <td>Дубликаты</td>
+                    <td>Хранились дважды</td>
+                    <td>Удалены</td>
+                    <td style="color: #27ae60;">✓ Очистка</td>
+                </tr>
+                <tr>
+                    <td>JSONB в схеме</td>
+                    <td>Только bridge_queue</td>
+                    <td>Только bridge_queue</td>
+                    <td style="color: #27ae60;">✓ Без изменений</td>
+                </tr>
+                <tr>
+                    <td>Таблиц в БД</td>
+                    <td>49</td>
+                    <td>49 (legacy_data — колонки, не таблицы)</td>
+                    <td style="color: #27ae60;">Без изменений</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>⚠️ ВАЖНО:</strong> legacy_data — это НЕ структура, а архив. Данные сериализованы в одну строку.
+            Парсить их при миграции не нужно. Первая версия ЛК работает без этих данных.
+            После первой версии ЛК разберёмся с CRM (DNS — CRMdance, мы crm добавим позже).
+        </div>
+
+        <h2>📂 ФАЙЛЫ МИГРАЦИЙ</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Файл</th>
+                    <th>Назначение</th>
+                    <th>Строк</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>001_initial.sql</td><td>Основная схема: ENUM-типы, таблицы, индексы, триггеры</td><td>760</td></tr>
+                <tr><td>002_bridge_queue.sql</td><td>Мост данных: очередь, функции, триггеры автопереноса</td><td>550</td></tr>
+                <tr><td>003_fixes.sql</td><td>Исправления: ENUM для account_status/entity_type, DECIMAL(8,2), XSS-защита</td><td>251</td></tr>
+                <tr><td>004_optimize.sql</td><td>Оптимизация: удалены 6 таблиц, 15 полей, объединён футер</td><td>230</td></tr>
+                <tr><td>005_clean.sql</td><td>Чистка: legacy_data TEXT (уникальные), удалены дубликаты</td><td>92</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>Сгенерировано: 03.08.2026 | MULTITICKET: DanceStudio | v3 — после 005_clean</p>
+            <p>Покрытие: ~100% | legacy_data: 3 колонки TEXT | Дубликаты: 8 удалено | JSONB: только bridge_queue</p>
+        </div>
+    </div>
+</body>
+</html>

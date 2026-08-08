@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TeacherBalanceType>
+  <Item>
+    <ID>1b87dea5-e378-4c41-9183-6a67bab80ce9</ID>
+    <Name>штраф</Name>
+    <Factor>-1</Factor>
+    <OnlyNotGiven>True</OnlyNotGiven>
+    <ShortName>штраф</ShortName>
+  </Item>
+  <Item>
+    <ID>70bebfd3-227a-4453-915c-aa3d25db62d9</ID>
+    <Name>неустойка</Name>
+    <Annotation>выплачивается преподавателю за занятие, когда к нему не пришло ни одного человека</Annotation>
+    <Factor>1</Factor>
+    <ShortName>неустойка</ShortName>
+  </Item>
+  <Item>
+    <ID>97eef312-b951-4819-a341-c61da77436bb</ID>
+    <Name>премия</Name>
+    <Factor>1</Factor>
+    <ShortName>премия</ShortName>
+  </Item>
+  <Item>
+    <ID>d26d90d6-90d3-40b6-8aab-364ca81cf051</ID>
+    <Name>аванс</Name>
+    <Annotation>выплачивается преподавателю до зарплаты в любом размере, может выдаваться несколько раз</Annotation>
+    <Factor>-1</Factor>
+    <OnlyGiven>True</OnlyGiven>
+    <ShortName>аванс</ShortName>
+  </Item>
+  <Item>
+    <ID>dc4dd141-c504-42d2-8c0b-22693d5d9c33</ID>
+    <Name>заработная плата</Name>
+    <Factor>1</Factor>
+    <OnlyGiven>True</OnlyGiven>
+    <ShortName>зарплата</ShortName>
+  </Item>
+</TeacherBalanceType>

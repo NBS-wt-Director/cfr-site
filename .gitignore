@@ -1,8 +1,35 @@
-#public/uploads/ 
-*.mov   
-*.mp4 
-node_modules
-.next
+# Next.js build output
+.next/
+out/
+dist/
+
+# Node
+node_modules/
+
+# Motion picture files
+*.mov
+*.mp4
 
 # Документация
 documentation/deploy.md
+
+# Данные БД (JSON-файлы)
+db.json
+_db.json
+data/*.json
+backups/
+.db-mode.json
+.db-mode
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Окружение
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.staging
+.env.production.*

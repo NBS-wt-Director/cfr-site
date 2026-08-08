@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tag>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|591C-9A1A-431F-1DF1-2E40-D8E5-80B7-D2E7|01.12.2020 15:06:05">
+    <ID>afca937a-6988-49aa-a2f3-4f18115cdfcc</ID>
+    <Name>VIP</Name>
+    <Position>1</Position>
+    <Colour>FFFFC300</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|591C-9A1A-431F-1DF1-2E40-D8E5-80B7-D2E7|01.12.2020 15:06:50">
+    <ID>f6d26477-dd57-40de-9df4-38590397e58d</ID>
+    <Name>конфликтный</Name>
+    <Colour>FFFF8561</Colour>
+    <Position>2</Position>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|591C-9A1A-431F-1DF1-2E40-D8E5-80B7-D2E7|01.12.2020 15:07:01">
+    <ID>65c87a32-14ad-4aa1-846c-13ba4d936788</ID>
+    <Name>часто опаздывает</Name>
+    <Colour>FFFFB8FE</Colour>
+    <Position>3</Position>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 18:21:00">
+    <ID>f4486d5c-00aa-4897-a6d4-e8816afc12ad</ID>
+    <Name>есть действующий сертификат</Name>
+    <Description>дала 04.02.21 сертификат (есть еще 2 занятия)</Description>
+    <Colour>FFFF69B4</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.10.2021 17:45:31">
+    <ID>0b1d94fb-bc91-467e-967a-f1c9786208a4</ID>
+    <Name>привита</Name>
+    <Description>показала серт 30.10.21</Description>
+    <Colour>FF00FF00</Colour>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.11.2021 07:50:01">
+    <ID>33bfb690-1d90-4cb2-adba-5615fcb4b7b7</ID>
+    <Name>привит</Name>
+    <Colour>FF7CFC00</Colour>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.11.2021 09:35:48">
+    <ID>c0e4039f-7731-4bbb-8b0a-2730b6962327</ID>
+    <Colour>FFA52A2A</Colour>
+    <Name>переболела</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.11.2021 07:05:43">
+    <ID>34bb6332-0c8a-4829-9e9f-1743d5f070ff</ID>
+    <Name>не привита</Name>
+    <Colour>FFDB7093</Colour>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.11.2021 09:22:32">
+    <ID>5d2087cd-b44f-4e66-b4fb-3f7e7b14e81d</ID>
+    <Name>переболел</Name>
+    <Colour>FF8B4513</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 20:30:37">
+    <ID>da13952b-3cc1-4134-ae3f-eb6f29bce33f</ID>
+    <Name>негативная </Name>
+    <Colour>FF556B2F</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.11.2023 16:51:31">
+    <ID>7299d7fb-fbe5-43b0-81e8-0eb86427fa01</ID>
+    <Name>допытная</Name>
+    <Colour>FFDAA520</Colour>
+  </Item>
+</Tag>

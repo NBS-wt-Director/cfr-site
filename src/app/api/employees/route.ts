@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getAllEmployees } from '@/lib/db-new';
 
 export async function GET() {
   try {
-    const data = getDb();
-    const staff = data.employees || [];  // ← Новое поле в БД
-    return NextResponse.json(staff);
+    const employees = await getAllEmployees();
+    return NextResponse.json(employees);
   } catch (error) {
     console.error('API staff error:', error);
     return NextResponse.json([]);

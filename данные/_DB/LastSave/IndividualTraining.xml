@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<IndividualTraining>
+  <Item Updated="13|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 22:12:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 17:42:08" Removed="true">
+    <ID>47769da8-07d2-4ce9-8767-f8cc1ccfb20c</ID>
+    <ID_Client>2e093c4f-64a8-4e8a-a8e5-5f3630d565ae</ID_Client>
+    <ID_Style>010f2246-4942-49d4-8844-226a88a5a33d</ID_Style>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>600</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>600</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 20:00:15">
+      <Item ID="217d140c-0f24-4d03-95e0-59d9fbfed1e2" Created="19.02.2019 18:13:36" Date="19.02.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+      <Item ID="a5cbd8cf-a96a-4bd7-9794-44c9bf24bf14" Created="19.02.2019 18:13:36" Date="14.02.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 22:00:34">
+      <Item ID="d9124a8b-18c6-4f02-a033-12514b0befa8" Time="19.02.2019 19:59:37" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="217d140c-0f24-4d03-95e0-59d9fbfed1e2" />
+      <Item ID="6f17a4bb-e5c2-4e40-a10d-ca0fd91961ff" Time="19.02.2019 20:00:12" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="a5cbd8cf-a96a-4bd7-9794-44c9bf24bf14" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2019 18:11:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2019 18:11:15">
+    <ID>32ebc130-ca57-4595-9d0a-4ddf76259088</ID>
+    <ID_Client>247951f7-937c-4f05-89b3-515086357112</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <PaymentType>Cash</PaymentType>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="c614d4d0-4aae-4a85-bc2f-7f7962e62924" Created="07.04.2019 18:11:32" Date="07.04.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="f4b3dd7e-dffd-4fc8-bc5d-4eb89b8953ee" Time="07.04.2019 18:11:32" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="1ca0ea84-d4d9-468e-a5b6-140e2d2b95bd" Time="07.04.2019 18:11:32" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="c614d4d0-4aae-4a85-bc2f-7f7962e62924" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2019 18:37:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2019 18:36:39">
+    <ID>f01e91a2-c601-462c-b3f0-3584cde08db6</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>247951f7-937c-4f05-89b3-515086357112</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="012bd1be-929d-439d-b354-32aafa861f04" Created="14.04.2019 18:37:01" Date="14.04.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="0b0d910d-d87b-41b5-8562-dc1750b6e5a7" Time="14.04.2019 18:37:01" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="e4f9c71a-d55f-4817-988e-1a669df0cb6e" Time="14.04.2019 18:37:01" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="012bd1be-929d-439d-b354-32aafa861f04" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.04.2019 18:19:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.04.2019 18:19:03">
+    <ID>e9a6c575-153e-48dd-93b8-6ce5e72c9a36</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>247951f7-937c-4f05-89b3-515086357112</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="d5178159-9060-41d0-8afc-cc34f2655fbc" Created="28.04.2019 18:19:21" Date="28.04.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="84262ff0-6440-4435-84f4-5e3a6b9b18a1" Time="28.04.2019 18:19:21" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="48380b54-d67f-4429-81d8-aa17f684e491" Time="28.04.2019 18:19:21" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="d5178159-9060-41d0-8afc-cc34f2655fbc" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.05.2019 16:32:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.05.2019 16:22:48" Removed="true">
+    <ID>9a7ec334-0381-4199-9d22-f672e5996522</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>485d4dcf-7242-4729-9a1f-ce61cae7064e</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits />
+    <Deposit>
+      <Item ID="65fb648f-903f-4987-bcd5-d4b07667a9a0" Time="27.05.2019 16:25:14" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.06.2019 18:17:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.06.2019 18:17:12">
+    <ID>7304834a-6d1e-477a-b166-c15fc932aa12</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Colour>FF556B2F</Colour>
+    <Schedule />
+    <Visits>
+      <Item ID="f62bd7f3-8751-46ea-928d-c94c6097385b" Created="09.06.2019 18:17:51" Date="09.06.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="ba301362-aef7-47bd-815e-8529b9240236" Time="09.06.2019 18:17:51" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="792cb296-162d-4806-8434-462149c82bd3" Time="09.06.2019 18:17:51" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="f62bd7f3-8751-46ea-928d-c94c6097385b" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2019 18:00:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.06.2019 17:58:53" Removed="true">
+    <ID>e79d92d1-f4b0-4832-9f83-fb6aa5dd9292</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>c954b347-de5b-41ec-9f53-fa1dec749baa</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="0b430426-3fd6-445b-88a3-715adbb68407" Created="16.06.2019 18:00:08" Date="16.06.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="afc254a6-9b55-4787-8a5e-ede384190e27" Time="16.06.2019 18:00:08" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="9c6f199e-1117-48f8-9169-7eb6eef3f2e4" Time="16.06.2019 18:00:08" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="0b430426-3fd6-445b-88a3-715adbb68407" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.07.2019 15:54:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.07.2019 15:53:48">
+    <ID>7f97e0ef-341b-4023-931a-7b6c1f84bc44</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="1fb1a453-ed26-4b2a-9183-8a3c6c73b199" Created="16.07.2019 15:54:03" Date="16.07.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="5c1b2646-a8b6-478a-8566-bd47e91c6465" Time="16.07.2019 15:54:03" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="7e75709a-596e-4214-8982-1e054812a10a" Time="16.07.2019 15:54:03" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="1fb1a453-ed26-4b2a-9183-8a3c6c73b199" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.07.2019 16:02:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.07.2019 16:01:59">
+    <ID>63c7e63d-4a26-43e4-a6ce-32e299da2dfb</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="dab9b603-5234-42e2-b5c4-c468ffd485c0" Created="18.07.2019 16:02:29" Date="18.07.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="d5743493-b1e6-43ce-a9ae-60cbc4f5a24c" Time="18.07.2019 16:02:29" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="bda63275-7221-4237-aaf9-9b52e661b2d8" Time="18.07.2019 16:02:29" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="dab9b603-5234-42e2-b5c4-c468ffd485c0" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2019 15:54:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2019 15:53:32">
+    <ID>9e18a5af-ce7c-4ead-9ad9-4e0a491f3361</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Colour>FF708090</Colour>
+    <Schedule />
+    <Visits>
+      <Item ID="06940f40-bcfb-44ed-bb8f-013fec929fad" Created="22.07.2019 15:54:05" Date="22.07.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="166a7c8d-e373-4c75-b344-88059647c982" Time="22.07.2019 15:54:05" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="86e16c19-26fe-483c-8be3-e266882903e8" Time="22.07.2019 15:54:05" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="06940f40-bcfb-44ed-bb8f-013fec929fad" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.07.2019 15:56:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.07.2019 15:56:32">
+    <ID>81233730-c8f3-4987-be23-3c201ce0416a</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Schedule />
+    <Visits>
+      <Item ID="c2876c8e-5486-45f7-b63c-fcbd133639d8" Created="29.07.2019 15:56:51" Date="29.07.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="5aff1bb9-e2b0-4ab5-9f5b-d3cf4d79f22c" Time="29.07.2019 15:56:51" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="6eeefaa1-158c-4453-bf78-baccb4a2495d" Time="29.07.2019 15:56:51" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="c2876c8e-5486-45f7-b63c-fcbd133639d8" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.09.2019 16:06:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.09.2019 16:05:26">
+    <ID>9bb5836c-e4f6-4e41-bab9-382bdf9eac44</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>5a66746a-401a-41ed-9ff0-1a105fc75947</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <Prepayment>1800</Prepayment>
+    <IndividualTrainingTypeName>Стандарт</IndividualTrainingTypeName>
+    <IndividualTrainingTypeCost>1800</IndividualTrainingTypeCost>
+    <Colour>FFFFF8DC</Colour>
+    <Schedule />
+    <Visits>
+      <Item ID="14841d43-a378-4563-9891-c5235d48fc3a" Created="06.09.2019 16:06:06" Date="06.09.2019" Name="Стандарт" Cost="1800" TeacherPay="" />
+    </Visits>
+    <Deposit>
+      <Item ID="fda001e9-759b-4620-9a95-bbd95a14f6ce" Time="06.09.2019 16:06:06" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="27503b90-d0b0-49a1-aaa4-487c32b4ad1f" Time="06.09.2019 16:06:06" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="14841d43-a378-4563-9891-c5235d48fc3a" />
+    </Deposit>
+    <Bonus />
+  </Item>
+</IndividualTraining>

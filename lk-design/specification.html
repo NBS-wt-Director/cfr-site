@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Спецификация ЛК — ЦФР / Шифу Панда</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== TOOLBAR ===== -->
+  <div class="toolbar" role="toolbar" aria-label="Панель инструментов">
+    <button class="toolbar-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему" title="Переключить тему (D)">
+      <span class="btn-icon">🌙</span>
+      <span class="btn-label">Тема</span>
+    </button>
+    <button class="toolbar-btn" id="timerToggle" onclick="toggleTimer()" aria-label="Показать таймер" title="Таймер на странице (T)">
+      <span class="btn-icon">⏱️</span>
+      <span class="btn-label">Таймер</span>
+    </button>
+    <button class="toolbar-btn" id="printBtn" onclick="window.print()" aria-label="Печать спецификации" title="Печать (Ctrl+P)">
+      <span class="btn-icon">🖨️</span>
+      <span class="btn-label">Печать</span>
+    </button>
+    <button class="toolbar-btn" id="kbdHintBtn" onclick="toggleKbdHint()" aria-label="Показать горячие клавиши" title="Горячие клавиши (H)">
+      <span class="btn-icon">⌨️</span>
+      <span class="btn-label">Горячие клавиши</span>
+    </button>
+  </div>
+
+  <div class="timer-display" id="timerDisplay" aria-live="polite" aria-label="Время на странице">⏱️ 00:00</div>
+
+  <div class="view-switcher" role="tablist" aria-label="Переключение вида">
+    <button class="view-switcher-btn active" role="tab" aria-selected="true" onclick="switchView('spec')" id="viewSpecBtn">
+      📋 Спецификация
+    </button>
+    <button class="view-switcher-btn" role="tab" aria-selected="false" onclick="switchView('mobile')" id="viewMobileBtn">
+      📱 Мобильная
+    </button>
+    <button class="view-switcher-btn" role="tab" aria-selected="false" onclick="switchView('desktop')" id="viewDesktopBtn">
+      🖥️ Десктоп
+    </button>
+  </div>
+
+  <div class="kbd-hint" id="kbdHint" aria-live="polite">
+    <kbd>D</kbd> тема · <kbd>T</kbd> таймер · <kbd>H</kbd> подсказка · <kbd>1</kbd> спецификация · <kbd>2</kbd> мобильная · <kbd>3</kbd> десктоп · <kbd>Esc</kbd> скрыть
+  </div>
+
+  <!-- HAMBURGER (mobile) -->
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+  <div class="spec-layout">
+
+    <!-- SIDEBAR -->
+    <nav class="spec-sidebar" id="specSidebar">
+      <div class="spec-sidebar-title">
+        <h2>🐼 ЛК — Спецификация</h2>
+        <p>ЦФР / Шифу Панда · v5.0</p>
+      </div>
+
+      <div class="spec-nav-section">Общее</div>
+      <ul class="spec-nav">
+        <li><a href="#auth" class="active"><span class="nav-icon">🔑</span> Авторизация</a></li>
+        <li><a href="#test-account"><span class="nav-icon">🧪</span> Тестовый аккаунт</a></li>
+        <li><a href="#structure"><span class="nav-icon">🏗️</span> Структура</a></li>
+        <li><a href="#typography"><span class="nav-icon">🔤</span> Типографика</a></li>
+        <li><a href="#colors"><span class="nav-icon">🎨</span> Цветовая схема</a></li>
+      </ul>
+
+      <div class="spec-nav-section">Разделы</div>
+      <ul class="spec-nav">
+        <li><a href="#dashboard"><span class="nav-icon">📊</span> Обзор (Дашборд)</a></li>
+        <li><a href="#visits"><span class="nav-icon">📅</span> Посещения</a></li>
+        <li><a href="#payments"><span class="nav-icon">💰</span> Оплаты</a></li>
+        <li><a href="#certificates"><span class="nav-icon">📜</span> Сертификаты</a></li>
+        <li><a href="#accounts"><span class="nav-icon">🎫</span> Абонементы</a></li>
+      </ul>
+
+      <div class="spec-nav-section">Дополнительно</div>
+      <ul class="spec-nav">
+        <li><a href="#subtabs"><span class="nav-icon">👨‍👩‍👧</span> Подвкладки</a></li>
+        <li><a href="#birthday"><span class="nav-icon">🎂</span> Баннер именинника</a></li>
+        <li><a href="#placeholders"><span class="nav-icon">🚧</span> Вкладки-заглушки</a></li>
+      </ul>
+
+      <div class="spec-nav-section">Техническое</div>
+      <ul class="spec-nav">
+        <li><a href="#api"><span class="nav-icon">🔌</span> API</a></li>
+        <li><a href="#files"><span class="nav-icon">📁</span> Файлы</a></li>
+        <li><a href="#flow"><span class="nav-icon">🔄</span> Путь пользователя</a></li>
+      </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="spec-main">
+
+      <!-- ===== 1. АВТОРИЗАЦИЯ ===== -->
+      <section id="auth" class="spec-section">
+        <h1>🔑 1. Авторизация</h1>
+
+        <h2>Форма входа</h2>
+
+        <table class="spec-table">
+          <thead>
+            <tr><th>Поле</th><th>Тип</th><th>Валидация</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Номер телефона</td><td><code>tel</code></td><td>+7 (XXX) XXX-XX-XX</td></tr>
+            <tr><td>Номер договора</td><td><code>text</code></td><td>Цифры, 1–6 знаков</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note note-info">
+          <strong>Важно:</strong> Вход по номеру телефона + номеру договора. НЕ по паролю!
+        </div>
+
+        <h3>Логика</h3>
+        <ul>
+          <li>Если неверно → сообщение «Неверный номер телефона или номер договора»</li>
+          <li>Ссылка для звонка: <a href="tel:+79022584547">+7 (902) 258-45-47</a></li>
+        </ul>
+
+        <h3>API</h3>
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method post">POST</span>
+            <span class="api-url">/api/lk/auth</span>
+          </div>
+          <div class="api-body">
+            Вход: <code>{ phone, agreement_number }</code> → <code>{ success, token, user }</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 1.5 ТЕСТОВЫЙ АККАУНТ ===== -->
+      <section id="test-account" class="spec-section">
+        <h1>🔑 1.5 Тестовый аккаунт</h1>
+
+        <div class="note note-info">
+          <strong>Для разработки и тестирования:</strong> доступен на всех окружениях (dev, staging, prod).
+        </div>
+
+        <table class="spec-table">
+          <thead><tr><th>Поле</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Телефон</td><td><code>+7 (900) 000-00-00</code></td></tr>
+            <tr><td>Договор</td><td><code>0000</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== 2. СТРУКТУРА ===== -->
+      <section id="structure" class="spec-section">
+        <h1>🏗️ 2. Общая структура</h1>
+
+        <h2>Шапка и подвал</h2>
+        <ul>
+          <li><strong>Шапка (SiteHeader)</strong> — общая, как на всех страницах сайта. Логотип, заголовок, кнопка звонка, кнопка ЛК.</li>
+          <li><strong>Подвал (Footer)</strong> — общий, как на всех страницах. Контакты, навигация, соцсети.</li>
+        </ul>
+
+        <h2>Меню — всегда видно</h2>
+        <table class="spec-table">
+          <thead><tr><th>Устройство</th><th>Навигация</th></tr></thead>
+          <tbody>
+            <tr><td>Desktop (≥1024px)</td><td>Sidebar слева (280px), всегда виден</td></tr>
+            <tr><td>Tablet (768–1023px)</td><td>Sidebar слева (240px), всегда виден</td></tr>
+            <tr><td>Mobile (&lt;768px)</td><td>Bottom navigation (6 пунктов), всегда видна</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note note-warn">
+          <strong>Крупный текст:</strong> базовый размер 18px. Минимальная высота кнопок 48px. Поля ввода — 18px шрифт.
+        </div>
+      </section>
+
+      <!-- ===== 3. ТИПОГРАФИКА ===== -->
+      <section id="typography" class="spec-section">
+        <h1>🔤 3. Типографика</h1>
+
+        <table class="spec-table">
+          <thead><tr><th>Элемент</th><th>Размер</th></tr></thead>
+          <tbody>
+            <tr><td>Базовый текст</td><td>18px</td></tr>
+            <tr><td>Заголовок страницы</td><td>27px</td></tr>
+            <tr><td>Заголовок раздела</td><td>18px</td></tr>
+            <tr><td>Заголовок карточки</td><td>16px</td></tr>
+            <tr><td>Текст в карточке</td><td>15px</td></tr>
+            <tr><td>Подписи</td><td>14px</td></tr>
+            <tr><td>Мелкий текст</td><td>13px</td></tr>
+            <tr><td>Поля ввода</td><td>18px</td></tr>
+            <tr><td>Кнопки</td><td>16px</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Шрифт:</strong> 'Inter', sans-serif</p>
+      </section>
+
+      <!-- ===== 4. ЦВЕТОВАЯ СХЕМА ===== -->
+      <section id="colors" class="spec-section">
+        <h1>🎨 4. Цветовая схема</h1>
+
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-swatch" style="background:#4F46E5;"></div>
+            <div class="color-info">
+              <div class="name">Основной</div>
+              <div class="hex">#4F46E5</div>
+              <div class="var">--color-primary</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#7C3AED;"></div>
+            <div class="color-info">
+              <div class="name">Вторичный</div>
+              <div class="hex">#7C3AED</div>
+              <div class="var">--color-secondary</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#F59E0B;"></div>
+            <div class="color-info">
+              <div class="name">Акцент</div>
+              <div class="hex">#F59E0B</div>
+              <div class="var">--color-accent</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#10B981;"></div>
+            <div class="color-info">
+              <div class="name">Успех</div>
+              <div class="hex">#10B981</div>
+              <div class="var">--color-success</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#F59E0B;"></div>
+            <div class="color-info">
+              <div class="name">Предупреждение</div>
+              <div class="hex">#F59E0B</div>
+              <div class="var">--color-warning</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#EF4444;"></div>
+            <div class="color-info">
+              <div class="name">Опасность</div>
+              <div class="hex">#EF4444</div>
+              <div class="var">--color-danger</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. ОБЗОР ===== -->
+      <section id="dashboard" class="spec-section">
+        <h1>📊 5. Обзор (Дашборд)</h1>
+
+        <h2>Блоки</h2>
+        <ol>
+          <li><strong>Приветствие</strong> — аватар, имя, телефон, договор</li>
+          <li><strong>Ближайшая тренировка</strong> — дата, время, группа, тренер, зал</li>
+          <li><strong>Статистика</strong> — абонемент, посещения, бонусы, всего оплачено</li>
+          <li><strong>Последние 5 визитов</strong></li>
+          <li><strong>Кнопка «Посмотреть все посещения»</strong></li>
+          <li><strong>Баннер именинника</strong> (если ДР в ближайшие 3 дня) — БЕЗ кнопки «Записаться»</li>
+        </ol>
+      </section>
+
+      <!-- ===== 6. ПОСЕЩЕНИЯ ===== -->
+      <section id="visits" class="spec-section">
+        <h1>📅 6. История посещений</h1>
+
+        <h2>Поля таблицы</h2>
+        <table class="spec-table">
+          <thead><tr><th>Колонка</th><th>Описание</th></tr></thead>
+          <tbody>
+            <tr><td>Дата</td><td>Дата + время визита</td></tr>
+            <tr><td>Программа</td><td>Название группы/тренировки</td></tr>
+            <tr><td>Тренер</td><td>ФИО тренера</td></tr>
+            <tr><td>Зал</td><td>Название зала</td></tr>
+            <tr><td>Тип</td><td>Групповая / Персональная</td></tr>
+            <tr><td>Стоимость</td><td>Стоимость визита</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Фильтры и пагинация</h2>
+        <ul>
+          <li>Фильтры: по месяцу, по программе</li>
+          <li>Пагинация: 20 записей на страницу</li>
+        </ul>
+      </section>
+
+      <!-- ===== 7. ОПЛАТЫ ===== -->
+      <section id="payments" class="spec-section">
+        <h1>💰 7. История оплат и списаний</h1>
+
+        <h2>Поля таблицы</h2>
+        <table class="spec-table">
+          <thead><tr><th>Колонка</th><th>Описание</th></tr></thead>
+          <tbody>
+            <tr><td>Дата</td><td>Дата операции</td></tr>
+            <tr><td>Тип</td><td>Оплата / Пополнение / Списание (с подтипом)</td></tr>
+            <tr><td>Сумма</td><td>Сумма (зелёный / красный / серый)</td></tr>
+            <tr><td>Описание</td><td>Назначение</td></tr>
+            <tr><td>Статус</td><td>Завершён</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Типы списаний (обязательно разделять)</h2>
+        <table class="spec-table">
+          <thead><tr><th>Тип</th><th>Описание</th><th>Пример</th></tr></thead>
+          <tbody>
+            <tr><td>Тренировка</td><td>По конкретному посещению</td><td>«Кунг-фу · 04.08.2026»</td></tr>
+            <tr><td>Возврат</td><td>Возврат средств</td><td>«Возврат за пропуск»</td></tr>
+            <tr><td>Окончание срока</td><td>Истёк срок абонемента</td><td>«Абонемент „Кунг-фу" 12 занятий — истёк»</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Цветовая индикация</h2>
+        <ul>
+          <li><strong>Оплата / Пополнение</strong> → зелёный <code>+X ₽</code></li>
+          <li><strong>Списание (тренировка)</strong> → красный <code>-X ₽</code></li>
+          <li><strong>Возврат</strong> → зелёный <code>+X ₽</code> (с пометкой «Возврат»)</li>
+          <li><strong>Окончание срока</strong> → серый/оранжевый (информационное)</li>
+        </ul>
+
+        <p><strong>Итого:</strong> Всего оплачено, всего потрачено (31 день), баланс депозита</p>
+      </section>
+
+      <!-- ===== 8. СЕРТИФИКАТЫ ===== -->
+      <section id="certificates" class="spec-section">
+        <h1>📜 8. Сертификаты</h1>
+
+        <h2>Карточки</h2>
+        <table class="spec-table">
+          <thead><tr><th>Поле</th><th>Описание</th></tr></thead>
+          <tbody>
+            <tr><td>Номер</td><td>Номер сертификата</td></tr>
+            <tr><td>Номинал</td><td>Сумма</td></tr>
+            <tr><td>Баланс</td><td>Остаток</td></tr>
+            <tr><td>Срок действия</td><td>До какого числа</td></tr>
+            <tr><td>Статус</td><td>Активен / Использован / Просрочен</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Прогресс-бар:</strong> использовано / всего</p>
+      </section>
+
+      <!-- ===== 9. АБОНЕМЕНТЫ ===== -->
+      <section id="accounts" class="spec-section">
+        <h1>🎫 9. Абонементы</h1>
+
+        <h2>Карточки</h2>
+        <table class="spec-table">
+          <thead><tr><th>Поле</th><th>Описание</th></tr></thead>
+          <tbody>
+            <tr><td>Название</td><td>Тип абонемента</td></tr>
+            <tr><td>Номер</td><td>В системе</td></tr>
+            <tr><td>Куплен</td><td>CreateDate</td></tr>
+            <tr><td>Действует до</td><td>BeginDate + DaysCount</td></tr>
+            <tr><td>Стоимость</td><td>Цена</td></tr>
+            <tr><td>Статус</td><td>Активен / Истёк / Заморожен / Отменён</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note note-err">
+          <strong>Важно:</strong> Онлайн-оплата НЕ доступна (только просмотр). Ссылка на телефон.
+        </div>
+
+        <p><strong>Прогресс-бар:</strong> использовано / всего тренировок</p>
+      </section>
+
+      <!-- ===== 11. ПОДВКЛАДКИ ===== -->
+      <section id="subtabs" class="spec-section">
+        <h1>👨‍👩‍👧 11. Подвкладки (для родителей)</h1>
+
+        <h2>Логика отображения</h2>
+        <div class="note note-info">
+          Показываем ТОЛЬКО если есть семья. Если семьи НЕТ — подвкладки НЕ показываем.
+        </div>
+
+        <table class="spec-table">
+          <thead><tr><th>Подвкладка</th><th>Условие</th><th>Источник</th></tr></thead>
+          <tbody>
+            <tr><td>Я</td><td>Всегда</td><td>cfr_persons текущего пользователя</td></tr>
+            <tr><td>Дети (каждый)</td><td>Есть дети у клиента</td><td>cfr_persons.parent_person_id → children</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note note-info">
+          <strong>Сородитель НЕ показывается.</strong> Только текущий пользователь и его дети.
+        </div>
+
+        <h2>Поведение</h2>
+        <ul>
+          <li>Горизонтальный скролл</li>
+          <li>Активная подвкладка подсвечена</li>
+          <li>Переключение перезагружает данные для выбранного человека</li>
+        </ul>
+      </section>
+
+      <!-- ===== 12. БАННЕР ИМЕНИННИКА ===== -->
+      <section id="birthday" class="spec-section">
+        <h1>🎂 12. Баннер именинника</h1>
+
+        <h2>Условия</h2>
+        <ul>
+          <li>Показывать за 3 дня до ДР и в сам ДР</li>
+          <li>Проверка: <code>birth_date</code> в диапазоне [сегодня, сегодня + 3 дня]</li>
+        </ul>
+
+        <h2>Дизайн</h2>
+        <div class="note note-warn">
+          🎉 С днём рождения, [Имя]!<br>
+          Приходи на ближайшую тренировку и получи подарок от студии!<br><br>
+          <strong>БЕЗ кнопки «Записаться»</strong> — функционал не реализован.<br>
+          Градиент: оранжевый → жёлтый.
+        </div>
+      </section>
+
+      <!-- ===== 13. ВКЛАДКИ-ЗАГЛУШКИ ===== -->
+      <section id="placeholders" class="spec-section">
+        <h1>🚧 13. Вкладки-заглушки</h1>
+
+        <div class="note note-info">
+          Все вкладки-заглушки помечены как «в разработке». Никаких сроков не указано.
+        </div>
+
+        <h3>📝 Домашнее задание</h3>
+        <ul>
+          <li>📋 Задания от тренера</li>
+          <li>✅ Отметка выполнения</li>
+          <li>📝 Комментарии тренера</li>
+        </ul>
+        <p><strong>Текст:</strong> «Раздел появится, если тренер назначит ДЗ.»</p>
+
+        <h3>📓 Дневник самоконтроля</h3>
+        <ul>
+          <li>📏 Замеры тела (вес, объёмы)</li>
+          <li>📈 Графики прогресса</li>
+          <li>😊 Отметка самочувствия</li>
+          <li>💬 Заметки</li>
+        </ul>
+        <div class="note note-warn">
+          <strong>Без фото</strong> — только текстовые записи и графики.
+        </div>
+        <p><strong>Текст:</strong> «Мы добавим дневник, чтобы вы могли следить за результатами.»</p>
+
+      </section>
+
+      <!-- ===== 14. API ЭНДПОИНТЫ ===== -->
+      <section id="api" class="spec-section">
+        <h1>🔌 14. API эндпоинты</h1>
+
+        <div class="note note-info">
+          <strong>Важно:</strong> Все эндпоинты возвращают JSON. Авторизация через JWT-токен в заголовке <code>Authorization: Bearer &lt;token&gt;</code>.
+        </div>
+
+        <h2>Авторизация</h2>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method post">POST</span>
+            <span class="api-url">/api/lk/auth</span>
+          </div>
+          <div class="api-body">
+            <strong>Запрос:</strong><br>
+            <pre><code>{
+  "phone": "+79000000000",
+  "agreement_number": "0000"
+}</code></pre>
+            <strong>Ответ (успех):</strong><br>
+            <pre><code>{
+  "success": true,
+  "token": "eyJhbGc...",
+  "user": {
+    "id": 1234,
+    "name": "Иван Иванов",
+    "phone": "+7 (900) 000-00-00",
+    "agreement_number": "0000",
+    "has_family": true,
+    "is_birthday": false
+  }
+}</code></pre>
+            <strong>Ответ (ошибка):</strong><br>
+            <pre><code>{
+  "success": false,
+  "error": "Неверный номер телефона или номер договора"
+}</code></pre>
+          </div>
+        </div>
+
+        <h2>Профиль и разделы</h2>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/profile?section=overview&amp;person_id=X</span>
+          </div>
+          <div class="api-body">
+            <strong>Параметры:</strong><br>
+            <ul>
+              <li><code>section</code> — раздел: <code>overview</code>, <code>visits</code>, <code>payments</code>, <code>family</code></li>
+              <li><code>person_id</code> — ID человека (для подвкладок «Я» / «Дети»)</li>
+            </ul>
+            <strong>Ответ (overview):</strong><br>
+            <pre><code>{
+  "user": {
+    "id": 1234,
+    "name": "Иван Иванов",
+    "phone": "+7 (900) 000-00-00",
+    "agreement_number": "0000"
+  },
+  "next_class": {
+    "date": "2026-08-10",
+    "time": "18:00",
+    "program": "Кунг-фу",
+    "group": "8-12 лет",
+    "trainer": "Алексей С.",
+    "hall": "Большой зал"
+  },
+  "stats": {
+    "remaining_sessions": 5,
+    "remaining_rubles": 4700,
+    "visits_31d": 5,
+    "bonuses": 500,
+    "paid_31d": 3140,
+    "spent_31d": 2400
+  },
+  "recent_visits": [
+    {
+      "date": "2026-08-04",
+      "program": "Кунг-фу",
+      "trainer": "Алексей С."
+    }
+  ],
+  "is_birthday": false
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/profile?section=visits&amp;person_id=X</span>
+          </div>
+          <div class="api-body">
+            <strong>Параметры:</strong><br>
+            <ul>
+              <li><code>person_id</code> — ID человека</li>
+              <li><code>month</code> — фильтр по месяцу (опционально)</li>
+              <li><code>program</code> — фильтр по программе (опционально)</li>
+              <li><code>page</code> — номер страницы (по умолчанию 1)</li>
+            </ul>
+            <strong>Ответ:</strong><br>
+            <pre><code>{
+  "visits": [
+    {
+      "date": "2026-06-04 18:00",
+      "program": "Кунг-фу",
+      "trainer": "Алексей",
+      "hall": "Большой зал",
+      "type": "Групповая",
+      "cost": 500
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "total_pages": 12,
+    "total_items": 48
+  },
+  "totals": {
+    "total_visits": 48,
+    "total_cost": 12500
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/profile?section=payments&amp;person_id=X</span>
+          </div>
+          <div class="api-body">
+            <strong>Ответ:</strong><br>
+            <pre><code>{
+  "payments": [
+    {
+      "date": "2026-06-20",
+      "type": "Оплата",
+      "subtype": null,
+      "amount": 3140,
+      "description": "Абонемент «Кунг-фу» 12 занятий",
+      "status": "completed"
+    },
+    {
+      "date": "2026-03-05",
+      "type": "Списание",
+      "subtype": "Тренировка",
+      "amount": -1200,
+      "description": "Кунг-фу · 05.03.2026",
+      "status": "completed"
+    },
+    {
+      "date": "2026-03-01",
+      "type": "Списание",
+      "subtype": "Возврат",
+      "amount": 500,
+      "description": "Возврат за пропуск",
+      "status": "completed"
+    },
+    {
+      "date": "2026-02-20",
+      "type": "Списание",
+      "subtype": "Окончание срока",
+      "amount": 0,
+      "description": "Абонемент «Кунг-фу» 12 занятий — истёк",
+      "status": "completed"
+    }
+  ],
+  "totals": {
+    "total_paid": 15200,
+    "balance": 3800
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/profile?section=family</span>
+          </div>
+          <div class="api-body">
+            <strong>Ответ:</strong><br>
+            <pre><code>{
+  "family": [
+    {
+      "id": 1234,
+      "name": "Иван Иванов",
+      "role": "self",
+      "is_parent": false
+    },
+    {
+      "id": 5678,
+      "name": "Миша Иванов",
+      "role": "child",
+      "is_parent": false
+    },
+    {
+      "id": 9012,
+      "name": "Катя Иванова",
+      "role": "child",
+      "is_parent": false
+    }
+  ]
+}</code></pre>
+            <div class="note note-info" style="margin-top:12px;">
+              <strong>Важно:</strong> Если <code>family.length === 1</code> (только сам пользователь) — подвкладки НЕ показываем. Если <code>family.length > 1</code> — показываем подвкладки «Я» / «Дети».
+            </div>
+          </div>
+        </div>
+
+        <h2>Дополнительные эндпоинты</h2>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method put">PUT</span>
+            <span class="api-url">/api/lk/profile</span>
+          </div>
+          <div class="api-body">
+            <strong>Описание:</strong> Обновление контактных данных пользователя.<br>
+            <strong>Запрос:</strong><br>
+            <pre><code>{
+  "phone": "+79000000000"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/birthday?person_id=X</span>
+          </div>
+          <div class="api-body">
+            <strong>Описание:</strong> Проверка, есть ли у человека день рождения в ближайшие 3 дня.<br>
+            <strong>Ответ:</strong><br>
+            <pre><code>{
+  "is_birthday": true,
+  "name": "Иван Иванов",
+  "birthday_date": "2026-08-07",
+  "days_remaining": 0
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-header">
+            <span class="api-method get">GET</span>
+            <span class="api-url">/api/lk/homework?person_id=X</span>
+          </div>
+          <div class="api-body">
+            <strong>Описание:</strong> Возвращает домашние задания ТОЛЬКО если есть активные задания от тренера.<br>
+            <strong>Ответ (есть ДЗ):</strong><br>
+            <pre><code>{
+  "has_homework": true,
+  "assignments": [
+    {
+      "id": 1,
+      "title": "Приседания",
+      "description": "3 подхода по 15 раз",
+      "video_url": "/videos/squats.mp4",
+      "created_at": "2026-08-01",
+      "completed": false
+    }
+  ]
+}</code></pre>
+            <strong>Ответ (нет ДЗ):</strong><br>
+            <pre><code>{
+  "has_homework": false
+}</code></pre>
+            <div class="note note-info" style="margin-top:12px;">
+              <strong>Важно:</strong> Если <code>has_homework === false</code> — раздел «Домашнее задание» НЕ показываем в меню.
+            </div>
+          </div>
+        </div>
+
+        <h2>Общие ошибки API</h2>
+
+        <table class="spec-table">
+          <thead>
+            <tr><th>Код</th><th>Описание</th><th>Пример ответа</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>401</code></td>
+              <td>Неавторизован</td>
+              <td><code>{ "error": "Не авторизован" }</code></td>
+            </tr>
+            <tr>
+              <td><code>404</code></td>
+              <td>Раздел не найден</td>
+              <td><code>{ "error": "Раздел не найден" }</code></td>
+            </tr>
+            <tr>
+              <td><code>429</code></td>
+              <td>Слишком много запросов</td>
+              <td><code>{ "error": "Подождите несколько секунд" }</code></td>
+            </tr>
+            <tr>
+              <td><code>500</code></td>
+              <td>Внутренняя ошибка сервера</td>
+              <td><code>{ "error": "Внутренняя ошибка" }</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Тестовые данные</h2>
+        <div class="note note-info">
+          <strong>Тестовый аккаунт:</strong> <code>+7 (900) 000-00-00</code> / <code>0000</code><br>
+          Доступен на всех окружениях: dev, staging, prod.
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== IFRAME КОНТЕЙНЕР ===== -->
+  <div id="viewContainer" style="display:none;">
+    <div class="view-toolbar">
+      <button class="view-back-btn" onclick="switchView('spec')">← Вернуться к спецификации</button>
+    </div>
+    <iframe id="viewIframe" src="" style="width:100%;height:calc(100vh - 56px);border:none;" title="Макет"></iframe>
+  </div>
+
+  <script>
+    // ============================================================
+    // SIDEBAR TOGGLE (MOBILE)
+    // ============================================================
+    function toggleSidebar() {
+      document.getElementById('specSidebar').classList.toggle('open');
+    }
+
+    // ============================================================
+    // ACTIVE LINK TRACKING
+    // ============================================================
+    const links = document.querySelectorAll('.spec-nav a');
+    links.forEach(link => {
+      link.addEventListener('click', function() {
+        links.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        // Close sidebar on mobile
+        if (window.innerWidth <= 768) {
+          document.getElementById('specSidebar').classList.remove('open');
+        }
+      });
+    });
+
+    // ============================================================
+    // SCROLL SPY
+    // ============================================================
+    const sections = document.querySelectorAll('.spec-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links.forEach(l => {
+            l.classList.remove('active');
+            if (l.getAttribute('href') === '#' + id) {
+              l.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ============================================================
+    // DARK / LIGHT THEME
+    // ============================================================
+    let currentTheme = localStorage.getItem('lk-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeButton();
+
+    function toggleTheme() {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      localStorage.setItem('lk-theme', currentTheme);
+      updateThemeButton();
+      showKbdHint(currentTheme === 'dark' ? '🌙 Тёмная тема' : '☀️ Светлая тема');
+    }
+
+    function updateThemeButton() {
+      const btn = document.getElementById('themeToggle');
+      if (btn) {
+        btn.querySelector('.btn-icon').textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', currentTheme === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
+      }
+    }
+
+    // ============================================================
+    // VIEW SWITCHER (spec / mobile / desktop)
+    // ============================================================
+    function switchView(view) {
+      const specLayout = document.querySelector('.spec-layout');
+      const viewContainer = document.getElementById('viewContainer');
+      const iframe = document.getElementById('viewIframe');
+      const specBtn = document.getElementById('viewSpecBtn');
+      const mobileBtn = document.getElementById('viewMobileBtn');
+      const desktopBtn = document.getElementById('viewDesktopBtn');
+
+      // Update tab buttons
+      [specBtn, mobileBtn, desktopBtn].forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+
+      if (view === 'spec') {
+        specLayout.style.display = 'flex';
+        viewContainer.style.display = 'none';
+        specBtn.classList.add('active');
+        specBtn.setAttribute('aria-selected', 'true');
+        localStorage.setItem('lk-view', 'spec');
+      } else {
+        specLayout.style.display = 'none';
+        viewContainer.style.display = 'block';
+        iframe.src = view === 'mobile' ? 'mobile.html' : 'desktop.html';
+        iframe.title = view === 'mobile' ? 'Мобильная версия ЛК' : 'Десктопная версия ЛК';
+
+        if (view === 'mobile') {
+          mobileBtn.classList.add('active');
+          mobileBtn.setAttribute('aria-selected', 'true');
+        } else {
+          desktopBtn.classList.add('active');
+          desktopBtn.setAttribute('aria-selected', 'true');
+        }
+        localStorage.setItem('lk-view', view);
+      }
+    }
+
+    // Restore last view
+    (function restoreView() {
+      const lastView = localStorage.getItem('lk-view') || 'spec';
+      if (lastView !== 'spec') {
+        switchView(lastView);
+      }
+    })();
+
+    // ============================================================
+    // TIMER
+    // ============================================================
+    let timerInterval = null;
+    let timerSeconds = 0;
+    let timerVisible = false;
+
+    function toggleTimer() {
+      timerVisible = !timerVisible;
+      const display = document.getElementById('timerDisplay');
+      if (timerVisible) {
+        display.classList.add('visible');
+        if (!timerInterval) {
+          timerInterval = setInterval(() => {
+            timerSeconds++;
+            const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+            const secs = String(timerSeconds % 60).padStart(2, '0');
+            display.textContent = `⏱️ ${mins}:${secs}`;
+          }, 1000);
+        }
+        showKbdHint('⏱️ Таймер запущен');
+      } else {
+        display.classList.remove('visible');
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        timerSeconds = 0;
+        showKbdHint('⏱️ Таймер остановлен');
+      }
+    }
+
+    // ============================================================
+    // KEYBOARD HINT
+    // ============================================================
+    let kbdTimeout = null;
+
+    function toggleKbdHint() {
+      const hint = document.getElementById('kbdHint');
+      hint.classList.toggle('visible');
+      if (kbdTimeout) clearTimeout(kbdTimeout);
+      if (hint.classList.contains('visible')) {
+        kbdTimeout = setTimeout(() => {
+          hint.classList.remove('visible');
+        }, 5000);
+      }
+    }
+
+    function showKbdHint(text) {
+      const hint = document.getElementById('kbdHint');
+      hint.textContent = text;
+      hint.classList.add('visible');
+      if (kbdTimeout) clearTimeout(kbdTimeout);
+      kbdTimeout = setTimeout(() => {
+        hint.classList.remove('visible');
+      }, 3000);
+    }
+
+    // ============================================================
+    // KEYBOARD SHORTCUTS
+    // ============================================================
+    document.addEventListener('keydown', function(e) {
+      // Don't trigger shortcuts when typing in inputs
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+        return;
+      }
+
+      switch(e.key) {
+        case 'd':
+        case 'D':
+        case 'ё':
+        case 'Ё':
+          e.preventDefault();
+          toggleTheme();
+          break;
+        case 't':
+        case 'T':
+        case 'в':
+        case 'В':
+          e.preventDefault();
+          toggleTimer();
+          break;
+        case 'h':
+        case 'H':
+        case 'т':
+        case 'Т':
+          e.preventDefault();
+          toggleKbdHint();
+          break;
+        case '1':
+          switchView('spec');
+          break;
+        case '2':
+          switchView('mobile');
+          break;
+        case '3':
+          switchView('desktop');
+          break;
+        case 'Escape':
+          // Close sidebar on mobile
+          const sidebar = document.getElementById('specSidebar');
+          if (sidebar && sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+          }
+          break;
+      }
+    });
+
+    // ============================================================
+    // INITIAL KBD HINT (show on first load)
+    // ============================================================
+    (function showInitialHint() {
+      if (!sessionStorage.getItem('lk-hint-shown')) {
+        setTimeout(() => {
+          toggleKbdHint();
+          sessionStorage.setItem('lk-hint-shown', 'true');
+        }, 1500);
+      }
+    })();
+
+  </script>
+
+</body>
+</html>

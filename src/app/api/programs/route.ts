@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getAllPrograms } from '@/lib/db-new';
 
 export async function GET() {
   try {
-    const data = getDb();
-    const programs = data.programs || [];
+    const programs = await getAllPrograms();
     return NextResponse.json(programs);
   } catch (error) {
     console.error('API программы error:', error);

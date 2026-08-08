@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReservationStatus>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2022 14:46:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2022 14:46:33" Removed="true">
+    <ID>170b1799-7ad1-4ba0-9257-c84d7870bdfb</ID>
+    <Colour>FF95CAFE</Colour>
+    <Name>первичный контакт</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:24" Removed="true">
+    <ID>c21b8873-29d7-447c-a3f2-64a7ca359d28</ID>
+    <Name>принимает решение</Name>
+    <Colour>FFFEF995</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:31:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:31:52" Removed="true">
+    <ID>2d1d2751-b407-4a12-87a9-31ccd58f23b8</ID>
+    <Colour>FFFFCA62</Colour>
+    <Name>ожидает действия от нас</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:27" Removed="true">
+    <ID>ad0119c1-3708-486e-8994-93285fa651f9</ID>
+    <Colour>FFFFCFCB</Colour>
+    <Name>решил прийти</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:31" Removed="true">
+    <ID>60ce10f1-e5cd-4f5a-96fd-ca4e23974946</ID>
+    <Colour>FFE9CBFF</Colour>
+    <Name>оформил разовое занятие</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:34" Removed="true">
+    <ID>11af989c-537b-4dff-8a6f-1563ae2f93a8</ID>
+    <Colour>FFCCF261</Colour>
+    <Name>оформил абонемент</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:39" Removed="true">
+    <ID>7d1c89d1-fcbf-474c-a9b8-a5b8f7c99e6c</ID>
+    <Colour>FFD3D8DC</Colour>
+    <Name>не выходит на связь</Name>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2021 12:06:00" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2021 12:06:00">
+    <ID>4ef9a219-ba02-46f8-abca-b527156eba65</ID>
+    <Name Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2021 12:06:00">не беспокоить</Name>
+    <Position Updated="4|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2021 12:05:39"></Position>
+    <Colour Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.07.2021 12:05:48">FF8B0000</Colour>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2022 14:46:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 21:37:12" Removed="true">
+    <ID>f295ea20-0539-40c0-bbb9-9cd13d5f07c3</ID>
+    <Name>болеет</Name>
+    <Position>1</Position>
+    <Description>болеет с 29.03.21</Description>
+    <Colour>FFC71585</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:31:46" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2021 21:38:48" Removed="true">
+    <ID>d8b77e67-55e8-45dc-b8e1-d22bdf9cf310</ID>
+    <Name>заявление о переносе ТЦ3г на март</Name>
+    <Position>2</Position>
+    <Description>заявление о переносе 3х тренировок с Усовой Светланы ТЦ3 год</Description>
+    <Colour>FFFF6347</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.06.2021 20:11:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2021 21:33:44" Removed="true">
+    <ID>5ebdb257-70f9-4117-84ac-ee7273a4ea14</ID>
+    <Name>оплатила 1320, но скидка есть </Name>
+    <Colour>FF7FFFD4</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:31:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2021 19:08:54" Removed="true">
+    <ID>dfae8504-6562-4aab-a05f-70aa0c3a655a</ID>
+    <Colour>FFE0FFFF</Colour>
+    <Name>доплатить за апрель ушу 2450</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2021 19:48:41" Removed="true">
+    <ID>50654832-c103-4dbd-9272-e3ad74baf1c3</ID>
+    <Colour>FF8B4513</Colour>
+    <Name>оплата 12.04 скидка 5% </Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.12.2022 03:34:34" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 12:21:06" Removed="true">
+    <ID>b179865e-558d-4a30-bb13-df91b900c8b4</ID>
+    <Name>в отпуске</Name>
+    <Colour>FFFF4500</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.06.2021 20:16:59" Removed="true">
+    <ID>537f611d-a38a-4cd7-8888-16687ecc6a83</ID>
+    <Colour>FF0000CD</Colour>
+    <Name>СКИДКА ЕСТЬ ПРИ 9.06</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2021 16:18:28" Removed="true">
+    <ID>723e96b7-9d16-422f-a4b6-867c4db4beac</ID>
+    <Colour>FF20B2AA</Colour>
+    <Name>следующая без скидки, потом со скидкой</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.07.2021 13:50:58">
+    <ID>0b9c580a-0355-4a7c-8f09-5698078d8e58</ID>
+    <Name>уехала</Name>
+    <Description>Клиент уехал на долгое время или переехал</Description>
+    <Colour>FF0000FF</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 17:59:15" Removed="true">
+    <ID>700d1d00-7f33-44cf-9734-feb37ae6572f</ID>
+    <Colour>FFCD853F</Colour>
+    <Name>снимать со скидкой</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.10.2021 08:02:46" Removed="true">
+    <ID>c77b1ea8-6d57-49d7-80ad-c47a2c5a1116</ID>
+    <Colour>FFFF8C00</Colour>
+    <Name>привита</Name>
+    <Description>вторая 07.03.2021</Description>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.02.2022 13:35:07" Removed="true">
+    <ID>a275831d-63d9-41a6-9b36-6ccaf082d98b</ID>
+    <Colour>FF00FA9A</Colour>
+    <Name>сертификат должна предоставить на 5тыс</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.02.2022 13:37:40" Removed="true">
+    <ID>20dca60b-8d9a-49bf-9d35-2673257f9141</ID>
+    <Colour>FF00FFFF</Colour>
+    <Name>сертификат на 4 тр, 2 платно 2 бесплатно</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.02.2022 14:56:51" Removed="true">
+    <ID>bcf291fa-aca5-4f9e-9deb-699db5eec44d</ID>
+    <Colour>FF1E90FF</Colour>
+    <Name>ХОДИТЬ ПОКА НЕ БУДЕТ, УШЁЛ В ХОККЕЙ</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.06.2022 09:40:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2022 14:51:43" Removed="true">
+    <ID>bf9ff7ae-adab-473f-bdfc-542eaa7f7b15</ID>
+    <Name>тц за март 2022 не оплачено</Name>
+    <Colour>FFFF0000</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2022 14:07:14" Removed="true">
+    <ID>5c04616d-8449-4a13-b686-bfe39c2339be</ID>
+    <Colour>FFEEE8AA</Colour>
+    <Name>обзвон был </Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:32:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.06.2022 09:40:35" Removed="true">
+    <ID>97b6bceb-7c37-4b2d-80f5-ccf9f07a62a3</ID>
+    <Colour>FFDC143C</Colour>
+    <Name>ТЦ за май не оплачено 1400 руб</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2023 12:25:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.06.2022 11:33:16" Removed="true">
+    <ID>a1cb41cc-dfa6-4024-8f36-2fbd19ceebb9</ID>
+    <Name>оплатить со скидкой после 21.06.22</Name>
+    <Colour>FFC71585</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2023 13:44:18" Removed="true">
+    <ID>4cc46da7-7d82-4b4d-97e6-8757d95078a7</ID>
+    <Colour>FFA0522D</Colour>
+    <Name>повреждение колена пока не может около месяца ходить</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.10.2023 19:20:11">
+    <ID>8915df1b-6301-4e82-810e-52e94c77f5f4</ID>
+    <Name>была на консультации</Name>
+    <Colour>FF00FF00</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:51:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.11.2023 21:00:41" Removed="true">
+    <ID>632ce8fb-9caf-46cf-a49c-a5ef39f287b7</ID>
+    <Colour>FFFA8072</Colour>
+    <Name>Здоровая спина в 18.00 у Оксаны за 0 руб, далее идет на ТЦ в 19.00 за 490 руб. только у нее так отмечаем в понедельник.</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:52:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.11.2023 21:02:56" Removed="true">
+    <ID>2ae4de6f-8f43-43fd-911e-2a73c46d8871</ID>
+    <Colour>FF00FF00</Colour>
+    <Name>"ПЕРЕНОС" снимаем по старой цене со %</Name>
+  </Item>
+  <Item Updated="10|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:57:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:38:46">
+    <ID>2844670a-17f6-4760-81a1-fb69d982bf75</ID>
+    <Colour Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:44:52">FFFF4500</Colour>
+    <Name Updated="10|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:57:03">С помощью "галочки" и зеленой кнопки "отметить" отмечать только ТЦ!!!  </Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:44:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.11.2023 15:41:12" Removed="true">
+    <ID>bfd20a5e-4fe8-4f6a-9109-a30ccfeae3e6</ID>
+    <Colour>FFDC143C</Colour>
+    <Name>можно только абонемент можно только ТЦ 3 год! </Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.04.2024 21:14:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.12.2023 20:22:22">
+    <ID>eb1d6c51-2228-4336-af51-a0f1d31a4b57</ID>
+    <Name Updated="7|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.04.2024 21:14:16">сделасть скидку на покупку абонемента </Name>
+    <Description Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.04.2024 21:14:19"></Description>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.12.2023 20:22:21">FFFF1493</Colour>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.07.2024 19:42:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.07.2024 19:41:35">
+    <ID>6bbc3b35-b99c-409d-a3f7-ac47dfe5d769</ID>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.07.2024 19:41:35">FF00FF00</Colour>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.07.2024 19:42:37">4.07.24 была на тренировке, не вручили сертиф ДР, вручить как придёт</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2025 20:07:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|14.09.2024 21:12:36">
+    <ID>441cd05a-4296-426f-96c0-6df156f4227c</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.02.2025 20:07:22">ВНИМАНИЕ, сначало закончить абонемент на 4 занятия</Name>
+    <Colour>FFEE82EE</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.09.2024 16:25:10">
+    <ID>eddaaf52-cbe6-47a0-8478-3eabdd1307f0</ID>
+    <Name>ФИТМОСТ</Name>
+    <Colour>FFDEB887</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.10.2024 13:17:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.10.2024 13:17:04">
+    <ID>bb312f69-8bab-49a8-b72a-85a36b766525</ID>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.10.2024 13:17:03">FFFF00FF</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.10.2024 13:17:31">ИЗВИНИТЬСЯ, СКАЗАЛА НЕ ПРАВИЛЬНЫЙ БАЛАНС 15.10.24, СКИДКУ СОХРАНИТЬ</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:52:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.10.2024 13:36:25" Removed="true">
+    <ID>83f12727-0821-47bd-8c53-49f3c5df819c</ID>
+    <Colour>FF00FA9A</Colour>
+    <Name>было др в среду поздравить</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.11.2024 19:58:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.11.2024 19:56:54">
+    <ID>688a249b-ed31-48a1-8589-cc2fee9d8c89</ID>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.11.2024 19:56:52">FFFF0000</Colour>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.11.2024 19:58:19">!абонемент от 18.11 на 12 зан. начинаем использовать, когда ЗАКОНЧИТСЯ предыдуший</Name>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.01.2025 18:03:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.01.2025 17:32:47">
+    <ID>c4e07cc9-fb1e-41e9-bac9-6ccf62a2ff6b</ID>
+    <Colour>FFFF0000</Colour>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.01.2025 18:03:57">Действует абонемент 12 занятий</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:55:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:53:34">
+    <ID>dabdca59-f07b-445f-b2d2-89f6d875db41</ID>
+    <Colour Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:55:14">FF00FF00</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.03.2025 11:55:09">абонемент от 15.02.25 отмечать со скидкой, не правильно внесено</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.04.2025 20:12:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.04.2025 20:11:54">
+    <ID>3862d28f-d0b0-45ad-a3de-dd7095bb888e</ID>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.04.2025 20:11:18">FF7FFF00</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.04.2025 20:12:44">АБОНЕМЕНТ ОТ 18.03 ОТМЕЧАТЬ СО СКИДОЙ </Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 18:53:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 18:53:40">
+    <ID>373f9ff6-60e1-4e29-8020-4b9c057f826a</ID>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 18:53:00">FF7B68EE</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 18:53:58">ЕСЛИ КЛИЕНТ ПОКУПАЕТ АБОН НА ТЦ, ТО У НЕГО ВСЕ ОСТАЛЬНЫЕ ТРЕН С 5% СКИДКОЙ</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 20:17:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 20:16:20">
+    <ID>43c39534-501e-400f-a344-e454b9c2b01b</ID>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 20:15:40">FF8B008B</Colour>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|11.04.2025 20:17:10">18.03. ПРИШЛА БЫЛ + НА БАЛАН., ПОСЛЕ ТРЕН ОПЛАТ. ДОЛЖНЫ ОТМЕЧАТЬ С %</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2025 22:04:28" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2025 22:04:07">
+    <ID>655c1922-21c8-42c6-91e1-f81f749c5057</ID>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2025 22:03:44">FFFF00FF</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2025 22:04:28">минуса нет, долг из-за не оплаченного абонемента ТЦ май</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.09.2025 20:07:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.09.2025 20:06:17">
+    <ID>4c588857-78cc-490a-840e-61a5247f6941</ID>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.09.2025 20:05:24">FFFF1493</Colour>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.09.2025 20:07:55">командировка+ отпуск с 9.09,  просила заморзить абонемент</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|19.09.2025 18:02:21">
+    <ID>1467dd45-ef72-4a70-b229-47dc00dd051e</ID>
+    <Name>абонемент дневная группа</Name>
+    <Colour>FF00FFFF</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.03.2026 17:57:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|27.11.2025 18:23:35" Removed="true">
+    <ID>5fe472e6-4acf-4d84-81cd-3d980c578b02</ID>
+    <Name>дети без скидки</Name>
+    <Colour>FFFF7F50</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.12.2025 14:37:13">
+    <ID>fc776225-906e-4471-96a5-ca4df221fa33</ID>
+    <Name>оплата от 15.11 без скидки</Name>
+    <Colour>FF20B2AA</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|23.03.2026 20:30:02">
+    <ID>017ef2e9-cd37-4ac8-a510-41c617142117</ID>
+    <Name>абон от 16.03 со скидкой</Name>
+    <Colour>FF0000CD</Colour>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|28.04.2026 19:14:28" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|21.04.2026 18:47:33">
+    <ID>ef78c19f-d2d4-45ed-90a0-0ce7e7a2b232</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|28.04.2026 19:14:28">с 30.03.26 по 17.04.26 справка болела</Name>
+    <Colour>FF556B2F</Colour>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.06.2026 16:16:13">
+    <ID>80feb2ba-a253-4058-b7f4-6be791e7459a</ID>
+    <Name>На больничном, деньги не снимать!</Name>
+    <Colour>FF87CEEB</Colour>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.07.2026 15:33:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.07.2026 15:32:51">
+    <ID>b9654256-556d-42e2-901d-90ab991614ee</ID>
+    <Colour Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.07.2026 15:32:34">FF00FFFF</Colour>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.07.2026 15:32:28">Абон Дневная группа и 12 трен</Name>
+    <Position Updated="11|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.07.2026 15:33:18">3</Position>
+  </Item>
+</ReservationStatus>

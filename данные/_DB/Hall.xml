@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Hall>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.07.2023 05:05:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.02.2019 20:50:22">
+    <ID>a3e4bd6e-0478-422d-93b0-ae554e6d3715</ID>
+    <Name>БОЛЬШОЙ ЗАЛ</Name>
+    <Status>Active</Status>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.02.2019 20:51:04" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.02.2019 20:50:52">
+    <ID>427ce918-0289-4317-81fd-909c64200f77</ID>
+    <Name>МАЛЫЙ ЗАЛ</Name>
+  </Item>
+</Hall>

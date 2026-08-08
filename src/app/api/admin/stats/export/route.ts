@@ -1,20 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import pool from '@/lib/postgres';
+import { authenticateAdmin } from '@/lib/auth';
 
-const STAT_FILE = path.join(process.cwd(), 'public', 'stat.json');
-
-// Чтение статистики
-function getStats() {
+// GET - получить статистику из PG
+async function getStats() {
   try {
-    if (fs.existsSync(STAT_FILE)) {
-      const data = fs.readFileSync(STAT_FILE, 'utf-8');
-      return JSON.parse(data);
+    const client = await pool.connect();
+    try {
+      const pageViews = await client.query(`
+        SELECT page, COUNT(*) as count, MAX(viewed_at) as last_viewed
+        FROM cfr_page_views GROUP BY page ORDER BY count DESC
+      `);
+      const forms = await client.query(`
+        SELECT form_type, COUNT(*) as count, MAX(submitted_at) as last_submitted
+        FROM cfr_form_submissions GROUP BY form_type ORDER BY count DESC
+      `);
+      return {
+        pages: pageViews.rows.reduce((acc: any, p: any) => {
+          acc[p.page] = { count: parseInt(p.count), lastVisit: p.last_viewed };
+          return acc;
+        }, {}),
+        forms: forms.rows.reduce((acc: any, f: any) => {
+          acc[f.form_type] = { count: parseInt(f.count), lastVisit: f.last_submitted };
+          return acc;
+        }, {}),
+        lastUpdated: new Date().toISOString(),
+      };
+    } finally {
+      client.release();
     }
-  } catch (e) {
-    console.error('Ошибка чтения stat.json:', e);
+  } catch {
+    return { pages: {}, forms: {}, lastUpdated: new Date().toISOString() };
   }
-  return { pages: {}, forms: {}, lastUpdated: new Date().toISOString() };
 }
 
 // Формирование текстового отчёта
@@ -69,12 +86,14 @@ function generateReport(stats: any): string {
 
 // POST - экспорт отчёта или отправка на email
 export async function POST(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
   const { searchParams } = new URL(request.url);
   const action = searchParams.get('action');
 
-  const stats = getStats();
+  const stats = await getStats();
 
-  // Экспорт в TXT (простой текст)
+  // Экспорт в TXT
   if (action === 'export-txt') {
     const report = generateReport(stats);
     return new NextResponse(report, {
@@ -85,7 +104,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  // Экспорт в HTML (открывается в браузере, можно сохранить как PDF)
+  // Экспорт в HTML
   if (action === 'export-html') {
     const html = `<!DOCTYPE html>
 <html>
@@ -143,8 +162,6 @@ export async function POST(request: NextRequest) {
   // Отправка на email
   if (action === 'send-email') {
     const report = generateReport(stats);
-    // Здесь можно добавить отправку на email через nodemailer
-    // Пока просто возвращаем success - email можно настроить позже
     console.log('Отчёт для отправки на email:\n', report);
     return NextResponse.json({ success: true, message: 'Отчёт сформирован' });
   }

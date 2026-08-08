@@ -1,0 +1,1567 @@
+[
+  {
+    "ID": "1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f",
+    "Colour": "FF000080",
+    "Status": "Admission",
+    "ID_Style": "a71bf4fd-5fff-41f0-80b2-1b6d9d24bc58",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "True",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f41b1c45-cae2-483c-b68b-ce54d73e2f36",
+    "Colour": "FFFFB6C1",
+    "Status": "Admission",
+    "ID_Style": "1b1d7754-ea9f-4226-a18e-ac4cb5c0411e",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "e8179c17-3a2a-4753-a093-c517a20777a0",
+    "Colour": "FF7FFF00",
+    "Status": "Admission",
+    "ID_Style": "cc843926-159e-4a34-a3f2-9ecfdac6b578",
+    "ID_Teacher": "0bacbc3d-1e56-4d25-a490-59273884561a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "acb7cbef-77f7-4a76-8cf4-2f15e680b850",
+    "Colour": "FFFFFF00",
+    "ID_Style": "b5097d2c-4a41-4af2-a892-2db0093f4f27",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "e2d6202b-4c36-4125-842d-10428fb2df01",
+    "Colour": "FFFAEBD7",
+    "Status": "Closed",
+    "ID_Style": "72b451e7-2b1f-4f71-b07f-a495d545bf45",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d1ed75db-ff5e-4477-b5f0-2fa6200c1be2",
+    "Colour": "FFA52A2A",
+    "Status": "Admission",
+    "ID_Style": "fc57adfa-9686-49e9-bf34-2a815caa747d",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "dc7da26d-d32d-4d37-bfc3-c0d8767575b5",
+    "Colour": "FF7FFF00",
+    "Status": "Stopped",
+    "ID_Style": "cc61a62a-c9e0-41c2-95d2-1eafc8f0065d",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "106110c1-7398-4778-810a-2be9d8b68853",
+    "Colour": "FFA52A2A",
+    "Status": "Stopped",
+    "ID_Style": "463efb82-255a-443c-ac83-51faa148b330",
+    "ID_Teacher": "fc3498e0-9f0d-40ff-9915-fecc699695bd",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "c0277d6d-9a96-45c8-9c91-0596c8a39e2e",
+    "ID_Teacher": "",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFFF5EE"
+  },
+  {
+    "ID": "aa7b5b9d-2501-4622-a7f0-7c17decbca70",
+    "Colour": "FF7FFF00",
+    "Status": "Stopped",
+    "ID_Style": "ff296472-5c6f-4d84-9d7f-66049027e1cd",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d67f38cf-efad-4164-91fe-05e04ce381b6",
+    "Colour": "FF7FFF00",
+    "Status": "Stopped",
+    "ID_Style": "52e2ce44-2aae-4769-b945-5b14f976d7da",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "85f6e269-20b5-413d-a7e0-cc98f760d331",
+    "Colour": "FFFFD700",
+    "ID_Style": "429486f6-26b9-424d-a2e7-49506deae453",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "7d08f39e-c22d-46ad-8768-718fbc011067",
+    "Colour": "FFFAEBD7",
+    "Status": "Stopped",
+    "ID_Style": "f4c6f4cc-d9c5-4de0-bcf0-a5490f544632",
+    "ID_Teacher": "851284e3-8cf2-4e69-be35-c649cf0b8f20",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0",
+    "Colour": "FFA52A2A",
+    "Status": "Stopped",
+    "ID_Style": "1f9c5579-5ee9-4927-85ce-8d56b9d23ffb",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "0bacf3dc-11e9-4fe0-99c7-e1f44ba48cb5",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "ID_Style": "b312ce41-145f-43ba-a127-6cf951cfb7a7",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f9abcf88-ecf0-4ff5-a1dc-71e47c08df40",
+    "Colour": "FF00FFFF",
+    "Status": "Active",
+    "ID_Style": "d98b640d-5326-4f7d-b932-d3fe5fd37281",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "09e9d322-a978-4c9d-b671-766e112a994c",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "ID_Style": "010f2246-4942-49d4-8844-226a88a5a33d",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "7c095063-b81b-4e85-90af-1d8e2defb9ad",
+    "Colour": "FF00FFFF",
+    "Status": "Stopped",
+    "ID_Style": "c864c45d-4eb1-4032-8fd8-d3241e1f60e5",
+    "ID_Teacher": "91226ff6-b514-4ad9-a81e-7f69e131f564",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "5d8b9ca7-3e13-4df4-b2c6-1fdcc4715bbe",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "36b5b1e7-5615-4b71-8709-7f3af8e21f8c",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b1830842-4419-422e-8ce1-28af98f7f010",
+    "Colour": "FF00FFFF",
+    "Status": "Admission",
+    "ID_Style": "d4311513-023b-440d-abcf-63ff2a1ae7aa",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f45a9d05-301e-4abf-b2cc-85da8ced60ca",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "aa270a20-ef63-4dd2-8892-82f482bc3ca1",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d4e4e8a3-6259-476a-9cd6-89c6ac817397",
+    "Colour": "FF7FFF00",
+    "Status": "Stopped",
+    "ID_Style": "facf3659-7615-4660-95d6-d1b3feef3ee6",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0",
+    "ID_Style": "1411e682-b81c-462f-a4c8-0e66ba9d49a4",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF8A2BE2",
+    "Clients": ""
+  },
+  {
+    "ID": "d6cc3dbc-60fb-4614-bfae-4dbb9873f72c",
+    "Colour": "FF9400D3",
+    "Status": "Admission",
+    "ID_Style": "0357b4bd-37b1-4c4a-8a14-e68d49aa3b79",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "167e5fe9-3f66-4643-9a8d-beb40be405ec",
+    "Colour": "FF00FFFF",
+    "Status": "Stopped",
+    "ID_Style": "a5f0bf55-8173-4289-bcc4-535b071c363c",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f4f8013e-101f-45ac-9f19-1f33fe18fb9c",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "91226ff6-b514-4ad9-a81e-7f69e131f564",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "c7b479ac-92ad-4b88-bc0c-8b147b1ddb15",
+    "Colour": "FFFF0000",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "453ebfce-6025-44bc-9923-5b95d5c0337a",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "ID_Style": "9df9e796-aec5-4a49-8855-50b9dc661972",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "5910a54a-1af6-4ef6-902b-227a37d631b3",
+    "Colour": "FF00FFFF",
+    "Status": "Stopped",
+    "ID_Style": "c864c45d-4eb1-4032-8fd8-d3241e1f60e5",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "e7cd6272-53b9-49c1-808f-bfb82b310983",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "12c1ac0a-6a73-4358-9075-5cf0b81e17de",
+    "Colour": "FF7FFF00",
+    "Status": "Closed",
+    "ID_Style": "174c189c-0767-4d53-baf6-5a20247a65b3",
+    "ID_Teacher": "4326b106-9406-49b1-adc7-eb3323db36cc",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False"
+  },
+  {
+    "ID": "58047d85-c594-411e-9a53-c0cc81c12e47",
+    "Colour": "FF4682B4",
+    "Status": "Admission",
+    "ID_Style": "5fbe4ef9-5e39-498c-bd49-11306da0fef0",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "ecdd9da3-bbb0-4e06-8e16-26f6c349a016",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "b0f5e049-7d01-4856-9125-5322965d9b06",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF8A2BE2",
+    "Clients": ""
+  },
+  {
+    "ID": "ebc064e8-9a34-45e4-9e83-b8d6b212e2e3",
+    "Colour": "FF00FFFF",
+    "Status": "Admission",
+    "ID_Style": "a5f0bf55-8173-4289-bcc4-535b071c363c",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "4dd5b15e-4933-4826-9bb4-f0f9a6c00864",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "ID_Style": "aada5fb1-e745-4492-922a-20b09bf578ce",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "69be06e3-79f6-465f-a777-9e590f7675fe",
+    "Colour": "FF00FFFF",
+    "Status": "Stopped",
+    "ID_Style": "e1c7ff1d-93c3-4b9e-80ee-43c79fd6863d",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "92441f0a-d1da-4298-b2dd-a87822a23e6c",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "1e7d93a0-cc54-4d09-9203-ab8b9f0ce279",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "20cfc128-902a-47de-afaf-225808b92ebd",
+    "Colour": "FFFF0000",
+    "Status": "Admission",
+    "ID_Style": "d74d3e9b-d598-4c15-acdf-2f639ec7e9eb",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b38fdbe1-130a-474e-8ca6-88c5b223597b",
+    "Colour": "FFFAEBD7",
+    "Status": "Stopped",
+    "ID_Style": "9f274e69-0e0c-4b2a-9298-d1656496fca5",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "081d8f12-7d6c-4e6e-a148-1b871037bc8a",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "7897cc38-6032-4f61-bf16-2f864670af9f",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6fadab8f-4827-4d2b-a741-a47e58f4f5d2",
+    "Colour": "FF87CEEB",
+    "Status": "Stopped",
+    "ID_Style": "909135ed-e0f0-4ff2-844e-be73709cd10c",
+    "ID_Teacher": "ab00c751-0935-41f4-aaa0-ac75d1ec4a2f",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "5dc0cd2e-1843-44f8-a097-210884222d27",
+    "Colour": "FF8A2BE2",
+    "Status": "Stopped",
+    "ID_Style": "fd980e56-4c5c-48ee-8df0-f8e59b720e0d",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "9d2e88df-f2ba-44c1-bbf5-8897d6cddf64",
+    "Colour": "FF8A2BE2",
+    "Status": "Admission",
+    "Annotation": "",
+    "ID_Style": "a5f0bf55-8173-4289-bcc4-535b071c363c",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "3efa379f-ad3d-456b-b0aa-6a9ef24a3da3",
+    "ID_Style": "e795e473-85e7-4f98-b373-29941f29a359",
+    "ID_Teacher": "2938c9e2-c810-4cbb-8e1a-4654bc46b161",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF00BFFF",
+    "Clients": ""
+  },
+  {
+    "ID": "3dfbbe5d-99dd-4071-9ab0-79c843af11ba",
+    "Colour": "FF483D8B",
+    "Status": "Admission",
+    "ID_Style": "8f4ec3fb-5bce-4977-852b-bb869af0e7fc",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": ""
+  },
+  {
+    "ID": "f8864fa9-3e55-4685-87c5-3d90e6ae33f0",
+    "Colour": "FFF0F8FF",
+    "Status": "Closed",
+    "ID_Style": "174c189c-0767-4d53-baf6-5a20247a65b3",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "461e50d4-f87f-4673-a953-dab2481f482c",
+    "Colour": "FF00FFFF",
+    "Status": "Admission",
+    "ID_Style": "d4311513-023b-440d-abcf-63ff2a1ae7aa",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "e217989a-91ec-4ab2-b951-8add5783a362",
+    "ID_Style": "3750e8c4-e69a-4a66-a270-9b0d671d6980",
+    "ID_Teacher": "2938c9e2-c810-4cbb-8e1a-4654bc46b161",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF000000",
+    "Clients": ""
+  },
+  {
+    "ID": "a7b7d1c1-2bcf-48c2-9516-e615643c0e74",
+    "Colour": "FFFFFFFF",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "bfaad86d-96ac-4d8d-b3c9-9737728c69fe",
+    "Colour": "FF9370DB",
+    "Status": "Closed",
+    "ID_Style": "737d86a5-d5ef-42e0-8345-bcd6f95efac9",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "516b5325-c48a-40e9-a2d9-b5e72831e0f0",
+    "Colour": "FFFAF0E6",
+    "Status": "Admission",
+    "ID_Style": "ddd69bc7-eaa0-40dd-9833-4b4a700539f0",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "904bb74f-8ded-4bb7-a637-4a8bcf24e374",
+    "Colour": "FFFF69B4",
+    "Status": "Admission",
+    "ID_Style": "4c2b3bc8-048f-4a1f-bd2a-31860f3a36cd",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "0c178dae-d440-42a9-a986-dcc55dac8cbe",
+    "Colour": "FFFFDAB9",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f20af101-f4f4-4d4c-8176-ce8f64bd92a7",
+    "Colour": "FF6B8E23",
+    "Status": "Stopped",
+    "ID_Style": "c28f2dcd-bc27-4520-a408-136152d94c47",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "866c271f-68dc-49a5-8144-2f8bcdc0bc49",
+    "ID_Style": "b6cc5bb1-b6f8-4300-b650-44e6334a158f",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "Age": "",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFF8C00",
+    "Clients": ""
+  },
+  {
+    "ID": "15d958c7-553c-4990-a882-0c4337faa2eb",
+    "Colour": "FF5F9EA0",
+    "Status": "Stopped",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f19f1c25-6d52-4d28-9d74-c63f637f3db5",
+    "Colour": "FF800000",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b22063df-59dc-447b-958c-dd472d0a3750",
+    "ID_Style": "1e7d93a0-cc54-4d09-9203-ab8b9f0ce279",
+    "ID_Teacher": "0bacbc3d-1e56-4d25-a490-59273884561a",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF00FF00",
+    "Clients": ""
+  },
+  {
+    "ID": "54299bf1-fdeb-4046-bbe2-ef236fe08987",
+    "Colour": "FFFDF5E6",
+    "Status": "Stopped",
+    "ID_Style": "51b583ac-b4c5-4b98-9a00-8b92bd4f633b",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d3bdeddc-eaa0-406e-93dd-c59d8d5fee8c",
+    "Colour": "FF9370DB",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": "",
+    "Clients": ""
+  },
+  {
+    "ID": "f4d7a4ee-cd78-4182-b3d6-8d0881f0e2ca",
+    "Status": "Closed",
+    "ID_Style": "76de7dd0-f42f-402d-9d6a-797d72269bd0",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF2F4F4F",
+    "Clients": ""
+  },
+  {
+    "ID": "2b31f127-003d-451f-befb-b3cbda5bfc81",
+    "Colour": "FF000000",
+    "Status": "Admission",
+    "ID_Style": "0ffc85bf-4c9d-4cdd-b26f-36a9d7de4c13",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "cd5fa48a-3ac1-4f33-a837-043ab9ba5ac4",
+    "Colour": "FFFF00FF",
+    "Status": "Active",
+    "ID_Style": "7adba360-5bd8-45c0-8dd0-55124ced4695",
+    "ID_Teacher": "d3e55599-1473-4b8f-b496-84f2ae6e374d",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": "",
+    "Clients": ""
+  },
+  {
+    "ID": "f78c0db3-0b87-4224-876d-c949ae12226d",
+    "Colour": "FFC71585",
+    "Status": "Admission",
+    "ID_Style": "b85c767c-19fc-4496-96dd-0e45f5ffd6d9",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "ccd79c5a-c2cb-4794-ab4c-7c5f337b8930",
+    "Colour": "FF00FF7F",
+    "Status": "Admission",
+    "ID_Style": "09392723-0387-4427-8698-e2ccdc4c6772",
+    "ID_Teacher": "fc3498e0-9f0d-40ff-9915-fecc699695bd",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "82813eab-5784-4d13-a888-a84a63494c1f",
+    "Colour": "FFFF4500",
+    "Status": "Admission",
+    "ID_Style": "fadb220d-9b4d-44cb-9c06-d734f68767c1",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6c5bdd1a-2512-4522-bc1f-673a79590602",
+    "ID_Style": "83835dc1-9e6c-42ca-adc9-4eac3ec1078a",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF808000",
+    "Clients": ""
+  },
+  {
+    "ID": "42c06334-77dc-4613-ae6b-24203f2cc72a",
+    "Colour": "FFFFE4E1",
+    "Status": "Admission",
+    "ID_Style": "5fbe4ef9-5e39-498c-bd49-11306da0fef0",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": "",
+    "Clients": ""
+  },
+  {
+    "ID": "a3ebf981-8c3c-4f6c-8375-2a01590cd1e7",
+    "ID_Style": "4c2b3bc8-048f-4a1f-bd2a-31860f3a36cd",
+    "ID_Teacher": "823fdfbc-5512-4b87-bf14-ea03e19434f1",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFFF0F5",
+    "Clients": ""
+  },
+  {
+    "ID": "f5427302-6b4f-46ea-b936-0003995c8436",
+    "Colour": "FFFFD700",
+    "Age": "4-6",
+    "Status": "Stopped",
+    "ID_Style": "764b31dc-a6f7-4605-8089-10fb224a85ea",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d07c7c18-2acd-412e-ae0e-b2b28488de68",
+    "Colour": "FF008080",
+    "Status": "Admission",
+    "ID_Style": "71fa4d70-2224-43ec-ba29-bd95c6f04ee6",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "aaf33418-5c38-40d4-be59-cc3627d3392c",
+    "ID_Style": "2343b4b3-f9d7-4ec3-bbba-f0e07d7d7db7",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF0000CD",
+    "Clients": ""
+  },
+  {
+    "ID": "09ed28b5-2aad-4694-84f9-52864503fde5",
+    "Colour": "FFFA8072",
+    "Status": "Closed",
+    "ID_Style": "6e2cb937-9a40-4afb-8d2f-11ab02ee7ed7",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "1908cd4a-e90c-4ff7-9cae-f262e724289a",
+    "ID_Style": "51b583ac-b4c5-4b98-9a00-8b92bd4f633b",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "Status": "Stopped",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF8A2BE2",
+    "Clients": ""
+  },
+  {
+    "ID": "2c45a58a-a53c-454b-a6aa-317ba9532a5d",
+    "Colour": "FFFFFFF0",
+    "Status": "Stopped",
+    "ID_Style": "1192c686-f5d5-4421-9eb4-90e01347f6e3",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d3e34fab-55da-4e6f-851c-b68becb9a560",
+    "Colour": "FF8A2BE2",
+    "ID_Style": "03ffd18a-7c0d-4979-87e1-bc9caee591b1",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Stopped",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b677263e-81a2-4a97-91d7-433ebdf9e1bc",
+    "Colour": "FF483D8B",
+    "Status": "Closed",
+    "ID_Style": "beba4ff2-5c3c-45bf-bd56-996d5a59ec4e",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "430c9c96-633a-468f-8f63-44074fcc1102",
+    "Colour": "FFFFFF00",
+    "Status": "Stopped",
+    "ID_Style": "aa270a20-ef63-4dd2-8892-82f482bc3ca1",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "18436299-4b3c-4ec6-8505-39b1fcea1776",
+    "Colour": "FF708090",
+    "Status": "Admission",
+    "ID_Style": "da3ceb5b-5c2b-4b57-9c92-85dc8295d53e",
+    "ID_Teacher": "2938c9e2-c810-4cbb-8e1a-4654bc46b161",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "bbda6cfe-026b-4e98-9eca-33b9591772a3",
+    "Colour": "FF00FF00",
+    "Status": "Closed",
+    "ID_Style": "ddaeea62-92ce-451d-937c-c45f2b2d1083",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "426148e5-d9da-4784-a794-01787e167ce2",
+    "Colour": "FF008000",
+    "Status": "Stopped",
+    "ID_Style": "f5c04a2f-0848-4f34-b311-0c46cf597e43",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "43496bf8-163d-44a5-be0c-fbb4afb62c97",
+    "Colour": "FF000080",
+    "Status": "Closed",
+    "ID_Style": "a0603c93-e228-4033-9708-66edcb8e3d0e",
+    "ID_Teacher": "fc3498e0-9f0d-40ff-9915-fecc699695bd",
+    "OwnSalaryOptions": "True",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "4afc4aea-2f7b-47b1-8f8d-5ab0a9a3e39a",
+    "Colour": "FF00BFFF",
+    "Status": "Active",
+    "ID_Style": "8840360a-a5c6-47aa-966d-32d104d57ead",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "dc07f469-8f39-4b78-beb0-89f698cb1b9a",
+    "Colour": "FFADD8E6",
+    "Status": "Stopped",
+    "ID_Style": "b6cc5bb1-b6f8-4300-b650-44e6334a158f",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "7fd38f20-0ebb-4a06-b547-07072c71c490",
+    "Colour": "FFFF7F50",
+    "Status": "Stopped",
+    "ID_Style": "75ad93c6-56d5-4875-b3c0-9bf07c31fda6",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "95a10105-0576-4bdb-83c0-7bc6f76c628c",
+    "Colour": "FFF8F8FF",
+    "ID_Style": "c46dc105-653e-4739-8445-ceb13154138c",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Stopped",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b47b35fe-2d77-42a0-9678-50095e49e21a",
+    "Colour": "FF808080",
+    "Age": "18-37 лет",
+    "Status": "Closed",
+    "ID_Style": "a9fa9b34-ba2f-4f7a-8651-80349401e71e",
+    "ID_Teacher": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b5f97d97-00ad-4d24-8885-f5eb90ee3c22",
+    "Colour": "FFFF6347",
+    "Status": "Admission",
+    "ID_Style": "4560e446-413e-4171-bedb-049ca2d5a242",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "85ceb911-3fbd-47b5-a12c-c88d1a149b00",
+    "Colour": "FF87CEEB",
+    "Status": "Stopped",
+    "ID_Style": "b327aae3-6762-4926-9290-ecbff08c5f16",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "62323fb6-c12e-4cb3-8fc0-1371626c9559",
+    "Colour": "FFB8860B",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "bf579148-08b9-4fb8-ada9-58c04a96a1c2",
+    "Colour": "FF800080",
+    "Status": "Admission",
+    "ID_Style": "fd980e56-4c5c-48ee-8df0-f8e59b720e0d",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "73606c74-44a5-47f0-9479-2215c9524419",
+    "Colour": "FF4169E1",
+    "Status": "Admission",
+    "ID_Style": "a65f5ebf-e309-4676-a31d-b0b9eea9da4a",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "dc8402f9-b2ee-49fc-a77c-5766a39b2d8f",
+    "Colour": "FFB0E0E6",
+    "Status": "Closed",
+    "ID_Style": "4560e446-413e-4171-bedb-049ca2d5a242",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "73fb1bb4-535f-4a48-92d7-37c632c66010",
+    "Status": "Closed",
+    "ID_Style": "aa270a20-ef63-4dd2-8892-82f482bc3ca1",
+    "ID_Teacher": "92a9b8a3-60b6-4aae-bd16-8ca69655e331",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFFFFFF",
+    "Clients": ""
+  },
+  {
+    "ID": "6811b1c4-812a-4b85-96d3-c82b4bcd29d0",
+    "Colour": "FF4B0082",
+    "Status": "Stopped",
+    "ID_Style": "174c189c-0767-4d53-baf6-5a20247a65b3",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "c3c4c248-51cc-456b-9860-30ee2a0343ca",
+    "Colour": "FFFFA500",
+    "Status": "Admission",
+    "ID_Style": "52e2ce44-2aae-4769-b945-5b14f976d7da",
+    "ID_Teacher": "90d62d29-0e76-48ed-8979-b7a9f21190e6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "257beb01-4434-4936-9930-0d1cc43ff9e4",
+    "ID_Style": "4b080372-1935-4439-9402-ab0ed6e832a3",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFCD5C5C",
+    "Clients": ""
+  },
+  {
+    "ID": "c7c7114c-21f3-4016-8617-4359e91bc317",
+    "Colour": "FFFF7F50",
+    "Status": "Stopped",
+    "ID_Style": "e1c7ff1d-93c3-4b9e-80ee-43c79fd6863d",
+    "ID_Teacher": "90d62d29-0e76-48ed-8979-b7a9f21190e6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "48f0c8ca-486a-4453-9e59-287599bf1984",
+    "Colour": "FFFFF8DC",
+    "Status": "Admission",
+    "ID_Style": "270a6b31-ae6e-437b-b113-82220c00abee",
+    "ID_Teacher": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "8a7a92dc-d789-463f-bbbe-812952bcfbae",
+    "Colour": "FF808000",
+    "Status": "Closed",
+    "ID_Style": "007d1f4a-a64a-4039-b109-5721f8f9628f",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "19a93505-50bd-430a-9094-7ff9f3a6f13f",
+    "Colour": "FFFFE4C4",
+    "Status": "Stopped",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "753b7dde-79f4-4a87-ba84-37045edd85e5",
+    "Colour": "FFB0C4DE",
+    "Status": "Closed",
+    "ID_Style": "9df9e796-aec5-4a49-8855-50b9dc661972",
+    "ID_Teacher": "fe8eb834-99dc-43ad-982d-ad3699317c7a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6dc6defb-d404-44b0-9bb2-681225f32586",
+    "Colour": "FFFFFFF0",
+    "Status": "Closed",
+    "Annotation": "Лекционно-практический курс \"Антистарение и восстановление\"",
+    "ID_Style": "ddaeea62-92ce-451d-937c-c45f2b2d1083",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "b134beaf-3205-455b-977d-a99e646a3803",
+    "Colour": "FF1E90FF",
+    "Status": "Stopped",
+    "ID_Style": "f460edbf-14af-48ce-a007-0249ade0e32e",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "7f3ecc66-4520-4ce7-88af-c51ee893f0d8",
+    "ID_Style": "1443dee9-9092-475c-920d-50c251597541",
+    "ID_Teacher": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF8FBC8F",
+    "Clients": ""
+  },
+  {
+    "ID": "4f40accc-8f4b-4f29-a494-f4a2f4262e85",
+    "Colour": "FF228B22",
+    "Status": "Stopped",
+    "ID_Style": "2b5a4c57-8124-4790-8af1-847530b8d45f",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "a62b6b46-886d-4063-be50-e9f470c2c81f",
+    "Colour": "FFFFDAB9",
+    "Status": "Stopped",
+    "ID_Style": "f460edbf-14af-48ce-a007-0249ade0e32e",
+    "ID_Teacher": "b0f5e049-7d01-4856-9125-5322965d9b06",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "be1794e3-df4a-49b9-99a2-f3589c7cd76a",
+    "Colour": "FF8B008B",
+    "Status": "Stopped",
+    "ID_Style": "fd980e56-4c5c-48ee-8df0-f8e59b720e0d",
+    "ID_Teacher": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "788fe465-7048-4c87-b927-eed04c873509",
+    "Colour": "FF8B4513",
+    "Status": "Stopped",
+    "ID_Style": "cb5620c5-1d4e-4b85-aee8-41197868df52",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "05ba6736-ebd2-4671-abf2-53c7a7466286",
+    "Colour": "FFB22222",
+    "Status": "Admission",
+    "ID_Style": "2d68b12d-0642-4daa-9cbd-9308e09e1773",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f0904a83-5753-4efd-9164-ef6f76e4acc7",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": "",
+    "Clients": ""
+  },
+  {
+    "ID": "8a2ecdec-68ed-4031-bc6e-a642c2dfd368",
+    "Colour": "FF90EE90",
+    "Status": "Admission",
+    "ID_Style": "f7153192-807a-41b4-af74-bac8a6029a60",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "397b58b0-b621-4721-b02f-ad453056b681",
+    "Colour": "FFFA8072",
+    "Status": "Closed",
+    "ID_Style": "0ffc85bf-4c9d-4cdd-b26f-36a9d7de4c13",
+    "ID_Teacher": "90d62d29-0e76-48ed-8979-b7a9f21190e6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f54d16cf-39a8-4871-b79a-da99924bd98a",
+    "Colour": "FF7FFFD4",
+    "Status": "Admission",
+    "ID_Style": "c9407d71-da2e-4b10-bf27-95ce5916b40c",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "bb7fb645-c908-4cc6-88b6-bb79f1968bd3",
+    "Colour": "FFF5F5DC",
+    "Status": "Closed",
+    "ID_Style": "463efb82-255a-443c-ac83-51faa148b330",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "0b8afc3b-8f79-4930-ba1c-a8f6dcea019a",
+    "Colour": "FF98FB98",
+    "Status": "Closed",
+    "ID_Style": "463efb82-255a-443c-ac83-51faa148b330",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Schedule": "",
+    "Clients": ""
+  },
+  {
+    "ID": "59ce5e30-3e45-47f5-ae23-ef6f16008158",
+    "Colour": "FF00FF00",
+    "Status": "Admission",
+    "ID_Style": "463efb82-255a-443c-ac83-51faa148b330",
+    "ID_Teacher": "12313d8e-937c-4159-9794-3f7bacf7f26f",
+    "OwnSalaryOptions": "True",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "410b77d0-4dbb-4831-b8dc-d47ef365a967",
+    "Colour": "FFFFFF00",
+    "Status": "Stopped",
+    "ID_Style": "aed3cdab-90dd-44b3-9658-99c88c2304cc",
+    "ID_Teacher": "92a9b8a3-60b6-4aae-bd16-8ca69655e331",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "1120f2ad-041e-424a-945b-7f7d572af885",
+    "Colour": "FFFFC0CB",
+    "Status": "Closed",
+    "ID_Style": "5f9a6693-e571-4339-9078-8a963e583b47",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "981f8b5f-e11c-45e9-a4d4-11e48183b727",
+    "Colour": "FF4169E1",
+    "Status": "Stopped",
+    "ID_Style": "1443dee9-9092-475c-920d-50c251597541",
+    "ID_Teacher": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "8b40f95d-2ef9-4c9d-900d-ac0639737f06",
+    "Colour": "FF191970",
+    "Status": "Closed",
+    "ID_Style": "acae0022-926e-43a2-97f6-071c128a9954",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "42294dad-8e69-49bc-a158-90ad3cc97ff1",
+    "Colour": "FF800080",
+    "Status": "Closed",
+    "ID_Style": "4560e446-413e-4171-bedb-049ca2d5a242",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "c5f05b12-48a0-4dd3-bcdf-d3c67ad78d8a",
+    "Colour": "FFFAFAD2",
+    "Status": "Admission",
+    "ID_Style": "8e944f60-5942-4307-98fa-fb3eeaaed5f6",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "83f96106-a398-4e24-80b9-554a81cf9f19",
+    "Colour": "FF4169E1",
+    "Status": "Admission",
+    "ID_Style": "9da57310-7cce-473f-a875-e6ad44005931",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "92cacccc-dd9f-4af7-a7b2-0d61ae88af45",
+    "Colour": "FFADFF2F",
+    "Status": "Admission",
+    "ID_Style": "4123271d-dad3-4b25-ab57-e5abed774d3d",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "a31758c0-77a4-4da0-9edd-3860e7f66451",
+    "Colour": "FF8B0000",
+    "Status": "Admission",
+    "ID_Style": "a5f0bf55-8173-4289-bcc4-535b071c363c",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "8513d2cf-ca44-44a5-8021-440262c8e503",
+    "Colour": "FFFFFACD",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6b232784-b95a-4231-9139-d36090747b8a",
+    "Colour": "FFFFD700",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "7b658abb-247c-4b97-8dd1-5299c5b67ea6",
+    "Colour": "FFADD8E6",
+    "Status": "Admission",
+    "ID_Style": "a414b478-8824-4c56-bb09-7a6e9d5410d8",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "2797a560-1026-4d39-a30e-249b6ed07c34",
+    "Colour": "FF00CED1",
+    "Status": "Admission",
+    "ID_Style": "9da57310-7cce-473f-a875-e6ad44005931",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "ce1b2c4f-af3c-44d5-bf39-d96f9c7a5113",
+    "Colour": "FF000080",
+    "Status": "Admission",
+    "ID_Style": "9da57310-7cce-473f-a875-e6ad44005931",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "bc95b037-7eef-475e-b2fe-f3286b17bdf3",
+    "Colour": "FF3CB371",
+    "Status": "Closed",
+    "ID_Style": "4123271d-dad3-4b25-ab57-e5abed774d3d",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6d2bd352-9fdb-465d-90c5-1998bc65cab2",
+    "Colour": "FFFFDEAD",
+    "Status": "Stopped",
+    "ID_Style": "b7899945-62c6-4e10-88c1-c91ef67ab266",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "fc42e87d-7aeb-47ef-8e89-fcc97af0112a",
+    "ID_Style": "cc843926-159e-4a34-a3f2-9ecfdac6b578",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFADD8E6",
+    "Clients": ""
+  },
+  {
+    "ID": "6d4fbe76-4a20-46d7-905a-b454b7b803f7",
+    "Colour": "FFFF0000",
+    "Status": "Admission",
+    "ID_Style": "cc61a62a-c9e0-41c2-95d2-1eafc8f0065d",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "True",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6b4f7829-768e-4c65-a9d6-305c7e97ddb1",
+    "Colour": "FF008B8B",
+    "Status": "Stopped",
+    "ID_Style": "aa270a20-ef63-4dd2-8892-82f482bc3ca1",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "f8044382-594a-4393-a003-f36f3bdd2692",
+    "Colour": "FF708090",
+    "Status": "Stopped",
+    "ID_Style": "75ad93c6-56d5-4875-b3c0-9bf07c31fda6",
+    "ID_Teacher": "b0f5e049-7d01-4856-9125-5322965d9b06",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "84cae3f8-3961-49eb-8cad-3721d3086f20",
+    "Colour": "FFE0FFFF",
+    "Status": "Admission",
+    "ID_Style": "9f274e69-0e0c-4b2a-9298-d1656496fca5",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "a6c5aacd-a518-42ec-a26d-5d8e8a5b8d13",
+    "Colour": "FF808000",
+    "Status": "Closed",
+    "ID_Style": "21b9d88f-5858-4f8e-8bcf-1eff2fd57849",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "a559610d-1dcf-43d4-9bde-14660dd49f05",
+    "Colour": "FFB0C4DE",
+    "Status": "Closed",
+    "ID_Style": "459f2f7f-039b-4399-88d5-47dd7144ba87",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "ec95f1d0-7d9f-47c4-a781-b55d897281a1",
+    "Colour": "FF0000FF",
+    "ID_Style": "e461943f-358f-4f54-b53b-2d3b62ad8196",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "9b49fea0-1280-4511-b3e5-f409aeb4a9ca",
+    "Colour": "FFF5FFFA",
+    "Status": "Stopped",
+    "ID_Style": "9559cdc1-28fc-413a-bba8-1b4709c60590",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "8d598d8f-0e66-4357-9908-0a867525fe3d",
+    "ID_Style": "1c5c0105-8699-4625-9b6b-a9682476e448",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFFFFF0",
+    "Clients": ""
+  },
+  {
+    "ID": "c0014c37-4de1-44f5-9c23-eb13934e1c08",
+    "Colour": "FF87CEFA",
+    "Status": "Admission",
+    "ID_Style": "215f9daa-38e2-4f38-95b7-dc396ac3094f",
+    "ID_Teacher": "a966c98d-7243-4516-885a-18766f6137b6",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "8fbf958f-c107-45d5-b37b-8c462210894d",
+    "Colour": "FF800000",
+    "ID_Style": "953707a3-7409-493f-aec8-560105f68c2e",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "Status": "Stopped",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "c3bf8c6b-7ce9-44a4-a990-896065b78af6",
+    "Colour": "FFFAFAD2",
+    "Status": "Admission",
+    "ID_Style": "86492f64-c9f0-466f-aec5-3b35d644e5b0",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "6c8c8b06-58c0-47d1-aad7-04b8fa23f94d",
+    "ID_Style": "f460edbf-14af-48ce-a007-0249ade0e32e",
+    "ID_Teacher": "0687ba04-6f91-4a44-aaca-ec5030f7f460",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FF006400",
+    "Clients": ""
+  },
+  {
+    "ID": "f078c53d-1c88-4108-810c-21e969cb872d",
+    "Colour": "FFF5F5F5",
+    "Status": "Closed",
+    "ID_Style": "c330515b-b81b-4dc3-8642-198253cdf1f1",
+    "ID_Teacher": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "a371f30a-ee86-4e57-93da-7a8abb2f9537",
+    "Colour": "FF7CFC00",
+    "ID_Style": "4b080372-1935-4439-9402-ab0ed6e832a3",
+    "ID_Teacher": "0687ba04-6f91-4a44-aaca-ec5030f7f460",
+    "Status": "Stopped",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "fd44446a-c9d1-471e-8441-0a268b09c2e2",
+    "ID_Style": "be1f4c91-6c0e-442d-bd72-574cd148c9ef",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFF00FF",
+    "Clients": ""
+  },
+  {
+    "ID": "757c655c-93c6-4295-812c-fbaf5eb5b0dc",
+    "Colour": "FF87CEEB",
+    "Status": "Admission",
+    "ID_Style": "90cc8765-a5db-4378-ae99-c0bf11389c32",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "2d91c6b4-707b-42a2-8d92-7bf1737e7a07",
+    "Colour": "FFE0FFFF",
+    "Status": "Admission",
+    "ID_Style": "59ba11a1-8e86-4168-9ea1-0b3fa603c4a4",
+    "ID_Teacher": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "5816c409-e0f5-4e6e-89a2-0fca4a22ca51",
+    "ID_Style": "451910fd-a242-4139-b540-d5292dd1b1b9",
+    "ID_Teacher": "3c2e6eb1-ca6d-4818-9945-6b77d9caf9f2",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFFF7F50",
+    "Clients": ""
+  },
+  {
+    "ID": "12c3f865-1849-439e-9dad-476783d0ba7c",
+    "Colour": "FFB0E0E6",
+    "Status": "Admission",
+    "ID_Style": "21b9d88f-5858-4f8e-8bcf-1eff2fd57849",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "67103646-e8c5-41cc-967f-d455aad03d03",
+    "Colour": "FFDA70D6",
+    "Status": "Admission",
+    "ID_Style": "4b080372-1935-4439-9402-ab0ed6e832a3",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "e617de59-0dfa-4f94-b383-85343a5e42a8",
+    "Colour": "FF20B2AA",
+    "Status": "Admission",
+    "ID_Style": "43c345da-9b05-4f61-8ab7-d8810136500a",
+    "ID_Teacher": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Clients": ""
+  },
+  {
+    "ID": "d894e0c4-e5a4-4b6e-b278-190143316e2a",
+    "ID_Style": "d7fb3e54-ba8f-4812-9519-1f6e3aa673dd",
+    "ID_Teacher": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "Status": "Admission",
+    "OwnSalaryOptions": "False",
+    "OwnSecondSalaryOptions": "False",
+    "Colour": "FFDA70D6",
+    "Clients": ""
+  }
+]

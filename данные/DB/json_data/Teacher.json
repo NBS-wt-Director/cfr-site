@@ -1,0 +1,271 @@
+[
+  {
+    "ID": "cd494897-e097-4dc4-bd9d-37bb76005c51",
+    "LastName": "Кравец Оксана Борисовна",
+    "ID_Foto": "e66e30d1-0c41-44e8-ae5a-73714a60e6f6",
+    "BirthDate": "19.12.1969",
+    "MobilePhone1": "89222266659",
+    "OwnSalaryOptions": "True",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "4f213aa3-32d5-47fd-a709-b5560e3c965a",
+    "LastName": "Кузнецов Александр Вячеславович",
+    "ID_Foto": "aff784d2-a570-446a-b13a-8d5c96274267",
+    "BirthDate": "03.06.1976",
+    "OwnSalaryOptions": "True",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "2938c9e2-c810-4cbb-8e1a-4654bc46b161",
+    "LastName": "Романовский Николай Иванович",
+    "ID_Foto": "d4422bd9-afe9-4639-8a20-22748ce63a6a",
+    "BirthDate": "09.09.1979",
+    "MobilePhone1": "89226179200",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "4326b106-9406-49b1-adc7-eb3323db36cc",
+    "LastName": "Леонтьева Евгения",
+    "MobilePhone1": "89655130024",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "91226ff6-b514-4ad9-a81e-7f69e131f564",
+    "LastName": "Телешко Юлия",
+    "ID_Foto": "8a359528-68e4-43f8-b9d8-d307cbf7a3a5",
+    "MobilePhone1": "89292120552",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "b0f5e049-7d01-4856-9125-5322965d9b06",
+    "LastName": "Половникова Тамара",
+    "ID_Foto": "126aa171-ff7e-4937-ab88-d7a9de9ce6a0",
+    "BirthDate": "08.11.1972",
+    "MobilePhone1": "89090129778",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "ab00c751-0935-41f4-aaa0-ac75d1ec4a2f",
+    "LastName": "Рожкова Ольга Геннадьевна",
+    "ID_Foto": "fd0e01a6-7b85-4499-b896-2477db56778a",
+    "BirthDate": "02.06.1958",
+    "MobilePhone1": "89097034269",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "fc3498e0-9f0d-40ff-9915-fecc699695bd",
+    "LastName": "Долгих Александр",
+    "ID_Foto": "fea87fef-b7e0-4194-b19c-de8fa3eb14fd",
+    "BirthDate": "09.09.1900",
+    "MobilePhone1": "89090070709",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "851284e3-8cf2-4e69-be35-c649cf0b8f20",
+    "ID_Foto": "21794bda-b141-4b8b-af37-0bc5fb981dec",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "BirthDate": "22.09.1978",
+    "OwnSalaryOptions": "True",
+    "Status": "Closed",
+    "MobilePhone1": "89122847167",
+    "LastName": "Телегина Мария Павловна",
+    "Styles": ""
+  },
+  {
+    "ID": "2e70583e-174e-42fa-b39c-b754cb02ba66",
+    "LastName": "Бобров Константин Сергеевич",
+    "ID_Foto": "b31b8931-fc23-4c9d-be2c-5cf75ef3ccf2",
+    "BirthDate": "18.02.1988",
+    "MobilePhone1": "89655236976",
+    "OwnSalaryOptions": "True",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "a966c98d-7243-4516-885a-18766f6137b6",
+    "LastName": "Глазырин Михаил",
+    "ID_Foto": "6719af46-c6c5-45e3-b80f-629647ac4003",
+    "BirthDate": "02.02.1970",
+    "MobilePhone1": "89089133114",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "56afab0f-6e86-4026-ba03-46a5fbd9b886",
+    "LastName": "Алина Алексеевна",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "5dd09226-aaee-4390-ba8f-39aa22a1cf00",
+    "LastName": "Пашкова Юлия",
+    "ID_Foto": "049fc5d1-64bb-4373-87c1-cc8c9cc23f1d",
+    "BirthDate": "16.05.1970",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "0bacbc3d-1e56-4d25-a490-59273884561a",
+    "LastName": "Глазырина Илона",
+    "ID_Foto": "0edb63bd-c57e-4f25-a3b5-17fc29593011",
+    "BirthDate": "02.03.1977",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "d3e55599-1473-4b8f-b496-84f2ae6e374d",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "LastName": "Назаров Антон",
+    "Styles": ""
+  },
+  {
+    "ID": "823fdfbc-5512-4b87-bf14-ea03e19434f1",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "BirthDate": "24.05.1959",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "LastName": "Малинин Алексей",
+    "Styles": ""
+  },
+  {
+    "ID": "147d5bda-30a4-4cb3-9067-8f91d03df721",
+    "LastName": "Покровская Ирина",
+    "BirthDate": "02.10.1960",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "f23eb90b-4ceb-4cec-879d-e209b096baf9",
+    "LastName": "Оберюхтин Иван",
+    "ID_Foto": "665913bf-be46-42a7-bbc8-ebd335f69396",
+    "BirthDate": "06.04.1993",
+    "MobilePhone1": "89292167585",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "92a9b8a3-60b6-4aae-bd16-8ca69655e331",
+    "LastName": "Кормина Юлия",
+    "ID_Foto": "3e7128de-f43e-4dc1-84f4-4322552a8ee3",
+    "BirthDate": "17.05.1989",
+    "MobilePhone1": "89090242214",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "571d2924-4a87-468e-a9d7-ca115c62262e",
+    "LastName": "Хорошилова Елена",
+    "ID_Foto": "6da05b3a-8452-4c54-b818-b96c85a2fb3b",
+    "BirthDate": "02.08.1979",
+    "MobilePhone1": "89058593728",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "90d62d29-0e76-48ed-8979-b7a9f21190e6",
+    "LastName": "Хорошилова Елена",
+    "BirthDate": "02.08.1979",
+    "MobilePhone1": "89058593728",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "fe8eb834-99dc-43ad-982d-ad3699317c7a",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "BirthDate": "20.09.2000",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "MobilePhone1": "89826390792",
+    "LastName": "Бараковских Анастасия"
+  },
+  {
+    "ID": "12313d8e-937c-4159-9794-3f7bacf7f26f",
+    "LastName": "Поторочин",
+    "Name": "Станислав",
+    "BirthDate": "06.02.2023",
+    "MobilePhone1": "89221605414",
+    "OwnSalaryOptions": "True",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc",
+    "Styles": ""
+  },
+  {
+    "ID": "a153d999-3f1e-4b61-84d7-6743f1fda621",
+    "LastName": "Казанцев Владимир",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  },
+  {
+    "ID": "60804de0-ef78-4d37-87e3-52c285233dae",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "OwnSalaryOptions": "False",
+    "Status": "Closed",
+    "LastName": "Костенко",
+    "Name": "Александра",
+    "Styles": ""
+  },
+  {
+    "ID": "0687ba04-6f91-4a44-aaca-ec5030f7f460",
+    "LastName": "Пономарёв Сергей",
+    "BirthDate": "12.02.1985",
+    "MobilePhone1": "89097012203",
+    "OwnSalaryOptions": "False",
+    "Status": "Active",
+    "ID_Sex": "55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc"
+  },
+  {
+    "ID": "3c2e6eb1-ca6d-4818-9945-6b77d9caf9f2",
+    "LastName": "Мосоян Лусине",
+    "BirthDate": "08.04.2000",
+    "OwnSalaryOptions": "True",
+    "Status": "Active",
+    "ID_Sex": "87364c6f-a6d3-483f-931e-84b6a8b8d8d2",
+    "Styles": ""
+  }
+]

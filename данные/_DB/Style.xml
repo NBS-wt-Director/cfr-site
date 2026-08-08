@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Style>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2022 09:56:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:36:26">
+    <ID>a71bf4fd-5fff-41f0-80b2-1b6d9d24bc58</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2022 09:56:00">ОФП меч</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:37:59">
+    <ID>1b1d7754-ea9f-4226-a18e-ac4cb5c0411e</ID>
+    <Name>Оздоровительное УШУ ( 6-12)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:41:50">
+    <ID>737d86a5-d5ef-42e0-8345-bcd6f95efac9</ID>
+    <Name>Практика форм</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:42:55">
+    <ID>b5097d2c-4a41-4af2-a892-2db0093f4f27</ID>
+    <Name>Развивающее УШУ (4-6)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:44:24">
+    <ID>72b451e7-2b1f-4f71-b07f-a495d545bf45</ID>
+    <Name>Саньда УШУ нач. уровень ( 6-10)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:47:42">
+    <ID>fc57adfa-9686-49e9-bf34-2a815caa747d</ID>
+    <Name>Саньда Ушу</Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2023 15:57:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:48:36">
+    <ID>cc61a62a-c9e0-41c2-95d2-1eafc8f0065d</ID>
+    <Name Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2023 15:57:01">ТЦ. 3 год</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 18:50:07">
+    <ID>463efb82-255a-443c-ac83-51faa148b330</ID>
+    <Name>Греко-римская борьба </Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:00:43">
+    <ID>ff296472-5c6f-4d84-9d7f-66049027e1cd</ID>
+    <Name>Тайцзи-Цюань. 17 год</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2022 11:42:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:03:07">
+    <ID>52e2ce44-2aae-4769-b945-5b14f976d7da</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2022 11:42:59">Тайцзи-Цюань.</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:04:16">
+    <ID>429486f6-26b9-424d-a2e7-49506deae453</ID>
+    <Name>Крепыши (2-3)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:05:07">
+    <ID>f4c6f4cc-d9c5-4de0-bcf0-a5490f544632</ID>
+    <Name>Крепыши (3-4)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:32:31">
+    <ID>d086a8a9-0841-4bb5-b58e-f3d684b3e3f2</ID>
+    <Name>Техника ударов руками / ногами</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:33:34">
+    <ID>b312ce41-145f-43ba-a127-6cf951cfb7a7</ID>
+    <Name>Гимнастика для шеи и глаз</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.07.2026 19:33:26" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:34:20">
+    <ID>d98b640d-5326-4f7d-b932-d3fe5fd37281</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.07.2026 19:33:26">Функциональный тренинг </Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:34:58">
+    <ID>a414b478-8824-4c56-bb09-7a6e9d5410d8</ID>
+    <Name>Здоровая спина</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:35:26">
+    <ID>010f2246-4942-49d4-8844-226a88a5a33d</ID>
+    <Name>Здоровая спина (нач.ур)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:36:20">
+    <ID>c864c45d-4eb1-4032-8fd8-d3241e1f60e5</ID>
+    <Name>Функциональный тренинг (нач.ур)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:38:41">
+    <ID>36b5b1e7-5615-4b71-8709-7f3af8e21f8c</ID>
+    <Name>Гимнастика для суставов (плечи, локти, кости)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:39:31">
+    <ID>f7153192-807a-41b4-af74-bac8a6029a60</ID>
+    <Name>Функциональный тренинг . Баланс</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:40:02">
+    <ID>aa270a20-ef63-4dd2-8892-82f482bc3ca1</ID>
+    <Name>Растяжка</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:40:44">
+    <ID>facf3659-7615-4660-95d6-d1b3feef3ee6</ID>
+    <Name>Тайцзи- Цуань. МЕЧ</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:46:18">
+    <ID>1411e682-b81c-462f-a4c8-0e66ba9d49a4</ID>
+    <Name>Тайцзи Цигун</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:46:57">
+    <ID>0357b4bd-37b1-4c4a-8a14-e68d49aa3b79</ID>
+    <Name>Мужское долголетие</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:48:01">
+    <ID>a5f0bf55-8173-4289-bcc4-535b071c363c</ID>
+    <Name>Акробатика для мозга</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:51:58">
+    <ID>9df9e796-aec5-4a49-8855-50b9dc661972</ID>
+    <Name>Йога</Name>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2023 16:04:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:53:48">
+    <ID>174c189c-0767-4d53-baf6-5a20247a65b3</ID>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.09.2023 16:04:03">Лекция Тайцзи-Цюань 3 год</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:54:26">
+    <ID>fd980e56-4c5c-48ee-8df0-f8e59b720e0d</ID>
+    <Name>Здоровая спина (Кинезио)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:55:48">
+    <ID>aada5fb1-e745-4492-922a-20b09bf578ce</ID>
+    <Name>Функциональная йога</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2022 08:47:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:56:36">
+    <ID>e1c7ff1d-93c3-4b9e-80ee-43c79fd6863d</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.12.2022 08:47:24">Гармония тела</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:05:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:57:31">
+    <ID>1e7d93a0-cc54-4d09-9203-ab8b9f0ce279</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:05:58">Гимнастика для лица, шей и плеч (ФейсБилдинг)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:58:01">
+    <ID>d74d3e9b-d598-4c15-acdf-2f639ec7e9eb</ID>
+    <Name>Здоровье женщины</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.09.2023 11:44:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:58:50">
+    <ID>9f274e69-0e0c-4b2a-9298-d1656496fca5</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.09.2023 11:44:40">ОФП УШУ (с 12 лет)</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:44:18" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:59:27">
+    <ID>7897cc38-6032-4f61-bf16-2f864670af9f</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:44:18">Гимнастика для стоп и колена</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 19:59:59">
+    <ID>909135ed-e0f0-4ff2-844e-be73709cd10c</ID>
+    <Name>Цигун для позвоночника</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2024 20:48:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.02.2019 20:01:18">
+    <ID>e795e473-85e7-4f98-b373-29941f29a359</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.10.2024 20:48:37">Массаж внутренних органов</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.02.2019 15:30:41">
+    <ID>8f4ec3fb-5bce-4977-852b-bb869af0e7fc</ID>
+    <Name>Тренерская тренировка</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.03.2019 17:00:18">
+    <ID>d4311513-023b-440d-abcf-63ff2a1ae7aa</ID>
+    <Name>Функциональный тренинг</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:00:56" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.04.2019 16:09:41">
+    <ID>3750e8c4-e69a-4a66-a270-9b0d671d6980</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:00:56">Здоровое тело</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.05.2019 17:41:53">
+    <ID>dcd87ad2-f401-4e07-8dec-e6fde5099998</ID>
+    <Name>ЛФК</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:11:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2019 12:10:21">
+    <ID>ddd69bc7-eaa0-40dd-9833-4b4a700539f0</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2020 10:11:25">Здоровая спина с фитболом</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.09.2019 17:12:13">
+    <ID>1f9c5579-5ee9-4927-85ce-8d56b9d23ffb</ID>
+    <Name>ОФП в единоборствах</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.09.2019 18:38:30">
+    <ID>4c2b3bc8-048f-4a1f-bd2a-31860f3a36cd</ID>
+    <Name>Цигун</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2019 15:33:04">
+    <ID>c28f2dcd-bc27-4520-a408-136152d94c47</ID>
+    <Name>основы массажа</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.09.2019 17:32:00">
+    <ID>c78b8d61-084e-49d4-a30e-058e6d0cb26c</ID>
+    <Name>Ушу Таолу (4-8)</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.12.2019 09:30:11">
+    <ID>51b583ac-b4c5-4b98-9a00-8b92bd4f633b</ID>
+    <Name>ОФП Ушу</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.01.2020 21:11:52">
+    <ID>b6cc5bb1-b6f8-4300-b650-44e6334a158f</ID>
+    <Name>Миофасциальный релиз</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.01.2024 15:50:19" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.01.2020 19:47:54">
+    <ID>76de7dd0-f42f-402d-9d6a-797d72269bd0</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.01.2024 15:50:19">Семинар Оздоровительные практики "Тайцзи-Цюань"</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.02.2020 11:14:15">
+    <ID>0ffc85bf-4c9d-4cdd-b26f-36a9d7de4c13</ID>
+    <Name>Гимнастика Тайцзи-Цюань</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.02.2020 16:17:03">
+    <ID>7adba360-5bd8-45c0-8dd0-55124ced4695</ID>
+    <Name>Бразильское Джиу-Джитсу</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.02.2020 18:42:14">
+    <ID>b85c767c-19fc-4496-96dd-0e45f5ffd6d9</ID>
+    <Name>Гимнастика для сосудов</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.02.2020 20:43:54">
+    <ID>09392723-0387-4427-8698-e2ccdc4c6772</ID>
+    <Name>Гиревая тренировка</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.03.2020 18:03:03">
+    <ID>fadb220d-9b4d-44cb-9c06-d734f68767c1</ID>
+    <Name>Лекция Функционал. 1 год</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.09.2020 19:46:26">
+    <ID>83835dc1-9e6c-42ca-adc9-4eac3ec1078a</ID>
+    <Name>здоровая спина zoom</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:53:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.09.2020 18:05:19">
+    <ID>5fbe4ef9-5e39-498c-bd49-11306da0fef0</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:53:38">Тайцзи-Цюань ОФП</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.11.2020 21:35:15">
+    <ID>764b31dc-a6f7-4605-8089-10fb224a85ea</ID>
+    <Name>УШУ Таолу</Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.09.2025 20:02:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.11.2020 22:06:24">
+    <ID>71fa4d70-2224-43ec-ba29-bd95c6f04ee6</ID>
+    <Name Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|01.09.2025 20:02:33">ТЦ 5 год 45 форм</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 20:00:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.11.2020 08:16:03">
+    <ID>2343b4b3-f9d7-4ec3-bbba-f0e07d7d7db7</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 20:00:06">ТЦ. Тренерская группа</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.11.2020 12:22:48">
+    <ID>6e2cb937-9a40-4afb-8d2f-11ab02ee7ed7</ID>
+    <Name>Лекция Тайцзи-Цюань 1 год.</Name>
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.12.2024 15:53:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.11.2020 19:41:27">
+    <ID>beba4ff2-5c3c-45bf-bd56-996d5a59ec4e</ID>
+    <Name Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.12.2024 15:53:02">Тайцзи-Цигун</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.10.2022 11:51:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.12.2020 16:41:37">
+    <ID>a65f5ebf-e309-4676-a31d-b0b9eea9da4a</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.10.2022 11:51:58">Функциональная растяжка</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:52:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.01.2021 20:28:53">
+    <ID>aed3cdab-90dd-44b3-9658-99c88c2304cc</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:52:59">ОФП</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.02.2021 08:19:08">
+    <ID>1192c686-f5d5-4421-9eb4-90e01347f6e3</ID>
+    <Name>Методики. Тренерская группа</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.02.2021 15:38:17">
+    <ID>d37b139e-df38-4ec1-b053-a89e32a17f85</ID>
+    <Name>Тайцзи Цигун. Начальный уровень</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.03.2021 18:44:03">
+    <ID>da3ceb5b-5c2b-4b57-9c92-85dc8295d53e</ID>
+    <Name>Массажные и восстановительные техники</Name>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 12:48:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2021 14:08:17">
+    <ID>ddaeea62-92ce-451d-937c-c45f2b2d1083</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.07.2022 12:48:07">Лекционно-практический цикл "ПРО"</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.05.2021 22:12:04">
+    <ID>f5c04a2f-0848-4f34-b311-0c46cf597e43</ID>
+    <Name>Работа с органами чувств</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.06.2021 18:57:29">
+    <ID>a0603c93-e228-4033-9708-66edcb8e3d0e</ID>
+    <Name>Семинар ГРБ</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.07.2026 01:37:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.06.2021 11:23:30">
+    <ID>8840360a-a5c6-47aa-966d-32d104d57ead</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.07.2026 01:37:05">Семинар</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.06.2021 11:27:52">
+    <ID>2d4ffa40-bc55-488b-8ecb-cab5893a9307</ID>
+    <Name>семинар зж</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.02.2023 08:58:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.07.2021 19:45:14">
+    <ID>75ad93c6-56d5-4875-b3c0-9bf07c31fda6</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.02.2023 08:58:06">Здравствуй, Париж</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.07.2025 19:45:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.07.2021 19:51:00">
+    <ID>c46dc105-653e-4739-8445-ceb13154138c</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|10.07.2025 19:45:17">Тайцзи-Цигун.</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.07.2021 12:35:23">
+    <ID>a9fa9b34-ba2f-4f7a-8651-80349401e71e</ID>
+    <Name>Специальное ОФП</Name>
+    <Description>Тренировка для людей с ограничениями по опорно-двигательному аппарату</Description>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|27.11.2024 17:58:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.07.2021 16:50:40">
+    <ID>4560e446-413e-4171-bedb-049ca2d5a242</ID>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|27.11.2024 17:58:07">Семинары</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 19:55:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 19:54:47" Removed="true">
+    <ID>7786cad5-de32-4e08-bdde-6ea63ddb2295</ID>
+    <Name>с 5 %</Name>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:30:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 19:55:31">
+    <ID>4fb52061-9d47-4763-a336-622de975e658</ID>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:30:13">простой, старая цена</Name>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:30:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.10.2021 19:55:42">
+    <ID>ea5cf5f3-7824-4c27-8e2a-fe6046113295</ID>
+    <Name Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:30:51">премиум, старая</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.10.2021 14:59:46">
+    <ID>5a12fce5-2680-4fd9-a608-7abc3cf84965</ID>
+    <Name>Функциональное тестирование</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.10.2021 18:12:36">
+    <ID>4b080372-1935-4439-9402-ab0ed6e832a3</ID>
+    <Name>Гимнастика для суставов (верх и низ)</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.10.2021 18:13:23">
+    <ID>e56f88c7-7ee2-4fb0-bdd8-8208a1071e46</ID>
+    <Name>Пять стихий</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.10.2021 09:44:58">
+    <ID>270a6b31-ae6e-437b-b113-82220c00abee</ID>
+    <Name>Игровое ОФП</Name>
+  </Item>
+  <Item Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.10.2021 19:22:03">
+    <ID>007d1f4a-a64a-4039-b109-5721f8f9628f</ID>
+    <Name>Бесплатная лекция</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.02.2022 12:03:26">
+    <ID>f460edbf-14af-48ce-a007-0249ade0e32e</ID>
+    <Name>Адаптивная функциональная тренировка</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.02.2022 05:38:26">
+    <ID>1443dee9-9092-475c-920d-50c251597541</ID>
+    <Name>Здоровье +</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.02.2023 08:56:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.02.2022 15:41:54">
+    <ID>2b5a4c57-8124-4790-8af1-847530b8d45f</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.02.2023 08:56:27">Майами бич</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.02.2022 03:06:32">
+    <ID>5564cfd3-b2ac-4af5-90ea-bd840d71fcf8</ID>
+    <Name>Адаптивное оздоровительное ушу</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.02.2022 08:12:28">
+    <ID>cb5620c5-1d4e-4b85-aee8-41197868df52</ID>
+    <Name>Цикл "Органы чувств"</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.07.2022 12:24:43" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.03.2022 11:06:00">
+    <ID>fe437a94-2e57-4b63-84fd-038f56162e94</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.07.2022 12:24:43">Разовое </Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2022 06:05:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.03.2022 11:10:03">
+    <ID>288ea4d3-50cf-42ec-b891-cbf67921ec68</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2022 06:05:29">Новый, без 5% </Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:47:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.03.2022 11:11:38">
+    <ID>ab410859-cf03-45ea-a93b-416622f296b0</ID>
+    <Name Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:47:32">полуторка</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2022 06:04:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2022 06:04:10" Removed="true">
+    <ID>e57e59fc-7bb3-4cc7-8523-5bed58b90322</ID>
+    <Name>Новый прайс</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2022 16:42:41" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.03.2022 14:09:58">
+    <ID>2d68b12d-0642-4daa-9cbd-9308e09e1773</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2022 16:42:41">Гимнастика для шеи и органов чувств </Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.08.2022 11:34:04">
+    <ID>c9407d71-da2e-4b10-bf27-95ce5916b40c</ID>
+    <Name>Координация</Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:48:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.09.2022 11:04:40">
+    <ID>be328bef-5910-4dbb-b28b-6fd3ed938776</ID>
+    <Name Updated="7|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:48:21">простой</Name>
+  </Item>
+  <Item Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:45:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.09.2022 11:06:35">
+    <ID>b4acd2af-4570-4d17-91b3-b91c36dbebf6</ID>
+    <Name Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.03.2024 15:45:08">полуторка, старая</Name>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:48:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.09.2022 11:09:08">
+    <ID>8e944f60-5942-4307-98fa-fb3eeaaed5f6</ID>
+    <Name Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.12.2024 17:48:04">премиум</Name>
+    <ID_Foto Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.09.2022 11:13:22">4b732dc4-0b58-4761-8750-623785a0af42</ID_Foto>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.10.2022 15:03:01">
+    <ID>5f9a6693-e571-4339-9078-8a963e583b47</ID>
+    <Name>семинар по Цзибэньгун</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.03.2023 04:33:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.12.2022 11:29:05">
+    <ID>acae0022-926e-43a2-97f6-071c128a9954</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.03.2023 04:33:44">Красивая осанка для любимых</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 18:50:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.01.2023 09:31:39">
+    <ID>9da57310-7cce-473f-a875-e6ad44005931</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 18:50:08">Тренажёрнай зал</Name>
+    <Description Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.11.2023 18:50:10"></Description>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.01.2023 09:32:47">
+    <ID>4123271d-dad3-4b25-ab57-e5abed774d3d</ID>
+    <Name>Воскресная тренировка в 14:00 (детская)</Name>
+    <Description>Спина</Description>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.02.2023 03:14:44">
+    <ID>b7899945-62c6-4e10-88c1-c91ef67ab266</ID>
+    <Name>Функциональная тренировка на фитболах</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2023 11:40:42">
+    <ID>03ffd18a-7c0d-4979-87e1-bc9caee591b1</ID>
+    <Name>ТЦ 1 год 24 формы</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.07.2023 10:55:53">
+    <ID>86492f64-c9f0-466f-aec5-3b35d644e5b0</ID>
+    <Name>Бег. Тайцзи-Цюань.</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.12.2024 21:20:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.12.2023 19:40:07">
+    <ID>21b9d88f-5858-4f8e-8bcf-1eff2fd57849</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.12.2024 21:20:10">Ёлка</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.01.2024 17:34:38">
+    <ID>459f2f7f-039b-4399-88d5-47dd7144ba87</ID>
+    <Name>Ёлка взрослая 2024</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.02.2026 16:35:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.02.2024 16:04:12">
+    <ID>e461943f-358f-4f54-b53b-2d3b62ad8196</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.02.2026 16:35:06">Тайцзи-Цюань 24 формы Ян + ОФП</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.02.2024 18:16:20">
+    <ID>eed9fd97-57ab-468a-a6fb-1eb882aac3be</ID>
+    <Name>Упражнения для внутренних органов</Name>
+    <Description>Как и мышцы каждый внутренний орган требует тренировки, для того чтобы работать без сбоев с возрастом. Чтобы восстановиться после болезней. А также просто для хорошего самочувствия и бодрого настроения. На тренировке мы будем разминать , растягивать и тренировать орган для более эффективного его восстановления и поддержания в более 
+здоровый состояние. Также мы будем растягивать меридианы и изучать точки связанные с работой органов и систем самопомощи и восстановление . 
+</Description>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|26.02.2024 18:18:43">
+    <ID>b327aae3-6762-4926-9290-ecbff08c5f16</ID>
+    <Name>Упражнения для внутренних органов </Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.03.2024 14:39:35">
+    <ID>9559cdc1-28fc-413a-bba8-1b4709c60590</ID>
+    <Name>Семинар "Здоровье почек и мочеполовой системы"</Name>
+    <Description>цена 1500</Description>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.03.2024 14:51:26">
+    <ID>1c5c0105-8699-4625-9b6b-a9682476e448</ID>
+    <Name>Мобилизация таза и поясницы</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.10.2025 16:39:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|31.03.2024 14:53:25">
+    <ID>215f9daa-38e2-4f38-95b7-dc396ac3094f</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.10.2025 16:39:02">Основы массажа</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|05.06.2024 16:58:42">
+    <ID>953707a3-7409-493f-aec8-560105f68c2e</ID>
+    <Name>Спортивное УШУ Таолу</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|08.12.2024 16:10:55">
+    <ID>c330515b-b81b-4dc3-8642-198253cdf1f1</ID>
+    <Name>Практика форм Меч Цзянь</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|30.10.2025 19:50:26">
+    <ID>bde35ab8-0289-4e2d-9fe7-2d8eb63b0e8d</ID>
+    <Name>ПТ Взрослая 30 мин</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|07.11.2025 18:08:54">
+    <ID>be1f4c91-6c0e-442d-bd72-574cd148c9ef</ID>
+    <Name>ЛФК УШУ (10-15 лет)</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.02.2026 16:24:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|08.11.2025 18:35:34">
+    <ID>90cc8765-a5db-4378-ae99-c0bf11389c32</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|04.02.2026 16:24:25">Тканевое дыхание</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.02.2026 20:01:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.11.2025 19:19:57">
+    <ID>59ba11a1-8e86-4168-9ea1-0b3fa603c4a4</ID>
+    <Name Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.02.2026 20:01:05">ТЦ 1 год 24 форм</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.11.2025 19:23:05">
+    <ID>cc843926-159e-4a34-a3f2-9ecfdac6b578</ID>
+    <Name>ТЦ 2 год 40 форм</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|06.12.2025 16:44:54">
+    <ID>451910fd-a242-4139-b540-d5292dd1b1b9</ID>
+    <Name>ИЗО</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|15.02.2026 20:01:26">
+    <ID>e406efab-b84c-4198-affa-2e9ad36ae2ba</ID>
+    <Name>Новые цены</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|24.02.2026 18:41:02">
+    <ID>ff073a10-38a2-4b77-8c63-334972332830</ID>
+    <Name>Старые цены</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|02.03.2026 20:17:19">
+    <ID>43c345da-9b05-4f61-8ab7-d8810136500a</ID>
+    <Name>Техника самомассажа с палочкой</Name>
+  </Item>
+  <Item Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.07.2026 18:59:36">
+    <ID>d7fb3e54-ba8f-4812-9519-1f6e3aa673dd</ID>
+    <Name>Мобилизация рёбер</Name>
+  </Item>
+</Style>

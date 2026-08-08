@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статистика мультикета DANCESTUDIO</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #38bdf8; }
+    h2 { font-size: 1.3rem; margin: 1.5rem 0 0.75rem; color: #7dd3fc; border-bottom: 1px solid #1e293b; padding-bottom: 0.3rem; }
+    h3 { font-size: 1.1rem; margin: 1rem 0 0.5rem; color: #bae6fd; }
+    .badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+    .badge-done { background: #065f46; color: #6ee7b7; }
+    .badge-wait { background: #1e293b; color: #94a3b8; }
+    .badge-approved { background: #064e3b; color: #34d399; }
+    .badge-pending { background: #7c2d12; color: #fdba74; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border: 1px solid #1e293b; }
+    th { background: #1e293b; color: #7dd3fc; font-weight: 600; }
+    td { color: #cbd5e1; }
+    tr:hover td { background: #1e293b; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .summary-card { background: #1e293b; border-radius: 0.5rem; padding: 1rem; text-align: center; }
+    .summary-card .num { font-size: 1.8rem; font-weight: 700; color: #38bdf8; }
+    .summary-card .label { font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem; }
+    .progress-bar { background: #1e293b; border-radius: 999px; height: 12px; margin: 1rem 0; overflow: hidden; }
+    .progress-fill { background: linear-gradient(90deg, #38bdf8, #818cf8); height: 100%; border-radius: 999px; transition: width 0.5s; }
+    .ticket-list { list-style: none; }
+    .ticket-list li { padding: 0.5rem 0.75rem; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 0.75rem; }
+    .ticket-list li:last-child { border-bottom: none; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: #22c55e; }
+    .dot-gray { background: #475569; }
+    .meta { color: #64748b; font-size: 0.85rem; }
+    .media-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+    .media-card { background: #1e293b; border-radius: 0.5rem; padding: 0.75rem; }
+    .media-card .val { font-size: 1.3rem; font-weight: 700; color: #38bdf8; }
+    .media-card .lbl { font-size: 0.8rem; color: #94a3b8; }
+    .ticket-detail { background: #1e293b; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; }
+    .ticket-detail ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+    .ticket-detail code { background: #0f172a; padding: 0.1rem 0.4rem; border-radius: 0.25rem; }
+    .approved-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+    .approved-card { background: #064e3b; border-radius: 0.5rem; padding: 0.75rem; border-left: 4px solid #34d399; }
+    .approved-card .name { font-weight: 600; color: #34d399; font-size: 0.95rem; }
+    .approved-card .meta { font-size: 0.8rem; margin-top: 0.25rem; }
+    .pending-card { background: #7c2d12; border-radius: 0.5rem; padding: 0.75rem; border-left: 4px solid #fdba74; }
+    .pending-card .name { font-weight: 600; color: #fdba74; font-size: 0.95rem; }
+    .pending-card .meta { font-size: 0.8rem; margin-top: 0.25rem; }
+    .weight-high { color: #22c55e; }
+    .weight-medium { color: #f59e0b; }
+    .weight-low { color: #9ca3af; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Статистика мультикета DANCESTUDIO</h1>
+    <p class="meta">Редизайн БД, Мост Синхронизации, ЛК, Админка</p>
+    <p class="meta" id="updated-at"></p>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="num" id="total-tickets"></div>
+        <div class="label">Всего тикетов</div>
+      </div>
+      <div class="summary-card">
+        <div class="num" id="completed-tickets"></div>
+        <div class="label">Выполнено</div>
+      </div>
+      <div class="summary-card">
+        <div class="num" id="progress"></div>
+        <div class="label">Прогресс</div>
+      </div>
+      <div class="summary-card">
+        <div class="num" id="total-records"></div>
+        <div class="label">Записей обработано</div>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+    </div>
+
+    <h2>📊 Статус согласования таблиц</h2>
+    <div class="summary-grid" id="approval-summary"></div>
+    <div id="approved-section"></div>
+    <div id="pending-section"></div>
+    <div id="migration-section"></div>
+
+    <h2>✅ Выполненные тикеты</h2>
+    <div id="completed-section"></div>
+
+    <h2>📋 Очередь тикетов</h2>
+    <ul class="ticket-list" id="ticket-list"></ul>
+
+    <h2>📁 Созданные файлы</h2>
+    <table>
+      <thead>
+        <tr><th>Файл</th><th>Описание</th></tr>
+      </thead>
+      <tbody id="files-table"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const ticketNames = {
+      '1.1': 'Создание скрипта извлечения XML → JSON',
+      '1.2': 'Запуск скрипта + анализ медиа',
+      '1.3': 'Анализ донорской БД',
+      '1.4': 'Проектирование новой БД',
+      '2.1': 'Создание БД (SQL)',
+      '2.2': 'Мост данных (PowerShell + API)',
+      '2.3': 'Система синхронизации',
+      '2.4': 'Миграция данных в PG',
+      '2.5': 'Перепись API-эндпоинтов',
+      '3.1': 'Проектирование ЛК',
+      '3.2': 'Реализация ЛК',
+      '4.1': 'Медиа-файлы',
+      '5.1': 'Новые фичи и боты',
+      '6.1': 'PDF-отчёт',
+      '6.2': 'Статистика',
+      '6.3': 'Проверка соответствия БД проекту'
+    };
+
+    function loadAndRender() {
+      fetch('tickets.json')
+        .then(r => r.json())
+        .then(data => render(data))
+        .catch(err => {
+          document.body.innerHTML = `<div style="color:#f87171;padding:2rem;"><h2>❌ Ошибка загрузки</h2><p>Не удалось загрузить <code>tickets.json</code>. Откройте через локальный сервер: <code>python3 -m http.server 8080</code></p><pre>${err.message}</pre></div>`;
+        });
+    }
+
+    function render(d) {
+      const completed = d.completed;
+      const total = d.total_tickets;
+      const pct = ((completed / total) * 100).toFixed(1);
+
+      document.getElementById('total-tickets').textContent = total;
+      document.getElementById('completed-tickets').textContent = completed;
+      document.getElementById('progress').textContent = pct + '%';
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('updated-at').textContent = 'Обновлено: ' + new Date().toLocaleString('ru-RU');
+
+      // Суммарное количество записей (из тикета 1.1)
+      let totalRec = 0;
+      if (d.stats_by_ticket['1.1'] && d.stats_by_ticket['1.1'].summary) {
+        const s = d.stats_by_ticket['1.1'].summary;
+        if (s.xml_files_processed) totalRec = s.total_records || 83401;
+      }
+      document.getElementById('total-records').textContent = totalRec ? totalRec.toLocaleString('ru-RU') : '—';
+
+      // === СТАТУС СОГЛАСОВАНИЯ ТАБЛИЦ ===
+      const approvedData = d.approved_tables || {};
+      const approvedList = approvedData.approved_tables || [];
+      const pendingList = approvedData.pending_tables || [];
+      const migrationTables = approvedData.migration_tables || [];
+      const totalInSchema = approvedData.total_tables_in_schema || 47;
+      
+      // Вычисляем взвешенный процент согласования
+      let totalWeight = 0;
+      let approvedWeight = 0;
+      approvedList.forEach(t => {
+        const w = t.weight || 0.8;
+        totalWeight += w;
+        approvedWeight += w;
+      });
+      const approvalPct = totalWeight > 0 ? Math.round((approvedWeight / totalWeight) * 100) : 0;
+      
+      // Общий прогресс (тикетный 60% + согласование 40%)
+      const ticketPct = parseFloat(pct);
+      const overallPct = Math.round(ticketPct * 0.6 + approvalPct * 0.4);
+
+      // Сводка по согласованию
+      const approvalSummary = document.getElementById('approval-summary');
+      approvalSummary.innerHTML = `
+        <div class="summary-card">
+          <div class="num" style="color: #34d399;">${approvedList.length}/${totalInSchema}</div>
+          <div class="label">Таблиц согласовано</div>
+        </div>
+        <div class="summary-card">
+          <div class="num" style="color: #f59e0b;">${approvalPct}%</div>
+          <div class="label">Процент согласования</div>
+        </div>
+        <div class="summary-card">
+          <div class="num" style="color: #818cf8;">${pendingList.length}</div>
+          <div class="label">Ожидают утверждения</div>
+        </div>
+        <div class="summary-card">
+          <div class="num" style="color: #38bdf8;">${overallPct}%</div>
+          <div class="label">Общий прогресс</div>
+        </div>
+      `;
+
+      // Прогресс-бар согласования
+      const progressFill = document.getElementById('progress-fill');
+      progressFill.style.width = overallPct + '%';
+      progressFill.title = `Тикеты: ${ticketPct.toFixed(0)}% | Таблицы: ${approvalPct}% | Общий: ${overallPct}%`;
+
+      // Согласованные таблицы
+      const approvedSection = document.getElementById('approved-section');
+      if (approvedList.length > 0) {
+        approvedSection.innerHTML = `
+          <h3>✅ Согласованные таблицы (${approvedList.length})</h3>
+          <div class="approved-grid">
+            ${approvedList.map(t => `
+              <div class="approved-card">
+                <div class="name">${t.name}</div>
+                <div class="meta">
+                  Раздел: ${t.section} | 
+                  <span class="badge badge-approved">${t.status}</span> |
+                  Вес: <span class="weight-${t.weight >= 1.0 ? 'high' : t.weight >= 0.8 ? 'medium' : 'low'}">${t.weight}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // Ожидают утверждения
+      const pendingSection = document.getElementById('pending-section');
+      if (pendingList.length > 0) {
+        pendingSection.innerHTML = `
+          <h3>⏳ Ожидают утверждения (${pendingList.length})</h3>
+          <div class="approved-grid">
+            ${pendingList.map(t => `
+              <div class="pending-card">
+                <div class="name">${t.name}</div>
+                <div class="meta">
+                  Раздел: ${t.section} | 
+                  <span class="badge badge-pending">${t.status}</span>
+                </div>
+                <div class="meta" style="margin-top: 0.5rem;">Причина: ${t.reason || 'Не указано'}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // Миграция
+      const migrationSection = document.getElementById('migration-section');
+      if (migrationTables.length > 0) {
+        migrationSection.innerHTML = `
+          <h3>🔄 Миграция таблиц</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+            ${migrationTables.map(m => `
+              <div style="background: #1e293b; border-radius: 0.5rem; padding: 0.75rem; border-left: 4px solid #a855f7;">
+                <span style="text-decoration: line-through; color: #a855f7;">${m.from}</span>
+                <span style="color: #a855f7; margin: 0 0.5rem;">→</span>
+                <span style="color: #34d399; font-weight: 600;">${m.to}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // Выполненные тикеты
+      const cs = document.getElementById('completed-section');
+      for (const ticket of d.completed_tickets) {
+        const info = d.stats_by_ticket[ticket];
+        if (!info) continue;
+        const div = document.createElement('div');
+        div.className = 'ticket-detail';
+
+        let html = `<h3>Тикет ${ticket}: ${info.title}</h3>`;
+        html += `<p>Статус: <span class="badge badge-done">${info.status === 'completed' ? 'Выполнен' : info.status}</span></p>`;
+        html += `<p>Создано файлов: ${info.files_created ? info.files_created.length : 0}, строк кода: ${info.lines_added || 0}</p>`;
+
+        // Медиа-статистика для 1.2
+        if (ticket === '1.2' && info.summary) {
+          const s = info.summary;
+          html += `<div class="media-stats">
+            <div class="media-card"><div class="val">${s.media_files_scanned || s.photos_total || '—'}</div><div class="lbl">Файлов в Files/</div></div>
+            <div class="media-card"><div class="val">${s.all_format || 'JPEG'}</div><div class="lbl">Формат</div></div>
+            <div class="media-card"><div class="val">${s.total_media_size || s.size_stats?.total_human || '—'}</div><div class="lbl">Общий размер</div></div>
+            <div class="media-card"><div class="val">${s.clients_with_photos || '—'}</div><div class="lbl">Клиентов с фото</div></div>
+            <div class="media-card"><div class="val">${s.clients_without_photos || '—'}</div><div class="lbl">Клиентов без фото</div></div>
+            <div class="media-card"><div class="val">${s.orphan_photos || s.orphans_without_client || '—'}</div><div class="lbl">Потерянных фото</div></div>
+            <div class="media-card"><div class="val">${s.avg_resolution || (s.resolution_stats ? s.resolution_stats.avg_width + '×' + s.resolution_stats.avg_height : '—')}</div><div class="lbl">Среднее разрешение</div></div>
+            <div class="media-card"><div class="val">${s.exif_info || '—'}</div><div class="lbl">EXIF</div></div>
+          </div>`;
+        }
+
+        // Список файлов
+        if (info.files_created && info.files_created.length) {
+          html += `<ul>`;
+          for (const f of info.files_created) {
+            html += `<li><code>${f}</code></li>`;
+          }
+          html += `</ul>`;
+        }
+
+        div.innerHTML = html;
+        cs.appendChild(div);
+      }
+
+      // Очередь тикетов
+      const tl = document.getElementById('ticket-list');
+      const doneSet = new Set(d.completed_tickets);
+      for (const [id, name] of Object.entries(ticketNames)) {
+        const li = document.createElement('li');
+        const done = doneSet.has(id);
+        li.innerHTML = `<span class="dot ${done ? 'dot-green' : 'dot-gray'}"></span> <strong>${id}</strong> ${name} <span class="badge ${done ? 'badge-done' : 'badge-wait'}">${done ? 'Выполнен' : 'Ожидает'}</span>`;
+        tl.appendChild(li);
+      }
+
+      // Созданные файлы
+      const ft = document.getElementById('files-table');
+      for (const f of d.created_files) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><code>${f}</code></td><td>—</td>`;
+        ft.appendChild(tr);
+      }
+    }
+
+    loadAndRender();
+  </script>
+</body>
+</html>

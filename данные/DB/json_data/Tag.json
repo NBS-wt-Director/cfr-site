@@ -1,0 +1,62 @@
+[
+  {
+    "ID": "afca937a-6988-49aa-a2f3-4f18115cdfcc",
+    "Name": "VIP",
+    "Position": "1",
+    "Colour": "FFFFC300"
+  },
+  {
+    "ID": "f6d26477-dd57-40de-9df4-38590397e58d",
+    "Name": "конфликтный",
+    "Colour": "FFFF8561",
+    "Position": "2"
+  },
+  {
+    "ID": "65c87a32-14ad-4aa1-846c-13ba4d936788",
+    "Name": "часто опаздывает",
+    "Colour": "FFFFB8FE",
+    "Position": "3"
+  },
+  {
+    "ID": "f4486d5c-00aa-4897-a6d4-e8816afc12ad",
+    "Name": "есть действующий сертификат",
+    "Description": "дала 04.02.21 сертификат (есть еще 2 занятия)",
+    "Colour": "FFFF69B4"
+  },
+  {
+    "ID": "0b1d94fb-bc91-467e-967a-f1c9786208a4",
+    "Name": "привита",
+    "Description": "показала серт 30.10.21",
+    "Colour": "FF00FF00"
+  },
+  {
+    "ID": "33bfb690-1d90-4cb2-adba-5615fcb4b7b7",
+    "Name": "привит",
+    "Colour": "FF7CFC00"
+  },
+  {
+    "ID": "c0e4039f-7731-4bbb-8b0a-2730b6962327",
+    "Colour": "FFA52A2A",
+    "Name": "переболела"
+  },
+  {
+    "ID": "34bb6332-0c8a-4829-9e9f-1743d5f070ff",
+    "Name": "не привита",
+    "Colour": "FFDB7093"
+  },
+  {
+    "ID": "5d2087cd-b44f-4e66-b4fb-3f7e7b14e81d",
+    "Name": "переболел",
+    "Colour": "FF8B4513"
+  },
+  {
+    "ID": "da13952b-3cc1-4134-ae3f-eb6f29bce33f",
+    "Name": "негативная",
+    "Colour": "FF556B2F"
+  },
+  {
+    "ID": "7299d7fb-fbe5-43b0-81e8-0eb86427fa01",
+    "Name": "допытная",
+    "Colour": "FFDAA520"
+  }
+]

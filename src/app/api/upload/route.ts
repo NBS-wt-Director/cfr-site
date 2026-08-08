@@ -11,6 +11,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Нет файла' }, { status: 400 });
     }
 
+    // Лимит размера файла — 10MB
+    const MAX_FILE_SIZE = 10 * 1024 * 1024;
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: 'Файл слишком большой (макс. 10MB)' }, { status: 413 });
+    }
+
     // Разрешаем изображения и видео
     const isImage = file.type.startsWith('image/');
     const isVideo = file.type.startsWith('video/');

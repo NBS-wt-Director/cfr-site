@@ -1,0 +1,76 @@
+[
+  {
+    "ID": "cc2e4432-806e-42c0-8b0d-219709876342",
+    "Closed": "True",
+    "Time": "12.03.2021 11:00:00",
+    "CloseTime": "12.03.2021 13:19:01",
+    "CloseText": "Выполнено",
+    "TaskType": "Other",
+    "Text": "- Выдать подарок ТМ",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "ID_Closer": "25421898-cff8-4b1b-9861-0bd753b4db32",
+    "Created": "11.03.2021 21:34:44"
+  },
+  {
+    "ID": "72bca32a-2ac5-4396-be72-12ff47151f23",
+    "Closed": "True",
+    "Time": "12.03.2021 12:00:00",
+    "CloseTime": "12.03.2021 15:42:44",
+    "TaskType": "Other",
+    "Text": "- Изменить расписание в дансе, в экселе и распечатать",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "ID_Closer": "b4104ac7-9734-46ac-b3b3-4345c5ac4b0c",
+    "Created": "11.03.2021 21:34:59"
+  },
+  {
+    "ID": "95c347ef-e6b8-4179-928f-986ca270258f",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "ID_Closer": "25421898-cff8-4b1b-9861-0bd753b4db32",
+    "Created": "11.03.2021 21:35:17",
+    "Time": "12.03.2021 12:00:00",
+    "TaskType": "Other",
+    "Text": "- Дописать визитки про 8 тренировок",
+    "Closed": "True",
+    "CloseTime": "12.03.2021 13:18:19",
+    "CloseText": "Выполнено"
+  },
+  {
+    "ID": "a64539f5-7002-4262-b9bc-30f9f4e0548b",
+    "ID_User": "b4104ac7-9734-46ac-b3b3-4345c5ac4b0c",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "Created": "06.04.2021 10:53:22",
+    "Time": "06.04.2021 12:00:00",
+    "TaskType": "Other",
+    "Text": "отправить письмо Ардашевой",
+    "Closed": "False"
+  },
+  {
+    "ID": "7132c7d2-c866-48f1-98a8-239c42baa51c",
+    "Time": "06.04.2021 17:26:00",
+    "ID_User": "25421898-cff8-4b1b-9861-0bd753b4db32",
+    "TaskType": "Other",
+    "Text": "546",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "Created": "06.04.2021 17:25:16",
+    "Closed": "False"
+  },
+  {
+    "ID": "6b5acad8-3fef-45bc-b28f-90cc360e671d",
+    "Time": "06.04.2021 17:27:00",
+    "ID_User": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "TaskType": "Other",
+    "Text": "3534",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "Created": "06.04.2021 17:27:04",
+    "Closed": "False"
+  },
+  {
+    "ID": "93121551-ca7d-402f-b92d-7ba3d2aae309",
+    "Time": "06.04.2021 17:34:07",
+    "TaskType": "Other",
+    "Text": "ождл",
+    "ID_Creator": "910267f7-b5ae-4903-87da-ffbcf2a8a19f",
+    "Created": "06.04.2021 17:28:21",
+    "Closed": "False"
+  }
+]

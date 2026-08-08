@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sex>
+  <Item>
+    <ID>55cb0aaa-86eb-4423-a4d4-b1fb14aee7fc</ID>
+    <Name>мужской</Name>
+    <Abbreviation>м</Abbreviation>
+  </Item>
+  <Item>
+    <ID>87364c6f-a6d3-483f-931e-84b6a8b8d8d2</ID>
+    <Name>женский</Name>
+    <Abbreviation>ж</Abbreviation>
+  </Item>
+</Sex>

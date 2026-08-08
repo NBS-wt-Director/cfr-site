@@ -1,67 +1,82 @@
-import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import { NextRequest, NextResponse } from 'next/server';
+import pool from '@/lib/postgres';
+import { authenticateAdmin } from '@/lib/auth';
 
-const pagesFilePath = path.join(process.cwd(), 'data', 'pages.json');
-
-// Читаем файл
-function readPages() {
+export async function GET(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
   try {
-    const content = fs.readFileSync(pagesFilePath, 'utf-8');
-    const data = JSON.parse(content);
-    return Array.isArray(data) ? data : (data.pages || []);
-  } catch {
-    return [];
-  }
-}
-
-// Записываем файл
-function writePages(pages: any[]) {
-  fs.writeFileSync(pagesFilePath, JSON.stringify(pages, null, 2), 'utf-8');
-}
-
-export async function GET() {
-  try {
-    const pages = readPages();
-    return NextResponse.json(pages);
+    const client = await pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT id, slug, title, content, media, enabled, sort_order, record_status
+        FROM cfr_pages
+        ORDER BY sort_order, id
+      `);
+      return NextResponse.json(result.rows);
+    } finally {
+      client.release();
+    }
   } catch (error) {
     console.error('Error reading pages:', error);
     return NextResponse.json([]);
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
+
+  const contentType = request.headers.get('content-type');
+  if (!contentType?.includes('application/json')) {
+    return NextResponse.json({ error: 'Неверный Content-Type' }, { status: 415 });
+  }
+
   try {
-    const pages = readPages();
     const page = await request.json();
-    
-    // Добавить или обновить страницу
-    const existingIndex = pages.findIndex((p: any) => p.id === page.id);
-    if (existingIndex >= 0) {
-      pages[existingIndex] = page;
-    } else {
-      page.id = page.id || Date.now().toString();
-      pages.push(page);
+    const client = await pool.connect();
+    try {
+      // Обновляем или создаём страницу
+      const result = await client.query(
+        `INSERT INTO cfr_pages (id, slug, title, content, media, enabled, sort_order)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
+         ON CONFLICT (id) DO UPDATE SET
+           slug = EXCLUDED.slug, title = EXCLUDED.title,
+           content = EXCLUDED.content, media = EXCLUDED.media,
+           enabled = EXCLUDED.enabled, sort_order = EXCLUDED.sort_order
+         RETURNING id, slug, title, content, media, enabled, sort_order`,
+        [page.id, page.slug || page.id, page.title || '', page.content || '',
+         page.media || '', page.enabled !== false, page.sort_order || 0]
+      );
+      return NextResponse.json({ success: true, page: result.rows[0] });
+    } finally {
+      client.release();
     }
-    
-    writePages(pages);
-    return NextResponse.json({ success: true, page });
   } catch (error) {
     console.error('Error saving page:', error);
     return NextResponse.json({ error: 'Failed to save page' }, { status: 500 });
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
+  const auth = authenticateAdmin(request);
+  if (auth !== true) return auth;
   try {
-    const pages = readPages();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    
-    const filteredPages = pages.filter((p: any) => p.id !== id);
-    writePages(filteredPages);
-    
-    return NextResponse.json({ success: true });
+    if (!id) {
+      return NextResponse.json({ error: 'ID обязателен' }, { status: 400 });
+    }
+    const client = await pool.connect();
+    try {
+      await client.query(
+        'DELETE FROM cfr_pages WHERE id = $1',
+        [id]
+      );
+      return NextResponse.json({ success: true });
+    } finally {
+      client.release();
+    }
   } catch (error) {
     console.error('Error deleting page:', error);
     return NextResponse.json({ error: 'Failed to delete page' }, { status: 500 });

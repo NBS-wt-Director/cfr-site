@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+@page { margin: 10mm 12mm 10mm 12mm; size: A4; }
+body { font-family: Arial, sans-serif; font-size: 9pt; line-height: 1.2; color: #000; }
+h1 { font-size: 14pt; text-align: center; margin: 6pt 0 2pt 0; }
+h2 { font-size: 11pt; margin: 8pt 0 3pt 0; border-bottom: 1px solid #333; padding-bottom: 2pt; }
+h3 { font-size: 10pt; margin: 6pt 0 2pt 0; }
+h4 { font-size: 9pt; margin: 4pt 0 2pt 0; font-style: italic; }
+table { border-collapse: collapse; width: 100%; margin: 4pt 0 6pt 0; page-break-inside: avoid; }
+th, td { border: 1px solid #333; padding: 2pt 4pt; text-align: left; vertical-align: top; font-size: 8.5pt; }
+th { background-color: #e8e8e8; font-weight: bold; }
+code { font-family: 'Consolas', monospace; font-size: 8pt; background: #f5f5f5; padding: 0 2pt; }
+pre { background: #f5f5f5; padding: 4pt; font-size: 8pt; white-space: pre-wrap; margin: 2pt 0; }
+p { margin: 2pt 0; font-size: 9pt; }
+.note { font-size: 8pt; font-style: italic; color: #333; margin: 2pt 0 4pt 0; }
+.approved { color: #006600; font-weight: bold; font-size: 8pt; }
+.enum-list { margin: 2pt 0 4pt 0; padding-left: 16pt; font-size: 8.5pt; }
+.enum-list li { margin: 1pt 0; }
+.section-break { page-break-before: always; }
+.arrow { font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<h1>Проектирование БД PostgreSQL — «ЦФР / Шифу Панда»</h1>
+<p style="text-align:center; font-size:8pt;">Тикет 1.4 | Префикс: <code>cfr_</code> | Все поля со статусом: <code>cfr_record_status</code> (normal/removed/archived)</p>
+
+<!-- ========== СОГЛАСОВАНО ========== -->
+<h2>✅ ОКОНЧАТЕЛЬНО СОГЛАСОВАНО (03.08.2026)</h2>
+<table>
+<tr><th>№</th><th>Решение</th><th>Статус</th></tr>
+<tr><td>1</td><td>Префикс <code>cfr_</code></td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>2</td><td>Persons без пароля и роли</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>3</td><td>Родители — ссылки на persons (2 шт)</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>4</td><td>short_code в teachers</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>5</td><td>Поля залов (can_combine, floor_type, max_capacity, area_sqm, photos)</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>6</td><td>Объединение schedule_changes + substitutes</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>7</td><td>Единая cfr_entities (группы/индивид/массаж/сплит/аренда)</td><td>✅ ОДОБРЕНО</td></tr>
+<tr><td>8</td><td>Programs = Styles (одна таблица)</td><td>✅ ОДОБРЕНО</td></tr>
+</table>
+
+<h2>Перечисления (ENUM-типы)</h2>
+<ol class="enum-list">
+<li><code>cfr_payment_type</code> — <code>('cash','card','deposit','bonus','free','mixed','prepayment','transfer')</code></li>
+<li><code>cfr_group_status</code> — <code>('admission','active','closed','paused')</code></li>
+<li><code>cfr_hall_status</code> — <code>('active','inactive')</code></li>
+<li><code>cfr_teacher_status</code> — <code>('active','inactive','fired')</code></li>
+<li><code>cfr_product_status</code> — <code>('active','inactive','discontinued')</code></li>
+<li><code>cfr_product_unit</code> — <code>('piece','hour','minute','day','session','month')</code></li>
+<li><code>cfr_reservation_type</code> — <code>('group','individual','rent')</code></li>
+<li><code>cfr_client_type</code> — <code>('new','existing')</code></li>
+<li><code>cfr_tenant_type</code> — <code>('client','external')</code></li>
+<li><code>cfr_schedule_change_type</code> — <code>('cancel','move','add','replace','reschedule')</code></li>
+<li><code>cfr_sum_type</code> — <code>('target','replacement','bonus','penalty')</code></li>
+<li><code>cfr_task_type</code> — <code>('call','meeting','other','payment','notification')</code></li>
+<li><code>cfr_message_status</code> — <code>('pending','sent','delivered','failed','auth_failed')</code></li>
+<li><code>cfr_message_target</code> — <code>('sms','viber','whatsapp','telegram','email')</code></li>
+<li><code>cfr_transaction_type</code> — <code>('deposit_add','deposit_use','deposit_refund','bonus_add','bonus_use','bonus_expire','payment','charge','refund','adjustment')</code></li>
+<li><code>cfr_entity_type</code> — <code>('group','individual','massage','split','rent')</code></li>
+<li><code>cfr_online_type</code> — <code>('online','offline','hybrid')</code> — <span class="note">default 'hybrid' — тип проведения занятия</span></li>
+<li><code>cfr_bridge_packet_status</code> — <code>('received','processing','completed','error','retry_pending')</code></li>
+<li><code>cfr_sex</code> — <code>('male','female','other')</code></li>
+<li><code>cfr_record_status</code> — <code>('normal','removed','archived')</code> — <span class="note">для ВСЕХ таблиц данных; в справочниках — nullable</span></li>
+</ol>
+
+<h2>1.1 Persons — Архитектура</h2>
+<pre>cfr_persons (все люди)
+    ├── cfr_clients (клиенты)
+    ├── cfr_teachers (преподаватели)
+    └── cfr_admins (администраторы / CRM)</pre>
+<p class="note">В <code>cfr_persons</code>: ФИО, пол, дата рождения, телефоны, email, parent_person_id_1, parent_person_id_2, адрес, заметки. Без пароля, без роли.</p>
+
+<!-- ========== PERSONS (согласована) ========== -->
+<h2>3.1 <code>cfr_persons</code> — Люди <span class="approved">✅ согласована и неизменна</span></h2>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th><th>Комментарий</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>gen_random_uuid()</td><td>PK</td></tr>
+<tr><td>site_user_id</td><td>INTEGER</td><td>YES</td><td>NULL</td><td>FK → users(id)</td></tr>
+<tr><td>last_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Фамилия</td></tr>
+<tr><td>first_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Имя</td></tr>
+<tr><td>middle_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Отчество</td></tr>
+<tr><td>sex</td><td>cfr_sex</td><td>YES</td><td>NULL</td><td>Пол</td></tr>
+<tr><td>birth_date</td><td>DATE</td><td>YES</td><td>NULL</td><td>Дата рождения</td></tr>
+<tr><td>mobile_phone</td><td>VARCHAR(20)</td><td>YES</td><td>NULL</td><td>Телефон</td></tr>
+<tr><td>additional_phone</td><td>VARCHAR(20)</td><td>YES</td><td>NULL</td><td>Доп. телефон</td></tr>
+<tr><td>email</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Email</td></tr>
+<tr><td>avatar_url</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL аватара</td></tr>
+<tr><td>parent_person_id_1</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_persons(id) — родитель 1</td></tr>
+<tr><td>parent_person_id_2</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_persons(id) — родитель 2</td></tr>
+<tr><td>address</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Адрес</td></tr>
+<tr><td>notes</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Общие заметки</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td><td>normal/removed/archived</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td><td></td></tr>
+</table>
+<p class="note"><b>FK:</b> site_user_id → users(id) SET NULL; parent_person_id_1/2 → cfr_persons(id) SET NULL. <b>Индексы:</b> phone, email, site_user, name</p>
+
+<div class="section-break"></div>
+
+<!-- ========== РОЛЕВЫЕ ТАБЛИЦЫ ========== -->
+<h2>4. Ролевые таблицы</h2>
+
+<h3>4.1 <code>cfr_client_statuses</code> — Статусы клиентов (справочник)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>SERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>slug</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>colour</td><td>VARCHAR(7)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>sort_order</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+</table>
+<p class="note">Справочник: статус nullable, по умолчанию normal, без необходимости удаления.</p>
+
+<h3>4.2 <code>cfr_clients</code> — Клиенты</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>agreement_number</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>barcode</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>archive</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>status_id</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>friend_person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>id_foto</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">FK 1:1 → cfr_persons. ФИО/контакты/родственники — в persons.</p>
+
+<h3>4.3 <code>cfr_teachers</code> — Преподаватели</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>short_code</td><td>VARCHAR(10)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_teacher_status</td><td>NOT NULL</td><td>'active'</td></tr>
+<tr><td>own_salary_options</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>own_second_salary_options</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>id_foto</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>image</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>experience</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>specialization</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>is_director</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>sort_order</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>4.4 <code>cfr_teacher_photos</code> — Фото преподавателей</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>SERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>teacher_person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>image</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>caption</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>position</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+</table>
+
+<h3>4.5 <code>cfr_admins</code> — Администраторы (CRM)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>login</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>password_hash</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>password_md5</td><td>VARCHAR(32)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>is_root</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>rights</td><td>JSONB</td><td>YES</td><td>NULL</td></tr>
+<tr><td>last_login_at</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>last_computer_id</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'active'</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">UNIQUE: login. bcrypt (не MD5!).</p>
+
+<div class="section-break"></div>
+
+<!-- ========== СПРАВОЧНЫЕ ТАБЛИЦЫ ========== -->
+<h2>5. Справочные таблицы</h2>
+
+<h3>5.1 <code>cfr_branches</code> — Филиалы (1 запись)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+<tr><td>address</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>phone</td><td>VARCHAR(50)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>email</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>website</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>hours</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>hall_ids</td><td>UUID[]</td><td>YES</td><td>NULL</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+</table>
+
+<h3>5.2 <code>cfr_halls</code> — Залы (2 записи)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th><th>Комментарий</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td><td>PK</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td><td></td></tr>
+<tr><td>branch_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_branches(id)</td></tr>
+<tr><td>status</td><td>cfr_hall_status</td><td>NOT NULL</td><td>'active'</td><td></td></tr>
+<tr><td>can_combine</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td><td>Совмещение тренировок</td></tr>
+<tr><td>floor_type</td><td>VARCHAR(50)</td><td>YES</td><td>NULL</td><td>Резина/мат/дерево/металл/бетон</td></tr>
+<tr><td>max_capacity</td><td>INTEGER</td><td>YES</td><td>NULL</td><td>Вместимость (чел.)</td></tr>
+<tr><td>area_sqm</td><td>NUMERIC(6,1)</td><td>YES</td><td>NULL</td><td>Площадь (м²)</td></tr>
+<tr><td>photo_1</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL фото</td></tr>
+<tr><td>photo_2</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL фото</td></tr>
+<tr><td>photo_3</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL фото</td></tr>
+<tr><td>photo_4</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL фото</td></tr>
+<tr><td>photo_5</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td><td>URL фото</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td><td>normal/removed/archived</td></tr>
+</table>
+
+<h3>5.3 <code>cfr_styles</code> — Стили = Programs (123 записи)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID/SERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>client_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>image</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>type</td><td>VARCHAR(50)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">UNIQUE: name. Объединено с programs сайта.</p>
+
+<h3>5.4 <code>cfr_tags</code> — Теги (11 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>colour</td><td>VARCHAR(8)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>position</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>5.5 <code>cfr_informers</code> — Источники (7 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>5.6 <code>cfr_reservation_statuses</code> — Статусы брони (53 записи)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>colour</td><td>VARCHAR(8)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>position</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>5.7 <code>cfr_teacher_balance_types</code> — Типы баланса тренеров (5 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>short_name</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>factor</td><td>INTEGER</td><td>NOT NULL</td><td>1</td></tr>
+<tr><td>only_not_given</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>only_given</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>5.8 <code>cfr_charges</code> — Статьи расходов (6 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>5.9 <code>cfr_products</code> — Товары (51 запись)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>barcode</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>measurement</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>unit</td><td>cfr_product_unit</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_product_status</td><td>NOT NULL</td><td>'active'</td></tr>
+<tr><td>purchase_cost</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>markup</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>markup_percent</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<div class="section-break"></div>
+
+<!-- ========== ОСНОВНЫЕ БИЗНЕС-ТАБЛИЦЫ ========== -->
+<h2>6. Основные бизнес-таблицы</h2>
+
+<h3>6.1 <code>cfr_entities</code> — Единая таблица сущностей</h3>
+<p class="note">Объединяет: группы + индивидуальные тренировки + аренда + массаж + сплит</p>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th><th>Комментарий</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td><td>PK</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>NOT NULL</td><td>'group'</td><td>group/individual/massage/split/rent</td></tr>
+<tr><td>online_type</td><td>cfr_online_type</td><td>NOT NULL</td><td>'hybrid'</td><td>online/offline/hybrid — тип проведения</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Название</td></tr>
+<tr><td>style_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_styles(id)</td></tr>
+<tr><td>teacher_person_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_persons(id)</td></tr>
+<tr><td>hall_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_halls(id)</td></tr>
+<tr><td>branch_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_branches(id); NULL только если online_type='online'</td></tr>
+<tr><td>status</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'active'</td><td>active/inactive/closed/paused</td></tr>
+<tr><td>colour</td><td>VARCHAR(8)</td><td>YES</td><td>NULL</td><td>ARGB-цвет</td></tr>
+<tr><td>max_capacity</td><td>INTEGER</td><td>YES</td><td>NULL</td><td>Макс. вместимость</td></tr>
+<tr><td>price_per_session</td><td>INTEGER</td><td>YES</td><td>NULL</td><td>Цена за занятие (коп.)</td></tr>
+<tr><td>own_salary_options</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td><td></td></tr>
+<tr><td>own_second_salary_options</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td><td></td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td><td>normal/removed/archived</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td><td></td></tr>
+</table>
+<p class="note"><b>Индексы:</b> entity_type, teacher, style, hall</p>
+
+<h3>6.2 <code>cfr_accounts</code> — Абонементы</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>number</td><td>INTEGER</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>YES</td><td>NULL</td></tr>
+<tr><td>account_type_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>account_type_cost</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>original_cost</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>discount</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>discount_percent</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>payment_type</td><td>cfr_payment_type</td><td>NOT NULL</td><td>'cash'</td></tr>
+<tr><td>create_date</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>begin_date</td><td>DATE</td><td>YES</td><td>NULL</td></tr>
+<tr><td>days_count</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>add_days_count</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>training_count</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>free_training_count</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>is_perpetual</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>is_unlimited</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>account_status</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'active'</td></tr>
+<tr><td>source</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'dancestudio'</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>updated_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+</table>
+<p class="note"><b>FK:</b> entity_id → cfr_entities(id) SET NULL. <b>Индексы:</b> person, entity(entity_id+entity_type)</p>
+
+<h3>6.3 <code>cfr_visits</code> — Визиты (71873+)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>visit_date</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>YES</td><td>NULL</td></tr>
+<tr><td>branch_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_branches(id); NULL только если online_type='online'</td></tr>
+<tr><td>account_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>cost</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>payment_type</td><td>cfr_payment_type</td><td>NOT NULL</td><td>'cash'</td></tr>
+<tr><td>training_type_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>training_type_cost</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>annotation</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>source</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'dancestudio'</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+</table>
+<p class="note"><b>FK:</b> entity_id → cfr_entities(id) SET NULL; account_id → cfr_accounts(id) SET NULL.<br><b>Индексы:</b> person, visit_date, person+date, entity(entity_id+entity_type), account</p>
+
+<h3>6.4 <code>cfr_reservations</code> — Бронирования (40 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>reservation_type</td><td>cfr_reservation_type</td><td>NOT NULL</td><td>'group'</td></tr>
+<tr><td>status_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>entity_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>YES</td><td>NULL</td></tr>
+<tr><td>last_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>first_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>birth_date</td><td>DATE</td><td>YES</td><td>NULL</td></tr>
+<tr><td>mobile_phone</td><td>VARCHAR(20)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>client_type</td><td>cfr_client_type</td><td>NOT NULL</td><td>'new'</td></tr>
+<tr><td>reservation_time</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>parent_last_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>parent_mobile_phone</td><td>VARCHAR(20)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>comments</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>branch_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_branches(id); NULL только если online_type='online'</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>6.5 <code>cfr_schedule_changes</code> — Изменения расписания и замены</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>YES</td><td>NULL</td></tr>
+<tr><td>change_time</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>change_type</td><td>cfr_schedule_change_type</td><td>NOT NULL</td><td>'cancel'</td></tr>
+<tr><td>teacher_person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>sum_type</td><td>cfr_sum_type</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">Объединено: ScheduleChange.xml (1751) + Substitute.xml (276)</p>
+
+<h3>6.6 <code>cfr_notes</code> — Заметки (37 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>text</td><td>TEXT</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>closed</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>colour</td><td>VARCHAR(8)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>note_date</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>close_date</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>6.7 <code>cfr_tasks</code> — Задачи (7 записей)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>text</td><td>TEXT</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>closed</td><td>BOOLEAN</td><td>NOT NULL</td><td>FALSE</td></tr>
+<tr><td>task_type</td><td>cfr_task_type</td><td>NOT NULL</td><td>'other'</td></tr>
+<tr><td>creator_person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>closer_person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>assignee_person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>task_time</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>close_time</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<h3>6.8 <code>cfr_messages</code> — Сообщения (121 запись)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>target</td><td>cfr_message_target</td><td>NOT NULL</td><td>'sms'</td></tr>
+<tr><td>phone</td><td>VARCHAR(20)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>text</td><td>TEXT</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>status</td><td>cfr_message_status</td><td>NOT NULL</td><td>'pending'</td></tr>
+<tr><td>cost</td><td>VARCHAR(50)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>message_time</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NULL</td><td>'normal'</td></tr>
+</table>
+
+<div class="section-break"></div>
+
+<!-- ========== ТАБЛИЦЫ СВЯЗЕЙ (РАЗДЕЛ 7) ========== -->
+<h2>7. Таблицы связей (M:N)</h2>
+
+<h3>7.1 <code>cfr_client_tags</code> — Клиенты ↔ Теги</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>tag_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+</table>
+<p class="note"><b>PK:</b> (person_id, tag_id). FK CASCADE.</p>
+
+<h3>7.2 <code>cfr_client_informers</code> — Клиенты ↔ Источники</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>informer_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+</table>
+<p class="note"><b>PK:</b> (person_id, informer_id). FK CASCADE.</p>
+
+<h3>7.3 <code>cfr_group_clients</code> — Состав сущностей</h3>
+<p class="note">Связь человек ↔ сущность (группа, индивидуальная тренировка, аренда...)</p>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>entity_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>joined_at</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>left_at</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+</table>
+<p class="note"><b>PK:</b> (entity_id, entity_type, person_id). left_at=NULL = активен.</p>
+
+<h3>7.4 <code>cfr_teacher_styles</code> — Преподаватели ↔ Стили</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>person_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>style_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+</table>
+<p class="note"><b>PK:</b> (person_id, style_id). FK CASCADE.</p>
+
+<h3>7.5 <code>cfr_account_groups</code> — Абонементы ↔ Группы</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>account_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>group_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+</table>
+<p class="note"><b>PK:</b> (account_id, group_id). FK CASCADE.</p>
+
+<h3>7.6 <code>cfr_card_uses</code> — Использование карт</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>card_data</td><td>TEXT</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>used_at</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note"><b>PK:</b> id. FK: person_id → cfr_persons(id).</p>
+
+<div class="section-break"></div>
+
+<!-- ========== ФИНАНСОВЫЕ ТАБЛИЦЫ ========== -->
+<h2>8. Финансовые таблицы</h2>
+
+<h3>8.1 <code>cfr_transactions</code> — Транзакции (единая)</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>transaction_type</td><td>cfr_transaction_type</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>amount</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>balance_after</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>account_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>visit_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>description</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>source</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>'dancestudio'</td></tr>
+<tr><td>transaction_date</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">Источники: Bonus/Deposit + user_payments (сайт). amount в копейках.</p>
+
+<h3>8.2 <code>cfr_account_stages</code> — Этапы абонементов</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>account_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>stage_name</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>stage_data</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>sort_order</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note"><b>FK:</b> account_id → cfr_accounts(id) CASCADE.</p>
+
+<div class="section-break"></div>
+
+<!-- ========== СОГЛАСОВАННЫЕ ТАБЛИЦЫ ========== -->
+<h2>Согласованные и неизменные таблицы</h2>
+
+<h3>9.2 <code>cfr_pages</code> — Ручные страницы ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>slug</td><td>VARCHAR(200)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>content</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>media</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>enabled</td><td>BOOLEAN</td><td>NOT NULL</td><td>TRUE</td></tr>
+<tr><td>sort_order</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">Из data/pages.json. UNIQUE: slug.</p>
+
+<h3>9.3 <code>cfr_contacts</code> — Контакты ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>SERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>type</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>value</td><td>TEXT</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>label</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>sort_order</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">Из settings JSONB. type: phone/email/address.</p>
+
+<h3>10.1 <code>cfr_user_photos</code> — Фотографии ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>person_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>original_uuid</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>image_url</td><td>VARCHAR(500)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>thumbnail_url</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>medium_url</td><td>VARCHAR(500)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>original_filename</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>width</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>height</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>file_size</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>format</td><td>VARCHAR(10)</td><td>NOT NULL</td><td>'webp'</td></tr>
+<tr><td>user_id</td><td>INTEGER</td><td>YES</td><td>NULL</td></tr>
+<tr><td>created_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">FK: person_id → cfr_persons(id) SET NULL; user_id → users(id). Хранение: storage/photos/{uuid}.webp, _thumb.webp, _medium.webp</p>
+
+<h3>10.2 <code>cfr_schedule_entries</code> — Расписание ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_id</td><td>UUID</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>entity_type</td><td>cfr_entity_type</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>day_of_week</td><td>SMALLINT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>start_time</td><td>TIME</td><td>YES</td><td>NULL</td></tr>
+<tr><td>end_time</td><td>TIME</td><td>YES</td><td>NULL</td></tr>
+<tr><td>hall_id</td><td>UUID</td><td>YES</td><td>NULL</td></tr>
+<tr><td>notes</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>branch_id</td><td>UUID</td><td>YES</td><td>NULL</td><td>FK → cfr_branches(id); NULL только если online_type='online'</td></tr>
+<tr><td>status</td><td>cfr_record_status</td><td>NOT NULL</td><td>'normal'</td></tr>
+</table>
+<p class="note">day_of_week: 0=Mon..6=Sun. FK: entity_id → cfr_entities(id); hall_id → cfr_halls(id) SET NULL.</p>
+
+<h3>10.3 <code>cfr_bridge_queue</code> — Очередь моста ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>BIGSERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>packet_number</td><td>INTEGER</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>status</td><td>cfr_bridge_packet_status</td><td>NOT NULL</td><td>'received'</td></tr>
+<tr><td>source</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>'bridge_agent'</td></tr>
+<tr><td>payload</td><td>JSONB</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>error_message</td><td>TEXT</td><td>YES</td><td>NULL</td></tr>
+<tr><td>retry_count</td><td>INTEGER</td><td>NOT NULL</td><td>0</td></tr>
+<tr><td>received_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>processed_at</td><td>TIMESTAMPTZ</td><td>YES</td><td>NULL</td></tr>
+</table>
+<p class="note">JSONB — единственное исключение для JSONB (кроме settings). Мост между DanceStudio и новой БД.</p>
+
+<h3>10.4 <code>cfr_schema_migrations</code> — История миграций ✅ согласована и неизменна</h3>
+<table>
+<tr><th>Поле</th><th>Тип</th><th>Nullable</th><th>Default</th></tr>
+<tr><td>id</td><td>SERIAL</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>version</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>applied_at</td><td>TIMESTAMPTZ</td><td>NOT NULL</td><td>NOW()</td></tr>
+<tr><td>checksum</td><td>VARCHAR(64)</td><td>YES</td><td>NULL</td></tr>
+<tr><td>success</td><td>BOOLEAN</td><td>NOT NULL</td><td>TRUE</td></tr>
+</table>
+<p class="note">UNIQUE: version. Версии миграций схемы.</p>
+
+<div class="section-break"></div>
+
+<!-- ========== СПОРНЫЕ МОМЕНТЫ ========== -->
+<h2>14. Спорные моменты (резюме)</h2>
+<table>
+<tr><th>Вопрос</th><th>Решение</th></tr>
+<tr><td>Префикс</td><td><code>cfr_</code> ✅</td></tr>
+<tr><td>Persons</td><td>Без пароля, без роли. Роли = FK 1:1 ✅</td></tr>
+<tr><td>Родители</td><td>Ссылки на persons (2 шт) ✅</td></tr>
+<tr><td>Статус клиента</td><td>Справочник <code>cfr_client_statuses</code> ✅</td></tr>
+<tr><td>Админы с паролем</td><td><code>cfr_admins</code>, bcrypt, не MD5 ✅</td></tr>
+<tr><td>Слияние с users</td><td>Обратная совместимость ✅</td></tr>
+<tr><td>JSONB settings</td><td>Унаследованное исключение ✅</td></tr>
+<tr><td>Единая cfr_entities</td><td>Группы/индивид/массаж/сплит/аренда ✅</td></tr>
+<tr><td>Programs = Styles</td><td>Одна таблица ✅</td></tr>
+<tr><td>ScheduleChanges + Substitutes</td><td>Одна таблица ✅</td></tr>
+<tr><td>Фото-сироты (410 шт)</td><td>Загрузить все, person_id=NULL ✅</td></tr>
+<tr><td>staff</td><td>Оставить пока ✅</td></tr>
+<tr><td>Общий статус</td><td><code>cfr_record_status</code> (normal/removed/archived) ✅</td></tr>
+<tr><td>Онлайн-формат</td><td><code>cfr_online_type</code> (online/offline/hybrid, default 'hybrid') ✅</td></tr>
+<tr><td>Филиал тренировок</td><td><code>branch_id</code> в entities, visits, reservations, schedule_entries (NULL только для online_type='online') ✅</td></tr>
+</table>
+
+<h2>⚠️ ТРЕБУЕТ УТВЕРЖДЕНИЯ</h2>
+<ol style="font-size:9pt; margin:2pt 0;">
+<li>Префикс <code>cfr_</code></li>
+<li>Persons без пароля и роли</li>
+<li>Родители — ссылки на persons (2 шт)</li>
+<li>short_code в teachers</li>
+<li>Поля залов (can_combine, floor_type, max_capacity, area_sqm, photos)</li>
+<li>Объединение schedule_changes + substitutes</li>
+<li>Единая cfr_entities (группы/индивид/массаж/сплит/аренда)</li>
+<li>Programs = Styles (одна таблица)</li>
+<li>Слияние со всеми существующими структурами</li>
+</ol>
+
+</body>
+</html>

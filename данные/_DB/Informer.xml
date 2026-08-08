@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Informer>
+  <Item>
+    <ID>c62ee4cb-68d5-4889-b608-03c385f3ae5f</ID>
+    <Name>друзья</Name>
+  </Item>
+  <Item>
+    <ID>72eb005e-ab14-45f6-98f7-226594dcdc89</ID>
+    <Name>интернет</Name>
+  </Item>
+  <Item>
+    <ID>b97b0920-de1d-49ca-a7c8-2d873055f9be</ID>
+    <Name>вывеска</Name>
+  </Item>
+  <Item>
+    <ID>acbeedf2-47cd-4a6b-8836-41fa0c3b8588</ID>
+    <Name>листовка</Name>
+  </Item>
+  <Item>
+    <ID>0cf7d32e-9af0-411e-a2c9-ff72f3d1db9d</ID>
+    <Name>vk.com</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.02.2024 18:41:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.02.2024 18:41:29">
+    <ID>66333a3d-7646-4503-9c1b-2af60c8cabf5</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|09.02.2024 18:41:29">яндекс</Name>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.12.2024 16:50:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.12.2024 16:50:34">
+    <ID>28b8e201-b88e-4d68-968f-476fce3ca246</ID>
+    <Name Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.12.2024 16:50:34">Социальные сети</Name>
+  </Item>
+</Informer>

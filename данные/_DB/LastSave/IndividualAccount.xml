@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<IndividualAccount>
+  <Item Updated="22|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2019 16:16:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 22:06:29">
+    <ID>389af946-9188-4c80-8de3-84ea2fb86e4d</ID>
+    <Number>1</Number>
+    <CreateDate>14.02.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.02.2019 22:09:41">14.02.2019</BeginDate>
+    <DaysCount>60</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>10</TrainingCount>
+    <FreeTrainingCount>1</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>2e093c4f-64a8-4e8a-a8e5-5f3630d565ae</ID_Client>
+    <ID_Style>010f2246-4942-49d4-8844-226a88a5a33d</ID_Style>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>18000</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>18000</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits Updated="10|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2019 16:16:08">
+      <Item Created="26.02.2019 14:43:53" Date="14.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.02.2019 14:43:53" Date="19.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.02.2019 14:43:53" Date="21.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.02.2019 14:43:53" Date="26.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="05.03.2019 16:30:27" Date="05.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="07.03.2019 15:20:08" Date="07.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="14.03.2019 15:06:25" Date="14.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="21.03.2019 16:33:23" Date="21.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="21.03.2019 17:06:24" Date="19.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.03.2019 16:15:58" Date="26.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.03.2019 16:16:08" Date="12.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="bc350517-1467-4bdf-a6ae-a71e73921d67" Time="14.02.2019 22:08:38" ItemType="Pay" Sum="18000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="1873341f-6944-48e8-8ae4-ba34a05db6c3" Time="14.02.2019 22:08:38" ItemType="WriteOff" Sum="18000" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.02.2019 15:45:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.02.2019 15:42:59">
+    <ID>b670b984-108a-411b-82cb-65aea3353fdc</ID>
+    <OriginalCost>1800</OriginalCost>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Discount>0</Discount>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <Number>2</Number>
+    <CreateDate>10.02.2019</CreateDate>
+    <DiscountPercent>0</DiscountPercent>
+    <PaymentType>Cash</PaymentType>
+    <IsPerpetual>True</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <Colour Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.02.2019 15:44:51">FFAFEEEE</Colour>
+    <Schedule />
+    <Stages />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.02.2019 15:45:57">
+      <Item Created="23.02.2019 15:45:57" Date="10.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="99a23e8a-8525-4b24-b387-c98df5c5758a" Time="10.02.2019 15:44:29" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="de799393-dd44-470f-88e1-219b78a5a147" Time="10.02.2019 15:44:29" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.02.2019 18:11:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.02.2019 15:44:57">
+    <ID>98ad0e4c-e47b-4e0f-a201-857875ded393</ID>
+    <Number>3</Number>
+    <CreateDate>17.02.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="23.02.2019 15:45:26" Date="17.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="59abd26b-796c-4ce4-8a35-8ecd1f629933" Time="17.02.2019 15:45:26" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="52794376-dc97-4bc9-be86-5aeaec7f7555" Time="17.02.2019 15:45:26" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.02.2019 18:11:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.02.2019 18:11:02">
+    <ID>6a8eadca-24ec-465c-9749-f5853a5c0aca</ID>
+    <Number>4</Number>
+    <CreateDate>10.02.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>25.02.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="25.02.2019 18:11:24" Date="10.02.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="7dc58557-7b5b-45c6-bcaf-844dbde4cb52" Time="10.02.2019 18:11:24" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="c1dd5df1-996d-483e-9793-463f3f171498" Time="10.02.2019 18:11:24" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2019 18:04:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.03.2019 18:03:47">
+    <ID>d8bcc31e-03b9-4015-a051-5c55b2c2116f</ID>
+    <Number>5</Number>
+    <CreateDate>03.03.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>03.03.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="03.03.2019 18:04:32" Date="03.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="26e8d7ab-62aa-40d0-b879-3a5a6e7eb149" Time="03.03.2019 18:04:32" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="fea56714-5fe5-4b99-b9b0-9f4a5c9340c2" Time="03.03.2019 18:04:32" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="9|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.03.2019 17:00:09">
+    <ID>79de4196-d237-462c-bf15-175ed5b183b0</ID>
+    <Number>6</Number>
+    <CreateDate>05.03.2019</CreateDate>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>0</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <BeginDate>05.03.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <AddDaysCount>0</AddDaysCount>
+    <IsPerpetual>False</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <PaymentType>Cash</PaymentType>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.04.2019 16:41:48">
+      <Item Created="05.03.2019 17:00:25" Date="05.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="14.03.2019 16:33:42" Date="14.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="26.03.2019 16:16:20" Date="26.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+      <Item Created="03.04.2019 16:41:48" Date="03.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16">
+      <Item ID="d70aa74d-9d29-49b0-ad82-b5cf2eb1f1ed" Time="05.03.2019 17:00:25" ItemType="Debt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="b58fe8c6-51bb-43bc-b554-69af445dc78a" Time="27.09.2019 18:32:16" ItemType="Undebt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.03.2019 18:07:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.03.2019 18:07:08">
+    <ID>d6cf134d-3a93-448c-8aa0-b8d794e1dfc3</ID>
+    <Number>7</Number>
+    <CreateDate>10.03.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>10.03.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="10.03.2019 18:07:31" Date="10.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="cadc6bb0-9ab0-4892-9bc0-99c0756e025c" Time="10.03.2019 18:07:31" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="b0c6c651-6807-4fd4-9536-597e78eaad5c" Time="10.03.2019 18:07:31" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2019 18:12:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.03.2019 18:12:52">
+    <ID>72b60c9a-b426-4b80-ace1-de94f9542be5</ID>
+    <Number>8</Number>
+    <CreateDate>17.03.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>17.03.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="17.03.2019 18:12:58" Date="17.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="e6f04260-ede6-4d2e-96f0-fde4475fd33f" Time="17.03.2019 18:12:58" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="d2581393-2d3f-4c21-83f8-64b2a45db22a" Time="17.03.2019 18:12:58" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 18:29:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.03.2019 18:29:30">
+    <ID>f8c3ee90-31ad-4cc2-a078-a1ca7df1dba0</ID>
+    <Number>9</Number>
+    <CreateDate>24.03.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>24.03.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="24.03.2019 18:29:34" Date="24.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="4bc39a94-702c-402f-9058-39c8fa98b8f3" Time="24.03.2019 18:29:34" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="0aa8afc6-1bd3-4521-b368-edbca2627915" Time="24.03.2019 18:29:34" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2019 19:47:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2019 19:47:52">
+    <ID>b522a2e8-efdd-47f1-ab61-ff5a013d7e93</ID>
+    <Number>10</Number>
+    <CreateDate>26.03.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>26.03.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.03.2019 19:47:59">
+      <Item Created="26.03.2019 19:47:59" Date="26.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="86a6df43-7b5c-4530-ad92-fbde81fac2f7" Time="26.03.2019 19:47:54" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="627a1594-5b93-42f2-ac71-3ebc35352b36" Time="26.03.2019 19:47:54" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 18:17:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 18:17:43">
+    <ID>f472544c-9824-48cc-a5bd-0e20dbc309fd</ID>
+    <Number>11</Number>
+    <CreateDate>31.03.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>31.03.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="31.03.2019 18:17:52" Date="31.03.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="54ac429d-ad48-40dd-a56e-a4748d22ad7f" Time="31.03.2019 18:17:52" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="d128331b-389f-4a9e-9589-db4d9370d011" Time="31.03.2019 18:17:52" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.04.2019 20:38:23" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.04.2019 20:38:19">
+    <ID>778f854c-8d06-4a1e-8356-84117dc0658b</ID>
+    <Number>12</Number>
+    <CreateDate>02.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>02.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="02.04.2019 20:38:23" Date="02.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="e9a735ec-4db0-4fa2-b2c9-80782e485040" Time="02.04.2019 20:38:23" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="7fbb0024-4bbe-4107-b9bc-bacd45db49ee" Time="02.04.2019 20:38:23" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2019 18:11:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.04.2019 18:11:50">
+    <ID>f3dce7c2-d7e2-4cd4-b3fc-35a5966d1fae</ID>
+    <Number>13</Number>
+    <CreateDate>07.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>07.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="07.04.2019 18:11:57" Date="07.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="07fa65ec-7361-4c0d-bfc8-c2905cc6aa0c" Time="07.04.2019 18:11:57" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="6283bae2-4bd2-41a1-8d54-105504056a67" Time="07.04.2019 18:11:57" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2019 19:46:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.04.2019 19:46:30">
+    <ID>c0ed43ab-fe20-4246-b927-48f680d0e3a0</ID>
+    <Number>14</Number>
+    <CreateDate>09.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>09.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="09.04.2019 19:46:34" Date="09.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="2a5dc46f-97e8-4bcf-82b2-4bf0bd751b02" Time="09.04.2019 19:46:34" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="325bb4be-2e83-47f8-acdf-94b1c26ebbad" Time="09.04.2019 19:46:34" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2019 18:36:23" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2019 18:36:18">
+    <ID>1e881050-439b-4e1e-b89a-8d279124fb94</ID>
+    <Number>15</Number>
+    <CreateDate>14.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>14.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="14.04.2019 18:36:23" Date="14.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="5c47891d-d968-4285-8b53-9b70ec2afc1f" Time="14.04.2019 18:36:23" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="2e9893f7-daa5-4621-adf5-53bff1980049" Time="14.04.2019 18:36:23" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.04.2019 20:07:23" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.04.2019 20:07:19">
+    <ID>dee43fd7-ea26-481d-a38c-4a2296f52acb</ID>
+    <Number>16</Number>
+    <CreateDate>16.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>16.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="16.04.2019 20:07:23" Date="16.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="358c1a89-6e5b-4567-b54f-de16c02d748d" Time="16.04.2019 20:07:23" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="64dcb7e7-c802-4bb3-acf9-95c80c5aa301" Time="16.04.2019 20:07:23" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.04.2019 18:19:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.04.2019 18:19:31">
+    <ID>7b993753-6f6a-4748-a034-8a5d8c16d454</ID>
+    <Number>17</Number>
+    <CreateDate>28.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>28.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="28.04.2019 18:19:34" Date="28.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="0731bc3c-efee-46c6-bf37-2a7b86febea8" Time="28.04.2019 18:19:34" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="d5887f45-b478-4963-92f1-bda19760c3d8" Time="28.04.2019 18:19:34" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.04.2019 20:32:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.04.2019 20:31:54">
+    <ID>17441149-2edd-4b32-b487-0d293ddc4935</ID>
+    <Number>18</Number>
+    <CreateDate>30.04.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>30.04.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="30.04.2019 20:32:05" Date="30.04.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="3d4a0d0c-dfd1-428c-9226-527f2446bb43" Time="30.04.2019 20:32:05" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="703b27e2-3c8c-481e-a3cb-774b5282d045" Time="30.04.2019 20:32:05" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.05.2019 16:31:23">
+    <ID>e2910109-f4e0-4bfc-8505-8e0c0d14f368</ID>
+    <Number>19</Number>
+    <CreateDate>27.05.2019</CreateDate>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>0</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <BeginDate>27.05.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <AddDaysCount>0</AddDaysCount>
+    <IsPerpetual>False</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <PaymentType>Cash</PaymentType>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="27.05.2019 16:31:53" Date="27.05.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16">
+      <Item ID="b53e7a05-7375-4821-9ebc-902cc0d751a2" Time="27.05.2019 16:31:53" ItemType="Debt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="420d773c-5ade-4447-b706-5ce0e64cc465" Time="27.09.2019 18:32:16" ItemType="Undebt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.05.2019 16:13:28">
+    <ID>aeccc4b7-bd2c-4ad9-aa3b-0aad2b7f2192</ID>
+    <Number>20</Number>
+    <CreateDate>30.05.2019</CreateDate>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>0</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <BeginDate>30.05.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <AddDaysCount>0</AddDaysCount>
+    <IsPerpetual>False</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <PaymentType>Cash</PaymentType>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="30.05.2019 16:13:39" Date="30.05.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16">
+      <Item ID="75a53bff-b54a-4302-914b-a5bcc94609b9" Time="30.05.2019 16:13:39" ItemType="Debt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="3cdf0ad9-185c-49ab-a42c-2000abfda5d7" Time="27.09.2019 18:32:16" ItemType="Undebt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.05.2019 16:08:49" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.05.2019 16:08:18">
+    <ID>f0f78dc5-b926-4078-b5cc-dac7fa0c12ea</ID>
+    <Number>21</Number>
+    <CreateDate>31.05.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>31.05.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="31.05.2019 16:08:49" Date="31.05.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="dcba8d9e-519a-4617-b766-e603cbe12dab" Time="31.05.2019 16:08:49" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="609fb002-298c-48f6-ae25-58ff15b8bb65" Time="31.05.2019 16:08:49" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2019 17:02:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2019 17:02:20">
+    <ID>039b22d1-04bd-440c-b8b3-4ec3e2cea750</ID>
+    <Number>22</Number>
+    <CreateDate>03.06.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>03.06.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="03.06.2019 17:02:25" Date="03.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="d0b4d5cc-59a7-45cc-aa9a-9cb903a5d863" Time="03.06.2019 17:02:25" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="a4e377b5-7146-4561-bf20-1c8e9a8fc19c" Time="03.06.2019 17:02:25" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.06.2019 21:26:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.06.2019 21:26:26">
+    <ID>62219e0d-5fc6-4070-a2c9-feb4aa471b9e</ID>
+    <Number>23</Number>
+    <CreateDate>04.06.2019</CreateDate>
+    <IsPerpetual>True</IsPerpetual>
+    <BeginDate>04.06.2019</BeginDate>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>cf41aa77-2c48-4af1-b000-1dd93a60c9c2</ID_Client>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="04.06.2019 21:26:30" Date="04.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="a179d342-d816-4dcc-9ed9-9ec54fbd6e2b" Time="04.06.2019 21:26:30" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="dd204bec-204d-4353-a776-82f697a11bd8" Time="04.06.2019 21:26:30" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.06.2019 15:48:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.06.2019 15:48:43">
+    <ID>3e33726d-5b42-4217-bbd1-98a8877223ac</ID>
+    <Number>24</Number>
+    <CreateDate>10.06.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>10.06.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="10.06.2019 15:48:48" Date="10.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="9f77a17f-3ef4-492c-afc2-f9f147d8600f" Time="10.06.2019 15:48:48" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="a2e13ffe-7eea-46f3-8557-f32d5dc46252" Time="10.06.2019 15:48:48" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.06.2019 16:18:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.06.2019 16:18:14">
+    <ID>5566500c-7d4f-4237-8ff7-4218a2dd5fc2</ID>
+    <Number>25</Number>
+    <CreateDate>17.06.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>17.06.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="17.06.2019 16:18:25" Date="17.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="29904bc7-85d3-46d4-a339-38d92983d877" Time="17.06.2019 16:18:25" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="e2a16fe6-1d51-4115-8f2b-c7db61bce90a" Time="17.06.2019 16:18:25" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.06.2019 16:10:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.06.2019 16:10:17">
+    <ID>d9bab6b7-0202-405e-b3a0-54b929af0963</ID>
+    <Number>26</Number>
+    <CreateDate>21.06.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>21.06.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="21.06.2019 16:10:22" Date="21.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="187bd501-57b9-43ce-ae95-c23e923681ee" Time="21.06.2019 16:10:22" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="e2f9aff7-1e34-4168-90a4-4abffbad6eac" Time="21.06.2019 16:10:22" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.06.2019 16:09:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.06.2019 16:09:38">
+    <ID>907e80f9-eec5-44a4-85a7-ee864976b1f3</ID>
+    <Number>27</Number>
+    <CreateDate>27.06.2019</CreateDate>
+    <IsPerpetual>False</IsPerpetual>
+    <BeginDate>27.06.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <IsUnlimited>False</IsUnlimited>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>1800</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <AddDaysCount>0</AddDaysCount>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="27.06.2019 16:09:54" Date="27.06.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit>
+      <Item ID="8bec15a2-f5a9-4ea9-927c-e78c7f81700d" Time="27.06.2019 16:09:54" ItemType="Pay" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="ee1d6e54-1a4c-4327-a3e3-979dbbbb99f5" Time="27.06.2019 16:09:54" ItemType="WriteOff" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.08.2019 16:14:58">
+    <ID>4758935a-faa3-4024-9707-ba65ff1a6c50</ID>
+    <Number>28</Number>
+    <CreateDate>29.08.2019</CreateDate>
+    <ID_Client>f38eba3d-4267-42f5-bca4-cdf23e107fb3</ID_Client>
+    <OriginalCost>0</OriginalCost>
+    <Discount>0</Discount>
+    <DiscountPercent>0</DiscountPercent>
+    <TrainingCount>1</TrainingCount>
+    <FreeTrainingCount>0</FreeTrainingCount>
+    <BeginDate>29.08.2019</BeginDate>
+    <DaysCount>1</DaysCount>
+    <AddDaysCount>0</AddDaysCount>
+    <IsPerpetual>False</IsPerpetual>
+    <IsUnlimited>False</IsUnlimited>
+    <PaymentType>Cash</PaymentType>
+    <AccountTypeName>Стандарт</AccountTypeName>
+    <AccountTypeCost>1800</AccountTypeCost>
+    <Schedule />
+    <Stages />
+    <Visits>
+      <Item Created="29.08.2019 16:15:44" Date="29.08.2019" ID_Teacher="4f213aa3-32d5-47fd-a709-b5560e3c965a" />
+    </Visits>
+    <Deposit Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.09.2019 18:32:16">
+      <Item ID="3705c65b-9453-476e-9ef2-8667dbdf4c91" Time="29.08.2019 16:15:44" ItemType="Debt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+      <Item ID="773abd90-4f12-490b-a75e-01d74342bc63" Time="27.09.2019 18:32:16" ItemType="Undebt" Sum="1800" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" />
+    </Deposit>
+    <Bonus />
+  </Item>
+</IndividualAccount>

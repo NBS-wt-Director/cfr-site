@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rent>
+  <Item Updated="10|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.03.2019 20:36:47">
+    <ID>6d9e7923-36ec-4f40-9f2b-e65488535462</ID>
+    <PaymentType>Cash</PaymentType>
+    <ID_Client>54d91785-0984-471b-bbd0-cecadba7e675</ID_Client>
+    <Prepayment>1300</Prepayment>
+    <RentTypeName>БОЛЬШОЙ ЗАЛ</RentTypeName>
+    <RentTypeCost>1300</RentTypeCost>
+    <TenantType>Client</TenantType>
+    <Schedule />
+    <Visits Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53">
+      <Item ID="a145a113-e97c-4122-b76f-430a147a669c" Created="04.03.2019 20:37:04" Date="03.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="ff77362c-aa19-4dbe-a473-110f02a689aa" Created="10.03.2019 12:43:29" Date="10.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="89c1d170-bb5e-4042-b806-05d7abe8afc8" Created="17.03.2019 18:12:19" Date="17.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="451bda54-6de1-42a2-a5bc-16197cda0a88" Created="31.03.2019 09:45:53" Date="24.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+      <Item ID="4cdf6a36-eb45-4046-8114-15193fea321c" Created="31.03.2019 09:45:53" Date="31.03.2019" Name="БОЛЬШОЙ ЗАЛ" Cost="1300" TotalCost="1300" />
+    </Visits>
+    <Deposit Updated="5|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|31.03.2019 09:45:53">
+      <Item ID="a8809eaf-c6a0-4e93-bd59-6462d603c57a" Time="04.03.2019 20:37:04" ItemType="Pay" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="5070d305-0ee2-4287-8bff-48a34ae5161c" Time="04.03.2019 20:37:04" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="a145a113-e97c-4122-b76f-430a147a669c" />
+      <Item ID="0ecfac6a-804a-46a6-8b9c-98946e0c09ab" Time="10.03.2019 12:43:18" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="ff95e88c-da46-4da9-bd0f-0234ec96f545" Time="10.03.2019 12:43:27" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="188d79dd-236c-420a-837c-c24b36d2081a" Time="10.03.2019 12:43:27" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="940eb8bb-b965-4ec7-a3aa-a35a85f15691" Time="10.03.2019 12:43:27" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="ff77362c-aa19-4dbe-a473-110f02a689aa" />
+      <Item ID="9f82f083-0a54-444e-b02e-6d474cbcc606" Time="17.03.2019 18:12:13" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="8b34bf6f-67fb-4e8c-82ab-1c844e3b0549" Time="17.03.2019 18:12:32" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="9861a305-a279-4190-b317-1527290865e1" Time="17.03.2019 18:12:32" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="13e8b08f-9146-43a0-b076-eb090c940f23" Time="17.03.2019 18:12:32" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="89c1d170-bb5e-4042-b806-05d7abe8afc8" />
+      <Item ID="2eb11b9b-b62a-45fc-be3e-4af8c6e023b8" Time="31.03.2019 09:45:32" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="1df965e8-c0cf-49cc-9df2-ef41efebb53e" Time="24.03.2019 09:45:45" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="1ca9e43a-515d-47c1-9cf5-86ddcdb2a9d6" Time="24.03.2019 09:45:45" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="e6a68631-08ac-4110-95f6-da08dc50d593" Time="24.03.2019 09:45:45" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="451bda54-6de1-42a2-a5bc-16197cda0a88" />
+      <Item ID="42660ec9-9f29-4ce4-bb3b-f583ad236666" Time="31.03.2019 09:45:46" ItemType="Debt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+      <Item ID="32ccb580-556f-4966-9d9f-45aab662895c" Time="31.03.2019 09:45:49" ItemType="PayDebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" PaymentType="Cash" />
+      <Item ID="3b746417-40f8-4e9e-9f7f-6bf60cc1a8f8" Time="31.03.2019 09:45:49" ItemType="Undebt" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+      <Item ID="a0a6c326-0755-4d00-9a39-6bb817be89df" Time="31.03.2019 09:45:49" ItemType="WriteOff" Sum="1300" UserID="910267f7-b5ae-4903-87da-ffbcf2a8a19f" ComputerID="EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823" VisitID="4cdf6a36-eb45-4046-8114-15193fea321c" />
+    </Deposit>
+  </Item>
+</Rent>

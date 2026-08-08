@@ -1,0 +1,2019 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Substitute>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.01.2021 14:19:46" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.01.2021 14:19:20">
+    <ID>be970fd7-f756-4f31-9911-240d16858355</ID>
+    <Date>15.01.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:26:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:25:52">
+    <ID>ac6bdfd5-74a1-4728-8c3a-52f27d81de27</ID>
+    <Date Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:26:32">17.01.2021</Date>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:25:55">1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:26:04">2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.01.2021 16:25:52">Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 21:59:26">
+    <ID>65b8c846-fbeb-43a0-a71e-dc224bc64325</ID>
+    <Date Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:16">19.01.2021</Date>
+    <ID_Group Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:20">f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:46" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:29">
+    <ID>021154cd-bfe1-4fe4-827d-d086bbe0f8e4</ID>
+    <Date>19.01.2021</Date>
+    <ID_Group>58047d85-c594-411e-9a53-c0cc81c12e47</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:02:54">
+    <ID>93777d22-16ea-4a30-a599-450f9235c2f0</ID>
+    <Date>20.01.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:04:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:22">
+    <ID>33f1f67b-233d-4d7d-b74d-7495a2b7b54c</ID>
+    <Date Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:25">21.01.2021</Date>
+    <ID_Group Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:04:55">b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:48">cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:22">Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:04:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:03:52">
+    <ID>bbae8dfe-865b-411b-9f94-0e0530fd8c6f</ID>
+    <Date>19.01.2021</Date>
+    <ID_Group>b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:08:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:05:39">
+    <ID>8e0d2ced-1e7a-4908-aef8-3aa46b29677b</ID>
+    <Date Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:08:05">21.01.2021</Date>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:05:58">b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:06:01">a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.01.2021 22:05:39">Target</SumType>
+  </Item>
+  <Item Updated="2|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.01.2021 17:10:23" Created="1|b4104ac7-9734-46ac-b3b3-4345c5ac4b0c|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.01.2021 17:10:12">
+    <ID>ac668800-4a91-48c5-a47c-575edcfa975d</ID>
+    <Date>23.01.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:57:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:56:15" Removed="true">
+    <ID>c4fa5369-4ffd-46f6-ac35-39334fc291ac</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:56:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:56:35">
+    <ID>a4e41e35-bc04-42c0-9a84-2f4c25f375fe</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>f5427302-6b4f-46ea-b936-0003995c8436</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:57:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:56:45">
+    <ID>f07f31a8-81c8-4b65-a8b7-1d857ec9a517</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 22:57:49" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:57:21" Removed="true">
+    <ID>81aad70e-ce56-420a-8e96-f764396e270d</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:57:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2021 17:57:51">
+    <ID>b976329b-5d4c-49b2-a5ad-91bbb128732a</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>e7cd6272-53b9-49c1-808f-bfb82b310983</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2021 15:48:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2021 15:47:59">
+    <ID>8ee081d4-9c6f-4ae9-855f-bab5e5018eec</ID>
+    <Date>26.01.2021</Date>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:15:43">
+    <ID>f3677c93-6d91-4d08-8f05-375b6fc25aa9</ID>
+    <Date>27.01.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:22">
+    <ID>f479a781-1dbf-45f4-9e2c-d653b5fcc2e3</ID>
+    <Date>27.01.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:35">
+    <ID>1e799b6b-2ed7-4e91-90d5-3bbcc3169f13</ID>
+    <Date>27.01.2021</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2021 10:20:45">
+    <ID>5e6e1006-b140-417f-9e57-0090f17c9cdc</ID>
+    <Date>27.01.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 18:47:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 18:46:38">
+    <ID>bbef792f-78db-4c04-97c5-ad1b4a8304ac</ID>
+    <Date>28.01.2021</Date>
+    <ID_Group>081d8f12-7d6c-4e6e-a148-1b871037bc8a</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 18:48:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 18:47:43">
+    <ID>3fa67550-a0ab-4678-afc6-305faba42ae5</ID>
+    <Date>28.01.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:35:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:34:58">
+    <ID>c16ba7a2-1bc9-4a76-b92b-fc0ef589c990</ID>
+    <Date>29.01.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:35:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:35:15">
+    <ID>5d5e48ac-3c5f-456f-b576-6f6705dcfa35</ID>
+    <Date>29.01.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:36:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.01.2021 22:35:33">
+    <ID>d7a53192-d132-4373-8299-68509ef501a0</ID>
+    <Date>29.01.2021</Date>
+    <ID_Group>5dc0cd2e-1843-44f8-a097-210884222d27</ID_Group>
+    <ID_Teacher>147d5bda-30a4-4cb3-9067-8f91d03df721</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.01.2021 12:15:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.01.2021 12:15:34">
+    <ID>efd36958-e42b-46be-b3ae-5f631bb6015a</ID>
+    <Date>30.01.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.01.2021 12:16:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.01.2021 12:15:53">
+    <ID>2f892e08-b5c9-4978-b45d-03626d0bb883</ID>
+    <Date>30.01.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2021 23:02:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2021 23:02:44">
+    <ID>8a3cc6d8-1ed1-4e81-8db4-b455840ebdd3</ID>
+    <Date>01.02.2021</Date>
+    <ID_Group>e7cd6272-53b9-49c1-808f-bfb82b310983</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.02.2021 20:41:12" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.02.2021 20:40:58">
+    <ID>49bfcac9-2c34-4174-a009-0de9c81b536c</ID>
+    <Date>03.02.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 16:41:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 16:41:20">
+    <ID>cf6db325-a15e-4e44-80d7-1ab635ec0242</ID>
+    <Date>04.02.2021</Date>
+    <ID_Group>b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 22:58:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 22:57:51">
+    <ID>8b5fd0fc-3984-4831-bb90-14883480fc4e</ID>
+    <Date>25.01.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 23:27:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.02.2021 23:27:28">
+    <ID>b3369ce8-7248-4551-9b60-5741a309a6cf</ID>
+    <Date>30.01.2021</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.02.2021 19:56:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.02.2021 19:56:19">
+    <ID>0984e57a-dcd6-41b7-a63b-dc5e5bea5aa9</ID>
+    <Date>06.02.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.02.2021 19:56:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.02.2021 19:56:48">
+    <ID>46a3c851-bdaa-48b4-9d88-daabd9acabc1</ID>
+    <Date>06.02.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.02.2021 19:36:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.02.2021 19:36:21">
+    <ID>db6e0843-f232-4af5-9c31-e3bb2bb80532</ID>
+    <Date>21.02.2021</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.02.2021 19:17:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.02.2021 19:16:32">
+    <ID>8f8bb61a-2e14-4e29-972c-27858f61cc7e</ID>
+    <Date>20.02.2021</Date>
+    <ID_Group>3efa379f-ad3d-456b-b0aa-6a9ef24a3da3</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|08.04.2021 10:00:04" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.03.2021 08:40:12" Removed="true">
+    <ID>b0daf852-6748-4c05-9ecf-c1139dad2f3c</ID>
+    <Date>13.03.2021</Date>
+    <ID_Group>d3e34fab-55da-4e6f-851c-b68becb9a560</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.03.2021 08:54:20" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.03.2021 08:54:12">
+    <ID>0b4e2f0f-04ce-48ce-b93e-0a970f1a290b</ID>
+    <Date>13.03.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.03.2021 09:40:31" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.03.2021 09:40:25">
+    <ID>a0cffd53-0655-48bc-8163-c918fd5a5faf</ID>
+    <Date>13.03.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.03.2021 17:37:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.03.2021 17:37:40">
+    <ID>8634c181-3457-4f78-9ed9-76a43a1455b5</ID>
+    <Date>17.03.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.04.2021 17:09:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.04.2021 17:08:11">
+    <ID>545e4381-43db-46c8-802b-761fbdbe4416</ID>
+    <Date>03.04.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.04.2021 22:21:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.04.2021 22:20:46">
+    <ID>2530609c-1d73-4bcb-a557-4d13ebc94f88</ID>
+    <Date>27.03.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 08:31:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.04.2021 08:31:07">
+    <ID>eff4c0af-d291-4446-80c7-fb44826ad651</ID>
+    <Date>13.03.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2021 20:08:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.04.2021 20:07:48">
+    <ID>6ef60c11-0bb0-4c05-8204-9d93c102299a</ID>
+    <Date>14.04.2021</Date>
+    <Annotation>285</Annotation>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:43:00" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:42:29">
+    <ID>5b5a1522-48c6-4b05-b362-584aae5f8254</ID>
+    <Date Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:42:29">22.04.2021</Date>
+    <Annotation Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:43:00">285</Annotation>
+    <ID_Group Updated="3|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:42:42">081d8f12-7d6c-4e6e-a148-1b871037bc8a</ID_Group>
+    <ID_Teacher Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:42:46">a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 08:42:29">Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 18:39:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.04.2021 18:39:33">
+    <ID>fb7fe4e2-d9d4-435a-b3c5-6d7e6ee97aae</ID>
+    <Date>22.04.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:28:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:18:04" Removed="true">
+    <ID>ac68cf64-8411-4ac3-a73d-92b34374097d</ID>
+    <Date>27.04.2021</Date>
+    <ID_Group>b677263e-81a2-4a97-91d7-433ebdf9e1bc</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:29:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.04.2021 08:29:00">
+    <ID>0283dfea-e550-4476-a12f-825baabf5367</ID>
+    <Date>27.04.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:54:52">
+    <ID>531303e4-109a-4df9-9901-3405b5aadcac</ID>
+    <Date>10.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:12">
+    <ID>936dd813-cc67-4195-a264-e98d0c3e63f7</ID>
+    <Date>10.05.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:27">
+    <ID>36239e3b-6ca1-4e3f-83bf-d9cf10753e9c</ID>
+    <Date>11.05.2021</Date>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:55:57">
+    <ID>5f497b78-61e4-4350-9b1d-e0528371aa34</ID>
+    <Date>12.05.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:15">
+    <ID>a029f4ef-67f3-4fda-8c66-4281fe8ed4ff</ID>
+    <Date>12.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:49" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:38">
+    <ID>f456e647-c3ec-46e1-b316-25ff709e0448</ID>
+    <Date>12.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:56:55">
+    <ID>6839260b-50a9-4df8-8f3c-ae4c7a7f7cd0</ID>
+    <Date>13.05.2021</Date>
+    <ID_Group>081d8f12-7d6c-4e6e-a148-1b871037bc8a</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:07">
+    <ID>69251327-c802-4560-9c07-69f6581ef5eb</ID>
+    <Date>13.05.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:31">
+    <ID>145c1916-b009-4698-9560-430909e26f7f</ID>
+    <Date>14.05.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:58:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:57:56">
+    <ID>1da7f1fb-72d4-45bd-8966-a35d49aa5c22</ID>
+    <Date>14.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:58:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 18:58:21">
+    <ID>d952d73d-a1ca-4906-a03f-4f8a3118dc31</ID>
+    <Date>14.05.2021</Date>
+    <ID_Group>5dc0cd2e-1843-44f8-a097-210884222d27</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.06.2021 17:33:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 19:01:43" Removed="true">
+    <ID>083653a3-f6ae-4826-8f99-78d412b0e97a</ID>
+    <Date>10.05.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:12:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|10.05.2021 19:02:09" Removed="true">
+    <ID>0e4edd38-0a85-4f71-a803-949f264365af</ID>
+    <Date>10.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:09:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:09:03">
+    <ID>fe1a105d-214f-4125-8247-eac72ce10a9d</ID>
+    <Date>15.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:28:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:28:00">
+    <ID>12a1ca9d-e9c4-4751-a3df-196fc99e1c11</ID>
+    <Date>15.05.2021</Date>
+    <ID_Group>18436299-4b3c-4ec6-8505-39b1fcea1776</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:28:56" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:28:33">
+    <ID>c1bb4098-742a-4ae6-b984-ed25e3d82a7d</ID>
+    <Date>15.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:29:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|15.05.2021 18:28:57">
+    <ID>5b39eb4c-97fc-4d86-85c7-663d2d6574a4</ID>
+    <Date>15.05.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:19:17" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:18:58">
+    <ID>ff03cd72-e8dc-4432-ae6c-81778f9f839c</ID>
+    <Date>19.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:19:56" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:19:19">
+    <ID>2d00a996-3d7b-4eb4-a36a-e09dd6b1558a</ID>
+    <Date>19.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:20:09" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.05.2021 15:19:58">
+    <ID>a301074e-55a8-4879-bf91-d961c4fa354c</ID>
+    <Date>19.05.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.05.2021 21:14:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.05.2021 21:14:17">
+    <ID>e2ebf1ed-955a-4e49-865d-f2a8f584ca42</ID>
+    <Date>21.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:39:03" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:38:54">
+    <ID>94a5f25c-53b4-424f-8128-1c70b71dca60</ID>
+    <Date>22.05.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:39:19" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:39:05">
+    <ID>2badc933-46e3-4067-b67d-a12f0197b924</ID>
+    <Date>22.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:39:42" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.05.2021 08:39:21">
+    <ID>0f0003f3-bd67-490e-ae51-90fbb8f3b4bd</ID>
+    <Date>22.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.05.2021 18:16:17" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.05.2021 18:15:56">
+    <ID>cbddc804-486f-479f-b97f-9e706e51cd6e</ID>
+    <Date>24.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.05.2021 18:16:31" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|24.05.2021 18:16:19">
+    <ID>fee0fdd6-8328-4d90-975e-40e4a96e627a</ID>
+    <Date>24.05.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.05.2021 08:35:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.05.2021 08:34:45">
+    <ID>197f0dda-3919-4f81-8499-794199d6e27c</ID>
+    <Date>25.05.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:04:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:04:09" Removed="true">
+    <ID>c8e909a1-40c7-435e-9d1e-f58e406a446a</ID>
+    <Date>26.05.2021</Date>
+    <ID_Group>e7cd6272-53b9-49c1-808f-bfb82b310983</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:05:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:04:56">
+    <ID>323db2f4-5e96-47c6-903c-1aa2e4082163</ID>
+    <Date>26.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:52:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.05.2021 19:52:08">
+    <ID>a2dc69e9-d5a6-4878-a734-2268c4c4895f</ID>
+    <Date>26.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.05.2021 19:04:16" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.05.2021 19:04:07">
+    <ID>66d7fb71-4296-4519-8192-5b6325ed471b</ID>
+    <Date>28.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 09:38:55" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 09:38:41">
+    <ID>26c12c13-1d03-480f-8818-93ad831a891b</ID>
+    <Date>29.05.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 09:39:06" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 09:38:57">
+    <ID>6d5a7638-bb27-431c-bc63-b84d349bd872</ID>
+    <Date>29.05.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 17:37:59" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 09:39:08" Removed="true">
+    <ID>1d4bf021-ecfe-4be5-96bf-6930bcd0e521</ID>
+    <Date>29.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 17:38:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.05.2021 17:38:02">
+    <ID>4db44a9a-ba67-4a00-bb30-4b460b7624d3</ID>
+    <Date>29.05.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 13:55:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 13:55:27">
+    <ID>69602cdc-23b8-40af-ab49-82feafb6ea28</ID>
+    <Date>30.05.2021</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 13:57:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 13:57:17">
+    <ID>9643e2fc-95ff-4976-b130-7c47db48c569</ID>
+    <Date>27.05.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:00:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:00:05">
+    <ID>e0dd6afd-b5d5-4074-85f4-7b8e15a216f1</ID>
+    <Date>18.05.2021</Date>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:06:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:06:01">
+    <ID>ecbb5a0b-9cfe-4cc6-a0e5-0a0e4a41c3f9</ID>
+    <Date>17.05.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:07:43" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.06.2021 14:07:20">
+    <ID>7d9c921e-8562-47ea-ae91-dc733363d1e9</ID>
+    <Date>17.05.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.06.2021 10:42:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.06.2021 10:42:02">
+    <ID>69efc3e5-14eb-4aef-bff7-a3335e6d5263</ID>
+    <Date>12.06.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.06.2021 08:17:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.06.2021 08:16:45">
+    <ID>47868974-1e39-489a-8cd2-83e79893451c</ID>
+    <Date>17.06.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:37:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:37:26">
+    <ID>649c06a2-8e0b-4f07-a87d-625b7f39ad2f</ID>
+    <Date>17.07.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:37:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:37:38">
+    <ID>5b11119f-00e8-4e10-a381-75ff10d2d822</ID>
+    <Date>17.07.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:38:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.07.2021 09:37:53">
+    <ID>f86d8cd0-6bf9-44c2-9759-d82fe3a20acb</ID>
+    <Date>17.07.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.07.2021 19:10:06" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.07.2021 19:09:58">
+    <ID>4bb1168e-8d19-4403-911f-83139f8ef0cc</ID>
+    <Date>18.07.2021</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:10:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:10:05">
+    <ID>96827b61-b182-4b90-9ee8-17c0ea0467fc</ID>
+    <Date>16.07.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:10:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:10:21">
+    <ID>d18e7978-542d-40c8-a3cb-40c6c464954e</ID>
+    <Date>19.07.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:11:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.07.2021 08:10:51">
+    <ID>0397f14d-b697-42a6-a220-7d4ddd8460e9</ID>
+    <Date>19.07.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:35:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:35:03">
+    <ID>73de6dc3-4875-4878-af98-e49871e32a3e</ID>
+    <Date>02.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:37:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:35:26">
+    <ID>40e3636e-49c1-492b-bbe1-b1648f33c626</ID>
+    <Date>02.08.2021</Date>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:37:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.08.2021 19:37:24">
+    <ID>c0d06d31-238b-4b80-82ba-045a1a7aaa24</ID>
+    <Date>02.08.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.08.2021 08:37:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.08.2021 08:32:04" Removed="true">
+    <ID>b47194fc-a4a8-4231-8031-389625a901b5</ID>
+    <Date>03.08.2021</Date>
+    <ID_Group>95a10105-0576-4bdb-83c0-7bc6f76c628c</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.09.2021 22:02:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.08.2021 08:32:14">
+    <ID>71b136ee-1abd-4aec-bd40-05c26947a7fc</ID>
+    <Date>03.08.2021</Date>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.09.2021 22:02:12">2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.08.2021 08:37:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.08.2021 08:37:28">
+    <ID>64f86f07-575b-4269-a2b2-8bb77d139e38</ID>
+    <Date>03.08.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:03:49" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:03:42">
+    <ID>e15caed4-55cc-4dc8-93e8-ed280316c723</ID>
+    <Date>04.08.2021</Date>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:03:58" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:03:51">
+    <ID>03f64bb0-cdce-4d60-a068-f071eb3321a3</ID>
+    <Date>04.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:04:10" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.08.2021 19:03:59">
+    <ID>08cf4da8-e216-49b9-b8b8-ee28e59c0a1b</ID>
+    <Date>04.08.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.08.2021 08:48:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.08.2021 08:48:44">
+    <ID>729a6154-4a78-4990-980c-d09a81712040</ID>
+    <Date>05.08.2021</Date>
+    <ID_Group>081d8f12-7d6c-4e6e-a148-1b871037bc8a</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.08.2021 08:49:18" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|05.08.2021 08:49:00">
+    <ID>5f03809b-fb46-4cbc-af4f-d4e42e8cb2cc</ID>
+    <Date>05.08.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.08.2021 17:22:10" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.08.2021 17:21:57">
+    <ID>bcb293e6-a0c8-48f4-b717-213fbf7c5c35</ID>
+    <Date>06.08.2021</Date>
+    <ID_Group>dc07f469-8f39-4b78-beb0-89f698cb1b9a</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.08.2021 17:22:22" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|06.08.2021 17:22:11">
+    <ID>94a70d83-551f-4721-ad72-402902046d62</ID>
+    <Date>06.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:53:10" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:52:59">
+    <ID>dfa5dc81-f096-4768-987c-d0fdcedcea1e</ID>
+    <Date>07.08.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:53:42" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:53:11">
+    <ID>609039c9-9e8e-43e7-b643-96f80e15274e</ID>
+    <Date>07.08.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:54:52" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.08.2021 08:54:45">
+    <ID>6e3a6fa5-8feb-4f86-838c-b0dd1e9bbfd3</ID>
+    <Date>07.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:02:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:02:31">
+    <ID>422e0c54-0e8f-49b5-876d-f6858cdf204e</ID>
+    <Date>11.08.2021</Date>
+    <Annotation>285</Annotation>
+    <ID_Group>f5427302-6b4f-46ea-b936-0003995c8436</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:03:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:03:08">
+    <ID>aaa17a47-5144-4b67-87a8-602a76eebe19</ID>
+    <Date>11.08.2021</Date>
+    <Annotation>285</Annotation>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:04:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:03:36">
+    <ID>6b470374-82cc-4a07-a514-3b7f494b7de5</ID>
+    <Date>11.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:04:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:04:13">
+    <ID>91827f30-6173-4bc2-833e-4c62449fa536</ID>
+    <Date>11.08.2021</Date>
+    <ID_Group>430c9c96-633a-468f-8f63-44074fcc1102</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:04:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:04:31">
+    <ID>2dd90171-638f-4a1f-8146-98ae4cc5c8df</ID>
+    <Date>11.08.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:05:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:05:31">
+    <ID>ff728d70-d41a-4769-89cb-0d3f27d9ca27</ID>
+    <Date>10.08.2021</Date>
+    <ID_Group>bf579148-08b9-4fb8-ada9-58c04a96a1c2</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:06:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:05:55">
+    <ID>89b8074d-c960-457c-9eb3-1147dcdf4de3</ID>
+    <Date>10.08.2021</Date>
+    <ID_Group>f9abcf88-ecf0-4ff5-a1dc-71e47c08df40</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:06:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:06:35">
+    <ID>a3e9d584-f592-4bc3-92d2-3895c7d76ee1</ID>
+    <Date>09.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:07:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:06:54">
+    <ID>548d5607-f02c-487b-a2be-ff7036d1a263</ID>
+    <Date>09.08.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:07:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.08.2021 14:07:14">
+    <ID>4f39e97d-38ba-4133-9089-70be6aa25a69</ID>
+    <Date>09.08.2021</Date>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.08.2021 16:10:26" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.08.2021 16:10:13">
+    <ID>9d5ea3f5-3ea0-48b5-b5a9-11944063977a</ID>
+    <Date>12.08.2021</Date>
+    <ID_Group>081d8f12-7d6c-4e6e-a148-1b871037bc8a</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.08.2021 16:10:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|12.08.2021 16:10:27">
+    <ID>7e392e49-3158-4202-a149-8e2699ff9a30</ID>
+    <Date>12.08.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:00:35">
+    <ID>f35f22ea-2090-4cba-a65d-ad229c5bb408</ID>
+    <Date>13.08.2021</Date>
+    <ID_Group>f5427302-6b4f-46ea-b936-0003995c8436</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:11">
+    <ID>d66f185c-8ce9-47de-a0a8-4a704a744417</ID>
+    <Date>13.08.2021</Date>
+    <ID_Group>dc07f469-8f39-4b78-beb0-89f698cb1b9a</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:24">
+    <ID>1d65ec92-d8d2-47bb-96a4-5fbea3152bb3</ID>
+    <Date>13.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:02:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 14:01:53">
+    <ID>f90e24d8-7971-4d1b-830d-03f437caaced</ID>
+    <Date>13.08.2021</Date>
+    <ID_Group>5dc0cd2e-1843-44f8-a097-210884222d27</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 15:02:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.08.2021 15:02:15">
+    <ID>691d6326-dc1c-438b-a243-4cb7a1df6294</ID>
+    <Date>13.08.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:45:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:45:25">
+    <ID>8fda3a77-3b54-4166-ba38-8a3a669f21c3</ID>
+    <Date>14.08.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:45:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:45:35">
+    <ID>80155afe-a7b9-40af-bc92-6b3525e89507</ID>
+    <Date>14.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:46:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:45:51">
+    <ID>489a85d9-09fe-41d6-8d73-f0b3c2421cab</ID>
+    <Date>14.08.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:46:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|14.08.2021 08:46:08">
+    <ID>dc2ab5cb-0018-4384-8685-08ca4ece2fc0</ID>
+    <Date>14.08.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.08.2021 18:11:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.08.2021 18:10:25">
+    <ID>3b69b3d1-786b-4b78-b5b6-4609600a2c74</ID>
+    <Date>16.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.08.2021 18:12:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|16.08.2021 18:11:59">
+    <ID>0ce8e929-8aef-44c6-9eb4-d6c833c8c413</ID>
+    <Date>16.08.2021</Date>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:27:42">
+    <ID>2c478553-4534-4449-9f29-4cb1fc0c0ba2</ID>
+    <Date>18.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:03">
+    <ID>2932bc95-eed9-4ccf-b540-daa4889c75aa</ID>
+    <Date>18.08.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:31:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:13">
+    <ID>9cbe6173-1f10-47d3-92c8-dcca347e568a</ID>
+    <Date Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:13">18.08.2021</Date>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:15">430c9c96-633a-468f-8f63-44074fcc1102</ID_Group>
+    <ID_Teacher Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:31:02">5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:28:13">Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:31:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|18.08.2021 15:31:05">
+    <ID>ab4a47d0-6d9d-4253-8039-8f0f870fc3c2</ID>
+    <Date>18.08.2021</Date>
+    <ID_Group>f45a9d05-301e-4abf-b2cc-85da8ced60ca</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:54:03" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:53:45">
+    <ID>bf2642e1-7b91-41da-be66-3437cb534fa6</ID>
+    <Date>20.08.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:54:30" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:54:11">
+    <ID>950980af-ce9a-4f4e-8dfa-dc563e22da0c</ID>
+    <Date>20.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:54:40" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:54:32">
+    <ID>4125a85f-eb1b-4583-9a27-49b27af0a897</ID>
+    <Date>20.08.2021</Date>
+    <ID_Group>5dc0cd2e-1843-44f8-a097-210884222d27</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:55:20" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.08.2021 16:55:03">
+    <ID>452ae280-04a7-498c-833e-847796fc4b86</ID>
+    <Date>20.08.2021</Date>
+    <ID_Group>dc07f469-8f39-4b78-beb0-89f698cb1b9a</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:39:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:39:03">
+    <ID>6bbcd1fc-7315-45cd-875e-bc6ac6493d07</ID>
+    <Date>21.08.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>571d2924-4a87-468e-a9d7-ca115c62262e</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:18">
+    <ID>5235a39f-1cda-4f92-ab21-4e1f1a27880c</ID>
+    <Date>21.08.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>571d2924-4a87-468e-a9d7-ca115c62262e</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:41" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:29">
+    <ID>b766c0ae-0a38-40e4-abc4-888d92acbf9b</ID>
+    <Date>21.08.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|21.08.2021 10:43:43">
+    <ID>d8353f0c-e88a-47a4-b775-b4635654e5c6</ID>
+    <Date>21.08.2021</Date>
+    <ID_Group>3efa379f-ad3d-456b-b0aa-6a9ef24a3da3</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.08.2021 16:27:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.08.2021 16:26:54">
+    <ID>8649e221-63b6-493e-9fb3-e4966c6b4ffe</ID>
+    <Date>23.08.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.08.2021 16:27:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.08.2021 16:27:24">
+    <ID>ff5f3635-b71f-49ec-80d2-7993ae9fd1bf</ID>
+    <Date>23.08.2021</Date>
+    <ID_Group>5910a54a-1af6-4ef6-902b-227a37d631b3</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2021 18:33:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|28.08.2021 18:33:19">
+    <ID>f8b0b907-8475-4e51-9d10-428538d54aec</ID>
+    <Date>28.08.2021</Date>
+    <ID_Group>3efa379f-ad3d-456b-b0aa-6a9ef24a3da3</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.08.2021 20:00:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.08.2021 20:00:07">
+    <ID>4c3442f9-e2f6-4342-a795-994e07df1353</ID>
+    <Date>10.08.2021</Date>
+    <ID_Group>58047d85-c594-411e-9a53-c0cc81c12e47</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.09.2021 22:17:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 08:10:23">
+    <ID>c68e8647-b443-4bfa-99ba-808ef87bf4a7</ID>
+    <Date>03.08.2021</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.09.2021 22:17:10">a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 08:12:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.09.2021 08:12:18">
+    <ID>f5a53f47-05b9-498b-85eb-dc1a0aed1b26</ID>
+    <Date>05.08.2021</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.09.2021 16:55:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.09.2021 16:55:03">
+    <ID>a2fed253-9933-40dd-8c25-c83cac007d1a</ID>
+    <Date>25.09.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.10.2021 09:36:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|02.10.2021 09:36:12">
+    <ID>46087127-4ff7-40be-9d6c-3025cd995996</ID>
+    <Date>03.10.2021</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.10.2021 09:57:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.10.2021 09:57:02">
+    <ID>c5f4056b-ed04-4390-b505-848ce98cc9b5</ID>
+    <Date>09.10.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.10.2021 18:19:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.10.2021 18:19:36">
+    <ID>ad041ab9-2e66-4bdf-99f0-8b717a31986b</ID>
+    <Date>09.10.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.10.2021 18:41:25">
+    <ID>e3539f44-c46f-43e9-a017-f32cd283c5ed</ID>
+    <Date>22.10.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:46">Source</SumType>
+  </Item>
+  <Item Updated="6|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|22.10.2021 18:42:09">
+    <ID>e9e30053-5501-4cd0-92a5-a1d4b3a822c1</ID>
+    <Date>22.10.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:49">Source</SumType>
+  </Item>
+  <Item Updated="4|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:58:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:57:52">
+    <ID>53d55bd1-4019-4de4-b004-9564207e801f</ID>
+    <Date Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:57:51">23.10.2021</Date>
+    <ID_Group Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:57:57">d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:58:01">2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 09:58:23">Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 19:25:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.10.2021 19:25:03">
+    <ID>74466065-a0e8-4f25-b135-e00193220424</ID>
+    <Date>23.10.2021</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:38:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:38:44">
+    <ID>be817a8c-ae37-4249-bfdb-d3780e63f5af</ID>
+    <Date>29.10.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|29.10.2021 21:39:00">
+    <ID>69fb4eed-42c1-46d7-bba2-9a2dec4a782d</ID>
+    <Date>29.10.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.10.2021 10:15:16" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.10.2021 10:15:06">
+    <ID>38d71413-8d1f-464f-ab2a-67cedadad4d9</ID>
+    <Date>30.10.2021</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.10.2021 10:15:25" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|30.10.2021 10:15:18">
+    <ID>73dc8d14-98d6-4e33-94ac-e426e2f35ddf</ID>
+    <Date>30.10.2021</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.11.2021 19:50:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|03.11.2021 19:50:25">
+    <ID>8f6bb14a-8ec9-4af5-b4a6-b46b14fcb14b</ID>
+    <Date>03.11.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.11.2021 09:52:29" Created="1|25421898-cff8-4b1b-9861-0bd753b4db32|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|13.11.2021 09:52:10">
+    <ID>bb01bfea-c7c8-455a-8517-a900e0b85ad8</ID>
+    <Date>13.11.2021</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.11.2021 18:33:20" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.11.2021 18:33:09">
+    <ID>90293f81-b737-4bc2-b2ab-b5095da78f98</ID>
+    <Date>20.11.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.11.2021 19:11:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.11.2021 19:09:18">
+    <ID>2dcc8d04-9cb2-43c1-b707-587db66fdae6</ID>
+    <Date>20.11.2021</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.11.2021 18:21:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.11.2021 18:20:45">
+    <ID>7929c9ed-67fc-4a8a-bdb8-f5b872afc032</ID>
+    <Date>27.11.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.12.2021 18:50:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|04.12.2021 18:49:43">
+    <ID>cb581d5e-b10b-4095-9f34-4b71b5998da7</ID>
+    <Date>04.12.2021</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.12.2021 17:59:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.12.2021 17:59:07">
+    <ID>fa903f29-4062-4480-b0fc-18fbb6a1aaf6</ID>
+    <Date>17.12.2021</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.12.2021 17:59:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.12.2021 17:59:30">
+    <ID>3162a571-2e06-48b8-b3c5-4b527be6cc7b</ID>
+    <Date>17.12.2021</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.12.2021 21:56:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|20.12.2021 21:56:48">
+    <ID>8c703754-106a-4125-b552-33d6085f9e99</ID>
+    <Date>20.12.2021</Date>
+    <ID_Group>106110c1-7398-4778-810a-2be9d8b68853</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.12.2021 08:59:37" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.12.2021 08:59:21">
+    <ID>95e720d3-19ae-43c9-ab60-9f103729e72a</ID>
+    <Date>25.12.2021</Date>
+    <ID_Group>18436299-4b3c-4ec6-8505-39b1fcea1776</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.01.2022 15:08:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|07.01.2022 15:08:35">
+    <ID>9a257a77-2587-42b9-b180-880a43c86941</ID>
+    <Date>07.01.2022</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.01.2022 19:34:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|09.01.2022 19:34:11">
+    <ID>af519adf-09d6-42d8-aaf8-86af52970a50</ID>
+    <Date>09.01.2022</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:48:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:48:11">
+    <ID>daa51b8a-0957-4cab-bf5c-267574783d2c</ID>
+    <Date>22.01.2022</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:48:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:48:32" Removed="true">
+    <ID>a436fee7-aad1-4afc-b7f5-355bc3479aa8</ID>
+    <Date>17.01.2022</Date>
+    <ID_Group>18436299-4b3c-4ec6-8505-39b1fcea1776</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:49:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:48:52">
+    <ID>45508df8-83ae-44b4-8abf-06960abaa28a</ID>
+    <Date>22.01.2022</Date>
+    <ID_Group>3efa379f-ad3d-456b-b0aa-6a9ef24a3da3</ID_Group>
+    <ID_Teacher>fc3498e0-9f0d-40ff-9915-fecc699695bd</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:49:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:49:12">
+    <ID>98afe7b2-1047-4905-81f0-00ddb63f4b7a</ID>
+    <Date>22.01.2022</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:51:30" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:49:38">
+    <ID>a135b64f-9dcf-4662-8e3a-8848d7de79bf</ID>
+    <Date>18.01.2022</Date>
+    <ID_Group>b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:51:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:51:31">
+    <ID>0eb01e19-295b-40c9-8936-b0de4b790bcf</ID>
+    <Date>20.01.2022</Date>
+    <ID_Group>b9f2bebf-5151-4b5a-8874-78ba5a0cc3d0</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:52:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:51:56">
+    <ID>78647fbd-51d4-4dcc-b8b4-0abf27361665</ID>
+    <Date>18.01.2022</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:52:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:52:11">
+    <ID>447f3eec-ba1a-4e13-aa06-3fd0f5b79362</ID>
+    <Date>20.01.2022</Date>
+    <ID_Group>b1830842-4419-422e-8ce1-28af98f7f010</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:53:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:52:41">
+    <ID>710fcb28-203b-4d4e-9cd6-aeb8ac51126d</ID>
+    <Date>19.01.2022</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:54:36" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:53:04">
+    <ID>3722e21c-818e-402f-9ecb-2965fe7e6d3c</ID>
+    <Date>21.01.2022</Date>
+    <ID_Group>5dc0cd2e-1843-44f8-a097-210884222d27</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:54:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:54:38">
+    <ID>d61b14d7-0286-45c9-94a7-024bbc0b147d</ID>
+    <Date>21.01.2022</Date>
+    <ID_Group>b677263e-81a2-4a97-91d7-433ebdf9e1bc</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:55:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|17.01.2022 13:55:06">
+    <ID>859e22a8-f1fe-4666-b738-a0a7cda217d4</ID>
+    <Date>23.01.2022</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.01.2022 12:51:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|23.01.2022 12:51:16">
+    <ID>9fa6e728-9c4f-4983-8f73-914d97405cf0</ID>
+    <Date>23.01.2022</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:54:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:54:31">
+    <ID>8445d959-fb4e-4a48-b836-d756bc628961</ID>
+    <Date>26.01.2022</Date>
+    <ID_Group>acb7cbef-77f7-4a76-8cf4-2f15e680b850</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 17:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:55:59" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:55:53">
+    <ID>9ca346fb-1bfc-467d-90a1-16f0ed38dafc</ID>
+    <Date>24.01.2022</Date>
+    <ID_Group>f5427302-6b4f-46ea-b936-0003995c8436</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 17:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:56:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|25.01.2022 12:56:26">
+    <ID>d78ccf6e-dd54-4399-afd7-98a48aa36886</ID>
+    <Date>24.01.2022</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2022 09:48:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|26.01.2022 09:48:02">
+    <ID>b30e2e23-1ad6-4916-93cc-7e5c20779422</ID>
+    <Date>26.01.2022</Date>
+    <ID_Group>9d2e88df-f2ba-44c1-bbf5-8897d6cddf64</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2022 13:16:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|27.01.2022 13:15:51">
+    <ID>bdad8da8-09b6-43d8-aef2-1555157fd1de</ID>
+    <Date>27.01.2022</Date>
+    <ID_Group>257beb01-4434-4936-9930-0d1cc43ff9e4</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2022 13:40:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2022 13:38:43">
+    <ID>2cd5b419-f023-4c39-9e01-d04a5a9d6cfc</ID>
+    <Date>11.04.2022</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2022 13:40:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|11.04.2022 13:40:21">
+    <ID>6b8283fc-d5a6-409c-bf1a-85be84de7e91</ID>
+    <Date>11.04.2022</Date>
+    <ID_Group>dc7da26d-d32d-4d37-bfc3-c0d8767575b5</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:34:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:33:51">
+    <ID>30bfb47a-710c-483c-a65a-c7bb058b2285</ID>
+    <Date>01.02.2023</Date>
+    <ID_Group>b134beaf-3205-455b-977d-a99e646a3803</ID_Group>
+    <ID_Teacher>92a9b8a3-60b6-4aae-bd16-8ca69655e331</ID_Teacher>
+    <SumType>Source</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:34:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:34:23">
+    <ID>6a53c332-668d-4081-9ec4-072c2a906ebb</ID>
+    <Date>01.02.2023</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:35:14" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:35:00">
+    <ID>ad7924c3-d875-451e-878a-d4231af86ca9</ID>
+    <Date>01.02.2023</Date>
+    <ID_Group>05ba6736-ebd2-4671-abf2-53c7a7466286</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:35:38" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|01.02.2023 12:35:19">
+    <ID>051fe6f3-f7e8-4a97-aa01-e02370a75b52</ID>
+    <Date>01.02.2023</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.04.2023 10:48:19" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|EAC0-33CD-71B8-C168-4564-9ACE-85DF-7823|19.04.2023 10:48:11">
+    <ID>c481e450-9f7b-4c18-8977-037701c96fd6</ID>
+    <Date>19.04.2023</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 20:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:10:58" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:10:24">
+    <ID>5ccfbcaa-2380-4903-ab62-fa03d9fafd17</ID>
+    <Date>13.05.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:06" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:01">
+    <ID>0ff9bf4f-c7dc-4920-a303-5ddd6ff0f740</ID>
+    <Date>15.05.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:10">
+    <ID>0944a7de-b40d-4e13-83ad-a2c3e5bbc0d6</ID>
+    <Date>14.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:11:20">
+    <ID>5869372c-6655-4ba8-86c2-f95da16fe470</ID>
+    <Date>16.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:12:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:12:43">
+    <ID>df0aafe5-551e-4c27-8309-353df24728ed</ID>
+    <Date>13.05.2024</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:12:56" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:12:52">
+    <ID>a524f7b6-95fb-492e-ab3d-795d0eecd1c5</ID>
+    <Date>15.05.2024</Date>
+    <ID_Group>257beb01-4434-4936-9930-0d1cc43ff9e4</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:04" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:01">
+    <ID>c1c4f99c-8247-422c-9b70-b48c50d1f370</ID>
+    <Date>18.05.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:16" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:07">
+    <ID>f91c1e1e-e6dc-47fe-8b73-06bc2681f7d0</ID>
+    <Date>19.05.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|12.05.2024 19:13:25">
+    <ID>4d8e3ec1-3e49-4aaf-af49-8508ce9de9f9</ID>
+    <Date>15.05.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:09:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:09:08">
+    <ID>72e1a575-e4a0-4c4f-a88e-37d35f04b7a2</ID>
+    <Date>20.05.2024</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:08" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:02">
+    <ID>e1bdd5b8-c120-446e-b617-40c5fd50924c</ID>
+    <Date>21.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:33" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:30">
+    <ID>30ca5bc6-6b3e-4353-ac80-1f49a1169d17</ID>
+    <Date>22.05.2024</Date>
+    <ID_Group>257beb01-4434-4936-9930-0d1cc43ff9e4</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:10:36">
+    <ID>e4dbe360-4da5-41ab-9390-b2f17b5d1825</ID>
+    <Date>22.05.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:11:13" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:11:08">
+    <ID>f9112408-7b87-4d77-88e2-b90777068156</ID>
+    <Date>23.05.2024</Date>
+    <ID_Group>73606c74-44a5-47f0-9479-2215c9524419</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:11:50" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:11:46">
+    <ID>7d3917fe-0bbf-4414-b997-0fd38fb2f3c7</ID>
+    <Date>25.05.2024</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:10">
+    <ID>24b99442-3d49-463c-8227-fb74104b47c3</ID>
+    <Date>25.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:32" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:28">
+    <ID>e1af9205-f823-4999-935e-9356d74b1b4e</ID>
+    <Date>26.05.2024</Date>
+    <ID_Group>58047d85-c594-411e-9a53-c0cc81c12e47</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:41">
+    <ID>b68c7745-4ce1-487c-be69-e46e88219f20</ID>
+    <Date>20.05.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:12:50">
+    <ID>fd4cfc67-d779-41dd-9bff-232942f2a6bb</ID>
+    <Date>22.05.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:13:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 18:13:01">
+    <ID>4034cb72-4186-464f-8e8d-5a46aa64468b</ID>
+    <Date>23.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2e70583e-174e-42fa-b39c-b754cb02ba66</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:18:27" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:18:23">
+    <ID>71c29a67-e4bd-40a2-8120-a3c2a19cbe5e</ID>
+    <Date>04.05.2024</Date>
+    <ID_Group>18436299-4b3c-4ec6-8505-39b1fcea1776</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:19:39" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:19:34">
+    <ID>22276c26-8bc6-4743-b7b6-10427cc12d33</ID>
+    <Date>11.05.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:19:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:19:48">
+    <ID>2f40e4fd-74db-4848-a45e-9a7a01a833fd</ID>
+    <Date>11.05.2024</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 16:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:20:07" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:20:03">
+    <ID>fd128682-4a19-4695-969d-c8c8448efdd7</ID>
+    <Date>11.05.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:20:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|18.05.2024 19:20:12">
+    <ID>d49e33d0-7412-4af4-ad6a-64be853c19b6</ID>
+    <Date>12.05.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>5dd09226-aaee-4390-ba8f-39aa22a1cf00</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.05.2024 19:17:49" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|25.05.2024 19:17:45">
+    <ID>a1dd171f-83f0-4c71-8ce2-dd35a1dc75cb</ID>
+    <Date>25.05.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|08.06.2024 16:50:29" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|08.06.2024 16:50:26">
+    <ID>5cb28f93-8ff7-4f2f-af2a-f0b487c50044</ID>
+    <Date>08.06.2024</Date>
+    <ID_Group>18436299-4b3c-4ec6-8505-39b1fcea1776</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.07.2024 19:31:53" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.07.2024 19:31:44">
+    <ID>e9b52c92-90c6-4beb-8ded-d1b1b08aa56b</ID>
+    <Date>03.07.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.07.2024 19:32:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|03.07.2024 19:31:56">
+    <ID>c4e23a4e-93e2-48ad-bd23-dd5544a3b4eb</ID>
+    <Date>03.07.2024</Date>
+    <ID_Group>8d598d8f-0e66-4357-9908-0a867525fe3d</ID_Group>
+    <ID_Teacher>4f213aa3-32d5-47fd-a709-b5560e3c965a</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 20:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:06:44" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:06:39">
+    <ID>603ace0c-3f49-4545-9927-e43209a1aba7</ID>
+    <Date>20.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:06:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:06:48">
+    <ID>2c417115-27a8-478f-95ff-4ffdd03113ae</ID>
+    <Date>22.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:06:56">
+    <ID>a20f4c65-61f8-45e6-82ec-dba4bc880d30</ID>
+    <Date>24.08.2024</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:10" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:03">
+    <ID>c6011599-77f2-472c-8bad-958280676dfb</ID>
+    <Date>24.08.2024</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:25" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:17">
+    <ID>b0d2f32d-1805-4fdb-9557-368d5d1887b5</ID>
+    <Date>24.08.2024</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 16:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:30">
+    <ID>297357d0-7629-4877-bfda-b00d153d2937</ID>
+    <Date>25.08.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:07:37">
+    <ID>c59cbace-46d5-45da-b348-926a90b7c76c</ID>
+    <Date>24.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:17">
+    <ID>089ff157-8862-4e9d-8358-2d62ca23fee0</ID>
+    <Date>21.08.2024</Date>
+    <ID_Group>8d598d8f-0e66-4357-9908-0a867525fe3d</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 20:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:28">
+    <ID>3aa46ae1-a522-4351-b9e6-cf9150350f97</ID>
+    <Date>21.08.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:47" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:39">
+    <ID>f7d41b44-a9c7-4218-88d7-eeebc99db240</ID>
+    <Date>21.08.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:56" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:08:51">
+    <ID>ed0db873-9118-47b1-b18e-d472433651fb</ID>
+    <Date>21.08.2024</Date>
+    <ID_Group>257beb01-4434-4936-9930-0d1cc43ff9e4</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:13:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:13:43">
+    <ID>24595389-dc08-484e-87f7-d4d6a3d2afee</ID>
+    <Date>27.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:14:00" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:13:54">
+    <ID>f6c96b70-2af6-4257-87e4-12cbeece375a</ID>
+    <Date>29.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:14:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:14:24">
+    <ID>3e05d00b-3fa7-4f68-80c3-6babba979b4a</ID>
+    <Date>27.08.2024</Date>
+    <ID_Group>73606c74-44a5-47f0-9479-2215c9524419</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:16">
+    <ID>98881b22-432a-48cd-8aec-87c42e2e5837</ID>
+    <Date>28.08.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:35" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:32">
+    <ID>f85f87c3-eebf-452a-a8b3-51cc59ac2b2a</ID>
+    <Date>28.08.2024</Date>
+    <ID_Group>8d598d8f-0e66-4357-9908-0a867525fe3d</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 20:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:45" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:39">
+    <ID>65894167-271c-4916-84ca-7130e3a5d4bc</ID>
+    <Date>28.08.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:16:02" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:15:55">
+    <ID>6716b83e-f3dc-4962-af9e-cee32ed10f08</ID>
+    <Date>28.08.2024</Date>
+    <ID_Group>257beb01-4434-4936-9930-0d1cc43ff9e4</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:17:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:17:08">
+    <ID>cb84fbaf-c3c5-4c15-bf82-1edfe210dd36</ID>
+    <Date>29.08.2024</Date>
+    <ID_Group>73606c74-44a5-47f0-9479-2215c9524419</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:17" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:14">
+    <ID>336e79a8-2b04-4c52-9209-a40ad149ba2a</ID>
+    <Date>31.08.2024</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:24" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:21">
+    <ID>c32e24f5-a199-49c7-acdf-26f0fc661c5b</ID>
+    <Date>31.08.2024</Date>
+    <ID_Group>20cfc128-902a-47de-afaf-225808b92ebd</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:38">
+    <ID>ff2dc96e-f017-4db4-9eb4-39c12dfdd06c</ID>
+    <Date>31.08.2024</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 16:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:55" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:18:47">
+    <ID>ee6b77d1-bbe0-4b8b-a155-344e318bb96b</ID>
+    <Date>31.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:21:42" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:21:22">
+    <ID>c266e702-23f8-4899-bb05-fed4abdddea1</ID>
+    <Date>01.09.2024</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:09" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:04">
+    <ID>56d07f8b-ec3a-43cd-859f-c79c1c0436fb</ID>
+    <Date>15.08.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:10">
+    <ID>8d47ce9d-76df-4aa7-952b-a03098633d4c</ID>
+    <Date>15.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:22" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:17">
+    <ID>1ca359b6-cb4a-42a4-ba31-86d8f05d9278</ID>
+    <Date>13.08.2024</Date>
+    <ID_Group>c3c4c248-51cc-456b-9860-30ee2a0343ca</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 7:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:28" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:24">
+    <ID>78529a35-acc2-4aa7-93fe-8137fe25770a</ID>
+    <Date>13.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>a153d999-3f1e-4b61-84d7-6743f1fda621</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:41" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:22:37">
+    <ID>60eecef0-6bca-4325-a790-66a484f403f6</ID>
+    <Date>14.08.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>b0f5e049-7d01-4856-9125-5322965d9b06</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:34" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:30">
+    <ID>67c17e5e-d23e-4946-aca7-13756a8752f1</ID>
+    <Date>06.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:40" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:36">
+    <ID>e9fa12f6-e36c-409b-b0eb-d18bf4dea11c</ID>
+    <Date>08.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>90d62d29-0e76-48ed-8979-b7a9f21190e6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 8:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:57" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:23:50">
+    <ID>1034ffae-7839-45dd-b86b-d7bafeff0e18</ID>
+    <Date>10.08.2024</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:05" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:02">
+    <ID>b8494e3b-b709-4323-b201-8178046ef8d9</ID>
+    <Date>10.08.2024</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 16:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:07">
+    <ID>8ac7236b-233a-4556-8de6-80921f6b3d38</ID>
+    <Date>10.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:54" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:24:48">
+    <ID>16ecdbf4-7ca7-420b-968b-24c38f49439f</ID>
+    <Date>07.08.2024</Date>
+    <ID_Group>7b658abb-247c-4b97-8dd1-5299c5b67ea6</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:25:28" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:25:25">
+    <ID>8e4b43b0-ecbf-40cf-8416-18dae4f0f914</ID>
+    <Date>06.08.2024</Date>
+    <ID_Group>73606c74-44a5-47f0-9479-2215c9524419</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:28:51" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:28:46">
+    <ID>baf5e08c-2565-4e61-88e5-541b8b9e0190</ID>
+    <Date>01.08.2024</Date>
+    <ID_Group>73606c74-44a5-47f0-9479-2215c9524419</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:29:21" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:29:16">
+    <ID>b639a09d-8d3c-481d-8297-1fa906688ae3</ID>
+    <Date>03.08.2024</Date>
+    <ID_Group>cff601c4-bf4d-4f3d-9b65-8dfeae3d08c0</ID_Group>
+    <ID_Teacher>2938c9e2-c810-4cbb-8e1a-4654bc46b161</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:29:48" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:29:32">
+    <ID>acccea48-ad52-4df2-b0d6-6ad56d07f6be</ID>
+    <Date>03.08.2024</Date>
+    <ID_Group>d6cc3dbc-60fb-4614-bfae-4dbb9873f72c</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 9:30:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:30:15" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|16.08.2024 21:30:10">
+    <ID>e28dc0bc-8eb1-44cd-8f53-b95b62b38859</ID>
+    <Date>03.08.2024</Date>
+    <ID_Group>1b2f30ef-0a21-47c4-81cd-cc60a3c24d7f</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Source</SumType>
+    <ScheduleTimeBegin>01.01.0001 16:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.10.2025 20:38:52" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.10.2025 20:38:32">
+    <ID>5f65777c-671b-41a3-941a-e0c9feef4014</ID>
+    <Date>20.10.2025</Date>
+    <ID_Group>c7b479ac-92ad-4b88-bc0c-8b147b1ddb15</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 18:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.10.2025 20:39:03" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|20.10.2025 20:38:56">
+    <ID>22a39419-a2a0-4498-b8dd-6541db68c8cb</ID>
+    <Date>20.10.2025</Date>
+    <ID_Group>6d4fbe76-4a20-46d7-905a-b454b7b803f7</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.10.2025 17:55:11" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.10.2025 17:55:05">
+    <ID>aaf1fb94-4f7c-4c94-871c-180518b6fff9</ID>
+    <Date>22.10.2025</Date>
+    <ID_Group>f41b1c45-cae2-483c-b68b-ce54d73e2f36</ID_Group>
+    <ID_Teacher>a966c98d-7243-4516-885a-18766f6137b6</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 19:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="2|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.10.2025 17:56:01" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|22.10.2025 17:55:51">
+    <ID>6734d0c4-b10b-4b56-9aa6-8401bb9c24bf</ID>
+    <Date>22.10.2025</Date>
+    <ID_Group>8d598d8f-0e66-4357-9908-0a867525fe3d</ID_Group>
+    <ID_Teacher>0bacbc3d-1e56-4d25-a490-59273884561a</ID_Teacher>
+    <SumType>Target</SumType>
+    <ScheduleTimeBegin>01.01.0001 20:00:00</ScheduleTimeBegin>
+  </Item>
+  <Item Updated="3|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.07.2026 01:27:31" Created="1|910267f7-b5ae-4903-87da-ffbcf2a8a19f|670B-E878-DD76-F952-3316-7A51-88E7-9917|29.07.2026 01:24:26" Removed="true">
+    <ID>f9eec662-5bdf-421d-abe2-a03140728d3c</ID>
+    <Date>26.07.2026</Date>
+    <ID_Group>b5f97d97-00ad-4d24-8885-f5eb90ee3c22</ID_Group>
+    <ID_Teacher>cd494897-e097-4dc4-bd9d-37bb76005c51</ID_Teacher>
+    <SumType>Target</SumType>
+  </Item>
+</Substitute>

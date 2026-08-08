@@ -1,0 +1,59 @@
+{
+  "scan_date": "2026-08-02T18:20:00.000Z",
+  "total_files": 440,
+  "clients_total": 2605,
+  "photos_total": 440,
+  "unique_id_foto_in_client": 31,
+  "clients_with_photos": 30,
+  "clients_without_photos": 2575,
+  "orphans_without_client": 410,
+  "format_counts": {
+    "JPEG": 440
+  },
+  "resolution_stats": {
+    "count": 440,
+    "avg_width": 644,
+    "avg_height": 776,
+    "min_width": 129,
+    "max_width": 2587,
+    "min_height": 138,
+    "max_height": 3719
+  },
+  "size_stats": {
+    "total_bytes": 40713482,
+    "total_human": "38.8 MB",
+    "min_bytes": 3760,
+    "min_human": "3.7 KB",
+    "max_bytes": 786858,
+    "max_human": "768.4 KB",
+    "avg_bytes": 92530,
+    "avg_human": "90.4 KB",
+    "buckets": {
+      "<10KB": 0,
+      "10-50KB": 0,
+      "50-100KB": 195,
+      "100-500KB": 206,
+      "500KB-1MB": 39,
+      ">1MB": 0
+    }
+  },
+  "matched_id_foto_sample": [
+    "4e3ca8fe-33db-4ecc-885a-e82b79ed3b7c",
+    "609c67c4-0939-4d46-b941-4bc046a43b2b",
+    "aa11de14-3afe-4ba7-b54a-6627f424927c",
+    "bd7b89b0-a9d1-46b4-8475-072a1b8db1aa",
+    "218c9723-cfb8-46cd-88aa-ad2ee4d1bbaf"
+  ],
+  "orphan_uuids_sample": [
+    "00000000-0000-0000-0000-000000000000",
+    "020f0cee-8f9a-4953-b5fb-23bbb7e685e3",
+    "03ad0d16-d555-465a-b15e-683abb3d9eaf"
+  ],
+  "notes": {
+    "file_structure": "440 JPEG-файлов без расширений, названных по UUID (ID_Foto)",
+    "matching": "30 из 440 файлов совпадают с ID_Foto в Client.xml/Client001.xml",
+    "orphans": "410 файлов не имеют соответствия клиенту (возможно, фото удалённых клиентов, учителей или артефакты)",
+    "all_jpeg": "Все 440 файлов — JPEG",
+    "exif": "Файлы содержат EXIF: Yandex.Disk, Adobe Photoshop, Sony ILCE-7S"
+  }
+}

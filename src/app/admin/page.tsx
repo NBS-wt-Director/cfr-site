@@ -25,6 +25,9 @@ import AdminProgramsPageContainer from '@/components/admin/AdminProgramsPageCont
 import AdminTrainersPageContainer from '@/components/admin/AdminTrainersPageContainer';
 import AdminPages from '@/components/admin/AdminPages';
 import AdminFooter from '@/components/admin/AdminFooter';
+import AdminDataTab from '@/components/admin/AdminDataTab';
+import AdminLkUsers from '@/components/admin/AdminLkUsers';
+import AdminSync from '@/components/admin/AdminSync';
 import styles from './page.module.css';
 
 export default function AdminPage() {
@@ -59,8 +62,11 @@ export default function AdminPage() {
     settings: { component: 'settings' },
     stats: { component: 'stats' },
     autoupload: {  component: 'autoupload',},
-    files: { component: 'files' },
+files: { component: 'files' },
     design: { component: 'design' },
+    data: { component: 'data' },
+    lk: { component: 'lk' },
+    sync: { component: 'sync' },
   };
 
 
@@ -494,10 +500,16 @@ const defaultSections = [
         updateChangesCount(newData);
       }}
     />
-  ) : currentConfig.component === 'pages' ? (
+) : currentConfig.component === 'pages' ? (
     <AdminPages />
   ) : currentConfig.component === 'footer' ? (
     <AdminFooter />
+) : currentConfig.component === 'data' ? (
+    <AdminDataTab />
+  ) : currentConfig.component === 'lk' ? (
+    <AdminLkUsers />
+  ) : currentConfig.component === 'sync' ? (
+    <AdminSync />
   ) : (
     <h1>Секция в разработке!</h1>
   )}
