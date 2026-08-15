@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
-import { getAllTrainers } from '@/lib/db-new';
+import { getDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const trainers = await getAllTrainers();
+    // Fallback на JSON — PG может быть недоступен
+    const dbData = getDb();
+    const trainers = dbData?.trainers || [];
     return NextResponse.json(trainers);
   } catch (error) {
-    console.error('API trainers error:', error);
+    console.error('Error reading trainers:', error);
     return NextResponse.json([]);
   }
 }

@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getAllNews } from '@/lib/db-new';
+import { getDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const news = await getAllNews();
+    // Fallback на JSON — PG может быть недоступен
+    const dbData = getDb();
+    const news = dbData?.news || [];
     return NextResponse.json(news);
   } catch (error) {
     console.error('Error reading news:', error);
