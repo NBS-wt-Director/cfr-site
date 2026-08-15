@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import ActionButtons from './ActionButtons';
 import styles from './ProgramCard.module.css';
 
@@ -22,12 +21,10 @@ export default function ProgramCard({ program, onFormOpen, openImageModal }: Pro
         className={styles.imageWrapper}
         onClick={() => openImageModal(program.image, program.name)}
       >
-        <Image
+        <img
           src={program.image}
           alt={program.name}
-          fill
           className={styles.image}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       

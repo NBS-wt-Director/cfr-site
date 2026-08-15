@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './TrainerCard.module.css';
 
 interface Trainer {
@@ -19,12 +18,10 @@ export default function TrainerCard({ trainer }: Props) {
     <div className={styles.card}>
       {/* Изображение */}
       <div className={styles.imageWrapper}>
-        <Image
+        <img
           src={trainer.image}
           alt={trainer.name}
-          fill
           className={styles.image}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           onError={(e) => {
             e.currentTarget.src = '/images/trainer-placeholder.jpg';
           }}

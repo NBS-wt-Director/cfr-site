@@ -25,20 +25,40 @@ interface AdminProgramsProps {
   onSave: (programs: Program[]) => void;
 }
 
+// ========================
+// Загрузка файла на сервер
+// ========================
+async function uploadFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  const res = await fetch('/api/upload', {
+    method: 'POST',
+    body: formData
+  });
+  
+  if (!res.ok) {
+    throw new Error('Upload failed');
+  }
+  
+  const data = await res.json();
+  return data.url || data.path;
+}
+
 export default function AdminPrograms({ programs: initialPrograms = [] as Program[], onSave }: AdminProgramsProps) {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [localPrograms, setLocalPrograms] = useState<Program[]>([]);
   const [editingProgram, setEditingProgram] = useState<Program | null>(null);
   const [newProgram, setNewProgram] = useState({
     name: '',
-    description: '',
-    image: ''
+    description: ''
   });
   const [newImage, setNewImage] = useState<File | null>(null);
   const [newImagePreview, setNewImagePreview] = useState('');
   const [editingImage, setEditingImage] = useState<File | null>(null);
   const [editingImagePreview, setEditingImagePreview] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     // ✅ БЕЗОПАСНАЯ загрузка данных
@@ -65,51 +85,79 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
 
   const handleEditImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && editingProgram) {
+    if (file) {
       setEditingImage(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setEditingImagePreview(reader.result as string);
-        setEditingProgram({
-          ...editingProgram,
-          image: reader.result as string
-        });
       };
     }
   };
 
-  const addProgram = () => {
+  const addProgram = async () => {
     if (!newImage || !newProgram.name.trim()) return;
     
-    const program: Program = {
-      id: Date.now(),
-      image: URL.createObjectURL(newImage),
-      name: newProgram.name,
-      type: 'trainer',
-      description: newProgram.description || '',
-      photoAlbum: [],
-      trainers: [],
-      trainings: [],
-      reviews: []
-    };
-    
-    const newPrograms = [program, ...localPrograms];
-    setLocalPrograms(newPrograms);
-    setPrograms(newPrograms);
-    setNewProgram({ name: '', description: '', image: '' });
-    setNewImage(null);
-    setNewImagePreview('');
-    setEditingProgram(null);
-    setHasChanges(true);
+    setUploading(true);
+    try {
+      const imageUrl = await uploadFile(newImage);
+      
+      const program: Program = {
+        id: Date.now(),
+        image: imageUrl,
+        name: newProgram.name,
+        type: 'trainer',
+        description: newProgram.description || '',
+        photoAlbum: [],
+        trainers: [],
+        trainings: [],
+        reviews: []
+      };
+      
+      const newPrograms = [program, ...localPrograms];
+      setLocalPrograms(newPrograms);
+      setPrograms(newPrograms);
+      setNewProgram({ name: '', description: '' });
+      setNewImage(null);
+      setNewImagePreview('');
+      setEditingProgram(null);
+      setHasChanges(true);
+    } catch (error) {
+      console.error('Error uploading program image:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
-  const updateProgram = (program: Program) => {
+  const updateProgram = async () => {
     if (!editingProgram) return;
-    const newPrograms = localPrograms.map(p => p.id === editingProgram.id ? program : p);
-    setLocalPrograms(newPrograms);
-    setPrograms(newPrograms);
-    setHasChanges(true);
-    setEditingProgram(null);
+    
+    setUploading(true);
+    try {
+      let updatedProgram = { ...editingProgram };
+      
+      // Загружаем новое изображение если выбрано
+      if (editingImage) {
+        const uploadedUrl = await uploadFile(editingImage);
+        updatedProgram = {
+          ...updatedProgram,
+          image: uploadedUrl
+        };
+      }
+      
+      const newPrograms = localPrograms.map(p => p.id === editingProgram.id ? updatedProgram : p);
+      setLocalPrograms(newPrograms);
+      setPrograms(newPrograms);
+      setHasChanges(true);
+      setEditingProgram(null);
+      setEditingImage(null);
+      setEditingImagePreview('');
+    } catch (error) {
+      console.error('Error updating program:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const deleteProgram = (id: number) => {
@@ -184,9 +232,9 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
             <button 
               onClick={addProgram} 
               className={styles.addBtn} 
-              disabled={!newImage || !newProgram.name.trim()}
+              disabled={!newImage || !newProgram.name.trim() || uploading}
             >
-              ➕ Создать программу
+              {uploading ? '⏳ Загрузка...' : '➕ Создать программу'}
             </button>
           </div>
         </div>
@@ -225,7 +273,7 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                     <label>Главное фото</label>
                     <div className={styles.imagePreview}>
                       <img 
-                        src={editingProgram.image} 
+                        src={editingImagePreview || editingProgram.image} 
                         alt="Preview" 
                         className={styles.previewImg}
                       />
@@ -236,6 +284,7 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                       onChange={handleEditImageSelect}
                       className={styles.fileInput}
                     />
+                    {editingImage && <small className="text-gray-500 text-sm mt-1 block">Выбран новый файл — загрузится при сохранении</small>}
                   </div>
                   
                   <div className={styles.field}>
@@ -251,15 +300,24 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                     <input 
                       type="file" 
                       accept="image/*"
-                      onChange={(e) => {
+                      onChange={async (e) => {
                         const file = e.target.files?.[0];
-                        if (file && editingProgram) {
+                        if (!file || !editingProgram) return;
+                        
+                        setUploading(true);
+                        try {
+                          const url = await uploadFile(file);
                           const photo: Photo = {
-                            url: URL.createObjectURL(file),
+                            url,
                             caption: `Фото ${((editingProgram.photoAlbum || []).length + 1)}`,
                             views: 0
                           };
                           addPhotoToAlbum(editingProgram.id, photo);
+                        } catch (error) {
+                          console.error('Error uploading album photo:', error);
+                          alert('Ошибка загрузки изображения');
+                        } finally {
+                          setUploading(false);
                         }
                       }}
                       className={styles.fileInput} 
@@ -270,9 +328,10 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                 <div className={styles.formActions}>
                   <button 
                     className={styles.saveProgramBtn} 
-                    onClick={() => updateProgram(editingProgram)}
+                    onClick={updateProgram}
+                    disabled={uploading}
                   >
-                    💾 Обновить
+                    {uploading ? '⏳ Загрузка...' : '💾 Обновить'}
                   </button>
                   <button 
                     className={styles.deleteProgramBtn} 

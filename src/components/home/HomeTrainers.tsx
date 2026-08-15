@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './HomeTrainers.module.css';
 
@@ -51,11 +50,9 @@ export default function HomeTrainers({
                         window.location.href = `/trainers/${trainer.id}`;
                       }}
                     >
-                      <Image 
+                      <img 
                         src={trainer.image} 
                         alt={trainer.name} 
-                        width={320} 
-                        height={400} 
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -64,11 +61,9 @@ export default function HomeTrainers({
                       className="w-full h-64 mx-auto bg-gray-100 overflow-hidden cursor-pointer relative md:hidden"
                       onClick={() => openImageModal(trainer.image, trainer.name)}
                     >
-                      <Image 
+                      <img 
                         src={trainer.image} 
                         alt={trainer.name} 
-                        width={320} 
-                        height={400} 
                         className="w-full h-full object-contain"
                       />
                     </div>

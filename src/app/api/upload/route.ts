@@ -25,8 +25,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Только изображения и видео' }, { status: 400 });
     }
 
-    // Создаем папку uploads если нет
-    const uploadDir = path.join(process.cwd(), 'public/uploads');
+    // Фикс: храним вне public/ — Next.js не отдаёт файлы, записанные в public/ после сборки
+    const uploadDir = path.join(process.cwd(), 'uploads');
     await mkdir(uploadDir, { recursive: true });
 
     // Уникальное имя файла

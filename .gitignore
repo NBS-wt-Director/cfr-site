@@ -3,6 +3,9 @@
 out/
 dist/
 
+# Runtime uploads
+uploads/
+
 # Node
 node_modules/
 

@@ -1,7 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './AdminDataTab.module.css';
 import AdminDataMapping from './AdminDataMapping';
+
+const MIGRATION_TASK_KEY = 'migrationTaskId';
+const POLL_INTERVAL = 1500; // ms
 
 interface MigrationStatus {
   pgAvailable: boolean;
@@ -37,9 +40,24 @@ export default function AdminDataTab() {
   const [pgStatus, setPgStatus] = useState<PgStatus | null>(null);
   const [transitioning, setTransitioning] = useState(false);
   const [transitionStages, setTransitionStages] = useState<any[]>([]);
+  const pollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     loadStatus();
+  }, []);
+
+  // При загрузке страницы проверяем localStorage — продолжаем polling если задача активна
+  useEffect(() => {
+    const savedTaskId = localStorage.getItem(MIGRATION_TASK_KEY);
+    if (savedTaskId) {
+      setTransitioning(true);
+      startPolling(savedTaskId);
+    }
+    // очистка таймера при размонтировании
+    return () => {
+      if (pollTimerRef.current) clearTimeout(pollTimerRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadStatus = async () => {
@@ -142,9 +160,51 @@ export default function AdminDataTab() {
     }
   };
 
+  const startPolling = useCallback((taskId: string) => {
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/admin/data/transition/${taskId}/status`);
+        const data = await res.json();
+
+        if (!res.ok) {
+          // Задача не найдена (сервер перезапущен) — очищаем
+          localStorage.removeItem(MIGRATION_TASK_KEY);
+          setTransitioning(false);
+          setTransitionStages([]);
+          setMessage({ type: 'error', text: 'Задача миграции не найдена. Сервер мог быть перезапущен.' });
+          return;
+        }
+
+        setTransitionStages(data.stages || []);
+
+        if (data.completed) {
+          // Завершено — очищаем taskId из localStorage
+          localStorage.removeItem(MIGRATION_TASK_KEY);
+          setTransitioning(false);
+
+          if (data.success) {
+            setMessage({ type: 'success', text: data.message || '✅ Переход на PostgreSQL завершён успешно!' });
+            setTimeout(() => loadStatus(), 1000);
+          } else {
+            setMessage({ type: 'error', text: data.error || 'Ошибка перехода' });
+          }
+          return;
+        }
+
+        // Продолжаем polling
+        pollTimerRef.current = setTimeout(poll, POLL_INTERVAL);
+      } catch (err) {
+        // Сеть недоступна — продолжаем попытки, задача в localStorage сохраняется
+        pollTimerRef.current = setTimeout(poll, POLL_INTERVAL * 2);
+      }
+    };
+
+    poll();
+  }, []);
+
   const handleTransition = async () => {
     if (!confirm('Начать полный переход на PostgreSQL? Это займёт несколько минут.')) return;
-    
+
     setTransitioning(true);
     setTransitionStages([]);
     setMessage(null);
@@ -156,18 +216,22 @@ export default function AdminDataTab() {
       });
 
       const data = await res.json();
+
+      if (!data.taskId) {
+        setTransitioning(false);
+        setMessage({ type: 'error', text: data.error || 'Не удалось запустить миграцию' });
+        return;
+      }
+
+      // Сохраняем taskId в localStorage для восстановления после перезагрузки
+      localStorage.setItem(MIGRATION_TASK_KEY, data.taskId);
       setTransitionStages(data.stages || []);
 
-      if (data.success) {
-        setMessage({ type: 'success', text: data.message });
-        setTimeout(() => loadStatus(), 1000);
-      } else {
-        setMessage({ type: 'error', text: data.error || 'Ошибка перехода' });
-      }
+      // Запускаем polling прогресса
+      startPolling(data.taskId);
     } catch (err) {
-      setMessage({ type: 'error', text: 'Ошибка соединения с сервером' });
-    } finally {
       setTransitioning(false);
+      setMessage({ type: 'error', text: 'Ошибка соединения с сервером' });
     }
   };
 

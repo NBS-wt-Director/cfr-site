@@ -4,8 +4,12 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: '**' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http', hostname: 'localhost', port: '3000', pathname: '/uploads/**' },
+    ],
     formats: ['image/avif', 'image/webp'],
+    unoptimized: false,
   },
   webpack: (config) => {
     // Fallback для Node.js модулей (необходимо для lowdb, xlsx, pg)

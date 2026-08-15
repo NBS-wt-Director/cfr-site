@@ -86,9 +86,59 @@ export async function getAllUsers(): Promise<any[]> {
   const client = await pool.connect();
   try {
     const result = await client.query(
-      'SELECT id, phone, name, email, created_at FROM users ORDER BY created_at DESC'
+      'SELECT id, phone, name, email, created_at, birth_date, gender, balance, parent_phone_1, parent_phone_2, source FROM users ORDER BY created_at DESC'
     );
     return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+/**
+ * Создаёт пользователя из CRM (Excel).
+ * phone — уникальный ключ, ON CONFLICT игнорирует дубликаты.
+ */
+export async function upsertUserFromCrm(
+  phone: string,
+  name: string,
+  birthDate: string | null,
+  gender: string | null,
+  balance: number | null,
+  parentPhone1: string | null,
+  parentPhone2: string | null,
+  source: string | null,
+  createdAtCrm: string | null,
+): Promise<{ created: boolean; user: any }> {
+  const client = await pool.connect();
+  try {
+    const result = await client.query(
+      `INSERT INTO users (phone, name, birth_date, gender, balance, parent_phone_1, parent_phone_2, source, created_at_crm)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+       ON CONFLICT (phone) DO UPDATE SET
+         name = EXCLUDED.name,
+         birth_date = COALESCE(EXCLUDED.birth_date, users.birth_date),
+         gender = COALESCE(EXCLUDED.gender, users.gender),
+         balance = COALESCE(EXCLUDED.balance, users.balance),
+         parent_phone_1 = COALESCE(EXCLUDED.parent_phone_1, users.parent_phone_1),
+         parent_phone_2 = COALESCE(EXCLUDED.parent_phone_2, users.parent_phone_2)
+       RETURNING id, phone, name, email, created_at, birth_date, gender, balance, parent_phone_1, parent_phone_2, source, created_at_crm`,
+      [phone, name, birthDate, gender, balance, parentPhone1, parentPhone2, source || 'crm_import', createdAtCrm]
+    );
+    return { created: true, user: result.rows[0] };
+  } catch (err: any) {
+    if (err.code === '23505') {
+      // Дубликат телефона — обновляем
+      const updateResult = await client.query(
+        `UPDATE users SET name = $2, birth_date = COALESCE($3, birth_date), gender = COALESCE($4, gender),
+         balance = COALESCE($5, balance), parent_phone_1 = COALESCE($6, parent_phone_1),
+         parent_phone_2 = COALESCE($7, parent_phone_2)
+         WHERE phone = $1
+         RETURNING id, phone, name, email, created_at, birth_date, gender, balance, parent_phone_1, parent_phone_2, source, created_at_crm`,
+        [phone, name, birthDate, gender, balance, parentPhone1, parentPhone2]
+      );
+      return { created: false, user: updateResult.rows[0] };
+    }
+    throw err;
   } finally {
     client.release();
   }

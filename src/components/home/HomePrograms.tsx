@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './HomePrograms.module.css';
 
@@ -58,11 +57,9 @@ export default function HomePrograms({
                       window.location.href = `/programs/${program.id}`;
                     }}
                   >
-                    <Image
+                    <img
                       src={program.image}
                       alt={program.name}
-                      width={400}
-                      height={320}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -71,11 +68,9 @@ export default function HomePrograms({
                     className="w-full h-48 bg-gray-100 overflow-hidden relative md:hidden"
                     onClick={() => openImageModal(program.image, program.name)}
                   >
-                    <Image
+                    <img
                       src={program.image}
                       alt={program.name}
-                      width={400}
-                      height={320}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

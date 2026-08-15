@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Accordion from '@/components/ui/Accordion';
 import styles from './AdminStaffPrograms.module.css';
 import FileInput from '@/components/ui/FileInput';
+
 interface Photo {
   image?: string;
   url?: string;
@@ -33,6 +34,26 @@ interface AdminStaffProps {
   trainers: Trainer[];
   staff: StaffMember[];
   onSave: (trainers: Trainer[], staff: StaffMember[]) => void;
+}
+
+// ========================
+// Загрузка файла на сервер
+// ========================
+async function uploadFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  const res = await fetch('/api/upload', {
+    method: 'POST',
+    body: formData
+  });
+  
+  if (!res.ok) {
+    throw new Error('Upload failed');
+  }
+  
+  const data = await res.json();
+  return data.url || data.path;
 }
 
 const EXPERIENCE_OPTIONS = [
@@ -76,6 +97,7 @@ export default function AdminStaffPrograms({
   const [newPhoto, setNewPhoto] = useState<File | null>(null);
   const [newPhotoCaption, setNewPhotoCaption] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   // ✅ useEffect ПОСЛЕ всех стейтов
   useEffect(() => {
@@ -111,44 +133,64 @@ export default function AdminStaffPrograms({
     }
   };
 
-  const addTrainer = () => {
+  const addTrainer = async () => {
     if (!newImage || !newTrainer.name.trim()) return;
     
-    const trainer: Trainer = {
-      id: Date.now(),
-      image: URL.createObjectURL(newImage),
-      name: newTrainer.name,
-      experience: [],
-      type: 'trainer',
-      description: newTrainer.description,
-      specialization: newTrainer.specialization,
-      isDirector: false,
-      trainings: [],
-      photoAlbum: []
-    };
-    
-    const newTrainers = [trainer, ...localTrainers];
-    setLocalTrainers(newTrainers);
-    setTrainers(newTrainers);
-    resetNewTrainer();
-    setHasChanges(true);
+    setUploading(true);
+    try {
+      const imageUrl = await uploadFile(newImage);
+      
+      const trainer: Trainer = {
+        id: Date.now(),
+        image: imageUrl,
+        name: newTrainer.name,
+        experience: [],
+        type: 'trainer',
+        description: newTrainer.description,
+        specialization: newTrainer.specialization,
+        isDirector: false,
+        trainings: [],
+        photoAlbum: []
+      };
+      
+      const newTrainers = [trainer, ...localTrainers];
+      setLocalTrainers(newTrainers);
+      setTrainers(newTrainers);
+      resetNewTrainer();
+      setHasChanges(true);
+    } catch (error) {
+      console.error('Error uploading trainer image:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
-  const addStaff = () => {
+  const addStaff = async () => {
     if (!newImage || !newStaff.name.trim()) return;
     
-    const staffMember: StaffMember = {
-      id: Date.now().toString(),
-      name: newStaff.name,
-      image: URL.createObjectURL(newImage),
-      role: newStaff.role
-    };
-    
-    const newStaffList = [staffMember, ...localStaff];
-    setLocalStaff(newStaffList);
-    setStaff(newStaffList);
-    resetNewStaff();
-    setHasChanges(true);
+    setUploading(true);
+    try {
+      const imageUrl = await uploadFile(newImage);
+      
+      const staffMember: StaffMember = {
+        id: Date.now().toString(),
+        name: newStaff.name,
+        image: imageUrl,
+        role: newStaff.role
+      };
+      
+      const newStaffList = [staffMember, ...localStaff];
+      setLocalStaff(newStaffList);
+      setStaff(newStaffList);
+      resetNewStaff();
+      setHasChanges(true);
+    } catch (error) {
+      console.error('Error uploading staff image:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const updateTrainer = (trainer: Trainer) => {
@@ -218,22 +260,32 @@ export default function AdminStaffPrograms({
     setNewPhotoCaption('');
   };
 
-  const addPhotoToTrainer = () => {
+  const addPhotoToTrainer = async () => {
     if (!newPhoto || !editingTrainer || !newPhotoCaption.trim()) return;
     
-    const photo: Photo = {
-      url: URL.createObjectURL(newPhoto),
-      caption: newPhotoCaption,
-    };
-    
-    const updatedTrainer = {
-      ...editingTrainer,
-      photoAlbum: [...(editingTrainer.photoAlbum || []), photo]
-    };
-    
-    setEditingTrainer(updatedTrainer);
-    setNewPhoto(null);
-    setNewPhotoCaption('');
+    setUploading(true);
+    try {
+      const url = await uploadFile(newPhoto);
+      
+      const photo: Photo = {
+        url,
+        caption: newPhotoCaption,
+      };
+      
+      const updatedTrainer = {
+        ...editingTrainer,
+        photoAlbum: [...(editingTrainer.photoAlbum || []), photo]
+      };
+      
+      setEditingTrainer(updatedTrainer);
+      setNewPhoto(null);
+      setNewPhotoCaption('');
+    } catch (error) {
+      console.error('Error uploading trainer photo:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
   // ✅ РЕНДЕР ПОСЛЕ ВСЕГО
@@ -290,9 +342,9 @@ export default function AdminStaffPrograms({
                     <button 
                       className={styles.addBtn} 
                       onClick={addTrainer} 
-                      disabled={!newImage || !newTrainer.name.trim()}
+                      disabled={!newImage || !newTrainer.name.trim() || uploading}
                     >
-                      ➕ Добавить тренера
+                      {uploading ? '⏳ Загрузка...' : '➕ Добавить тренера'}
                     </button>
                   </div>
                 </div>
@@ -407,10 +459,10 @@ export default function AdminStaffPrograms({
 />
                             <button
                               onClick={addPhotoToTrainer}
-                              disabled={!newPhoto || !newPhotoCaption.trim()}
+                              disabled={!newPhoto || !newPhotoCaption.trim() || uploading}
                               className={styles.addPhotoBtn}
                             >
-                              📸 Добавить
+                              {uploading ? '⏳...' : '📸 Добавить'}
                             </button>
                           </div>
                         </div>
@@ -474,9 +526,9 @@ export default function AdminStaffPrograms({
                     <button 
                       className={styles.addBtn} 
                       onClick={addStaff} 
-                      disabled={!newImage || !newStaff.name.trim()}
+                      disabled={!newImage || !newStaff.name.trim() || uploading}
                     >
-                      ➕ Добавить сотрудника
+                      {uploading ? '⏳ Загрузка...' : '➕ Добавить сотрудника'}
                     </button>
                   </div>
                 </div>

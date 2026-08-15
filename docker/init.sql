@@ -144,12 +144,20 @@ CREATE TABLE IF NOT EXISTS settings (
 -- 10. ЛИЧНЫЙ КАБИНЕТ: Пользователи
 -- ============================================
 CREATE TABLE IF NOT EXISTS users (
-  id            SERIAL PRIMARY KEY,
-  phone         TEXT UNIQUE NOT NULL,
-  password_hash TEXT NOT NULL,
-  name          TEXT,
-  email         TEXT,
-  created_at    TIMESTAMPTZ DEFAULT NOW()
+  id              SERIAL PRIMARY KEY,
+  phone           TEXT UNIQUE NOT NULL,
+  password_hash   TEXT DEFAULT '',
+  name            TEXT,
+  email           TEXT,
+  created_at      TIMESTAMPTZ DEFAULT NOW(),
+  -- Поля из CRM (F5: парсер клиентов)
+  birth_date      DATE,
+  gender          TEXT,
+  balance         DOUBLE PRECISION DEFAULT 0,
+  parent_phone_1  TEXT,
+  parent_phone_2  TEXT,
+  source          TEXT DEFAULT 'crm_import',
+  created_at_crm  TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS user_subscriptions (
@@ -164,7 +172,9 @@ CREATE TABLE IF NOT EXISTS user_visits (
   id         SERIAL PRIMARY KEY,
   user_id    INT REFERENCES users(id) ON DELETE CASCADE,
   program_id BIGINT,
-  visit_date TIMESTAMPTZ DEFAULT NOW()
+  visit_date TIMESTAMPTZ DEFAULT NOW(),
+  notes      TEXT,
+  group_name TEXT
 );
 
 -- Оплаты (импорт из CRM)
@@ -174,6 +184,9 @@ CREATE TABLE IF NOT EXISTS user_payments (
   amount      NUMERIC(10, 2),
   payment_date TIMESTAMPTZ DEFAULT NOW(),
   description TEXT,
+  discount    TEXT,
+  group_name  TEXT,
+  notes       TEXT,
   source      TEXT DEFAULT 'manual',        -- 'manual' | 'crm_import'
   program_id  BIGINT
 );
@@ -187,6 +200,56 @@ CREATE TABLE IF NOT EXISTS db_meta (
   source      TEXT NOT NULL DEFAULT 'db.json',
   records     INTEGER DEFAULT 0
 );
+
+-- ============================================
+-- F5: Доп. поля пользователей из CRM
+-- ============================================
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='birth_date') THEN
+    ALTER TABLE users ADD COLUMN birth_date DATE;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='gender') THEN
+    ALTER TABLE users ADD COLUMN gender TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='balance') THEN
+    ALTER TABLE users ADD COLUMN balance DOUBLE PRECISION DEFAULT 0;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='parent_phone_1') THEN
+    ALTER TABLE users ADD COLUMN parent_phone_1 TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='parent_phone_2') THEN
+    ALTER TABLE users ADD COLUMN parent_phone_2 TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='source') THEN
+    ALTER TABLE users ADD COLUMN source TEXT DEFAULT 'crm_import';
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='created_at_crm') THEN
+    ALTER TABLE users ADD COLUMN created_at_crm TIMESTAMPTZ;
+  END IF;
+END $$;
+
+-- ============================================
+-- F6: Доп. поля для посещений/оплат из CRM
+-- ============================================
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='user_visits' AND column_name='notes') THEN
+    ALTER TABLE user_visits ADD COLUMN notes TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='user_visits' AND column_name='group_name') THEN
+    ALTER TABLE user_visits ADD COLUMN group_name TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='user_payments' AND column_name='discount') THEN
+    ALTER TABLE user_payments ADD COLUMN discount TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='user_payments' AND column_name='group_name') THEN
+    ALTER TABLE user_payments ADD COLUMN group_name TEXT;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='user_payments' AND column_name='notes') THEN
+    ALTER TABLE user_payments ADD COLUMN notes TEXT;
+  END IF;
+END $$;
 
 -- ============================================
 -- ИНДЕКСЫ

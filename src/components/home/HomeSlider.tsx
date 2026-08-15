@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import styles from './HomeSlider.module.css'
 
@@ -96,13 +95,11 @@ export default function HomeSlider({
     <section className={styles.slider}>
       {sliders.map((slide, index) => (
         <div key={slide.id} className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}>
-          <Image 
+          <img 
             src={slide.image} 
             alt={slide.title || 'Слайд'}
-            fill 
             className={styles.slideImage} 
-            priority={index === 0}
-            sizes="100vw"
+            style={{objectFit: 'cover', width: '100%', height: '100%'}}
           />
         </div>
       ))}

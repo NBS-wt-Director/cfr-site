@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import ActionButtons from './ActionButtons';
 import styles from './NewsCard.module.css';
 
@@ -21,10 +20,9 @@ export default function NewsCard({ news, onFormOpen, openImageModal }: NewsCardP
         className={styles.imageWrapper}
         onClick={() => openImageModal(news.image, news.title)}
       >
-        <Image
+        <img
           src={news.image}
           alt={news.title}
-          fill
           className={styles.image}
         />
       </div>

@@ -513,7 +513,7 @@ export default function SiteHeader({
               onClick={() => setMobileMenuOpen(false)}
             >
               <User size={20} />
-              <span className={styles.mobileLkButtonText}>Личный кабинет</span>
+              <span className={styles.mobileLkButtonText}>ЛК</span>
             </Link>
           )}
         </div>
