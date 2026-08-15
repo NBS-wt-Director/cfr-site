@@ -303,7 +303,323 @@
 
 ---
 
-## ПОСЛЕДОВАТЕЛЬНОСТЬ ВЫПОЛНЕНИЯ
+## ТИКЕТ F7: Восстановить двухрежимность API и админки (Fix: Двухрежимность)
+
+> ⚠️ **КРИТИЧЕСКИЙ ТИКЕТ.** Введён после сессии от 15.08.2026.
+> **Контекст:** Пользователь явно требовал ДВУХРЕЖИМНУЮ систему: PG → JSON fallback.
+> В сессии от 15.08.2026 я случайно заменил API на ОДНОРЕЖИМНЫЕ (только JSON).
+> Это нарушает требование. Нужно вернуть двухрежимность.
+
+**Определение двухрежимности (от пользователя):**
+> «Двухрежимный» — поддерживает ОБА режима: по умолчанию (если нет PG) — JSON, иначе — PG.
+
+**Файлы, которые сейчас ОДНОРЕЖИМНЫЕ (читают только JSON):**
+- `src/app/api/news/route.ts` — читает `getDb()`
+- `src/app/api/trainers/route.ts` — читает `getDb()`
+- `src/app/api/trainers/[id]/route.ts` — читает `getDb()`
+- `src/app/api/programs/route.ts` — читает `getDb()`
+- `src/app/api/programs/[id]/route.ts` — читает `getDb()`
+- `src/app/api/employees/route.ts` — читает `getDb()`
+
+**Что нужно сделать:**
+
+1. Создать общий хелпер `src/lib/dual-mode.ts`:
+   ```typescript
+   // Пробует PG, при ошибке падает на JSON
+   export async function getDataDual<T>(
+     pgLoader: () => Promise<T>,      // функция чтения из PG
+     jsonGetter: () => T              // функция чтения из JSON
+   ): Promise<T> {
+     const mode = getDbMode();        // 'postgres' | 'json'
+     if (mode === 'postgres') {
+       try {
+         return await pgLoader();
+       } catch (err) {
+         console.warn('⚠️ PG недоступен, fallback на JSON:', err);
+         return jsonGetter();
+       }
+     }
+     return jsonGetter();
+   }
+   ```
+
+2. Вернуть двухрежимность в каждый API:
+   - **news:** `getAllNews()` из `db-new.ts` + `getDb().news`
+   - **trainers:** `getAllTrainers()` из `db-new.ts` + `getDb().trainers`
+   - **trainers/[id]:** PG-запрос + `getDb().trainers.find(...)`
+   - **programs:** `getAllPrograms()` из `db-new.ts` + `getDb().programs`
+   - **programs/[id]:** PG-запрос + `getDb().programs.find(...)`
+   - **employees:** `getAllEmployees()` из `db-new.ts` + `getDb().employees`
+
+3. Админка (файлы `src/components/admin/*.tsx` и `src/app/api/admin/**`) — тоже должна быть двухрежимной:
+   - Читать из PG если `DB_MODE=postgres` и PG доступен
+   - При ошибке PG — падать на JSON
+   - При сохранении — писать в PG, если недоступен → писать в JSON
+
+**Критерии готовности:**
+- [ ] `src/lib/dual-mode.ts` создан и используется во всех API
+- [ ] При DB_MODE=json — сайт читает JSON
+- [ ] При DB_MODE=postgres + PG работает — сайт читает PG
+- [ ] При DB_MODE=postgres + PG недоступен — сайт автоматически читает JSON (не падает)
+- [ ] Админка сохраняет данные в оба режима с fallback
+- [ ] Рендеринг работает в обоих режимах
+
+---
+
+## ТИКЕТ F8: Поднять PostgreSQL в Docker (Fix: PostgreSQL Docker)
+
+**Контекст:** Docker установлен на сервере (29.7.2 + compose 5.4.0). PG не поднят.
+
+**Что нужно сделать (на сервере):**
+
+1. Создать `docker/init.sql` (уже есть в репозитории):
+   - Создать БД `cfr_site`
+   - Создать пользователя `cfr` с паролем из `PG_PASSWORD`
+   - Дать права
+
+2. Проверить `docker-compose.yml` (уже есть):
+   - `image: postgres:16-alpine`
+   - порт `5432:5432`
+   - volume `pgdata:/var/lib/postgresql/data`
+   - healthcheck
+
+3. Поднять:
+   ```bash
+   cd /home/cfr_balloo/sites/cfrsite
+   docker compose up -d
+   docker compose ps
+   docker compose logs postgres --tail=30
+   docker compose exec postgres pg_isready -U cfr -d cfr_site
+   ```
+
+4. Данные PG хранить на RAID1: изменить volume:
+   ```yaml
+   volumes:
+     - /data/raid/postgres:/var/lib/postgresql/data
+   ```
+
+**Критерии готовности:**
+- [ ] Контейнер `cfr-postgres` запущен и healthy
+- [ ] БД `cfr_site` существует
+- [ ] Пользователь `cfr` может подключиться
+- [ ] Данные PG на `/data/raid/postgres`
+
+---
+
+## ТИКЕТ F9: Инициализация схемы БД (Fix: init-db)
+
+**Что нужно сделать:**
+
+1. Заполнить `.env.production` на сервере:
+   ```ini
+   DB_MODE=postgres
+   PG_HOST=localhost
+   PG_PORT=5432
+   PG_DATABASE=cfr_site
+   PG_USER=cfr
+   PG_PASSWORD=<пароль>
+   ```
+
+2. Запустить инициализацию схемы:
+   ```bash
+   cd /home/cfr_balloo/sites/cfrsite
+   npx tsx scripts/init-db.mjs
+   # или
+   npm run init-db
+   ```
+
+3. Проверить таблицы:
+   ```bash
+   docker compose exec postgres psql -U cfr -d cfr_site -c '\dt'
+   ```
+
+**Критерии готовности:**
+- [ ] Таблицы созданы (cfr_*, users, user_visits, user_payments)
+- [ ] Миграции применены (migrations/001–005)
+- [ ] Нет ошибок при init
+
+---
+
+## ТИКЕТ F10: Перенос данных из db.json в PostgreSQL (Fix: Миграция данных)
+
+**Что нужно сделать:**
+
+1. Убедиться, что `db.json` на сервере — актуальный (источник истины)
+2. Запустить миграцию:
+   ```bash
+   cd /home/cfr_balloo/sites/cfrsite
+   node scripts/migrate-donor-to-pg.mjs
+   ```
+   ИЛИ через админку: Админка → Данные → Перенести данные в БД
+3. Проверить количество записей в таблицах
+
+**Критерии готовности:**
+- [ ] Тренеры в cfr_persons/cfr_teachers
+- [ ] Программы в cfr_entities
+- [ ] Новости в cfr_media
+- [ ] Пользователи из clients.xlsx в users
+- [ ] Посещения/оплаты из data.xlsx в user_visits/user_payments
+
+---
+
+## ТИКЕТ F11: Переключить сайт на двухрежимную работу с PG (Fix: Включение PG)
+
+**Что нужно сделать:**
+
+1. В `.env.production` установить `DB_MODE=postgres`
+2. Перезапустить сайт:
+   ```bash
+   pm2 restart cfrsite --update-env
+   ```
+3. Проверить что сайт читает из PG:
+   ```bash
+   curl -s http://localhost:3000/api/trainers | head -c 200
+   curl -s http://localhost:3000/api/programs | head -c 200
+   curl -s http://localhost:3000/api/news | head -c 200
+   ```
+
+**Критерии готовности:**
+- [ ] Сайт работает в PG-режиме
+- [ ] Данные читаются из PostgreSQL
+- [ ] Если PG упадёт — сайт продолжает работать (JSON fallback)
+
+---
+
+## ТИКЕТ F12: Мессенджер balloo (Fix: Деплой мессенджера)
+
+**Контекст:** Мессенджер — отдельный проект, на ~89% готовности, параллельный воркспейс.
+Зона диска: `/data/messenger` (3.5 ТБ, уже отформатирован и примонтирован).
+
+**Что нужно сделать:**
+1. Склонировать проект мессенджера на сервер (путь уточнить у пользователя)
+2. Поднять его БД в PostgreSQL (новая база `balloo`)
+3. Настроить NGINX-конфиг для домена мессенджера
+4. Запустить через PM2
+5. Настроить автозапуск
+
+**Критерии готовности:**
+- [ ] Проект развёрнут
+- [ ] БД создана
+- [ ] Сайт работает
+- [ ] Автозапуск настроен
+
+---
+
+## ТИКЕТ F13: Файловое хранилище (Fix: files.центр-фр.рф)
+
+**Контекст:** Создать локальное файловое хранилище как Я.Диск. 2 поддомена:
+- `files.центр-фр.рф`
+- `creatorfd.balloo.su`
+
+**Что нужно сделать:**
+
+1. Создать LVM-том из свободного места на sda3 (системный диск, ~3.6 ТБ свободно в LVM-группе `ubuntu-vg`):
+   ```bash
+   sudo lvcreate -L 3T -n files ubuntu-vg
+   sudo mkfs.ext4 /dev/ubuntu-vg/files
+   sudo mkdir -p /srv/files
+   sudo mount /dev/ubuntu-vg/files /srv/files
+   # fstab
+   echo '/dev/ubuntu-vg/files /srv/files ext4 defaults,nofail 0 2' | sudo tee -a /etc/fstab
+   ```
+
+2. Развернуть файловое хранилище (FileBrowser / Nextcloud / custom):
+   - Рекомендация: FileBrowser — лёгкий, веб-интерфейс, загрузка/скачивание/шаринг
+   - Или Nextcloud — полноценный Я.Диск (тяжелее, требует PHP/Redis)
+   - Выбор за пользователем
+
+3. Настроить домены через NGINX + SSL (Let's Encrypt)
+
+**Критерии готовности:**
+- [ ] Том /srv/files создан и в fstab
+- [ ] Файловый менеджер развёрнут
+- [ ] Оба домена работают через HTTPS
+- [ ] Автозапуск настроен
+
+---
+
+## ТИКЕТ F14: Безопасность сервера (Fix: Укрепление безопасности)
+
+**Что нужно сделать:**
+
+1. **UFW (фаервол):**
+   ```bash
+   sudo ufw default deny incoming
+   sudo ufw default allow outgoing
+   sudo ufw allow 22/tcp    # SSH
+   sudo ufw allow 80/tcp    # HTTP
+   sudo ufw allow 443/tcp   # HTTPS
+   sudo ufw allow 5432/tcp from 127.0.0.1  # PG только локально
+   sudo ufw enable
+   ```
+
+2. **Fail2ban (защита от брутфорса):**
+   ```bash
+   sudo apt install -y fail2ban
+   sudo systemctl enable --now fail2ban
+   ```
+
+3. **SSH:**
+   - Отключить вход по паролю (PasswordAuthentication no)
+   - Включить только ключи (PubkeyAuthentication yes)
+   - Отключить root login (PermitRootLogin no)
+
+4. **Автообновления:**
+   ```bash
+   sudo apt install -y unattended-upgrades
+   sudo dpkg-reconfigure --priority=low unattended-upgrades
+   ```
+
+5. **Бэкапы db.json и БД:**
+   - Ежедневный cron-бэкап db.json → /data/raid/backups/
+   - Ежедневный pg_dump → /data/raid/backups/pg/
+
+**Критерии готовности:**
+- [ ] UFW включён, внешний доступ только 22/80/443
+- [ ] PG порт недоступен снаружи
+- [ ] Fail2ban активен
+- [ ] SSH только по ключам
+- [ ] Автообновления включены
+- [ ] Бэкапы настроены и протестированы
+
+---
+
+## ТИКЕТ F15: Ollama + qwen2.5:14b (Fix: Установка Ollama)
+
+**Контекст:** Модель для разработки Next.js, литературы и лекций. Выбрана qwen2.5:14b (Q4, ~9 ГБ RAM). RAM 125 ГБ — хватит.
+
+**Что нужно сделать:**
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull qwen2.5:14b
+ollama run qwen2.5:14b  # тест
+```
+
+**Критерии готовности:**
+- [ ] Ollama установлена и запущена
+- [ ] Модель qwen2.5:14b скачана
+- [ ] Отвечает на русском
+- [ ] Автозапуск настроен
+
+---
+
+## ТИКЕТ F16: Модули Cockpit (Fix: Установка модулей)
+
+**Контекст:** На сервере есть Cockpit (веб-панель). Нужно поставить модули.
+
+**Что нужно сделать:**
+```bash
+sudo apt install -y cockpit-storaged cockpit-sosreport cockpit-scripts
+```
+
+**Критерии готовности:**
+- [ ] cockpit-storaged — управление дисками через веб
+- [ ] cockpit-sosreport — сбор отчётов
+- [ ] cockpit-scripts — веб-терминал
+
+---
+
+## ПОСЛЕДОВАТЕЛЬНОСТЬ ВЫПОЛНЕНИЯ (полная)
 
 ```
 F1: Пошаговая миграция (Тикет 6)
@@ -317,6 +633,26 @@ F4: Скрипт parse-xml-to-pg.mjs
 F5: Парсер клиентов
   ↓
 F6: Парсер посещений/оплат
+  ↓
+F7: Восстановить двухрежимность API и админки 🔴 ← КРИТИЧЕСКИЙ
+  ↓
+F8: Поднять PostgreSQL в Docker
+  ↓
+F9: Инициализация схемы БД
+  ↓
+F10: Перенос данных из db.json в PG
+  ↓
+F11: Переключить сайт на PG (двухрежимно)
+  ↓
+F12: Мессенджер balloo
+  ↓
+F13: Файловое хранилище
+  ↓
+F14: Безопасность сервера
+  ↓
+F15: Ollama + qwen2.5:14b
+  ↓
+F16: Модули Cockpit
 ```
 
 **НЕ НАЧИНАТЬ СЛЕДУЮЩИЙ ШАГ БЕЗ ПОДТВЕРЖДЕНИЯ, ЧТО ПРЕДЫДУЩИЙ ЗАВЕРШЁН.**
@@ -328,18 +664,24 @@ F6: Парсер посещений/оплат
 1. **Turbopack ЗАПРЕЩЁН** — всегда использовать webpack:
    - `dev`: `"next dev --webpack -p 3011"`
    - `build`: `"next build --webpack"`
-   - `start`: `"next start --no-turbopack -p 3000"`
+   - `start`: `"next start -p 3000"` (без `--no-turbopack` — Next.js 16 его не поддерживает!)
 
 2. **db.json — ИСТОЧНИК ИСТИНЫ.** Никогда не удалять, не очищать, не перезаписывать.
 
 3. **Секреты — ТОЛЬКО через переменные окружения.**
 
-4. **API маршруты — новый синтаксис:**
+4. **ДВУХРЕЖИМНОСТЬ — ОБЯЗАТЕЛЬНОЕ ТРЕБОВАНИЕ.**
+   - Все API и админка должны пробовать PG, при недоступности — JSON.
+   - Однорежимный код (только PG или только JSON) — ЗАПРЕЩЁН.
+
+5. **API маршруты — новый синтаксис:**
    - `params: { id: string }` → `params: Promise<{ id: string }>`
    - `params.id` → `await params`
    - `import { db }` → `import { getDb, saveDb }`
 
-5. **Работа с файлами вне проекта — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО.**
+6. **Работа с файлами вне проекта — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО.**
+
+7. **db.json на сервере — НЕПРИКОСНОВЕНЕН без указания пользователя.**
 
 ---
 
@@ -349,7 +691,7 @@ F6: Парсер посещений/оплат
 
 ```
 Прочитай документ cfr-site/MULTITICKET-FIXES.md
-и выполни тикет F1
+и выполни тикет F7
 ```
 
 **Номера тикетов:**
@@ -359,6 +701,16 @@ F6: Парсер посещений/оплат
 - `F4` — Fix: Скрипт parse-xml-to-pg
 - `F5` — Fix: Парсер клиентов
 - `F6` — Fix: Парсер посещений/оплат
+- `F7` — Fix: Двухрежимность API и админки
+- `F8` — Fix: PostgreSQL в Docker
+- `F9` — Fix: init-db схема БД
+- `F10` — Fix: Перенос данных db.json → PG
+- `F11` — Fix: Переключение сайта на PG
+- `F12` — Fix: Мессенджер balloo
+- `F13` — Fix: Файловое хранилище
+- `F14` — Fix: Безопасность сервера
+- `F15` — Fix: Ollama
+- `F16` — Fix: Модули Cockpit
 
 ---
 
@@ -371,6 +723,16 @@ F3 (extract-donor)        🔴 ← СЛЕДУЮЩИЙ ШАГ
 F4 (parse-xml-to-pg)      🔴 ← ЗАВИСИТ ОТ F3
 F5 (парсер клиентов)      🔴 ← ЗАВИСИТ ОТ F3, F4
 F6 (парсер посещений)     🔴 ← ЗАВИСИТ ОТ F3, F4, F5
+F7 (двухрежимность)       🔴 ← КРИТИЧЕСКИЙ, ВВЕДЁН В СЕССИИ 15.08
+F8 (PG в Docker)          🔴 ← ЗАВИСИТ ОТ F7 (двухрежимность)
+F9 (init-db)              🔴 ← ЗАВИСИТ ОТ F8
+F10 (миграция db→pg)      🔴 ← ЗАВИСИТ ОТ F8, F9
+F11 (переключение на PG)  🔴 ← ЗАВИСИТ ОТ F10
+F12 (мессенджер)          🔴 ← ОТДЕЛЬНЫЙ ПРОЕКТ
+F13 (файловое хранилище)  🔴 ← ПОСЛЕ ДЕПЛОЯ САЙТА
+F14 (безопасность)        🔴 ← ПОСЛЕ ОСНОВНЫХ СЕРВИСОВ
+F15 (Ollama)              🔴 ← ПОСЛЕДНИЙ
+F16 (Cockpit)             🔴 ← ПОСЛЕДНИЙ
 ```
 
 ---
@@ -389,5 +751,5 @@ F6 (парсер посещений)     🔴 ← ЗАВИСИТ ОТ F3, F4, F5
 
 ```
 Прочитай документ cfr-site/MULTITICKET-FIXES.md
-и выполни тикет F1
+и выполни тикет F7
 ```
