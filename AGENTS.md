@@ -37,12 +37,14 @@ Next.js 16 по умолчанию использует Turbopack, которы�
 **Всегда используйте Webpack:**
 ```json
 "build": "next build --webpack",
-"start": "next start --no-turbopack -p 3000"
+"start": "next start -p 3000"
 ```
+
+> ⚠️ **Важно:** `next start` в Next.js 16 **не поддерживает** флаг `--no-turbopack` — вызывает ошибку `unknown option`. Используйте только `next start -p 3000`.
 
 Это зафиксировано в:
 - `package.json` (scripts dev/build/start)
-- `deploy/ecosystem.config.js` (args: 'start --no-turbopack -p 3000')
+- `deploy/ecosystem.config.js` (args: 'start -p 3000')
 
 **Никогда не меняйте эти скрипты.** Если `next build` падает с ошибкой `Parsing CSS source code failed` — это Turbopack.
 
@@ -99,7 +101,7 @@ module.exports = {
   apps: [{
     name: 'cfrsite',
     script: './node_modules/next/dist/bin/next',
-    args: 'start --no-turbopack -p 3000',
+    args: 'start -p 3000',
     cwd: '/home/cfr_balloo/sites/cfrsite',
     instances: 1,
     exec_mode: 'fork',
