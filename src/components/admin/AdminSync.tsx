@@ -42,11 +42,13 @@ export default function AdminSync() {
   const loadStatus = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/bridge/sync/status');
+      const res = await fetch('/api/bridge/sync');
       const data = await res.json();
       if (data.success) {
         setStatus(data);
         addLog('info', 'Статус синхронизации обновлён');
+      } else if (data.pgUnavailable) {
+        addLog('warning', 'PostgreSQL недоступен — синхронизация не работает');
       }
     } catch (err) {
       addLog('error', 'Ошибка загрузки статуса: ' + (err instanceof Error ? err.message : 'Unknown'));

@@ -5,7 +5,7 @@ import styles from './AdminSettings.module.css';
 interface GlobalDividerConfig {
   enabled: boolean;
   height: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-  background: 'default' | 'gradientBlue' | 'gradientRed' | 'gradientOrange' | 'gradientGray';
+  background: 'default' | 'gradientBlue' | 'gradientRed' | 'gradientOrange' | 'gradientGray' | 'gradientGreen';
   textContent: string;
   fontSize: 'small' | 'medium' | 'large' | 'xlarge';
 }
@@ -108,11 +108,12 @@ export default function AdminDividers({ dividers: initialDividers, sections, onS
                 onChange={(e) => updateDivider('background', e.target.value)}
                 className={styles.select}
               >
-                <option value="default">По умолчанию</option>
-                <option value="gradientBlue">Синий градиент</option>
-                <option value="gradientRed">Красный градиент</option>
-                <option value="gradientOrange">Оранжевый градиент</option>
-                <option value="gradientGray">Серый градиент</option>
+              <option value="default">По умолчанию</option>
+              <option value="gradientBlue">Синий градиент</option>
+              <option value="gradientRed">Красный градиент</option>
+              <option value="gradientOrange">Оранжевый градиент</option>
+              <option value="gradientGray">Серый градиент</option>
+              <option value="gradientGreen">Зелёный градиент</option>
               </select>
             </div>
 

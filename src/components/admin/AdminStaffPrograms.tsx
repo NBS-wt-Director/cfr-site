@@ -96,6 +96,8 @@ export default function AdminStaffPrograms({
   const [newImagePreview, setNewImagePreview] = useState('');
   const [newPhoto, setNewPhoto] = useState<File | null>(null);
   const [newPhotoCaption, setNewPhotoCaption] = useState('');
+  const [editingImage, setEditingImage] = useState<File | null>(null);
+  const [editingImagePreview, setEditingImagePreview] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
   const [uploading, setUploading] = useState(false);
 
@@ -193,12 +195,30 @@ export default function AdminStaffPrograms({
     }
   };
 
-  const updateTrainer = (trainer: Trainer) => {
-    const newTrainers = localTrainers.map(t => t.id === editingTrainer?.id ? trainer : t);
-    setLocalTrainers(newTrainers);
-    setTrainers(newTrainers);
-    setHasChanges(true);
-    setEditingTrainer(null);
+  const updateTrainer = async (trainer: Trainer) => {
+    setUploading(true);
+    try {
+      let updatedTrainer = { ...trainer };
+
+      // Загружаем новое главное фото если выбрано
+      if (editingImage) {
+        const uploadedUrl = await uploadFile(editingImage);
+        updatedTrainer = { ...updatedTrainer, image: uploadedUrl };
+      }
+
+      const newTrainers = localTrainers.map(t => t.id === editingTrainer?.id ? updatedTrainer : t);
+      setLocalTrainers(newTrainers);
+      setTrainers(newTrainers);
+      setHasChanges(true);
+      setEditingTrainer(null);
+      setEditingImage(null);
+      setEditingImagePreview('');
+    } catch (error) {
+      console.error('Error uploading trainer image:', error);
+      alert('Ошибка загрузки изображения');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const updateStaff = (member: StaffMember) => {
@@ -245,6 +265,8 @@ export default function AdminStaffPrograms({
     setNewImage(null);
     setNewPhoto(null);
     setNewPhotoCaption('');
+    setEditingImage(null);
+    setEditingImagePreview('');
   };
 
   const editStaff = (member: StaffMember) => {
@@ -258,6 +280,8 @@ export default function AdminStaffPrograms({
     setNewImage(null);
     setNewPhoto(null);
     setNewPhotoCaption('');
+    setEditingImage(null);
+    setEditingImagePreview('');
   };
 
   const addPhotoToTrainer = async () => {
@@ -394,6 +418,79 @@ export default function AdminStaffPrograms({
                       <h4>✏️ Редактировать: {editingTrainer.name}</h4>
                       <div className={styles.formFields}>
                         <div className={styles.field}>
+                          <label>ФИО</label>
+                          <input
+                            value={editingTrainer.name || ''}
+                            onChange={(e) => setEditingTrainer({
+                              ...editingTrainer,
+                              name: e.target.value
+                            })}
+                            className={styles.input}
+                            placeholder="Иванов Иван Иванович"
+                          />
+                        </div>
+                        <div className={styles.field}>
+                          <label>Тип</label>
+                          <input
+                            value={editingTrainer.type || ''}
+                            onChange={(e) => setEditingTrainer({
+                              ...editingTrainer,
+                              type: e.target.value
+                            })}
+                            className={styles.input}
+                            list="trainerTypes"
+                            placeholder="trainer, coach, instructor..."
+                          />
+                          <datalist id="trainerTypes">
+                            <option value="trainer" />
+                            <option value="coach" />
+                            <option value="instructor" />
+                            <option value="director" />
+                          </datalist>
+                        </div>
+                        <div className={styles.field}>
+                          <label>Специализация</label>
+                          <textarea
+                            value={editingTrainer.specialization || ''}
+                            onChange={(e) => setEditingTrainer({
+                              ...editingTrainer,
+                              specialization: e.target.value
+                            })}
+                            className={styles.textarea}
+                            rows={3}
+                            placeholder="Тайцзи-Цюань, Здоровая спина..."
+                          />
+                        </div>
+                        <div className={styles.field}>
+                          <label>Главное фото</label>
+                          <div className={styles.imagePreview}>
+                            {(editingImagePreview || editingTrainer.image) && (
+                              <img
+                                src={editingImagePreview || editingTrainer.image}
+                                alt="Preview"
+                                className={styles.previewImg}
+                              />
+                            )}
+                          </div>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                setEditingImage(file);
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                  setEditingImagePreview(reader.result as string);
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
+                            className={styles.fileInput}
+                          />
+                          {editingImage && <small className={styles.noData}>Выбран новый файл — загрузится при сохранении</small>}
+                        </div>
+                        <div className={styles.field}>
                           <label>Директор</label>
                           <input
                             type="checkbox"
@@ -468,8 +565,8 @@ export default function AdminStaffPrograms({
                         </div>
                       </div>
                       <div className={styles.formActions}>
-                        <button className={styles.saveBtn} onClick={() => updateTrainer(editingTrainer)}>
-                          💾 Сохранить
+                        <button className={styles.saveBtn} onClick={() => updateTrainer(editingTrainer)} disabled={uploading}>
+                          {uploading ? '⏳ Загрузка...' : '💾 Сохранить'}
                         </button>
                         <button className={styles.cancelBtn} onClick={cancelEdit}>
                           ❌ Отмена

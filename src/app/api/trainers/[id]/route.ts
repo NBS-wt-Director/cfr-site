@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getTrainerByIdDual } from '@/lib/dual-mode';
 
 export async function GET(
   request: NextRequest,
@@ -7,11 +7,9 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    
-    // Fallback на JSON — PG может быть недоступен
-    const dbData = getDb();
-    const trainers = dbData?.trainers || [];
-    const trainer = trainers.find((t: any) => String(t.id) === id);
+
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const trainer = await getTrainerByIdDual(id);
 
     if (!trainer) {
       // Демо-тренер если не найден

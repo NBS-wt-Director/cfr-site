@@ -36,11 +36,11 @@ const GROUPS: TabGroup[] = [
     id: 'people',
     title: '👥 Персонал и программы',
     icon: '👥',
-    tabs: [
+      tabs: [
       { id: 'programs', label: 'Программы', icon: '🎯' },
-      { id: 'programsCards', label: 'Карточки программ', icon: '🎯' },
-      { id: 'trainers', label: 'Тренеры', icon: '👨‍🏫' },
-      { id: 'trainersCards', label: 'Карточки тренеров', icon: '👨‍🏫' },
+      { id: 'programsCards', label: 'Программы на главной', icon: '🏠' },
+      { id: 'trainers', label: 'Тренеры на главной', icon: '🏠' },
+      { id: 'trainersCards', label: 'Тренеры на стр. тренеров', icon: '👨‍🏫' },
       { id: 'workouts', label: 'Тренировки', icon: '📋' },
       { id: 'staff', label: 'Сотрудники', icon: '👨‍🏫' },
     ],

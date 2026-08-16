@@ -16,6 +16,7 @@ interface Program {
   description: string;
   photoAlbum: Photo[];
   trainers: any[];
+  workouts: any[];
   trainings: any[];
   reviews: any[];
 }
@@ -59,6 +60,7 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
   const [editingImagePreview, setEditingImagePreview] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [availableTrainers, setAvailableTrainers] = useState<any[]>([]);
 
   useEffect(() => {
     // ✅ БЕЗОПАСНАЯ загрузка данных
@@ -66,6 +68,7 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
       ...program,
       photoAlbum: program.photoAlbum || [],
       trainers: program.trainers || [],
+      workouts: program.workouts || [],
       trainings: program.trainings || [],
       reviews: program.reviews || [],
       description: program.description || ''
@@ -73,6 +76,16 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
     setPrograms(safePrograms);
     setLocalPrograms(safePrograms);
   }, [initialPrograms]);
+
+  // ✅ Загрузка списка тренеров для привязки к программе
+  useEffect(() => {
+    fetch('/api/trainers')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setAvailableTrainers(data);
+      })
+      .catch(err => console.error('Error loading trainers:', err));
+  }, []);
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -109,6 +122,7 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
         description: newProgram.description || '',
         photoAlbum: [],
         trainers: [],
+        workouts: [],
         trainings: [],
         reviews: []
       };
@@ -258,6 +272,25 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                   </div>
                   
                   <div className={styles.field}>
+                    <label>Тип</label>
+                    <input 
+                      value={editingProgram.type || ''}
+                      onChange={(e) => setEditingProgram({
+                        ...editingProgram, type: e.target.value
+                      })}
+                      className={styles.input}
+                      list="programTypes"
+                      placeholder="trainer, group, section..."
+                    />
+                    <datalist id="programTypes">
+                      <option value="trainer" />
+                      <option value="group" />
+                      <option value="section" />
+                      <option value="masterclass" />
+                    </datalist>
+                  </div>
+                  
+                  <div className={styles.field}>
                     <label>Описание</label>
                     <textarea 
                       value={editingProgram.description || ''}
@@ -267,6 +300,93 @@ export default function AdminPrograms({ programs: initialPrograms = [] as Progra
                       className={styles.textarea} 
                       rows={6} 
                     />
+                  </div>
+                  
+                  <div className={styles.field}>
+                    <label>Тренеры ({(editingProgram.trainers || []).length})</label>
+                    {availableTrainers.length > 0 ? (
+                      <div className={styles.trainerList}>
+                        {availableTrainers.map((t: any) => {
+                          const selectedIds = (editingProgram.trainers || []).map(String);
+                          const checked = selectedIds.includes(String(t.id));
+                          return (
+                            <label key={t.id} className={styles.trainerCheckbox}>
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={(e) => {
+                                  const ids = new Set((editingProgram.trainers || []).map(String));
+                                  if (e.target.checked) {
+                                    ids.add(String(t.id));
+                                  } else {
+                                    ids.delete(String(t.id));
+                                  }
+                                  setEditingProgram({
+                                    ...editingProgram,
+                                    trainers: [...ids]
+                                  });
+                                }}
+                              />
+                              <span>{t.name}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className={styles.noData}>Тренеры не загружены</p>
+                    )}
+                  </div>
+                  
+                  <div className={styles.field}>
+                    <label>Расписание ({(editingProgram.workouts || []).length})</label>
+                    <div className={styles.workoutList}>
+                      {(editingProgram.workouts || []).map((w: any, idx: number) => (
+                        <div key={idx} className={styles.workoutRow}>
+                          <input
+                            value={w.day || ''}
+                            onChange={(e) => {
+                              const workouts = [...(editingProgram.workouts || [])];
+                              workouts[idx] = { ...workouts[idx], day: e.target.value };
+                              setEditingProgram({ ...editingProgram, workouts });
+                            }}
+                            className={styles.input}
+                            placeholder="День"
+                          />
+                          <input
+                            value={w.time || ''}
+                            onChange={(e) => {
+                              const workouts = [...(editingProgram.workouts || [])];
+                              workouts[idx] = { ...workouts[idx], time: e.target.value };
+                              setEditingProgram({ ...editingProgram, workouts });
+                            }}
+                            className={styles.input}
+                            placeholder="Время (10:45)"
+                          />
+                          <button
+                            className={styles.removeWorkoutBtn}
+                            onClick={() => {
+                              const workouts = (editingProgram.workouts || []).filter((_, i) => i !== idx);
+                              setEditingProgram({ ...editingProgram, workouts });
+                            }}
+                            title="Удалить тренировку"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      className={styles.addWorkoutBtn}
+                      onClick={() => {
+                        const workouts = [
+                          ...(editingProgram.workouts || []),
+                          { day: '', time: '', params: [] }
+                        ];
+                        setEditingProgram({ ...editingProgram, workouts });
+                      }}
+                    >
+                      ➕ Добавить тренировку
+                    </button>
                   </div>
                   
                   <div className={styles.field}>

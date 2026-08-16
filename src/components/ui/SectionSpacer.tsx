@@ -4,7 +4,7 @@ import styles from './SectionSpacer.module.css';
 
 interface SectionSpacerProps {
   height?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-  background?: 'default' | 'gradientBlue' | 'gradientRed' | 'gradientOrange' | 'gradientGray';
+  background?: 'default' | 'gradientBlue' | 'gradientRed' | 'gradientOrange' | 'gradientGray' | 'gradientGreen';
   content?: string[]; // Массив URL картинок
   textContent?: string; // Текст в разделителе
   fontSize?: 'small' | 'medium' | 'large' | 'xlarge';

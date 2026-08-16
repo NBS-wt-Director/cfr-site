@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getProgramsDual } from '@/lib/dual-mode';
 
 export async function GET() {
   try {
-    // Fallback на JSON — PG может быть недоступен
-    const dbData = getDb();
-    const programs = dbData?.programs || [];
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const programs = await getProgramsDual();
     return NextResponse.json(programs);
   } catch (error) {
     console.error('API programs error:', error);

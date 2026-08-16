@@ -14,7 +14,7 @@
   .field label {
     display: block;
     font-weight: 700;
-    color: rgb(31, 41, 55);
+    color: var(--color-text);
     margin-bottom: 0.75rem;
     font-size: 1.125rem;
   }
@@ -22,11 +22,11 @@
   .field input {
     width: 100%;
     padding: 1rem 1.25rem;
-    border: 2px solid rgb(229, 231, 235);
+    border: 2px solid var(--color-border);
     border-radius: 1rem;
     font-size: 1.125rem;
     transition: all 0.3s ease;
-    background: white;
+    background: var(--color-card-bg);
   }
   
   .field input:focus {
@@ -44,8 +44,8 @@
   
   .reasonBtn {
     padding: 0.75rem 1rem;
-    border: 2px solid rgb(229, 231, 235);
-    background: white;
+    border: 2px solid var(--color-border);
+    background: var(--color-card-bg);
     border-radius: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;

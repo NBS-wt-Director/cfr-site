@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getNewsDual } from '@/lib/dual-mode';
 
 export async function GET() {
   try {
-    // Fallback на JSON — PG может быть недоступен
-    const dbData = getDb();
-    const news = dbData?.news || [];
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const news = await getNewsDual();
     return NextResponse.json(news);
   } catch (error) {
     console.error('Error reading news:', error);

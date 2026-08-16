@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import pool from '@/lib/postgres';
-import { loadAllFromPg, saveAllToPg, getTableCounts } from '@/lib/db-new';
+import { loadAllDual, saveAllDual } from '@/lib/dual-mode';
+import { getTableCounts } from '@/lib/db-new';
 import fs from 'fs';
 import path from 'path';
 import { authenticateAdmin } from '@/lib/auth';
@@ -12,7 +13,7 @@ if (!fs.existsSync(BACKUP_DIR)) {
   fs.mkdirSync(BACKUP_DIR, { recursive: true });
 }
 
-// GET - получить данные (экспорт из PG)
+// GET - получить данные (экспорт из PG / JSON fallback)
 export async function GET(request: NextRequest) {
   const auth = authenticateAdmin(request);
   if (auth !== true) return auth;
@@ -20,21 +21,25 @@ export async function GET(request: NextRequest) {
   const action = searchParams.get('action');
   
   try {
-    // Экспорт БД
-    if (action === 'export') {
-      const data = await loadAllFromPg();
+    // Экспорт БД (двухрежимно: PG → JSON fallback)
+    if (action === 'export' || action === 'export-data') {
+      const data = await loadAllDual();
       return NextResponse.json(data);
     }
     
     // Статистика по таблицам
     if (action === 'stats') {
-      const counts = await getTableCounts();
-      return NextResponse.json(counts);
+      try {
+        const counts = await getTableCounts();
+        return NextResponse.json(counts);
+      } catch {
+        return NextResponse.json({});
+      }
     }
     
-    // Создать резервную копию БД
+    // Создать резервную копию БД (двухрежимно)
     if (action === 'backup') {
-      const data = await loadAllFromPg();
+      const data = await loadAllDual();
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const backupFile = path.join(BACKUP_DIR, `db-backup-${timestamp}.json`);
       fs.writeFileSync(backupFile, JSON.stringify(data, null, 2), 'utf-8');
@@ -75,7 +80,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - импорт данных из JSON в PG
+// POST - импорт данных из JSON в PG (с fallback)
 export async function POST(request: NextRequest) {
   const auth = authenticateAdmin(request);
   if (auth !== true) return auth;
@@ -98,12 +103,12 @@ export async function POST(request: NextRequest) {
       // Создаём бэкап перед импортом
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const backupFile = path.join(BACKUP_DIR, `db-before-import-${timestamp}.json`);
-      const currentData = await loadAllFromPg();
+      const currentData = await loadAllDual();
       fs.writeFileSync(backupFile, JSON.stringify(currentData, null, 2), 'utf-8');
       
-      // Сохраняем в PG
-      await saveAllToPg(data);
-      return NextResponse.json({ success: true });
+      // Двухрежимно: PG → JSON fallback
+      const success = await saveAllDual(data);
+      return NextResponse.json({ success });
     }
     
     // Очистить статистику

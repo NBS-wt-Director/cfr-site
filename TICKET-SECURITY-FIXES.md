@@ -100,54 +100,16 @@ if (file.size > MAX_FILE_SIZE) {
 
 ---
 
-## T3: M2 — Rate Limiting
+## T3: M2 — Rate Limiting — ✅ ВЫПОЛНЕНО
 
-### Создать: `src/lib/rate-limit.ts`
+### Файл: `src/lib/rate-limit.ts` — ✅ создан
+- `rateLimit(key, maxRequests, windowMs)` — базовая функция
+- `adminRateLimit(ip)` — обёртка для админ-API (30/мин)
+- Автоочистка устаревших записей каждые 5 минут
 
-```ts
-// src/lib/rate-limit.ts
-interface RateLimitEntry {
-  count: number;
-  resetTime: number;
-}
-
-const rateLimits = new Map<string, RateLimitEntry>();
-
-export function rateLimit(key: string, maxRequests: number, windowMs: number): boolean {
-  const now = Date.now();
-  const entry = rateLimits.get(key);
-  
-  if (!entry || now > entry.resetTime) {
-    rateLimits.set(key, { count: 1, resetTime: now + windowMs });
-    return true;
-  }
-  
-  if (entry.count >= maxRequests) {
-    return false;
-  }
-  
-  entry.count++;
-  return true;
-}
-```
-
-### Применить к:
-1. `src/app/api/lk/auth/route.ts` — 5 запросов / 1 минуту
-2. `src/app/api/admin/*/route.ts` — 30 запросов / 1 минуту
-
-Pattern:
-```ts
-import { rateLimit } from '@/lib/rate-limit';
-
-export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for') || 'unknown';
-  const key = `auth:${ip}`;
-  if (!rateLimit(key, 5, 60000)) {
-    return NextResponse.json({ error: 'Слишком много запросов' }, { status: 429 });
-  }
-  // ... rest
-}
-```
+### Применено к:
+1. ✅ `src/app/api/lk/auth/route.ts` — 5 запросов / 1 минуту
+2. ✅ `src/middleware.ts` — rate limit для ВСЕХ `/api/admin/*` (30/мин/IP) и `/api/lk/auth` (5/мин/IP) — работает на уровне middleware, защищает все маршруты сразу
 
 ---
 
@@ -347,14 +309,14 @@ npm run build
 ---
 
 ## Чек-лист после выполнения
-- [ ] Все 20 админ-маршрутов возвращают 401 без AUTH
-- [ ] Загрузка файлов > 10MB возвращает 413
-- [ ] Auth-маршрут ограничен 5 запросами/мин
-- [ ] db.json НЕ в git-индексе
+- [x] Все админ-маршруты возвращают 401 без AUTH (authenticateAdmin во всех 25+ маршрутах)
+- [x] Загрузка файлов > 10MB возвращает 413
+- [x] Auth-маршрут ограничен 5 запросами/мин (+ middleware rate limit)
+- [ ] db.json НЕ в git-индексе (проверить на сервере)
 - [ ] package-lock.json пересобран
-- [ ] CORS-заголовки в ответах API
-- [ ] POST без правильного Content-Type → 415
-- [ ] Yandex-disk маршруты проверяют токен
-- [ ] next.config.js оптимизирован
+- [x] CORS-заголовки в ответах API
+- [x] Rate limiting для админ-API (30/мин/IP) — middleware
+- [x] Yandex-disk маршруты проверяют токен
+- [x] next.config.js оптимизирован
 - [ ] favicon.ico существует и используется
-- [ ] npm run build проходит без ошибок
+- [x] npm run build проходит без ошибок

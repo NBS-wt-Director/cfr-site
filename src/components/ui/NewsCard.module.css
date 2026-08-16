@@ -1,9 +1,9 @@
 .card {
     position: relative;
-    background: white;
+    background: var(--color-card-bg);
     border-radius: 1.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0,0, 0.1);
-    border: 1px solid rgb(229, 231, 235);
+    border: 1px solid var(--color-border);
     transition: all 0.5s ease;
     cursor: pointer;
     overflow: hidden;
@@ -51,7 +51,7 @@
     font-size: 1.5rem;
     font-weight: 900;
     margin-bottom: 1rem;
-    color: rgb(79, 70, 229);
+    color: var(--color-primary);
     transition: all 0.3s ease;
   }
   
@@ -60,7 +60,7 @@
   }
   
   .description {
-    color: rgb(107, 114, 128);
+    color: var(--color-text-muted);
     margin-bottom: 1.5rem;
     flex: 1;
     line-height: 1.6;

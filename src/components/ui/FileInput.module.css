@@ -16,8 +16,8 @@
     height: 120px;
     border-radius: 0.75rem;
     overflow: hidden;
-    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-    border: 2px solid rgb(229, 231, 235);
+    background: linear-gradient(135deg, var(--color-background-alt), var(--color-border));
+    border: 2px solid var(--color-border);
   }
   
   .previewImg {
@@ -46,9 +46,9 @@
   
   .input {
     padding: 0.875rem;
-    border: 2px solid rgb(229, 231, 235);
+    border: 2px solid var(--color-border);
     border-radius: 0.75rem;
-    background: white;
+    background: var(--color-card-bg);
     font-size: 0.95rem;
   }
   

@@ -69,7 +69,7 @@
 .navList { @apply flex items-center gap-6 p-1; }
 
 .navLink { 
-  font-size: 0.95rem; font-weight: 600; color: #374151; padding: 0.375rem 0.875rem;
+  font-size: 0.95rem; font-weight: 600;   color: var(--color-text); padding: 0.375rem 0.875rem;
   border-radius: 0.375rem; transition: all 0.3s ease; position: relative;
   text-decoration: none;
 }
@@ -80,14 +80,14 @@
 .dropdown { position: relative; display: inline-block; }
 .dropdownToggle {
   cursor: pointer; padding: 0.375rem 0.875rem; border-radius: 0.375rem; font-weight: 600;
-  color: #1f2937; background-color: transparent; transition: all 0.2s ease;
+  color: var(--color-text); background-color: transparent; transition: all 0.2s ease;
   display: flex; align-items: center; gap: 0.25rem; font-size: 0.95rem;
 }
 .dropdownToggle:hover { background-color: #dbeafe; color: #3b82f6; }
 
 .dropdownMenu {
   position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%);
-  min-width: 200px; background: white; border-radius: 0.75rem;
+  min-width: 200px; background: var(--color-card-bg); border-radius: 0.75rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.12); opacity: 0; visibility: hidden;
   transform: translateX(-50%) translateY(-8px); transition: all 0.25s ease;
   z-index: 1000; padding: 0.5rem 0; border: 1px solid rgba(0,0,0,0.08);
@@ -106,10 +106,10 @@
 }
 
 .mobileMenu {
-  position: fixed; top: 90px; left: 0; right: 0; background: white;
+  position: fixed; top: 90px; left: 0; right: 0; background: var(--color-card-bg);
   transform: translateY(-100%); opacity: 0; visibility: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top: 1px solid #e5e7eb;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top: 1px solid var(--color-border);
 }
 .mobileMenu.mobileOpen { transform: translateY(0); opacity: 1; visibility: visible; }
 .mobileOverlay { 
@@ -119,13 +119,13 @@
 .mobileNavList li { margin-bottom: 0.25rem; }
 .mobileNavLink {
   display: block; padding: 1rem; font-size: 1.125rem; font-weight: 600;
-  color: #1f2937; border-radius: 0.75rem; transition: all 0.2s ease; text-decoration: none;
+  color: var(--color-text); border-radius: 0.75rem; transition: all 0.2s ease; text-decoration: none;
 }
 .mobileNavLink:hover { background-color: #dbeafe; color: #3b82f6; }
 .mobileDropdown { position: relative; margin-bottom: 0.5rem; }
 .mobileDropdownToggle {
   display: block; padding: 1rem; font-size: 1.125rem; font-weight: 700;
-  color: #1f2937; cursor: pointer; border-radius: 0.75rem; transition: all 0.2s ease;
+  color: var(--color-text); cursor: pointer; border-radius: 0.75rem; transition: all 0.2s ease;
   border-left: 4px solid #3b82f6;
 }
 .mobileDropdownToggle:hover { background-color: #dbeafe; color: #3b82f6; }
@@ -142,7 +142,7 @@
 .mobileDropdownLink:hover { background-color: #bfdbfe; color: #3b82f6; }
 .mobileCallButton {
   margin: 1.5rem; padding: 1rem 1.5rem; background: linear-gradient(to right, #fbbf24, #f59e0b);
-  color: #1f2937; font-weight: 700; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(251,191,36,0.4);
+  color: var(--color-text); font-weight: 700; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(251,191,36,0.4);
   transition: all 0.3s ease; font-size: 1.125rem; border: none; cursor: pointer; width: auto;
 }
 .mobileCallButton:hover { 

@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(visits);
   } catch (error) {
     console.error('❌ Ошибка получения посещений:', error);
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    return NextResponse.json([]);
   }
 }
 
@@ -68,6 +68,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, visit }, { status: 201 });
   } catch (error) {
     console.error('❌ Ошибка записи посещения:', error);
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    return NextResponse.json({ error: 'PostgreSQL недоступен. Запустите Docker: docker compose up -d' }, { status: 503 });
   }
 }

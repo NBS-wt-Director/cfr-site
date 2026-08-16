@@ -169,25 +169,37 @@ export const saveDb = (data: any): boolean => {
  * Асинхронное чтение.
  * В JSON-режиме читает db.json.
  * В PG-режиме делает РЕАЛЬНОЕ чтение из PostgreSQL.
+ * Если PostgreSQL недоступен — автоматический fallback на JSON (не падает).
  */
 export const getDbAsync = async (): Promise<any> => {
   const mode = getDbMode();
   if (mode === 'json') return getDbJson();
 
   // Реальное чтение из БД
-  return await loadPgData();
+  try {
+    return await loadPgData();
+  } catch (err) {
+    console.warn('⚠️ PG недоступен, fallback на JSON (getDbAsync):', err instanceof Error ? err.message : err);
+    return getDbJson();
+  }
 };
 
 /**
  * Асинхронное сохранение.
  * В JSON-режиме пишет в db.json.
  * В PG-режиме делает РЕАЛЬНУЮ запись в PostgreSQL.
+ * Если PostgreSQL недоступен — автоматический fallback на JSON (данные не теряются).
  */
 export const saveDbAsync = async (data: any): Promise<boolean> => {
   const mode = getDbMode();
   if (mode === 'json') return saveDbJson(data);
 
-  return saveDbPg(data);
+  const ok = await saveDbPg(data);
+  if (!ok) {
+    console.warn('⚠️ PG save недоступен, fallback на JSON (saveDbAsync)');
+    return saveDbJson(data);
+  }
+  return true;
 };
 
 // ============================================

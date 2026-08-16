@@ -149,7 +149,7 @@ export default function HomePage() {
   };
 
   // Функция получения настроек разделителя между секциями (использует globalDivider)
-  const getDividerConfig = (sectionId: string, nextSectionId: string) => {
+  const getDividerConfig = () => {
     if (!globalDivider.enabled) return null;
     return {
       height: globalDivider.height || 'xxl',
@@ -162,8 +162,7 @@ export default function HomePage() {
   // ✅ Компоненты секций
   const renderSection = (sectionId: string, index: number) => {
     const showSpacer = index > 0;
-    const nextSection = sectionsOrder[index + 1];
-    const dividerConfig = nextSection ? getDividerConfig(sectionId, nextSection.id) : null;
+    const dividerConfig = getDividerConfig();
     
     switch (sectionId) {
       case 'schedule':

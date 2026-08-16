@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDbAsync, saveDbAsync } from '@/lib/db';
+import { loadAllDual, saveAllDual } from '@/lib/dual-mode';
 
 export async function GET() {
   try {
-    const data = await getDbAsync();
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const data = await loadAllDual();
     return NextResponse.json(data);
   } catch (error) {
     console.error('API db error:', error);
@@ -14,7 +15,8 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-    const success = await saveDbAsync(data);
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const success = await saveAllDual(data);
     return NextResponse.json({ success });
   } catch (error) {
     return NextResponse.json({ success: false });

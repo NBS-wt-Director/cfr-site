@@ -127,7 +127,7 @@ interface DesignSettings {
     link: string;
     linkHover: string;
   };
-  typography: {
+typography: {
     headings: {
       fontFamily: string;
       fontSize: string;
@@ -137,6 +137,13 @@ interface DesignSettings {
       letterSpacing: string;
       textAlign: 'left' | 'center' | 'right';
     };
+    // Отдельные размеры для h1-h6 (десктоп)
+    h1: { fontSize: string; fontWeight: string; lineHeight: string };
+    h2: { fontSize: string; fontWeight: string; lineHeight: string };
+    h3: { fontSize: string; fontWeight: string; lineHeight: string };
+    h4: { fontSize: string; fontWeight: string; lineHeight: string };
+    h5: { fontSize: string; fontWeight: string; lineHeight: string };
+    h6: { fontSize: string; fontWeight: string; lineHeight: string };
     body: {
       fontFamily: string;
       fontSize: string;
@@ -146,15 +153,38 @@ interface DesignSettings {
       letterSpacing: string;
       textAlign: 'left' | 'center' | 'right';
     };
+    menu: {
+      fontSize: string;
+      fontWeight: string;
+      color: string;
+    };
+    button: {
+      fontSize: string;
+      fontWeight: string;
+    };
+    footer: {
+      fontSize: string;
+      fontWeight: string;
+      color: string;
+    };
     mobile: {
       headings: {
         fontSize: string;
         lineHeight: string;
       };
+      h1: { fontSize: string; lineHeight: string };
+      h2: { fontSize: string; lineHeight: string };
+      h3: { fontSize: string; lineHeight: string };
+      h4: { fontSize: string; lineHeight: string };
+      h5: { fontSize: string; lineHeight: string };
+      h6: { fontSize: string; lineHeight: string };
       body: {
         fontSize: string;
         lineHeight: string;
       };
+      menu: { fontSize: string; fontWeight: string };
+      button: { fontSize: string; fontWeight: string };
+      footer: { fontSize: string; fontWeight: string };
     };
   };
   containers: {
@@ -305,7 +335,7 @@ const defaultDesignSettings: DesignSettings = {
     link: '#4F46E5',
     linkHover: '#3730A3',
   },
-  typography: {
+typography: {
     headings: {
       fontFamily: 'inherit',
       fontSize: '2rem',
@@ -315,6 +345,12 @@ const defaultDesignSettings: DesignSettings = {
       letterSpacing: '0',
       textAlign: 'left',
     },
+    h1: { fontSize: '2.25rem', fontWeight: '800', lineHeight: '1.15' },
+    h2: { fontSize: '1.875rem', fontWeight: '700', lineHeight: '1.2' },
+    h3: { fontSize: '1.5rem', fontWeight: '700', lineHeight: '1.25' },
+    h4: { fontSize: '1.25rem', fontWeight: '600', lineHeight: '1.3' },
+    h5: { fontSize: '1.125rem', fontWeight: '600', lineHeight: '1.35' },
+    h6: { fontSize: '1rem', fontWeight: '600', lineHeight: '1.4' },
     body: {
       fontFamily: 'inherit',
       fontSize: '1rem',
@@ -324,9 +360,21 @@ const defaultDesignSettings: DesignSettings = {
       letterSpacing: '0',
       textAlign: 'left',
     },
+    menu: { fontSize: '1.125rem', fontWeight: '600', color: '#111827' },
+    button: { fontSize: '1rem', fontWeight: '600' },
+    footer: { fontSize: '0.875rem', fontWeight: '400', color: '#ffffff' },
     mobile: {
       headings: { fontSize: '1.5rem', lineHeight: '1.3' },
+      h1: { fontSize: '1.75rem', lineHeight: '1.2' },
+      h2: { fontSize: '1.5rem', lineHeight: '1.25' },
+      h3: { fontSize: '1.25rem', lineHeight: '1.3' },
+      h4: { fontSize: '1.125rem', lineHeight: '1.35' },
+      h5: { fontSize: '1rem', lineHeight: '1.4' },
+      h6: { fontSize: '0.9375rem', lineHeight: '1.4' },
       body: { fontSize: '0.875rem', lineHeight: '1.5' },
+      menu: { fontSize: '1.125rem', fontWeight: '600' },
+      button: { fontSize: '0.9375rem', fontWeight: '600' },
+      footer: { fontSize: '0.8125rem', fontWeight: '400' },
     },
   },
   containers: {
@@ -387,7 +435,7 @@ const defaultDesignSettings: DesignSettings = {
 
 export default function AdminDesign({ designSettings, onSave }: AdminDesignProps) {
   const [settings, setSettings] = useState<DesignSettings>(defaultDesignSettings);
-  const [activeSection, setActiveSection] = useState<'colors' | 'typography' | 'containers' | 'cards' | 'width'>('colors');
+  const [activeSection, setActiveSection] = useState<'colors' | 'typography' | 'containers' | 'cards' | 'width' | 'preview'>('colors');
   const [activeCardType, setActiveCardType] = useState<'programs' | 'trainers' | 'staff' | 'news' | 'slider' | 'prices' | 'schedule'>('programs');
   const [hasChanges, setHasChanges] = useState(false);
 
@@ -398,11 +446,34 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
         ...defaultDesignSettings,
         ...designSettings,
         colors: { ...defaultDesignSettings.colors, ...designSettings.colors },
-        typography: { 
+typography: { 
           ...defaultDesignSettings.typography, 
           headings: { ...defaultDesignSettings.typography.headings, ...designSettings.typography?.headings },
+          h1: { ...defaultDesignSettings.typography.h1, ...designSettings.typography?.h1 },
+          h2: { ...defaultDesignSettings.typography.h2, ...designSettings.typography?.h2 },
+          h3: { ...defaultDesignSettings.typography.h3, ...designSettings.typography?.h3 },
+          h4: { ...defaultDesignSettings.typography.h4, ...designSettings.typography?.h4 },
+          h5: { ...defaultDesignSettings.typography.h5, ...designSettings.typography?.h5 },
+          h6: { ...defaultDesignSettings.typography.h6, ...designSettings.typography?.h6 },
           body: { ...defaultDesignSettings.typography.body, ...designSettings.typography?.body },
-          mobile: { ...defaultDesignSettings.typography.mobile, ...designSettings.typography?.mobile }
+          menu: { ...defaultDesignSettings.typography.menu, ...designSettings.typography?.menu },
+          button: { ...defaultDesignSettings.typography.button, ...designSettings.typography?.button },
+          footer: { ...defaultDesignSettings.typography.footer, ...designSettings.typography?.footer },
+          mobile: { 
+            ...defaultDesignSettings.typography.mobile, 
+            ...designSettings.typography?.mobile,
+            headings: { ...defaultDesignSettings.typography.mobile.headings, ...designSettings.typography?.mobile?.headings },
+            h1: { ...defaultDesignSettings.typography.mobile.h1, ...designSettings.typography?.mobile?.h1 },
+            h2: { ...defaultDesignSettings.typography.mobile.h2, ...designSettings.typography?.mobile?.h2 },
+            h3: { ...defaultDesignSettings.typography.mobile.h3, ...designSettings.typography?.mobile?.h3 },
+            h4: { ...defaultDesignSettings.typography.mobile.h4, ...designSettings.typography?.mobile?.h4 },
+            h5: { ...defaultDesignSettings.typography.mobile.h5, ...designSettings.typography?.mobile?.h5 },
+            h6: { ...defaultDesignSettings.typography.mobile.h6, ...designSettings.typography?.mobile?.h6 },
+            body: { ...defaultDesignSettings.typography.mobile.body, ...designSettings.typography?.mobile?.body },
+            menu: { ...defaultDesignSettings.typography.mobile.menu, ...designSettings.typography?.mobile?.menu },
+            button: { ...defaultDesignSettings.typography.mobile.button, ...designSettings.typography?.mobile?.button },
+            footer: { ...defaultDesignSettings.typography.mobile.footer, ...designSettings.typography?.mobile?.footer }
+          }
         },
         containers: { 
           ...defaultDesignSettings.containers, 
@@ -968,6 +1039,7 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
         <button className={`${styles.sectionTab} ${activeSection === 'containers' ? styles.active : ''}`} onClick={() => setActiveSection('containers')}>📦 Контейнеры</button>
         <button className={`${styles.sectionTab} ${activeSection === 'cards' ? styles.active : ''}`} onClick={() => setActiveSection('cards')}>🃏 Карточки</button>
         <button className={`${styles.sectionTab} ${activeSection === 'width' ? styles.active : ''}`} onClick={() => setActiveSection('width')}>↔️ Ширина</button>
+        <button className={`${styles.sectionTab} ${activeSection === 'preview' ? styles.active : ''}`} onClick={() => setActiveSection('preview')}>👁️ Пример</button>
       </div>
 
       <div className={styles.content}>
@@ -997,9 +1069,10 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
           </div>
         )}
 
-        {activeSection === 'typography' && (
+{activeSection === 'typography' && (
           <div className={styles.section}>
-            <h4>Заголовки (h1-h6)</h4>
+            {/* Общие настройки заголовков */}
+            <h4>Заголовки (общие)</h4>
             <div className={styles.typographyGrid}>
               <Field label="Шрифт">
                 <select value={settings.typography.headings.fontFamily} onChange={(e) => updateSetting('typography.headings.fontFamily', e.target.value)} className={styles.select}>
@@ -1010,22 +1083,12 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
                   <option value="'Times New Roman', serif">Times New Roman</option>
                 </select>
               </Field>
-              <Field label="Размер"><input type="text" value={settings.typography.headings.fontSize} onChange={(e) => updateSetting('typography.headings.fontSize', e.target.value)} className={styles.input} /></Field>
-              <Field label="Насыщенность">
-                <select value={settings.typography.headings.fontWeight} onChange={(e) => updateSetting('typography.headings.fontWeight', e.target.value)} className={styles.select}>
-                  <option value="400">Regular</option>
-                  <option value="600">SemiBold</option>
-                  <option value="700">Bold</option>
-                  <option value="900">Black</option>
-                </select>
-              </Field>
               <Field label="Цвет">
                 <div className={styles.colorInputRow}>
                   <input type="color" value={settings.typography.headings.color} onChange={(e) => updateSetting('typography.headings.color', e.target.value)} className={styles.colorInputNative} />
                   <input type="text" value={settings.typography.headings.color} onChange={(e) => updateSetting('typography.headings.color', e.target.value)} className={styles.input} />
                 </div>
               </Field>
-              <Field label="Межстрочный"><input type="text" value={settings.typography.headings.lineHeight} onChange={(e) => updateSetting('typography.headings.lineHeight', e.target.value)} className={styles.input} /></Field>
               <Field label="Выравнивание">
                 <select value={settings.typography.headings.textAlign} onChange={(e) => updateSetting('typography.headings.textAlign', e.target.value)} className={styles.select}>
                   <option value="left">По левому</option>
@@ -1034,6 +1097,36 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
                 </select>
               </Field>
             </div>
+
+            {/* Индивидуальные размеры заголовков h1-h6 */}
+            <h4>Размеры заголовков H1–H6 (десктоп)</h4>
+            <div className={styles.typographyGrid}>
+              {(['h1','h2','h3','h4','h5','h6'] as const).map((tag) => (
+                <div key={tag} className={styles.typographyItem}>
+                  <div className={styles.typographyItemHeader} style={{ fontSize: settings.typography[tag].fontSize, fontWeight: settings.typography[tag].fontWeight, lineHeight: settings.typography[tag].lineHeight }}>
+                    {tag.toUpperCase()} — Образец текста
+                  </div>
+                  <Field label={`${tag.toUpperCase()} — Размер`}>
+                    <input type="text" value={settings.typography[tag].fontSize} onChange={(e) => updateSetting(`typography.${tag}.fontSize`, e.target.value)} className={styles.input} placeholder="напр. 2rem" />
+                  </Field>
+                  <Field label={`${tag.toUpperCase()} — Насыщенность`}>
+                    <select value={settings.typography[tag].fontWeight} onChange={(e) => updateSetting(`typography.${tag}.fontWeight`, e.target.value)} className={styles.select}>
+                      <option value="400">Regular</option>
+                      <option value="500">Medium</option>
+                      <option value="600">SemiBold</option>
+                      <option value="700">Bold</option>
+                      <option value="800">ExtraBold</option>
+                      <option value="900">Black</option>
+                    </select>
+                  </Field>
+                  <Field label={`${tag.toUpperCase()} — Межстрочный`}>
+                    <input type="text" value={settings.typography[tag].lineHeight} onChange={(e) => updateSetting(`typography.${tag}.lineHeight`, e.target.value)} className={styles.input} placeholder="напр. 1.2" />
+                  </Field>
+                </div>
+              ))}
+            </div>
+
+            {/* Основной текст */}
             <h4>Основной текст</h4>
             <div className={styles.typographyGrid}>
               <Field label="Шрифт">
@@ -1052,12 +1145,65 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
               </Field>
               <Field label="Межстрочный"><input type="text" value={settings.typography.body.lineHeight} onChange={(e) => updateSetting('typography.body.lineHeight', e.target.value)} className={styles.input} /></Field>
             </div>
+
+            {/* Меню, кнопки, футер */}
+            <h4>Меню / Кнопки / Футер</h4>
+            <div className={styles.typographyGrid}>
+              <Field label="Меню — Размер"><input type="text" value={settings.typography.menu.fontSize} onChange={(e) => updateSetting('typography.menu.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Меню — Насыщенность">
+                <select value={settings.typography.menu.fontWeight} onChange={(e) => updateSetting('typography.menu.fontWeight', e.target.value)} className={styles.select}>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="600">SemiBold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </Field>
+              <Field label="Меню — Цвет">
+                <div className={styles.colorInputRow}>
+                  <input type="color" value={settings.typography.menu.color} onChange={(e) => updateSetting('typography.menu.color', e.target.value)} className={styles.colorInputNative} />
+                  <input type="text" value={settings.typography.menu.color} onChange={(e) => updateSetting('typography.menu.color', e.target.value)} className={styles.input} />
+                </div>
+              </Field>
+              <Field label="Кнопки — Размер"><input type="text" value={settings.typography.button.fontSize} onChange={(e) => updateSetting('typography.button.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Кнопки — Насыщенность">
+                <select value={settings.typography.button.fontWeight} onChange={(e) => updateSetting('typography.button.fontWeight', e.target.value)} className={styles.select}>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="600">SemiBold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </Field>
+              <Field label="Футер — Размер"><input type="text" value={settings.typography.footer.fontSize} onChange={(e) => updateSetting('typography.footer.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Футер — Насыщенность">
+                <select value={settings.typography.footer.fontWeight} onChange={(e) => updateSetting('typography.footer.fontWeight', e.target.value)} className={styles.select}>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="600">SemiBold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </Field>
+              <Field label="Футер — Цвет">
+                <div className={styles.colorInputRow}>
+                  <input type="color" value={settings.typography.footer.color} onChange={(e) => updateSetting('typography.footer.color', e.target.value)} className={styles.colorInputNative} />
+                  <input type="text" value={settings.typography.footer.color} onChange={(e) => updateSetting('typography.footer.color', e.target.value)} className={styles.input} />
+                </div>
+              </Field>
+            </div>
+
+            {/* Мобильная версия */}
             <h4>📱 Мобильная версия</h4>
             <div className={styles.typographyGrid}>
-              <Field label="Заголовки - размер"><input type="text" value={settings.typography.mobile.headings.fontSize} onChange={(e) => updateSetting('typography.mobile.headings.fontSize', e.target.value)} className={styles.input} /></Field>
-              <Field label="Заголовки - межстрочный"><input type="text" value={settings.typography.mobile.headings.lineHeight} onChange={(e) => updateSetting('typography.mobile.headings.lineHeight', e.target.value)} className={styles.input} /></Field>
-              <Field label="Текст - размер"><input type="text" value={settings.typography.mobile.body.fontSize} onChange={(e) => updateSetting('typography.mobile.body.fontSize', e.target.value)} className={styles.input} /></Field>
-              <Field label="Текст - межстрочный"><input type="text" value={settings.typography.mobile.body.lineHeight} onChange={(e) => updateSetting('typography.mobile.body.lineHeight', e.target.value)} className={styles.input} /></Field>
+              {(['h1','h2','h3','h4','h5','h6'] as const).map((tag) => (
+                <div key={`m-${tag}`} className={styles.typographyItem}>
+                  <Field label={`${tag.toUpperCase()} — Размер`}><input type="text" value={settings.typography.mobile[tag].fontSize} onChange={(e) => updateSetting(`typography.mobile.${tag}.fontSize`, e.target.value)} className={styles.input} /></Field>
+                  <Field label={`${tag.toUpperCase()} — Межстрочный`}><input type="text" value={settings.typography.mobile[tag].lineHeight} onChange={(e) => updateSetting(`typography.mobile.${tag}.lineHeight`, e.target.value)} className={styles.input} /></Field>
+                </div>
+              ))}
+              <Field label="Текст — Размер"><input type="text" value={settings.typography.mobile.body.fontSize} onChange={(e) => updateSetting('typography.mobile.body.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Текст — Межстрочный"><input type="text" value={settings.typography.mobile.body.lineHeight} onChange={(e) => updateSetting('typography.mobile.body.lineHeight', e.target.value)} className={styles.input} /></Field>
+              <Field label="Меню — Размер"><input type="text" value={settings.typography.mobile.menu.fontSize} onChange={(e) => updateSetting('typography.mobile.menu.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Кнопки — Размер"><input type="text" value={settings.typography.mobile.button.fontSize} onChange={(e) => updateSetting('typography.mobile.button.fontSize', e.target.value)} className={styles.input} /></Field>
+              <Field label="Футер — Размер"><input type="text" value={settings.typography.mobile.footer.fontSize} onChange={(e) => updateSetting('typography.mobile.footer.fontSize', e.target.value)} className={styles.input} /></Field>
             </div>
           </div>
         )}
@@ -1140,6 +1286,261 @@ export default function AdminDesign({ designSettings, onSave }: AdminDesignProps
                 <button className={styles.presetBtn} onClick={() => setSettings({ ...settings, contentWidth: { mode: 'px', value: 1200 } })}>1200px</button>
                 <button className={styles.presetBtn} onClick={() => setSettings({ ...settings, contentWidth: { mode: 'px', value: 1400 } })}>1400px</button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {activeSection === 'preview' && (
+          <div className={styles.section}>
+            <h4>👁️ Превью сайта с текущими настройками</h4>
+            <div style={{ 
+              background: settings.colors?.background || '#FFFFFF', 
+              borderRadius: '0.75rem', 
+              overflow: 'hidden',
+              border: '1px solid var(--color-border)',
+              maxHeight: '70vh',
+              overflowY: 'auto'
+            }}>
+              {/* Хедер превью */}
+              <div style={{ 
+                background: settings.colors?.headerBg || '#FFFFFF', 
+                padding: '1rem 1.5rem', 
+                borderBottom: '1px solid var(--color-border)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem'
+              }}>
+                <div style={{ 
+                  width: '40px', height: '40px', 
+                  background: 'linear-gradient(135deg, #3b82f6, #2563eb)', 
+                  borderRadius: '8px' 
+                }} />
+                <div style={{ flex: 1, textAlign: 'center' }}>
+                  <div style={{ 
+                    fontSize: '1.25rem', fontWeight: 700, 
+                    color: settings.colors?.text || '#111827',
+                    fontFamily: settings.typography?.headings?.fontFamily || 'inherit'
+                  }}>
+                    Название сайта
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button style={{ 
+                    padding: '0.5rem 1rem', 
+                    background: settings.colors?.buttonPrimary || '#4F46E5', 
+                    color: 'white', 
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.875rem'
+                  }}>
+                    Позвонить
+                  </button>
+                  <button style={{ 
+                    padding: '0.5rem 1rem', 
+                    background: '#F59E0B', 
+                    color: 'white', 
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.875rem'
+                  }}>
+                    ЛК
+                  </button>
+                </div>
+              </div>
+              
+              {/* Навигация */}
+              <div style={{ 
+                display: 'flex', gap: '0.25rem', padding: '0.5rem 1.5rem',
+                background: settings.colors?.backgroundAlt || '#F9FAFB',
+                borderBottom: '1px solid var(--color-border)'
+              }}>
+                {['Главная', 'Программы', 'Тренеры', 'Расписание', 'Цены', 'Новости', 'Контакты'].map((item, i) => (
+                  <span key={i} style={{
+                    padding: '0.5rem 1rem',
+                    color: i === 0 ? (settings.colors?.primary || '#4F46E5') : (settings.colors?.text || '#111827'),
+                    fontWeight: i === 0 ? 700 : 500,
+                    fontSize: '0.875rem',
+                    borderRadius: '0.5rem',
+                    background: i === 0 ? `${settings.colors?.primary || '#4F46E5'}15` : 'transparent',
+                    cursor: 'pointer'
+                  }}>{item}</span>
+                ))}
+              </div>
+              
+              {/* Секция с программой */}
+              <div style={{ 
+                padding: '2rem 1.5rem',
+                background: settings.cards?.programs?.section?.backgroundGradient 
+                  ? `linear-gradient(135deg, #dbeafe, #bfdbfe)`
+                  : (settings.colors?.background || '#FFFFFF'),
+                minHeight: '400px'
+              }}>
+                <div style={{ 
+                  maxWidth: '1200px', 
+                  margin: '0 auto',
+                  fontFamily: settings.typography?.headings?.fontFamily || 'inherit'
+                }}>
+                  <h2 style={{ 
+                    fontSize: '1.75rem', 
+                    fontWeight: 700, 
+                    color: settings.colors?.text || '#111827',
+                    marginBottom: '1.5rem',
+                    textAlign: 'center',
+                    fontFamily: settings.typography?.headings?.fontFamily || 'inherit'
+                  }}>
+                    Программы тренировок
+                  </h2>
+                  
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(3, 1fr)', 
+                    gap: '1.5rem' 
+                  }}>
+                    {[1, 2, 3].map((card) => (
+                      <div key={card} style={{
+                        background: settings.colors?.cardBg || '#FFFFFF',
+                        borderRadius: settings.containers?.cardBorderRadius || '0',
+                        border: `2px solid ${settings.cards?.programs?.card?.borderColor || '#E5E7EB'}`,
+                        boxShadow: settings.containers?.cardShadow || '0 1px 3px rgba(0,0,0,0.1)',
+                        overflow: 'hidden',
+                        transition: 'all 0.3s'
+                      }}>
+                        {/* Изображение */}
+                        <div style={{
+                          height: '160px',
+                          background: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#9ca3af',
+                          fontSize: '0.875rem'
+                        }}>
+                          📷 Изображение
+                        </div>
+                        
+                        {/* Контент */}
+                        <div style={{ padding: '1rem' }}>
+                          <h3 style={{
+                            fontSize: '1rem',
+                            fontWeight: 700,
+                            color: settings.cards?.programs?.card?.titleColor || '#111827',
+                            marginBottom: '0.5rem',
+                            textAlign: 'center',
+                            fontFamily: settings.typography?.headings?.fontFamily || 'inherit'
+                          }}>
+                            Программа {card}
+                          </h3>
+                          <p style={{
+                            fontSize: '0.875rem',
+                            color: settings.cards?.programs?.card?.descColor || '#6B7280',
+                            lineHeight: 1.5,
+                            textAlign: settings.cards?.programs?.card?.descTextAlign || 'left'
+                          }}>
+                            Краткое описание программы тренировки с основными упражнениями и рекомендациями.
+                          </p>
+                          <button style={{
+                            width: '100%',
+                            padding: '0.5rem 1rem',
+                            marginTop: '0.75rem',
+                            background: settings.colors?.buttonPrimary || '#4F46E5',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '0.5rem',
+                            fontWeight: 600,
+                            fontSize: '0.875rem',
+                            cursor: 'pointer'
+                          }}>
+                            Подробнее
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Секция с тренерами */}
+              <div style={{ 
+                padding: '2rem 1.5rem',
+                background: settings.colors?.backgroundAlt || '#F9FAFB'
+              }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                  <h2 style={{ 
+                    fontSize: '1.75rem', 
+                    fontWeight: 700, 
+                    color: settings.colors?.text || '#111827',
+                    marginBottom: '1.5rem',
+                    textAlign: 'center'
+                  }}>
+                    Наши тренеры
+                  </h2>
+                  
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(3, 1fr)', 
+                    gap: '1.5rem' 
+                  }}>
+                    {[1, 2, 3].map((trainer) => (
+                      <div key={trainer} style={{
+                        background: settings.colors?.cardBg || '#FFFFFF',
+                        borderRadius: settings.containers?.cardBorderRadius || '0',
+                        border: `2px solid ${settings.cards?.trainers?.card?.borderColor || '#E5E7EB'}`,
+                        boxShadow: settings.containers?.cardShadow || '0 1px 3px rgba(0,0,0,0.1)',
+                        padding: '1.5rem',
+                        textAlign: 'center'
+                      }}>
+                        <div style={{
+                          width: '100px',
+                          height: '100px',
+                          borderRadius: '50%',
+                          background: 'linear-gradient(135deg, #fecaca, #fca5a5)',
+                          margin: '0 auto 1rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '2.5rem'
+                        }}>
+                          👤
+                        </div>
+                        <h3 style={{
+                          fontSize: '1.125rem',
+                          fontWeight: 700,
+                          color: settings.colors?.text || '#111827',
+                          marginBottom: '0.5rem'
+                        }}>
+                          Тренер {trainer}
+                        </h3>
+                        <p style={{
+                          fontSize: '0.875rem',
+                          color: settings.colors?.textMuted || '#6B7280'
+                        }}>
+                          Опыт 10+ лет
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Футер */}
+              <div style={{
+                padding: '2rem 1.5rem',
+                background: settings.colors?.footerBg || '#1F2937',
+                color: 'white',
+                textAlign: 'center'
+              }}>
+                <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  © 2025 CFR — Центр физической реабилитации
+                </p>
+              </div>
+            </div>
+            
+            <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0fdf4', borderRadius: '0.5rem', border: '1px solid #bbf7d0' }}>
+              <p style={{ margin: 0, fontSize: '0.875rem', color: '#166534' }}>
+                💡 <strong>Совет:</strong> Измените цвета, шрифты или настройки карточек, и вы сразу увидите результат в превью выше. Нажмите «Сохранить дизайн», чтобы применить настройки.
+              </p>
             </div>
           </div>
         )}

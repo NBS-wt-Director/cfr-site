@@ -111,7 +111,7 @@ export default function AdminProgramsPageContainer({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3>🎯 Настройки страницы Программы</h3>
+        <h3>🏠 Программы на главной</h3>
       </div>
 
       <div className={styles.tabs}>

@@ -212,7 +212,7 @@
 }
 
 .activeDot {
-  background: white;
+  background: var(--color-card-bg);
   transform: scale(1.3);
 }
 

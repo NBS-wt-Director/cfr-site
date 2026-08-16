@@ -1,38 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/postgres';
+import { getAllWorkouts } from '@/lib/db-new';
+import { getDataDual } from '@/lib/dual-mode';
+import { getDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const client = await pool.connect();
-    try {
-      const result = await client.query(`
-        SELECT e.id as entity_id, e.name as entity_name,
-               s.day_of_week, s.start_time, s.end_time,
-               s.hall_id, s.notes, s.branch_id,
-               sty.client_name as style_name
-        FROM cfr_schedule_entries s
-        JOIN cfr_entities e ON e.id = s.entity_id
-        LEFT JOIN cfr_styles sty ON sty.id = e.style_id
-        WHERE s.record_status != 'removed' AND e.entity_type = 'group'
-        ORDER BY s.day_of_week, s.start_time
-      `);
-
-      const dayNames = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-
-      return NextResponse.json(result.rows.map((s: any) => ({
-        id: `${s.entity_id}-${s.day_of_week}`,
-        day: dayNames[s.day_of_week] || String(s.day_of_week),
-        time: `${s.start_time?.toString?.() || ''} - ${s.end_time?.toString?.() || ''}`,
-        programId: s.entity_id,
-        programName: s.entity_name || '',
-        params: [],
-        styleName: s.style_name || '',
-        hall_id: s.hall_id,
-        branch_id: s.branch_id,
-      })));
-    } finally {
-      client.release();
-    }
+    // Двухрежимно: PG (если доступен) → JSON fallback из db.json (programs[].workouts)
+    const workouts = await getDataDual(
+      getAllWorkouts,
+      () => {
+        const dbData = getDb();
+        const list: any[] = [];
+        const dayNames = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        for (const p of dbData?.programs || []) {
+          for (const w of p.workouts || []) {
+            const dayIdx = dayNames.findIndex(d => d === w.day);
+            list.push({
+              id: `${p.id}-${dayIdx >= 0 ? dayIdx : w.day}`,
+              day: w.day,
+              time: w.time,
+              programId: p.id,
+              programName: p.name || '',
+              params: w.params || [],
+              styleName: p.type || '',
+              hall_id: null,
+              branch_id: null,
+            });
+          }
+        }
+        return list;
+      },
+    );
+    return NextResponse.json(workouts);
   } catch (error) {
     console.error('API workouts GET error:', error);
     return NextResponse.json([], { status: 500 });
@@ -42,7 +41,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const client = await pool.connect();
+    const client = await (await import('@/lib/postgres')).default.connect();
     try {
       // Создаём запись расписания
       const dayNames: Record<string, number> = {

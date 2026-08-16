@@ -34,7 +34,7 @@
     margin: 0;
     font-size: 1.125rem;
     font-weight: 700;
-    color: rgb(17, 24, 39);
+    color: var(--color-text);
   }
   
   .icon {

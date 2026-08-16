@@ -56,27 +56,30 @@ export default function AdminStats({ stats, onRefresh, onClear }: AdminStatsProp
   const totalPageViews = filtered.pages.reduce((sum, [_, entry]) => sum + entry.count, 0);
   const totalForms = filtered.forms.reduce((sum, [_, entry]) => sum + entry.count, 0);
 
-  // Экспорт отчёта в DOCX
+  // Экспорт отчёта (TXT) и отправка на email
   const exportReport = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/stats/export-docx', { method: 'POST' });
+      const response = await fetch('/api/admin/stats/export?action=export-txt', { method: 'POST' });
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `отчёт-статистика-${new Date().toISOString().split('T')[0]}.docx`;
+        a.download = `отчёт-статистика-${new Date().toISOString().split('T')[0]}.txt`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
+      } else {
+        // Альтернатива - отправить на email
+        await fetch('/api/admin/stats/export?action=send-email', { method: 'POST' });
       }
     } catch (e) {
       console.error('Ошибка экспорта:', e);
       // Альтернатива - отправить на email
-      alert('Экспорт в DOCX временно недоступен. Статистика отправлена на email.');
-      await fetch('/api/admin/stats/send-email', { method: 'POST' });
+      alert('Экспорт недоступен. Статистика отправлена на email.');
+      await fetch('/api/admin/stats/export?action=send-email', { method: 'POST' });
     }
     setLoading(false);
   };

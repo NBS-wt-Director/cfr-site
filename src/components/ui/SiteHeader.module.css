@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: white;
+  background: var(--color-header-bg);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -31,10 +31,10 @@
   top: calc(100% + 8px);
   left: 0;
   min-width: 200px;
-  background: white;
+  background: var(--color-header-bg);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   padding: 0.5rem;
   z-index: 1001;
 }
@@ -44,7 +44,7 @@
   width: 100%;
   text-align: left;
   padding: 0.75rem 1rem;
-  color: #374151;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
   border-radius: 8px;
@@ -55,8 +55,28 @@
 }
 
 .homeMenuItem:hover {
-  background: #dbeafe;
-  color: #3b82f6;
+  background: var(--color-background-alt);
+  color: var(--color-primary);
+}
+
+.homeMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.homeMenuItem:hover {
+  background: var(--color-background-alt);
+  color: var(--color-primary);
 }
 
 .logoLink {
@@ -89,7 +109,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   border: none;
   border-radius: 0;
@@ -107,7 +127,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1rem;
-  background: #F59E0B;
+  background: var(--color-accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -118,6 +138,12 @@
   text-decoration: none;
   white-space: nowrap;
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.lkButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  background: #D97706;
 }
 
 .lkButton:hover {
@@ -161,7 +187,7 @@
 .pageTitle {
   font-size: 27px !important;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
   white-space: nowrap;
@@ -174,7 +200,7 @@
   display: block;
   font-size: 22px !important;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--color-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -257,24 +283,34 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1rem;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.875rem;
-  color: #374151;
+  color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .menuToggle:hover {
-  background: #e5e7eb;
+  background: var(--color-border);
 }
 
 .menuToggle.menuOpen {
-  background: #1f2937;
+  background: var(--color-footer-bg);
   color: white;
-  border-color: #1f2937;
+  border-color: var(--color-footer-bg);
+}
+
+.menuToggle:hover {
+  background: var(--color-border);
+}
+
+.menuToggle.menuOpen {
+  background: var(--color-footer-bg);
+  color: white;
+  border-color: var(--color-footer-bg);
 }
 
 .chevron {
@@ -291,10 +327,10 @@
   top: calc(100% + 8px);
   right: 0;
   min-width: 220px;
-  background: white;
+  background: var(--color-header-bg);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   padding: 0.5rem;
   opacity: 0;
   visibility: hidden;
@@ -313,7 +349,7 @@
 .menuItem {
   display: block;
   padding: 0.75rem 1rem;
-  color: #374151;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
   border-radius: 8px;
@@ -321,13 +357,24 @@
 }
 
 .menuItem:hover {
-  background: #dbeafe;
-  color: #3b82f6;
+  background: var(--color-background-alt);
+  color: var(--color-primary);
 }
 
 .menuDivider {
   height: 1px;
-  background: #e5e7eb;
+  background: var(--color-border);
+  margin: 0.5rem 0;
+}
+
+.menuItem:hover {
+  background: var(--color-background-alt);
+  color: var(--color-primary);
+}
+
+.menuDivider {
+  height: 1px;
+  background: var(--color-border);
   margin: 0.5rem 0;
 }
 
@@ -342,7 +389,7 @@
   justify-content: space-between;
   width: 100%;
   padding: 0.75rem 1rem;
-  color: #374151;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
   background: none;
@@ -353,8 +400,13 @@
 }
 
 .menuItemButton:hover {
-  background: #dbeafe;
-  color: #3b82f6;
+  background: var(--color-background-alt);
+  color: var(--color-primary);
+}
+
+.menuItemButton:hover {
+  background: var(--color-background-alt);
+  color: var(--color-primary);
 }
 
 .submenuChevron {
@@ -375,7 +427,7 @@
   width: 100%;
   text-align: left;
   padding: 0.5rem 1rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.875rem;
   border-radius: 6px;
@@ -386,8 +438,8 @@
 }
 
 .submenuItem:hover {
-  background: #f3f4f6;
-  color: #3b82f6;
+  background: var(--color-background-alt);
+  color: var(--color-primary);
 }
 
 /* Мобильная кнопка */
@@ -405,7 +457,7 @@
   top: 64px;
   left: 0;
   right: 0;
-  background: white;
+  background: var(--color-header-bg);
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
@@ -429,7 +481,7 @@
 .mobileMenuItem {
   display: block;
   padding: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -438,15 +490,15 @@
 }
 
 .mobileMenuItem:hover {
-  background: #dbeafe;
-  color: #3b82f6;
+  background: var(--color-background-alt);
+  color: var(--color-primary);
 }
 
 .mobileSubTitle {
   padding: 1rem 1rem 0.5rem;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #9ca3af;
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -459,7 +511,38 @@
   width: 100%;
   margin-top: 0.5rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.mobileMenuItem:hover {
+  background: var(--color-background-alt);
+  color: var(--color-primary);
+}
+
+.mobileSubTitle {
+  padding: 1rem 1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mobileCallButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -476,7 +559,7 @@
   width: 100%;
   margin-top: 0.5rem;
   padding: 1rem;
-  background: #F59E0B;
+  background: var(--color-accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -485,6 +568,10 @@
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s;
+}
+
+.mobileLkButton:hover {
+  background: #D97706;
 }
 
 .mobileLkButton:hover {
@@ -516,12 +603,12 @@
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
-  background: #f3f4f6;
+  background: var(--color-background-alt);
   border: none;
   border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
   cursor: pointer;
 }
 
@@ -589,7 +676,7 @@
   .pageTitle {
     font-size: 22px !important;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--color-text);
     margin: 0;
     line-height: 1.2;
     white-space: normal; /* перенос текста */
@@ -619,7 +706,7 @@
 /* 1. Слайдер галереи */
 .gallerySection {
   padding: 2rem;
-  background: #f9fafb;
+  background: var(--color-background-alt);
 }
 
 .slider {
@@ -642,7 +729,7 @@
 .newsArticle {
   width: 75%; /* A4 3:4 */
   margin: 2rem auto;
-  background: white;
+  background: var(--color-card-bg);
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
@@ -675,8 +762,8 @@
 
 /* 4. Карточки программ и тренеров */
 .programCard, .trainerCard {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -688,7 +775,7 @@
 .programCard .btn, .trainerCard .btn {
   margin-top: auto;
   align-self: stretch;
-  background: #3b82f6;
+  background: var(--color-primary);
   color: white;
   border: none;
   border-radius: 0; /* исправлено скругление */
@@ -699,7 +786,7 @@
 }
 
 .programCard .btn:hover, .trainerCard .btn:hover {
-  background: #2563eb;
+  background: var(--color-secondary);
 }
 
 /* 5. Ограничение заголовков карточек до 2 строк в мобильном режиме */

@@ -86,9 +86,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Ошибка сервера',
+        pgUnavailable: true,
+        error: 'PostgreSQL недоступен. Запустите Docker: docker compose up -d',
       },
-      { status: 500 }
+      { status: 200 }
     );
   } finally {
     if (client) client.release();

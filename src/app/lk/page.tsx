@@ -664,6 +664,8 @@ export default function LkPage() {
   // ============ RENDER LK ============
   return (
     <div className={styles.lkContainer}>
+      <SiteHeader pageTitle="Личный кабинет" />
+      
       {/* Sidebar */}
       <aside className={styles.sidebar}>
         {/* User info */}

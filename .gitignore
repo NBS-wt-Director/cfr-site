@@ -28,11 +28,14 @@ backups/
 tsconfig.tsbuildinfo
 *.tsbuildinfo
 
-# Окружение
+# Окружение (реальные секреты — НЕ коммитим)
 .env
 .env.local
 .env.*.local
 .env.production
 .env.development
 .env.staging
-.env.production.*
+
+# Но шаблоны конфигов — коммитим
+!.env.production.example
+!.env.example

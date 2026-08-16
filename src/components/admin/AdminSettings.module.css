@@ -176,6 +176,22 @@
     transform: translateY(-1px);
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
   }
+
+  .testEmailBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .testEmailError {
+    margin-top: 0.75rem;
+    color: rgb(220, 38, 38);
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: rgba(239, 68, 68, 0.08);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
   
   .testEmailBtn:disabled {
     opacity: 0.6;
@@ -319,6 +335,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Размеры разделителя в превью */
+.xs { min-height: 24px; }
+.sm { min-height: 48px; }
+.md { min-height: 80px; }
+.lg { min-height: 128px; }
+.xl { min-height: 192px; }
+.xxl { min-height: 256px; }
+
+/* Фоны разделителя в превью */
+.default {
+  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+}
+
+.gradientBlue {
+  background: linear-gradient(to right, #eff6ff, #dbeafe, #bfdbfe, #eff6ff);
+}
+
+.gradientRed {
+  background: linear-gradient(to right, #fef2f2, #fee2e2, #fecaca, #fef2f2);
+}
+
+.gradientOrange {
+  background: linear-gradient(to right, #fff7ed, #ffedd5, #fed7aa, #fff7ed);
+}
+
+.gradientGray {
+  background: linear-gradient(to right, #f1f5f9, #e2e8f0, #cbd5e1, #f1f5f9);
+}
+
+.gradientGreen {
+  background: linear-gradient(to right, #f0fdf4, #dcfce7, #bbf7d0, #f0fdf4);
 }
 
 .previewContent {

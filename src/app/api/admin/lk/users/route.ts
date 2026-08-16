@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(users);
   } catch (error) {
     console.error('❌ Ошибка получения пользователей:', error);
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    return NextResponse.json([]);
   }
 }
 
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
   } catch (error) {
     console.error('❌ Ошибка создания пользователя:', error);
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    return NextResponse.json({ error: 'PostgreSQL недоступен. Запустите Docker: docker compose up -d' }, { status: 503 });
   }
 }
 
@@ -99,6 +99,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('❌ Ошибка удаления пользователя:', error);
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    return NextResponse.json({ error: 'PostgreSQL недоступен' }, { status: 503 });
   }
 }

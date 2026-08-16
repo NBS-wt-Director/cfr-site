@@ -8,9 +8,10 @@ module.exports = {
       exec_mode: 'fork',
       env: {
         NODE_ENV: 'production',
-        PORT: 3000
+        PORT: 3000,
       },
-      env_file: '.env.production',
+      // PM2 читает .env.production в корне проекта
+      dotenv_config_path: '.env.production',
       log_date_format: 'YYYY-MM-DD HH:mm Z',
       error_file: './logs/err.log',
       out_file: './logs/out.log',

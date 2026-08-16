@@ -162,7 +162,7 @@ export default function SiteHeader({
     { name: 'Программы', href: '/programs' },
     { name: 'Тренеры', href: '/trainers' },
     { name: 'Контакты', href: '/contacts' },
-    ...(headerSettings?.lkEnabled !== false ? [{ name: 'Личный кабинет', href: '/lk' }] : []),
+    { name: 'Личный кабинет', href: '/lk' },
   ];
 
   return (
@@ -212,7 +212,7 @@ export default function SiteHeader({
             <Phone size={20} />
           </button>
 
-          {headerSettings?.lkEnabled !== false && (
+          {(headerSettings?.lkEnabled ?? true) && (
             <Link 
               href="/lk" 
               className={styles.lkButton}
@@ -385,11 +385,14 @@ export default function SiteHeader({
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
-{headerSettings?.secondLineText && (
-            <div className={`${styles.secondLine} ${headerSettings?.secondLineAnimation && headerSettings.secondLineAnimation !== 'none' ? styles[headerSettings.secondLineAnimation] : ''}`}>
-              {headerSettings.secondLineText}
-            </div>
-          )}
+      
+      {/* Вторая строка заголовка (внутри header) */}
+      {headerSettings?.secondLineText && (
+        <div className={`${styles.secondLine} ${headerSettings?.secondLineAnimation && headerSettings.secondLineAnimation !== 'none' ? styles[headerSettings.secondLineAnimation] : ''}`}>
+          {headerSettings.secondLineText}
+        </div>
+      )}
+      
       {/* МОБИЛЬНОЕ МЕНЮ */}
       <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileOpen : ''}`} ref={mobileRef}>
         <div className={styles.mobileMenuContent}>

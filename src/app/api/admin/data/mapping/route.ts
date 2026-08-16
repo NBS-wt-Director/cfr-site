@@ -27,10 +27,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ mappings: result.rows });
   } catch (error) {
     console.error('❌ Ошибка получения маппингов:', error);
-    return NextResponse.json(
-      { error: 'Ошибка сервера' },
-      { status: 500 }
-    );
+    return NextResponse.json({ mappings: [] });
   }
 }
 
@@ -89,8 +86,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('❌ Ошибка сохранения маппинга:', error);
     return NextResponse.json(
-      { error: 'Ошибка сервера' },
-      { status: 500 }
+      { error: 'PostgreSQL недоступен. Запустите Docker: docker compose up -d' },
+      { status: 503 }
     );
   }
 }
@@ -120,8 +117,8 @@ export async function DELETE(request: NextRequest) {
   } catch (error) {
     console.error('❌ Ошибка удаления маппинга:', error);
     return NextResponse.json(
-      { error: 'Ошибка сервера' },
-      { status: 500 }
+      { error: 'PostgreSQL недоступен' },
+      { status: 503 }
     );
   }
 }

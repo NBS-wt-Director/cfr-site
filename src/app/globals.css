@@ -29,6 +29,27 @@
     --color-heading: #111827;
     --line-height-heading: 1.2;
     --letter-spacing-heading: 0;
+    --text-align-heading: left;
+
+    /* Индивидуальные размеры заголовков */
+    --font-size-h1: 2.25rem;
+    --font-weight-h1: 800;
+    --line-height-h1: 1.15;
+    --font-size-h2: 1.875rem;
+    --font-weight-h2: 700;
+    --line-height-h2: 1.2;
+    --font-size-h3: 1.5rem;
+    --font-weight-h3: 700;
+    --line-height-h3: 1.25;
+    --font-size-h4: 1.25rem;
+    --font-weight-h4: 600;
+    --line-height-h4: 1.3;
+    --font-size-h5: 1.125rem;
+    --font-weight-h5: 600;
+    --line-height-h5: 1.35;
+    --font-size-h6: 1rem;
+    --font-weight-h6: 600;
+    --line-height-h6: 1.4;
     
     --font-body: inherit;
     --font-size-body: 1rem;
@@ -36,11 +57,40 @@
     --color-body: #111827;
     --line-height-body: 1.6;
     --letter-spacing-body: 0;
+    --text-align-body: left;
+
+    /* Меню, кнопки, футер */
+    --font-size-menu: 1.125rem;
+    --font-weight-menu: 600;
+    --color-menu: #111827;
+    --font-size-button: 1rem;
+    --font-weight-button: 600;
+    --font-size-footer: 0.875rem;
+    --font-weight-footer: 400;
+    --color-footer-text: #ffffff;
     
     --font-size-heading-mobile: 1.5rem;
     --line-height-heading-mobile: 1.3;
-    --font-size-body-mobile: 0.875rem;
-    --line-height-body-mobile: 1.5;
+    --font-size-mobile-h1: 1.75rem;
+    --line-height-mobile-h1: 1.2;
+    --font-size-mobile-h2: 1.5rem;
+    --line-height-mobile-h2: 1.25;
+    --font-size-mobile-h3: 1.25rem;
+    --line-height-mobile-h3: 1.3;
+    --font-size-mobile-h4: 1.125rem;
+    --line-height-mobile-h4: 1.35;
+    --font-size-mobile-h5: 1rem;
+    --line-height-mobile-h5: 1.4;
+    --font-size-mobile-h6: 0.9375rem;
+    --line-height-mobile-h6: 1.4;
+    --font-size-mobile-body: 0.875rem;
+    --line-height-mobile-body: 1.5;
+    --font-size-mobile-menu: 1.125rem;
+    --font-weight-mobile-menu: 600;
+    --font-size-mobile-button: 0.9375rem;
+    --font-weight-mobile-button: 600;
+    --font-size-mobile-footer: 0.8125rem;
+    --font-weight-mobile-footer: 400;
     
     --container-max-width: 1200px;
     --container-padding: 1rem;
@@ -59,12 +109,11 @@
     --content-width: 90%;
   }
 
-  /* ✅ Один размер для всего текста */
-  h1, h2, h3, h4, h5, h6, 
+  /* ✅ Базовый размер текста (управляется Дизайном, см. SiteStyles) */
   p, div, span, li, td, th, label,
   button, input, select, textarea,
   a, [class*="btn"], [class*="button"] {
-    font-size: 16px !important;
+    font-size: var(--font-size-body, 16px);
   }
 }
 
@@ -82,7 +131,99 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  font-size: var(--font-size-body, 1rem);
+  font-weight: var(--font-weight-body, 400);
+  color: var(--color-body, #111827);
+  line-height: var(--line-height-body, 1.6);
+  letter-spacing: var(--letter-spacing-body, 0);
+  text-align: var(--text-align-body, left);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, inherit);
+  font-size: var(--font-size-heading, 2rem);
+  font-weight: var(--font-weight-heading, 700);
+  color: var(--color-heading, #111827);
+  line-height: var(--line-height-heading, 1.2);
+  letter-spacing: var(--letter-spacing-heading, 0);
+  text-align: var(--text-align-heading, left);
+}
+
+h1 { font-size: var(--font-size-h1, 2.25rem); font-weight: var(--font-weight-h1, 800); line-height: var(--line-height-h1, 1.15); }
+h2 { font-size: var(--font-size-h2, 1.875rem); font-weight: var(--font-weight-h2, 700); line-height: var(--line-height-h2, 1.2); }
+h3 { font-size: var(--font-size-h3, 1.5rem); font-weight: var(--font-weight-h3, 700); line-height: var(--line-height-h3, 1.25); }
+h4 { font-size: var(--font-size-h4, 1.25rem); font-weight: var(--font-weight-h4, 600); line-height: var(--line-height-h4, 1.3); }
+h5 { font-size: var(--font-size-h5, 1.125rem); font-weight: var(--font-weight-h5, 600); line-height: var(--line-height-h5, 1.35); }
+h6 { font-size: var(--font-size-h6, 1rem); font-weight: var(--font-weight-h6, 600); line-height: var(--line-height-h6, 1.4); }
+
+/* Меню */
+nav a, nav button, [class*="navLink"], [class*="menuItem"], [class*="dropdownToggle"] {
+  font-size: var(--font-size-menu, 1.125rem);
+  font-weight: var(--font-weight-menu, 600);
+  color: var(--color-menu, #111827);
+}
+
+/* Кнопки */
+button, [class*="btn"], [class*="button"] {
+  font-size: var(--font-size-button, 1rem);
+  font-weight: var(--font-weight-button, 600);
+}
+
+/* Футер */
+footer, [class*="footer"] {
+  font-size: var(--font-size-footer, 0.875rem);
+  font-weight: var(--font-weight-footer, 400);
+  color: var(--color-footer-text, #ffffff);
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  h1 { font-size: var(--font-size-mobile-h1, 1.75rem); line-height: var(--line-height-mobile-h1, 1.2); }
+  h2 { font-size: var(--font-size-mobile-h2, 1.5rem); line-height: var(--line-height-mobile-h2, 1.25); }
+  h3 { font-size: var(--font-size-mobile-h3, 1.25rem); line-height: var(--line-height-mobile-h3, 1.3); }
+  h4 { font-size: var(--font-size-mobile-h4, 1.125rem); line-height: var(--line-height-mobile-h4, 1.35); }
+  h5 { font-size: var(--font-size-mobile-h5, 1rem); line-height: var(--line-height-mobile-h5, 1.4); }
+  h6 { font-size: var(--font-size-mobile-h6, 0.9375rem); line-height: var(--line-height-mobile-h6, 1.4); }
+
+  body, p, div, span, li, td, th, label,
+  button, input, select, textarea, a {
+    font-size: var(--font-size-mobile-body, 0.875rem);
+    line-height: var(--line-height-mobile-body, 1.5);
+  }
+
+  nav a, nav button, [class*="navLink"], [class*="menuItem"], [class*="dropdownToggle"] {
+    font-size: var(--font-size-mobile-menu, 1.125rem);
+    font-weight: var(--font-weight-mobile-menu, 600);
+  }
+
+  button, [class*="btn"], [class*="button"] {
+    font-size: var(--font-size-mobile-button, 0.9375rem);
+    font-weight: var(--font-weight-mobile-button, 600);
+  }
+
+  footer, [class*="footer"] {
+    font-size: var(--font-size-mobile-footer, 0.8125rem);
+    font-weight: var(--font-weight-mobile-footer, 400);
+  }
+}
+
+/* Контейнер по умолчанию */
+.container, [class*="container"] {
+  max-width: var(--container-max-width, 1200px);
+  padding: var(--container-padding, 1rem);
+  gap: var(--container-gap, 1rem);
+}
+
+/* Карточки */
+[class*="card"] {
+  border-radius: var(--card-border-radius, 0.5rem);
+  box-shadow: var(--card-shadow, 0 1px 3px rgba(0,0,0,0.1));
+}
+
+/* Секции */
+section {
+  padding: var(--section-padding, 2rem);
 }
 
 #schedule, #prices, #programs, #trainers, #news, #contacts {

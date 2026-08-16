@@ -8,7 +8,7 @@
 
 /* ---------- LOGIN ---------- */
 .loginContainer {
-  min-height: calc(100vh - 200px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,8 @@
 /* ---------- LK LAYOUT ---------- */
 .lkContainer {
   display: flex;
-  min-height: calc(100vh - 200px);
+  flex-direction: column;
+  min-height: 100vh;
   background: var(--color-background);
 }
 
@@ -310,7 +311,7 @@
 .mainContent {
   flex: 1;
   min-width: 0;
-  padding: 0 2rem 2rem;
+  padding: 2rem 2rem 2rem;
 }
 
 .page {
@@ -374,9 +375,9 @@
   align-items: center;
   gap: 4px;
   padding: 6px 14px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--color-border);
   border-radius: 999px;
-  background: white;
+  background: var(--color-card-bg);
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
@@ -387,7 +388,7 @@
 .personBtn .personName {
   font-size: 12px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .personBtn.active {
@@ -650,7 +651,7 @@
   padding: 0.5rem 0.875rem;
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: white;
+  background: var(--color-card-bg);
   font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.2s;
@@ -705,7 +706,7 @@
   border-radius: 8px;
   font-size: 0.9375rem;
   font-family: inherit;
-  background: white;
+  background: var(--color-card-bg);
   min-width: 200px;
 }
 
@@ -767,7 +768,7 @@
 }
 
 .placeholder p {
-  color: #6B7280;
+  color: var(--color-text-muted);
   font-size: 15px;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -783,10 +784,10 @@
 
 .placeholderFeature {
   padding: 6px 14px;
-  background: #f3f4f6;
+  background: var(--color-background-alt);
   border-radius: 999px;
   font-size: 14px;
-  color: #6B7280;
+  color: var(--color-text-muted);
 }
 
 .placeholderHint {
@@ -828,7 +829,7 @@
   left: 50%;
   transform: translateX(-50%);
   border: 6px solid transparent;
-  border-top-color: #1f2937;
+  border-top-color: var(--color-text);
 }
 
 .tooltipTrigger:hover .tooltipText { display: block; }

@@ -90,7 +90,7 @@
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -156,14 +156,14 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
+  background: var(--color-card-bg);
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-border);
 }
 
 .mobileMenu.mobileOpen {
@@ -187,7 +187,7 @@
   padding: 0.75rem 1rem;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text);
   border-radius: 0.75rem;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -205,7 +205,7 @@
   padding: 0.75rem 1rem;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text);
   cursor: pointer;
   border-radius: 0.75rem;
   transition: all 0.2s ease;
@@ -251,7 +251,7 @@
   margin-top: 1.5rem;
   padding: 1rem 1.5rem;
   background: linear-gradient(to right, #fbbf24, #f59e0b);
-  color: #1f2937;
+  color: var(--color-text);
   font-weight: 700;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);

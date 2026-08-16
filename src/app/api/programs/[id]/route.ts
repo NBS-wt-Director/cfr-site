@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getDataDual } from '@/lib/dual-mode';
 import { getDb } from '@/lib/db';
 
 export async function GET(
@@ -7,26 +8,28 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    
-    // Пытаемся подключиться к PostgreSQL
-    let pgResult = null;
-    try {
-      const pool = await import('@/lib/postgres').then(m => m.default);
-      const client = await pool.connect();
-      try {
-        const result = await client.query(`
-          SELECT e.id, e.name, e.entity_type, e.colour, e.max_capacity,
-                 e.price_per_session, e.style_id, e.teacher_person_id,
-                 s.name as style_name, s.client_name as style_client_name,
-                 p.last_name, p.first_name
-          FROM cfr_entities e
-          LEFT JOIN cfr_styles s ON s.id = e.style_id
-          LEFT JOIN cfr_persons p ON p.id = e.teacher_person_id
-          WHERE e.id = $1 AND e.entity_type = 'group' AND e.record_status != 'removed'
-          LIMIT 1
-        `, [id]);
 
-        if (result.rows.length > 0) {
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const program = await getDataDual<any | null>(
+      // PG-запрос: детальный объект из cfr_entities + schedule + media
+      async () => {
+        const pool = (await import('@/lib/postgres')).default;
+        const client = await pool.connect();
+        try {
+          const result = await client.query(`
+            SELECT e.id, e.name, e.entity_type, e.colour, e.max_capacity,
+                   e.price_per_session, e.style_id, e.teacher_person_id,
+                   s.name as style_name, s.client_name as style_client_name,
+                   p.last_name, p.first_name
+            FROM cfr_entities e
+            LEFT JOIN cfr_styles s ON s.id = e.style_id
+            LEFT JOIN cfr_persons p ON p.id = e.teacher_person_id
+            WHERE e.id = $1 AND e.entity_type = 'group' AND e.record_status != 'removed'
+            LIMIT 1
+          `, [id]);
+
+          if (result.rows.length === 0) return null;
+
           const e = result.rows[0];
           const scheduleResult = await client.query(`
             SELECT day_of_week, start_time, end_time, hall_id, notes
@@ -55,7 +58,7 @@ export async function GET(
             [id]
           );
 
-          pgResult = {
+          return {
             id: e.id,
             name: e.name || 'Без названия',
             type: e.style_client_name || e.style_name || 'Группа',
@@ -73,25 +76,29 @@ export async function GET(
             max_capacity: e.max_capacity,
             price_per_session: e.price_per_session?.toString?.() || '0',
           };
+        } finally {
+          client.release();
         }
-      } finally {
-        client.release();
-      }
-    } catch (pgErr) {
-      // PG недоступен — переходим к JSON fallback
-      console.warn('⚠️ PG недоступен, используем JSON fallback:', pgErr instanceof Error ? pgErr.message : pgErr);
-    }
+      },
+      // JSON fallback: поиск в db.json
+      () => {
+        const programs = getDb()?.programs || [];
+        const p = programs.find((p: any) => String(p.id) === id);
+        if (!p) return null;
+        return {
+          id: p.id,
+          name: p.name || 'Без названия',
+          description: p.description || '',
+          image: p.image || '',
+          gallery: p.gallery || [],
+          photoAlbum: p.photoAlbum || [],
+          trainers: p.trainers || [],
+          workouts: p.workouts || [],
+        };
+      },
+    );
 
-    // Если PG вернул результат — отдаём его
-    if (pgResult) {
-      return NextResponse.json(pgResult);
-    }
-
-    // JSON fallback — читаем из db.json
-    const dbData = getDb();
-    const programs = dbData?.programs || [];
-    const program = programs.find((p: any) => String(p.id) === id);
-
+    // Если PG и JSON ничего не вернули — демо-объект
     if (!program) {
       return NextResponse.json({
         id,
@@ -105,16 +112,7 @@ export async function GET(
       });
     }
 
-    return NextResponse.json({
-      id: program.id,
-      name: program.name || 'Без названия',
-      description: program.description || '',
-      image: program.image || '',
-      gallery: program.gallery || [],
-      photoAlbum: program.photoAlbum || [],
-      trainers: program.trainers || [],
-      workouts: program.workouts || [],
-    });
+    return NextResponse.json(program);
   } catch (error) {
     console.error('API программа error:', error);
     return NextResponse.json({

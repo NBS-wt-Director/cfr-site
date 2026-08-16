@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { getTrainersDual } from '@/lib/dual-mode';
 
 export async function GET() {
   try {
-    // Fallback на JSON — PG может быть недоступен
-    const dbData = getDb();
-    const trainers = dbData?.trainers || [];
+    // Двухрежимно: PG (если доступен) → JSON fallback
+    const trainers = await getTrainersDual();
     return NextResponse.json(trainers);
   } catch (error) {
     console.error('Error reading trainers:', error);

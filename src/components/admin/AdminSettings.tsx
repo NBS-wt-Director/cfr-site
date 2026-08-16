@@ -50,8 +50,10 @@ export default function AdminSettings({
   const [faviconFile, setFaviconFile] = useState<File | null>(null);
   const [errorEmails, setErrorEmails] = useState<string[]>(initialEmailConfig.errorEmail || []);
   const [newErrorEmail, setNewErrorEmail] = useState('');
-  const [hasChanges, setHasChanges] = useState(false);
+const [hasChanges, setHasChanges] = useState(false);
   const [testEmailSent, setTestEmailSent] = useState(false);
+  const [testEmailLoading, setTestEmailLoading] = useState(false);
+  const [testEmailError, setTestEmailError] = useState('');
 
   useEffect(() => {
     setSiteSettings(initialSiteSettings);
@@ -110,12 +112,27 @@ export default function AdminSettings({
   };
 
   const sendTestEmail = async () => {
+    setTestEmailLoading(true);
+    setTestEmailError('');
+    setTestEmailSent(false);
     try {
-      // TODO: API вызов для теста SMTP
+      // Отправляем текущий конфиг из формы (можно тестировать до сохранения)
+      const res = await fetch('/api/admin/test-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emailConfig })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Неизвестная ошибка');
+      }
       setTestEmailSent(true);
-      setTimeout(() => setTestEmailSent(false), 3000);
-    } catch (error) {
+      setTimeout(() => setTestEmailSent(false), 5000);
+    } catch (error: any) {
       console.error('Test email failed:', error);
+      setTestEmailError(error.message || 'Ошибка отправки');
+    } finally {
+      setTestEmailLoading(false);
     }
   };
 
@@ -298,15 +315,24 @@ export default function AdminSettings({
               </div>
             </div>
 
-            {/* ✅ ТЕСТ EMAIL */}
+{/* ✅ ТЕСТ EMAIL */}
             <div className={styles.testSection}>
               <button 
                 className={styles.testEmailBtn}
                 onClick={sendTestEmail}
-                disabled={!emailConfig.smtpUser || !emailConfig.smtpPass}
+                disabled={!emailConfig.smtpUser || !emailConfig.smtpPass || testEmailLoading}
               >
-                {testEmailSent ? '✅ Тест отправлен!' : '📧 Тестовое письмо'}
+                {testEmailLoading
+                  ? '⏳ Отправка...'
+                  : testEmailSent
+                    ? '✅ Тест отправлен!'
+                    : '📧 Тестовое письмо'}
               </button>
+              {testEmailError && (
+                <p className={styles.testEmailError}>
+                  ❌ {testEmailError}
+                </p>
+              )}
             </div>
           </div>
         </div>
