@@ -34,7 +34,7 @@ export async function GET() {
     const todayResult = await client.query(`
       SELECT 
         COUNT(*) as today_total,
-        COUNT(*) FILTER (WHERE status = 'processed') as today_processed,
+        COUNT(*) FILTER (WHERE status = 'completed') as today_processed,
         COUNT(*) FILTER (WHERE status = 'error') as today_error,
         COALESCE(SUM(records_count), 0) as today_records
       FROM bridge_queue

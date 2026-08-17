@@ -105,7 +105,7 @@ $config = @{
     queue_folder       = $QueueFolder
     data_folder        = "C:\DanceStudio\Data"
     interval_seconds   = 60
-    api_endpoint       = "http://localhost:3000/api/bridge/receive"
+    api_url            = "https://xn----itbymbjqk.xn--p1ai/api/bridge/receive"
 }
 
 $config | ConvertTo-Json -Depth 3 | Set-Content $ConfigFile -Encoding UTF8

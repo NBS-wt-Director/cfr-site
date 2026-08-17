@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     const statsResult = await client.query(`
       SELECT
         COUNT(*) as total_7d,
-        COUNT(*) FILTER (WHERE status = 'processed') as processed_7d,
+        COUNT(*) FILTER (WHERE status = 'completed') as processed_7d,
         COUNT(*) FILTER (WHERE status = 'error') as errors_7d,
         COALESCE(SUM(records_count), 0) as records_7d,
         MAX(processed_at) as last_success
@@ -113,11 +113,11 @@ export async function POST(request: NextRequest) {
       await client.query('BEGIN');
 
       if (action === 'sync') {
-        // Запускаем обработку всех pending-пакетов
+        // Запускаем обработку всех received-пакетов
         const pendingResult = await client.query(`
           SELECT id, file_name, entity, content
           FROM bridge_queue
-          WHERE status = 'pending'
+          WHERE status = 'received'
           ORDER BY created_at ASC
         `);
 
@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
         // Сброс очереди — удаление всех пакетов
         const deleteResult = await client.query(`
           DELETE FROM bridge_queue
-          WHERE status IN ('pending', 'processing', 'error')
+          WHERE status IN ('received', 'processing', 'error')
         `);
 
         await client.query('COMMIT');
@@ -218,7 +218,7 @@ async function processBridgePacket(
 
     await client.query(
       'UPDATE bridge_queue SET status = $1, processed_at = NOW(), records_count = $2 WHERE id = $3',
-      ['processed', inserted, packetId]
+      ['completed', inserted, packetId]
     );
 
     return inserted > 0;

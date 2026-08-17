@@ -424,7 +424,7 @@ function Main {
     $queueFolder   = $config.queue_folder
     $dataFolder    = $config.data_folder
     $intervalSec   = $config.interval_seconds
-    $apiEndpoint   = $config.api_endpoint
+    $apiEndpoint   = $config.api_url
     
     Write-Log "INFO" "Папка данных: $dataFolder"
     Write-Log "INFO" "Папка очереди: $queueFolder"

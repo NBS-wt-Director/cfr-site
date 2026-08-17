@@ -130,15 +130,15 @@ export default function AdminSync() {
   // Форматирование статуса пакета
   const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      pending: '#f59e0b',
+      received: '#f59e0b',
       processing: '#3b82f6',
-      processed: '#10b981',
+      completed: '#10b981',
       error: '#ef4444',
     };
     const labels: Record<string, string> = {
-      pending: '⏳ Ожидание',
+      received: '⏳ Ожидание',
       processing: '🔄 Обработка',
-      processed: '✅ Готово',
+      completed: '✅ Готово',
       error: '❌ Ошибка',
     };
     return (
@@ -180,7 +180,7 @@ export default function AdminSync() {
         
         {status && status.total > 0 && (
           <p className={styles.pendingNote}>
-            В очереди: {status.byStatus.pending || 0} пакетов
+            В очереди: {status.byStatus.received || 0} пакетов
           </p>
         )}
       </div>

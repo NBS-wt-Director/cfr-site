@@ -1,6 +1,13 @@
 {
+  "api_url": "https://xn----itbymbjqk.xn--p1ai/api/bridge/receive",
   "queue_folder": "C:\\dance_studio_sync\\queue",
   "data_folder": "C:\\DanceStudio\\Data",
+  "log_folder": "C:\\Users\\user\\DanceStudioSync\\logs",
   "interval_seconds": 60,
-  "api_endpoint": "http://localhost:3000/api/bridge/receive"
+  "exclude_dirs": [
+    "Files",
+    "LastSave",
+    "Options"
+  ],
+  "timeout_seconds": 30
 }

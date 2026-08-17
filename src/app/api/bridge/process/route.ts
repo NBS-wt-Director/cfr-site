@@ -1,8 +1,8 @@
 /**
  * API: Ручная обработка очереди моста данных
- * POST /api/bridge/process — запуск обработки всех pending-пакетов
+ * POST /api/bridge/process — запуск обработки всех received-пакетов
  *
- * Ручной запуск process_bridge_queue() для обработки всех пакетов со статусом 'pending'.
+ * Ручной запуск process_bridge_queue() для обработки всех пакетов со статусом 'received'.
  * Полезно для отладки и восстановления после сбоев.
  *
  * Тело запроса (опционально):
@@ -26,11 +26,11 @@ export async function POST(request: NextRequest) {
     try {
       await client.query('BEGIN');
 
-      // Получаем pending-пакеты
+      // Получаем received-пакеты
       const pendingResult = await client.query(
         `SELECT id, file_name, entity, content
          FROM bridge_queue
-         WHERE status = 'pending'
+         WHERE status = 'received'
          ORDER BY created_at ASC
          LIMIT $1`,
         [limit]
@@ -109,7 +109,7 @@ async function processBridgePacket(
     // Обновляем статус
     await client.query(
       'UPDATE bridge_queue SET status = $1, processed_at = NOW(), records_count = $2 WHERE id = $3',
-      ['processed', inserted, packetId]
+      ['completed', inserted, packetId]
     );
 
     return inserted > 0;
