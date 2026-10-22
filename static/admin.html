@@ -370,13 +370,10 @@
        ============================================ */
     let token = null;
 
-    // API живёт на admin-server (:3456). Страницу могут открыть с любого порта
-    // (python http.server, NGINX) — тогда все запросы идут на 3456 (S38).
-    const API_BASE = (() => {
-      if (location.port === '3456') return '';
-      const host = location.hostname || 'localhost';
-      return location.protocol + '//' + host + ':3456';
-    })();
+    // API живёт на admin-server (:3456). Все запросы идут через NGINX
+    // (proxy /api/admin/* → 3456), поэтому относительный путь.
+    // Для локальной разработки: admin-server раздаёт и статику, и API — '' тоже работает.
+    const API_BASE = '';
 
     function getToken() {
       if (token) return token;

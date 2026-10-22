@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🚀 DEPLOY cfr-site START"
+echo "🚀 DEPLOY cfr-site (static) START"
 
 # Determine project root (directory containing this script's parent)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -10,16 +10,13 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Pull latest code
 git pull origin main
 
-# Install dependencies
+# Install dependencies (only static: mammoth, nodemailer, jsdom)
 npm ci --production=false
 
-# Build Next.js
-npm run build
-
-# Build static site
+# Перегенерировать JS-модули из db.json
 npm run static:export
 
-# PM2 restart
+# PM2 restart (admin-server на :3456)
 pm2 restart cfrsite --update-env
 
 # Nginx config (static as default entry point)
@@ -28,13 +25,10 @@ sudo cp ssl-nginx.conf /etc/nginx/sites-available/ssl
 sudo nginx -t && sudo systemctl reload nginx
 
 # ── Night scripts cron (S60) ────────────────────────────────────────────────
-# Устанавливаем/обновляем cron-запись ночных скриптов (идемпотентно по метке)
 CRON_TAG="# CFR-NIGHT"
 CRON_SCHEDULE="0 3 * * *"
 CRON_CMD="cd ${PROJECT_DIR} && node scripts/parse-docs.mjs >> static/data/.parse-docs.log 2>&1 && node scripts/check-covers.mjs >> static/data/.check-covers.log 2>&1"
 CRON_LINE="${CRON_SCHEDULE} ${CRON_CMD}  ${CRON_TAG}"
-
-# Удаляем старую запись с меткой, добавляем новую
 (crontab -l 2>/dev/null | grep -v "$CRON_TAG"; echo "$CRON_LINE") | crontab -
 echo "✅ Cron (night scripts) updated: $CRON_SCHEDULE"
 # ─────────────────────────────────────────────────────────────────────────────
@@ -43,7 +37,7 @@ echo "✅ Cron (night scripts) updated: $CRON_SCHEDULE"
 pm2 logs cfrsite --lines 20
 
 echo "✅ DEPLOY COMPLETE!"
-echo "🌐 Static site (default): https://центр-фр.рф"
+echo "🌐 Static site: https://центр-фр.рф"
 echo "📊 PM2: pm2 monit"
 echo "🔍 Logs: pm2 logs cfrsite"
 echo "🌙 Night cron: $(crontab -l | grep CFR-NIGHT)"

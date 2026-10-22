@@ -39,3 +39,9 @@ tsconfig.tsbuildinfo
 # Но шаблоны конфигов — коммитим
 !.env.production.example
 !.env.example
+
+# Данные с Яндекс.Диска (гигабайты, не коммитим)
+static/data/
+
+# Старая версия Next.js — на антресолях (не включать в деплой)
+trash/

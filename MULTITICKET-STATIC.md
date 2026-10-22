@@ -1543,3 +1543,117 @@ for f in static/js/*.js; do node --check "$f"; done
 |------|-------|---------|------|
 | 2026-10-22 | S49–S53 | Сессия 15 | Добавлены новые тикеты S49–S53 в MULTITICKET-STATIC.md. |
 | 2026-10-22 | S64 | Сессия 17 | **Подготовка к деплою:** откат режима расписания по умолчанию на главной — картинки (S36 revert); обнулены тестовые новости (4 удалены); пароль админки зафолбечен (`ADMIN_PASSWORD || 'ЦФР_2026.10.21'`); URL-баг `new URL('//')` — уже исправлен (try/catch); `snapedit` watermark — не наш (в EXIF исходников с Яндекс.Диска). Тесты: 23/23 + 47/48. Статика перегенерирована. |
+
+---
+
+## 🆕 НОВЫЕ ЗАДАЧИ (сессия 18): Архитектура — только статика
+
+### S65 — Старый Next.js на антресолях
+
+**Цель:** перенести весь код старой версии (Next.js) в `trash/`, который игнорируется git. Рабочая версия — только `static/` (чистый HTML + JS).
+
+**Что перемещено в `trash/`:**
+- `src/` — Next.js приложение (2.1 МБ)
+- `public/` — Next.js статика (70 МБ)
+- `migrations/` — миграции БД
+- `docker/`, `docker-compose.yml`
+- `next.config.js`, `tsconfig.json`, `tailwind.config.ts`, `postcss.config.mjs`, `next-env.d.ts`
+- `excel/`, `lk-design/`, `reports/`, `stats/`, `tickets/`, `данные/`, `data/`
+- `deploy.mjs`, `deploy.json`, `add-path-comments.js`, `todo.json`
+- Старые скрипты: `analyze.js`, `migrate-*.mjs`, `bridge_*`, `init-db.mjs` и т.д.
+
+**Что осталось в корне:**
+- `static/` — статический сайт (HTML, CSS, JS, uploads)
+- `scripts/` — admin-server.mjs, export-static.mjs, parse-docs.mjs, match-photos.mjs, build-album.mjs, check-covers.mjs, night-sync.mjs, required-photos.mjs, test-menu.mjs, test-static.mjs, yandex-download.py, download-covers.py
+- `db.json` — источник данных (не коммитится, .gitignore)
+- `deploy/` — nginx.conf, ssl-nginx.conf, ecosystem.config.js (admin-server), deploy.sh
+- `package.json` — npm scripts: static:export, admin, parse-docs, match-photos, build-album, night-sync, required-photos, check-covers, test-menu, test-static
+- Документация: все `.md` файлы, `documentation/`
+
+**Зависимости в package.json:** mammoth, nodemailer, fast-xml-parser, jsdom (dev)
+
+**Что не работает (в планах):**
+- CRM — только заглушка на `crm.html`, функционал в разработке
+- Личный кабинет — только заглушка на `lk.html`, функционал в разработке
+- Next.js — на антресолях, доступен для референса кода и дизайна
+
+**Критерий готовности:** `trash/` в `.gitignore`, root содержит только static/, scripts/, deploy/, package.json, docs. Тесты `test-menu` 23/23, `test-static` 47/48.
+
+---
+
+### S66 — Новая архитектура сервера
+
+**Цель:** сервер работает строго на статике + admin-server, без Next.js.
+
+**Архитектура:**
+```
+NGINX (:80/443) → static/ (root)
+  ├── index.html, programs.html, trainers.html, news.html, album.html, crm.html, lk.html
+  ├── css/style.css, js/*.js, js/data/*.js (сгенерировано из db.json)
+  ├── /uploads/* → static/uploads/
+  ├── /data/* → static/data/ (расписание, цены jpg)
+  ├── /api/admin/* → proxy 127.0.0.1:3456 (admin-server)
+  └── /404.html, /500.html
+
+PM2 (cfrsite) → scripts/admin-server.mjs (:3456)
+  ├── GET / → раздача static/ (локальная разработка)
+  ├── POST /api/admin/* → API (login, get-news, save-news, upload, delete)
+  └── Статика на :3456 только для локальной разработки
+```
+
+**NGINX конфиги обновлены:**
+- `deploy/nginx.conf` и `deploy/ssl-nginx.conf` — root → static/, /api/admin/ → 3456
+- Убраны: /api/ → 3000, /admin → 3000 (Next.js)
+- Добавлен: /data/ → static/data/
+
+**PM2 конфиг обновлён:**
+- `deploy/ecosystem.config.js` → admin-server.mjs (:3456), а не Next.js (:3000)
+- Переменные: ADMIN_PORT=3456, ADMIN_PASSWORD=ЦФР_2026.10.21
+
+**deploy.sh обновлён:**
+- Убран `npm run build` (Next.js больше не нужен)
+- Остался `npm run static:export` (перегенерация JS-модулей из db.json)
+
+**Критерий готовности:** nginx -t проходит, deploy.sh собирается, статика открывается, админка работает через /api/admin/ прокси.
+
+---
+
+### S67 — Синхронизация static/uploads/ на сервер
+
+**Цель:** перенести загруженные файлы (обложки, альбом, медиа новостей) на продакшн-сервер.
+
+**Что нужно скопировать:**
+- `static/uploads/` — 103 МБ (covers, album, news media)
+- `static/data/1.jpg`, `static/data/2.jpg`, `static/data/price-2026-10.jpg` — сжатые версии расписания/цен (внутри static/, уже в репозитории)
+
+**Важно:** `static/data/` (1.3 ГБ исходники) НЕ нужно — не коммитится, не деплоится.
+
+**Метод:** rsync — инкрементальный, с защитой от повторной загрузки больших файлов.
+
+**Критерий готовности:** все файлы обложек и альбома доступны по URL, расписание/цента загружены.
+
+---
+
+### S68 — Переключение сервера на новую версию
+
+**Цель:** остановить Next.js, запустить admin-server, обновить NGINX.
+
+**Шаги:**
+1. `pm2 stop cfrsite` (остановить Next.js)
+2. `pm2 start ecosystem.config.js --update-env` (запустить admin-server)
+3. `sudo cp deploy/nginx.conf /etc/nginx/sites-available/default`
+4. `sudo cp deploy/ssl-nginx.conf /etc/nginx/sites-available/ssl`
+5. `sudo nginx -t && sudo systemctl reload nginx`
+6. Проверка: `curl -s http://localhost:80` → 200, `curl -s -X POST http://localhost:80/api/admin/login ...` → 200
+
+**Критерий готовности:** сайт открывается на :80/443, админка работает, Next.js не запущен.
+
+---
+
+## 📝 ЖУРНАЛ (сессия 15)
+
+| Дата | Тикет | Кто/что | Итог |
+|------|-------|---------|------|
+| 2026-10-22 | S49–S53 | Сессия 15 | Добавлены новые тикеты S49–S53 в MULTITICKET-STATIC.md. |
+| 2026-10-22 | S64 | Сессия 17 | **Подготовка к деплою:** откат режима расписания по умолчанию на главной — картинки (S36 revert); обнулены тестовые новости (4 удалены); пароль админки зафолбечен (`ADMIN_PASSWORD || 'ЦФР_2026.10.21'`); URL-баг `new URL('//')` — уже исправлен (try/catch); `snapedit` watermark — не наш (в EXIF исходников с Яндекс.Диска). Тесты: 23/23 + 47/48. Статика перегенерирована. |
+| 2026-10-22 | S65–S68 | Сессия 18 | **Ревизия архитектуры:** старый Next.js перенесён в `trash/` (не коммитится). Root: только static/, scripts/, deploy/, package.json, docs. package.json: только npm-скрипты статики (mammoth, nodemailer, jsdom). nginx.conf: /api/admin/ → 3456, убраны Next.js прокси. ecosystem.config.js: admin-server (:3456). deploy.sh: убран build Next.js. admin.html: API_BASE='' (относительный путь, NGINX прокси). static/uploads/: 103 МБ готовы к rsync. Тесты: 23/23 + 47/48. admin-server: 200 на /, /admin.html, login 200, get-news 200, // → 400 (баг исправлен). |

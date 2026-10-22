@@ -1,14 +1,14 @@
 module.exports = {
     apps: [{
       name: 'cfrsite',
-      script: './node_modules/next/dist/bin/next',
-      args: 'start -p 3000',
+      script: './scripts/admin-server.mjs',
       cwd: '/home/cfr_balloo/sites/cfrsite',
       instances: 1,
       exec_mode: 'fork',
       env: {
         NODE_ENV: 'production',
-        PORT: 3000,
+        ADMIN_PORT: 3456,
+        ADMIN_PASSWORD: 'ЦФР_2026.10.21',
       },
       // PM2 читает .env.production в корне проекта
       dotenv_config_path: '.env.production',
