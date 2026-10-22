@@ -3,8 +3,8 @@
 out/
 dist/
 
-# Runtime uploads
-uploads/
+# Runtime uploads (старая Next.js-версия в trash/)
+/uploads/
 
 # Node
 node_modules/
@@ -17,7 +17,7 @@ node_modules/
 documentation/deploy.md
 
 # Данные БД (JSON-файлы)
-db.json
+# db.json — источник данных статического сайта, коммитится (176 КБ)
 _db.json
 data/*.json
 backups/
@@ -40,8 +40,12 @@ tsconfig.tsbuildinfo
 !.env.production.example
 !.env.example
 
-# Данные с Яндекс.Диска (гигабайты, не коммитим)
-static/data/
+# Данные с Яндекс.Диска (гигабайты, не коммитим) — содержимое
+static/data/*
+# ИСКЛЮЧЕНИЕ: сжатые листы расписания и цен (показываются на сайте)
+!static/data/1.jpg
+!static/data/2.jpg
+!static/data/price-2026-10.jpg
 
 # Старая версия Next.js — на антресолях (не включать в деплой)
 trash/
