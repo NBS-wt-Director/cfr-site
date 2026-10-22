@@ -19,9 +19,9 @@ npm run static:export
 # PM2 restart (admin-server на :3456)
 pm2 restart cfrsite --update-env
 
-# Nginx config (static as default entry point)
-sudo cp nginx.conf /etc/nginx/sites-available/default
-sudo cp ssl-nginx.conf /etc/nginx/sites-available/ssl
+# Nginx config (static site as entry point; certs managed by Certbot)
+sudo cp /etc/nginx/sites-enabled/центр-фр.рф /etc/nginx/sites-enabled/центр-фр.рф.bak.$(date +%s) 2>/dev/null || true
+sudo cp "${SCRIPT_DIR}/nginx-site.conf" /etc/nginx/sites-enabled/центр-фр.рф
 sudo nginx -t && sudo systemctl reload nginx
 
 # ── Night scripts cron (S60) ────────────────────────────────────────────────

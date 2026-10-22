@@ -982,6 +982,8 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log(`\n🚀 Админка запущена: http://127.0.0.1:${PORT}/admin.html`);
   console.log(`   Пароль: ${ADMIN_PASSWORD}`);
   console.log(`   Только localhost — не для продакшна!\n`);
+  // Сигнал готовности для PM2 (ecosystem: wait_ready: true)
+  if (typeof process.send === 'function') process.send('ready');
 });
 
 // Graceful shutdown

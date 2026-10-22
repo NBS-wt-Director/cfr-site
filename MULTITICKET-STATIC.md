@@ -237,19 +237,66 @@
 
 ### 🔁 ХОД РЕДДЕПЛОЯ (сессия 18, продолжается)
 
-1. ✅ Сервер поднял СТАРУЮ версию для клиентов: `pm2 start cfrsite` (Next.js :3000), домен `https://центр-фр.рф` → **200**
-2. ✅ `git pull` до `b9b0db8` выполнен
-3. ⏳ **ШАГ 3 (идёт сейчас):** `git pull` до `341b228` (приедут db.json + uploads + листы) → проверка `static/uploads/covers`
-4. ⬜ `npm ci` (минимальные зависимости)
-5. ⬜ `pm2 stop cfrsite` → `pm2 delete cfrsite` → `pm2 start deploy/ecosystem.config.js --update-env` (admin-server :3456)
-6. ⬜ NGINX: скопировать `deploy/nginx.conf` и `ssl-nginx.conf` в sites-enabled, `nginx -t`, `systemctl reload nginx`
-7. ⬜ Проверка: домен → статика, `/data/1.jpg` → 200, `/uploads/covers/*.jpg` → 200, `/api/admin/login` через 443 → 200
-8. ⬜ `pm2 save` + `pm2 startup` (автозапуск)
-9. ⬜ Cron ночных скриптов (`deploy/deploy.sh` шаг CFR-NIGHT)
-10. ⬜ Удалить на сервере `trash/`-артефакты старого кода (`.next`, `node_modules` пересоздадутся) — НЕ ТРОГАТЬ старую базу и файлы вне репо
+**Стратегика (решение пользователя):** сначала залить **клиентскую** часть (статика+данные+медиа через NGINX),
+админку (admin-server + прокси) подключать **вторым этапом**. Старый Next.js при этом продолжает держать сайт,
+пока NGINX не переключен на статику.
 
-**Дано:** «сохранять нечего, все данные с диска актуальнее» → серверный `db.json` перезаписывается нашим (29 программ, 9 тренеров, 0 новостей).
-**ВАЖНО:** `pm2` процесс `balloo-messenger` — чужой, не трогать.
+#### Этап A — клиентская статика
+
+1. ✅ Сервер поднял СТАРУЮ версию: `pm2 start cfrsite` (Next.js :3000), `https://центр-фр.рф` → **200**
+2. ✅ `git pull` → `b9b0db8` (код+скрипты+package.json)
+3. ✅ `git pull` → `341b228`: **db.json (30 программ, 9 тренеров, 0 новостей) + static/uploads (448 фото, 103 МБ)
+   + листы /data/1.jpg, /data/2.jpg, /data/price-2026-10.jpg приехали через git**
+   (проверено на сервере: `ls static/uploads/covers | wc -l` = 37, все страницы на месте)
+4. ✅ `git pull` → `5bd1d1e`: trash/ убран из индексирования (308 файлов старого Next.js удалены из репо, локально на «антресолях»)
+5. ✅ `npm ci` на сервере — чисто (минимальные зависимости статики)
+6. ✅ Диагностика NGINX выполнена (см. «БОЕВОЙ NGINX» ниже)
+7. ⬜ **ШАГ 7 (следующий):** записать `deploy/nginx-site.conf` → `/etc/nginx/sites-enabled/центр-фр.рф`
+   (с бэкапом), проверить `namei -l` доступ www-data к static, `nginx -t`, reload
+8. ⬜ Проверка этапа A: домен → статическая главная (title «Шифу Панда»), `/data/1.jpg` → 200,
+   обложка из `/uploads/covers/` → 200, `/news.html` → 200, 404 → /404.html
+
+#### Этап B — админка
+
+9. ⬜ `pm2 delete cfrsite` (Next.js больше не нужен) → `pm2 start deploy/ecosystem.config.js` (admin-server :3456)
+   — в admin-server.mjs добавлен `process.send('ready')` под wait_ready (коммит с этим обновлением)
+10. ⬜ Раскомментить `location /api/admin/` в конфиге NGINX → reload
+11. ⬜ Проверка: login через https (`POST /api/admin/login` → токен), get-news, статика не сломана
+12. ⬜ `pm2 save` + `pm2 startup` (автозапуск после ребута)
+13. ⬜ Cron ночных скриптов (метка `# CFR-NIGHT`, см. deploy.sh) — по решению пользователя, если нужно на сервере
+14. ⬜ Обновить AGENTS.md/DEPLOY.md/SERVER-COMMANDS.md под новую архитектуру (без Next.js)
+
+#### БОЕВОЙ NGINX — найдено на сервере (важно!)
+
+- Конфиг домена: **`/etc/nginx/sites-enabled/центр-фр.рф`** — обычный файл (не симлинк!), 2456 байт, от 11 мая.
+- sites-available/default, alpha.balloo.su, balloo-docker.conf и пр. — **чужие**, НЕ ТРОГАТЬ
+  (на сервере живут другие проекты: balloo.su :3100, alpha :3021, api :3100, cdn :9000, cockpit :9090).
+- Домен в конфиге — **punycode**: `xn----itbymbjqk.xn--p1ai` = центр-фр.рф
+- Сертификаты — **Let's Encrypt (certbot)**:
+  `/etc/letsencrypt/live/xn----itbymbjqk.xn--p1ai/fullchain.pem` + `privkey.pem` (НЕ self-signed из репозитория!)
+- Структура боевого конфига: 3 server-блока (80→301 https; 443 main: /_next/static/ alias + / → proxy 127.0.0.1:3000; 443 www → 301)
+- **Готовый новый конфиг этапа A: `deploy/nginx-site.conf`** (в репозитории) — те же редиректы и серты,
+  вместо proxy — `root static/`, статика с expires, error_page 404/500, `/api/admin/` закомментирован до этапа B.
+- Старые репозиторные `deploy/nginx.conf`/`ssl-nginx.conf` перемещены в `trash/` (устарели: self-signed, Next.js).
+- ⚠️ Проверить доступ www-data к `/home/cfr_balloo/...` (обычно home 750 → будет 403):
+  `namei -l /home/cfr_balloo/sites/cfrsite/static/index.html` → при необходимости
+  `sudo chmod o+x /home/cfr_balloo` (только вход, не чтение).
+
+#### Команда шага 7 (выполнить на сервере)
+
+```bash
+cd /home/cfr_balloo/sites/cfrsite && sudo cp /etc/nginx/sites-enabled/центр-фр.рф /etc/nginx/sites-enabled/центр-фр.рф.bak.$(date +%s) && sudo cp deploy/nginx-site.conf /etc/nginx/sites-enabled/центр-фр.рф && echo "=== права ===" && namei -l /home/cfr_balloo/sites/cfrsite/static/index.html && sudo nginx -t && sudo systemctl reload nginx && echo "=== проверки ===" && curl -sk -o /dev/null -w "главная https -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/ && curl -sk https://xn----itbymbjqk.xn--p1ai/ | grep -o '<title>[^<]*' | head -1 && curl -sk -o /dev/null -w "/data/1.jpg -> %{http_code} %{size_download}b\n" https://xn----itbymbjqk.xn--p1ai/data/1.jpg && curl -sk -o /dev/null -w "/uploads/covers/t-glazyrin-mihail.jpg -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/uploads/covers/t-glazyrin-mihail.jpg && curl -sk -o /dev/null -w "/news.html -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/news.html && curl -sk -o /dev/null -w "/net-takoy-stranicy -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/net-takoy-stranicy && curl -s -o /dev/null -w "http -> %{http_code} (301 ок)\n" http://xn----itbymbjqk.xn--p1ai/
+```
+
+**Откат этапа A (если что):** `sudo cp /etc/nginx/sites-enabled/центр-фр.рф.bak.<ts> /etc/nginx/sites-enabled/центр-фр.рф && sudo nginx -t && sudo systemctl reload nginx`
+
+#### Контекст/решения
+
+- «Сохранять нечего, все данные с диска актуальнее» → серверный db.json перезаписан нашим (git).
+- `balloo-messenger` (pm2 id 0) — чужой процесс, не трогать.
+- SSH извне на сервер недоступен (сервер в локальной сети 192.168.1.85) — команды выполняет пользователь через свой SSH.
+- Роль пользователя в деплое: терминал на сервере. Роль Koda: команды + локальные изменения + git.
+- Пароль админки: env `ADMIN_PASSWORD` + fallback `ЦФР_2026.10.21` (зарешено пользователем для деплой-подготовки).
 
 ### ❓ Открытые вопросы (решить с пользователем)
 
@@ -1698,3 +1745,4 @@ PM2 (cfrsite) → scripts/admin-server.mjs (:3456)
 | 2026-10-22 | S65–S68 | Сессия 18 | **Ревизия архитектуры:** старый Next.js перенесён в `trash/` (не коммитится). Root: только static/, scripts/, deploy/, package.json, docs. package.json: только npm-скрипты статики (mammoth, nodemailer, jsdom). nginx.conf: /api/admin/ → 3456, убраны Next.js прокси. ecosystem.config.js: admin-server (:3456). deploy.sh: убран build Next.js. admin.html: API_BASE='' (относительный путь, NGINX прокси). static/uploads/: 103 МБ готовы к rsync. Тесты: 23/23 + 47/48. admin-server: 200 на /, /admin.html, login 200, get-news 200, // → 400 (баг исправлен). |
 | 2026-10-22 | S68 | Сессия 18 | **Git-данные:** db.json + static/uploads (448 фото, 103 МБ) + static/data/{1,2,price-2026-10}.jpg — в репозитории (.gitignore: `static/data/*` + 3 исключения). Коммиты db09a0b, b9b0db8, 341b228 запушены. Расписание/цены в db.json → лёгкие jpg. |
 | 2026-10-22 | Реддеплой | Сессия 18 | Сервер: СТАРАЯ версия поднята для клиентов (домен → 200), git pull до b9b0db8. Шаги 3–10 — в разделе «ХОД РЕДДЕПЛОЯ». SSH извне на сервер недоступен (сервер 192.168.1.85 в локальной сети) — команды выполняет пользователь через свой SSH. Бэкап не нужен: «сохранять нечего, данные с диска актуальнее». |
+| 2026-10-22 | Реддеплой A | Сессия 18 | **Этап A (клиентская статика) подготовлен:** сервер обновили до `5bd1d1e` (db.json+uploads через git, trash/ из репа убран), `npm ci` чисто. Диагностика NGINX: боевой файл `/etc/nginx/sites-enabled/центр-фр.рф` (punycode `xn----itbymbjqk.xn--p1ai`, серты Let's Encrypt, не self-signed!). Создан `deploy/nginx-site.conf` (готовый конфиг этапа A: root static/, error_page, /api/admin закомментирован), deploy.sh переписан под него, старые deploy/nginx.conf+ssl-nginx.conf → trash/. admin-server.mjs: `process.send('ready')` для PM2 wait_ready. Следующий шаг — команда 7 (запись конфига + namei + reload + curl-проверки), откат описан. |
