@@ -97,7 +97,7 @@
 
 ## 📊 СОСТОЯНИЕ
 
-*Обновляется каждой сессией. Последнее обновление: 2026-10-22.*
+*Обновляется каждой сессией. Последнее обновление: 2026-10-22 (сессия 18, реддеплой идёт).*
 
 ### Готово
 
@@ -211,6 +211,45 @@
 - [x] **S37** Альбом: 186 фото из `static/data/` (full+thumb в `static/uploads/album/`, 47 МБ), 1 битый HEIC пропущен.
 - [x] **S38** Вход в админку починен: API_BASE → :3456, Bearer-токен через localStorage. `npm run admin` → http://localhost:3456/admin.html.
 - [x] **S39** `test-menu` 23/23, `test-static` 29/29, HTTP без 404 (вкл. превью альбома), ресурсы `?v=9`.
+
+### Готово (сессия 18): реорганизация + реддеплой
+
+- [x] **S65** Старый Next.js перенесён в `trash/` (gitignore): `src/`, `public/`, `next.config.js`, `tsconfig.json`,
+  `tailwind.config.ts`, `postcss.config.mjs`, `docker/`, `excel/`, `lk-design/`, `reports/`, `stats/`, `tickets/`,
+  `данные/`, `data/`, `backups/`, `migrations/`, `deploy.mjs`, `todo.json`, `_db.json`, `uploads/`, старые скрипты
+  (analyze, migrate-*, bridge_*, init-db, parse-xml-to-pg) → `trash/scripts/`.
+  Рабочий корень: `static/`, `scripts/` (12 файлов статики), `deploy/`, `db.json`, docs.
+- [x] **S66** `package.json` — только статика: скрипты `static:export|admin|parse-docs|match-photos|build-album|night-sync|required-photos|check-covers|test-menu|test-static`;
+  зависимости: mammoth, nodemailer, fast-xml-parser, jsdom(dev). `package-lock.json` перегенерирован.
+- [x] **S67** Архитектура сервера без Next.js:
+  - `deploy/nginx.conf` + `ssl-nginx.conf`: `/` → static/, `/uploads/`, `/data/`, `/api/admin/` → **127.0.0.1:3456** (admin-server);
+    Next.js-прокси (:3000, /admin) удалены; `client_max_body_size 50m` для загрузки медиа
+  - `deploy/ecosystem.config.js`: `script: './scripts/admin-server.mjs'`, `ADMIN_PORT=3456`
+  - `deploy/deploy.sh`: убран `npm run build` (Next.js)
+  - `static/admin.html`: `API_BASE = ''` (все запросы через NGINX-прокси, без порта 3456 в URL)
+  - `db.json`: расписание/цены → лёгкие jpg: `/data/1.jpg`, `/data/2.jpg`, `/data/price-2026-10.jpg` (вместо PNG 13 МБ;
+    кириллица в имени прайса заменена на ASCII)
+- [x] **S68** Git переведён на полное хранение данных сайта:
+  - `.gitignore`: `db.json` и `static/uploads/` БОЛЬШЕ НЕ игнорируются (коммитятся); `static/data/*` игнорируется,
+    кроме `1.jpg`, `2.jpg`, `price-2026-10.jpg` (исключения работают только с `static/data/*`, не `static/data/`)
+  - Коммиты: `db09a0b` (реорганизация), `b9b0db8` (package-lock), `341b228` (db.json + 448 фото uploads 103 МБ + листы) — запушены
+  - Локальная проверка: admin-server 200 на `/` и `/admin.html`, login/get-news работают, `//` → 400; тесты 23/23 + 47/48
+
+### 🔁 ХОД РЕДДЕПЛОЯ (сессия 18, продолжается)
+
+1. ✅ Сервер поднял СТАРУЮ версию для клиентов: `pm2 start cfrsite` (Next.js :3000), домен `https://центр-фр.рф` → **200**
+2. ✅ `git pull` до `b9b0db8` выполнен
+3. ⏳ **ШАГ 3 (идёт сейчас):** `git pull` до `341b228` (приедут db.json + uploads + листы) → проверка `static/uploads/covers`
+4. ⬜ `npm ci` (минимальные зависимости)
+5. ⬜ `pm2 stop cfrsite` → `pm2 delete cfrsite` → `pm2 start deploy/ecosystem.config.js --update-env` (admin-server :3456)
+6. ⬜ NGINX: скопировать `deploy/nginx.conf` и `ssl-nginx.conf` в sites-enabled, `nginx -t`, `systemctl reload nginx`
+7. ⬜ Проверка: домен → статика, `/data/1.jpg` → 200, `/uploads/covers/*.jpg` → 200, `/api/admin/login` через 443 → 200
+8. ⬜ `pm2 save` + `pm2 startup` (автозапуск)
+9. ⬜ Cron ночных скриптов (`deploy/deploy.sh` шаг CFR-NIGHT)
+10. ⬜ Удалить на сервере `trash/`-артефакты старого кода (`.next`, `node_modules` пересоздадутся) — НЕ ТРОГАТЬ старую базу и файлы вне репо
+
+**Дано:** «сохранять нечего, все данные с диска актуальнее» → серверный `db.json` перезаписывается нашим (29 программ, 9 тренеров, 0 новостей).
+**ВАЖНО:** `pm2` процесс `balloo-messenger` — чужой, не трогать.
 
 ### ❓ Открытые вопросы (решить с пользователем)
 
@@ -1657,3 +1696,5 @@ PM2 (cfrsite) → scripts/admin-server.mjs (:3456)
 | 2026-10-22 | S49–S53 | Сессия 15 | Добавлены новые тикеты S49–S53 в MULTITICKET-STATIC.md. |
 | 2026-10-22 | S64 | Сессия 17 | **Подготовка к деплою:** откат режима расписания по умолчанию на главной — картинки (S36 revert); обнулены тестовые новости (4 удалены); пароль админки зафолбечен (`ADMIN_PASSWORD || 'ЦФР_2026.10.21'`); URL-баг `new URL('//')` — уже исправлен (try/catch); `snapedit` watermark — не наш (в EXIF исходников с Яндекс.Диска). Тесты: 23/23 + 47/48. Статика перегенерирована. |
 | 2026-10-22 | S65–S68 | Сессия 18 | **Ревизия архитектуры:** старый Next.js перенесён в `trash/` (не коммитится). Root: только static/, scripts/, deploy/, package.json, docs. package.json: только npm-скрипты статики (mammoth, nodemailer, jsdom). nginx.conf: /api/admin/ → 3456, убраны Next.js прокси. ecosystem.config.js: admin-server (:3456). deploy.sh: убран build Next.js. admin.html: API_BASE='' (относительный путь, NGINX прокси). static/uploads/: 103 МБ готовы к rsync. Тесты: 23/23 + 47/48. admin-server: 200 на /, /admin.html, login 200, get-news 200, // → 400 (баг исправлен). |
+| 2026-10-22 | S68 | Сессия 18 | **Git-данные:** db.json + static/uploads (448 фото, 103 МБ) + static/data/{1,2,price-2026-10}.jpg — в репозитории (.gitignore: `static/data/*` + 3 исключения). Коммиты db09a0b, b9b0db8, 341b228 запушены. Расписание/цены в db.json → лёгкие jpg. |
+| 2026-10-22 | Реддеплой | Сессия 18 | Сервер: СТАРАЯ версия поднята для клиентов (домен → 200), git pull до b9b0db8. Шаги 3–10 — в разделе «ХОД РЕДДЕПЛОЯ». SSH извне на сервер недоступен (сервер 192.168.1.85 в локальной сети) — команды выполняет пользователь через свой SSH. Бэкап не нужен: «сохранять нечего, данные с диска актуальнее». |
