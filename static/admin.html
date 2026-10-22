@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка — ЦФР</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --success: #16a34a;
+      --success-hover: #15803d;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Логин */
+    #login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .login-card {
+      background: var(--card); padding: 2.5rem; border-radius: var(--radius);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2); width: 100%; max-width: 400px;
+    }
+    .login-card h1 { text-align: center; margin-bottom: 0.5rem; font-size: 1.5rem; }
+    .login-card p { text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.9rem; }
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="date"],
+    .form-group input[type="file"],
+    .form-group textarea {
+      width: 100%; padding: 0.75rem; border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 1rem;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .error-msg { color: var(--danger); font-size: 0.85rem; margin-top: 0.5rem; display: none; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem; border: none; border-radius: var(--radius);
+      font-size: 0.95rem; font-weight: 500; cursor: pointer;
+      transition: background 0.2s; text-decoration: none;
+    }
+    .btn-primary { background: var(--primary); color: white; width: 100%; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-danger:hover { background: var(--danger-hover); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { background: var(--success-hover); }
+    .btn-secondary { background: var(--border); color: var(--text); }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Админ-панель */
+    #admin-panel { display: none; }
+
+    .admin-header {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-header h1 { font-size: 1.25rem; }
+    .admin-header .user-info { display: flex; align-items: center; gap: 1rem; }
+
+    .admin-layout { display: flex; min-height: calc(100vh - 60px); }
+
+    .admin-sidebar {
+      width: 240px; background: var(--card); border-right: 1px solid var(--border);
+      padding: 1rem 0; flex-shrink: 0;
+    }
+    .admin-sidebar a {
+      display: block; padding: 0.6rem 1.5rem; color: var(--text);
+      text-decoration: none; font-size: 0.9rem;
+      border-left: 3px solid transparent; transition: all 0.2s;
+    }
+    .admin-sidebar a:hover, .admin-sidebar a.active {
+      background: #f1f5f9; border-left-color: var(--primary); color: var(--primary);
+    }
+
+    .admin-content { flex: 1; padding: 2rem; overflow-y: auto; }
+
+    .section-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem;
+    }
+    .section-card h2 { margin-bottom: 1rem; font-size: 1.25rem; }
+    .section-card p { color: var(--text-secondary); }
+
+    .fields-list {
+      margin-top: 1rem; padding: 1rem; background: #f8fafc;
+      border-radius: var(--radius); font-size: 0.85rem;
+    }
+    .fields-list ul { margin-left: 1.25rem; }
+    .fields-list li { margin-bottom: 0.25rem; }
+
+    .status-badge {
+      display: inline-block; padding: 0.25rem 0.75rem;
+      border-radius: 999px; font-size: 0.8rem; font-weight: 500;
+    }
+    .status-badge-wip { background: #fef3c7; color: #92400e; }
+    .status-badge-done { background: #dcfce7; color: #166534; }
+
+    /* Новости CRUD */
+    .news-list { margin-top: 1rem; }
+
+    .news-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem; border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 0.75rem;
+      background: #fafafa; cursor: grab;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .news-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .news-item.dragging {
+      opacity: 0.5; transform: scale(0.98);
+      border: 2px dashed var(--primary);
+    }
+    .news-item.drag-over {
+      border-top: 3px solid var(--primary);
+    }
+
+    .news-drag-handle {
+      cursor: grab; color: var(--text-secondary); font-size: 1.2rem;
+      user-select: none; padding: 0 0.25rem;
+    }
+    .news-drag-handle:active { cursor: grabbing; }
+
+    .news-item img {
+      width: 80px; height: 60px; object-fit: cover;
+      border-radius: 4px; flex-shrink: 0;
+    }
+    .news-item .news-info { flex: 1; min-width: 0; }
+    .news-item .news-info h4 {
+      font-size: 0.95rem; margin-bottom: 0.25rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .news-item .news-info span { font-size: 0.8rem; color: var(--text-secondary); }
+    .news-item .news-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+    .editor-toolbar { display: flex; gap: 0.25rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .editor-toolbar button {
+      padding: 0.4rem 0.6rem; border: 1px solid var(--border);
+      background: var(--card); border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+    }
+    .editor-toolbar button:hover { background: #f1f5f9; }
+
+    .char-counter {
+      font-size: 0.8rem; color: var(--text-secondary);
+      text-align: right; margin-top: 0.25rem;
+    }
+    .char-counter.warn { color: #f59e0b; }
+    .char-counter.error { color: var(--danger); }
+
+    /* Модалка */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 200;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--card); border-radius: var(--radius);
+      padding: 2rem; width: 90%; max-width: 700px;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal h3 { margin-bottom: 1rem; }
+    .modal .form-group textarea {
+      width: 100%; min-height: 200px; padding: 0.75rem;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-family: monospace; font-size: 0.9rem; resize: vertical;
+    }
+    .modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; }
+
+    /* Файлы новости */
+    .file-info {
+      margin-top: 0.5rem; padding: 0.5rem;
+      background: #f1f5f9; border-radius: 4px;
+      font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .file-info img { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; }
+    .file-info .file-name { flex: 1; min-width: 0; }
+    .file-info .file-name span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file-info .file-remove {
+      color: var(--danger); cursor: pointer; font-weight: bold;
+      background: none; border: none; font-size: 1.1rem; padding: 0;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      padding: 1rem 1.5rem; border-radius: var(--radius);
+      color: white; font-weight: 500; z-index: 300;
+      transform: translateY(100px); opacity: 0; transition: all 0.3s;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-success { background: var(--success); }
+    .toast-error { background: var(--danger); }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .admin-sidebar a {
+        display: inline-block; padding: 0.5rem 1rem;
+        border-left: none; border-bottom: 3px solid transparent;
+      }
+      .admin-sidebar a:hover, .admin-sidebar a.active {
+        border-bottom-color: var(--primary); border-left-color: transparent;
+      }
+      .admin-content { padding: 1rem; }
+      .news-item { flex-wrap: wrap; }
+      .news-item .news-actions { width: 100%; justify-content: flex-end; }
+    }
+
+    /* Программы и тренеры */
+    .entity-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem; border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 0.5rem;
+      background: #fafafa; cursor: grab;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .entity-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .entity-item.dragging {
+      opacity: 0.5; transform: scale(0.98);
+      border: 2px dashed var(--primary);
+    }
+    .entity-item.drag-over {
+      border-top: 3px solid var(--primary);
+    }
+    .entity-item label {
+      display: flex; align-items: center; gap: 0.25rem;
+      cursor: pointer; font-size: 0.9rem;
+    }
+
+    .program-group {
+      margin-bottom: 1rem; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .program-group summary {
+      padding: 0.75rem 1rem; background: #f1f5f9; cursor: pointer;
+      font-weight: 500; font-size: 0.95rem;
+    }
+    .program-group summary:hover { background: #e2e8f0; }
+    .program-group > .news-list { padding: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Логин -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>🔐 Админка ЦФР</h1>
+      <p>Введите пароль для входа</p>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" placeholder="Пароль" required>
+        </div>
+        <div class="error-msg" id="login-error">Неверный пароль</div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Админ-панель -->
+  <div id="admin-panel">
+    <header class="admin-header">
+      <h1>⚙️ Админка</h1>
+      <div class="user-info">
+        <span class="status-badge status-badge-done">Авторизован</span>
+        <button class="btn btn-sm btn-secondary" onclick="logout()">Выйти</button>
+      </div>
+    </header>
+
+    <div class="admin-layout">
+      <nav class="admin-sidebar">
+        <a href="#news" class="active" data-section="news">📰 Новости</a>
+        <a href="#programs" data-section="programs">🥋 Программы</a>
+        <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
+        <a href="#schedule" data-section="schedule">📅 Расписание</a>
+        <a href="#prices" data-section="prices">💰 Цены</a>
+        <a href="#slider" data-section="slider">🎞 Слайдер</a>
+        <a href="#contacts" data-section="contacts">📞 Контакты</a>
+        <a href="#news-settings" data-section="news-settings">⚙️ Настройки новостей</a>
+        <a href="#album" data-section="album">📸 Альбом</a>
+        <a href="#crm" data-section="crm">📊 CRM</a>
+        <a href="#data" data-section="data">💾 Данные</a>
+      </nav>
+
+      <main class="admin-content" id="admin-content"></main>
+    </div>
+  </div>
+
+  <!-- Модалка новости -->
+  <div class="modal-overlay" id="news-modal">
+    <div class="modal">
+      <h3 id="modal-title">Новая новость</h3>
+      <form id="news-form">
+        <input type="hidden" id="news-id">
+        <div class="form-group">
+          <label for="news-title-input">Заголовок <span id="title-counter">0 / 50</span></label>
+          <input type="text" id="news-title-input" maxlength="50">
+        </div>
+        <div class="form-group">
+          <label>Текст (markdown)</label>
+          <div class="editor-toolbar">
+            <button type="button" onclick="wrapText('**','**')" title="Жирный"><b>Ж</b></button>
+            <button type="button" onclick="wrapText('_','_')" title="Подчёркнутый"><u>П</u></button>
+            <button type="button" onclick="wrapText('~~','~~')" title="Зачёркнутый"><s>З</s></button>
+            <button type="button" onclick="insertTable()">📋 Таблица</button>
+          </div>
+          <textarea id="news-text-input" placeholder="Текст новости в markdown..."></textarea>
+          <div class="char-counter" id="text-counter">0 / 9999</div>
+        </div>
+        <div class="form-group">
+          <label for="news-date-input">Дата</label>
+          <input type="date" id="news-date-input">
+        </div>
+        <div class="form-group">
+          <label for="news-image-input">Изображение</label>
+          <input type="file" id="news-image-input" accept="image/*">
+          <div id="news-image-info"></div>
+        </div>
+        <div class="form-group">
+          <label for="news-video-input">Видео</label>
+          <input type="file" id="news-video-input" accept="video/*">
+          <div id="news-video-info"></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeNewsModal()">Отмена</button>
+          <button type="submit" class="btn btn-success" id="save-btn">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ============================================
+       Утилиты
+       ============================================ */
+    let token = null;
+
+    // API живёт на admin-server (:3456). Страницу могут открыть с любого порта
+    // (python http.server, NGINX) — тогда все запросы идут на 3456 (S38).
+    const API_BASE = (() => {
+      if (location.port === '3456') return '';
+      const host = location.hostname || 'localhost';
+      return location.protocol + '//' + host + ':3456';
+    })();
+
+    function getToken() {
+      if (token) return token;
+      token = localStorage.getItem('admin_token');
+      if (!token) {
+        const match = document.cookie.match(/admin_token=([^;]+)/);
+        if (match) token = decodeURIComponent(match[1]);
+      }
+      return token;
+    }
+
+    function authHeaders() {
+      const t = getToken();
+      return t ? { 'Authorization': 'Bearer ' + t } : {};
+    }
+
+    function api(path, options = {}) {
+      const headers = { 'Content-Type': 'application/json', ...authHeaders() };
+      return fetch(API_BASE + path, { ...options, headers: { ...headers, ...options.headers } });
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast toast-' + type + ' show';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    /* ============================================
+       Логин / Логут
+       ============================================ */
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      let res;
+      try {
+        res = await fetch(API_BASE + '/api/admin/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+      } catch {
+        const err = document.getElementById('login-error');
+        err.style.display = 'block';
+        err.textContent = 'Сервер админки недоступен. Запустите: npm run admin';
+        return;
+      }
+      const data = await res.json();
+      if (res.ok) {
+        token = data.token || getToken();
+        if (data.token) localStorage.setItem('admin_token', data.token);
+        showAdminPanel();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('login-error').textContent = data.error || 'Ошибка входа';
+      }
+    });
+
+    async function logout() {
+      await fetch(API_BASE + '/api/admin/logout', { method: 'POST', headers: authHeaders() });
+      token = null;
+      localStorage.removeItem('admin_token');
+      document.cookie = 'admin_token=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/';
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('admin-panel').style.display = 'none';
+    }
+
+    function showAdminPanel() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      loadCurrentSection();
+    }
+
+    if (getToken()) showAdminPanel();
+
+    /* ============================================
+       Навигация по разделам
+       ============================================ */
+    const sections = [
+      { id: 'news', title: '📰 Новости', status: 'done' },
+      { id: 'programs', title: '🥋 Программы', status: 'done' },
+      { id: 'trainers', title: '👨‍🏫 Тренеры', status: 'done' },
+      { id: 'schedule', title: '📅 Расписание', status: 'wip' },
+      { id: 'prices', title: '💰 Цены', status: 'wip' },
+      { id: 'slider', title: '🎞 Слайдер', status: 'wip' },
+      { id: 'contacts', title: '📞 Контакты', status: 'wip' },
+      { id: 'news-settings', title: '⚙️ Настройки новостей', status: 'wip' },
+      { id: 'album', title: '📸 Альбом', status: 'wip' },
+      { id: 'crm', title: '📊 CRM', status: 'wip' },
+      { id: 'data', title: '💾 Данные', status: 'done' }
+    ];
+
+    document.querySelectorAll('.admin-sidebar a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.dataset.section;
+        document.querySelectorAll('.admin-sidebar a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        renderSection(sectionId);
+        history.pushState(null, '', '#' + sectionId);
+      });
+    });
+
+    function loadCurrentSection() {
+      const hash = location.hash.replace('#', '') || 'news';
+      const link = document.querySelector(`.admin-sidebar a[data-section="${hash}"]`);
+      if (link) link.classList.add('active');
+      renderSection(hash);
+    }
+
+    window.addEventListener('popstate', loadCurrentSection);
+
+    function renderSection(sectionId) {
+      const content = document.getElementById('admin-content');
+      const section = sections.find(s => s.id === sectionId);
+      if (!section) return;
+
+      const statusClass = section.status === 'done' ? 'status-badge-done' : 'status-badge-wip';
+      const statusText = section.status === 'done' ? 'Работает' : 'В разработке';
+      const fields = getSectionFields(sectionId);
+
+      content.innerHTML = `
+        <div class="section-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <h2>${section.title}</h2>
+            <span class="status-badge ${statusClass}">${statusText}</span>
+          </div>
+          <p>${getSectionDescription(sectionId)}</p>
+          ${fields.length > 0 ? `
+            <div class="fields-list">
+              <strong>Структура данных:</strong>
+              <ul>${fields.map(f => `<li><code>${f}</code></li>`).join('')}</ul>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      if (sectionId === 'news') loadNewsList();
+      if (sectionId === 'programs') loadProgramsList();
+      if (sectionId === 'trainers') loadTrainersList();
+      if (sectionId === 'data') renderDataSection();
+    }
+
+    function getSectionDescription(sectionId) {
+      if (sectionId === 'news') return 'Полностью рабочий раздел. Создавайте, редактируйте и удаляйте новости. Перетаскивайте для изменения порядка.';
+      if (sectionId === 'programs') return 'Скрытие и порядок программ. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка.';
+      if (sectionId === 'trainers') return 'Скрытие и порядок тренеров. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка.';
+      return 'Раздел в разработке. Здесь будет полноценный редактор.';
+    }
+
+    function getSectionFields(sectionId) {
+      const fieldsMap = {
+        programs: ['id', 'name', 'category', 'image', 'description', 'photoAlbum[]', 'hidden'],
+        trainers: ['id', 'name', 'image', 'experience', 'specialization', 'description', 'photoAlbum[]', 'hidden'],
+        schedule: ['id', 'image'],
+        prices: ['id', 'image'],
+        slider: ['id', 'title', 'image'],
+        contacts: ['address', 'phone', 'email', 'vk', 'social[]'],
+        'news-settings': ['defaultImage', 'defaultVideo', 'autoPublish'],
+        album: ['id', 'image', 'thumb', 'title', 'date'],
+        crm: ['(заглушка — без данных)'],
+        data: ['db.json', 'backups/', 'static/js/data/']
+      };
+      return fieldsMap[sectionId] || [];
+    }
+
+    /* ============================================
+       Новости CRUD
+       ============================================ */
+    let newsData = [];
+
+    async function loadNewsList() {
+      try {
+        const res = await api('/api/admin/get-news');
+        if (res.ok) {
+          const data = await res.json();
+          newsData = data.news || [];
+        }
+        renderNewsList();
+      } catch (err) {
+        console.error('Ошибка загрузки новостей:', err);
+        showToast('Ошибка загрузки', 'error');
+      }
+    }
+
+    function renderNewsList() {
+      const content = document.getElementById('admin-content');
+      const existingCard = content.querySelector('.section-card');
+      if (!existingCard) return;
+
+      let itemsHtml = newsData.map((n, idx) => `
+        <div class="news-item" data-id="${n.id}" draggable="true"
+             ondragstart="onDragStart(event)" ondragover="onDragOver(event)"
+             ondragleave="onDragLeave(event)" ondrop="onDrop(event)"
+             ondragend="onDragEnd(event)">
+          <span class="news-drag-handle" title="Перетащите для перестановки">⠿</span>
+          ${n.image ? `<img src="/static/${n.image}" alt="">` : '<div style="width:80px;height:60px;background:#e2e8f0;border-radius:4px;flex-shrink:0;"></div>'}
+          <div class="news-info">
+            <h4>${escapeHtml(n.title || 'Без заголовка')}</h4>
+            <span>${n.date || 'Без даты'} · №${idx + 1}</span>
+          </div>
+          <div class="news-actions">
+            <button class="btn btn-sm btn-secondary" onclick="editNews(${n.id})" title="Редактировать">✏️</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteNews(${n.id})" title="Удалить">🗑</button>
+          </div>
+        </div>
+      `).join('');
+
+      const addBtn = `
+        <div style="margin-top:1rem;">
+          <button class="btn btn-success" onclick="openNewsModal()">+ Добавить новость</button>
+        </div>
+      `;
+
+      existingCard.insertAdjacentHTML('afterend', `
+        <div class="section-card">
+          <h2>📰 Управление новостями</h2>
+          <p>Всего новостей: ${newsData.length}</p>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.25rem;">
+            Перетаскивайте элементы за ⠿ для изменения порядка
+          </p>
+          <div class="news-list">${itemsHtml}</div>
+          ${addBtn}
+        </div>
+      `);
+    }
+
+    /* ============================================
+       Drag-and-drop
+       ============================================ */
+    let dragId = null;
+
+    function onDragStart(e) {
+      dragId = e.currentTarget.dataset.id;
+      e.currentTarget.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', dragId);
+    }
+
+    function onDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function onDragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+
+    function onDragEnd(e) {
+      e.currentTarget.classList.remove('dragging');
+      document.querySelectorAll('.news-item').forEach(el => {
+        el.classList.remove('drag-over', 'dragging');
+      });
+      dragId = null;
+    }
+
+    async function onDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      const dropId = e.currentTarget.dataset.id;
+
+      if (dragId && dragId !== dropId) {
+        const fromIdx = newsData.findIndex(n => String(n.id) === String(dragId));
+        const toIdx = newsData.findIndex(n => String(n.id) === String(dropId));
+        if (fromIdx === -1 || toIdx === -1) return;
+
+        const [moved] = newsData.splice(fromIdx, 1);
+        newsData.splice(toIdx, 0, moved);
+
+        const res = await api('/api/admin/save-news-list', {
+          method: 'POST',
+          body: JSON.stringify({ news: newsData })
+        });
+
+        if (res.ok) {
+          showToast('Порядок обновлён');
+          renderNewsList();
+        } else {
+          showToast('Ошибка сохранения порядка', 'error');
+          loadNewsList();
+        }
+      }
+
+      document.querySelectorAll('.news-item').forEach(el => {
+        el.classList.remove('dragging', 'drag-over');
+      });
+      dragId = null;
+    }
+
+    /* ============================================
+       Модалка и форма
+       ============================================ */
+    let editingImage = null;
+    let editingVideo = null;
+
+    function openNewsModal(news = null) {
+      document.getElementById('news-modal').classList.add('active');
+      document.getElementById('modal-title').textContent = news ? 'Редактировать новость' : 'Новая новость';
+      document.getElementById('news-id').value = news ? news.id : '';
+      document.getElementById('news-title-input').value = news ? news.title : '';
+      document.getElementById('news-text-input').value = news ? (news.text || '') : '';
+      document.getElementById('news-date-input').value = news ? news.date : new Date().toISOString().split('T')[0];
+
+      editingImage = news ? news.image : null;
+      editingVideo = news ? news.video : null;
+
+      renderFileInfo('image');
+      renderFileInfo('video');
+      updateTitleCounter();
+      updateTextCounter();
+    }
+
+    function closeNewsModal() {
+      document.getElementById('news-modal').classList.remove('active');
+      document.getElementById('news-form').reset();
+      editingImage = null;
+      editingVideo = null;
+      document.getElementById('news-image-info').innerHTML = '';
+      document.getElementById('news-video-info').innerHTML = '';
+    }
+
+    function editNews(id) {
+      const news = newsData.find(n => n.id === id);
+      if (news) openNewsModal(news);
+    }
+
+    function renderFileInfo(type) {
+      const infoDiv = document.getElementById(`news-${type}-info`);
+      const value = type === 'image' ? editingImage : editingVideo;
+
+      if (!value) { infoDiv.innerHTML = ''; return; }
+
+      const preview = type === 'video'
+        ? '<div style="font-size:1.2rem;">🎬</div>'
+        : `<img src="/static/${value}" alt="">`;
+
+      infoDiv.innerHTML = `
+        <div class="file-info">
+          ${preview}
+          <div class="file-name">
+            <span>${value}</span>
+            <button type="button" class="file-remove" onclick="removeFile('${type}')" title="Удалить файл">✕</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function removeFile(type) {
+      if (type === 'image') { editingImage = null; document.getElementById('news-image-input').value = ''; }
+      else { editingVideo = null; document.getElementById('news-video-input').value = ''; }
+      renderFileInfo(type);
+    }
+
+    document.getElementById('news-image-input').addEventListener('change', function() {
+      if (this.files.length > 0) editingImage = null;
+    });
+    document.getElementById('news-video-input').addEventListener('change', function() {
+      if (this.files.length > 0) editingVideo = null;
+    });
+
+    /* ============================================
+       Сохранение
+       ============================================ */
+    async function saveNews(e) {
+      e.preventDefault();
+      const id = document.getElementById('news-id').value;
+      const title = document.getElementById('news-title-input').value.trim();
+      const text = document.getElementById('news-text-input').value;
+      const date = document.getElementById('news-date-input').value;
+      const imageInput = document.getElementById('news-image-input');
+      const videoInput = document.getElementById('news-video-input');
+      const saveBtn = document.getElementById('save-btn');
+
+      if (!title) { showToast('Введите заголовок', 'error'); return; }
+
+      const plainText = stripMarkdown(text);
+      if (plainText.length > 9999) {
+        showToast(`Слишком длинный текст: ${plainText.length} > 9999`, 'error');
+        return;
+      }
+
+      saveBtn.disabled = true;
+      saveBtn.textContent = '⏳ Сохранение...';
+
+      try {
+        let image = editingImage;
+        let video = editingVideo;
+
+        if (imageInput.files.length > 0) image = await uploadFile(imageInput.files[0], 'news-image');
+        if (videoInput.files.length > 0) video = await uploadFile(videoInput.files[0], 'news-video');
+
+        const newsItem = { id: id ? parseInt(id) : Date.now(), title, text, date };
+        if (image) newsItem.image = image;
+        if (video) newsItem.video = video;
+
+        const res = await api('/api/admin/save-news', {
+          method: 'POST',
+          body: JSON.stringify({ news: newsItem, isNew: !id })
+        });
+
+        if (res.ok) {
+          showToast('Новость сохранена');
+          closeNewsModal();
+          loadNewsList();
+        } else {
+          const data = await res.json();
+          showToast(data.error || 'Ошибка сохранения', 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Сохранить';
+      }
+    }
+
+    /* ============================================
+       Удаление
+       ============================================ */
+    async function deleteNews(id) {
+      if (!confirm('Удалить новость? Медиафайлы будут удалены безвозвратно.')) return;
+
+      const res = await api('/api/admin/delete-news', {
+        method: 'POST', body: JSON.stringify({ id })
+      });
+
+      if (res.ok) {
+        showToast('Новость удалена');
+        loadNewsList();
+      } else {
+        showToast('Ошибка удаления', 'error');
+      }
+    }
+
+    /* ============================================
+       Загрузка файлов
+       ============================================ */
+    async function uploadFile(file, fieldName) {
+      const formData = new FormData();
+      formData.append(fieldName, file);
+
+      const res = await fetch(API_BASE + '/api/admin/upload', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: formData
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Ошибка загрузки');
+      return data.path;
+    }
+
+    /* ============================================
+       Счётчики символов (видимый текст без markdown)
+       ============================================ */
+    function stripMarkdown(text) {
+      return text
+        .replace(/#{1,6}\s/g, '')
+        .replace(/[*_~`]/g, '')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+        .replace(/^\|?\s*[-:]+\s*\|?$/gm, '')
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function updateTitleCounter() {
+      const input = document.getElementById('news-title-input');
+      const counter = document.getElementById('title-counter');
+      counter.textContent = `${input.value.length} / 50`;
+      counter.style.color = input.value.length >= 45 ? '#f59e0b' : '';
+    }
+
+    function updateTextCounter() {
+      const input = document.getElementById('news-text-input');
+      const counter = document.getElementById('text-counter');
+      const len = stripMarkdown(input.value).length;
+      counter.textContent = `${len} / 9999`;
+      counter.className = 'char-counter' + (len > 9000 ? ' warn' : '') + (len > 9999 ? ' error' : '');
+    }
+
+    document.getElementById('news-title-input').addEventListener('input', updateTitleCounter);
+    document.getElementById('news-text-input').addEventListener('input', updateTextCounter);
+
+    function wrapText(before, after) {
+      const textarea = document.getElementById('news-text-input');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      textarea.value = textarea.value.substring(0, start) + before + selected + after + textarea.value.substring(end);
+      textarea.focus();
+      textarea.setSelectionRange(start + before.length, end + before.length);
+      updateTextCounter();
+    }
+
+    function insertTable() {
+      const textarea = document.getElementById('news-text-input');
+      const pos = textarea.selectionStart;
+      textarea.value = textarea.value.substring(0, pos) + '\n| Заголовок 1 | Заголовок 2 |\n| --- | --- |\n| Ячейка 1 | Ячейка 2 |\n' + textarea.value.substring(pos);
+      textarea.focus();
+      updateTextCounter();
+    }
+
+    document.getElementById('news-form').addEventListener('submit', saveNews);
+
+    document.getElementById('news-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('news-modal')) closeNewsModal();
+    });
+
+    /* ============================================
+       Программы
+       ============================================ */
+    let programsData = [];
+
+    async function loadProgramsList() {
+      try {
+        const res = await api('/api/admin/get-programs');
+        if (res.ok) {
+          const data = await res.json();
+          programsData = data.programs || [];
+        }
+        renderProgramsList();
+      } catch (err) {
+        console.error('Ошибка загрузки программ:', err);
+        showToast('Ошибка загрузки', 'error');
+      }
+    }
+
+    function renderProgramsList() {
+      const content = document.getElementById('admin-content');
+      const existingCard = content.querySelector('.section-card');
+      if (!existingCard) return;
+
+      // Группируем по category
+      const groups = {};
+      programsData.forEach(p => {
+        const cat = p.category || 'Без категории';
+        if (!groups[cat]) groups[cat] = [];
+        groups[cat].push(p);
+      });
+
+      const categoryOrder = ['БОЕВЫЕ НАПРАВЛЕНИЕ', 'БОЕВЫЕ НАПРАВЛ', 'ДЕТСКИЕ НАПРАВЛ', 'ДЕТСКИЕ НАПРАВЛЕНИЯ', 'ОБУЧАЮЩИЕ ПРОГРАММЫ', 'ОБУЧАЮЩИЕ', 'ОЗДОРОВИТЕЛЬНЫЕ', 'ФУНКЦИОНАЛЬНЫЕ'];
+
+      let html = '';
+      const sortedCategories = Object.keys(groups).sort((a, b) => {
+        const ia = categoryOrder.indexOf(a);
+        const ib = categoryOrder.indexOf(b);
+        if (ia === -1 && ib === -1) return a.localeCompare(b);
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      });
+
+      sortedCategories.forEach(cat => {
+        const items = groups[cat];
+        html += `
+          <details class="program-group" open>
+            <summary>${escapeHtml(cat)} (${items.length})</summary>
+            <div class="news-list" data-cat="${cat}">
+              ${items.map((p, idx) => `
+                <div class="entity-item" data-id="${p.id}" draggable="true"
+                     ondragstart="onEntityDragStart(event)" ondragover="onEntityDragOver(event)"
+                     ondragleave="onEntityDragLeave(event)" ondrop="onEntityDrop(event)">
+                  <span class="news-drag-handle" title="Перетащите">⠿</span>
+                  <label style="margin-right:0.5rem;">
+                    <input type="checkbox" data-entity="programs" data-id="${p.id}" ${p.hidden ? '' : 'checked'}
+                           onchange="toggleEntityHidden('programs', ${p.id}, this.checked)">
+                    <span>${p.hidden ? '👁' : '🙈'}</span>
+                  </label>
+                  <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    ${escapeHtml(p.name)}
+                  </span>
+                  <span style="font-size:0.8rem;color:var(--text-secondary);">№${idx + 1}</span>
+                </div>
+              `).join('')}
+            </div>
+          </details>
+        `;
+      });
+
+      existingCard.insertAdjacentHTML('afterend', `
+        <div class="section-card">
+          <h2>🥋 Управление программами</h2>
+          <p>Всего программ: ${programsData.length}</p>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.25rem;">
+            ⠿ — перетащите для изменения порядка · 🙈 — скрыто с сайта · 👁 — показано
+          </p>
+          ${html}
+        </div>
+      `);
+    }
+
+    /* ============================================
+       Тренеры
+       ============================================ */
+    let trainersData = [];
+
+    async function loadTrainersList() {
+      try {
+        const res = await api('/api/admin/get-trainers');
+        if (res.ok) {
+          const data = await res.json();
+          trainersData = data.trainers || [];
+        }
+        renderTrainersList();
+      } catch (err) {
+        console.error('Ошибка загрузки тренеров:', err);
+        showToast('Ошибка загрузки', 'error');
+      }
+    }
+
+    function renderTrainersList() {
+      const content = document.getElementById('admin-content');
+      const existingCard = content.querySelector('.section-card');
+      if (!existingCard) return;
+
+      let itemsHtml = trainersData.map((t, idx) => `
+        <div class="entity-item" data-id="${t.id}" draggable="true"
+             ondragstart="onEntityDragStart(event)" ondragover="onEntityDragOver(event)"
+             ondragleave="onEntityDragLeave(event)" ondrop="onEntityDrop(event)">
+          <span class="news-drag-handle" title="Перетащите">⠿</span>
+          <label style="margin-right:0.5rem;">
+            <input type="checkbox" data-entity="trainers" data-id="${t.id}" ${t.hidden ? '' : 'checked'}
+                   onchange="toggleEntityHidden('trainers', ${t.id}, this.checked)">
+            <span>${t.hidden ? '👁' : '🙈'}</span>
+          </label>
+          <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+            ${escapeHtml(t.name)}
+          </span>
+          <span style="font-size:0.8rem;color:var(--text-secondary);">№${idx + 1}</span>
+        </div>
+      `).join('');
+
+      existingCard.insertAdjacentHTML('afterend', `
+        <div class="section-card">
+          <h2>👨‍🏫 Управление тренерами</h2>
+          <p>Всего тренеров: ${trainersData.length}</p>
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.25rem;">
+            ⠿ — перетащите для изменения порядка · 🙈 — скрыт с сайта · 👁 — показан
+          </p>
+          <div class="news-list">${itemsHtml}</div>
+        </div>
+      `);
+    }
+
+    /* ============================================
+       Скрытие/открытие и перестановка
+       ============================================ */
+    function toggleEntityHidden(type, id, hidden) {
+      // hidden = true означает что чекбокс снят (скрыть)
+      const list = type === 'programs' ? programsData : trainersData;
+      const item = list.find(e => e.id === id);
+      if (item) item.hidden = hidden;
+    }
+
+    let entityDragId = null;
+    let entityDragType = null;
+
+    function onEntityDragStart(e) {
+      entityDragId = e.currentTarget.dataset.id;
+      entityDragType = e.currentTarget.querySelector('input').dataset.entity;
+      e.currentTarget.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', entityDragId);
+    }
+
+    function onEntityDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function onEntityDragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+
+    async function onEntityDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      const dropId = e.currentTarget.dataset.id;
+      const dropType = e.currentTarget.querySelector('input').dataset.entity;
+
+      if (!entityDragId || entityDragId !== dropId || entityDragType !== dropType) return;
+
+      const list = dropType === 'programs' ? programsData : trainersData;
+      const fromIdx = list.findIndex(e => String(e.id) === String(entityDragId));
+      const toIdx = list.findIndex(e => String(e.id) === String(dropId));
+      if (fromIdx === -1 || toIdx === -1) return;
+
+      const [moved] = list.splice(fromIdx, 1);
+      list.splice(toIdx, 0, moved);
+
+      // Сохраняем весь список
+      const res = await api(`/api/admin/save-${dropType}`, {
+        method: 'POST',
+        body: JSON.stringify({ [dropType]: list })
+      });
+
+      if (res.ok) {
+        showToast('Порядок обновлён');
+        if (dropType === 'programs') renderProgramsList();
+        else renderTrainersList();
+      } else {
+        showToast('Ошибка сохранения порядка', 'error');
+        if (dropType === 'programs') loadProgramsList();
+        else loadTrainersList();
+      }
+
+      document.querySelectorAll('.entity-item').forEach(el => {
+        el.classList.remove('dragging', 'drag-over');
+      });
+      entityDragId = null;
+      entityDragType = null;
+    }
+
+    /* ============================================
+       Данные: синхронизация с диском
+       ============================================ */
+    let syncStatus = null;
+    let syncInterval = null;
+
+    async function renderDataSection() {
+      const content = document.getElementById('admin-content');
+      const existingCard = content.querySelector('.section-card');
+      if (!existingCard) return;
+
+      existingCard.insertAdjacentHTML('afterend', `
+        <div class="section-card">
+          <h2>🔄 Синхронизация данных с Яндекс.Диска</h2>
+          <p>Проверяет новые файлы и папки на диске, загружает, парсит и добавляет в данные.</p>
+          <div style="margin-top:1.5rem;">
+            <button class="btn btn-success" id="sync-btn" onclick="startSync()">🔄 Обновить данные с диска</button>
+            <button class="btn btn-secondary" id="parse-btn" onclick="startParseDocs()" style="margin-left:0.5rem;">📄 Парсить DOCX</button>
+          </div>
+          <div id="sync-log" style="margin-top:1.5rem;display:none;">
+            <h3 style="margin-bottom:0.5rem;">📋 Лог выполнения</h3>
+            <pre id="sync-log-content" style="background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;overflow-y:auto;max-height:400px;font-size:0.85rem;line-height:1.5;white-space:pre-wrap;"></pre>
+          </div>
+          <div id="sync-status" style="margin-top:1rem;"></div>
+        </div>
+      `);
+    }
+
+    async function startSync() {
+      const btn = document.getElementById('sync-btn');
+      const logDiv = document.getElementById('sync-log');
+      const logContent = document.getElementById('sync-log-content');
+      const statusDiv = document.getElementById('sync-status');
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Выполняется...';
+      logDiv.style.display = 'block';
+      logContent.textContent = '';
+      statusDiv.innerHTML = '<span class="status-badge status-badge-wip">Выполняется...</span>';
+
+      try {
+        // Запускаем синхронизацию
+        const res = await api('/api/admin/sync-data', {
+          method: 'POST'
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || 'Ошибка запуска синхронизации');
+        }
+
+        // Опрашиваем статус
+        syncInterval = setInterval(async () => {
+          const statusRes = await api('/api/admin/sync-status');
+          const status = await statusRes.json();
+
+          if (status.log) {
+            logContent.textContent = status.log;
+            logContent.scrollTop = logContent.scrollHeight;
+          }
+
+          if (status.status === 'done') {
+            clearInterval(syncInterval);
+            syncInterval = null;
+            btn.disabled = false;
+            btn.textContent = '🔄 Обновить данные с диска';
+            statusDiv.innerHTML = '<span class="status-badge status-badge-done">✅ Готово</span>';
+            showToast('Синхронизация завершена');
+          } else if (status.status === 'error') {
+            clearInterval(syncInterval);
+            syncInterval = null;
+            btn.disabled = false;
+            btn.textContent = '🔄 Обновить данные с диска';
+            statusDiv.innerHTML = '<span class="status-badge status-badge-wip">⚠️ Ошибка</span>';
+            showToast('Ошибка синхронизации', 'error');
+          }
+        }, 2000);
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = '🔄 Обновить данные с диска';
+        statusDiv.innerHTML = '<span class="status-badge status-badge-wip">⚠️ Ошибка</span>';
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+    }
+
+    async function startParseDocs() {
+      const btn = document.getElementById('parse-btn');
+      const logDiv = document.getElementById('sync-log');
+      const logContent = document.getElementById('sync-log-content');
+      const statusDiv = document.getElementById('sync-status');
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Парсинг...';
+      logDiv.style.display = 'block';
+      logContent.textContent = '';
+      statusDiv.innerHTML = '<span class="status-badge status-badge-wip">Выполняется...</span>';
+
+      try {
+        const res = await api('/api/admin/parse-docs', {
+          method: 'POST'
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || 'Ошибка запуска парсинга');
+        }
+
+        syncInterval = setInterval(async () => {
+          const statusRes = await api('/api/admin/parse-status');
+          const status = await statusRes.json();
+
+          if (status.log) {
+            logContent.textContent = status.log;
+            logContent.scrollTop = logContent.scrollHeight;
+          }
+
+          if (status.status === 'done') {
+            clearInterval(syncInterval);
+            syncInterval = null;
+            btn.disabled = false;
+            btn.textContent = '📄 Парсить DOCX';
+            statusDiv.innerHTML = '<span class="status-badge status-badge-done">✅ Готово</span>';
+            showToast('Парсинг завершён');
+          } else if (status.status === 'error') {
+            clearInterval(syncInterval);
+            syncInterval = null;
+            btn.disabled = false;
+            btn.textContent = '📄 Парсить DOCX';
+            statusDiv.innerHTML = '<span class="status-badge status-badge-wip">⚠️ Ошибка</span>';
+            showToast('Ошибка парсинга', 'error');
+          }
+        }, 2000);
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = '📄 Парсить DOCX';
+        statusDiv.innerHTML = '<span class="status-badge status-badge-wip">⚠️ Ошибка</span>';
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

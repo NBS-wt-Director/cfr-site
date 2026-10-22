@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Наши тренеры — Шифу Панда</title>
+  <meta name="description" content="Тренеры центра функционального развития Шифу Панда: мастера Урало-Сибирской Федерации УШУ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Наши тренеры</h1>
+      <p class="section-subtitle">Нажмите на тренера, чтобы открыть подробности.</p>
+      <div id="trainers-grid" class="trainers-grid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+
+  <script src="js/data/core.js?v=15"></script>
+  <script src="js/data/trainers.js?v=15"></script>
+  <script src="js/header.js?v=15"></script>
+  <script src="js/footer.js?v=15"></script>
+  <script src="js/modal.js?v=15"></script>
+  <script src="js/lightbox.js?v=15"></script>
+  <script>
+    (function () {
+      const data = window.SITE_DATA || {};
+      const trainers = data.trainers || [];
+
+      function shortQuote(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+
+      document.getElementById('trainers-grid').innerHTML = trainers.map(t => `
+        <div class="trainer-card" id="trainer-${t.id}">
+          <div class="trainer-photo-tile"><a href="trainer.html?id=${t.id}">${t.image
+            ? `<img src="${t.image}" alt="${shortQuote(t.name)}" loading="lazy">`
+            : `<img src="logo.png" alt="Шифу Панда" loading="lazy">`}</a></div>
+          <h3 class="trainer-name"><a href="trainer.html?id=${t.id}">${shortQuote(t.name)}</a></h3>
+          <p class="trainer-exp">${shortQuote(t.experience || '')}</p>
+          <div class="trainer-actions">
+            <a href="trainer.html?id=${t.id}" class="trainer-btn trainer-btn-primary">Подробнее</a>
+            <button class="trainer-btn trainer-btn-secondary" onclick="openCallModal('Заказать звонок: ${shortQuote(t.name)}')">📞 Заказать звонок</button>
+          </div>
+        </div>
+      `).join('');
+    })();
+  </script>
+</body>
+</html>

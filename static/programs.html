@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Программы тренировок — Шифу Панда</title>
+  <meta name="description" content="Все программы тренировок центра: боевые, детские, обучающие, оздоровительные, функциональные направления.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Программы тренировок</h1>
+      <p class="section-subtitle">Нажмите на раздел, чтобы развернуть список. Нажмите на программу — чтобы открыть подробности.</p>
+      <div id="programs-categories"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+
+  <script src="js/data/core.js?v=15"></script>
+  <script src="js/data/programs.js?v=15"></script>
+  <script src="js/header.js?v=15"></script>
+  <script src="js/footer.js?v=15"></script>
+  <script src="js/modal.js?v=15"></script>
+  <script src="js/lightbox.js?v=15"></script>
+  <script>
+    (function () {
+      const data = window.SITE_DATA || {};
+      const programs = data.programs || [];
+
+      const CAT_TITLES = {
+        'БОЕВЫЕ НАПРАВЛЕНИЯ': '🥋 Боевые направления',
+        'ДЕТСКИЕ НАПРАВЛЕНИЯ': '🧒 Детские направления',
+        'ОБУЧАЮЩИЕ ПРОГРАММЫ': '📚 Обучающие программы',
+        'ОЗДОРОВИТЕЛЬНЫЕ НАПРАВЛЕНИЯ': '💚 Оздоровительные направления',
+        'ФУНКЦИОНАЛЬНЫЕ НАПРАВЛЕНИЯ': '💪 Функциональные направления'
+      };
+      const CAT_ORDER = Object.keys(CAT_TITLES);
+
+      // Группируем по разделу (папке на диске)
+      const groups = {};
+      programs.forEach(p => {
+        const cat = p.category || 'ПРОЧИЕ';
+        (groups[cat] = groups[cat] || []).push(p);
+      });
+
+      function shortQuote(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+
+      // Порядок: известные разделы по CAT_ORDER, остальные в конце
+      const cats = Object.keys(groups).sort((a, b) => {
+        const ia = CAT_ORDER.indexOf(a), ib = CAT_ORDER.indexOf(b);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+      });
+
+      // Запоминание свёрнутых разделов
+      let state = {};
+      try { state = JSON.parse(localStorage.getItem('programs_sections') || '{}'); } catch (e) {}
+
+      const html = cats.map(cat => {
+        const items = groups[cat];
+        const open = state[cat] !== false; // по умолчанию раскрыто
+        const title = CAT_TITLES[cat] || cat;
+        const cards = items.map(p => `
+          <div class="program-card" id="program-${p.id}">
+            ${p.image
+              ? `<a href="program.html?id=${p.id}"><img src="${p.image}" alt="${shortQuote(p.name)}" loading="lazy"></a>`
+              : `<a href="program.html?id=${p.id}"><img src="logo.png" alt="Шифу Панда" loading="lazy"></a>`}
+            <div class="program-content">
+              <h3 class="program-title"><a href="program.html?id=${p.id}">${shortQuote(p.name)}</a></h3>
+              <div class="program-actions">
+                <a href="program.html?id=${p.id}" class="program-btn program-btn-primary">Подробнее</a>
+                <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">📞 Записаться</button>
+              </div>
+            </div>
+          </div>`).join('');
+
+        return `
+          <div class="collapsible${open ? ' open' : ''}" data-cat="${shortQuote(cat)}">
+            <button type="button" class="collapsible-toggle" aria-expanded="${open}">
+              <span class="collapsible-title">${title} <span class="collapsible-count">${items.length}</span></span>
+              <span class="caret">▾</span>
+            </button>
+            <div class="collapsible-body">
+              <div class="programs-grid">${cards}</div>
+            </div>
+          </div>`;
+      }).join('');
+
+      document.getElementById('programs-categories').innerHTML = html;
+
+      // Сворачивание + сохранение состояния
+      document.querySelectorAll('.collapsible').forEach(function (panel) {
+        const btn = panel.querySelector('.collapsible-toggle');
+        btn.addEventListener('click', function () {
+          const open = panel.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(open));
+          try {
+            const st = JSON.parse(localStorage.getItem('programs_sections') || '{}');
+            st[panel.dataset.cat] = open;
+            localStorage.setItem('programs_sections', JSON.stringify(st));
+          } catch (e) {}
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новости центра — Шифу Панда</title>
+  <meta name="description" content="Новости центра функционального развития Шифу Панда.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Новости центра</h1>
+      <div id="news-grid" class="news-grid news-grid-full"></div>
+      <p id="news-empty" class="empty-note" hidden>Новостей пока нет</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+
+  <!-- Модалка полного текста новости -->
+  <div class="modal-overlay" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
+    <div class="modal-box news-modal-box">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="newsModalTitle"></h2>
+          <p class="modal-reason" id="newsModalDate"></p>
+        </div>
+        <button type="button" class="modal-close" id="newsModalClose" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="news-body" id="newsModalBody"></div>
+      <div class="news-media" id="newsModalMedia"></div>
+    </div>
+  </div>
+
+  <script src="js/data/core.js?v=15"></script>
+  <script src="js/data/news-all.js?v=15"></script>
+  <script src="js/data/news-full.js?v=15"></script>
+  <script src="js/md.js?v=15"></script>
+  <script src="js/header.js?v=15"></script>
+  <script src="js/footer.js?v=15"></script>
+  <script src="js/modal.js?v=15"></script>
+  <script src="js/lightbox.js?v=15"></script>
+  <script>
+    (function () {
+      const data = window.SITE_DATA || {};
+      const news = Array.isArray(data.newsAll) ? data.newsAll : [];
+      const full = data.newsFull || {};
+      const grid = document.getElementById('news-grid');
+      const empty = document.getElementById('news-empty');
+      const overlay = document.getElementById('newsModal');
+
+      function esc(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function formatDate(iso) {
+        if (!iso) return '';
+        try { return new Date(iso).toLocaleDateString('ru-RU'); } catch (e) { return iso; }
+      }
+
+      if (!news.length) {
+        grid.hidden = true;
+        empty.hidden = false;
+      } else {
+        grid.innerHTML = news.map(n => `
+          <article class="news-card" id="news-${n.id}">
+            ${n.image
+              ? `<a href="?id=${n.id}"><img src="${n.image}" alt="${esc(n.title)}" loading="lazy"></a>`
+              : '<div class="news-noimage"></div>'}
+            <div class="news-content">
+              <h3 class="news-title">${esc(n.title)}</h3>
+              ${n.date ? `<p class="news-date">${formatDate(n.date)}</p>` : ''}
+              <p class="news-excerpt">${esc(n.preview || '')}</p>
+              ${n.long || n.image || n.video ? `
+              <div class="news-actions">
+                <button type="button" class="news-more" onclick="openNews(${n.id})">${n.long ? 'Читать полностью →' : 'Смотреть фото →'}</button>
+              </div>` : ''}
+            </div>
+          </article>
+        `).join('');
+      }
+
+      /* ---------- Модалка ---------- */
+      function openNews(id) {
+        const n = news.filter(x => String(x.id) === String(id))[0];
+        if (!n) return;
+        document.getElementById('newsModalTitle').textContent = n.title;
+        document.getElementById('newsModalDate').textContent = formatDate(n.date);
+        document.getElementById('newsModalBody').innerHTML =
+          window.MD ? window.MD.render(full[n.id] || n.preview || '') : esc(full[n.id] || '');
+
+        let media = '';
+        if (n.image) {
+          media += `<div class="lightbox-zoom"><img src="${n.image}" alt="${esc(n.title)}"></div>`;
+        }
+        if (n.video) {
+          media += `<video controls playsinline><source src="${n.video}">Ваш браузер не поддерживает видео.</video>`;
+        }
+        document.getElementById('newsModalMedia').innerHTML = media;
+
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        history.replaceState(null, '', '?id=' + n.id);
+      }
+
+      function closeNews() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        history.replaceState(null, '', location.pathname);
+      }
+
+      window.openNews = openNews;
+      window.closeNews = closeNews;
+
+      document.getElementById('newsModalClose').addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeNews();
+      });
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeNews();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeNews();
+      });
+
+      // Пришли по ссылке вида news.html?id=7 — сразу открыть окно
+      const wanted = new URLSearchParams(location.search).get('id');
+      if (wanted) openNews(wanted);
+    })();
+  </script>
+</body>
+</html>

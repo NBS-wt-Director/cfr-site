@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Альбом — Шифу Панда</title>
+  <meta name="description" content="Фотографии центра функционального развития Шифу Панда: тренировки, семинары, совместные фото.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Фотоальбом</h1>
+      <p class="section-subtitle">Совместные фото, семинары и будни центра. Нажмите на фото, чтобы открыть его в полном размере.</p>
+      <div id="album-grid" class="album-grid album-grid-page"></div>
+      <p id="album-empty" class="empty-note" hidden>Фотографии ещё не загружены</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+
+  <script src="js/data/core.js?v=15"></script>
+  <script src="js/data/album.js?v=15"></script>
+  <script src="js/header.js?v=15"></script>
+  <script src="js/footer.js?v=15"></script>
+  <script src="js/modal.js?v=15"></script>
+  <script src="js/lightbox.js?v=15"></script>
+  <script>
+    (function () {
+      const data = window.SITE_DATA || {};
+      const album = Array.isArray(data.album) ? data.album : [];
+      const grid = document.getElementById('album-grid');
+      const empty = document.getElementById('album-empty');
+
+      function esc(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      if (!album.length) {
+        grid.hidden = true;
+        empty.hidden = false;
+        return;
+      }
+
+      // Превью в сетке, полный размер — по клику (data-full читает lightbox.js)
+      grid.innerHTML = album.map(a => `
+        <div class="album-item lightbox-zoom" data-full="${a.image}">
+          <img src="${a.thumb}" alt="${esc(a.title)}" loading="lazy">
+          ${a.title ? `<span class="album-item-title">${esc(a.title)}</span>` : ''}
+        </div>
+      `).join('');
+    })();
+  </script>
+</body>
+</html>

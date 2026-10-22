@@ -18,9 +18,17 @@
     "deploy": "node deploy.mjs",
     "add-path-comments:watch": "nodemon --watch . --ext js,ts,jsx,tsx,mjs,cjs,vue,svelte --exec \"npm run add-path-comments\"",
     "init-db": "node scripts/init-db.mjs",
+    "static:export": "node scripts/export-static.mjs",
+    "admin": "node --env-file=.env.local scripts/admin-server.mjs",
+    "parse-docs": "node scripts/parse-docs.mjs",
+    "match-photos": "node scripts/match-photos.mjs",
+    "build-album": "node scripts/build-album.mjs",
+    "night-sync": "node scripts/night-sync.mjs",
+    "required-photos": "node scripts/required-photos.mjs",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f"
+    "docker:logs": "docker compose logs -f",
+    "check-covers": "node scripts/check-covers.mjs"
   },
   "dependencies": {
     "@types/pg": "^8.20.0",
