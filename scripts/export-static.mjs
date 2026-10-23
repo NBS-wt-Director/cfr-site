@@ -96,6 +96,12 @@ const core = {
     background: db.globalDivider?.background || 'gradientGreen',
     fontSize: db.globalDivider?.fontSize || 'small'
   },
+  // «Оформление» из админки: CSS-переменные текста + произвольный CSS.
+  // Применяется static/js/appearance.js (подключён после core.js на всех страницах).
+  appearance: {
+    variables: db.appearance?.variables && typeof db.appearance.variables === 'object' ? db.appearance.variables : {},
+    customCss: typeof db.appearance?.customCss === 'string' ? db.appearance.customCss : ''
+  },
   sections: (db.sections || []).map(s => ({ id: s.id, title: s.title || '' })),
 
   // Лёгкий срез для меню — только id и name (скрытые исключены)
@@ -141,6 +147,8 @@ function newsSlice(from, to) {
     date: n.date || '',
     image: fixPath(n.image),
     video: fixPath(n.video),
+    // Галерея: до 5 фото новости (S73), каждое — отдельной кнопкой в модалке
+    photos: (Array.isArray(n.photos) ? n.photos : []).slice(0, 5).map(fixPath).filter(Boolean),
     preview: previewOf(n.text || ''),
     long: MD.plainText(n.text || '').length > 200
   }));

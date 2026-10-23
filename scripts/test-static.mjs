@@ -226,6 +226,73 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   }
 }
 
+// ── S73: Пакет 2 — оформление, просмотр данных, 5 фото, модалка на главной ──
+{
+  const read = p => fs.readFileSync(path.join(staticDir, p), 'utf-8');
+  const readScript = p => fs.readFileSync(path.join(__dirname, '..', 'scripts', p), 'utf-8');
+  const adminHtml = read('admin.html');
+  const adminSrv = readScript('admin-server.mjs');
+  const exporter = readScript('export-static.mjs');
+  const coreJs = read('js/data/core.js');
+  const indexHtml = read('index.html');
+  const mainJs = read('js/main.js');
+  const newsHtml = read('news.html');
+
+  // 1. Раздел «Оформление»
+  check('S73: admin.html — loadAppearanceSection определена',
+    /async function loadAppearanceSection/.test(adminHtml));
+  check('S73: admin.html — форма оформления + живой предпросмотр',
+    /function renderAppearanceForm/.test(adminHtml) &&
+    /function updatePreview/.test(adminHtml) &&
+    /function saveAppearance/.test(adminHtml) &&
+    /appearance-preview-frame/.test(adminHtml) &&
+    /appearance-layout/.test(adminHtml));
+  check('S73: admin.html — обращение к API get/save-appearance',
+    /\/api\/admin\/get-appearance/.test(adminHtml) && /\/api\/admin\/save-appearance/.test(adminHtml));
+  check('S73: admin-server — маршруты get/save-appearance + sanitizeAppearance',
+    /\/api\/admin\/get-appearance/.test(adminSrv) &&
+    /\/api\/admin\/save-appearance/.test(adminSrv) &&
+    /function sanitizeAppearance/.test(adminSrv));
+  check('S73: export — appearance в core; core.js содержит appearance',
+    /appearance:\s*{/.test(exporter) && /appearance/.test(coreJs));
+  check('S73: appearance.js существует и подключён на всех страницах',
+    fs.existsSync(path.join(staticDir, 'js', 'appearance.js')) &&
+    ['index.html', 'programs.html', 'trainers.html', 'program.html', 'trainer.html',
+     'news.html', 'album.html', 'crm.html'].every(f => /appearance\.js/.test(read(f))));
+  check('S73: style.css — CSS-переменные текста (--fs/--fw/--ff/--lh)',
+    /--fs-body:/.test(read('css/style.css')) && /--fw-headings:/.test(read('css/style.css')));
+
+  // 2. Отображение существующих данных (только просмотр)
+  check('S73: admin.html — get-data + рендер разделов просмотра',
+    /\/api\/admin\/get-data/.test(adminHtml) &&
+    /function loadViewSection/.test(adminHtml) &&
+    /renderScheduleView/.test(adminHtml) && /renderContactsView/.test(adminHtml) &&
+    /renderAlbumView/.test(adminHtml) && /renderNewsSettingsView/.test(adminHtml));
+  check('S73: admin.html — просмотр сущностей (👁) + модалка + сводка «Данные»',
+    /function viewProgram/.test(adminHtml) && /function viewTrainer/.test(adminHtml) &&
+    /function viewNews/.test(adminHtml) && /id="view-modal"/.test(adminHtml) &&
+    /function viewDbKey/.test(adminHtml) && /data-grid/.test(adminHtml));
+  check('S73: admin-server — маршрут get-data',
+    /\/api\/admin\/get-data/.test(adminSrv) && /function handleGetData/.test(adminSrv));
+
+  // 3. До 5 фото новости
+  check('S73: admin.html — форма с фото-слотами (до 5)',
+    /MAX_NEWS_PHOTOS\s*=\s*5/.test(adminHtml) &&
+    /function renderPhotoSlots/.test(adminHtml) && /id="news-photos"/.test(adminHtml));
+  check('S73: export — photos в newsSlice', /photos:/.test(exporter) && /\.slice\(0, 5\)/.test(exporter));
+  check('S73: news.html — галерея photos в модалке', /news-photos/.test(newsHtml) && /n\.photos/.test(newsHtml));
+  check('S73: admin-server — удаление медиа включает photos', /news\.photos/.test(adminSrv));
+
+  // 4. Главная — открытие новости в модалке без перехода
+  check('S73: index.html — подключены news-full.js + md.js + разметка #newsModal',
+    /news-full\.js/.test(indexHtml) && /js\/md\.js/.test(indexHtml) && /id="newsModal"/.test(indexHtml));
+  check('S73: main.js — openNewsModal определена и вешается на карточку',
+    /function openNewsModal/.test(mainJs) && /window\.openNewsModal/.test(mainJs) &&
+    /onclick="openNewsModal/.test(mainJs));
+  check('S73: main.js — на главной больше нет ссылки-перехода news.html?id в карточках новостей',
+    !/class="news-more" href="news\.html/.test(mainJs));
+}
+
 // ── Битые картинки в данных (предупреждение) ──
 {
   const missing = new Set();

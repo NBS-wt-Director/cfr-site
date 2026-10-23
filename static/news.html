@@ -41,6 +41,7 @@
   </div>
 
   <script src="js/data/core.js?v=16"></script>
+  <script src="js/appearance.js?v=16"></script>
   <script src="js/data/news-all.js?v=16"></script>
   <script src="js/data/news-full.js?v=16"></script>
   <script src="js/md.js?v=16"></script>
@@ -102,6 +103,13 @@
         let media = '';
         if (n.image) {
           media += `<div class="lightbox-zoom"><img src="${n.image}" alt="${esc(n.title)}"></div>`;
+        }
+        // Галерея до 5 фото (S73) — каждое отдельной миниатюрой, клик → lightbox
+        const photos = Array.isArray(n.photos) ? n.photos : [];
+        if (photos.length) {
+          media += `<div class="news-photos">` + photos.map(p =>
+            `<div class="lightbox-zoom news-photo"><img src="${p}" alt="${esc(n.title)}" loading="lazy"></div>`
+          ).join('') + `</div>`;
         }
         if (n.video) {
           media += `<video controls playsinline><source src="${n.video}">Ваш браузер не поддерживает видео.</video>`;

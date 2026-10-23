@@ -494,20 +494,19 @@ async function handleDeleteNews(req, res) {
 
     // Удаляем файлы медиа
     const news = db.news[idx];
-    for (const field of ['image', 'video']) {
-      const val = news[field];
-      if (val) {
-        try {
-          const cleanPath = val.replace(/^\//, '');
-          const fullPath = path.join(staticDir, cleanPath);
-          const resolved = path.resolve(fullPath);
-          if (resolved.startsWith(path.resolve(staticDir, 'uploads')) && fs.existsSync(fullPath)) {
-            fs.unlinkSync(fullPath);
-            console.log(`🗑 Удалён ${field}: ${cleanPath}`);
-          }
-        } catch (e) {
-          console.warn(`Не удалось удалить ${field}: ${e.message}`);
+    const mediaPaths = [news.image, news.video, ...(Array.isArray(news.photos) ? news.photos : [])]
+      .filter(Boolean);
+    for (const val of mediaPaths) {
+      try {
+        const cleanPath = String(val).replace(/^\//, '');
+        const fullPath = path.join(staticDir, cleanPath);
+        const resolved = path.resolve(fullPath);
+        if (resolved.startsWith(path.resolve(staticDir, 'uploads')) && fs.existsSync(fullPath)) {
+          fs.unlinkSync(fullPath);
+          console.log(`🗑 Удалён медиа: ${cleanPath}`);
         }
+      } catch (e) {
+        console.warn(`Не удалось удалить медиа ${val}: ${e.message}`);
       }
     }
 
@@ -899,6 +898,79 @@ async function handleSendReminder(req, res) {
   }
 
   // ============================================
+  // Оформление (appearance) и просмотр данных (S73)
+  // ============================================
+
+  // Разрешены только CSS-переменные текста: --fs-*, --fw-*, --ff-*, --lh-*
+  const APPEARANCE_VAR_RE = /^--(fs|fw|ff|lh)-[a-z0-9-]+$/;
+
+  function sanitizeAppearance(raw) {
+    const out = { variables: {}, customCss: '' };
+    if (!raw || typeof raw !== 'object') return out;
+    const vars = raw.variables;
+    if (vars && typeof vars === 'object') {
+      for (const [name, value] of Object.entries(vars)) {
+        if (!APPEARANCE_VAR_RE.test(name)) continue;
+        const v = String(value == null ? '' : value).trim();
+        // Значение — короткий скаляр без ; } < (защита от обрыва объявления)
+        if (!v || v.length > 60 || /[;<>{}]/.test(v)) continue;
+        out.variables[name] = v;
+      }
+    }
+    if (typeof raw.customCss === 'string') {
+      let css = raw.customCss.slice(0, 20000);
+      css = css.replace(/<\/style/gi, '<\/style').replace(/@import[^;]*;?/gi, '');
+      out.customCss = css;
+    }
+    return out;
+  }
+
+  async function handleGetAppearance(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    sendJSON(res, 200, { appearance: sanitizeAppearance(db.appearance) });
+  }
+
+  async function handleSaveAppearance(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.appearance || typeof body.appearance !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет данных оформления' });
+    }
+    try {
+      const db = readDb();
+      db.appearance = sanitizeAppearance(body.appearance);
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения оформления:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // Весь db.json для отображения в админке (просмотр).
+  // Логотип-base64 вырезается — сотни КБ, в интерфейсе бесполезны.
+  async function handleGetData(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    if (db.siteSettings && typeof db.siteSettings.logo === 'string' && db.siteSettings.logo.length > 200) {
+      db.siteSettings = { ...db.siteSettings, logo: '(base64 логотип, ' + db.siteSettings.logo.length + ' симв.)' };
+    }
+    sendJSON(res, 200, { data: db });
+  }
+
+  // ============================================
   // Маршрутизация
   // ============================================
 
@@ -985,6 +1057,17 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/save-divider' && method === 'POST') {
     return handleSaveDivider(req, res);
+  }
+
+  // === Оформление (S73) + просмотр данных ===
+  if (pathname === '/api/admin/get-appearance' && method === 'POST') {
+    return handleGetAppearance(req, res);
+  }
+  if (pathname === '/api/admin/save-appearance' && method === 'POST') {
+    return handleSaveAppearance(req, res);
+  }
+  if (pathname === '/api/admin/get-data' && method === 'POST') {
+    return handleGetData(req, res);
   }
 
   // === API ===

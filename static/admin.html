@@ -125,6 +125,7 @@
     }
     .status-badge-wip { background: #fef3c7; color: #92400e; }
     .status-badge-done { background: #dcfce7; color: #166534; }
+    .status-badge-view { background: #e0e7ff; color: #3730a3; }
 
     /* Новости CRUD */
     .news-list { margin-top: 1rem; }
@@ -270,6 +271,76 @@
     }
     .program-group summary:hover { background: #e2e8f0; }
     .program-group > .news-list { padding: 0.5rem; }
+
+    /* Фото новости: 5 отдельных кнопок-слотов */
+    .photo-slots { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .photo-slot {
+      width: 110px; height: 84px; border: 2px dashed var(--border);
+      border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; background: #fafafa;
+      position: relative; overflow: hidden; transition: border-color 0.15s;
+    }
+    .photo-slot:hover { border-color: var(--primary); }
+    .photo-slot.filled { border-style: solid; cursor: default; }
+    .photo-slot.filled img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-slot .slot-remove {
+      position: absolute; top: 2px; right: 2px; width: 22px; height: 22px;
+      border: none; border-radius: 50%; background: rgba(0,0,0,0.65); color: #fff;
+      font-size: 0.8rem; cursor: pointer; line-height: 1;
+    }
+    .photo-slot .slot-name {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 4px;
+      background: rgba(0,0,0,0.55); color: #fff; font-size: 0.6rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* Просмотр данных (readonly) */
+    .view-img { max-width: 100%; max-height: 320px; border-radius: var(--radius); margin-bottom: 0.5rem; display: block; }
+    .view-kv { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .view-kv td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .view-kv td:first-child { font-weight: 600; width: 30%; color: var(--text-secondary); }
+    .view-kv td:last-child { white-space: pre-wrap; word-break: break-word; max-height: 220px; overflow-y: auto; display: block; }
+    .view-json {
+      background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: var(--radius);
+      font-family: monospace; font-size: 0.78rem; line-height: 1.45; max-height: 420px;
+      overflow: auto; white-space: pre-wrap; word-break: break-word;
+    }
+    .data-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+    .data-tile {
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem;
+      background: #fafafa; cursor: pointer; transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .data-tile:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.12); transform: translateY(-1px); }
+    .data-tile h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .data-tile .meta { font-size: 0.78rem; color: var(--text-secondary); }
+    .thumb-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .thumb-item {
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+      background: #fff; cursor: pointer; width: 150px;
+    }
+    .thumb-item img { width: 100%; height: 96px; object-fit: cover; display: block; }
+    .thumb-item .cap { padding: 0.3rem 0.4rem; font-size: 0.72rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Оформление: форма + живой предпросмотр */
+    .appearance-layout { display: grid; grid-template-columns: minmax(320px, 460px) 1fr; gap: 1.5rem; align-items: start; }
+    @media (max-width: 1100px) { .appearance-layout { grid-template-columns: 1fr; } }
+    .ap-group { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 0.9rem; }
+    .ap-group h3 { font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .ap-field { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.45rem; }
+    .ap-field label { flex: 1; font-size: 0.83rem; color: var(--text-secondary); }
+    .ap-field input[type="text"], .ap-field select {
+      width: 130px; padding: 0.35rem 0.5rem; border: 1px solid var(--border);
+      border-radius: 6px; font-size: 0.85rem;
+    }
+    .ap-css textarea {
+      width: 100%; min-height: 140px; font-family: monospace; font-size: 0.82rem;
+      padding: 0.6rem; border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    #appearance-preview-frame {
+      width: 100%; height: 640px; border: 1px solid var(--border);
+      border-radius: var(--radius); background: #fff;
+    }
+    .ap-sticky { position: sticky; top: 76px; }
   </style>
 </head>
 <body>
@@ -311,6 +382,7 @@
         <a href="#contacts" data-section="contacts">📞 Контакты</a>
         <a href="#news-settings" data-section="news-settings">⚙️ Настройки новостей</a>
         <a href="#dividers" data-section="dividers">🎨 Разделители</a>
+        <a href="#appearance" data-section="appearance">🖌 Оформление</a>
         <a href="#album" data-section="album">📸 Альбом</a>
         <a href="#crm" data-section="crm">📊 CRM</a>
         <a href="#data" data-section="data">💾 Данные</a>
@@ -346,9 +418,14 @@
           <input type="date" id="news-date-input">
         </div>
         <div class="form-group">
-          <label for="news-image-input">Изображение</label>
+          <label for="news-image-input">Изображение (обложка)</label>
           <input type="file" id="news-image-input" accept="image/*">
           <div id="news-image-info"></div>
+        </div>
+        <div class="form-group">
+          <label>Фотографии (до 5, каждое — отдельной кнопкой)</label>
+          <div id="news-photos" class="photo-slots"></div>
+          <input type="file" id="news-photo-input" accept="image/*" style="display:none">
         </div>
         <div class="form-group">
           <label for="news-video-input">Видео</label>
@@ -360,6 +437,20 @@
           <button type="submit" class="btn btn-success" id="save-btn">Сохранить</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Модалка просмотра (только чтение): детали сущностей, JSON данных -->
+  <div class="modal-overlay" id="view-modal">
+    <div class="modal">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+        <h3 id="view-modal-title">Просмотр</h3>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="closeViewModal()">✕</button>
+      </div>
+      <div id="view-modal-body" style="margin-top:1rem;"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeViewModal()">Закрыть</button>
+      </div>
     </div>
   </div>
 
@@ -496,13 +587,14 @@
       { id: 'news', title: '📰 Новости', status: 'done' },
       { id: 'programs', title: '🥋 Программы', status: 'done' },
       { id: 'trainers', title: '👨‍🏫 Тренеры', status: 'done' },
-      { id: 'schedule', title: '📅 Расписание', status: 'wip' },
-      { id: 'prices', title: '💰 Цены', status: 'wip' },
-      { id: 'slider', title: '🎞 Слайдер', status: 'wip' },
-      { id: 'contacts', title: '📞 Контакты', status: 'wip' },
-      { id: 'news-settings', title: '⚙️ Настройки новостей', status: 'wip' },
+      { id: 'schedule', title: '📅 Расписание', status: 'view' },
+      { id: 'prices', title: '💰 Цены', status: 'view' },
+      { id: 'slider', title: '🎞 Слайдер', status: 'view' },
+      { id: 'contacts', title: '📞 Контакты', status: 'view' },
+      { id: 'news-settings', title: '⚙️ Настройки новостей', status: 'view' },
       { id: 'dividers', title: '🎨 Разделители', status: 'done' },
-      { id: 'album', title: '📸 Альбом', status: 'wip' },
+      { id: 'appearance', title: '🖌 Оформление', status: 'done' },
+      { id: 'album', title: '📸 Альбом', status: 'view' },
       { id: 'crm', title: '📊 CRM', status: 'wip' },
       { id: 'data', title: '💾 Данные', status: 'done' }
     ];
@@ -532,8 +624,12 @@
       const section = sections.find(s => s.id === sectionId);
       if (!section) return;
 
-      const statusClass = section.status === 'done' ? 'status-badge-done' : 'status-badge-wip';
-      const statusText = section.status === 'done' ? 'Работает' : 'В разработке';
+      const STATUS = {
+        done: ['Работает', 'status-badge-done'],
+        view: ['Только просмотр', 'status-badge-view'],
+        wip: ['В разработке', 'status-badge-wip']
+      };
+      const [statusText, statusClass] = STATUS[section.status] || STATUS.wip;
       const fields = getSectionFields(sectionId);
 
       content.innerHTML = `
@@ -556,14 +652,178 @@
       if (sectionId === 'programs') loadProgramsList();
       if (sectionId === 'trainers') loadTrainersList();
       if (sectionId === 'dividers') loadDividerSection();
+      if (sectionId === 'appearance') loadAppearanceSection();
+      if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
       if (sectionId === 'data') renderDataSection();
     }
 
+    /* ============================================
+       Просмотр существующих данных (S73)
+       Один GET всего db.json через API, кэш на раздел.
+       ============================================ */
+    const VIEW_SECTIONS = {
+      schedule: 'schedule', prices: 'prices', slider: 'sliders',
+      contacts: 'contacts', album: 'album', 'news-settings': 'newsSettings'
+    };
+    let dbDataCache = null;
+
+    async function getDbData(force) {
+      if (dbDataCache && !force) return dbDataCache;
+      const res = await api('/api/admin/get-data', { method: 'POST', body: '{}' });
+      if (!res.ok) throw new Error('get-data: ' + res.status);
+      const payload = await res.json();
+      dbDataCache = payload.data || {};
+      return dbDataCache;
+    }
+
+    // Путь к файлу из db.json → URL на этом же origin
+    // (в данных: "uploads/..." или "/uploads/..." или "/data/...")
+    function fileUrl(p) {
+      if (!p) return '';
+      return '/' + String(p).replace(/^\/?(static\/)?/, '');
+    }
+
+    async function loadViewSection(sectionId) {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+      let db;
+      try {
+        db = await getDbData();
+      } catch (err) {
+        card.insertAdjacentHTML('afterend', `<div class="section-card"><p style="color:var(--danger);">Не удалось загрузить данные: ${escapeHtml(err.message)}</p></div>`);
+        return;
+      }
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      card.insertAdjacentElement('afterend', box);
+
+      if (sectionId === 'schedule') renderScheduleView(box, db.schedule || []);
+      if (sectionId === 'prices') renderPricesView(box, db.prices || []);
+      if (sectionId === 'slider') renderSliderView(box, db.sliders || [], db);
+      if (sectionId === 'contacts') renderContactsView(box, db.contacts || {}, db);
+      if (sectionId === 'album') renderAlbumView(box, db.album || []);
+      if (sectionId === 'news-settings') renderNewsSettingsView(box, db);
+    }
+
+    function viewHead(box, title, count, extra) {
+      box.innerHTML = `
+        <h2>${title}</h2>
+        <p>Всего записей: ${count}${extra ? ' · ' + extra : ''}</p>
+        <div id="view-body" style="margin-top:1rem;"></div>
+      `;
+      return box.querySelector('#view-body');
+    }
+
+    function renderScheduleView(box, items) {
+      const body = viewHead(box, '📅 Листы расписания (картинки)', items.length, 'редактирование — в разработке');
+      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
+      body.innerHTML = '<div class="thumb-row">' + items.map((s, i) => `
+        <div class="thumb-item" onclick="openImageView('${fileUrl(s.image)}', ${escapeHtml('Расписание №' + (i + 1))})">
+          <img src="${fileUrl(s.image)}" alt="Расписание ${i + 1}" loading="lazy">
+          <div class="cap">id: ${escapeHtml(String(s.id))}</div>
+        </div>`).join('') + '</div>';
+    }
+
+    function renderPricesView(box, items) {
+      const body = viewHead(box, '💰 Прайс-листы (картинки)', items.length, 'редактирование — в разработке');
+      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
+      body.innerHTML = '<div class="thumb-row">' + items.map((p, i) => `
+        <div class="thumb-item" onclick="openImageView('${fileUrl(p.image)}', ${escapeHtml('Цены №' + (i + 1))})">
+          <img src="${fileUrl(p.image)}" alt="Цены ${i + 1}" loading="lazy">
+          <div class="cap">id: ${escapeHtml(String(p.id))}</div>
+        </div>`).join('') + '</div>';
+    }
+
+    function renderSliderView(box, items, db) {
+      const body = viewHead(box, '🎞 Слайдер главной', items.length, 'интервал по умолчанию: ' + (db.defaultInterval || 5) + ' с');
+      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
+      body.innerHTML = '<div class="thumb-row">' + items.map((s, i) => `
+        <div class="thumb-item" onclick="openImageView('${fileUrl(s.image)}', ${escapeHtml(s.title || 'Слайд ' + (i + 1))})">
+          <img src="${fileUrl(s.image)}" alt="${escapeHtml(s.title || '')}" loading="lazy">
+          <div class="cap">${escapeHtml(s.title || 'без названия')} · ${escapeHtml(String(s.interval || db.defaultInterval || 5))}с</div>
+        </div>`).join('') + '</div>';
+    }
+
+    function renderContactsView(box, c, db) {
+      const body = viewHead(box, '📞 Контакты', Object.keys(c).filter(k => c[k]).length);
+      const social = Array.isArray(c.social) ? c.social.map(s => `${s.title || s.id}: ${s.url || '—'}`).join('\n') : '';
+      const pairs = [['Адрес', c.address], ['Телефон', c.phone], ['Email', c.email], ['ВКонтакте', c.vk], ['Telegram', c.telegram], ['Соцсети', social], ['Доп. контакты', JSON.stringify(db.additionalContacts || {}, null, 2)]];
+      body.innerHTML = '<table class="view-kv"><tbody>' + pairs.map(([k, v]) =>
+        `<tr><td>${k}</td><td>${escapeHtml(v || '—')}</td></tr>`).join('') + '</tbody></table>';
+    }
+
+    function renderNewsSettingsView(box, db) {
+      const s = db.newsSettings || {};
+      const body = viewHead(box, '⚙️ Настройки новостей', Object.keys(s).length);
+      body.innerHTML = Object.keys(s).length
+        ? `<pre class="view-json">${escapeHtml(JSON.stringify(s, null, 2))}</pre>`
+        : '<p class="meta">Настроек нет (используются значения по умолчанию: 8 новостей на главной, превью 200 символов, лимит 9999)</p>';
+    }
+
+    let albumShown = 0;
+    function renderAlbumView(box, items) {
+      const body = viewHead(box, '📸 Альбом (свободные фото)', items.length);
+      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
+      const limit = 60;
+      albumShown = Math.min(limit, items.length);
+      body.innerHTML = '<div class="thumb-row" id="album-thumbs"></div>' +
+        (items.length > limit ? `<div style="margin-top:0.75rem;"><button class="btn btn-sm btn-secondary" onclick="showMoreAlbum()">Показать ещё ${Math.min(limit, items.length - limit)}…</button></div>` : '');
+      fillAlbumThumbs(items);
+    }
+
+    function fillAlbumThumbs(items) {
+      const wrap = document.getElementById('album-thumbs');
+      if (!wrap) return;
+      wrap.innerHTML = items.slice(0, albumShown).map((a, i) => `
+        <div class="thumb-item" onclick="openImageView('${fileUrl(a.image)}', ${escapeHtml(a.title || 'Фото ' + (i + 1))})">
+          <img src="${fileUrl(a.thumb || a.image)}" alt="" loading="lazy">
+          <div class="cap">${escapeHtml(a.title || a.date || String(a.id))}</div>
+        </div>`).join('');
+    }
+
+    function showMoreAlbum() {
+      albumShown += 60;
+      getDbData().then(db => fillAlbumThumbs(db.album || []));
+    }
+
+    /* ---------- Модалка просмотра ---------- */
+    function openViewModal(title, html) {
+      document.getElementById('view-modal-title').textContent = title;
+      document.getElementById('view-modal-body').innerHTML = html;
+      document.getElementById('view-modal').classList.add('active');
+    }
+
+    function closeViewModal() {
+      document.getElementById('view-modal').classList.remove('active');
+    }
+
+    function openImageView(url, title) {
+      openViewModal(title || 'Просмотр', `<img class="view-img" src="${url}" alt="">` +
+        `<p style="font-size:0.8rem;color:var(--text-secondary);">${escapeHtml(url)}</p>`);
+    }
+
+    document.getElementById('view-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeViewModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeViewModal();
+    });
+
     function getSectionDescription(sectionId) {
-      if (sectionId === 'news') return 'Полностью рабочий раздел. Создавайте, редактируйте и удаляйте новости. Перетаскивайте для изменения порядка.';
-      if (sectionId === 'programs') return 'Скрытие и порядок программ. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка.';
-      if (sectionId === 'trainers') return 'Скрытие и порядок тренеров. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка.';
+      if (sectionId === 'news') return 'Полностью рабочий раздел. Создавайте, редактируйте и удаляйте новости. Перетаскивайте для изменения порядка. До 5 фотографий на новость (каждая — отдельной кнопкой).';
+      if (sectionId === 'programs') return 'Скрытие и порядок программ. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка. 👁 — просмотр всех полей.';
+      if (sectionId === 'trainers') return 'Скрытие и порядок тренеров. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка. 👁 — просмотр всех полей.';
       if (sectionId === 'dividers') return 'Видимые разделители между секциями на всех страницах. Выключены по умолчанию.';
+      if (sectionId === 'appearance') return 'Размеры и начертания текста всех компонентов сайта + прямая вставка CSS. Слева — настройки, справа — живой предпросмотр. Сохранение пишет в db.json и перегенерирует статику.';
+      if (sectionId === 'schedule') return 'Листы расписания, которые сейчас на сайте. Клик по картинке — просмотр в реальном размере. Редактирование (замена/удаление) — в следующем пакете.';
+      if (sectionId === 'prices') return 'Прайс-листы, которые сейчас на сайте. Клик по картинке — просмотр в реальном размере. Редактирование — в следующем пакете.';
+      if (sectionId === 'slider') return 'Слайды главной страницы (порядок = порядок в списке). Клик — просмотр. Редактирование — в следующем пакете.';
+      if (sectionId === 'contacts') return 'Контакты из базы — используются в футере на всех страницах. Изменение — в следующем пакете.';
+      if (sectionId === 'news-settings') return 'Настройки раздела новостей (defaultImage, defaultVideo, autoPublish). Сейчас пустые — работают значения по умолчанию.';
+      if (sectionId === 'album') return 'Свободные фото общего альбома (страница «Альбом» пока выключена из навигации). Клик — просмотр. Загружаются ночным парсером из папки на диске.';
+      if (sectionId === 'data') return 'Все данные сайта (db.json): счётчики по разделам и просмотр содержимого каждого ключа.';
       return 'Раздел в разработке. Здесь будет полноценный редактор.';
     }
 
@@ -573,10 +833,11 @@
         trainers: ['id', 'name', 'image', 'experience', 'specialization', 'description', 'photoAlbum[]', 'hidden'],
         schedule: ['id', 'image'],
         prices: ['id', 'image'],
-        slider: ['id', 'title', 'image'],
-        contacts: ['address', 'phone', 'email', 'vk', 'social[]'],
+        slider: ['id', 'title', 'image', 'interval', 'position'],
+        contacts: ['address', 'phone', 'email', 'vk', 'telegram', 'social[]', 'additionalContacts'],
         'news-settings': ['defaultImage', 'defaultVideo', 'autoPublish'],
         dividers: ['globalDivider.enabled', 'globalDivider.textContent', 'globalDivider.height', 'globalDivider.background', 'globalDivider.fontSize'],
+        appearance: ['appearance.variables (--fs-*, --fw-*, --ff-*, --lh-*)', 'appearance.customCss'],
         album: ['id', 'image', 'thumb', 'title', 'date'],
         crm: ['(заглушка — без данных)'],
         data: ['db.json', 'backups/', 'static/js/data/']
@@ -614,12 +875,13 @@
              ondragleave="onDragLeave(event)" ondrop="onDrop(event)"
              ondragend="onDragEnd(event)">
           <span class="news-drag-handle" title="Перетащите для перестановки">⠿</span>
-          ${n.image ? `<img src="/static/${n.image}" alt="">` : '<div style="width:80px;height:60px;background:#e2e8f0;border-radius:4px;flex-shrink:0;"></div>'}
+          ${n.image ? `<img src="${fileUrl(n.image)}" alt="">` : '<div style="width:80px;height:60px;background:#e2e8f0;border-radius:4px;flex-shrink:0;"></div>'}
           <div class="news-info">
             <h4>${escapeHtml(n.title || 'Без заголовка')}</h4>
-            <span>${n.date || 'Без даты'} · №${idx + 1}</span>
+            <span>${n.date || 'Без даты'} · №${idx + 1}${(n.photos && n.photos.length) ? ' · 🖼 ' + n.photos.length : ''}</span>
           </div>
           <div class="news-actions">
+            <button class="btn btn-sm btn-secondary" onclick="viewNews(${n.id})" title="Просмотр">👁</button>
             <button class="btn btn-sm btn-secondary" onclick="editNews(${n.id})" title="Редактировать">✏️</button>
             <button class="btn btn-sm btn-danger" onclick="deleteNews(${n.id})" title="Удалить">🗑</button>
           </div>
@@ -713,6 +975,9 @@
        ============================================ */
     let editingImage = null;
     let editingVideo = null;
+    let editingPhotos = [];   // до 5 фото новости, каждое — своим слотом
+    let photoSlotTarget = -1; // слот, для которого открыли file-диалог
+    const MAX_NEWS_PHOTOS = 5;
 
     function openNewsModal(news = null) {
       document.getElementById('news-modal').classList.add('active');
@@ -724,9 +989,11 @@
 
       editingImage = news ? news.image : null;
       editingVideo = news ? news.video : null;
+      editingPhotos = news && Array.isArray(news.photos) ? news.photos.slice(0, MAX_NEWS_PHOTOS) : [];
 
       renderFileInfo('image');
       renderFileInfo('video');
+      renderPhotoSlots();
       updateTitleCounter();
       updateTextCounter();
     }
@@ -736,14 +1003,96 @@
       document.getElementById('news-form').reset();
       editingImage = null;
       editingVideo = null;
+      editingPhotos = [];
+      photoSlotTarget = -1;
       document.getElementById('news-image-info').innerHTML = '';
       document.getElementById('news-video-info').innerHTML = '';
+      document.getElementById('news-photos').innerHTML = '';
     }
 
     function editNews(id) {
       const news = newsData.find(n => n.id === id);
       if (news) openNewsModal(news);
     }
+
+    // Просмотр новости — все поля + медиа (readonly)
+    function viewNews(id) {
+      const n = newsData.find(x => x.id === id);
+      if (!n) return;
+      let html = '<table class="view-kv"><tbody>' +
+        [['id', n.id], ['Заголовок', n.title], ['Дата', n.date], ['Обложка', n.image], ['Видео', n.video],
+         ['Фото (' + ((n.photos || []).length) + ')', (n.photos || []).join('\n')], ['Текст', n.text]]
+          .map(([k, v]) => `<tr><td>${k}</td><td>${escapeHtml(String(v == null || v === '' ? '—' : v))}</td></tr>`).join('') +
+        '</tbody></table>';
+      if (n.image) html += `<img class="view-img" style="margin-top:1rem;" src="${fileUrl(n.image)}" alt="">`;
+      if (n.photos && n.photos.length) {
+        html += '<div class="thumb-row">' + n.photos.map(p =>
+          `<div class="thumb-item" onclick="openImageView('${fileUrl(p)}','Фото новости')"><img src="${fileUrl(p)}" loading="lazy"><div class="cap">${escapeHtml(p)}</div></div>`).join('') + '</div>';
+      }
+      if (n.video) html += `<video controls style="max-width:100%;margin-top:1rem;" src="${fileUrl(n.video)}"></video>`;
+      openViewModal('Новость: ' + (n.title || ''), html);
+    }
+
+    /* ---------- 5 фото-слотов ---------- */
+    function renderPhotoSlots() {
+      const wrap = document.getElementById('news-photos');
+      if (!wrap) return;
+      let html = '';
+      for (let i = 0; i < MAX_NEWS_PHOTOS; i++) {
+        if (editingPhotos[i]) {
+          html += `
+            <div class="photo-slot filled" title="${escapeHtml(editingPhotos[i])}">
+              <img src="${fileUrl(editingPhotos[i])}" alt="Фото ${i + 1}" loading="lazy">
+              <button type="button" class="slot-remove" onclick="removePhotoSlot(${i})" title="Удалить фото">✕</button>
+              <span class="slot-name">Фото ${i + 1}</span>
+            </div>`;
+        } else {
+          html += `
+            <div class="photo-slot" onclick="pickPhotoSlot(${i})" title="Загрузить фото ${i + 1}">
+              <span>+ Фото ${i + 1}</span>
+            </div>`;
+        }
+      }
+      wrap.innerHTML = html;
+    }
+
+    function pickPhotoSlot(i) {
+      photoSlotTarget = i;
+      const input = document.getElementById('news-photo-input');
+      input.value = '';
+      input.click();
+    }
+
+    async function removePhotoSlot(i) {
+      const path = editingPhotos[i];
+      editingPhotos.splice(i, 1);
+      renderPhotoSlots();
+      // Файл удаляем с диска только у сохранённой новости (иначе — просто убираем из формы)
+      const id = document.getElementById('news-id').value;
+      if (id && path) {
+        try {
+          await fetch(API_BASE + '/api/admin/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', ...authHeaders() },
+            body: JSON.stringify({ path })
+          });
+        } catch { /* не критично: файл останется на диске */ }
+      }
+    }
+
+    document.getElementById('news-photo-input').addEventListener('change', async function () {
+      if (!this.files.length || photoSlotTarget < 0) return;
+      const slot = photoSlotTarget;
+      try {
+        const path = await uploadFile(this.files[0], 'news-photo');
+        editingPhotos[slot] = path;
+        renderPhotoSlots();
+        showToast('Фото ' + (slot + 1) + ' загружено');
+      } catch (err) {
+        showToast('Ошибка загрузки фото: ' + err.message, 'error');
+      }
+      photoSlotTarget = -1;
+    });
 
     function renderFileInfo(type) {
       const infoDiv = document.getElementById(`news-${type}-info`);
@@ -753,7 +1102,7 @@
 
       const preview = type === 'video'
         ? '<div style="font-size:1.2rem;">🎬</div>'
-        : `<img src="/static/${value}" alt="">`;
+        : `<img src="${fileUrl(value)}" alt="">`;
 
       infoDiv.innerHTML = `
         <div class="file-info">
@@ -813,6 +1162,8 @@
         const newsItem = { id: id ? parseInt(id) : Date.now(), title, text, date };
         if (image) newsItem.image = image;
         if (video) newsItem.video = video;
+        const photos = editingPhotos.filter(Boolean);
+        if (photos.length) newsItem.photos = photos;
 
         const res = await api('/api/admin/save-news', {
           method: 'POST',
@@ -992,6 +1343,7 @@
                   <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                     ${escapeHtml(p.name)}
                   </span>
+                  <button class="btn btn-sm btn-secondary" onclick="viewProgram(${p.id})" title="Просмотр всех полей">👁</button>
                   <span style="font-size:0.8rem;color:var(--text-secondary);">№${idx + 1}</span>
                 </div>
               `).join('')}
@@ -1049,6 +1401,7 @@
           <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
             ${escapeHtml(t.name)}
           </span>
+          <button class="btn btn-sm btn-secondary" onclick="viewTrainer(${t.id})" title="Просмотр всех полей">👁</button>
           <span style="font-size:0.8rem;color:var(--text-secondary);">№${idx + 1}</span>
         </div>
       `).join('');
@@ -1136,6 +1489,286 @@
     }
 
     /* ============================================
+       Просмотр деталей сущностей (S73)
+       ============================================ */
+    const ENTITY_FIELD_LABELS = {
+      id: 'ID', name: 'Название', category: 'Раздел', image: 'Обложка',
+      hidden: 'Скрыто', experience: 'Опыт', specialization: 'Специализация',
+      description: 'Описание', experienceUshu: 'Стаж ушу', experienceCoach: 'Тренерский стаж',
+      education: 'Образование', motto: 'Девиз', isDirector: 'Директор', type: 'Тип'
+    };
+
+    function viewEntity(item, title) {
+      if (!item) return;
+      let html = '';
+      if (item.image) html += `<img class="view-img" src="${fileUrl(item.image)}" alt="">`;
+      const rows = Object.keys(item)
+        .filter(k => !['image', 'photoAlbum'].includes(k))
+        .map(k => {
+          const label = ENTITY_FIELD_LABELS[k] || k;
+          let v = item[k];
+          if (Array.isArray(v)) {
+            v = v.map(x => typeof x === 'object' ? JSON.stringify(x) : x).join('\n');
+          } else if (typeof v === 'boolean') {
+            v = v ? 'да' : 'нет';
+          }
+          return `<tr><td>${escapeHtml(label)}</td><td>${escapeHtml(String(v == null || v === '' ? '—' : v))}</td></tr>`;
+        }).join('');
+      html += `<table class="view-kv"><tbody>${rows}</tbody></table>`;
+      const album = Array.isArray(item.photoAlbum) ? item.photoAlbum.filter(a => a && a.image) : [];
+      if (album.length) {
+        html += `<h4 style="margin:1rem 0 0.5rem;">Фотоальбом (${album.length})</h4><div class="thumb-row">` +
+          album.map((a, i) => `
+            <div class="thumb-item" onclick="openImageView('${fileUrl(a.image)}', ${escapeHtml(a.caption || 'Фото ' + (i + 1))})">
+              <img src="${fileUrl(a.image)}" loading="lazy">
+              <div class="cap">${escapeHtml(a.caption || 'Фото ' + (i + 1))}</div>
+            </div>`).join('') + '</div>';
+      }
+      openViewModal(title, html);
+    }
+
+    function viewProgram(id) {
+      const p = programsData.find(x => String(x.id) === String(id));
+      if (p) viewEntity(p, 'Программа: ' + p.name);
+    }
+
+    function viewTrainer(id) {
+      const t = trainersData.find(x => String(x.id) === String(id));
+      if (t) viewEntity(t, 'Тренер: ' + t.name);
+    }
+
+    /* ============================================
+       Оформление: CSS-переменные + live preview (S73)
+       ============================================ */
+    const APPEARANCE_GROUPS = [
+      { title: '📄 Основной текст', vars: [
+        { name: '--fs-body', label: 'Размер', default: '17px' },
+        { name: '--lh-body', label: 'Межстрочный', default: '1.6' },
+        { name: '--ff-body', label: 'Семейство', default: "'Inter', sans-serif" }
+      ]},
+      { title: '📝 Заголовки', vars: [
+        { name: '--fs-h1', label: 'H1', default: '2.5rem' },
+        { name: '--fs-h2', label: 'H2', default: '2rem' },
+        { name: '--fs-h3', label: 'H3', default: '1.625rem' },
+        { name: '--fs-h4', label: 'H4', default: '1.375rem' },
+        { name: '--fw-headings', label: 'Жирность', kind: 'fw', default: '700' },
+        { name: '--ff-headings', label: 'Семейство', default: 'inherit' }
+      ]},
+      { title: '🧭 Навигация', vars: [
+        { name: '--fs-nav', label: 'Размер меню', default: '1.25rem' },
+        { name: '--fs-logo', label: 'Логотип', default: '1.375rem' }
+      ]},
+      { title: '🔘 Кнопки', vars: [
+        { name: '--fs-btn', label: 'Обычная', default: '1rem' },
+        { name: '--fs-call-btn', label: 'Записаться', default: '1.0625rem' }
+      ]},
+      { title: '📦 Карточки и плитки', vars: [
+        { name: '--fs-section-title', label: 'Заголовок секции', default: '2rem' },
+        { name: '--fs-card-title', label: 'Заголовок карточки', default: '1.375rem' },
+        { name: '--fs-card-text', label: 'Текст карточки', default: '1rem' }
+      ]},
+      { title: '🎞 Слайдер и модалки', vars: [
+        { name: '--fs-slider-title', label: 'Заголовок слайда', default: '4.5rem' },
+        { name: '--fs-modal-title', label: 'Заголовок модалки', default: '1.5rem' }
+      ]},
+      { title: '📋 Прочее', vars: [
+        { name: '--fs-table', label: 'Таблицы', default: '1rem' },
+        { name: '--fs-footer', label: 'Футер', default: '1rem' },
+        { name: '--fs-entity-title', label: 'Заголовок сущности', default: '2.25rem' }
+      ]}
+    ];
+
+    let appearanceState = { variables: {}, customCss: '' };
+
+    async function loadAppearanceSection() {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      card.insertAdjacentElement('afterend', box);
+
+      box.innerHTML = `
+        <div class="appearance-layout">
+          <div>
+            <h2>🖌 Оформление</h2>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">
+              CSS-переменные для всех компонентов. Изменения применяются в реальном времени
+              на панели предпросмотра. Сохранение записывает в db.json и перегенерирует статику.
+            </p>
+            <div id="ap-form"></div>
+            <div class="form-group" style="margin-top:1rem;">
+              <label>Прямая вставка CSS</label>
+              <div class="ap-css"><textarea id="ap-custom-css" placeholder="/* произвольный CSS, применяется поверх style.css */&#10;&#10;.some-class { color: red; }"></textarea></div>
+              <span style="font-size:0.75rem;color:var(--text-secondary);">Максимум 20 000 символов. Защита: @import и </style> вырезаются.</span>
+            </div>
+            <div style="margin-top:1.5rem;display:flex;gap:0.5rem;">
+              <button class="btn btn-success" id="ap-save-btn" onclick="saveAppearance()">💾 Сохранить</button>
+              <button class="btn btn-secondary" onclick="resetAppearanceDefaults()">↩ По умолчанию</button>
+            </div>
+          </div>
+          <div class="ap-sticky">
+            <h3 style="margin-bottom:0.5rem;">👁 Живой предпросмотр</h3>
+            <p style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:0.5rem;">Показывает текущие значения переменных на демо-разметке.</p>
+            <iframe id="appearance-preview-frame" srcdoc="Загрузка…" loading="lazy"></iframe>
+          </div>
+        </div>
+      `;
+
+      /* Загрузка текущих значений */
+      try {
+        const res = await api('/api/admin/get-appearance', { method: 'POST' });
+        if (res.ok) {
+          const payload = await res.json();
+          appearanceState = payload.appearance || { variables: {}, customCss: '' };
+        }
+      } catch (err) {
+        showToast('Не удалось загрузить оформление: ' + err.message, 'error');
+      }
+
+      /* Рендер полей */
+      renderAppearanceForm();
+      updatePreview();
+    }
+
+    function renderAppearanceForm() {
+      const form = document.getElementById('ap-form');
+      let html = '';
+      for (const group of APPEARANCE_GROUPS) {
+        html += `<div class="ap-group"><h3>${escapeHtml(group.title)}</h3>`;
+        for (const v of group.vars) {
+          const value = appearanceState.variables[v.name] || v.default;
+          if (v.kind === 'fw') {
+            html += `<div class="ap-field"><label>${escapeHtml(v.label)}</label>
+              <select data-var="${escapeHtml(v.name)}" data-default="${escapeHtml(v.default)}">
+                <option value="400" ${value === '400' ? 'selected' : ''}>400 (Normal)</option>
+                <option value="500" ${value === '500' ? 'selected' : ''}>500 (Medium)</option>
+                <option value="600" ${value === '600' ? 'selected' : ''}>600 (SemiBold)</option>
+                <option value="700" ${value === '700' ? 'selected' : ''}>700 (Bold)</option>
+                <option value="800" ${value === '800' ? 'selected' : ''}>800 (ExtraBold)</option>
+              </select></div>`;
+          } else {
+            html += `<div class="ap-field"><label>${escapeHtml(v.label)}</label>
+              <input type="text" value="${escapeHtml(value)}" data-var="${escapeHtml(v.name)}" data-default="${escapeHtml(v.default)}">
+              <span style="font-size:0.75rem;color:var(--text-secondary);">по умолчанию: ${escapeHtml(v.default)}</span></div>`;
+          }
+        }
+        html += '</div>';
+      }
+      form.innerHTML = html;
+
+      /* Подписка на изменения → обновление предпросмотра */
+      form.querySelectorAll('input[data-var], select[data-var]').forEach(el => {
+        el.addEventListener('input', onAppearanceChange);
+        el.addEventListener('change', onAppearanceChange);
+      });
+
+      const customCssEl = document.getElementById('ap-custom-css');
+      customCssEl.value = appearanceState.customCss || '';
+      customCssEl.addEventListener('input', onAppearanceChange);
+    }
+
+    function onAppearanceChange() {
+      const form = document.getElementById('ap-form');
+      if (!form) return;
+      appearanceState.variables = {};
+      form.querySelectorAll('input[data-var], select[data-var]').forEach(el => {
+        const val = el.value.trim();
+        if (val && val !== el.dataset.default) {
+          appearanceState.variables[el.dataset.var] = val;
+        }
+      });
+      appearanceState.customCss = document.getElementById('ap-custom-css').value || '';
+      updatePreview();
+    }
+
+    function updatePreview() {
+      const iframe = document.getElementById('appearance-preview-frame');
+      if (!iframe) return;
+      const vars = appearanceState.variables;
+      const customCss = appearanceState.customCss || '';
+
+      let varRules = '';
+      for (const [name, value] of Object.entries(vars)) {
+        varRules += name + ': ' + value + '; ';
+      }
+
+      const safeVars = varRules.replace(/<\/style/gi, '<\/style');
+      const safeCss = (customCss || '').replace(/<\/style/gi, '<\/style');
+
+      const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<base href="/">
+<link rel="stylesheet" href="/css/style.css?v=16">
+<style id="appearance-css">:root{${safeVars}}</style>
+<style>${safeCss}</style></head><body>
+<div class="container" style="padding:2rem;">
+  <div class="logo" style="margin-bottom:1rem;"><img src="/uploads/logo.png" alt="" style="width:40px;height:40px;"><span class="logo-text">Шифу Панда</span></div>
+  <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;">
+    <a href="#" style="font-weight:600;padding:0.5rem 1rem;">Главная</a>
+    <a href="#" style="font-weight:600;padding:0.5rem 1rem;">Программы</a>
+    <a href="#" style="font-weight:600;padding:0.5rem 1rem;">Тренеры</a>
+    <a href="#" style="font-weight:600;padding:0.5rem 1rem;">Новости</a>
+  </div>
+  <h1>Заголовок H1 — размер шрифта</h1>
+  <h2>Заголовок H2 — размер шрифта</h2>
+  <h3>Заголовок H3 — размер шрифта</h3>
+  <h4>Заголовок H4 — размер шрифта</h4>
+  <p style="margin:1rem 0;">Основной текст страницы. Используется переменная --fs-body, --lh-body, --ff-body. Здесь показывается, как выглядит набор текста при текущих настройках оформления.</p>
+  <div style="display:flex;gap:0.5rem;margin:1rem 0;">
+    <button class="btn btn-primary" style="padding:0.625rem 1.125rem;">Кнопка</button>
+    <button class="btn btn-secondary" style="padding:0.625rem 1.125rem;">Записаться</button>
+  </div>
+  <div class="program-card" style="border:1px solid #e2e8f0;border-radius:0.5rem;overflow:hidden;margin:1rem 0;">
+    <div style="background:#e2e8f0;height:120px;"></div>
+    <div class="program-content">
+      <h3 class="program-title">Заголовок программы</h3>
+      <p class="program-desc">Описание программы. Размер текста определяется переменной --fs-card-text.</p>
+      <button class="program-btn">Подробнее</button>
+    </div>
+  </div>
+  <h2 style="margin-top:2rem;">Слайдер — заголовок</h2>
+  <table style="width:100%;border-collapse:collapse;margin:1rem 0;">
+    <tr style="background:#f8fafc;"><th style="padding:0.5rem;border:1px solid #e2e8f0;text-align:left;">День</th><th style="padding:0.5rem;border:1px solid #e2e8f0;text-align:left;">Время</th></tr>
+    <tr><td style="padding:0.5rem;border:1px solid #e2e8f0;">Понедельник</td><td style="padding:0.5rem;border:1px solid #e2e8f0;">10:00-11:00</td></tr>
+  </table>
+  <p style="font-size:0.85rem;color:#64748b;margin-top:1.5rem;">— Конец демо-разметки —</p>
+</div></body></html>`;
+
+      iframe.srcdoc = demoHtml;
+    }
+
+    async function saveAppearance() {
+      const btn = document.getElementById('ap-save-btn');
+      if (!btn) return;
+      btn.disabled = true;
+      btn.textContent = '⏳ Сохранение…';
+      try {
+        const res = await api('/api/admin/save-appearance', {
+          method: 'POST',
+          body: JSON.stringify({ appearance: appearanceState })
+        });
+        if (res.ok) {
+          showToast('Оформление сохранено');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast('Ошибка сохранения: ' + (err.error || res.status), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка сохранения: ' + err.message, 'error');
+      }
+      btn.disabled = false;
+      btn.textContent = '💾 Сохранить';
+    }
+
+    function resetAppearanceDefaults() {
+      appearanceState = { variables: {}, customCss: '' };
+      document.getElementById('ap-custom-css').value = '';
+      renderAppearanceForm();
+      updatePreview();
+    }
+
+    /* ============================================
        Данные: синхронизация с диском
        ============================================ */
     let syncStatus = null;
@@ -1146,7 +1779,37 @@
       const existingCard = content.querySelector('.section-card');
       if (!existingCard) return;
 
+      // Подробная сводка по всем ключам db.json (S73)
+      let summaryHtml = '<p class="meta">Загрузка…</p>';
+      try {
+        const db = await getDbData(true);
+        const tiles = Object.keys(db).map(key => {
+          const val = db[key];
+          let meta;
+          if (Array.isArray(val)) meta = val.length + ' эл.';
+          else if (val && typeof val === 'object') meta = Object.keys(val).length + ' полей';
+          else if (typeof val === 'string') meta = val.length > 60 ? val.slice(0, 60) + '…' : (val || 'пусто');
+          else meta = String(val);
+          const size = JSON.stringify(val).length;
+          return `<div class="data-tile" onclick="viewDbKey('${key}')">
+            <h4>📁 ${escapeHtml(key)}</h4>
+            <div class="meta">${escapeHtml(meta)} · ${size.toLocaleString('ru-RU')} симв.</div>
+          </div>`;
+        }).join('');
+        const totalSize = JSON.stringify(db).length;
+        summaryHtml = `
+          <p>Всего ключей: <b>${Object.keys(db).length}</b> · размер базы: <b>${totalSize.toLocaleString('ru-RU')}</b> симв.</p>
+          <p style="font-size:0.83rem;color:var(--text-secondary);margin-top:0.25rem;">Клик по плитке — просмотр содержимого (только чтение).</p>
+          <div class="data-grid">${tiles}</div>`;
+      } catch (err) {
+        summaryHtml = `<p style="color:var(--danger);">Не удалось загрузить: ${escapeHtml(err.message)}</p>`;
+      }
+
       existingCard.insertAdjacentHTML('afterend', `
+        <div class="section-card">
+          <h2>💾 Все данные сайта (db.json)</h2>
+          ${summaryHtml}
+        </div>
         <div class="section-card">
           <h2>🔄 Синхронизация данных с Яндекс.Диска</h2>
           <p>Проверяет новые файлы и папки на диске, загружает, парсит и добавляет в данные.</p>
@@ -1161,6 +1824,17 @@
           <div id="sync-status" style="margin-top:1rem;"></div>
         </div>
       `);
+    }
+
+    async function viewDbKey(key) {
+      try {
+        const db = await getDbData();
+        const val = db[key];
+        const json = JSON.stringify(val, null, 2) || 'undefined';
+        openViewModal('Данные: ' + key, `<pre class="view-json">${escapeHtml(json)}</pre>`);
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
     }
 
     async function loadDividerSection() {

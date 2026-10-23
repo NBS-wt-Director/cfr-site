@@ -171,7 +171,9 @@
   /* ============================================
      РЕНДЕР НОВОСТЕЙ
      news.js несёт 8 последних и только превью (первые 200 символов).
-     Полный текст — на news.html, туда и ведёт кнопка.
+     Полный текст — в news-full.js (SITE_DATA.newsFull), рендерит md.js.
+     Клик по новости открывает модалку прямо на главной (S73),
+     без перехода на news.html.
      ============================================ */
   function renderNews() {
     const el = document.getElementById('news-grid');
@@ -185,18 +187,73 @@
 
     el.innerHTML = news.slice(0, 8).map(n => `
       <article class="news-card" id="news-${n.id}">
-        ${n.image ? `<a href="news.html?id=${n.id}"><img src="${n.image}" alt="${shortQuote(n.title)}" loading="lazy"></a>` : '<div class="news-noimage"></div>'}
+        ${n.image ? `<a href="#" onclick="openNewsModal(${n.id});return false;"><img src="${n.image}" alt="${shortQuote(n.title)}" loading="lazy"></a>` : '<div class="news-noimage"></div>'}
         <div class="news-content">
           <h3 class="news-title">${shortQuote(n.title)}</h3>
           ${n.date ? `<p class="news-date">${formatDate(n.date)}</p>` : ''}
           <p class="news-excerpt">${shortQuote(n.preview || '')}</p>
           <div class="news-actions">
-            <a class="news-more" href="news.html?id=${n.id}">${n.long ? 'Читать полностью →' : 'Подробнее →'}</a>
+            <button type="button" class="news-more" onclick="openNewsModal(${n.id})">${n.long ? 'Читать полностью →' : 'Подробнее →'}</button>
           </div>
         </div>
       </article>
     `).join('');
   }
+
+  /* ============================================
+     МОДАЛКА НОВОСТИ НА ГЛАВНОЙ (S73)
+     Использует разметку #newsModal из index.html,
+     полные тексты — SITE_DATA.newsFull, markdown — MD.render.
+     ============================================ */
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function openNewsModal(id) {
+    const news = Array.isArray(data.news) ? data.news : [];
+    const full = data.newsFull || {};
+    const n = news.filter(x => String(x.id) === String(id))[0];
+    if (!n) return;
+
+    const overlay = document.getElementById('newsModal');
+    if (!overlay) { location.href = 'news.html?id=' + id; return; }
+
+    document.getElementById('newsModalTitle').textContent = n.title;
+    document.getElementById('newsModalDate').textContent = formatDate(n.date);
+    const bodyEl = document.getElementById('newsModalBody');
+    const src = full[n.id] || n.preview || '';
+    bodyEl.innerHTML = window.MD ? window.MD.render(src) : escHtml(src);
+
+    let media = '';
+    if (n.image) {
+      media += `<div class="lightbox-zoom"><img src="${n.image}" alt="${escHtml(n.title)}"></div>`;
+    }
+    const photos = Array.isArray(n.photos) ? n.photos : [];
+    if (photos.length) {
+      media += `<div class="news-photos">` + photos.map(p =>
+        `<div class="lightbox-zoom news-photo"><img src="${p}" alt="${escHtml(n.title)}" loading="lazy"></div>`
+      ).join('') + `</div>`;
+    }
+    if (n.video) {
+      media += `<video controls playsinline><source src="${n.video}">Ваш браузер не поддерживает видео.</video>`;
+    }
+    document.getElementById('newsModalMedia').innerHTML = media;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNewsModal() {
+    const overlay = document.getElementById('newsModal');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.openNewsModal = openNewsModal;
+  window.closeNewsModal = closeNewsModal;
 
   function shorten(text, max) {
     const clean = String(text).replace(/\n/g, ' ').trim();
@@ -282,6 +339,17 @@
     renderTrainers();
     renderNews();
     resetTimer();
+
+    // Закрытие модалки новости (S73): крестик, клик по фону, Escape
+    const newsOverlay = document.getElementById('newsModal');
+    if (newsOverlay) {
+      const closeBtn = document.getElementById('newsModalClose');
+      if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeNewsModal(); });
+      newsOverlay.addEventListener('click', function (e) { if (e.target === newsOverlay) closeNewsModal(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && newsOverlay.classList.contains('open')) closeNewsModal();
+      });
+    }
 
     // Разделители между секциями — управляются из админки (globalDivider)
     const dividers = document.querySelectorAll('.divider');
