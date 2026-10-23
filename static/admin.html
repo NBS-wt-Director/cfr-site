@@ -749,7 +749,7 @@
           html += '<img src="' + fileUrl(existing.image) + '" style="max-width:200px;max-height:120px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;display:block;">';
           html += '<button type="button" class="btn btn-sm btn-danger" onclick="clearScheduleItem(' + i + ')">Удалить лист ' + (i + 1) + '</button>';
         } else {
-          html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById('schedule-input-' + i + '').click()">📁 Загрузить лист ' + (i + 1) + '</button>';
+          html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'schedule-input-' + i + '\').click()">📁 Загрузить лист ' + (i + 1) + '</button>';
           html += '<input type="file" id="schedule-input-' + i + '" accept="image/*" style="display:none" onchange="uploadScheduleItem(' + i + ', this)">';
         }
         html += '</div>';
@@ -776,7 +776,7 @@
         html += '<img src="' + fileUrl(existing.image) + '" style="max-width:300px;max-height:200px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;display:block;">';
         html += '<button type="button" class="btn btn-sm btn-danger" onclick="clearPriceItem()">Удалить прайс</button>';
       } else {
-        html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById('price-input').click()">📁 Загрузить прайс</button>';
+        html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'price-input\').click()">📁 Загрузить прайс</button>';
         html += '<input type="file" id="price-input" accept="image/*" style="display:none" onchange="uploadPriceItem(this)">';
       }
       html += '<div style="margin-top:1rem;"><button class="btn btn-success" onclick="savePrices()">💾 Сохранить цены</button></div>';
@@ -903,7 +903,7 @@
 
     async function loadNewsList() {
       try {
-        const res = await api('/api/admin/get-news');
+        const res = await api('/api/admin/get-news', { method: 'POST', body: '{}' });
         if (res.ok) {
           const data = await res.json();
           newsData = data.news || [];
@@ -1344,7 +1344,7 @@
 
     async function loadProgramsList() {
       try {
-        const res = await api('/api/admin/get-programs');
+        const res = await api('/api/admin/get-programs', { method: 'POST', body: '{}' });
         if (res.ok) {
           const data = await res.json();
           programsData = data.programs || [];
@@ -1428,7 +1428,7 @@
 
     async function loadTrainersList() {
       try {
-        const res = await api('/api/admin/get-trainers');
+        const res = await api('/api/admin/get-trainers', { method: 'POST', body: '{}' });
         if (res.ok) {
           const data = await res.json();
           trainersData = data.trainers || [];
