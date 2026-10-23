@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-22T08:44:26.805Z
+ * Сгенерировано: 2026-10-23T10:51:50.022Z
  */
 window.SITE_DATA = {
   "siteName": "ЦФР - Центр Развития",
@@ -35,8 +35,11 @@ window.SITE_DATA = {
     "secondLineText": "Сайт пока на стадии заполнения и разработки. Данные не полные."
   },
   "divider": {
-    "enabled": true,
-    "text": "🏃 🏋️ 🧘 💪"
+    "enabled": false,
+    "text": "🏃 🏋️ 🧘 💪",
+    "height": "md",
+    "background": "gradientGreen",
+    "fontSize": "small"
   },
   "sections": [
     {

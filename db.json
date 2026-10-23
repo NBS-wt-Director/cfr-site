@@ -69,7 +69,7 @@
     }
   ],
   "globalDivider": {
-    "enabled": true,
+    "enabled": false,
     "height": "md",
     "background": "gradientGreen",
     "textContent": "🏃 🏋️ 🧘 💪",

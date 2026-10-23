@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
   <!-- Слайдер -->
   <section class="slider" id="slider"></section>
 
-  <!-- Разделитель -->
+  <!-- Разделитель после слайдера: скрыт по умолчанию, включается из админки -->
   <div class="divider" id="globalDivider"></div>
 
   <!-- Расписание (картинки) -->
@@ -58,9 +58,6 @@
     </div>
   </section>
 
-  <!-- Разделитель -->
-  <div class="divider"></div>
-
   <!-- Новости (динамика — данные из data.js) -->
   <section class="section" id="news">
     <div class="container">
@@ -73,27 +70,27 @@
   <div id="footer-container"></div>
 
   <!-- Плавающая кнопка звонка (видна только на мобильных) -->
-  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
   <!-- Данные сайта. core.js обязателен и идёт первым, дальше — только модули
        тех секций, что есть на этой странице. Генератор: npm run static:export -->
-  <script src="js/data/core.js?v=15"></script>
-  <script src="js/data/slider.js?v=15"></script>
-  <script src="js/data/schedule.js?v=15"></script>
-  <script src="js/data/schedule-table.js?v=15"></script>
-  <script src="js/data/prices.js?v=15"></script>
-  <script src="js/data/programs.js?v=15"></script>
-  <script src="js/data/trainers.js?v=15"></script>
-  <script src="js/data/news.js?v=15"></script>
+  <script src="js/data/core.js?v=16"></script>
+  <script src="js/data/slider.js?v=16"></script>
+  <script src="js/data/schedule.js?v=16"></script>
+  <script src="js/data/schedule-table.js?v=16"></script>
+  <script src="js/data/prices.js?v=16"></script>
+  <script src="js/data/programs.js?v=16"></script>
+  <script src="js/data/trainers.js?v=16"></script>
+  <script src="js/data/news.js?v=16"></script>
 
   <!-- Компоненты -->
-  <script src="js/header.js?v=15"></script>
-  <script src="js/footer.js?v=15"></script>
-  <script src="js/modal.js?v=15"></script>
+  <script src="js/header.js?v=16"></script>
+  <script src="js/footer.js?v=16"></script>
+  <script src="js/modal.js?v=16"></script>
 
   <!-- Основная логика (слайдер, рендер секций, мобильное меню) -->
-  <script src="js/schedule-ui.js?v=15"></script>
-  <script src="js/main.js?v=15"></script>
+  <script src="js/schedule-ui.js?v=16"></script>
+  <script src="js/main.js?v=16"></script>
 
 </body>
 </html>

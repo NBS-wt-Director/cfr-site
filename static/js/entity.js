@@ -142,7 +142,7 @@
       scheduleBlock(p.scheduleStructured) +
       albumHtml(p.photoAlbum, p.name) +
       '<div class="entity-actions">' +
-      '<button class="program-btn program-btn-primary" onclick="openCallModal(\'Записаться: ' + esc(p.name) + '\')">📞 Записаться</button>' +
+      '<button class="program-btn program-btn-primary" onclick="openCallModal(\'Записаться: ' + esc(p.name) + '\')"><i class="icon-call"></i> Записаться</button>' +
       '</div>';
   }
 
@@ -185,7 +185,7 @@
       mySchedule +
       albumHtml(t.photoAlbum, t.name) +
       '<div class="entity-actions">' +
-      '<button class="program-btn program-btn-primary" onclick="openCallModal(\'Заказать звонок: ' + esc(t.name) + '\')">📞 Заказать звонок</button>' +
+      '<button class="program-btn program-btn-primary" onclick="openCallModal(\'Заказать звонок: ' + esc(t.name) + '\')"><i class="icon-call"></i> Заказать звонок</button>' +
       '</div>';
   }
 

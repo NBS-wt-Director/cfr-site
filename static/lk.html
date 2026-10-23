@@ -1,40 +1,374 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Личный кабинет — Шифу Панда</title>
-  <meta name="description" content="Личный кабинет центра Шифу Панда — раздел в разработке.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=15">
+<title>Личный кабинет — Центр Развития «Шифу Панда»</title>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type='text/css'>
+.preloader { display:none; overflow:hidden; position:fixed; z-index:100000; width:100%; height:100%; }
+.preloader .container { width:90px; margin:40vh auto 0 auto; text-align:center; transform:translate(-50%, -50%); }
+.preloader .container span { display:block; margin:-95px 0 0 30px; color:#efefef; text-transform:uppercase; font-size:1.6em; font-family:Lucida Console; -webkit-animation:pulse 4000ms linear infinite; -moz-animation:pulse 4000ms linear infinite; animation:pulse 4000ms linear infinite; }
+.preloader .container .circle { box-sizing:border-box; width:180px; height:180px; border-radius:100%; border:10px solid rgba(255, 255, 255, 0.2); border-top-color:#FFF; animation:spin 3s infinite linear; }
+.preloader2 { width:180px; height:180px; margin:27px 0 25px 27px }
+.preloader2 .container { width:90px; text-align:center }
+.preloader2 .container span { display:block; margin:-95px 0 0 30px; color:#bfbfbf; text-transform:uppercase; font-size:1.6em; font-family:Lucida Console; -webkit-animation:pulse 4000ms linear infinite; -moz-animation:pulse 4000ms linear infinite; animation:pulse 4000ms linear infinite }
+.preloader2 .container .circle { box-sizing:border-box; width:180px; height:180px; border-radius:100%; border:10px solid rgba(128, 128, 128, 0.2); border-top-color:#bfbfbf; animation:spin 3s infinite linear }
+@keyframes spin { 100% { transform:rotate(360deg); }}
+@-webkit-keyframes pulse { 0%, 100% {opacity:1; } 50% { opacity:0.25; }}
+@keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.25; }}
+
+body { margin: 0;padding: 0; background:#2d8ed0; }
+table { width:100%; border-spacing:0; border-collapse:collapse }
+.ui-dialog { position:fixed !important; padding:0 !important; border-radius:0 !important; border-width:0 !important }
+.ui-dialog .ui-dialog-content { padding:0 7px !important; overflow:hidden !important }
+.ui-dialog .ui-dialog-buttonpane { text-align:center !important; border-width:0 !important }
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float:none !important; border-width:0 !important }
+.ui-dialog-buttonpane { padding:0 !important }
+.ui-tab-content, .ui-tabs-panel{ overflow:auto }
+.ui-tabs .ui-tabs-nav { background:none; border-style:solid; border-width: 0 0 1px }
+.ui-tabs { border:0px !important }
+.ui-dialog-titlebar { background:none !important; border-width:0 0 1px 0 !important; border-radius:0 !important }
+.ui-dialog-titlebar-close { width: 25px !important; width: 25px !important; margin-top: -12px !important; border-width: 0 !important; background-color: transparent !important; opacity: 0.5 !important }
+.ui-dialog-titlebar-close .ui-button-icon-only .ui-icon { margin-top: -9px !important; margin-left: -9px !important; }
+.ui-widget-header { font-weight:normal !important }
+.ui-widget-overlay { background-color:#000 !important; opacity:0.5 !important }
+.ui-state-focus:focus { outline:none !important }
+.no-close .ui-dialog-titlebar-close { display: none }
+.no-close .ui-dialog-title { text-align:left; width: 100%; text-indent:30px }
+.no-titlebar .ui-dialog-titlebar { display:none }
+.login-input-div { width:100%; margin:10px 0; position: relative }
+.login-input { border:0; outline-color:rgb(255, 214, 51); margin:5px 0 0 0; padding:10px 15px; border:1px solid #ccc; position:relative; background:transparent; font-size:15px; color:#333; width:100%; box-sizing:border-box; letter-spacing:1px }
+.gray { color:gray }
+.red { color:red }
+.row-wrap-div { display:flex; flex-flow:row wrap }
+.clickable_text { background:none; border:none; cursor:pointer; color:gray; font-family:Roboto Condensed,sans-serif }
+.clickable_text:hover { text-decoration:underline }
+.clickable_text:disabled { color:lightgray; text-decoration:none; cursor:default }
+.account-div { display:flex; flex-flow:row wrap; align-items:center }
+.account-header-div { display:flex; flex-flow:column nowrap; width:300px; margin-top:0px }
+.account-period-div { margin:5px 0 0 0 }
+.account-count { display:flex; flex-flow:column nowrap; align-items:center; width:120px }
+.account-count-left { font-size:3.0em }
+.account-count-right { display:flex; justify-content:flex-end; align-items:flex-end; margin:0 0 8px 5px }
+.item-row { height:22px }
+.item-row-big { height:32px }
+.left-margin-min { margin-left:5px }
+.left-margin { margin-left:10px }
+.left-padding { padding-left:10px }
+.date-td { white-space:nowrap }
+.target-td { max-width:300px }
+.sum-td { white-space:nowrap }
+.right-align-td { text-align:right }
+.child-button { display:contents }
+.trim-text { white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.trim-cell { width:130px }
+.trim-cell > span { display:block; position:relative; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:right }
+.text-center { text-align: center }
+.btn { opacity: 0.8; cursor: hand; background: rgb(175, 175, 175); color: white; border-radius: 4px; text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px; letter-spacing: 1px; padding: 6px 10px }
+.btn:hover{ opacity: 1; }
+.btn-blue { background:#0063d6 }
+.btn-pay { margin-top: 20px; display: inline-block; padding: 6px 20px !important }
+.btn-green { background: rgb(28, 184, 65) }
+.btn-red { background: rgb(255, 26, 26) }
+.btn-big { width: 100px; height: 120px; margin: 10px auto; cursor: hand; text-align: center; border: 1px lightgray solid; border-radius: 3px; line-height: 25px; background: #efefef; display: flex; justify-items: center; align-items: center; }
+.price-table { border-collapse: collapse; border-radius: 3px }
+.price-row { background: #efefef; padding: 8px 10px; margin-bottom: 2px; display: flex; border-radius: 3px; cursor: pointer; align-items: center; justify-content: space-between }
+.price-row:hover { background: #e9e9e9 }
+.price-desc { width: 200px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+.price-cost { color: green }
+.res-target-cell { padding: 13px 5px 5px 5px !important; }
+.res-operations-cell { padding: 0; width: 120px }
+.res-operations-cell > div { display: flex; flex-wrap: wrap-reverse }
+.res-operations-cell .btn { min-width: 100px; margin: 3px auto }
+#login-dialog { margin-top:10px }
+#login-dialog > div { padding:5px }
+#profile-dialog { margin-bottom:15px }
+#profile-grid { display:flex; flex-flow:column nowrap }
+#profile-tabs .ui-state-active { border-color:#cccccc }
+#profile-tabs .ui-state-active a { background: #ededed }
+#profile-tabs > div { overflow-y:auto; min-height:calc(80vh - 240px); max-height:calc(80vh - 240px); padding:20px 10px }
+#profile-tabs > ul { border-radius:0 !important}
+#profile-tabs > ul > li { white-space:pre; background:transparent }
+#profile-tabs > ul > li img { display:block; margin:0 auto; opacity:0.9 }
+#profile-tabs > ul > li > a { color:black; outline:none; border-color:#cccccc; display:flex; flex-flow:column nowrap; align-items:center; justify-content:center }
+#profile-tabs table { table-layout:fixed; display:table }
+#profile-tabs table td { vertical-align:center; padding:5px }
+#res-img { margin:0 0 0 8px !important }
+#sale-tabs tr:nth-child(even) { background-color:#f2f2f2 }
+#visit-tabs tr:hover, #res-tabs tr:hover { background-color:#f2f2f2 }
+#client-foto { display:none; min-width:128px; max-width:128px; margin:15px; border-radius:50%; object-fit:cover; cursor:pointer }
+#client-foto-div { width:158px; height:158px; cursor:pointer }
+#client-foto-input { display:none }
+#header-div { display:flex; flex-flow:row nowrap }
+#right-header-div { display:flex; flex-flow:column nowrap }
+#top-line-div { display:flex; flex-flow:row nowrap }
+#fio-header { margin-bottom:10px }
+#children-div { display:flex; flex-flow:row wrap; margin-top:10px }
+#exit-img { width:24px; height:24px; margin:18px 5px 0 5px; opacity:0.9; cursor:pointer }
+#balance-div { display:flex; flex-flow:row nowrap }
+#balance-sum { margin:0 3px }
+#bonus-div { display:none; flex-flow:row nowrap; margin-top:5px }
+#bonus-sum { margin:0 3px; color:green }
+#ds-div { position:absolute; right:5px; bottom:5px; color:white }
+#site-link { position:fixed; left:8px; bottom:5px; z-index:1000 }
+#site-link a { color:white; text-decoration:none; font-family:'Roboto Condensed',sans-serif; font-size:14px; opacity:0.85 }
+#site-link a:hover { opacity:1; text-decoration:underline }
+#client-barcode { margin:20px 0 20px 350px; height:50px; max-width:300px; display:none }
+#client-barcode-div { height:200px; margin-bottom:100px }
+#pay-tabs .ui-tabs-panel { padding: 0 3px 10px 3px; max-height: 500px; overflow-y: scroll }
+
+/* ПОРТРЕТНАЯ ОРИЕНТАЦИЯ */
+@media screen and (orientation: portrait) {
+.preloader .container { width:100px; }
+.preloader .container span { font-size:1.8em; margin:-110px 0 0 30px; }
+.preloader .container .circle { width:200px; height:200px; }
+.account-div { align-items:center; justify-content:center }
+.account-header-div { text-align:center; width:100vw; margin:10px 0 }
+#profile-dialog { padding:0 !important }
+#profile-tabs { padding:0; height:100vh !important }
+#profile-tabs > div { min-height:calc(100vh - 240px); max-height:calc(100vh - 240px); padding:20px 5px }
+#profile-tabs table { margin-bottom:120px }
+#profile-tabs .ui-tabs-nav .ui-tabs-anchor { padding: .5em 0.6em !important }
+#profile-tabs .ui-helper-reset { font-size:0.75em }
+#profile-tabs > ul { display:flex; flex-flow:row nowrap; align-items:center; justify-content:center }
+#profile-tabs > ul > li > a { width:19vw }
+#tabs-1 { padding:20px 0 }
+#tabs-2 { padding:20px 10px }
+#ds-div { display:none }
+#client-barcode { height:100px; margin-left:auto; margin-right:auto }
+}
+</style>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.3/croppie.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script async src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/10.10.0/Dropbox-sdk.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/unfetch@4.1.0/polyfill/index.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.3/croppie.min.js"></script>
 </head>
 <body>
-  <div id="header-container"></div>
 
-  <section class="section">
-    <div class="container entity-page">
-      <h1 class="entity-title">Личный кабинет</h1>
-      <p class="entity-meta">Раздел в разработке</p>
-      <div class="crm-placeholder">
-        <div class="crm-placeholder-icon">👤</div>
-        <p>Здесь появится вход для учеников: абонементы, посещения и расписание.</p>
-        <p class="crm-placeholder-note">Пока раздел пуст и не содержит данных.</p>
-      </div>
-      <div class="entity-actions">
-        <a class="program-btn program-btn-primary" href="index.html">← На главную</a>
-      </div>
-    </div>
-  </section>
+<div class="preloader">
+<div class="container">
+<div class="circle"></div>
+<span>загрузка</span>
+</div>
+</div>
 
-  <div class="divider"></div>
-  <div id="footer-container"></div>
-  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок">📞</button>
+<div id='login-dialog' title='Личный кабинет клиента' style='display:none'>
+<div>
+<div id='login-phone-div' class='login-input-div'>
+<label for='login-phone'>Телефон:</label>
+<input id='login-phone' class='login-input' type='text'>
+</div>
+<div id='login-pas-div' class='login-input-div'>
+<label for='login-pas'>Пароль:</label>
+<input id='login-pas' class='login-input' type='password'>
+</div>
+</div>
+</div>
 
-  <script src="js/data/core.js?v=15"></script>
-  <script src="js/header.js?v=15"></script>
-  <script src="js/footer.js?v=15"></script>
-  <script src="js/modal.js?v=15"></script>
+<div id='profile-dialog' title='Личный кабинет клиента' style='display:none'>
+<div id='profile-grid'>
+<div id='header-div'>
+<input id='client-foto-input' type='file' accept='image/*' onchange="newFoto()"/>
+<div id='client-foto-div' onclick="selectFoto()">
+<img id='client-foto' width='128px' height='128px'/>
+</div>
+<div id='right-header-div'>
+<div id='top-line-div'><h3 id='fio-header'></h3><img id="exit-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAiklEQVRIie2VsQ2AIBBF3wS4gg5kiGPqFHY6hiW4hDbSWBwnF0PDT37F8V/4gQBNHzUBEbgKfQJeAljCk6MESEOlyu6vChiAFej/AszP2iFATA04YMtArBXjgF2AqCvS+g2pD8ipw1iRJVwFkAaWTLgZ0PPzQ9OoPuBEvpYaBwngsf0JARg/nLgJbhCYnKxYzCFsAAAAAElFTkSuQmCC" onclick='exit()' alt="Выйти из личного кабинета" title="Выйти из личного кабинета"/></div>
+<div id='balance-div'>
+<span class="gray">Баланс: </span>
+<span id='balance-sum'></span>
+</div>
+<div id='bonus-div'>
+<span class="gray">Начислено баллов: </span>
+<span id='bonus-sum'></span>
+</div>
+<div id='children-div' class="gray"></div>
+</div>
+</div>
+<div id="profile-tabs">
+<ul>
+<!-- Иконки 48х48 -->
+<li><a href="#tabs-1"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACP0lEQVRoge3YvUtXURwG8I/VUENItUSWNrS0VYZ7hEINUThUBNFQEhhU4GAF0QsOQlhLhNo/IERLU7QKDf4DbUINRVDRC72YLw3nmvLz+vPce3/+/An3gWc73+c8z7n3vFKiRIkSJUos4CDuYBhPl2FX0nZHlTZZuS3R7KrSZgT30Z5mfBNGMRfBvqRmb2T7GO5ONPsi248mnv/jYUTRG9xCR1LTjH48L2D8WaKxNdHswM2kr5Vqh+bNt2A6oqBTOjbgSw7zn9G0jGZnRP1f7IJzkR0OJ2F3VrAbszkCzOBkil6L8L/HaJyFqzk6bxT2wrUGMJKXV8oA6zHAK2GzG8DEegrw3cIuvBiXhBUlRuN3Aab1kSnAhRTz8xiMqD9apT4GrfiVN8AnbKwi3hKhcbxggH3Cl8gVYCKigx8ROtMFWGgOvFvBfLN8u3FdJ/GRKgF618B85gCTaEsxfxhfI+o/YrwAJ4sGmBNOnQM4hhN4jD+RtftTwmfBFnzLG+CncO7vF9b9iwl7cBsvheNtNY0bOFCApy3dC1YMMItH2B4xQm0YixiMus2BKZyKMF6J640SoCeH+Xk8WOsA4wXMw2a8rdB8LfyOefkiS4DuggEIl/PFmq0F9ZosvXunBpi18EpQBIcqdMdwuQCHRH6B9zUwTxiEusyBykv9DD7UiKsdoBfO16Gj1eIZ2CPuYavROCW8IyEsU2ttKCsHLUKWx91G4BPL3BDbcU942qvV03mtOIK7wsGuRIkSJUqUAP8ArPVoUge2BmkAAAAASUVORK5CYII="/>Абонемент</a></li>
+<li><a href="#tabs-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADBUlEQVRoge3X34tVVRQH8M/MqKEQM2hUiIYPJT3k5BDmBEGggpgkkVISSfgi9JIFakFqDQmBjz2oD4FJT0LkhOWD9Q/0EIQ/sqLol2klEaUmM2rTwz4De45nzt3n3HuHHs4XFtx7ztrf9V37nLX2OjRo0KBBgwYN/v+Yh+dxCIexC/d0kH8JXsW7OIgtmNsp8pX4GRM5G8PLbXL34BVcL+D/ASva5LcUfxeQx/ZCG/zbW3D/hXvb4HesRYAJIcH+GtzzcTWB//264ucpfrRF9kwN/ucSucfVrIf7EgNMCAVYFXsq8Nd6je6sECBfB0swgg8xir1YnPN5sQL/HXUSgLOJAe6P1mwTOlTe5xq2Rn7LErlP1RUPmxMCHI38Nyb4PxH5jyb4b2ongR68VUL+GQYy3z78mCDoW/Rma+bj8xLffe2Ij/E4PsU/uIkz2IHbIp8VCeIn7cFo3VyhCZzNuK/iJNZ2Snxv9Lsns0nMjn4/VSGB+DXqK+GPY1fCLGEemdz11QU+A8KIcU6YjR6rkMAjwq6fw/e4vYB/bRb7E+HMmJUqfjgjjgP+5NbT9kh0fxx3C0d/K/F/YCFuRNfeyXEP4Hxu3Zd4uJX4zZmYosBHIr8NBfd3CYNZqwRewu6C6+sj/vemWTuGp6cTv0br0eFJLMCvBfcu4wFhN6dbfwDLFc9AF4Su1KqWrmNVXnw/Libs3u/4qOT+RWH83oAT2f8LOC50spX4rWT98SxGKx2/yNXNSMKiMjsvjAvLlE+m/RjEG1li7cTcM0na2wbZGF7DIryJ77JrgwXih4T6+iZLYCFeN33NpWxaD+GdrENwSehY29z60fOFqWfEHJzO+fwpfKY+KnSmOhoGSZ/LY7ucJf52iU88BpSNI/vxEK7U0PEsobhGK9pG4dUpI78h9O1hU3t+ke0UhraqOtapiaEEURP4Cl8n+I0LLXjG8HGCqKr2wUyJX4R/u5DATdw1Ewls7YL4KUXZbezvYgId+4ApwxZh3umGzcgTaNCgQYMGDRp0Cv8Bb02w4b90sPAAAAAASUVORK5CYII="/>Посещения</a></li>
+<li><a href="#tabs-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABuUlEQVRoge3YO2sVQRiH8d9BCF4gSECbNIIfQEjQIoE0FooELPwEImhjYWNhhBTe0OQT2IiCCCaIphMUKwtbUVAIYgKBeAEVNCAkXordcE6RxN11Z/YkzAMvLLvvDP+H3Z1ZlkQikUh0KS0MYyg/3nRM4E9eVxrOUolFbYH5hrOUpoX32gKzNtljdBkfcBFj+IjxRhOV4DS+Y6Dj3CB+4GQjiUowip84usa1Y/m1I1ETleAglnBqg5617k5XsB+fcKlA71XZ+7EvZKAy7JGtMrcVW2lauIu36AsXqxg78QJP0FNiXA+e4Tl2BMhViG2YwUv0Vhi/G6/xIJ+rdk7IbvPCOvUNK7Idd72ef9ViPsfXDXre4HgVgS/aO2nT9bmKwFwXBF+td1UEBjCNxw3XfRyoItDJDTyKXNf+N3Qnt8R/bG7WKXC2AYEzdQoMNyBwqE6BXfgVMfwyttcpQLapxRJ4VXd4uBdR4E4IgfMRBc6FEDgcUWAkhEBfpPC/Vfu6LcRcBIHZUOHhYQSBqZAC4xEELoQUGI0gEPS3S38Egb0hBch+E4YKvxA6PEziaaC6HkMgkUgkEluHv1cuVXpONBTHAAAAAElFTkSuQmCC"/>Покупки</a></li>
+<li><a href="#tabs-4"><img id="res-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB3ElEQVRoge2YPUvDQByHH5ciKPiK2nYTF50c3JxEHJzUyU3d3ESXjr6CDlp0cfEFHPwGbjoLriLV1i9gP4IOWockNE2TtHe59q9wP/hNud49Dw2XS8DGxsbGpjbLwBEwKg2ik22g4vYDGJfFUcsOVXivZf6JxAL18H6JCTm0xukGOoBr4iUGpADjsgu8ASM0lphTnbwPyAGnwJmh5l1YD96D80tchcC/A10q8CmgEDJRkn4DayHwXotA2pW4DMBnVeABZlsAv+rOvRczLihRAjKq8ACLhuFXmoAPk+jXgQ8TOAYmNTumAO/1Thc8SmAz4Xwq8CWcfyBRTArs0zy8d/skjikBEXgwIyAGD8kFVOFHcJ49xpJE4CAGNljvCZwGbsygO9EV0IUvAk/m8PUEVOBfXfgMzrZZkRbQgYfa85aYQNzLSBj8sO+3n9ICnThnlgsN+D8h8Ej1HB8nUQiBB2GBLLW7SZREFDwIC8z7rkdJFIChmHVEBXKBMUGJRvAgLHBL/e3il+htYh1RgefAmDLwAKwrrCMqcA5sADPAoOY64tto0liBqAQF8sBUC/rVLoF21KiA6Q9bzfTepEAKeGkj/A+wZFIAoAfYwvmoddLCHgLTpuFtbGxs2pNf5y0yakIJqSUAAAAASUVORK5CYII="/>Запись</a></li>
+</ul>
+<div id="tabs-1">
+</div>
+<div id="tabs-2">
+</div>
+<div id="tabs-3">
+</div>
+<div id="tabs-4">
+</div>
+</div>
+</div>
+</div>
+
+<div id='site-link'><a href='index.html'>← На сайт</a></div>
+<div id='ds-div'><button style='color:white' class='clickable_text' onclick='goDS()'>by DanceStudio</button></div>
+
+<div id='msg-dialog' title='Внимание' style='display:none'></div>
+<div id='preloader-dialog' title='Пожалуйста, подождите...' style='display:none; overflow:hidden'><div class='preloader2'><div class='container'><div class='circle'></div><span>загрузка</span></div></div></div>
+<div id='crop-dialog' title='Внимание' style='display:none'></div>
+<div id='pay-variants-dialog' style='display:none'></div>
+<div id='buys-dialog' style='display:none'></div>
+
+<script type='text/javascript'>var d=document;var dbPath='/Clients';var dbFilesPath='/Clients/Files';var dbUserFilesPath='/Clients/UserFiles';var dbBarcodesPath='/Clients/Barcodes';var dbResPath='/Res';var userFotoPath='';var dbx=null;var dbxLk=null;var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}};var msgWin=$('#msg-dialog');var cropWin=$('#crop-dialog');var loginWin=$('#login-dialog');var profileWin=$('#profile-dialog');var payVariantsWin=$('#pay-variants-dialog');var buysWin=$('#buys-dialog');var preloader=$('.preloader');var preloaderWin=$('#preloader-dialog');var ie=d.all&&!window.opera;var optionsPath='/Options.xml';var groupsPath='/Groups.xml';var groups=[];var summaryPath='/Res/summary.txt';var summary='';var clientXml='';var barcodeBody='';var today=new Date();var hasOpenAccount=false;var hasBadAccount=false;var accountType='';var accountCost=0;var useLkApp=false;var passwordCommon='MTIzNA==';var passwordType=3;var usePassword=true;var useBarcode=true;var isQR=true;var mask='8 (###) ### ####';var hideEmptyAccountPeriod=false;var zoomShowButton=1;var unsubscribe=false;var unsubscribeMinutes=30;var showBall=true;var showBallType=0;var payLink='';var isMobileMode={Android:function(){return navigator.userAgent.match(/Android/i);},BlackBerry:function(){return navigator.userAgent.match(/BlackBerry/i);},iOS:function(){return navigator.userAgent.match(/iPhone|iPod|iPad/i);},Opera:function(){return navigator.userAgent.match(/Opera Mini/i);},Windows:function(){return navigator.userAgent.match(/IEMobile/i);},any:function(){var winWidth=ie?ietruebody().clientWidth:window.innerWidth;if(winWidth>=1024)
+return false;return(isMobileMode.Android()||isMobileMode.BlackBerry()||isMobileMode.iOS()||isMobileMode.Opera()||isMobileMode.Windows());}};var isMobile=isMobileMode.any();var isPortrait=window.innerHeight>window.innerWidth;window.onload=function(){if(window.location.href.includes('vk_app_id'))
+$.getScript('https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js',function(){vkBridge.send('VKWebAppInit');});if(usePassword){$("#login-pas").keyup(function(event){if(event.key==="Enter")
+login();});}
+else{$('#login-pas-div').hide();}
+today.setHours(0,0,0,0);$.mask={definitions:{'#':'[0-9]',a:'[A-Za-z]','*':'[A-Za-z0-9]'},autoclear:!0,dataName:'rawMaskFn',placeholder:'_'};$('#login-phone').mask(mask);loginWin.dialog({dialogClass:'no-close',title:loginWin.title,width:'280px',autoOpen:false,position:{my:'center',at:isMobile?'center top+30%':'center top+40%',of:window},show:{effect:'fade',duration:500},hide:{effect:'fade',duration:300},maxHeight:window.innerHeight,maxWidth:window.innerWidth,modal:false,buttons:[{text:'Войти',click:function(){login();}}]});var phone=$.cookie('phone');if(phone){$('#login-phone').val(phone);if(usePassword)
+$('#login-pas').val($.cookie('password'));login();return;}
+loginWin.dialog('open');};function exit(){$.removeCookie('phone');$('#login-phone').val(null);if(usePassword){$.removeCookie('password');$('#login-pas').val(null);}
+profileWin.dialog('close');loginWin.dialog('open');}
+function goDS(){window.open('http://www.dance-soft.ru/?utm_source=client_lk','_blank');}
+function goChild(xmlPath,fotoPath){profileWin.dialog('close');preloader.fadeIn('slow');loadProfile(null,xmlPath,fotoPath,true);}
+function showMsg(title,msg){if(preloader.is(":visible")){preloader.fadeOut('fast');loginWin.dialog('open');}
+msgWin.html("<div style='margin:20px 0 0 5px'>"+msg+"</div>");msgWin.dialog({title:title,width:'260px',maxHeight:window.innerHeight,maxWidth:window.innerWidth,position:{my:'center',at:'center top+40%',of:window},modal:true,buttons:[{text:'ОК',click:function(){msgWin.dialog('close');}}]});}
+function showQuestion(title,msg,successfunc,successFuncParam){msgWin.html("<div style='margin:20px 0 0 5px'>"+msg+"</div>");msgWin.dialog({title:title,width:'260px',maxHeight:window.innerHeight,maxWidth:window.innerWidth,position:{my:'center',at:'center top+40%',of:window},modal:true,buttons:[{text:'Да',click:function(){msgWin.dialog('close');successfunc(successFuncParam);}},{text:'Нет',click:function(){msgWin.dialog('close');}}]});}
+function showPreloader(offset){if(!preloaderWin.dialog)
+return;preloaderWin.dialog({width:'250px',position:{my:'center',at:'center top+40%',of:window},closeOnEscape:false,modal:true,open:function(event,ui){$(this).parent().children().children('.ui-dialog-titlebar-close').hide();}});}
+var showResSuccessMsg=function(){setTimeout(function(){closePreloader();showMsg('Отмена записи','Запись на занятие отменена.');},500);}
+var showResErrMsg=function(error){var erStr=error.message==='Failed to fetch'?'интернет не доступен.':error.message;var str='<div style="color:red">Не удалось отменить запись, попробуйте позже.<br/><br/>Ошибка: '+erStr+'</div>';closePreloader();showMsg('Отмена записи',str);}
+function closePreloader(){if(preloaderWin.dialog&&preloaderWin.is(':visible'))
+preloaderWin.dialog('close');}
+function openZoom(href){if(zoomShowButton===3&&!hasOpenAccount){showMsg('Трансляция','Для доступа к трансляции нужно оформить абонемент.');return;}
+window.open(href,'_blank');}
+function runUnsubscribe(res){var d=new Date();var dtStr=res.date.split('.');var timeBeginStr=res.time.split('-')[0].split(':');var dt=new Date(dtStr[2],dtStr[1]-1,dtStr[0]);var dtWithTime=new Date(dt.getTime()+60000*(60*parseInt(timeBeginStr[0])+parseInt(timeBeginStr[1])));var delta=dtWithTime-d;var diffMins=Math.floor(delta/1000/60);if(diffMins<unsubscribeMinutes){showMsg('Отпись от занятия','Вы не можете отписаться от занятия, т.к. до начала занятия <span style="color:red">осталось меньше '+unsubscribeMinutes+' минут</span>.');return;}
+var group=getGroupById(res.targetID);var clientTag='<ID_Client>'+clientXml.find('ID').text()+'</ID_Client>';var fileName=dbResPath+'/'+Date.now()+'.xml';var timeTag='<Time>'+res.date+' '+res.time.slice(0,5)+'</Time>';var idTag=group?'<ID_Group>'+res.targetID+'</ID_Group>':'<ID_Teacher>'+res.targetID+'</ID_Teacher>';var targetTag=timeTag+idTag;var unsubscribeTag='<Unsubscribe>True</Unsubscribe>';var xml='<?xml version="1.0" encoding="utf-8"?><Item>'+timeTag+idTag+clientTag+unsubscribeTag+'</Item>';showPreloader();dbx.filesUpload({path:fileName,contents:xml}).then(function(response){var items=$.cookie('ds_undesc_lk_items');if(items){var newItems='';var today=new Date();today.setHours(0,0,0,0);items=items.split('|');for(var ii=0;ii<items.length;++ii){var dtStr=items[ii].substr(0,10).split('.');var dt=new Date(dtStr[2],dtStr[1]-1,dtStr[0]);if(dt>=today)
+newItems+=items[ii]+'|';}
+items=newItems;}
+else{items='';}
+items+=res.date+res.time+res.targetID;$.cookie('ds_undesc_lk_items',items,{expires:30,path:'/'});console.log('Онлайн-отпись '+fileName+' сохранена.');saveSummary(dbx,targetTag+clientTag+unsubscribeTag);if(dbxLk!=null)
+saveSummary(dbxLk,targetTag+clientTag+unsubscribeTag);$("#res-tabs tr[index="+res.index+"]").remove();var tab=$("#res-tabs");if(tab.children().length==0||tab.children()[0].childElementCount==0)
+$('#tabs-4').html('<div class="left-margin gray">Нет записей на занятия</div>');showResSuccessMsg();}).catch(function(error){showResErrMsg(error);console.log('Ошибка при сохранении онлайн отписи '+fileName);});}
+var saveSummary=function(dbxObj,line){dbxObj.filesDownload({path:summaryPath}).then(function(response){var reader=new FileReader();reader.onload=function(){summary=reader.result+'\n'+line;saveSummaryText(dbxObj,summary);};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){saveSummaryText(dbxObj,line);updateResPanel(clientXml,[$($.parseXML('<Item>'+line+'</Item>'))]);});}
+var saveSummaryText=function(dbxObj,text){dbxObj.filesUpload({path:summaryPath,contents:text,mode:'overwrite'}).then(function(response){console.log('Сводка успешно сохранена.');}).catch(function(error){console.log('Ошибка при сохранении сводки.');});}
+function login(){var phone=$('#login-phone').val();if(!phone||phone.length<3){showMsg('Внимание','Укажите телефон.');return false;}
+var password=$('#login-pas').val();if(usePassword&&(!password||password.length<1)){showMsg('Внимание','Укажите пароль.');return false;}
+if(usePassword&&passwordType===2&&password!=Base64.decode(passwordCommon)){if(!loginWin.is(":visible"))
+loginWin.dialog('open');showMsg('Внимание','Неверный пароль.');return false;}
+if(dbx==null){dbx=new Dropbox.Dropbox({clientId:atob('dHF0NXY5Z2xmYzY1MjV2'),clientSecret:atob('d3JidmswYWwzdHJxYWpn'),accessToken:atob(''),refreshToken:atob('bTZpMTJfR1g1NlFBQUFBQUFBQUFBZWhTREJ5ZThnQldpM0g4dDRJQU1RNUs3VEF5XzJ2bkNCT0NMV05jVXJOZQ==')});}
+if(dbxLk==null&&useLkApp){dbxLk=new Dropbox.Dropbox({clientId:atob(''),clientSecret:atob(''),accessToken:atob(''),refreshToken:atob('')});}
+var withPlus=phone[0]==='+';phone=phone.replace(/[^0-9]/g,'');if(withPlus)
+phone='+'+phone;loginWin.dialog('close');preloader.fadeIn('slow');var phoneBase64=Base64.encode(phone);loadProfile(phone,dbPath+'/'+phoneBase64,dbFilesPath+'/'+phoneBase64);}
+function findProfile(phone){if(!phone)
+return;var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesListFolder({path:dbPath,limit:2000}).then(function(response){findChild(phone,response.result?response.result:response,mainDbx);}).catch(function(error){console.log('Ошибка при скачивании списка клиентов. '+error);showMsg('Внимание','Не найден пользователь.');});}
+function findChild(phone,response,mainDbx){var files=[];var password=$('#login-pas').val();for(var ii=0;ii<response.entries.length;++ii){var file=response.entries[ii];var name=Base64.decode(file.name);var min=Math.min(name.length,phone.length);if(min<5)
+continue;if(name.slice(-min)==phone.slice(-min)){files.push(file);if(name.substr(0,3)==='par'){var begin='par'+password;if(name.substr(0,begin.length)!==begin)
+continue;}
+loadProfile(null,file.path_display,dbFilesPath+'/'+file.name);return;}}
+if(files.length&&passwordType!==3){if(files.length===1){loadProfile(null,files[0].path_display,dbFilesPath+'/'+files[0].name);return;}
+var buttons=files.map(x=>{var name=Base64.decode(x.name);return{text:name.substr(3,name.length-phone.length-3),click:function(){msgWin.dialog('close');preloader.fadeIn('slow');loadProfile(null,x.path_display,dbFilesPath+'/'+x.name);}};});preloader.fadeOut('fast');msgWin.html("<div style='margin:20px 0 0 5px'>Найдено несколько аккаунтов с указанным телефоном, выберите номер договора.</div>");msgWin.dialog({title:'Выбор аккаунта',width:'260px',maxHeight:window.innerHeight,maxWidth:window.innerWidth,position:{my:'center',at:'center top+40%',of:window},modal:true,buttons:buttons});return;}
+if(!response.has_more){showMsg('Внимание','Клиент с таким телефоном не найден.');return;}
+mainDbx.filesListFolderContinue({cursor:response.cursor}).then(function(response){findChild(phone,response.result?response.result:response,mainDbx);});}
+function readGroups(){var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesDownload({path:groupsPath}).then(function(response){var reader=new FileReader();reader.onload=function(){var xDoc=$.parseXML(reader.result);$(xDoc).find('Item').each(function(i,child){groups.push($(child));});updateAccountsPanel(clientXml);};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке списка групп. '+error);});}
+function getGroupById(id){for(var ii=0;ii<groups.length;++ii){var item=groups[ii];if(item.find('ID').text()===id)
+return item;}
+return null;}
+function selectFoto(){$('#client-foto-input').trigger('click');}
+function newFoto(){var file=$('#client-foto-input')[0].files[0];var reader=new FileReader();showPreloader();reader.readAsDataURL(file);reader.onload=readerEvent=>{closePreloader();$('#client-foto-input').val('');fotoCrop(readerEvent.target.result);}}
+function fotoCrop(src){var resize=null;cropWin.html("<img id='client-foto-crop' height='260px' width='260px' src='"+src+"'/>");cropWin.dialog({title:'Добавление фото',maxHeight:window.innerHeight,maxWidth:window.innerWidth,modal:true,buttons:[{text:'Сохранить',click:function(){showPreloader();resize.result({type:'blob',size:{width:400,height:400},format:'jpeg',quality:0.9}).then(function(fotoBlob){resize.result('base64').then(function(fotoBase64){cropWin.dialog('close');fotoSave(fotoBlob,fotoBase64);});});}}],open:function(event,ui){console.log('Запускаем кадрирование');var el=document.getElementById('client-foto-crop');resize=new Croppie(el,{viewport:{width:200,height:200},boundary:{width:260,height:260},enableExif:true});}});}
+function fotoSave(fotoBlob,fotoBase64){var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesUpload({path:userFotoPath,contents:fotoBlob,mode:'overwrite'}).then(function(response){closePreloader();console.log('Фото успешно сохранено.');$('#client-foto').attr("src",fotoBase64).fadeIn('slow');}).catch(function(error){closePreloader();var str='Ошибка при сохранении фото. '+error;console.log(str);showMsg('Внимание',str);});}
+function loadProfile(phone,xmlPath,fotoPath,isChild){readGroups();var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesDownload({path:xmlPath}).then(function(response){var reader=new FileReader();reader.onload=function(){var xDoc=$.parseXML(Base64.decode(reader.result));clientXml=$(xDoc);fillProfileWin(clientXml,isChild);updateChildren(phone);};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке профиля клиента. '+error);findProfile(phone);});userFotoPath=fotoPath.replace(dbFilesPath,dbUserFilesPath);mainDbx.filesDownload({path:userFotoPath}).then(function(response){var reader=new FileReader();reader.onload=function(){$('#client-foto').attr("src",reader.result).fadeIn('slow');};reader.readAsDataURL(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){mainDbx.filesDownload({path:fotoPath}).then(function(response){var reader=new FileReader();reader.onload=function(){$('#client-foto').attr("src",reader.result).fadeIn('slow');};reader.readAsDataURL(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке фото клиента. '+error);});});if(useBarcode){var barcodePath=fotoPath.replace(dbFilesPath,dbBarcodesPath);mainDbx.filesDownload({path:barcodePath}).then(function(response){var reader=new FileReader();reader.onload=function(){barcodeBody=reader.result;updateAccountsPanel(clientXml);};reader.readAsDataURL(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке штрихкода клиента. '+error);});}}
+function toDate(dateStr){var parts=dateStr.split(".");return new Date(parts[2],parts[1]-1,parts[0]);}
+function diffDays(d1,d2){var ndays=(d2.valueOf()-d1.valueOf())/1000/86400;ndays=Math.round(ndays+0.5);return ndays;}
+function formatDate(dt,withYear){if(typeof dt==='string')
+dt=toDate(dt);var opt={month:'long',day:'numeric'};if(withYear===true)
+opt={month:'numeric',day:'numeric',year:'numeric'};return dt.toLocaleString('ru',opt);}
+function updateChildren(phone){var childrenDiv=$('#children-div');childrenDiv.html(null);if(!phone)
+return;var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesListFolder({path:dbPath,limit:2000}).then(function(response){findChilden([],phone,response.result?response.result:response,mainDbx);}).catch(function(error){console.log('Ошибка при скачивании списка клиентов. '+error);});}
+function findChilden(children,phone,response,mainDbx){for(var ii=0;ii<response.entries.length;++ii){var file=response.entries[ii];var name=Base64.decode(file.name);var min=Math.min(name.length,phone.length);if(min<5||name.substr(0,3)!='par')
+continue;if(name.slice(-min)==phone.slice(-min))
+children.push({name:name,xmlPath:file.path_display,fotoPath:dbFilesPath+'/'+file.name});}
+if(!response.has_more){if(children.length>0)
+fillChildren(children,mainDbx);return;}
+mainDbx.filesListFolderContinue({cursor:response.cursor}).then(function(response){findChilden(children,phone,response.result?response.result:response,mainDbx);});}
+function fillChildren(children,mainDbx){var childrenDiv=$('#children-div');childrenDiv.html('Дети: ');var index=0;for(var ii=0;ii<children.length;++ii){mainDbx.filesDownload({path:children[ii].xmlPath}).then(function(response){var reader=new FileReader();reader.onload=function(){var xDoc=$.parseXML(Base64.decode(reader.result));childXml=$(xDoc);if(index>0)
+childrenDiv.append(', ');var number=childXml.find('AgreementNumber').text();var fio=childXml.find('FIO').text();for(var jj=0;jj<children.length;++jj){var child=children[jj];if(child.name.indexOf('par'+number)===0){childrenDiv.append('<button class="child-button clickable_text gray" onclick="goChild(&apos;'+child.xmlPath+'&apos;, &apos;'+child.fotoPath+'&apos;)">'+fio+'</button>');index++;break;}}};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке ребенка. '+error);});}}
+var openPay=function(){if(!hasBadAccount&&!hasOpenAccount){buyService();return;}
+showPayVariants();}
+var showPayVariants=function(){closePreloader();payVariantsWin.html("<div style='display:flex'>"+"<div class='btn-big' onclick='prolongAccount()'>Продлить абонемент</div>"+"<div class='btn-big' onclick='buyService()'>Купить другую услугу</div>"+"</div>");payVariantsWin.dialog({title:'Покупка',width:'260px',maxHeight:window.innerHeight,maxWidth:window.innerWidth,position:{my:'center',at:'center top+40%',of:window},modal:true,buttons:[]});}
+function prolongAccount(){payVariantsWin.dialog('close');var link=payLink;link=link.replace(/ClientProfileServiceType/g,'Продление абонемента');link=link.replace(/ClientProfileServiceCost/g,accountCost);link=link.replace(/ClientProfileAccountType/g,accountType);link=link.replace(/ClientProfileClientFio/g,clientXml.find('FIO').text());link=link.replace(/ /g,'%20');window.open(link,'_blank');}
+function priceClick(service,cost,type){buysWin.dialog('close');var link=payLink;link=link.replace(/ClientProfileServiceType/g,service);link=link.replace(/ClientProfileServiceCost/g,cost);link=link.replace(/ClientProfileAccountType/g,type);link=link.replace(/ClientProfileClientFio/g,clientXml.find('FIO').text());link=link.replace(/ /g,'%20');window.open(link,'_blank');}
+function buyService(){if(payVariantsWin.dialog&&payVariantsWin.is(':visible'))
+payVariantsWin.dialog('close');showPreloader();var mainDbx=dbxLk==null?dbx:dbxLk;mainDbx.filesDownload({path:optionsPath}).then(function(response){var reader=new FileReader();reader.onload=function(){var xDoc=$.parseXML(reader.result);parseOptions($(xDoc));};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);closePreloader();}).catch(function(error){closePreloader();console.log('Ошибка при загрузке настроек. '+error);});}
+function parseOptions(xml){var accountStr='Групповой абонемент';var gaTable='<h4 class="text-center">'+accountStr+'</h4><table class="price-table">';sortByTrainings(xml.find('AccountCosts').children()).each(function(i,child){var xAcc=$(child);var trainins=getTrainingStr(xAcc.find('TrainingCount').text());var style=xAcc.find('StyleName').text();var group=xAcc.find('GroupName').text();xAcc.find('Costs').children().each(function(i,child){var xAcc=$(child);var name=xAcc.find('Name').text();var cost=xAcc.find('Cost').text();if(cost<=0||!name)
+return true;var desc=(name+' '+style+' '+group).trim()+' - '+trainins;gaTable+='<tr>';gaTable+='<td><div class="price-row" onclick="priceClick(\''+accountStr+'\', '+cost+', \''+desc+'\')"><div class="price-desc">'+desc+'</div><div class="price-cost">'+cost+'</div></div></td>';gaTable+='</tr>';});});gaTable+='</table>';var singleStr='Групповое разовое занятие';var gsTable='<h4 class="text-center">Разовое занятие</h4><table class="price-table">';sortByTrainings(xml.find('SingleTrainingCosts').children()).each(function(i,child){var xSin=$(child);var style=xSin.find('StyleName').text();var group=xSin.find('GroupName').text();xSin.find('Costs').children().each(function(i,child){var xSin=$(child);var name=xSin.find('Name').text();var cost=xSin.find('Cost').text();if(cost<=0||!name)
+return true;var desc=(name+' '+style+' '+group).trim();gsTable+='<tr>';gsTable+='<td><div class="price-row" onclick="priceClick(\''+singleStr+'\', '+cost+', \''+desc+'\')"><div class="price-desc">'+desc+'</div><div class="price-cost">'+cost+'</div></div></td>';gsTable+='</tr>';});});gsTable+='</table>';var iaTable='<h4 class="text-center">Индивид. абонемент</h4><table class="price-table">';sortByTrainings(xml.find('IndividualAccountCosts').children()).each(function(i,child){var xAcc=$(child);var trainins=getTrainingStr(xAcc.find('TrainingCount').text());var style=xAcc.find('StyleName').text();var teacher=xAcc.find('TeacherName').text();xAcc.find('Costs').children().each(function(i,child){var xAcc=$(child);var name=xAcc.find('Name').text();var cost=xAcc.find('Cost').text();if(cost<=0||!name)
+return true;var desc=(name+' '+style+' '+teacher).trim()+' - '+trainins;iaTable+='<tr>';iaTable+='<td><div class="price-row" onclick="priceClick(\'Индивидуальный абонемент\', '+cost+', \''+desc+'\')"><div class="price-desc">'+desc+'</div><div class="price-cost">'+cost+'</div></div></td>';iaTable+='</tr>';});});iaTable+='</table>';var isTable='<h4 class="text-center">Разовое занятие</h4><table class="price-table">';sortByTrainings(xml.find('IndividualTrainingCosts').children()).each(function(i,child){var xSin=$(child);var style=xSin.find('StyleName').text();var teacher=xSin.find('TeacherName').text();xSin.find('Costs').children().each(function(i,child){var xSin=$(child);var name=xSin.find('Name').text();var cost=xSin.find('Cost').text();if(cost<=0||!name)
+return true;var desc=(name+' '+style+' '+teacher).trim();isTable+='<tr>';isTable+='<td><div class="price-row" onclick="priceClick(\'Разовое индивидуальное занятие\', '+cost+', \''+desc+'\')"><div class="price-desc">'+desc+'</div><div class="price-cost">'+cost+'</div></div></td>';isTable+='</tr>';});});isTable+='</table>';var raTable='<h4 class="text-center">Абонемент на аренду</h4><table class="price-table">';sortByTrainings(xml.find('RentAccountCosts').children()).each(function(i,child){var xAcc=$(child);var trainins=getTrainingStr(xAcc.find('TrainingCount').text());xAcc.find('Costs').children().each(function(i,child){var xAcc=$(child);var name=xAcc.find('Name').text();var cost=xAcc.find('Cost').text();var desc=name+' - '+trainins;if(cost<=0||!name)
+return true;raTable+='<tr>';raTable+='<td><div class="price-row" onclick="priceClick(\'Абонемент на аренду\', '+cost+', \''+desc+'\')"><div class="price-desc">'+desc+'</div><div class="price-cost">'+cost+'</div></div></td>';raTable+='</tr>';});});raTable+='</table>';var rsItems=[];var rsTable='<h4 class="text-center">Разовое занятие</h4><table class="price-table">';sortByTrainings(xml.find('RentCosts').children()).each(function(i,child){var xSin=$(child);xSin.find('Costs').children().each(function(i,child){var xSin=$(child);var name=xSin.find('Name').text();var cost=xSin.find('Cost').text();if(cost<=0||!name||rsItems.some(function(x){return x.name===name&&x.cost===cost;}))
+return true;rsItems.push({name,cost});rsTable+='<tr>';rsTable+='<td><div class="price-row" onclick="priceClick(\'Разовая аренда\', '+cost+', \''+name+'\')"><div class="price-desc">'+name+'</div><div class="price-cost">'+cost+'</div></div></td>';rsTable+='</tr>';});});rsTable+='</table>';var tabs='<div id="pay-tabs">'+'<ul>'+'<li><a href="#pay-tabs-1">Группы</a></li>'+'<li><a href="#pay-tabs-2">Индив.</a></li>'+'<li><a href="#pay-tabs-3">Аренда</a></li>'+'</ul>'+'<div id="pay-tabs-1">'+gaTable+gsTable+'</div>'+'<div id="pay-tabs-2">'+iaTable+isTable+'</div>'+'<div id="pay-tabs-3">'+raTable+rsTable+'</div>'+'</div>';buysWin.html(tabs);buysWin.dialog({title:'Покупка',width:'310',maxHeight:window.innerHeight,maxWidth:window.innerWidth,position:{my:'center',at:'center',of:window},modal:true,open:function(event,ui){$("#pay-tabs").tabs({active:0});},buttons:[]});}
+function getTrainingStr(count){return count>0?count+' '+getDeclension(count,'занятие','занятия','занятий'):'безлимит';}
+function getDeclension(count,oneWord,twoWord,severalWord){if(count===1)
+return oneWord;else if(2<=count&&count<=5)
+return twoWord;return severalWord;}
+function sortByTrainings(elms){return elms.sort(function(a,b){var x=parseInt($(a).find('TrainingCount').text());var y=parseInt($(b).find('TrainingCount').text());return(x<0?99999:x)-(y<0?99999:y);});}
+function updatePayButton(){if(!payLink)
+return;var aTab=$('#tabs-1');var btnColor=(hasBadAccount?' btn-red':(hasOpenAccount?'':' btn-green'));aTab.html(aTab.html()+'<div align="center"><span class="btn btn-pay'+btnColor+'" onclick="openPay()">Оплатить</span></div>');}
+function updateBarcode(){if(!isMobile)
+return;var aTab=$('#tabs-1');aTab.html(aTab.html()+'<div id="client-barcode-div"><img id="client-barcode" src="'+barcodeBody+'"/></div>');var cbImg=$('#client-barcode');if(isQR)
+cbImg.css("height","150px");if(!useBarcode||barcodeBody.length==0)
+cbImg.css("display","none");else
+cbImg.css("display","block").fadeIn('slow');}
+function updateAccountsPanel(xml){$('#tabs-1').html('<div class="left-margin gray">Нет абонементов</div>');if(!xml)
+return;var xAccounts=xml.find('LastAccounts').children();if(xAccounts.length==0){updatePayButton();updateBarcode();return;}
+var aPanel='';xAccounts.each(function(i,child){var xAcc=$(child);var beginDt=toDate(xAcc.find('BeginDate').text());var endDt=toDate(xAcc.find('EndDate').text());var isUnlimited=xAcc.find('IsUnlimited').text()==='true';var isPerpetual=xAcc.find('IsPerpetual').text()==='true';var showPeriod=!hideEmptyAccountPeriod||xAcc.find('AccountVisits').children().length>0;var withYear=beginDt.getYear()!=endDt.getYear();var beginDtStr=formatDate(beginDt,withYear);var endDtStr=formatDate(endDt,withYear);var accountPeriod=isPerpetual?'Срок действия неограничен':'Действует с '+beginDtStr+' по '+endDtStr;var remainDaysFrom=isPerpetual?'':'<div class="account-count-right gray"> из '+xAcc.find('DaysCount').text()+'</div>';var remainTrainingsFrom=isUnlimited?'':'<div class="account-count-right gray"> из '+xAcc.find('TrainingCount').text()+'</div>';var remainDays=Math.max(0,diffDays(Math.max(today,beginDt),endDt));if(remainDays==0)
+remainDays='<span class="red">'+remainDays+'</span>';if(isPerpetual)
+remainDays='∞';var remainTrainings=xAcc.find('RemainTrainingCount').text();if(remainTrainings==0)
+remainTrainings='<span class="red">'+remainTrainings+'</span>';if(isUnlimited)
+remainTrainings='∞';accountType=xAcc.find('Type').text();if(accountType){accountCost=accountType.split(' ').splice(-1);}
+if((remainDays>0||isPerpetual)&&(remainTrainings>0||isUnlimited))
+hasOpenAccount=true;else
+hasBadAccount=true;var xGroups=xAcc.find('Groups');var target=xGroups.children().length>0?'':xAcc.find('Target').text();xGroups.children().each(function(j,group){var xGroup=getGroupById($(group).attr('ID'));if(xGroup!=null){var add=j>0?' class="account-period-div"':'';var schedule=xGroup.find('SchedulePreview').text();var gPreview=xGroup.find('ShortPreview').text();target+='<div'+add+'>'+gPreview+' '+schedule+'</div>';}});aPanel+='<div class="account-div">';aPanel+='<div class="account-header-div">';aPanel+='<div>Абонемент "'+accountType+'"</div>';if(showPeriod)
+aPanel+='<div class="gray account-period-div">'+accountPeriod+'</div>';aPanel+='<div class="gray account-period-div">'+target+'</div>';aPanel+='</div>';aPanel+='<div class="row-wrap-div">';aPanel+='<div class="account-count">';aPanel+='<div class="row-wrap-div">';aPanel+='<div class="account-count-left">'+remainTrainings+'</div>'+remainTrainingsFrom;aPanel+='</div>';aPanel+='<div class="gray">занятий</div>';aPanel+='<div class="gray">осталось</div>';aPanel+='</div>';if(showPeriod){aPanel+='<div class="account-count">';aPanel+='<div class="row-wrap-div">';aPanel+='<div class="account-count-left">'+remainDays+'</div>'+remainDaysFrom;aPanel+='</div>';aPanel+='<div class="gray">дней</div>';aPanel+='<div class="gray">осталось</div>';aPanel+='</div>';}
+aPanel+='</div></div>';});$('#tabs-1').html(aPanel);updatePayButton();updateBarcode();}
+function updateResPanel(xml,xReservations,resPrev){var res=[];if(resPrev==null){xml.find('Reservation').children().each(function(i,child){var xVisit=$(child);if(today<=toDate(xVisit.attr('Date'))){res.push({'date':xVisit.attr('Date'),'time':xVisit.attr('Time'),'targetID':xVisit.attr('TargetID'),'target':xVisit.attr('Target'),'link':xVisit.attr('Link')});}});}
+else{res=resPrev;}
+if(xReservations!=null){for(var jj=0;jj<xReservations.length;++jj){var xRes=xReservations[jj];var timeStr=xRes.find('Time').text();var date=timeStr.substring(0,10);var time=timeStr.substring(11,17);var groupID=xRes.find('ID_Group');var teacherID=xRes.find('ID_Teacher');var targetID=(groupID.length>0?groupID:teacherID).text();if(today>date)
+continue;if(xRes.find('Unsubscribe').text()==='True'){for(var kk=res.length-1;kk>=0;--kk){var rk=res[kk];if(rk.date==date&&rk.time==time&&rk.targetID==targetID){res.splice(kk,1);break;}}}
+else{if(!res.some(x=>x.date===date&&x.time===time&&x.targetID===targetID))
+res.push({'date':date,'time':time,'targetID':targetID,'target':getGroupById(targetID).find('ShortPreview').text(),'link':''});}}}
+res.sort(function(a,b){var keyA=toDate(a.date),keyB=new toDate(b.date);if(keyA<keyB)
+return 1;if(keyA>keyB)
+return-1;return a.time<b.time;});var rPanel='<table id="res-tabs">';for(var ii=0;ii<res.length;++ii){var r=res[ii];var dt=formatDate(r.date)+' '+r.time;r.index=ii;rPanel+='<tr class="item-row-big" index="'+ii+'"><td class="res-target-cell trim-text" valign="top">'+dt;rPanel+='<span class="left-margin-min gray"> '+r.target+'</span>';if((zoomShowButton>0&&r.link)||unsubscribe){rPanel+='</td><td class="res-operations-cell"><div>';if(zoomShowButton>0&&r.link){rPanel+='<span class="btn btn-blue" onclick="openZoom(\''+r.link+'\')">Трансляция</span>';}
+if(unsubscribe){var str=dt+' '+r.target+'<br/><br/>Отписаться от занятия?';var fParams=JSON.stringify(r).replace(new RegExp('"','g'),'\'');rPanel+='<span class="btn" onclick="showQuestion(\'Отпись от занятия\', \''+str+'\', runUnsubscribe, '+fParams+')">Отписаться</span>';}
+rPanel+='</div>';}
+rPanel+='</td></tr>';}
+if(res.length==0)
+$('#tabs-4').html('<div class="left-margin gray">Нет записей на занятия</div>');else
+$('#tabs-4').html(rPanel+'</table>');return res;}
+function refreshReservations(){var clientID=clientXml.find('ID').text();updateResPanel(clientXml,null);dbx.filesDownload({path:summaryPath}).then(function(response){var reader=new FileReader();reader.onload=function(){var lines=reader.result.split('\n');var xReservations=[];for(var ii=0;ii<lines.length;++ii){var xRes=$($.parseXML('<Item>'+lines[ii]+'</Item>'));if(xRes.find('ID_Client').text()===clientID)
+xReservations.push(xRes);}
+var res=updateResPanel(clientXml,xReservations);if(dbxLk!=null){dbxLk.filesDownload({path:summaryPath}).then(function(response2){var reader2=new FileReader();reader2.onload=function(){var lines2=reader2.result.split('\n');var xReservations2=[];for(var jj=0;jj<lines2.length;++jj){var xRes2=$($.parseXML('<Item>'+lines2[jj]+'</Item>'));if(xRes2.find('ID_Client').text()===clientID)
+xReservations2.push(xRes2);}
+updateResPanel(null,xReservations2,res);};reader2.readAsText(response2.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке сводки записей с другого приложения. '+error);});}};reader.readAsText(response.fileBlob?response.fileBlob:response.result.fileBlob);}).catch(function(error){console.log('Ошибка при загрузке сводки записей. '+error);});}
+function fillProfileWin(xml,isChild){var phone=$('#login-phone').val();var password=$('#login-pas').val();if(usePassword&&passwordType>2&&!isChild){var agreementNumber=xml.find('AgreementNumber').text();var barcode=xml.find('Barcode').text();var badPas=false;if(passwordType===3&&password!=agreementNumber)
+badPas=true;if(passwordType===4&&password!=barcode.substr(barcode.length-4))
+badPas=true;if(badPas){showMsg('Внимание','Неверный пароль.');return false;}}
+$.cookie('phone',phone,{expires:30});if(usePassword)
+$.cookie('password',password,{expires:30});$("#profile-tabs").tabs();var clientID=xml.find('ID').text();var currency=' '+xml.find('Currency').text();var balance=xml.find('Balance').text();if(showBall){var bonus=xml.find('Bonus').text();if(bonus.length>0&&bonus!=0){if(showBallType===1){balance=parseFloat(balance)+parseFloat(bonus);}else{$('#bonus-sum').text(bonus);$('#bonus-div').css("display","flex");}}}
+$('#fio-header').text(xml.find('FIO').text());$('#balance-sum').text(balance+currency);if(balance!=0)
+$('#balance-sum').css('color',balance<0?'red':'green');updateAccountsPanel(xml);var vPanel='<table id="visit-tabs">';var xVisits=xml.find('Visits').children();var xSkips=xml.find('Skips').children();if(xSkips.length>0){xVisits=$.merge(xVisits,xSkips).sort(function(a,b){return toDate($(b).attr('Date'))-toDate($(a).attr('Date'));});}
+xVisits.each(function(i,child){var xVisit=$(child);if(xVisit.attr('IsSkip')==='true'){vPanel+='<tr class="item-row"><td class="date-td trim-text red">'+formatDate(xVisit.attr('Date'));vPanel+='<span class="left-margin-min red"> '+xVisit.attr('Target')+'</span></td>';vPanel+='<td class="trim-cell red"><span>пропуск</span></td></tr>';}
+else{var accText=xVisit.attr('Account')==='true'?'по абонементу':(xVisit.attr('IsFree')==='true'?'пробное занятие':'разовое занятие');vPanel+='<tr class="item-row"><td class="date-td trim-text">'+formatDate(xVisit.attr('Date'));vPanel+='<span class="left-margin-min gray"> '+xVisit.attr('Target')+'</span></td>';vPanel+='<td class="trim-cell gray"><span>'+accText+'</span></td></tr>';}});if(xVisits.length==0)
+$('#tabs-2').html('<div class="left-margin gray">Нет посещений</div>');else
+$('#tabs-2').html(vPanel+'</table>');var sPanel='<table id="sale-tabs">';var xDeposit=xml.find('Deposit').children();xDeposit.each(function(i,child){var xSale=$(child);sPanel+='<tr class="item-row"><td class="date-td">'+formatDate(xSale.attr('Date'))+'</td>';sPanel+='<td class="left-padding target-td">'+xSale.attr('Target')+'</td>';sPanel+='<td class="left-padding sum-td right-align-td">'+xSale.attr('Sum')+currency+'</td></tr>';});if(xDeposit.length==0)
+$('#tabs-3').html('<div class="left-margin gray">Нет покупок</div>');else
+$('#tabs-3').html(sPanel+'</table>');refreshReservations();preloader.fadeOut('slow');profileWin.dialog({dialogClass:"no-titlebar",width:'100%',show:{effect:'fade',duration:500},hide:{effect:'fade',duration:300},maxHeight:!isPortrait&&!isMobile?700:window.innerHeight,modal:false,create:function(event,ui){$(this).parent().css("maxWidth",isPortrait&&!isMobile?"800px":"600px");}});}
+</script>
+
 </body>
+
 </html>

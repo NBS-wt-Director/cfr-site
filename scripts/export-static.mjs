@@ -90,8 +90,11 @@ const core = {
     secondLineText: db.headerSettings?.secondLineText || ''
   },
   divider: {
-    enabled: db.globalDivider?.enabled !== false,
-    text: db.globalDivider?.textContent || '🏃 🏋️ 🧘 💪'
+    enabled: db.globalDivider?.enabled === true,
+    text: db.globalDivider?.textContent || '🏃 🏋️ 🧘 💪',
+    height: db.globalDivider?.height || 'md',
+    background: db.globalDivider?.background || 'gradientGreen',
+    fontSize: db.globalDivider?.fontSize || 'small'
   },
   sections: (db.sections || []).map(s => ({ id: s.id, title: s.title || '' })),
 

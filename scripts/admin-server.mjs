@@ -44,8 +44,27 @@ const SESSION_SECRET = crypto.randomBytes(32).toString('hex');
 const SESSION_COOKIE_NAME = 'admin_token';
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 часа
 
-// В памяти — сессии: token → { createdAt }
+// Сессии: token → { createdAt }. Хранятся в файле, чтобы перезапуск PM2
+// (или падение) не превращал админку в «висяк с пустыми списками»:
+// токен в localStorage браузера переживает рестарт, а in-memory Map — нет.
+const sessionsFile = path.join(root, '.admin-sessions.json');
 const sessions = new Map();
+
+function loadSessions() {
+  try {
+    const obj = JSON.parse(fs.readFileSync(sessionsFile, 'utf-8'));
+    for (const [t, s] of Object.entries(obj || {})) {
+      if (s && s.createdAt && Date.now() - s.createdAt <= SESSION_TTL_MS) sessions.set(t, s);
+    }
+  } catch { /* файла нет — стартуем с пустыми сессиями */ }
+}
+
+function persistSessions() {
+  try { fs.writeFileSync(sessionsFile, JSON.stringify(Object.fromEntries(sessions))); }
+  catch (e) { console.warn('Не удалось записать сессии:', e.message); }
+}
+
+loadSessions();
 
 // ============================================
 // Утилиты
@@ -166,7 +185,14 @@ function backupDB() {
 function regenerateStatic() {
   try {
     console.log('🔄 Перегенерация статики...');
-    execSync('npm run static:export', { cwd: root, stdio: 'inherit' });
+    // stdio:'pipe' + timeout: 'inherit' под PM2 может намертво заблокировать
+    // процесс на записи в лог-пайп, а execSync без timeout вешает весь сервер
+    execSync('npm run static:export', {
+      cwd: root,
+      stdio: 'pipe',
+      timeout: 120000,
+      maxBuffer: 16 * 1024 * 1024
+    });
     console.log('✅ Статика перегенерирована');
   } catch (err) {
     console.error('❌ Ошибка перегенерации:', err.message);
@@ -188,6 +214,7 @@ async function handleLogin(req, res) {
 
   const token = generateToken();
   sessions.set(token, { createdAt: Date.now() });
+  persistSessions();
   setCookie(res, SESSION_COOKIE_NAME, token, SESSION_TTL_MS);
 
   console.log(`🔑 Вход по паролю OK — токен: ${token.slice(0, 16)}...`);
@@ -639,34 +666,37 @@ async function handleSyncData(req, res) {
 
   sendJSON(res, 200, { ok: true });
 
-  // Запускаем night-sync асинхронно
-  (async () => {
-    try {
-      const { execSync } = await import('child_process');
-      const scriptPath = path.join(root, 'scripts', 'night-sync.mjs');
-      
-      if (!fs.existsSync(scriptPath)) {
-        throw new Error('Скрипт night-sync.mjs не найден');
-      }
+  // Запускаем night-sync НЕБЛОКИРУЮЩИМ spawn.
+  // execSync (даже внутри async-IIFE) блокирует event loop: весь API висит,
+  // админка «замирает» без ошибок. spawn — сервер отвечает во время закачки.
+  try {
+    const { spawn } = await import('child_process');
+    const scriptPath = path.join(root, 'scripts', 'night-sync.mjs');
 
-      const output = execSync(`node "${scriptPath}"`, {
-        cwd: root,
-        encoding: 'utf-8',
-        timeout: 3600000,
-        stdio: 'pipe'
-      });
-
-      syncLog = output;
-      syncStatus = 'done';
-      console.log('✅ Синхронизация завершена');
-    } catch (err) {
-      syncLog = err.stdout || err.message;
-      syncStatus = 'error';
-      console.error('❌ Ошибка синхронизации:', err.message);
-    } finally {
-      syncInProgress = false;
+    if (!fs.existsSync(scriptPath)) {
+      throw new Error('Скрипт night-sync.mjs не найден');
     }
-  })();
+
+    const child = spawn('node', [scriptPath], { cwd: root });
+    child.stdout.on('data', d => { syncLog = (syncLog + d).slice(-500000); });
+    child.stderr.on('data', d => { syncLog = (syncLog + d).slice(-500000); });
+    child.on('error', err => {
+      syncLog += '\n' + err.message;
+      syncStatus = 'error';
+      syncInProgress = false;
+      console.error('❌ Ошибка запуска синхронизации:', err.message);
+    });
+    child.on('close', code => {
+      syncStatus = code === 0 ? 'done' : 'error';
+      syncInProgress = false;
+      console.log(code === 0 ? '✅ Синхронизация завершена' : `❌ Синхронизация завершилась с кодом ${code}`);
+    });
+  } catch (err) {
+    syncLog = err.message;
+    syncStatus = 'error';
+    syncInProgress = false;
+    console.error('❌ Ошибка синхронизации:', err.message);
+  }
 }
 
 function handleSyncStatus(req, res) {
@@ -700,33 +730,34 @@ async function handleParseDocs(req, res) {
 
   sendJSON(res, 200, { ok: true });
 
-  (async () => {
-    try {
-      const { execSync } = await import('child_process');
-      const scriptPath = path.join(root, 'scripts', 'parse-docs.mjs');
-      
-      if (!fs.existsSync(scriptPath)) {
-        throw new Error('Скрипт parse-docs.mjs не найден');
-      }
+  // spawn вместо execSync — не блокирует event loop сервера
+  try {
+    const { spawn } = await import('child_process');
+    const scriptPath = path.join(root, 'scripts', 'parse-docs.mjs');
 
-      const output = execSync(`node "${scriptPath}"`, {
-        cwd: root,
-        encoding: 'utf-8',
-        timeout: 600000,
-        stdio: 'pipe'
-      });
-
-      parseLog = output;
-      parseStatus = 'done';
-      console.log('✅ Парсинг завершён');
-    } catch (err) {
-      parseLog = err.stdout || err.message;
-      parseStatus = 'error';
-      console.error('❌ Ошибка парсинга:', err.message);
-    } finally {
-      parseInProgress = false;
+    if (!fs.existsSync(scriptPath)) {
+      throw new Error('Скрипт parse-docs.mjs не найден');
     }
-  })();
+
+    const child = spawn('node', [scriptPath], { cwd: root });
+    child.stdout.on('data', d => { parseLog = (parseLog + d).slice(-500000); });
+    child.stderr.on('data', d => { parseLog = (parseLog + d).slice(-500000); });
+    child.on('error', err => {
+      parseLog += '\n' + err.message;
+      parseStatus = 'error';
+      parseInProgress = false;
+    });
+    child.on('close', code => {
+      parseStatus = code === 0 ? 'done' : 'error';
+      parseInProgress = false;
+      console.log(code === 0 ? '✅ Парсинг завершён' : `❌ Парсинг завершился с кодом ${code}`);
+    });
+  } catch (err) {
+    parseLog = err.message;
+    parseStatus = 'error';
+    parseInProgress = false;
+    console.error('❌ Ошибка парсинга:', err.message);
+  }
 }
 
 function handleParseStatus(req, res) {
@@ -831,9 +862,45 @@ async function handleSendReminder(req, res) {
   }
 }
 
-// ============================================
-// Маршрутизация
-// ============================================
+  // ============================================
+  // Разделители (globalDivider)
+  // ============================================
+
+  async function handleGetDivider(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    sendJSON(res, 200, { divider: db.globalDivider || { enabled: false } });
+  }
+
+  async function handleSaveDivider(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    const dividerData = body?.divider;
+    if (!dividerData) {
+      return sendJSON(res, 400, { error: 'Нет данных разделителя' });
+    }
+    try {
+      const db = readDb();
+      db.globalDivider = dividerData;
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения разделителя:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Маршрутизация
+  // ============================================
 
 const server = http.createServer(async (req, res) => {
   let url;
@@ -910,6 +977,14 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/send-reminder' && method === 'POST') {
     return handleSendReminder(req, res);
+  }
+
+  // === Разделители ===
+  if (pathname === '/api/admin/get-divider' && method === 'POST') {
+    return handleGetDivider(req, res);
+  }
+  if (pathname === '/api/admin/save-divider' && method === 'POST') {
+    return handleSaveDivider(req, res);
   }
 
   // === API ===

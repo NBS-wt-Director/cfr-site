@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <a href="mailto:${c.email}">${c.email}</a>
             </div>
             <button class="footer-call-btn" onclick="openCallModal('заказать звонок из футера')">
-              📲 Заказать звонок
+              <i class="icon-call"></i> Заказать звонок
             </button>
           </div>
 
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <li><a href="programs.html">🥋 Программы</a></li>
               <li><a href="trainers.html">👥 Тренеры</a></li>
               <li><a href="news.html">📰 Новости</a></li>
-              <li><a href="album.html">🖼 Альбом</a></li>
+              <!-- Альбом временно выключен -->
               <li><a href="lk.html">👤 Личный кабинет</a></li>
             </ul>
           </div>

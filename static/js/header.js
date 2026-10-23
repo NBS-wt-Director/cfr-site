@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </li>
             <li><a href="news.html">Новости</a></li>
-            <li><a href="album.html">Альбом</a></li>
+            <!-- Альбом временно выключен (логика перерабатывается) -->
             <li><a href="lk.html">Личный кабинет</a></li>
           </ul>
         </nav>
 
         <div class="header-actions">
           <button type="button" class="header-call-btn" onclick="openCallModal('Кнопка в хедере')">
-            📞<span class="btn-text"> Заказать звонок</span>
+            <i class="icon-call"></i><span class="btn-text"> Заказать звонок</span>
           </button>
           <button type="button" class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Меню" aria-expanded="false">☰</button>
         </div>
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="mobile-menu" id="mobileMenu">
         <button type="button" class="mobile-close" onclick="toggleMobileMenu()" aria-label="Закрыть">×</button>
         <button type="button" class="header-call-btn mobile-call" onclick="openCallModal('Кнопка в мобильном меню')">
-          📞 Заказать звонок
+          <i class="icon-call"></i> Заказать звонок
         </button>
 
         <ul class="mobile-list">
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </li>
 
           <li><a href="news.html">📰 Новости</a></li>
-          <li><a href="album.html">🖼 Альбом</a></li>
+          <!-- Альбом временно выключен -->
           <li><a href="lk.html">👤 Личный кабинет</a></li>
         </ul>
       </div>
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
   `;
 
   /* ============================================
-     DESKTOP ВЫПАДАШКИ: hover (CSS) + клик (JS)
+     DESKTOP ВЫПАДАШКИ: hover (CSS), клик (JS)
      Состояние — только класс, без inline-стилей.
      ============================================ */
   function setDropdown(dropdown, open) {
@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('[data-dropdown]').forEach(function (dropdown) {
     var toggle = dropdown.querySelector('.dropdown-toggle');
-    var timer = null;
 
     toggle.addEventListener('click', function (e) {
       e.preventDefault();
@@ -134,16 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
       var willOpen = !dropdown.classList.contains('dropdown-open');
       closeAllDropdowns(dropdown);
       setDropdown(dropdown, willOpen);
-    });
-
-    dropdown.addEventListener('mouseenter', function () {
-      clearTimeout(timer);
-      closeAllDropdowns(dropdown);
-      setDropdown(dropdown, true);
-    });
-
-    dropdown.addEventListener('mouseleave', function () {
-      timer = setTimeout(function () { setDropdown(dropdown, false); }, 150);
     });
   });
 

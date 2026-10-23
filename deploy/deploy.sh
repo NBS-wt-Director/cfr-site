@@ -20,7 +20,9 @@ npm run static:export
 pm2 restart cfrsite --update-env
 
 # Nginx config (static site as entry point; certs managed by Certbot)
-sudo cp /etc/nginx/sites-enabled/центр-фр.рф /etc/nginx/sites-enabled/центр-фр.рф.bak.$(date +%s) 2>/dev/null || true
+# Бэкап — ВНЕ sites-enabled (иначе include /etc/nginx/sites-enabled/* подхватит его как дубль сервера)
+sudo mkdir -p /root/nginx-backups
+sudo cp /etc/nginx/sites-enabled/центр-фр.рф /root/nginx-backups/центр-фр.рф.bak.$(date +%s) 2>/dev/null || true
 sudo cp "${SCRIPT_DIR}/nginx-site.conf" /etc/nginx/sites-enabled/центр-фр.рф
 sudo nginx -t && sudo systemctl reload nginx
 

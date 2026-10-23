@@ -67,6 +67,8 @@ function writeDb(db) {
 
 function scanDirectory(dirPath) {
   const files = [];
+  // На сервере data/trainers и data/programs могут отсутствовать до первой закачки — не падать
+  if (!fs.existsSync(dirPath)) return files;
   const dirs = fs.readdirSync(dirPath).filter(f => {
     const stat = fs.statSync(path.join(dirPath, f));
     return stat.isDirectory();
@@ -124,31 +126,33 @@ function downloadMissingFiles(newFiles) {
     newFolders.add(folder);
   }
 
-  if (newFolders.size === 0) {
-    log('  ✅ Нет новых папок для загрузки');
-    return 0;
+  // Скачивание ВСЕГДА запускается: yandex-download.py сам знает, что уже скачано
+  // (resume через .download-progress.json). На пустом сервере новых локальных папок
+  // нет, а качать именно оттуда надо — ранний возврат «нет новых папок» это ломал.
+  if (newFolders.size > 0) {
+    log(`  📥 Локально новых папок: ${newFolders.size}`);
   }
 
-  log(`  📥 Скачивание ${newFolders.size} папок...`);
-  
+  log('  📥 Запуск yandex-download.py (resume)...');
+
   try {
-    // Запускаем yandex-download.py
     const yandexScript = path.join(root, 'scripts', 'yandex-download.py');
     if (fs.existsSync(yandexScript)) {
       execSync(`python3 "${yandexScript}"`, {
         cwd: root,
         stdio: 'inherit',
-        timeout: 3600000 // 1 час
+        timeout: 4 * 3600000 // 4 часа: 1187 фото по нестабильному API Яндекса
       });
       log('  ✅ Загрузка завершена');
-      return newFolders.size;
+      return true;
     } else {
       log('  ⚠️  Скрипт yandex-download.py не найден');
-      return 0;
+      return false;
     }
   } catch (err) {
-    log(`  ⚠️  Ошибка загрузки: ${err.message}`);
-    return 0;
+    // Timeout/обрыв — не фатально: resume продолжит следующей ночью
+    log(`  ⚠️  Загрузка прервана (${err.message.slice(0, 120)}) — продолжит в следующий запуск`);
+    return false;
   }
 }
 
@@ -211,6 +215,10 @@ function fillPhotos() {
     }).sort();
 
     if (files.length > 0) {
+      // Путь «uploads/<файл>» существует только после match-photos/build-album.
+      // Ставим image лишь когда файл реально лежит в static/uploads — иначе получаем битую обложку.
+      const candidate = path.join(root, 'static', 'uploads', files[0]);
+      if (!fs.existsSync(candidate)) continue;
       trainer.image = `uploads/${files[0]}`;
       updated++;
       log(`    ✅ ${trainer.name}: ${files[0]}`);
@@ -244,6 +252,8 @@ function fillPhotos() {
           }).sort();
 
           if (files.length > 0) {
+            const candidate = path.join(root, 'static', 'uploads', files[0]);
+            if (!fs.existsSync(candidate)) continue;
             program.image = `uploads/${files[0]}`;
             updated++;
             log(`    ✅ ${program.name}: ${files[0]}`);
@@ -269,6 +279,11 @@ async function main() {
 
   const startTime = Date.now();
 
+  // 0. Каталоги данных должны существовать (на сервере создаются при первом запуске)
+  for (const d of [dataDir, path.join(dataDir, 'trainers'), path.join(dataDir, 'programs')]) {
+    if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
+  }
+
   // 1. Сканируем новые файлы
   log('\n📂 Шаг 1: Сканирование новых файлов...');
   const knownFiles = getKnownFiles();
@@ -276,17 +291,15 @@ async function main() {
   const programsNew = findNewFiles(path.join(dataDir, 'programs'), knownFiles);
   const allNew = [...trainersNew, ...programsNew];
 
-  log(`  📁 Всего новых файлов: ${allNew.length}`);
+  log(`  📁 Новых файлов (не в прогрессе): ${allNew.length}`);
   log(`    Тренеры: ${trainersNew.length}`);
   log(`    Программы: ${programsNew.length}`);
 
-  // 2. Загружаем недостающие
-  if (allNew.length > 0) {
-    log('\n📥 Шаг 2: Загрузка недостающих файлов...');
-    await downloadMissingFiles(allNew);
-  } else {
-    log('\n✅ Шаг 2: Пропущен (нет новых папок)');
-  }
+  // 2. КАЧАЕМ ВСЕГДА: resume внутри yandex-download.py сам пропускает уже скачанное.
+  //    Раньше шаг пропускался, если локально «нет новых папок» — на пустом сервере
+  //    так и не начиналась первая закачка.
+  log('\n📥 Шаг 2: Синхронизация с Яндекс.Диском...');
+  await downloadMissingFiles(allNew);
 
   // 3. Парсим новые DOCX
   log('\n📄 Шаг 3: Парсинг новых DOCX...');
@@ -299,9 +312,13 @@ async function main() {
 
   // 5. Сохраняем
   log('\n💾 Шаг 5: Сохранение db.json...');
-  backupDB();
-  writeDb(readDb());
-  log('  ✅ Сохранено');
+  if (fs.existsSync(dbPath)) {
+    backupDB();
+    writeDb(readDb());
+    log('  ✅ Сохранено');
+  } else {
+    log('  ⚠️  db.json отсутствует — пропуск записи (не пишем пустую базу поверх сервера)');
+  }
 
   // 6. Перегенерация статики
   log('\n🔄 Шаг 6: Перегенерация статики...');

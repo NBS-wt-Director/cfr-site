@@ -38,6 +38,10 @@ tsconfig.tsbuildinfo
 
 # Но шаблоны конфигов — коммитим
 !.env.production.example
+
+# Сессии админки (файл + память, перезапуск PM2 — токен в localStorage всё ещё валиден)
+.admin-sessions.json
+
 !.env.example
 
 # Данные с Яндекс.Диска (гигабайты, не коммитим) — содержимое

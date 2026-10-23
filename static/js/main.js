@@ -136,7 +136,9 @@
           <h3 class="program-title"><a href="program.html?id=${p.id}">${shortQuote(p.name)}</a></h3>
           <div class="program-actions">
             <a href="program.html?id=${p.id}" class="program-btn program-btn-primary">Подробнее</a>
-            <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">📞 Записаться</button>
+            <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">
+              <i class="icon-call"></i> Записаться
+            </button>
           </div>
         </div>
       </div>
@@ -158,7 +160,9 @@
         <p class="trainer-exp">${shortQuote(t.experience || '')}</p>
         <div class="trainer-actions">
           <a href="trainer.html?id=${t.id}" class="trainer-btn trainer-btn-primary">Подробнее</a>
-          <button class="trainer-btn trainer-btn-secondary" onclick="openCallModal('Заказать звонок: ${shortQuote(t.name)}')">📞 Заказать звонок</button>
+          <button class="trainer-btn trainer-btn-secondary" onclick="openCallModal('Заказать звонок: ${shortQuote(t.name)}')">
+            <i class="icon-call"></i> Заказать звонок
+          </button>
         </div>
       </div>
     `).join('');
@@ -279,10 +283,22 @@
     renderNews();
     resetTimer();
 
-    // Разделители между секциями
-    const divider = document.getElementById('globalDivider');
-    if (divider && data.divider && data.divider.enabled) {
-      divider.textContent = data.divider.text;
+    // Разделители между секциями — управляются из админки (globalDivider)
+    const dividers = document.querySelectorAll('.divider');
+    if (dividers.length && data.divider) {
+      if (data.divider.enabled) {
+        dividers.forEach(d => {
+          d.textContent = data.divider.text || '';
+          d.classList.add('divider--on');
+          // Высота
+          if (data.divider.height) d.classList.add('divider--' + data.divider.height);
+          // Фон
+          if (data.divider.background) d.classList.add('divider--bg-' + data.divider.background);
+          // Размер шрифта
+          if (data.divider.fontSize) d.classList.add('divider--fs-' + data.divider.fontSize);
+        });
+      }
+      // иначе оставляем display:none (из CSS)
     }
   });
 })();

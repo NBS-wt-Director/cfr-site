@@ -37,7 +37,7 @@
             <div class="modal-error" id="callError" hidden></div>
 
             <button type="submit" class="modal-submit" id="callSubmit">
-              <span id="callSubmitText">📞 Заказать звонок</span>
+              <span id="callSubmitText"><i class="icon-call"></i> Заказать звонок</span>
             </button>
           </form>
 
@@ -127,7 +127,7 @@
       errBox.hidden = false;
     } finally {
       btn.disabled = false;
-      btnText.textContent = '📞 Заказать звонок';
+      btnText.innerHTML = '<i class="icon-call"></i> Заказать звонок';
     }
   }
 

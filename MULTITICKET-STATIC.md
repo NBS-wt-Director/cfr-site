@@ -97,7 +97,7 @@
 
 ## 📊 СОСТОЯНИЕ
 
-*Обновляется каждой сессией. Последнее обновление: 2026-10-22 (сессия 18, реддеплой идёт).*
+*Обновляется каждой сессией. Последнее обновление: 2026-10-22 (сессия 18, **ЭТАП A ЗАВЕРШЁН** — домен отдаёт статику).*
 
 ### Готово
 
@@ -214,6 +214,24 @@
 
 ### Готово (сессия 18): реорганизация + реддеплой
 
+- [x] **S69** `static/lk.html` — заменена заглушка на полноценную страницу DanceStudio CRM
+  (из `trash/Client_lk.html`). Автономная страница: jQuery/jQuery UI/Dropbox SDK (CDN),
+  авторизация по телефону+паролю, 4 вкладки (абонементы, посещения, покупки, запись).
+  Добавлен `<!DOCTYPE html>`, заголовок «Личный кабинет — Центр Развития «Шифу Панда»»,
+  кнопка «← На сайт» (фиксированная, левый нижний угол).
+  ⚠️ В коде встроены base64-закодированные учётные данные Dropbox (стандарт DanceStudio,
+  клиентское приложение общается напрямую с Dropbox; любой может извлечь рефреш-токен).
+  Тесты: 23/23 меню, 47/48 статика.
+
+- [x] **S71** Брендовые цвета + разделители + альбом:
+  - **Цвета:** `--color-primary: #003C52`, `--color-accent: #F07E23`, `--color-accent-dark: #DC5014`, `--color-beige: #FEEED5`
+  - **Разделители:** скрыты по умолчанию (`display:none` в CSS), включаются из админки
+    (новый раздел «🎨 Разделители» + API `get-divider`/`save-divider`);
+    `globalDivider.enabled=false` в db.json; CSS-классы высоты/фона/шрифта; `export-static.mjs`
+    экспортирует все поля
+  - **Альбом:** убран из шапки (desktop+mobile) и футера, `album.html` остался доступен напрямую
+  - Тесты: 23/23 + 47/48
+
 - [x] **S65** Старый Next.js перенесён в `trash/` (gitignore): `src/`, `public/`, `next.config.js`, `tsconfig.json`,
   `tailwind.config.ts`, `postcss.config.mjs`, `docker/`, `excel/`, `lk-design/`, `reports/`, `stats/`, `tickets/`,
   `данные/`, `data/`, `backups/`, `migrations/`, `deploy.mjs`, `todo.json`, `_db.json`, `uploads/`, старые скрипты
@@ -251,20 +269,51 @@
 4. ✅ `git pull` → `5bd1d1e`: trash/ убран из индексирования (308 файлов старого Next.js удалены из репо, локально на «антресолях»)
 5. ✅ `npm ci` на сервере — чисто (минимальные зависимости статики)
 6. ✅ Диагностика NGINX выполнена (см. «БОЕВОЙ NGINX» ниже)
-7. ⬜ **ШАГ 7 (следующий):** записать `deploy/nginx-site.conf` → `/etc/nginx/sites-enabled/центр-фр.рф`
-   (с бэкапом), проверить `namei -l` доступ www-data к static, `nginx -t`, reload
-8. ⬜ Проверка этапа A: домен → статическая главная (title «Шифу Панда»), `/data/1.jpg` → 200,
-   обложка из `/uploads/covers/` → 200, `/news.html` → 200, 404 → /404.html
+7. ✅ **ШАГ 7 выполнен:** `deploy/nginx-site.conf` → `/etc/nginx/sites-enabled/центр-фр.рф`,
+   `namei -l` чистый (home `cfr_balloo` = 755 → www-data проходит, 403 нет), `nginx -t` ok, reload ok
+8. ✅ **ЭТАП A ПРИНЯТ:** главная → title «ЦФР - Центр Развития | Шифу Панда» (это статика),
+   `/data/1.jpg` → 200 (795 КБ), `/uploads/covers/t-glazyrin-mihail.jpg` → 200,
+   `/news.html` → 200, `http://` → 301 на https. **Клиентам отдаётся статика.**
+9. ⚠️ **Найдено при проверке лога — 2 проблемы (чинятся шагом 7.1):**
+   - **Бэкап попал внутрь `sites-enabled/`.** `include /etc/nginx/sites-enabled/*` подхватил
+     `центр-фр.рф.bak.<ts>` как **второй полный дубль** конфига домена →
+     `conflicting server name "xn----itbymbjqk.xn--p1ai" on 0.0.0.0:80/443, ignored`.
+     Сейчас выигрывает новый конфиг (он раньше по алфавиту), но порядок загрузки — случайность
+     удаления: при любом изменении в `sites-enabled/` сайт может **молча вернуться на старый Next.js
+     (proxy :3000)**. Бэкапы обязаны жить вне `sites-enabled/`.
+   - **Мягкий 404:** в `location /` стоял `try_files $uri $uri/ /index.html` →
+     `/net-takoy-stranicy` вернул **200** вместо 404 (главная вместо ошибки). Критерий этапа A
+     «404 → /404.html» не выполнен. Исправлено в `deploy/nginx-site.conf` на `=404`
+     (`static/404.html` и `static/500.html` в репозитории есть).
+10. ✅ **ШАГ 7.1 выполнен (2026-10-22 15:47):** бэкапы из `sites-enabled/` убраны,
+    `try_files` зафикслен sed-ом на `=404`, reload ok, `/net-takoy-stranicy` → **404**.
+    `conflicting server name` исчезли. Оставшиеся warnings `protocol options redefined for :443` —
+    от чужих `balloo-docker.conf`/`cockpit.balloo.su`, не трогать.
 
-#### Этап B — админка
+#### Этап B — админка ✅ ВЫПОЛНЕН (2026-10-22 15:49)
 
-9. ⬜ `pm2 delete cfrsite` (Next.js больше не нужен) → `pm2 start deploy/ecosystem.config.js` (admin-server :3456)
-   — в admin-server.mjs добавлен `process.send('ready')` под wait_ready (коммит с этим обновлением)
-10. ⬜ Раскомментить `location /api/admin/` в конфиге NGINX → reload
-11. ⬜ Проверка: login через https (`POST /api/admin/login` → токен), get-news, статика не сломана
-12. ⬜ `pm2 save` + `pm2 startup` (автозапуск после ребута)
-13. ⬜ Cron ночных скриптов (метка `# CFR-NIGHT`, см. deploy.sh) — по решению пользователя, если нужно на сервере
+9. ✅ `pm2 delete cfrsite` (Next.js) → `pm2 start deploy/ecosystem.config.js` (admin-server :3456, online)
+10. ✅ `location /api/admin/` раскоммечен в боевом конфиге → reload
+11. ✅ Проверки: главная 200, 404 → 404, `POST /api/admin/login` → **200 + токен**
+12. ✅ `pm2 save` (dump.pm2 записан). ⚠️ `pm2 startup` выдал команду systemd — **ещё НЕ выполнена**:
+    `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u cfr_balloo --hp /home/cfr_balloo`
+13. ✅ Cron ночного сканера установлен:
+    `0 3 * * * cd /home/cfr_balloo/sites/cfrsite && node scripts/night-sync.mjs >> static/data/.night-sync.log 2>&1  # CFR-NIGHT`
 14. ⬜ Обновить AGENTS.md/DEPLOY.md/SERVER-COMMANDS.md под новую архитектуру (без Next.js)
+
+#### Ночной сканер на сервере — чинится (сессия 18, продолжение)
+
+Проблема: на сервере нет `static/data/trainers/` и `programs/` (исходники 1.3 ГБ в git не входят) →
+`night-sync.mjs` падал `ENOENT` в `scanDirectory`, а шаг 2 вообще пропускался («нет новых папок»),
+то есть первая закачка с диска не начиналась никогда. Исправлено в `scripts/night-sync.mjs`:
+- `scanDirectory` не падает при отсутствии каталога;
+- шаг 0 создаёт `data/trainers`, `data/programs` при первом запуске;
+- **шаг 2 качает ВСЕГДА** — resume внутри `yandex-download.py` сам пропускает скачанное
+  (публичные ссылки дисков, OAuth-токен не нужен);
+- таймаут закачки 1 ч → 4 ч; обрыв закачки не фатален (продолжит следующей ночью);
+- `fillPhotos` больше не проставляет битые обложки (только если файл реально есть в `static/uploads/`);
+- шаг 5 не перезапишет db.json пустой `{}`, если базы нет.
+Осталось: commit+push → на сервере `git pull` → ручной прогон → проверка диска (`df -h`, ~1.3 ГБ).
 
 #### БОЕВОЙ NGINX — найдено на сервере (важно!)
 
@@ -281,14 +330,52 @@
 - ⚠️ Проверить доступ www-data к `/home/cfr_balloo/...` (обычно home 750 → будет 403):
   `namei -l /home/cfr_balloo/sites/cfrsite/static/index.html` → при необходимости
   `sudo chmod o+x /home/cfr_balloo` (только вход, не чтение).
+  ✅ **Проверено (шаг 7):** home `cfr_balloo` = `drwxr-xr-x` (755) — www-data проходит, **права менять не нужно**.
+- 🚫 **Правило: бэкапы конфигов — ТОЛЬКО вне `sites-enabled/`** (`/root/nginx-backups/`).
+  `include /etc/nginx/sites-enabled/*` грузит **все** файлы каталога: файл `центр-фр.рф.bak.<ts>`
+  внутри `sites-enabled/` = второй живой сервер-блок с тем же `server_name` →
+  `conflicting server name ... ignored`, и какой из двух конфигах победит — лотерея по алфавиту.
+- ℹ️ **lk.html (DanceStudio):** заменена заглушка на полноценную страницу DanceStudio CRM.
+  Автономная страница с jQuery/jQuery UI/Dropbox SDK (CDN). Авторизация по телефону+паролю, 4 вкладки
+  (абонементы, посещения, покупки, запись). ⚠️ В коде встроены base64-закодированные учётные данные
+  Dropbox (clientId/clientSecret/refreshToken) — стандарт DanceStudio (клиентское приложение),
+  но означает, что любой может извлечь рефреш-токен и получить доступ к базе клиентов.
 
-#### Команда шага 7 (выполнить на сервере)
+#### Команда шага 7.1 (очистка дублей + проверка 404)
 
 ```bash
-cd /home/cfr_balloo/sites/cfrsite && sudo cp /etc/nginx/sites-enabled/центр-фр.рф /etc/nginx/sites-enabled/центр-фр.рф.bak.$(date +%s) && sudo cp deploy/nginx-site.conf /etc/nginx/sites-enabled/центр-фр.рф && echo "=== права ===" && namei -l /home/cfr_balloo/sites/cfrsite/static/index.html && sudo nginx -t && sudo systemctl reload nginx && echo "=== проверки ===" && curl -sk -o /dev/null -w "главная https -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/ && curl -sk https://xn----itbymbjqk.xn--p1ai/ | grep -o '<title>[^<]*' | head -1 && curl -sk -o /dev/null -w "/data/1.jpg -> %{http_code} %{size_download}b\n" https://xn----itbymbjqk.xn--p1ai/data/1.jpg && curl -sk -o /dev/null -w "/uploads/covers/t-glazyrin-mihail.jpg -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/uploads/covers/t-glazyrin-mihail.jpg && curl -sk -o /dev/null -w "/news.html -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/news.html && curl -sk -o /dev/null -w "/net-takoy-stranicy -> %{http_code}\n" https://xn----itbymbjqk.xn--p1ai/net-takoy-stranicy && curl -s -o /dev/null -w "http -> %{http_code} (301 ок)\n" http://xn----itbymbjqk.xn--p1ai/
+# 0. Каталог бэкапов вне sites-enabled
+sudo mkdir -p /root/nginx-backups
+
+# 1. Убрать ВСЕ бэкапы из sites-enabled (они дублируют серверные блоки!)
+echo "=== что было в sites-enabled ===" && ls -l /etc/nginx/sites-enabled/ | grep центр
+sudo mv /etc/nginx/sites-enabled/центр-фр.рф.bak.* /root/nginx-backups/ 2>/dev/null && echo "бэкапы убраны" || echo "дублей нет — ок"
+
+# 2. Подтянуть исправленный конфиг из репозитория (если коммит ещё не пушнули — см. шаг 3)
+cd /home/cfr_balloo/sites/cfrsite && git pull origin main 2>&1 | tail -3
+
+# 3. Положить актуальный конфиг из репозитория
+sudo cp deploy/nginx-site.conf /etc/nginx/sites-enabled/центр-фр.рф
+
+# 4. Запасная починка on-place (идемпотентно; нужно, если фикс ещё не запушен в main)
+sudo sed -i 's|try_files \$uri \$uri/ /index.html;|try_files $uri $uri/ =404;|' /etc/nginx/sites-enabled/центр-фр.рф
+grep -n "try_files" /etc/nginx/sites-enabled/центр-фр.рф
+
+# 5. Проверка + перезагрузка
+sudo nginx -t && sudo systemctl reload nginx
+echo "=== РЕЗУЛЬТАТЫ ==="
+curl -sk -o /dev/null -w "главная https      -> %{http_code} (200)\n" https://xn----itbymbjqk.xn--p1ai/
+curl -sk https://xn----itbymbjqk.xn--p1ai/ | grep -o '<title>[^<]*' | head -1
+curl -sk -o /dev/null -w "/data/1.jpg        -> %{http_code} %{size_download}b\n" https://xn----itbymbjqk.xn--p1ai/data/1.jpg
+curl -sk -o /dev/null -w "/uploads/covers/... -> %{http_code} (200)\n" https://xn----itbymbjqk.xn--p1ai/uploads/covers/t-glazyrin-mihail.jpg
+curl -sk -o /dev/null -w "/news.html         -> %{http_code} (200)\n" https://xn----itbymbjqk.xn--p1ai/news.html
+curl -sk -o /dev/null -w "/net-takoy-stranicy -> %{http_code} (404 — ок!)\n" https://xn----itbymbjqk.xn--p1ai/net-takoy-stranicy
+curl -sk https://xn----itbymbjqk.xn--p1ai/net-takoy-stranicy | grep -o '<title>[^<]*' | head -1
+curl -s  -o /dev/null -w "http               -> %{http_code} (301)\n" http://xn----itbymbjqk.xn--p1ai/
+echo "=== остались конфликты? ===" && sudo nginx -t 2>&1 | grep -iE "conflict|redefined" || echo "чисто"
 ```
 
-**Откат этапа A (если что):** `sudo cp /etc/nginx/sites-enabled/центр-фр.рф.bak.<ts> /etc/nginx/sites-enabled/центр-фр.рф && sudo nginx -t && sudo systemctl reload nginx`
+**Откат этапа A (если что):** `sudo cp /root/nginx-backups/центр-фр.рф.pre-fix.* /etc/nginx/sites-enabled/центр-фр.рф && sudo nginx -t && sudo systemctl reload nginx`
 
 #### Контекст/решения
 
@@ -1745,4 +1832,6 @@ PM2 (cfrsite) → scripts/admin-server.mjs (:3456)
 | 2026-10-22 | S65–S68 | Сессия 18 | **Ревизия архитектуры:** старый Next.js перенесён в `trash/` (не коммитится). Root: только static/, scripts/, deploy/, package.json, docs. package.json: только npm-скрипты статики (mammoth, nodemailer, jsdom). nginx.conf: /api/admin/ → 3456, убраны Next.js прокси. ecosystem.config.js: admin-server (:3456). deploy.sh: убран build Next.js. admin.html: API_BASE='' (относительный путь, NGINX прокси). static/uploads/: 103 МБ готовы к rsync. Тесты: 23/23 + 47/48. admin-server: 200 на /, /admin.html, login 200, get-news 200, // → 400 (баг исправлен). |
 | 2026-10-22 | S68 | Сессия 18 | **Git-данные:** db.json + static/uploads (448 фото, 103 МБ) + static/data/{1,2,price-2026-10}.jpg — в репозитории (.gitignore: `static/data/*` + 3 исключения). Коммиты db09a0b, b9b0db8, 341b228 запушены. Расписание/цены в db.json → лёгкие jpg. |
 | 2026-10-22 | Реддеплой | Сессия 18 | Сервер: СТАРАЯ версия поднята для клиентов (домен → 200), git pull до b9b0db8. Шаги 3–10 — в разделе «ХОД РЕДДЕПЛОЯ». SSH извне на сервер недоступен (сервер 192.168.1.85 в локальной сети) — команды выполняет пользователь через свой SSH. Бэкап не нужен: «сохранять нечего, данные с диска актуальнее». |
-| 2026-10-22 | Реддеплой A | Сессия 18 | **Этап A (клиентская статика) подготовлен:** сервер обновили до `5bd1d1e` (db.json+uploads через git, trash/ из репа убран), `npm ci` чисто. Диагностика NGINX: боевой файл `/etc/nginx/sites-enabled/центр-фр.рф` (punycode `xn----itbymbjqk.xn--p1ai`, серты Let's Encrypt, не self-signed!). Создан `deploy/nginx-site.conf` (готовый конфиг этапа A: root static/, error_page, /api/admin закомментирован), deploy.sh переписан под него, старые deploy/nginx.conf+ssl-nginx.conf → trash/. admin-server.mjs: `process.send('ready')` для PM2 wait_ready. Следующий шаг — команда 7 (запись конфига + namei + reload + curl-проверки), откат описан. |
+| 2026-10-22 | Реддеплой B | Сессия 18 | **ЭТАП B ВЫПОЛНЕН:** шаг 7.1 (бэкапы из sites-enabled убраны, try_files→=404, конфликтов нет, /net-takoy-stranicy→404). Next.js удалён из PM2, admin-server :3456 запущен через ecosystem.config.js, /api/admin/ раскоммечен, login по https → 200+токен, главная/404 в порядке. pm2 save выполнен; pm2 startup (systemd-команду) — НЕ выполнить (ждёт). Cron CFR-NIGHT установлен (0 3 * * *). Ночной сканер на сервере не мог работать (нет static/data/trainers|programs → ENOENT; шаг 2 пропускался) — night-sync.mjs исправлен: resilience+mkdir, закачка всегда (resume yandex-download, публичные ссылки, без токена), 4ч таймаут, защита db.json и обложек. Ждёт commit+push+прогона на сервере. |
+| 2026-10-23 | S70 | Сессия 19 | **Админка: тестирование новостей + фикс зависания.** Пользователь: новость добавляется, фото+видео грузятся одновременно, работает как задумано. ПЛОХОЕ: после сохранения админка виснет, перезаход не спасает, списки пустые, удалить нельзя. Причины: (1) `regenerateStatic` — execSync `stdio:'inherit'` без timeout под PM2 блокировал процесс; (2) сессии в Map — после любого рестарта токен в localStorage мёртв, админка показывала панель с пустыми списками (401 нигде не обрабатывался). Исправлено: regenerateStatic stdio pipe+timeout 120s; сессии в файл `.admin-sessions.json` (переживают рестарт, gitignore); sync-data/parse-docs spawn вместо execSync (event loop свободен); admin.html: api() → 401=forceLogout, AbortController 30с, проверка токена при загрузке. Смоук-тест 6/6 (токен жив после kill+restart, API отвечает во время sync). Тесты 23/23+47/48. Удаление тестовой новости с сервера — node-скрипт в чате. |
+| 2026-10-23 | S71 | Сессия 19 | **Бренд + разделители + альбом.** Цвета из брендбука в `css/style.css`: `--color-primary: #003C52`, `--color-accent: #F07E23`, `--color-accent-dark: #DC5014`, `--color-beige: #FEEED5`. Разделители: CSS `display:none` по умолчанию, `.divider--on` включает; main.js читает `SITE_DATA.divider` и навешивает классы `--on/--sm/--md/--lg/--bg-*/--fs-*`; в `db.json` `globalDivider.enabled=false`; `export-static.mjs` экспортирует все поля (enabled/text/height/background/fontSize); admin.html: новый раздел «🎨 Разделители» с формой (чекбокс, текст, высота, фон, шрифт); admin-server.mjs: API `POST /api/admin/get-divider` + `/api/admin/save-divider`. Альбом выключен из навигации: убраны ссылки из `header.js` (desktop+mobile) и `footer.js`, сама страница `album.html` осталась. Тесты: 23/23 + 47/48. |
