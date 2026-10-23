@@ -971,6 +971,125 @@ async function handleSendReminder(req, res) {
   }
 
   // ============================================
+  // Главные данные (S75)
+  // ============================================
+  async function handleGetSiteSettings(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    const settings = db.siteSettings || { title1: 'Шифу Панда', title2: 'Центр Функционального Развития', logo: '' };
+    sendJSON(res, 200, { siteSettings: settings });
+  }
+
+  async function handleSaveSiteSettings(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.siteSettings || typeof body.siteSettings !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет данных' });
+    }
+    try {
+      const db = readDb();
+      if (!db.siteSettings) db.siteSettings = {};
+      db.siteSettings.title1 = String(body.siteSettings.title1 || 'Шифу Панда');
+      db.siteSettings.title2 = String(body.siteSettings.title2 || 'Центр Функционального Развития');
+      // logo — только путь, не base64
+      if (body.siteSettings.logo && typeof body.siteSettings.logo === 'string') {
+        db.siteSettings.logo = body.siteSettings.logo.replace(/^\//, '');
+      }
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения siteSettings:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Расписание (S76)
+  // ============================================
+  async function handleSaveSchedule(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.schedule || !Array.isArray(body.schedule)) {
+      return sendJSON(res, 400, { error: 'Нет данных расписания' });
+    }
+    try {
+      const db = readDb();
+      // Удаляем старые файлы, если новые не переданы
+      const oldSchedule = db.schedule || [];
+      for (const oldItem of oldSchedule) {
+        const oldPath = oldItem.image && oldItem.image.replace(/^\//, '');
+        const newPath = body.schedule.find(x => x.id === oldItem.id);
+        if (oldPath && (!newPath || !newPath.image)) {
+          // Удаляем старый файл, если новый не передан
+          const fullPath = path.join(staticDir, oldPath);
+          try { if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath); } catch (e) { /* ignore */ }
+        }
+      }
+      db.schedule = body.schedule.map((item, idx) => ({
+        id: item.id || idx + 1,
+        image: item.image || '',
+        title: item.title || 'Лист ' + (idx + 1)
+      }));
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения schedule:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Цены (S77)
+  // ============================================
+  async function handleSavePrices(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.prices || !Array.isArray(body.prices)) {
+      return sendJSON(res, 400, { error: 'Нет данных цен' });
+    }
+    try {
+      const db = readDb();
+      const oldPrices = db.prices || [];
+      for (const oldItem of oldPrices) {
+        const oldPath = oldItem.image && oldItem.image.replace(/^\//, '');
+        const newPath = body.prices.find(x => x.id === oldItem.id);
+        if (oldPath && (!newPath || !newPath.image)) {
+          const fullPath = path.join(staticDir, oldPath);
+          try { if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath); } catch (e) { /* ignore */ }
+        }
+      }
+      db.prices = body.prices.map((item, idx) => ({
+        id: item.id || idx + 1,
+        image: item.image || '',
+        title: item.title || 'Прайс'
+      }));
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения prices:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
   // Маршрутизация
   // ============================================
 
@@ -1068,6 +1187,24 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/get-data' && method === 'POST') {
     return handleGetData(req, res);
+  }
+
+  // Главные данные (S75)
+  if (pathname === '/api/admin/get-site-settings' && method === 'POST') {
+    return handleGetSiteSettings(req, res);
+  }
+  if (pathname === '/api/admin/save-site-settings' && method === 'POST') {
+    return handleSaveSiteSettings(req, res);
+  }
+
+  // Расписание (S76)
+  if (pathname === '/api/admin/save-schedule' && method === 'POST') {
+    return handleSaveSchedule(req, res);
+  }
+
+  // Цены (S77)
+  if (pathname === '/api/admin/save-prices' && method === 'POST') {
+    return handleSavePrices(req, res);
   }
 
   // === API ===

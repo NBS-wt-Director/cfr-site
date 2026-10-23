@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div>
             <a href="index.html" class="footer-logo">
               <img src="logo.png" alt="Логотип Шифу Панда">
-              <span>Шифу Панда</span>
+              <span class="footer-logo-text">Шифу Панда</span>
             </a>
             <p class="footer-subtitle">Центр Функционального Развития</p>
             <div class="footer-contact">
@@ -116,4 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </footer>
   `;
+
+  // Применяем siteSettings (S75)
+  var settings = (window.SITE_DATA || {}).siteSettings || {};
+  var footerTitle = document.querySelector('.footer-logo-text');
+  if (footerTitle && settings.title1) footerTitle.textContent = settings.title1;
+  var footerSubtitle = document.querySelector('.footer-subtitle');
+  if (footerSubtitle && settings.title2) footerSubtitle.textContent = settings.title2;
+  var footerLogo = document.querySelector('.footer-logo img');
+  if (footerLogo && settings.logo) { footerLogo.src = settings.logo; footerLogo.alt = settings.title1 || 'Логотип'; }
+
 });

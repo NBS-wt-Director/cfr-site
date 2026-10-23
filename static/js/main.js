@@ -74,10 +74,11 @@
     const toggle = document.getElementById('schedule-switch');
     if (!grid || !tableEl) return;
 
-    const table = view === 'table';
-    grid.hidden = table;
-    tableEl.hidden = !table;
-    if (table && !tableEl.innerHTML) {
+    const showTable = view === 'table' || view === 'hybrid';
+    const showGrid = view === 'images' || view === 'hybrid';
+    grid.hidden = !showGrid;
+    tableEl.hidden = !showTable;
+    if (showTable && !tableEl.innerHTML) {
       tableEl.innerHTML = window.ScheduleUI
         ? window.ScheduleUI.weekBoard(data.scheduleTable)
         : '';
@@ -179,7 +180,8 @@
     const el = document.getElementById('news-grid');
     if (!el) return;
 
-    const news = Array.isArray(data.news) ? data.news : [];
+    // Фильтруем: только showOnHome !== false
+    const news = (Array.isArray(data.news) ? data.news : []).filter(n => n.showOnHome !== false);
     if (news.length === 0) {
       el.innerHTML = '<p class="empty-note">Новостей пока нет</p>';
       return;

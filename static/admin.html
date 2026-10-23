@@ -383,6 +383,7 @@
         <a href="#news-settings" data-section="news-settings">⚙️ Настройки новостей</a>
         <a href="#dividers" data-section="dividers">🎨 Разделители</a>
         <a href="#appearance" data-section="appearance">🖌 Оформление</a>
+        <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
         <a href="#album" data-section="album">📸 Альбом</a>
         <a href="#crm" data-section="crm">📊 CRM</a>
         <a href="#data" data-section="data">💾 Данные</a>
@@ -431,6 +432,12 @@
           <label for="news-video-input">Видео</label>
           <input type="file" id="news-video-input" accept="video/*">
           <div id="news-video-info"></div>
+        </div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
+            <input type="checkbox" id="news-showonhome-input" checked>
+            <span>🏠 Показывать на главной</span>
+          </label>
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary" onclick="closeNewsModal()">Отмена</button>
@@ -594,6 +601,7 @@
       { id: 'news-settings', title: '⚙️ Настройки новостей', status: 'view' },
       { id: 'dividers', title: '🎨 Разделители', status: 'done' },
       { id: 'appearance', title: '🖌 Оформление', status: 'done' },
+      { id: 'main-data', title: '🏠 Главные данные', status: 'done' },
       { id: 'album', title: '📸 Альбом', status: 'view' },
       { id: 'crm', title: '📊 CRM', status: 'wip' },
       { id: 'data', title: '💾 Данные', status: 'done' }
@@ -653,6 +661,7 @@
       if (sectionId === 'trainers') loadTrainersList();
       if (sectionId === 'dividers') loadDividerSection();
       if (sectionId === 'appearance') loadAppearanceSection();
+      if (sectionId === 'main-data') loadMainDataSection();
       if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
       if (sectionId === 'data') renderDataSection();
     }
@@ -687,16 +696,22 @@
       const content = document.getElementById('admin-content');
       const card = content.querySelector('.section-card');
       if (!card) return;
+
+      // Удаляем старую карточку просмотра (если была)
+      const existingView = content.querySelector('#view-section-card');
+      if (existingView) existingView.remove();
+
       let db;
       try {
         db = await getDbData();
       } catch (err) {
-        card.insertAdjacentHTML('afterend', `<div class="section-card"><p style="color:var(--danger);">Не удалось загрузить данные: ${escapeHtml(err.message)}</p></div>`);
+        card.insertAdjacentHTML('afterend', `<div class="section-card" id="view-section-card"><p style="color:var(--danger);">Не удалось загрузить данные: ${escapeHtml(err.message)}</p></div>`);
         return;
       }
 
       const box = document.createElement('div');
       box.className = 'section-card';
+      box.id = 'view-section-card';
       card.insertAdjacentElement('afterend', box);
 
       if (sectionId === 'schedule') renderScheduleView(box, db.schedule || []);
@@ -717,23 +732,57 @@
     }
 
     function renderScheduleView(box, items) {
-      const body = viewHead(box, '📅 Листы расписания (картинки)', items.length, 'редактирование — в разработке');
-      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
-      body.innerHTML = '<div class="thumb-row">' + items.map((s, i) => `
+      const body = viewHead(box, '📅 Листы расписания (картинки)', items.length, 'клик — просмотр; загрузка — ниже');
+      let html = '<div class="thumb-row">' + items.map((s, i) => `
         <div class="thumb-item" onclick="openImageView('${fileUrl(s.image)}', ${escapeHtml('Расписание №' + (i + 1))})">
           <img src="${fileUrl(s.image)}" alt="Расписание ${i + 1}" loading="lazy">
           <div class="cap">id: ${escapeHtml(String(s.id))}</div>
         </div>`).join('') + '</div>';
+      
+      // Форма загрузки
+      html += '<div style="margin-top:1.5rem;padding:1rem;background:#f8fafc;border-radius:var(--radius);">';
+      html += '<h4 style="margin-bottom:0.75rem;">Загрузить листы расписания (до 2 шт.)</h4>';
+      for (let i = 0; i < 2; i++) {
+        const existing = items[i];
+        html += '<div class="form-group"><label>Лист ' + (i + 1) + '</label>';
+        if (existing && existing.image) {
+          html += '<img src="' + fileUrl(existing.image) + '" style="max-width:200px;max-height:120px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;display:block;">';
+          html += '<button type="button" class="btn btn-sm btn-danger" onclick="clearScheduleItem(' + i + ')">Удалить лист ' + (i + 1) + '</button>';
+        } else {
+          html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById('schedule-input-' + i + '').click()">📁 Загрузить лист ' + (i + 1) + '</button>';
+          html += '<input type="file" id="schedule-input-' + i + '" accept="image/*" style="display:none" onchange="uploadScheduleItem(' + i + ', this)">';
+        }
+        html += '</div>';
+      }
+      html += '<div style="margin-top:1rem;"><button class="btn btn-success" onclick="saveSchedule()">💾 Сохранить расписание</button></div>';
+      html += '</div>';
+      
+      body.innerHTML = html;
     }
 
     function renderPricesView(box, items) {
-      const body = viewHead(box, '💰 Прайс-листы (картинки)', items.length, 'редактирование — в разработке');
-      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
-      body.innerHTML = '<div class="thumb-row">' + items.map((p, i) => `
+      const body = viewHead(box, '💰 Прайс-листы (картинки)', items.length, 'клик — просмотр; загрузка — ниже');
+      let html = '<div class="thumb-row">' + items.map((p, i) => `
         <div class="thumb-item" onclick="openImageView('${fileUrl(p.image)}', ${escapeHtml('Цены №' + (i + 1))})">
           <img src="${fileUrl(p.image)}" alt="Цены ${i + 1}" loading="lazy">
           <div class="cap">id: ${escapeHtml(String(p.id))}</div>
         </div>`).join('') + '</div>';
+      
+      // Форма загрузки
+      const existing = items[0];
+      html += '<div style="margin-top:1.5rem;padding:1rem;background:#f8fafc;border-radius:var(--radius);">';
+      html += '<h4 style="margin-bottom:0.75rem;">Загрузить прайс-лист</h4>';
+      if (existing && existing.image) {
+        html += '<img src="' + fileUrl(existing.image) + '" style="max-width:300px;max-height:200px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;display:block;">';
+        html += '<button type="button" class="btn btn-sm btn-danger" onclick="clearPriceItem()">Удалить прайс</button>';
+      } else {
+        html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById('price-input').click()">📁 Загрузить прайс</button>';
+        html += '<input type="file" id="price-input" accept="image/*" style="display:none" onchange="uploadPriceItem(this)">';
+      }
+      html += '<div style="margin-top:1rem;"><button class="btn btn-success" onclick="savePrices()">💾 Сохранить цены</button></div>';
+      html += '</div>';
+      
+      body.innerHTML = html;
     }
 
     function renderSliderView(box, items, db) {
@@ -817,6 +866,7 @@
       if (sectionId === 'trainers') return 'Скрытие и порядок тренеров. Отметьте 🙈 чтобы скрыть с сайта. Перетаскивайте для изменения порядка. 👁 — просмотр всех полей.';
       if (sectionId === 'dividers') return 'Видимые разделители между секциями на всех страницах. Выключены по умолчанию.';
       if (sectionId === 'appearance') return 'Размеры и начертания текста всех компонентов сайта + прямая вставка CSS. Слева — настройки, справа — живой предпросмотр. Сохранение пишет в db.json и перегенерирует статику.';
+      if (sectionId === 'main-data') return 'Логотип сайта (он же favicon) и два названия: первое («Шифу Панда») используется в шапке, второе («Центр Функционального Развития») — в подвале и заголовке страницы.';
       if (sectionId === 'schedule') return 'Листы расписания, которые сейчас на сайте. Клик по картинке — просмотр в реальном размере. Редактирование (замена/удаление) — в следующем пакете.';
       if (sectionId === 'prices') return 'Прайс-листы, которые сейчас на сайте. Клик по картинке — просмотр в реальном размере. Редактирование — в следующем пакете.';
       if (sectionId === 'slider') return 'Слайды главной страницы (порядок = порядок в списке). Клик — просмотр. Редактирование — в следующем пакете.';
@@ -838,6 +888,7 @@
         'news-settings': ['defaultImage', 'defaultVideo', 'autoPublish'],
         dividers: ['globalDivider.enabled', 'globalDivider.textContent', 'globalDivider.height', 'globalDivider.background', 'globalDivider.fontSize'],
         appearance: ['appearance.variables (--fs-*, --fw-*, --ff-*, --lh-*)', 'appearance.customCss'],
+        'main-data': ['siteSettings.title1', 'siteSettings.title2', 'siteSettings.logo'],
         album: ['id', 'image', 'thumb', 'title', 'date'],
         crm: ['(заглушка — без данных)'],
         data: ['db.json', 'backups/', 'static/js/data/']
@@ -879,6 +930,10 @@
           <div class="news-info">
             <h4>${escapeHtml(n.title || 'Без заголовка')}</h4>
             <span>${n.date || 'Без даты'} · №${idx + 1}${(n.photos && n.photos.length) ? ' · 🖼 ' + n.photos.length : ''}</span>
+            <label style="font-size:0.8rem;display:flex;align-items:center;gap:0.3rem;margin-top:0.25rem;cursor:pointer;">
+              <input type="checkbox" ${n.showOnHome !== false ? 'checked' : ''} onchange="toggleShowOnHome(${n.id}, this.checked)" style="width:auto;">
+              🏠 На главной
+            </label>
           </div>
           <div class="news-actions">
             <button class="btn btn-sm btn-secondary" onclick="viewNews(${n.id})" title="Просмотр">👁</button>
@@ -990,6 +1045,7 @@
       editingImage = news ? news.image : null;
       editingVideo = news ? news.video : null;
       editingPhotos = news && Array.isArray(news.photos) ? news.photos.slice(0, MAX_NEWS_PHOTOS) : [];
+      document.getElementById('news-showonhome-input').checked = !news || news.showOnHome !== false;
 
       renderFileInfo('image');
       renderFileInfo('video');
@@ -1164,6 +1220,7 @@
         if (video) newsItem.video = video;
         const photos = editingPhotos.filter(Boolean);
         if (photos.length) newsItem.photos = photos;
+        newsItem.showOnHome = document.getElementById('news-showonhome-input').checked;
 
         const res = await api('/api/admin/save-news', {
           method: 'POST',
@@ -1766,6 +1823,105 @@
       document.getElementById('ap-custom-css').value = '';
       renderAppearanceForm();
       updatePreview();
+    }
+
+
+    /* ============================================
+       Главные данные (S75)
+       ============================================ */
+    let siteSettingsState = { title1: 'Шифу Панда', title2: 'Центр Функционального Развития', logo: '' };
+
+    async function loadMainDataSection() {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      card.insertAdjacentElement('afterend', box);
+
+      // Загрузка текущих значений
+      try {
+        const res = await api('/api/admin/get-site-settings', { method: 'POST' });
+        if (res.ok) {
+          const payload = await res.json();
+          siteSettingsState = payload.siteSettings || siteSettingsState;
+        }
+      } catch (err) {
+        showToast('Не удалось загрузить данные: ' + err.message, 'error');
+      }
+
+      box.innerHTML = `
+        <h2>🏠 Главные данные сайта</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;">
+          <div class="form-group">
+            <label>Логотип (favicon + шапка)</label>
+            <div id="logo-preview" style="margin-bottom:1rem;${siteSettingsState.logo ? '' : 'display:none;'}">
+              <img src="${siteSettingsState.logo ? '/' + siteSettingsState.logo.replace(/^\//, '') : ''}" alt="Логотип" style="max-width:200px;max-height:80px;border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;background:#fff;">
+              <button type="button" class="btn btn-sm btn-danger" onclick="removeLogo()" style="margin-left:0.5rem;">✕ Удалить</button>
+            </div>
+            <input type="file" id="logo-input" accept="image/*" style="display:none">
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('logo-input').click()">📁 Загрузить логотип</button>
+          </div>
+          <div class="form-group">
+            <label for="title1-input">Первое название (шапка, alt логотипа)</label>
+            <input type="text" id="title1-input" value="${escapeHtml(siteSettingsState.title1)}" maxlength="50" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="title2-input">Второе название (footer, title страницы)</label>
+            <input type="text" id="title2-input" value="${escapeHtml(siteSettingsState.title2)}" maxlength="80" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <button class="btn btn-success" id="save-site-settings-btn" onclick="saveSiteSettings()">💾 Сохранить</button>
+        </div>
+      `;
+
+      // Подписка на загрузку файла
+      document.getElementById('logo-input').addEventListener('change', async function () {
+        if (!this.files.length) return;
+        try {
+          const path = await uploadFile(this.files[0], 'logo');
+          siteSettingsState.logo = path;
+          const preview = document.getElementById('logo-preview');
+          preview.querySelector('img').src = '/' + path.replace(/^\//, '');
+          preview.style.display = 'block';
+          showToast('Логотип загружен');
+        } catch (err) {
+          showToast('Ошибка загрузки логотипа: ' + err.message, 'error');
+        }
+      });
+    }
+
+    async function saveSiteSettings() {
+      const btn = document.getElementById('save-site-settings-btn');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
+
+      siteSettingsState.title1 = document.getElementById('title1-input').value.trim();
+      siteSettingsState.title2 = document.getElementById('title2-input').value.trim();
+
+      try {
+        const res = await api('/api/admin/save-site-settings', {
+          method: 'POST',
+          body: JSON.stringify({ siteSettings: siteSettingsState })
+        });
+        if (res.ok) {
+          showToast('Главные данные сохранены');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast('Ошибка: ' + (err.error || res.status), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+
+      if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить'; }
+    }
+
+    function removeLogo() {
+      siteSettingsState.logo = '';
+      document.getElementById('logo-preview').style.display = 'none';
+      showToast('Логотип удалён (не забудьте сохранить)');
     }
 
     /* ============================================

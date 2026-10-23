@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="header-top">
         <a href="index.html" class="logo">
           <img src="uploads/logo.png" alt="Логотип">
-          <span class="logo-text">Шифу Панда</span>
+          <span class="logo-text" id="header-title1">Шифу Панда</span>
         </a>
 
         <!-- Desktop: выпадашки (hover + клик) -->
@@ -121,7 +121,15 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeAllDropdowns(except) {
     document.querySelectorAll('.dropdown.dropdown-open').forEach(function (d) {
       if (d !== except) setDropdown(d, false);
-    });
+    
+  // Применяем siteSettings (S75)
+  var settings = (window.SITE_DATA || {}).siteSettings || {};
+  var title1El = document.getElementById('header-title1');
+  if (title1El && settings.title1) title1El.textContent = settings.title1;
+  var logoImg = document.querySelector('.logo img');
+  if (logoImg && settings.logo) { logoImg.src = settings.logo; logoImg.alt = settings.title1 || 'Логотип'; }
+
+});
   }
 
   document.querySelectorAll('[data-dropdown]').forEach(function (dropdown) {

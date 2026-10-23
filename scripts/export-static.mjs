@@ -102,6 +102,13 @@ const core = {
     variables: db.appearance?.variables && typeof db.appearance.variables === 'object' ? db.appearance.variables : {},
     customCss: typeof db.appearance?.customCss === 'string' ? db.appearance.customCss : ''
   },
+
+  // Главные данные (S75)
+  siteSettings: {
+    title1: typeof db.siteSettings?.title1 === 'string' ? db.siteSettings.title1 : 'Шифу Панда',
+    title2: typeof db.siteSettings?.title2 === 'string' ? db.siteSettings.title2 : 'Центр Функционального Развития',
+    logo: typeof db.siteSettings?.logo === 'string' && db.siteSettings.logo ? '/' + db.siteSettings.logo.replace(/^\//, '') : ''
+  },
   sections: (db.sections || []).map(s => ({ id: s.id, title: s.title || '' })),
 
   // Лёгкий срез для меню — только id и name (скрытые исключены)
@@ -139,8 +146,12 @@ function previewOf(text) {
   return MD.preview(text, 200);
 }
 
-function newsSlice(from, to) {
-  const list = to === undefined ? newsSorted : newsSorted.slice(from, to);
+function newsSlice(from, to, filterHome) {
+  let list = to === undefined ? newsSorted : newsSorted.slice(from, to);
+  // S78: фильтрация для главной страницы (showOnHome !== false)
+  if (filterHome) {
+    list = list.filter(n => n.showOnHome !== false);
+  }
   return list.map(n => ({
     id: n.id,
     title: n.title || '',
@@ -149,6 +160,8 @@ function newsSlice(from, to) {
     video: fixPath(n.video),
     // Галерея: до 5 фото новости (S73), каждое — отдельной кнопкой в модалке
     photos: (Array.isArray(n.photos) ? n.photos : []).slice(0, 5).map(fixPath).filter(Boolean),
+    // S78: флаг показа на главной
+    showOnHome: n.showOnHome !== false,
     preview: previewOf(n.text || ''),
     long: MD.plainText(n.text || '').length > 200
   }));
@@ -201,7 +214,8 @@ const modules = {
   //   news-all.js   — все, только превью (страница новостей)
   //   news-full.js  — полные тексты по id (модалка «Читать полностью»)
   // Полные тексты на главной не грузятся совсем.
-  news: newsSlice(0, 8),
+  // S78: news.js — только новости с showOnHome !== false
+  news: newsSlice(0, 8, true),
   newsAll: newsSlice(Infinity),
   newsFull: newsFullMap(),
 
