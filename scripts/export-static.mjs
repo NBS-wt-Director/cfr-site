@@ -107,7 +107,13 @@ const core = {
   siteSettings: {
     title1: typeof db.siteSettings?.title1 === 'string' ? db.siteSettings.title1 : 'Шифу Панда',
     title2: typeof db.siteSettings?.title2 === 'string' ? db.siteSettings.title2 : 'Центр Функционального Развития',
-    logo: typeof db.siteSettings?.logo === 'string' && db.siteSettings.logo ? '/' + db.siteSettings.logo.replace(/^\//, '') : ''
+    // logo: путь uploads/... → '/uploads/...'; data: URI (наследие) → как есть
+    logo: (function () {
+      const l = typeof db.siteSettings?.logo === 'string' ? db.siteSettings.logo.trim() : '';
+      if (!l) return '';
+      if (l.startsWith('data:')) return l;
+      return '/' + l.replace(/^\//, '');
+    })()
   },
   sections: (db.sections || []).map(s => ({ id: s.id, title: s.title || '' })),
 

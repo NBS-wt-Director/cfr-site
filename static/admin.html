@@ -1857,7 +1857,7 @@
           <div class="form-group">
             <label>Логотип (favicon + шапка)</label>
             <div id="logo-preview" style="margin-bottom:1rem;${siteSettingsState.logo ? '' : 'display:none;'}">
-              <img src="${siteSettingsState.logo ? '/' + siteSettingsState.logo.replace(/^\//, '') : ''}" alt="Логотип" style="max-width:200px;max-height:80px;border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;background:#fff;">
+              <img src="${siteSettingsState.logo ? (siteSettingsState.logo.startsWith('data:') ? siteSettingsState.logo : '/' + siteSettingsState.logo.replace(/^\//, '')) : ''}" alt="Логотип" style="max-width:200px;max-height:80px;border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;background:#fff;">
               <button type="button" class="btn btn-sm btn-danger" onclick="removeLogo()" style="margin-left:0.5rem;">✕ Удалить</button>
             </div>
             <input type="file" id="logo-input" accept="image/*" style="display:none">

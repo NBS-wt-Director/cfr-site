@@ -997,9 +997,10 @@ async function handleSendReminder(req, res) {
       if (!db.siteSettings) db.siteSettings = {};
       db.siteSettings.title1 = String(body.siteSettings.title1 || 'Шифу Панда');
       db.siteSettings.title2 = String(body.siteSettings.title2 || 'Центр Функционального Развития');
-      // logo — только путь, не base64
+      // logo: путь uploads/... или data: URI (наследие) — оба допустимы
       if (body.siteSettings.logo && typeof body.siteSettings.logo === 'string') {
-        db.siteSettings.logo = body.siteSettings.logo.replace(/^\//, '');
+        const l = body.siteSettings.logo.trim();
+        db.siteSettings.logo = l.startsWith('data:') ? l : l.replace(/^\//, '');
       }
       backupDB();
       writeDb(db);

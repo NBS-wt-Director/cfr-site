@@ -14,6 +14,19 @@
  */
 (function () {
   var data = window.SITE_DATA || {};
+
+  // Favicon из логотипа (S75): siteSettings.logo → <link rel="icon">
+  var settings = data.siteSettings || {};
+  if (settings.logo) {
+    var icons = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+    for (var k = 0; k < icons.length; k++) icons[k].parentNode.removeChild(icons[k]);
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    link.href = settings.logo;
+    document.head.appendChild(link);
+  }
+
   var ap = data.appearance;
   if (!ap) return;
 
