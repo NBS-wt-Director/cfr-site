@@ -143,7 +143,7 @@
     const el = document.getElementById('programs-grid');
     if (!el || !data.programs) return;
 
-    var directions = data.directions || [];
+    var directions = data.navDirections || data.directions || [];
     var visibleDirs = directions.filter(function (d) { return !d.hidden; });
 
     // S23: группировка по направлениям (как на странице программ)

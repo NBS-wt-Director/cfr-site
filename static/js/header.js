@@ -8,9 +8,29 @@ document.addEventListener('DOMContentLoaded', function() {
   // Сущность открывает общий шаблон: program.html?id=... / trainer.html?id=...
   const programNav = data.navPrograms || data.programs || [];
   const trainerNav = data.navTrainers || data.trainers || [];
-  var directions = data.directions || [];
+  // S23: направления — лёгкий срез из core.js (есть на всех страницах)
+  var directions = (data.navDirections || data.directions || [])
+    .filter(function (d) { return !d.hidden && d.programs && d.programs.length > 0; });
 
-  // S23: плоский список для обратной совместимости
+  // S23: многоуровневое меню программ по направлениям (desktop)
+  var desktopProgramsMenu;
+  if (directions.length > 0) {
+    desktopProgramsMenu = directions.map(function (d) {
+      var items = (d.programs || []).map(function (p) {
+        return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+      }).join('');
+      return '<li class="dgroup">' +
+        '<span class="dgroup-title">' + d.name + '</span>' +
+        '<ul class="dgroup-list">' + items + '</ul>' +
+      '</li>';
+    }).join('');
+  } else {
+    desktopProgramsMenu = programNav.map(function (p) {
+      return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+    }).join('');
+  }
+
+  // Плоский список программ (fallback для страниц без navDirections)
   const programsMenu = programNav.map(p =>
     `<li><a href="program.html?id=${p.id}">${p.name}</a></li>`
   ).join('');
@@ -19,9 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `<li><a href="trainer.html?id=${t.id}">${t.name}</a></li>`
   ).join('');
 
-  // S23: многоуровневое меню программ по направлениям
+  // S23: мобильный аккордеон направлений (вложенный)
   var directionsMenu = directions
-    .filter(function (d) { return !d.hidden && d.programs && d.programs.length > 0; })
     .map(function (d) {
       var items = (d.programs || []).map(function (p) {
         return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
@@ -58,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </button>
               <div class="dropdown-menu">
                 <a href="programs.html">Все программы</a>
-                <ul>${programsMenu}</ul>
+                <ul>${desktopProgramsMenu}</ul>
               </div>
             </li>
             <li class="dropdown dropdown-right" data-dropdown>
@@ -102,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </button>
             <ul class="m-group-list">
               <li><a href="programs.html">Все программы</a></li>
-              ${programsMenu}
+              ${directionsMenu || programsMenu}
             </ul>
           </li>
 

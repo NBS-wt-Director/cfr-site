@@ -195,6 +195,21 @@ a { text-decoration: none; color: inherit; }
 .nav-desktop .dropdown-menu a:hover { background: #f3f4f6; }
 .nav-desktop .dropdown-menu ul { display: block; list-style: none; }
 
+/* S23: вложенные группы направлений в desktop-меню «Программы» */
+.nav-desktop .dropdown-menu .dgroup { padding: 0.25rem 0; border-top: 1px solid #f3f4f6; }
+.nav-desktop .dropdown-menu .dgroup:first-child { border-top: none; }
+.nav-desktop .dropdown-menu .dgroup-title {
+  display: block;
+  padding: 0.375rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-primary);
+}
+.nav-desktop .dropdown-menu .dgroup-list { padding-left: 0; }
+.nav-desktop .dropdown-menu .dgroup-list a { padding: 0.3rem 1rem 0.3rem 1.5rem; font-size: 0.9375rem; }
+
 .mobile-toggle {
   width: 40px; height: 40px;
   background: none; border: none;

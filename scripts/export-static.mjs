@@ -48,6 +48,7 @@ const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
 const visiblePrograms = (db.programs || []).filter(p => !p.hidden);
 const visibleTrainers = (db.trainers || []).filter(t => !t.hidden);
 const visibleTrainerIds = new Set(visibleTrainers.map(t => Number(t.id)));
+const visibleProgramIds = new Set(visiblePrograms.map(p => String(p.id)));
 
 // Преобразуем пути: db.json использует /uploads/ → static использует uploads/
 function fixPath(p) {
@@ -132,6 +133,18 @@ const core = {
   // Лёгкий срез для меню — только id и name (скрытые исключены)
   navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '' })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '' })),
+
+  // S23: лёгкий срез направлений для меню и группировки на главной
+  // (полные данные — в directions.js, он грузится только на directions.html)
+  // Скрытые направления и скрытые программы исключены; пустые направления не попадают в меню
+  navDirections: (db.directions || [])
+    .filter(d => !d.hidden)
+    .map(d => ({
+      id: d.id,
+      name: d.name || '',
+      programs: (d.programs || []).filter(p => visibleProgramIds.has(String(p.id)))
+    }))
+    .filter(d => d.programs.length > 0),
 
   // Заглушки: тяжёлые данные подмешивают свои модули
   slider: null,
@@ -244,20 +257,24 @@ const modules = {
   })),
 
   // S23: Направления (отдельная сущность)
-  // hidden: true = «Скрытые» (неудаляемый встроенный раздел)
-  directions: (db.directions || []).map(d => ({
-    id: d.id || '',
-    name: d.name || '',
-    description: d.description || '',
-    image: fixPath(d.image),
-    hidden: !!d.hidden,
-    isBuiltin: !!d.isBuiltin,  // встроенные (например «Скрытые») — не удаляются
-    programs: (d.programs || []).map(p => ({
-      id: p.id,
-      name: p.name || '',
-      image: fixPath(p.image)
+  // hidden: true не экспортируется на сайт (виден только в админке);
+  // скрытые программы исключены из состава направления; пустые направления не выводятся
+  directions: (db.directions || [])
+    .filter(d => !d.hidden)
+    .map(d => ({
+      id: d.id || '',
+      name: d.name || '',
+      description: d.description || '',
+      image: fixPath(d.image),
+      programs: (d.programs || [])
+        .filter(p => visibleProgramIds.has(String(p.id)))
+        .map(p => ({
+          id: p.id,
+          name: p.name || '',
+          image: fixPath(p.image)
+        }))
     }))
-  })),
+    .filter(d => d.programs.length > 0),
 
   // Новости разделены на три модуля по потребителю:
   //   news.js       — 8 последних, только превью (главная)

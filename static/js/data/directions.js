@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-25T18:32:00.450Z
+ * Сгенерировано: 2026-10-25T18:51:19.053Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.directions = [
@@ -11,8 +11,6 @@ window.SITE_DATA.directions = [
     "name": "ДЕТСКИЕ НАПРАВЛЕНИЯ",
     "description": "",
     "image": "",
-    "hidden": false,
-    "isBuiltin": false,
     "programs": [
       {
         "id": 1770965676349,
@@ -52,27 +50,10 @@ window.SITE_DATA.directions = [
     ]
   },
   {
-    "id": "dir-1",
-    "name": "БОЕВЫЕ НАПРАВЛЕНИЯ",
-    "description": "",
-    "image": "",
-    "hidden": false,
-    "isBuiltin": false,
-    "programs": [
-      {
-        "id": 1772563088470,
-        "name": "Греко-римская борьба",
-        "image": "uploads/covers/p-greko-rimskaya-borba.jpg"
-      }
-    ]
-  },
-  {
     "id": "dir-2",
     "name": "ОЗДОРОВИТЕЛЬНЫЕ НАПРАВЛЕНИЯ",
     "description": "",
     "image": "",
-    "hidden": false,
-    "isBuiltin": false,
     "programs": [
       {
         "id": 1772563088471,
@@ -151,8 +132,6 @@ window.SITE_DATA.directions = [
     "name": "ОБУЧАЮЩИЕ ПРОГРАММЫ",
     "description": "",
     "image": "",
-    "hidden": false,
-    "isBuiltin": false,
     "programs": [
       {
         "id": 1772563088478,
@@ -181,8 +160,6 @@ window.SITE_DATA.directions = [
     "name": "ФУНКЦИОНАЛЬНЫЕ НАПРАВЛЕНИЯ",
     "description": "",
     "image": "",
-    "hidden": false,
-    "isBuiltin": false,
     "programs": [
       {
         "id": 1772563088495,
@@ -203,21 +180,6 @@ window.SITE_DATA.directions = [
         "id": 1772563088498,
         "name": "Функциональный тренинг",
         "image": "uploads/covers/p-funktsionalnyy-trening.jpg"
-      }
-    ]
-  },
-  {
-    "id": "dir-hidden",
-    "name": "Скрытые",
-    "description": "Скрытые с сайта направления. Не удаляется.",
-    "image": "",
-    "hidden": true,
-    "isBuiltin": true,
-    "programs": [
-      {
-        "id": 1772563088470,
-        "name": "Греко-римская борьба",
-        "image": "uploads/covers/p-greko-rimskaya-borba.jpg"
       }
     ]
   }
