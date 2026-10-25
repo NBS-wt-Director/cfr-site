@@ -21,6 +21,10 @@ documentation/deploy.md
 _db.json
 data/*.json
 backups/
+
+# Бэкапы db.json (локальные)
+db.json.backup*
+
 .db-mode.json
 .db-mode
 

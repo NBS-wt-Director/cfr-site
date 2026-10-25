@@ -17,6 +17,7 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { flattenDb, nestDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -125,14 +126,14 @@ for (const it of items) {
 
 album.sort((a, b) => a.title.localeCompare(b.title, 'ru') || a.id - b.id);
 
-const db = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
 const changed = JSON.stringify(db.album || []) !== JSON.stringify(album);
 if (changed || made) {
   const dir = path.join(root, 'backups');
   fs.mkdirSync(dir, { recursive: true });
   fs.copyFileSync(dbPath, path.join(dir, `db.json.backup.${Date.now()}`));
   db.album = album;
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf-8');
+  fs.writeFileSync(dbPath, JSON.stringify(nestDb(db), null, 2), 'utf-8');
   console.log('✅ db.json сохранён');
 } else {
   console.log('✅ Изменений нет');

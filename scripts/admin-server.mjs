@@ -25,6 +25,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { flattenDb, nestDb, isNested, DATA_KEYS, SETTINGS_KEYS } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -238,8 +239,8 @@ async function handleSave(req, res) {
     // Бэкап
     backupDB();
 
-    // Запись db.json
-    fs.writeFileSync(dbPath, JSON.stringify(body.data, null, 2), 'utf-8');
+    // Запись db.json (S4: body.data может быть плоским или вложенным — пишем вложенный)
+    fs.writeFileSync(dbPath, JSON.stringify(nestDb(flattenDb(body.data)), null, 2), 'utf-8');
     console.log('✅ db.json сохранён');
 
     // Перегенерация
@@ -392,14 +393,16 @@ function handleLogout(req, res) {
 
 function readDb() {
   try {
-    return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    // S4: на диске может быть вложенный формат — обработчики работают с плоским
+    return flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
   } catch {
     return {};
   }
 }
 
 function writeDb(db) {
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf-8');
+  // S4: всегда пишем вложенный формат (data.*/settings.*)
+  fs.writeFileSync(dbPath, JSON.stringify(nestDb(db), null, 2), 'utf-8');
 }
 
 function previewOf(text) {
@@ -901,8 +904,11 @@ async function handleSendReminder(req, res) {
   // Оформление (appearance) и просмотр данных (S73)
   // ============================================
 
-  // Разрешены только CSS-переменные текста: --fs-*, --fw-*, --ff-*, --lh-*
+  // Разрешены CSS-переменные текста (--fs-*, --fw-*, --ff-*, --lh-*)
+  // и цвета сайта --color-* (S82: значения — строго hex #RRGGBB).
   const APPEARANCE_VAR_RE = /^--(fs|fw|ff|lh)-[a-z0-9-]+$/;
+  const APPEARANCE_COLOR_RE = /^--color-[a-z0-9-]+$/;
+  const HEX_COLOR_RE = /^#[0-9a-fA-F]{6}$/;
 
   function sanitizeAppearance(raw) {
     const out = { variables: {}, customCss: '' };
@@ -910,8 +916,15 @@ async function handleSendReminder(req, res) {
     const vars = raw.variables;
     if (vars && typeof vars === 'object') {
       for (const [name, value] of Object.entries(vars)) {
-        if (!APPEARANCE_VAR_RE.test(name)) continue;
+        const isText = APPEARANCE_VAR_RE.test(name);
+        const isColor = APPEARANCE_COLOR_RE.test(name);
+        if (!isText && !isColor) continue;
         const v = String(value == null ? '' : value).trim();
+        // Цвет (S82): только валидный hex
+        if (isColor) {
+          if (HEX_COLOR_RE.test(v)) out.variables[name] = v;
+          continue;
+        }
         // Значение — короткий скаляр без ; } < (защита от обрыва объявления)
         if (!v || v.length > 60 || /[;<>{}]/.test(v)) continue;
         out.variables[name] = v;
@@ -956,18 +969,102 @@ async function handleSendReminder(req, res) {
     }
   }
 
-  // Весь db.json для отображения в админке (просмотр).
+  // ============================================
+  // Разделение «данные» / «настройки» (S4)
+  //   get-data     → data.* + прочие ключи верхнего уровня (без settings.*)
+  //   get-settings → settings.* (для страниц настроек админки)
+  //   save-data    → сохраняет data.*
+  //   save-settings→ сохраняет settings.*
+  // ============================================
+
   // Логотип-base64 вырезается — сотни КБ, в интерфейсе бесполезны.
+  function stripLogo(siteSettings) {
+    if (siteSettings && typeof siteSettings.logo === 'string' && siteSettings.logo.length > 200) {
+      return { ...siteSettings, logo: '(base64 логотип, ' + siteSettings.logo.length + ' симв.)' };
+    }
+    return siteSettings;
+  }
+
   async function handleGetData(req, res) {
     const token = extractTokenFromCookie(req.headers);
     if (!isValidSession(token)) {
       return sendJSON(res, 401, { error: 'Не авторизован' });
     }
     const db = readDb();
-    if (db.siteSettings && typeof db.siteSettings.logo === 'string' && db.siteSettings.logo.length > 200) {
-      db.siteSettings = { ...db.siteSettings, logo: '(base64 логотип, ' + db.siteSettings.logo.length + ' симв.)' };
+    // Только «данные» + ключи верхнего уровня; настройки — отдельный endpoint
+    const data = {};
+    for (const [k, v] of Object.entries(db)) {
+      if (SETTINGS_KEYS.includes(k)) continue;
+      data[k] = v;
     }
-    sendJSON(res, 200, { data: db });
+    sendJSON(res, 200, { data });
+  }
+
+  async function handleGetSettings(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    const settings = {};
+    for (const k of SETTINGS_KEYS) {
+      if (db[k] !== undefined) settings[k] = k === 'siteSettings' ? stripLogo(db[k]) : db[k];
+    }
+    sendJSON(res, 200, { settings });
+  }
+
+  async function handleSaveData(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.data || typeof body.data !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет данных' });
+    }
+    try {
+      const db = readDb();
+      // Сохраняем только ключи «данных» и ключи верхнего уровня — settings не трогаем
+      for (const [k, v] of Object.entries(body.data)) {
+        if (SETTINGS_KEYS.includes(k)) continue;
+        if (k === 'data' && isNested(body.data)) { Object.assign(db, flattenDb(body.data)); break; }
+        db[k] = v;
+      }
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения данных:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  async function handleSaveSettings(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.settings || typeof body.settings !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет настроек' });
+    }
+    try {
+      const db = readDb();
+      for (const [k, v] of Object.entries(body.settings)) {
+        if (!SETTINGS_KEYS.includes(k)) continue;
+        // base64-заглушка из get-settings не должна затирать реальный логотип
+        if (k === 'siteSettings' && typeof v.logo === 'string' && v.logo.startsWith('(base64')) continue;
+        db[k] = v;
+      }
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения настроек:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
   }
 
   // ============================================
@@ -1039,8 +1136,15 @@ async function handleSendReminder(req, res) {
       }
       db.schedule = body.schedule.map((item, idx) => ({
         id: item.id || idx + 1,
+        day: item.day || '',
+        time: item.time || '',
+        trainerId: item.trainerId || null,
+        programId: item.programId || null,
+        title: item.title || 'Тренировка',
         image: item.image || '',
-        title: item.title || 'Лист ' + (idx + 1)
+        visible: item.visible !== false,
+        archived: item.archived || false,
+        order: item.order ?? idx
       }));
       backupDB();
       writeDb(db);
@@ -1048,6 +1152,49 @@ async function handleSendReminder(req, res) {
       sendJSON(res, 200, { ok: true });
     } catch (err) {
       console.error('❌ Ошибка сохранения schedule:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // S3: CRUD для расписания
+  async function handleGetSchedule(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    sendJSON(res, 200, { schedule: db.schedule || [] });
+  }
+
+  async function handleDeleteScheduleItem(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    const id = body?.id;
+    if (!id) {
+      return sendJSON(res, 400, { error: 'Нет id' });
+    }
+    try {
+      const db = readDb();
+      const idx = db.schedule.findIndex(s => s.id === id);
+      if (idx === -1) {
+        return sendJSON(res, 404, { error: 'Не найдено' });
+      }
+      const item = db.schedule[idx];
+      // Удаляем файл изображения
+      if (item.image) {
+        const fullPath = path.join(staticDir, item.image.replace(/^\//, ''));
+        try { if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath); } catch (e) { /* ignore */ }
+      }
+      db.schedule.splice(idx, 1);
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка удаления schedule item:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
@@ -1086,6 +1233,312 @@ async function handleSendReminder(req, res) {
       sendJSON(res, 200, { ok: true });
     } catch (err) {
       console.error('❌ Ошибка сохранения prices:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Настройки расписания (S2)
+  // ============================================
+  async function handleSaveScheduleSettings(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.scheduleSettings || typeof body.scheduleSettings !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет данных настроек расписания' });
+    }
+    try {
+      const db = readDb();
+      db.scheduleSettings = {
+        defaultView: ['images', 'table', 'hybrid'].includes(body.scheduleSettings.defaultView)
+          ? body.scheduleSettings.defaultView
+          : 'images',
+        // S84: hybridActiveTab трёхзначный — как переключатель на главной
+        // ('hybrid' = картинки и таблица одновременно)
+        hybridActiveTab: ['images', 'table', 'hybrid'].includes(body.scheduleSettings.hybridActiveTab)
+          ? body.scheduleSettings.hybridActiveTab
+          : 'images'
+      };
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения scheduleSettings:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Занятия расписания (S3): scheduleStructured программ
+  // ============================================
+  async function handleSaveScheduleSlots(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.programs || !Array.isArray(body.programs)) {
+      return sendJSON(res, 400, { error: 'Нет данных программ' });
+    }
+    try {
+      const db = readDb();
+      const programs = db.programs || [];
+      for (const prog of body.programs) {
+        const idx = programs.findIndex(p => Number(p.id) === Number(prog.id));
+        if (idx === -1) continue;
+        programs[idx].scheduleStructured = (prog.scheduleStructured || []).map(s => ({
+          day: s.day || '',
+          time: s.time || '',
+          place: s.place || '',
+          hall: ['big', 'small'].includes(s.hall) ? s.hall : 'big',
+          mode: ['hall', 'online', 'hybrid'].includes(s.mode) ? s.mode : 'hybrid',
+          trainerId: s.trainerId != null ? Number(s.trainerId) : null,
+          visible: s.visible !== false
+        }));
+      }
+      db.programs = programs;
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения занятий расписания:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
+  // Настройки электронной почты (S7)
+  // ============================================
+
+  async function handleGetEmailConfig(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    const config = db.emailConfig || {
+      smtpHost: 'smtp.yandex.ru',
+      smtpPort: 465,
+      smtpSecure: true,
+      smtpUser: '',
+      smtpPass: '',
+      fromName: 'Робот-Автопарсер',
+      adminEmail: '',
+      errorEmail: []
+    };
+    // Не отправляем пароль в открытом виде при получении — оставляем пустым
+    config.smtpPass = '';
+    sendJSON(res, 200, { emailConfig: config });
+  }
+
+  async function handleSaveEmailConfig(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.emailConfig || typeof body.emailConfig !== 'object') {
+      return sendJSON(res, 400, { error: 'Нет данных настроек почты' });
+    }
+    const ec = body.emailConfig;
+    try {
+      const db = readDb();
+      if (!db.emailConfig) db.emailConfig = {};
+      db.emailConfig.smtpHost = String(ec.smtpHost || 'smtp.yandex.ru').trim();
+      db.emailConfig.smtpPort = parseInt(ec.smtpPort, 10) || 465;
+      db.emailConfig.smtpSecure = ec.smtpSecure !== false;
+      db.emailConfig.smtpUser = String(ec.smtpUser || '').trim();
+      // Пароль сохраняется только если не пустой
+      if (ec.smtpPass && typeof ec.smtpPass === 'string' && ec.smtpPass.trim()) {
+        db.emailConfig.smtpPass = ec.smtpPass.trim();
+      }
+      db.emailConfig.fromName = String(ec.fromName || 'Робот-Автопарсер').trim();
+      db.emailConfig.adminEmail = String(ec.adminEmail || '').trim();
+      // errorEmail — строка или массив
+      if (Array.isArray(ec.errorEmail)) {
+        db.emailConfig.errorEmail = ec.errorEmail.map(e => String(e || '').trim()).filter(Boolean);
+      } else if (typeof ec.errorEmail === 'string') {
+        db.emailConfig.errorEmail = ec.errorEmail.split(',').map(e => String(e || '').trim()).filter(Boolean);
+      }
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения emailConfig:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  async function handleSendTestEmail(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    const toEmail = body?.toEmail;
+    if (!toEmail || !toEmail.includes('@')) {
+      return sendJSON(res, 400, { error: 'Неверный email получателя' });
+    }
+    try {
+      const db = readDb();
+      const emailConfig = db.emailConfig || {};
+      const smtpHost = emailConfig.smtpHost || 'smtp.yandex.ru';
+      const smtpPort = emailConfig.smtpPort || 465;
+      const smtpSecure = emailConfig.smtpSecure !== false;
+      const smtpUser = emailConfig.smtpUser;
+      const smtpPass = emailConfig.smtpPass;
+      const fromName = emailConfig.fromName || 'Робот-Автопарсер';
+
+      if (!smtpUser || !smtpPass) {
+        return sendJSON(res, 200, { ok: false, error: 'SMTP-настройки неполные (нужны user и pass)' });
+      }
+
+      const nodemailer = (await import('nodemailer')).default;
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpSecure,
+        auth: { user: smtpUser, pass: smtpPass }
+      });
+
+      await transporter.sendMail({
+        from: `"${fromName}" <${smtpUser}>`,
+        to: toEmail,
+        subject: 'Тестовое письмо — ЦФР Админка',
+        text: 'Это тестовое письмо от админки сайта ЦФР. Если вы его получили — SMTP настроен правильно!'
+      });
+
+      sendJSON(res, 200, { ok: true, message: 'Тестовое письмо отправлено на ' + toEmail });
+    } catch (err) {
+      console.error('❌ Ошибка отправки тестового письма:', err.message);
+      sendJSON(res, 200, { ok: false, error: err.message });
+    }
+  }
+
+  // ============================================
+  // Справка для администраторов (S8)
+  // ============================================
+
+  const DEFAULT_HELP_SECTIONS = [
+    {
+      id: 'news',
+      title: '📰 Новости',
+      content: `# Управление новостями\n\nЗдесь можно добавлять, редактировать и удалять новости сайта.\n\n## Возможности:\n- Добавление новых новостей с датой, заголовком и текстом\n- Загрузка обложки и видео\n- Множественные фото для новости\n- Настройка отображения на главной странице\n- Изменение порядка перетаскиванием\n\n## Поля новости:\n- **Заголовок** — отображается на главной и в списке\n- **Текст** — полное содержание новости (поддерживает markdown)\n- **Дата** — когда новость публикуется\n- **Обложка** — главное изображение\n- **Фото** — дополнительные фотографии\n- **Видео** — ссылка на видео\n- **На главной** — показывать ли на главной странице`,
+      category: 'data'
+    },
+    {
+      id: 'programs',
+      title: '🥋 Программы тренировок',
+      content: `# Программы тренировок\n\nУправление программами тренировок, которые отображаются на сайте.\n\n## Возможности:\n- Добавление программ с описанием\n- Загрузка обложки\n- Привязка фотоальбома\n- Категории программ\n\n## Поля программы:\n- **Название** — отображается в карточке\n- **Категория** — группа программ\n- **Описание** — текст программы\n- **Обложка** — главное изображение\n- **Фотоальбом** — дополнительные фото`,
+      category: 'data'
+    },
+    {
+      id: 'trainers',
+      title: '👨‍🏫 Тренеры',
+      content: `# Тренеры\n\nУправление информацией о тренерах центра.\n\n## Возможности:\n- Добавление тренеров с фото\n- Указание опыта и специализации\n- Описание\n- Фотоальбом тренера\n\n## Поля тренера:\n- **Имя** — отображается на карточке\n- **Фото** — портрет тренера\n- **Опыт** — стаж работы\n- **Специализация** — направления\n- **Описание** — биография и достижения`,
+      category: 'data'
+    },
+    {
+      id: 'schedule',
+      title: '📅 Расписание',
+      content: `# Расписание\n\nУправление расписанием занятий.\n\n## Режимы отображения:\n- **Картинки** — только изображения занятий\n- **Таблица** — таблица с расписанием\n- **Гибрид** — обе вкладки\n\n## Возможности:\n- Переключение режима отображения на сайте\n- CRUD для занятий\n- Привязка к тренерам и программам\n- Выбор зала (большой/малый)\n- Режим проведения (зал/онлайн/гибрид)\n- Видимость и архивирование\n\n## Поля занятия:\n- **День** — день недели\n- **Время** — временной интервал\n- **Тренер** — привязка к тренеру\n- **Программа** — привязка к программе\n- **Зал** — большой или малый\n- **Режим** — зал, онлайн или гибрид`,
+      category: 'data'
+    },
+    {
+      id: 'prices',
+      title: '💰 Цены',
+      content: `# Цены\n\nУправление прайс-листами.\n\n## Возможности:\n- Загрузка изображений прайс-листов\n- Несколько прайсов\n\n## Поля:\n- **Изображение** — файл прайс-листа\n- **Заголовок** — описание прайса`,
+      category: 'data'
+    },
+    {
+      id: 'album',
+      title: '📸 Альбом',
+      content: `# Фотоальбом\n\nСвободные фотографии общего альбома.\n\n## Возможности:\n- Просмотр фото\n- Загрузка через ночного парсера\n- Привязка к программам и тренерам\n\n## Поля фото:\n- **Изображение** — файл фото\n- **Миниатюра** — уменьшенная копия\n- **Заголовок** — описание\n- **Дата** — дата загрузки`,
+      category: 'data'
+    },
+    {
+      id: 'appearance',
+      title: '🖌 Оформление',
+      content: `# Оформление сайта\n\nНастройка внешнего вида сайта.\n\n## Возможности:\n- Редактор CSS-переменных\n- Цветовая схема (в будущих версиях)\n- Кастомный CSS\n\n## CSS-переменные:\n- **--fs-*** — размеры шрифтов\n- **--fw-*** — начертания\n- **--ff-*** — шрифты\n- **--lh-*** — межстрочные интервалы`,
+      category: 'settings'
+    },
+    {
+      id: 'email',
+      title: '✉️ Настройки электронной почты',
+      content: `# Настройки электронной почты\n\nSMTP-настройки для отправки уведомлений.\n\n## Возможности:\n- Настройка SMTP-сервера\n- Тестовая отправка писем\n- Настройка адресов для ошибок\n\n## Поля:\n- **SMTP-хост** — адрес SMTP-сервера\n- **SMTP-порт** — порт (465 для SSL, 587 для TLS)\n- **SSL/TLS** — использовать защищённое соединение\n- **Пользователь** — логин SMTP\n- **Пароль** — пароль SMTP\n- **Имя отправителя** — отображается в письмах\n- **Email админа** — основной адрес\n- **Email ошибок** — через запятую`,
+      category: 'settings'
+    },
+    {
+      id: 'contacts',
+      title: '📞 Контакты',
+      content: `# Контакты\n\nКонтактная информация сайта.\n\n## Поля:\n- **Адрес** — физический адрес\n- **Телефон** — контактный телефон\n- **Email** — электронная почта\n- **ВКонтакте** — ссылка на группу\n- **Telegram** — ссылка на канал\n- **Соцсети** — список соцсетей`,
+      category: 'settings'
+    },
+    {
+      id: 'slider',
+      title: '🎞 Слайдер',
+      content: `# Слайдер главной страницы\n\nУправление слайдами на главной странице.\n\n## Поля:\n- **Заголовок** — текст слайда\n- **Изображение** — фон слайда\n- **Интервал** — время показа (сек)\n- **Позиция** — порядок`,
+      category: 'settings'
+    },
+    {
+      id: 'dividers',
+      title: '🎨 Разделители',
+      content: `# Разделители\n\nНастройка видимых разделителей между секциями.\n\n## Поля:\n- **Включены** — показать разделители\n- **Текст** — текст разделителя\n- **Высота** — высота линии\n- **Фон** — цвет фона\n- **Размер шрифта** — размер текста`,
+      category: 'settings'
+    },
+    {
+      id: 'main-data',
+      title: '🏠 Главные данные',
+      content: `# Главные данные сайта\n\nОсновные настройки сайта.\n\n## Поля:\n- **Логотип** — favicon и шапка\n- **Первое название** — текст в шапке, alt логотипа\n- **Второе название** — footer, title страницы`,
+      category: 'settings'
+    }
+  ];
+
+  function getHelpSections() {
+    const db = readDb();
+    const help = db.help || { sections: [] };
+    // Добавляем дефолтные секции, которых нет
+    const existingIds = new Set(help.sections.map(s => s.id));
+    for (const def of DEFAULT_HELP_SECTIONS) {
+      if (!existingIds.has(def.id)) {
+        help.sections.push({ ...def });
+      }
+    }
+    return help;
+  }
+
+  async function handleGetHelp(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const help = getHelpSections();
+    sendJSON(res, 200, { help });
+  }
+
+  async function handleSaveHelp(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.help || !Array.isArray(body.help.sections)) {
+      return sendJSON(res, 400, { error: 'Нет данных справки' });
+    }
+    try {
+      const db = readDb();
+      db.help = { sections: body.help.sections };
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения help:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
@@ -1189,6 +1642,16 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/admin/get-data' && method === 'POST') {
     return handleGetData(req, res);
   }
+  // Разделение данных/настроек (S4)
+  if (pathname === '/api/admin/get-settings' && method === 'POST') {
+    return handleGetSettings(req, res);
+  }
+  if (pathname === '/api/admin/save-data' && method === 'POST') {
+    return handleSaveData(req, res);
+  }
+  if (pathname === '/api/admin/save-settings' && method === 'POST') {
+    return handleSaveSettings(req, res);
+  }
 
   // Главные данные (S75)
   if (pathname === '/api/admin/get-site-settings' && method === 'POST') {
@@ -1198,14 +1661,53 @@ const server = http.createServer(async (req, res) => {
     return handleSaveSiteSettings(req, res);
   }
 
-  // Расписание (S76)
+  // Расписание (S76 + S3)
   if (pathname === '/api/admin/save-schedule' && method === 'POST') {
     return handleSaveSchedule(req, res);
+  }
+  if (pathname === '/api/admin/get-schedule' && method === 'POST') {
+    return handleGetSchedule(req, res);
+  }
+  if (pathname === '/api/admin/delete-schedule-item' && method === 'POST') {
+    return handleDeleteScheduleItem(req, res);
   }
 
   // Цены (S77)
   if (pathname === '/api/admin/save-prices' && method === 'POST') {
     return handleSavePrices(req, res);
+  }
+
+  // Настройки расписания (S2)
+  if (pathname === '/api/admin/save-schedule-settings' && method === 'POST') {
+    return handleSaveScheduleSettings(req, res);
+  }
+  // Занятия расписания (S3)
+  if (pathname === '/api/admin/save-schedule-slots' && method === 'POST') {
+    return handleSaveScheduleSlots(req, res);
+  }
+
+  // Экспорт БД (S6)
+  if (pathname === '/api/admin/export-db' && method === 'POST') {
+    return handleExportDB(req, res);
+  }
+
+  // Настройки электронной почты (S7)
+  if (pathname === '/api/admin/get-email-config' && method === 'POST') {
+    return handleGetEmailConfig(req, res);
+  }
+  if (pathname === '/api/admin/save-email-config' && method === 'POST') {
+    return handleSaveEmailConfig(req, res);
+  }
+  if (pathname === '/api/admin/send-test-email' && method === 'POST') {
+    return handleSendTestEmail(req, res);
+  }
+
+  // Справка (S8)
+  if (pathname === '/api/admin/get-help' && method === 'POST') {
+    return handleGetHelp(req, res);
+  }
+  if (pathname === '/api/admin/save-help' && method === 'POST') {
+    return handleSaveHelp(req, res);
   }
 
   // === API ===
@@ -1269,6 +1771,63 @@ const server = http.createServer(async (req, res) => {
   // 404
   sendFile(res, '', 'text/plain');
 });
+
+// ============================================
+// Экспорт БД (S6 — механизм забора данных с прода на дев)
+// ============================================
+
+// Rate limiting: IP → { count, windowStart }
+const exportRateLimit = new Map();
+const EXPORT_RATE_LIMIT_MAX = 5;       // запросов
+const EXPORT_RATE_LIMIT_WINDOW = 60;   // секунд
+const EXPORT_MAX_SIZE = 10 * 1024 * 1024; // 10 МБ
+
+function checkExportRateLimit(ip) {
+  const now = Date.now();
+  const entry = exportRateLimit.get(ip);
+  if (!entry) {
+    exportRateLimit.set(ip, { count: 1, windowStart: now });
+    return true;
+  }
+  if (now - entry.windowStart > EXPORT_RATE_LIMIT_WINDOW * 1000) {
+    // Окно истекло — сброс
+    exportRateLimit.set(ip, { count: 1, windowStart: now });
+    return true;
+  }
+  if (entry.count >= EXPORT_RATE_LIMIT_MAX) {
+    return false; // превышен лимит
+  }
+  entry.count++;
+  return true;
+}
+
+async function handleExportDB(req, res) {
+  const token = extractTokenFromCookie(req.headers);
+  if (!isValidSession(token)) {
+    return sendJSON(res, 401, { error: 'Не авторизован' });
+  }
+
+  // Rate limiting по IP
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
+  if (!checkExportRateLimit(ip)) {
+    return sendJSON(res, 429, { error: 'Слишком много запросов. Лимит: 5 запросов в минуту.' });
+  }
+
+  try {
+    const raw = fs.readFileSync(dbPath, 'utf-8');
+    const size = raw.length;
+    if (size > EXPORT_MAX_SIZE) {
+      return sendJSON(res, 413, { error: `Файл слишком большой: ${(size / 1024 / 1024).toFixed(1)} МБ (макс. 10 МБ)` });
+    }
+
+    // Валидируем JSON
+    const data = JSON.parse(raw);
+    sendJSON(res, 200, { data, size, sizeMB: (size / 1024 / 1024).toFixed(2) });
+  } catch (err) {
+    console.error('❌ Ошибка экспорта БД:', err.message);
+    sendJSON(res, 500, { error: 'Ошибка чтения БД: ' + err.message });
+  }
+}
 
 // ============================================
 // Запуск

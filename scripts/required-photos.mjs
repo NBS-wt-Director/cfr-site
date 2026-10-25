@@ -16,6 +16,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { flattenDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -25,7 +26,8 @@ const dbPath = path.join(root, 'db.json');
 
 function readDb() {
   try {
-    return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    // S4: плоский или вложенный — работаем с плоским
+    return flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
   } catch {
     return {};
   }

@@ -38,9 +38,17 @@ def norm(name):
     return NAME_FIXES.get(n, n)
 
 
+def flatten_db(db):
+    """S4: вложенный формат (data.*/settings.*) -> плоское представление."""
+    if isinstance(db.get("data"), dict):
+        extra = {k: v for k, v in db.items() if k not in ("data", "settings")}
+        return {**extra, **(db.get("settings") or {}), **db["data"]}
+    return db
+
+
 def main():
     force = "--force" in sys.argv
-    db = json.load(open(os.path.join(ROOT, "db.json"), encoding="utf-8"))
+    db = flatten_db(json.load(open(os.path.join(ROOT, "db.json"), encoding="utf-8")))
 
     def want(list_name, sub):
         out = {}

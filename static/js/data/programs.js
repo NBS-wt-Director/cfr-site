@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-23T18:57:18.018Z
+ * Сгенерировано: 2026-10-25T13:46:33.981Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.programs = [
@@ -35,7 +35,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "10:45-11:40",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -57,61 +60,91 @@ window.SITE_DATA.programs = [
         "day": "Понедельник",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Вторник",
         "time": "8:00-8:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Вторник",
         "time": "15:00-15:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Вторник",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Среда",
         "time": "15:00-15:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Среда",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Четверг",
         "time": "8:00-8:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Четверг",
         "time": "15:00-15:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Пятница",
         "time": "15:00-15:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Суббота",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -162,13 +195,19 @@ window.SITE_DATA.programs = [
         "day": "Среда",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Воскресенье",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -190,7 +229,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "17:00-17:50",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": null,
+        "trainer": ""
       }
     ],
     "trainers": [
@@ -212,13 +254,19 @@ window.SITE_DATA.programs = [
         "day": "Среда",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Пятница",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -240,25 +288,37 @@ window.SITE_DATA.programs = [
         "day": "Понедельник",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       },
       {
         "day": "Вторник",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       },
       {
         "day": "Четверг",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       },
       {
         "day": "Пятница",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
     "trainers": [
@@ -280,13 +340,19 @@ window.SITE_DATA.programs = [
         "day": "Вторник",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       },
       {
         "day": "Суббота",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -308,7 +374,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "14:00-14:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875064589,
+        "trainer": "Оберюхтин Иван"
       }
     ],
     "trainers": [
@@ -345,13 +414,19 @@ window.SITE_DATA.programs = [
         "day": "Среда",
         "time": "20:00-20:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       },
       {
         "day": "Суббота",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
     "trainers": [
@@ -373,19 +448,28 @@ window.SITE_DATA.programs = [
         "day": "Понедельник",
         "time": "7:00-7:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
       },
       {
         "day": "Среда",
         "time": "7:00-7:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
       },
       {
         "day": "Суббота",
         "time": "8:30-9:25",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
       }
     ],
     "trainers": [
@@ -411,7 +495,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
     "trainers": [
@@ -429,7 +516,7 @@ window.SITE_DATA.programs = [
     "category": "ОЗДОРОВИТЕЛЬНЫЕ НАПРАВЛЕНИЯ",
     "photoAlbum": [
       {
-        "image": "uploads/ОСНОВЫ МАССАЖА.jpg",
+        "image": "uploads/p-1772563088482-a-0.jpg",
         "caption": ""
       }
     ],
@@ -438,13 +525,19 @@ window.SITE_DATA.programs = [
         "day": "Вторник",
         "time": "20:00-20:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       },
       {
         "day": "Четверг",
         "time": "20:00-20:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       }
     ],
     "trainers": [
@@ -466,7 +559,10 @@ window.SITE_DATA.programs = [
         "day": "Пятница",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -488,7 +584,10 @@ window.SITE_DATA.programs = [
         "day": "Четверг",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -510,7 +609,10 @@ window.SITE_DATA.programs = [
         "day": "Воскресенье",
         "time": "16:00-16:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655036,
+        "trainer": "Романовский Николай"
       }
     ],
     "trainers": [
@@ -532,13 +634,19 @@ window.SITE_DATA.programs = [
         "day": "Вторник",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875064589,
+        "trainer": "Оберюхтин Иван"
       },
       {
         "day": "Четверг",
         "time": "17:00-17:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875064589,
+        "trainer": "Оберюхтин Иван"
       }
     ],
     "trainers": [
@@ -560,7 +668,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "9:30-10:25",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -582,7 +693,10 @@ window.SITE_DATA.programs = [
         "day": "Воскресенье",
         "time": "15:00-15:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655036,
+        "trainer": "Романовский Николай"
       }
     ],
     "trainers": [
@@ -604,7 +718,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "8:30-9:25",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655036,
+        "trainer": "Романовский Николай"
       }
     ],
     "trainers": [
@@ -626,7 +743,10 @@ window.SITE_DATA.programs = [
         "day": "Среда",
         "time": "20:00-20:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874476663,
+        "trainer": "Кравец Оксана Борисовна"
       }
     ],
     "trainers": [
@@ -648,7 +768,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "9:30-10:25",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
     "trainers": [
@@ -666,11 +789,7 @@ window.SITE_DATA.programs = [
     "category": "ОЗДОРОВИТЕЛЬНЫЕ НАПРАВЛЕНИЯ",
     "photoAlbum": [
       {
-        "image": "uploads/1.jpg",
-        "caption": ""
-      },
-      {
-        "image": "uploads/РАСТЯЖКА.jpg",
+        "image": "uploads/p-1772563088492-a-1.jpg",
         "caption": ""
       }
     ],
@@ -679,13 +798,19 @@ window.SITE_DATA.programs = [
         "day": "Вторник",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       },
       {
         "day": "Четверг",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
     "trainers": [
@@ -707,7 +832,10 @@ window.SITE_DATA.programs = [
         "day": "Пятница",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875064589,
+        "trainer": "Оберюхтин Иван"
       }
     ],
     "trainers": [
@@ -729,7 +857,10 @@ window.SITE_DATA.programs = [
         "day": "Среда",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770874411766,
+        "trainer": "Глазырина Илона"
       }
     ],
     "trainers": [
@@ -751,7 +882,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "18:00-18:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       }
     ],
     "trainers": [
@@ -773,7 +907,10 @@ window.SITE_DATA.programs = [
         "day": "Пятница",
         "time": "21:00-21:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       }
     ],
     "trainers": [
@@ -795,7 +932,10 @@ window.SITE_DATA.programs = [
         "day": "Суббота",
         "time": "16:00-17:25",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": null,
+        "trainer": ""
       }
     ],
     "trainers": []
@@ -812,13 +952,19 @@ window.SITE_DATA.programs = [
         "day": "Вторник",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       },
       {
         "day": "Четверг",
         "time": "19:00-19:55",
         "place": "",
-        "mode": "offline"
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770800269014,
+        "trainer": "Глазырин Михаил"
       }
     ],
     "trainers": [

@@ -12,7 +12,9 @@
     "required-photos": "node scripts/required-photos.mjs",
     "check-covers": "node scripts/check-covers.mjs",
     "test-menu": "node scripts/test-menu.mjs",
-    "test-static": "node scripts/test-static.mjs"
+    "test-static": "node scripts/test-static.mjs",
+    "sync:from-server": "node scripts/sync-from-server.mjs",
+    "merge:db": "node scripts/merge-db-structures.mjs"
   },
   "dependencies": {
     "mammoth": "^1.11.0",

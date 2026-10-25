@@ -14,7 +14,7 @@
     const slides = data.slider.map((s, i) => `
       <div class="slide ${i === 0 ? 'active' : ''}">
         <img src="${s.image}" alt="${s.title}">
-        <div class="slider-text">
+        <div class="slider-text pos-${s.position || 'center'}">
           <h1 class="slider-title">${s.title}</h1>
         </div>
       </div>
@@ -49,23 +49,36 @@
 
     const hasTable = data.scheduleTable && data.scheduleTable.length;
     const toggle = document.getElementById('schedule-switch');
-    if (toggle && hasTable) {
-      toggle.hidden = false;
-      toggle.querySelectorAll('.schedule-switch-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          setScheduleView(btn.getAttribute('data-view'));
-          try { localStorage.setItem('schedule-view', btn.getAttribute('data-view')); } catch (e) {}
-        });
-      });
-    } else if (toggle) {
-      toggle.remove(); // расписания нет — показываем только картинки
-    }
 
-    // По умолчанию — картинки; сохранённый выбор пользователя переопределяет
-    let view = 'images';
-    try { view = localStorage.getItem('schedule-view') || 'images'; } catch (e) {}
-    if (!hasTable) view = 'images';
-    setScheduleView(view);
+    // Читаем настройки режима из core.js (S2)
+    const settings = data.scheduleSettings || {};
+    const forcedView = settings.defaultView || 'images';
+    const hybridTab = settings.hybridActiveTab || 'images';
+
+    if (forcedView === 'images') {
+      // Только картинки — переключатель скрыт
+      if (toggle) toggle.hidden = true;
+      setScheduleView('images');
+    } else if (forcedView === 'table') {
+      // Только таблица — переключатель скрыт
+      if (toggle) toggle.hidden = true;
+      setScheduleView('table');
+    } else if (forcedView === 'hybrid' && hasTable) {
+      // Гибрид — переключатель виден, активна вкладка по умолчанию
+      if (toggle) {
+        toggle.hidden = false;
+        toggle.querySelectorAll('.schedule-switch-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            setScheduleView(btn.getAttribute('data-view'));
+          });
+        });
+      }
+      setScheduleView(hybridTab);
+    } else {
+      // Гибрид запрошен, но таблицы нет — fallback на картинки
+      if (toggle) toggle.hidden = true;
+      setScheduleView('images');
+    }
   }
 
   function setScheduleView(view) {
@@ -327,7 +340,10 @@
 
   function resetTimer() {
     clearInterval(slideTimer);
-    slideTimer = setInterval(window.nextSlide, 5000);
+    // S86: интервал показа — из данных текущего слайда (сек), fallback 5с
+    const slide = (data.slider || [])[currentSlide];
+    const sec = slide && Number(slide.interval) > 0 ? Number(slide.interval) : 5;
+    slideTimer = setInterval(window.nextSlide, sec * 1000);
   }
 
   /* ============================================

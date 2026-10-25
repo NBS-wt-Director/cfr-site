@@ -103,6 +103,58 @@
       background: #f1f5f9; border-left-color: var(--primary); color: var(--primary);
     }
 
+    /* Сайдбар-группы (S5) */
+    .sidebar-group {
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-group-header {
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      background: #f1f5f9;
+      color: var(--text-secondary);
+      transition: background 0.2s;
+    }
+    .sidebar-group-header:hover {
+      background: #e2e8f0;
+    }
+    .sidebar-group-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .sidebar-group-body.open {
+      max-height: 1000px;
+    }
+    .sidebar-group-body a {
+      padding-left: 2.5rem;
+    }
+    .sidebar-wip {
+      opacity: 0.55;
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+    .sidebar-wip:hover {
+      opacity: 0.8;
+      background: #f1f5f9;
+    }
+
+    /* S1: Цветовые редакторы */
+    .color-editor {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+    .color-editor label {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
     .admin-content { flex: 1; padding: 2rem; overflow-y: auto; }
 
     .section-card {
@@ -373,20 +425,63 @@
 
     <div class="admin-layout">
       <nav class="admin-sidebar">
-        <a href="#news" class="active" data-section="news">📰 Новости</a>
-        <a href="#programs" data-section="programs">🥋 Программы</a>
-        <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
-        <a href="#schedule" data-section="schedule">📅 Расписание</a>
-        <a href="#prices" data-section="prices">💰 Цены</a>
-        <a href="#slider" data-section="slider">🎞 Слайдер</a>
-        <a href="#contacts" data-section="contacts">📞 Контакты</a>
-        <a href="#news-settings" data-section="news-settings">⚙️ Настройки новостей</a>
-        <a href="#dividers" data-section="dividers">🎨 Разделители</a>
-        <a href="#appearance" data-section="appearance">🖌 Оформление</a>
-        <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
-        <a href="#album" data-section="album">📸 Альбом</a>
-        <a href="#crm" data-section="crm">📊 CRM</a>
-        <a href="#data" data-section="data">💾 Данные</a>
+        <!-- 📦 ДАННЫЕ -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="data" onclick="toggleGroup(this)">📦 ДАННЫЕ ▾</div>
+          <div class="sidebar-group-body open">
+            <a href="#news" class="active" data-section="news">📰 Новости</a>
+            <a href="#programs" data-section="programs">🥋 Программы</a>
+            <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
+            <a href="#schedule" data-section="schedule">📅 Расписание</a>
+            <a href="#prices" data-section="prices">💰 Цены</a>
+            <a href="#album" data-section="album">📸 Альбом</a>
+          </div>
+        </div>
+
+        <!-- ⚙️ НАСТРОЙКИ САЙТА -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="settings" onclick="toggleGroup(this)">⚙️ НАСТРОЙКИ САЙТА ▸</div>
+          <div class="sidebar-group-body">
+            <a href="#appearance" data-section="appearance">🖌 Оформление</a>
+            <a href="#email" data-section="email">✉️ Настройки электронной почты</a>
+            <a href="#contacts" data-section="contacts">📞 Контакты</a>
+            <a href="#slider" data-section="slider">🎞 Слайдер</a>
+            <a href="#dividers" data-section="dividers">🎨 Разделители</a>
+            <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
+          </div>
+        </div>
+
+        <!-- 📊 CRM -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="crm" onclick="toggleGroup(this)">📊 CRM ▸</div>
+          <div class="sidebar-group-body">
+            <a href="#crm" data-section="crm" class="sidebar-wip">📊 CRM (скоро)</a>
+          </div>
+        </div>
+
+        <!-- 🤖 БОТЫ -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="bots" onclick="toggleGroup(this)">🤖 БОТЫ ▸</div>
+          <div class="sidebar-group-body">
+            <a href="#bots" data-section="bots" class="sidebar-wip">🤖 Боты (скоро)</a>
+          </div>
+        </div>
+
+        <!-- 🔗 ИНТЕГРАЦИИ -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="integrations" onclick="toggleGroup(this)">🔗 ИНТЕГРАЦИИ ▸</div>
+          <div class="sidebar-group-body">
+            <a href="#integrations" data-section="integrations" class="sidebar-wip">🔗 Интеграции (скоро)</a>
+          </div>
+        </div>
+
+        <!-- 📖 СПРАВКА -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="help" onclick="toggleGroup(this)">📖 СПРАВКА ▸</div>
+          <div class="sidebar-group-body">
+            <a href="#help" data-section="help">📖 Справка для администраторов</a>
+          </div>
+        </div>
       </nav>
 
       <main class="admin-content" id="admin-content"></main>
@@ -591,21 +686,48 @@
        Навигация по разделам
        ============================================ */
     const sections = [
-      { id: 'news', title: '📰 Новости', status: 'done' },
-      { id: 'programs', title: '🥋 Программы', status: 'done' },
-      { id: 'trainers', title: '👨‍🏫 Тренеры', status: 'done' },
-      { id: 'schedule', title: '📅 Расписание', status: 'view' },
-      { id: 'prices', title: '💰 Цены', status: 'view' },
-      { id: 'slider', title: '🎞 Слайдер', status: 'view' },
-      { id: 'contacts', title: '📞 Контакты', status: 'view' },
-      { id: 'news-settings', title: '⚙️ Настройки новостей', status: 'view' },
-      { id: 'dividers', title: '🎨 Разделители', status: 'done' },
-      { id: 'appearance', title: '🖌 Оформление', status: 'done' },
-      { id: 'main-data', title: '🏠 Главные данные', status: 'done' },
-      { id: 'album', title: '📸 Альбом', status: 'view' },
-      { id: 'crm', title: '📊 CRM', status: 'wip' },
-      { id: 'data', title: '💾 Данные', status: 'done' }
+      // ДАННЫЕ
+      { id: 'news', title: '📰 Новости', status: 'done', group: 'data' },
+      { id: 'programs', title: '🥋 Программы', status: 'done', group: 'data' },
+      { id: 'trainers', title: '👨‍🏫 Тренеры', status: 'done', group: 'data' },
+      { id: 'schedule', title: '📅 Расписание', status: 'view', group: 'data' },
+      { id: 'prices', title: '💰 Цены', status: 'view', group: 'data' },
+      { id: 'album', title: '📸 Альбом', status: 'view', group: 'data' },
+      // НАСТРОЙКИ САЙТА
+      { id: 'appearance', title: '🖌 Оформление', status: 'done', group: 'settings' },
+      { id: 'email', title: '✉️ Настройки электронной почты', status: 'done', group: 'settings' },
+      { id: 'contacts', title: '📞 Контакты', status: 'view', group: 'settings' },
+      { id: 'slider', title: '🎞 Слайдер', status: 'view', group: 'settings' },
+      { id: 'dividers', title: '🎨 Разделители', status: 'done', group: 'settings' },
+      { id: 'main-data', title: '🏠 Главные данные', status: 'done', group: 'settings' },
+      // ЗАГЛУШКИ
+      { id: 'crm', title: '📊 CRM', status: 'wip', group: 'stubs' },
+      { id: 'bots', title: '🤖 Боты', status: 'wip', group: 'stubs' },
+      { id: 'integrations', title: '🔗 Интеграции', status: 'wip', group: 'stubs' },
+      // СПРАВКА
+      { id: 'help', title: '📖 Справка', status: 'done', group: 'help' }
     ];
+
+    // toggleGroup: сворачивание/разворачивание группы в сайдбаре
+    function toggleGroup(header) {
+      const body = header.nextElementSibling;
+      if (!body || !body.classList) return;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open');
+      header.textContent = header.textContent.replace(/▸|▾/, isOpen ? '▸' : '▾');
+    }
+
+    // Открыть группу при загрузке раздела
+    function openGroupForSection(sectionId) {
+      const link = document.querySelector(`.admin-sidebar a[data-section="${sectionId}"]`);
+      if (!link) return;
+      const body = link.closest('.sidebar-group-body');
+      if (body) {
+        body.classList.add('open');
+        const header = body.parentElement.querySelector('.sidebar-group-header');
+        if (header) header.textContent = header.textContent.replace(/▸/, '▾');
+      }
+    }
 
     document.querySelectorAll('.admin-sidebar a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -615,13 +737,18 @@
         link.classList.add('active');
         renderSection(sectionId);
         history.pushState(null, '', '#' + sectionId);
+        openGroupForSection(sectionId);
       });
     });
 
     function loadCurrentSection() {
       const hash = location.hash.replace('#', '') || 'news';
+      document.querySelectorAll('.admin-sidebar a').forEach(l => l.classList.remove('active'));
       const link = document.querySelector(`.admin-sidebar a[data-section="${hash}"]`);
-      if (link) link.classList.add('active');
+      if (link) {
+        link.classList.add('active');
+        openGroupForSection(hash);
+      }
       renderSection(hash);
     }
 
@@ -639,6 +766,26 @@
       };
       const [statusText, statusClass] = STATUS[section.status] || STATUS.wip;
       const fields = getSectionFields(sectionId);
+
+      // Для заглушек — показываем краткую информацию
+      if (section.group === 'stubs') {
+        content.innerHTML = `
+          <div class="section-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+              <h2>${section.title}</h2>
+              <span class="status-badge status-badge-wip">В разработке</span>
+            </div>
+            <p>Раздел в разработке. Функционал появится в будущих версиях.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Для справки — полноценная реализация (S8)
+      if (sectionId === 'help') {
+        loadHelpSection();
+        return;
+      }
 
       content.innerHTML = `
         <div class="section-card">
@@ -662,8 +809,9 @@
       if (sectionId === 'dividers') loadDividerSection();
       if (sectionId === 'appearance') loadAppearanceSection();
       if (sectionId === 'main-data') loadMainDataSection();
+      if (sectionId === 'email') loadEmailSettings();
+      if (sectionId === 'help') loadHelpSection();
       if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
-      if (sectionId === 'data') renderDataSection();
     }
 
     /* ============================================
@@ -678,10 +826,16 @@
 
     async function getDbData(force) {
       if (dbDataCache && !force) return dbDataCache;
-      const res = await api('/api/admin/get-data', { method: 'POST', body: '{}' });
-      if (!res.ok) throw new Error('get-data: ' + res.status);
-      const payload = await res.json();
-      dbDataCache = payload.data || {};
+      // S4: данные и настройки приходят раздельно — объединяем в плоское представление
+      const [resData, resSettings] = await Promise.all([
+        api('/api/admin/get-data', { method: 'POST', body: '{}' }),
+        api('/api/admin/get-settings', { method: 'POST', body: '{}' })
+      ]);
+      if (!resData.ok) throw new Error('get-data: ' + resData.status);
+      if (!resSettings.ok) throw new Error('get-settings: ' + resSettings.status);
+      const payloadData = await resData.json();
+      const payloadSettings = await resSettings.json();
+      dbDataCache = { ...(payloadData.data || {}), ...(payloadSettings.settings || {}) };
       return dbDataCache;
     }
 
@@ -714,7 +868,7 @@
       box.id = 'view-section-card';
       card.insertAdjacentElement('afterend', box);
 
-      if (sectionId === 'schedule') renderScheduleView(box, db.schedule || []);
+      if (sectionId === 'schedule') renderScheduleView(box, db.schedule || [], db.scheduleSettings || {});
       if (sectionId === 'prices') renderPricesView(box, db.prices || []);
       if (sectionId === 'slider') renderSliderView(box, db.sliders || [], db);
       if (sectionId === 'contacts') renderContactsView(box, db.contacts || {}, db);
@@ -731,33 +885,492 @@
       return box.querySelector('#view-body');
     }
 
-    function renderScheduleView(box, items) {
-      const body = viewHead(box, '📅 Листы расписания (картинки)', items.length, 'клик — просмотр; загрузка — ниже');
-      let html = '<div class="thumb-row">' + items.map((s, i) => `
-        <div class="thumb-item" onclick="openImageView('${fileUrl(s.image)}', ${escapeHtml('Расписание №' + (i + 1))})">
-          <img src="${fileUrl(s.image)}" alt="Расписание ${i + 1}" loading="lazy">
-          <div class="cap">id: ${escapeHtml(String(s.id))}</div>
-        </div>`).join('') + '</div>';
-      
-      // Форма загрузки
-      html += '<div style="margin-top:1.5rem;padding:1rem;background:#f8fafc;border-radius:var(--radius);">';
-      html += '<h4 style="margin-bottom:0.75rem;">Загрузить листы расписания (до 2 шт.)</h4>';
-      for (let i = 0; i < 2; i++) {
-        const existing = items[i];
-        html += '<div class="form-group"><label>Лист ' + (i + 1) + '</label>';
-        if (existing && existing.image) {
-          html += '<img src="' + fileUrl(existing.image) + '" style="max-width:200px;max-height:120px;object-fit:contain;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;display:block;">';
-          html += '<button type="button" class="btn btn-sm btn-danger" onclick="clearScheduleItem(' + i + ')">Удалить лист ' + (i + 1) + '</button>';
-        } else {
-          html += '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'schedule-input-' + i + '\').click()">📁 Загрузить лист ' + (i + 1) + '</button>';
-          html += '<input type="file" id="schedule-input-' + i + '" accept="image/*" style="display:none" onchange="uploadScheduleItem(' + i + ', this)">';
-        }
-        html += '</div>';
-      }
-      html += '<div style="margin-top:1rem;"><button class="btn btn-success" onclick="saveSchedule()">💾 Сохранить расписание</button></div>';
+    // ── Режимы занятий (S3): зал / онлайн / гибрид ──
+    const SLOT_MODES = {
+      hall: { icon: '🏋️', label: 'Зал' },
+      online: { icon: '🖥', label: 'Онлайн' },
+      hybrid: { icon: '🔄', label: 'Гибрид' }
+    };
+    const HALLS = { big: 'Большой зал', small: 'Малый зал' };
+
+    function renderScheduleView(box, items, scheduleSettings) {
+      const settings = scheduleSettings || {};
+      const currentView = settings.defaultView || 'images';
+      const currentHybridTab = settings.hybridActiveTab || 'images';
+
+      const body = viewHead(box, '📅 Расписание', items.length, 'картинки + таблица занятий');
+
+      // ── Переключатель режимов (S2) ──
+      let modeHtml = '<div style="margin-bottom:1.5rem;padding:1rem;background:#f1f5f9;border-radius:8px;">';
+      modeHtml += '<h3 style="margin-bottom:0.75rem;font-size:1rem;">🖥 Режим отображения на сайте</h3>';
+      modeHtml += '<div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">';
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-weight:500;">';
+      modeHtml += `<input type="radio" name="schedule-view-mode" value="images" ${currentView === 'images' ? 'checked' : ''} onchange="onScheduleViewModeChange(this.value)">`;
+      modeHtml += ' 🖼 Картинки</label>';
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-weight:500;">';
+      modeHtml += `<input type="radio" name="schedule-view-mode" value="table" ${currentView === 'table' ? 'checked' : ''} onchange="onScheduleViewModeChange(this.value)">`;
+      modeHtml += ' 📋 Таблица</label>';
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-weight:500;">';
+      modeHtml += `<input type="radio" name="schedule-view-mode" value="hybrid" ${currentView === 'hybrid' ? 'checked' : ''} onchange="onScheduleViewModeChange(this.value)">`;
+      modeHtml += ' 🔄 Гибрид</label>';
+      modeHtml += '</div>';
+
+      // Под-настройка для hybrid — какая вкладка активна
+      modeHtml += `<div id="hybrid-tab-config" style="margin-top:0.75rem;display:${currentView === 'hybrid' ? 'block' : 'none'};padding-left:1rem;">`;
+      modeHtml += '<p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:0.5rem;">Активная вкладка по умолчанию (гибрид):</p>';
+      modeHtml += '<div style="display:flex;gap:1rem;align-items:center;">';
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">';
+      modeHtml += `<input type="radio" name="hybrid-active-tab" value="images" ${currentHybridTab === 'images' ? 'checked' : ''}>`;
+      modeHtml += ' 🖼 Картинки</label>';
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">';
+      modeHtml += `<input type="radio" name="hybrid-active-tab" value="table" ${currentHybridTab === 'table' ? 'checked' : ''}>`;
+      modeHtml += ' 📋 Таблица</label>';
+      // S84: третья позиция — равна переключателю на главной («Гибрид» = оба блока сразу)
+      modeHtml += '<label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">';
+      modeHtml += `<input type="radio" name="hybrid-active-tab" value="hybrid" ${currentHybridTab === 'hybrid' ? 'checked' : ''}>`;
+      modeHtml += ' 🔄 Гибрид (оба сразу)</label>';
+      modeHtml += '</div></div>';
+
+      // Кнопка сохранить
+      modeHtml += '<div style="margin-top:1rem;">';
+      modeHtml += '<button class="btn btn-primary btn-sm" onclick="saveScheduleSettings()">💾 Сохранить режим</button>';
+      modeHtml += '<span id="schedule-settings-msg" style="margin-left:1rem;font-size:0.85rem;color:var(--success);display:none;">Сохранено ✓</span>';
+      modeHtml += '</div></div>';
+
+      let html = modeHtml;
+
+      // ── Картинки расписания: только отображение и загрузка, без полей ──
+      html += '<h3 style="margin:1rem 0 0.5rem;">🖼 Картинки расписания</h3>';
+      html += '<p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1rem;">Показываются в режиме «Картинки» на сайте. Полей нет — только изображение.</p>';
+      html += '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">';
+      html += '<button class="btn btn-success btn-sm" onclick="uploadScheduleImage()">📤 Загрузить картинку</button>';
       html += '</div>';
-      
+      html += '<div id="schedule-images-grid" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;"></div>';
+
+      // ── Таблица занятий (scheduleStructured программ) с CRUD ──
+      html += '<h3 style="margin:1rem 0 0.5rem;">📋 Таблица занятий</h3>';
+      html += '<div style="margin-bottom:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">';
+      html += '<button class="btn btn-success" onclick="openNewSlotForm()">➕ Добавить занятие</button>';
+      html += '</div>';
+
+      html += '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;">';
+      html += '<thead><tr style="background:#f1f5f9;">';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:left;">Программа</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:left;">День</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:left;">Время</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:left;">Зал</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:center;">Режим</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:left;">Тренер</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:center;">Видимость</th>';
+      html += '<th style="padding:0.4rem;border:1px solid var(--border);text-align:center;">Действия</th>';
+      html += '</tr></thead><tbody id="schedule-table-body"></tbody></table></div>';
+
+      // ── Модалка редактирования занятия ──
+      html += `<div id="slot-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:var(--card);border-radius:var(--radius);padding:2rem;max-width:520px;width:90%;max-height:90vh;overflow-y:auto;">
+          <h3 id="slot-modal-title">Новое занятие</h3>
+          <input type="hidden" id="slot-edit-program-id">
+          <input type="hidden" id="slot-edit-index">
+          <div class="form-group"><label>Программа</label>
+            <select id="slot-program"></select>
+          </div>
+          <div class="form-group"><label>День недели</label>
+            <select id="slot-day">
+              <option value="Понедельник">Понедельник</option>
+              <option value="Вторник">Вторник</option>
+              <option value="Среда">Среда</option>
+              <option value="Четверг">Четверг</option>
+              <option value="Пятница">Пятница</option>
+              <option value="Суббота">Суббота</option>
+              <option value="Воскресенье">Воскресенье</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Время (HH:MM-HH:MM)</label>
+            <input type="text" id="slot-time" placeholder="10:00-11:00">
+          </div>
+          <div class="form-group"><label>Зал</label>
+            <select id="slot-hall">
+              <option value="big">🏋️ Большой зал</option>
+              <option value="small">🏋️ Малый зал</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Режим занятия</label>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+              <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">
+                <input type="radio" name="slot-mode" value="hall" style="width:auto;"> 🏋️ Зал</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">
+                <input type="radio" name="slot-mode" value="online" style="width:auto;"> 🖥 Онлайн</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;">
+                <input type="radio" name="slot-mode" value="hybrid" checked style="width:auto;"> 🔄 Гибрид</label>
+            </div>
+          </div>
+          <div class="form-group"><label>Тренер</label>
+            <select id="slot-trainer"><option value="">— Не выбран —</option></select>
+          </div>
+          <div class="form-group"><label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
+            <input type="checkbox" id="slot-visible" checked style="width:auto;">
+            <span>👁 Показывать на сайте</span>
+          </label></div>
+          <div style="display:flex;gap:0.5rem;margin-top:1.5rem;">
+            <button class="btn btn-secondary" onclick="closeSlotForm()">Отмена</button>
+            <button class="btn btn-success" onclick="saveSlotForm()">💾 Сохранить</button>
+          </div>
+        </div>
+      </div>`;
+
       body.innerHTML = html;
+
+      loadScheduleSelectors();
+    }
+
+    let scheduleItems = [];      // db.schedule — только картинки {id, image}
+    let scheduleTrainers = [];
+    let schedulePrograms = [];
+    let scheduleSlots = [];      // [{programId, program, index, day, time, hall, mode, trainerId, visible}]
+
+    function slotTrainerName(trainerId) {
+      const t = scheduleTrainers.find(x => Number(x.id) === Number(trainerId));
+      if (!t) return '—';
+      // S83: скрытый тренер на сайте резолвится в пустое имя — помечаем в админке
+      return t.hidden ? t.name + ' (скрыт)' : t.name;
+    }
+
+    function renderScheduleSlotsTable() {
+      const tableBody = document.getElementById('schedule-table-body');
+      if (!tableBody) return;
+
+      // S83: сортировка как в ScheduleUI (сайт): дни Пн→Вс, внутри дня — по минутам,
+      // а не лексикографически (иначе «9:00» встанет после «10:00»)
+      const dayOrder = { 'Понедельник': 1, 'Вторник': 2, 'Среда': 3, 'Четверг': 4, 'Пятница': 5, 'Суббота': 6, 'Воскресенье': 7 };
+      const timeMinutes = t => {
+        const m = /^(\d{1,2})[:.](\d{2})/.exec(String(t || ''));
+        return m ? Number(m[1]) * 60 + Number(m[2]) : 0;
+      };
+      const sorted = scheduleSlots.slice().sort((a, b) =>
+        (dayOrder[a.day] || 99) - (dayOrder[b.day] || 99) || timeMinutes(a.time) - timeMinutes(b.time));
+
+      if (!sorted.length) {
+        tableBody.innerHTML = '<tr><td colspan="8" style="padding:1rem;text-align:center;color:var(--text-secondary);">Нет занятий — добавьте через «➕ Добавить занятие»</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = sorted.map(s => {
+        const hidden = s.visible === false;
+        const m = SLOT_MODES[s.mode] || SLOT_MODES.hybrid;
+        const hall = HALLS[s.hall] || '—';
+        return `<tr style="${hidden ? 'opacity:0.5;' : ''}">` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);">${escapeHtml(s.program)}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);">${escapeHtml(s.day || '—')}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);">${escapeHtml(s.time || '—')}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);">🏋️ ${escapeHtml(hall)}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);text-align:center;" title="${m.label}">${m.icon} ${m.label}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);">${escapeHtml(slotTrainerName(s.trainerId))}</td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);text-align:center;">` +
+          `<button class="btn btn-sm btn-secondary" onclick="toggleSlotVisible(${s.programId}, ${s.index})" title="Скрыть/показать">${hidden ? '🙈' : '👁'}</button></td>` +
+          `<td style="padding:0.4rem;border:1px solid var(--border);text-align:center;">` +
+          `<button class="btn btn-sm btn-secondary" onclick="editSlot(${s.programId}, ${s.index})" title="Редактировать">✏️</button> ` +
+          `<button class="btn btn-sm btn-danger" onclick="deleteSlot(${s.programId}, ${s.index})" title="Удалить">🗑</button></td>` +
+          `</tr>`;
+      }).join('');
+    }
+
+    // Собираем плоский список слотов из программ
+    function collectScheduleSlots() {
+      scheduleSlots = [];
+      for (const p of schedulePrograms) {
+        (p.scheduleStructured || []).forEach((s, idx) => {
+          scheduleSlots.push({
+            programId: p.id,
+            program: p.name || '',
+            index: idx,
+            day: s.day || '',
+            time: s.time || '',
+            place: s.place || '',
+            hall: s.hall || 'big',
+            mode: s.mode || 'hybrid',
+            trainerId: s.trainerId != null ? s.trainerId : null,
+            visible: s.visible !== false
+          });
+        });
+      }
+    }
+
+    async function loadScheduleSelectors() {
+      try {
+        const db = await getDbData(true);
+        scheduleItems = db.schedule || [];
+        scheduleTrainers = db.trainers || [];
+        schedulePrograms = db.programs || [];
+
+        collectScheduleSlots();
+        renderScheduleSlotsTable();
+
+        // Картинки расписания: только превью + удаление, без полей
+        const imagesGrid = document.getElementById('schedule-images-grid');
+        if (imagesGrid) {
+          const images = (db.schedule || []).filter(s => s.image);
+          if (images.length === 0) {
+            imagesGrid.innerHTML = '<p style="color:var(--text-secondary);font-size:0.9rem;">Нет загруженных картинок расписания</p>';
+          } else {
+            imagesGrid.innerHTML = images.map(s =>
+              `<div style="position:relative;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--card);">` +
+              `<img src="${fileUrl(s.image)}" style="max-width:300px;max-height:200px;object-fit:contain;display:block;" alt="Расписание">` +
+              `<button class="btn btn-sm btn-danger" style="position:absolute;top:0.4rem;right:0.4rem;" onclick="deleteScheduleImage(${s.id})" title="Удалить картинку">🗑</button>` +
+              `</div>`
+            ).join('');
+          }
+        }
+      } catch (err) {
+        console.error('Ошибка загрузки данных для расписания:', err);
+      }
+    }
+
+    // ── S2: переключатель режима расписания ──
+    async function uploadScheduleImage() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const res = await fetch('/api/admin/upload', {
+            method: 'POST',
+            headers: authHeaders(),
+            body: formData
+          });
+          const data = await res.json();
+          if (data.ok) {
+            // Картинка: только id + image, без полей
+            const items = [...scheduleItems, { id: Date.now(), image: '/' + data.path }];
+            const saveRes = await api('/api/admin/save-schedule', {
+              method: 'POST',
+              body: JSON.stringify({ schedule: items })
+            });
+            const saveData = await saveRes.json();
+            if (saveData.ok) {
+              showToast('Картинка добавлена');
+              loadScheduleSelectors();
+            } else {
+              showToast('Ошибка сохранения: ' + (saveData.error || 'неизвестно'), 'error');
+            }
+          } else {
+            showToast('Ошибка загрузки: ' + (data.error || 'неизвестно'), 'error');
+          }
+        } catch (err) {
+          showToast('Ошибка: ' + err.message, 'error');
+        }
+      };
+      input.click();
+    }
+
+    async function deleteScheduleImage(id) {
+      if (!confirm('Удалить картинку расписания?')) return;
+      try {
+        const res = await api('/api/admin/delete-schedule-item', {
+          method: 'POST', body: JSON.stringify({ id })
+        });
+        if (res.ok) {
+          showToast('Картинка удалена');
+          loadScheduleSelectors();
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast(err.error || 'Ошибка удаления', 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+    }
+
+    function onScheduleViewModeChange(mode) {
+      const hybridConfig = document.getElementById('hybrid-tab-config');
+      if (hybridConfig) hybridConfig.style.display = mode === 'hybrid' ? 'block' : 'none';
+    }
+
+    async function saveScheduleSettings() {
+      const viewRadio = document.querySelector('input[name="schedule-view-mode"]:checked');
+      const tabRadio = document.querySelector('input[name="hybrid-active-tab"]:checked');
+      if (!viewRadio) return;
+
+      const scheduleSettings = {
+        defaultView: viewRadio.value,
+        hybridActiveTab: tabRadio ? tabRadio.value : 'images'
+      };
+
+      try {
+        const res = await api('/api/admin/save-schedule-settings', {
+          method: 'POST',
+          body: JSON.stringify({ scheduleSettings })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          const msg = document.getElementById('schedule-settings-msg');
+          if (msg) {
+            msg.style.display = 'inline';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+          }
+        } else {
+          alert('Ошибка: ' + (data.error || 'неизвестно'));
+        }
+      } catch (err) {
+        alert('Ошибка сохранения: ' + err.message);
+      }
+    }
+
+    // ── CRUD слотов таблицы занятий (scheduleStructured программ) ──
+    function fillSlotProgramSelect(selectedId) {
+      const sel = document.getElementById('slot-program');
+      sel.innerHTML = schedulePrograms
+        .filter(p => !p.hidden)
+        .map(p => `<option value="${p.id}" ${String(p.id) === String(selectedId) ? 'selected' : ''}>${escapeHtml(p.name)}</option>`)
+        .join('');
+    }
+
+    function fillSlotTrainerSelect(selectedId) {
+      const sel = document.getElementById('slot-trainer');
+      sel.innerHTML = '<option value="">— Не выбран —</option>' +
+        scheduleTrainers
+          .filter(t => !t.hidden)
+          .map(t => `<option value="${t.id}" ${String(t.id) === String(selectedId) ? 'selected' : ''}>${escapeHtml(t.name)}</option>`)
+          .join('');
+    }
+
+    function openSlotForm(slot = null, programId = null, index = null) {
+      document.getElementById('slot-modal').style.display = 'flex';
+      document.getElementById('slot-modal-title').textContent = slot ? 'Редактировать занятие' : 'Новое занятие';
+      document.getElementById('slot-edit-program-id').value = slot ? slot.programId : (programId || '');
+      document.getElementById('slot-edit-index').value = index != null ? index : '';
+      document.getElementById('slot-day').value = slot ? slot.day : 'Понедельник';
+      document.getElementById('slot-time').value = slot ? slot.time : '';
+      document.getElementById('slot-hall').value = slot ? (slot.hall || 'big') : 'big';
+      const mode = slot ? (slot.mode || 'hybrid') : 'hybrid';
+      document.querySelectorAll('input[name="slot-mode"]').forEach(r => { r.checked = r.value === mode; });
+      document.getElementById('slot-visible').checked = slot ? slot.visible !== false : true;
+      fillSlotProgramSelect(slot ? slot.programId : programId);
+      fillSlotTrainerSelect(slot ? slot.trainerId : null);
+    }
+
+    function closeSlotForm() {
+      document.getElementById('slot-modal').style.display = 'none';
+    }
+
+    function openNewSlotForm() {
+      const first = schedulePrograms.find(p => !p.hidden);
+      openSlotForm(null, first ? first.id : null, null);
+    }
+
+    function editSlot(programId, index) {
+      const slot = scheduleSlots.find(s => String(s.programId) === String(programId) && s.index === index);
+      if (slot) openSlotForm(slot, programId, index);
+    }
+
+    // Сохраняем все scheduleStructured программ одним запросом
+    async function persistScheduleSlots() {
+      // Группируем слоты по программам
+      const byProgram = {};
+      for (const s of scheduleSlots) {
+        const key = String(s.programId);
+        (byProgram[key] = byProgram[key] || []).push({
+          day: s.day, time: s.time, place: s.place || '',
+          hall: s.hall || 'big', mode: s.mode || 'hybrid',
+          trainerId: s.trainerId != null ? Number(s.trainerId) : null,
+          visible: s.visible !== false
+        });
+      }
+      const programs = schedulePrograms.map(p => ({
+        ...p,
+        scheduleStructured: byProgram[String(p.id)] || []
+      }));
+
+      const res = await api('/api/admin/save-schedule-slots', {
+        method: 'POST', body: JSON.stringify({ programs })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || ('HTTP ' + res.status));
+    }
+
+    async function saveSlotForm() {
+      const programId = document.getElementById('slot-program').value;
+      const editIndexRaw = document.getElementById('slot-edit-index').value;
+      const editIndex = editIndexRaw === '' ? null : Number(editIndexRaw);
+      const day = document.getElementById('slot-day').value;
+      const time = document.getElementById('slot-time').value.trim();
+      const hall = document.getElementById('slot-hall').value;
+      const modeRadio = document.querySelector('input[name="slot-mode"]:checked');
+      const mode = modeRadio ? modeRadio.value : 'hybrid';
+      const trainerId = document.getElementById('slot-trainer').value;
+      const visible = document.getElementById('slot-visible').checked;
+
+      if (!programId) { showToast('Выберите программу', 'error'); return; }
+      if (!time || !/^\d{1,2}:\d{2}(-\d{1,2}:\d{2})?$/.test(time)) {
+        showToast('Укажите время в формате HH:MM или HH:MM-HH:MM', 'error');
+        return;
+      }
+
+      // При редактировании — сохраняем существующее place
+      let place = '';
+      if (editIndex != null) {
+        const existing = scheduleSlots.find(s => String(s.programId) === String(programId) && s.index === editIndex);
+        if (existing) place = existing.place || '';
+      }
+
+      const slotData = {
+        programId: Number(programId),
+        program: (schedulePrograms.find(p => String(p.id) === String(programId)) || {}).name || '',
+        index: editIndex != null ? editIndex : -1,
+        day, time, place, hall, mode,
+        trainerId: trainerId ? Number(trainerId) : null,
+        visible
+      };
+
+      if (editIndex != null) {
+        const idx = scheduleSlots.findIndex(s => String(s.programId) === String(programId) && s.index === editIndex);
+        if (idx >= 0) scheduleSlots[idx] = slotData;
+      } else {
+        scheduleSlots.push(slotData);
+      }
+
+      try {
+        await persistScheduleSlots();
+        showToast('Сохранено');
+        closeSlotForm();
+        dbDataCache = null;
+        loadScheduleSelectors();
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+    }
+
+    async function deleteSlot(programId, index) {
+      if (!confirm('Удалить занятие из расписания?')) return;
+      scheduleSlots = scheduleSlots.filter(s => !(String(s.programId) === String(programId) && s.index === index));
+      try {
+        await persistScheduleSlots();
+        showToast('Удалено');
+        dbDataCache = null;
+        loadScheduleSelectors();
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+    }
+
+    async function toggleSlotVisible(programId, index) {
+      const slot = scheduleSlots.find(s => String(s.programId) === String(programId) && s.index === index);
+      if (!slot) return;
+      slot.visible = slot.visible === false;
+      try {
+        await persistScheduleSlots();
+        showToast(slot.visible ? 'Показано на сайте' : 'Скрыто с сайта');
+        dbDataCache = null;
+        renderScheduleSlotsTable();
+      } catch (err) {
+        slot.visible = !slot.visible;
+        showToast('Ошибка: ' + err.message, 'error');
+      }
     }
 
     function renderPricesView(box, items) {
@@ -801,6 +1414,340 @@
       const pairs = [['Адрес', c.address], ['Телефон', c.phone], ['Email', c.email], ['ВКонтакте', c.vk], ['Telegram', c.telegram], ['Соцсети', social], ['Доп. контакты', JSON.stringify(db.additionalContacts || {}, null, 2)]];
       body.innerHTML = '<table class="view-kv"><tbody>' + pairs.map(([k, v]) =>
         `<tr><td>${k}</td><td>${escapeHtml(v || '—')}</td></tr>`).join('') + '</tbody></table>';
+    }
+
+    /* ============================================
+       Настройки электронной почты (S7)
+       ============================================ */
+    let emailConfigState = {
+      smtpHost: 'smtp.yandex.ru',
+      smtpPort: 465,
+      smtpSecure: true,
+      smtpUser: '',
+      smtpPass: '',
+      fromName: 'Робот-Автопарсер',
+      adminEmail: '',
+      errorEmail: ''
+    };
+
+    async function loadEmailSettings() {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      card.insertAdjacentElement('afterend', box);
+
+      try {
+        const res = await api('/api/admin/get-email-config', { method: 'POST' });
+        if (res.ok) {
+          const payload = await res.json();
+          emailConfigState = payload.emailConfig || emailConfigState;
+          // errorEmail — массив в БД, строка в UI
+          if (Array.isArray(emailConfigState.errorEmail)) {
+            emailConfigState.errorEmail = emailConfigState.errorEmail.join(', ');
+          }
+        }
+      } catch (err) {
+        showToast('Не удалось загрузить настройки: ' + err.message, 'error');
+        return;
+      }
+
+      box.innerHTML = `
+        <h2>✉️ Настройки электронной почты</h2>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1.5rem;">
+          SMTP-настройки для отправки уведомлений, напоминаний и тестовых писем.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div class="form-group">
+            <label for="smtp-host">SMTP-хост</label>
+            <input type="text" id="smtp-host" value="${escapeHtml(emailConfigState.smtpHost)}" placeholder="smtp.yandex.ru" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="smtp-port">SMTP-порт</label>
+            <input type="number" id="smtp-port" value="${emailConfigState.smtpPort}" placeholder="465" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="smtp-user">SMTP-пользователь</label>
+            <input type="text" id="smtp-user" value="${escapeHtml(emailConfigState.smtpUser)}" placeholder="user@yandex.ru" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="smtp-pass">SMTP-пароль</label>
+            <input type="password" id="smtp-pass" placeholder="••••••••••" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+            <small style="color:var(--text-secondary);font-size:0.75rem;">Оставьте пустым, чтобы не менять текущий пароль</small>
+          </div>
+          <div class="form-group">
+            <label for="from-name">Имя отправителя</label>
+            <input type="text" id="from-name" value="${escapeHtml(emailConfigState.fromName)}" placeholder="Робот-Автопарсер" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="admin-email">Email админа</label>
+            <input type="email" id="admin-email" value="${escapeHtml(emailConfigState.adminEmail)}" placeholder="admin@example.com" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group">
+            <label for="error-email">Email для ошибок (через запятую)</label>
+            <input type="text" id="error-email" value="${escapeHtml(emailConfigState.errorEmail)}" placeholder="err1@example.com, err2@example.com" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:0.5rem;margin-top:1.5rem;">
+            <input type="checkbox" id="smtp-secure" ${emailConfigState.smtpSecure ? 'checked' : ''} style="width:auto;">
+            <label for="smtp-secure">Использовать SSL/TLS</label>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+          <button class="btn btn-success" id="save-email-config-btn" onclick="saveEmailConfig()">💾 Сохранить</button>
+          <button class="btn btn-secondary" onclick="sendTestEmail()">📧 Тестовое письмо</button>
+        </div>
+        <div style="margin-top:1rem;padding:1rem;background:#f8fafc;border-radius:6px;">
+          <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.5rem;">Отправить тестовое письмо:</p>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input type="email" id="test-to-email" value="${escapeHtml(emailConfigState.adminEmail)}" placeholder="Email получателя" style="flex:1;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+            <button class="btn btn-sm btn-secondary" onclick="sendTestEmail()">Отправить</button>
+          </div>
+        </div>
+        <div id="test-email-result" style="margin-top:1rem;"></div>
+      `;
+    }
+
+    async function saveEmailConfig() {
+      const btn = document.querySelector('#save-email-config-btn, .btn-success');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
+      try {
+        const data = {
+          smtpHost: document.getElementById('smtp-host').value.trim(),
+          smtpPort: parseInt(document.getElementById('smtp-port').value, 10) || 465,
+          smtpSecure: document.getElementById('smtp-secure').checked,
+          smtpUser: document.getElementById('smtp-user').value.trim(),
+          smtpPass: document.getElementById('smtp-pass').value,
+          fromName: document.getElementById('from-name').value.trim(),
+          adminEmail: document.getElementById('admin-email').value.trim(),
+          errorEmail: document.getElementById('error-email').value
+        };
+        const res = await api('/api/admin/save-email-config', {
+          method: 'POST',
+          body: JSON.stringify({ emailConfig: data })
+        });
+        if (res.ok) {
+          showToast('Настройки почты сохранены');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast('Ошибка сохранения: ' + (err.error || res.status), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка сохранения: ' + err.message, 'error');
+      }
+      if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить'; }
+    }
+
+    async function sendTestEmail() {
+      const adminEmail = document.getElementById('admin-email').value.trim();
+      const toEmail = document.getElementById('test-to-email').value || adminEmail;
+      if (!toEmail || !toEmail.includes('@')) {
+        showToast('Введите корректный email получателя', 'error');
+        return;
+      }
+      const resultDiv = document.getElementById('test-email-result');
+      resultDiv.innerHTML = '<p style="color:var(--text-secondary);">⏳ Отправка…</p>';
+      try {
+        const res = await api('/api/admin/send-test-email', {
+          method: 'POST',
+          body: JSON.stringify({ toEmail })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          resultDiv.innerHTML = `<p style="color:var(--success);">✅ ${data.message || 'Тестовое письмо отправлено!'}</p>`;
+        } else {
+          resultDiv.innerHTML = `<p style="color:var(--danger);">❌ ${data.error || 'Ошибка отправки'}</p>`;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = `<p style="color:var(--danger);">❌ Ошибка: ${err.message}</p>`;
+      }
+    }
+
+    /* ============================================
+       Справка для администраторов (S8)
+       ============================================ */
+    let helpState = { sections: [] };
+    let helpSearchQuery = '';
+
+    async function loadHelpSection() {
+      const content = document.getElementById('admin-content');
+      content.innerHTML = '';
+
+      const card = document.createElement('div');
+      card.className = 'section-card';
+      content.appendChild(card);
+
+      try {
+        const res = await api('/api/admin/get-help', { method: 'POST' });
+        if (res.ok) {
+          const payload = await res.json();
+          helpState = payload.help || helpState;
+        }
+      } catch (err) {
+        card.innerHTML = `<p style="color:var(--danger);">Ошибка загрузки: ${escapeHtml(err.message)}</p>`;
+        return;
+      }
+
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+          <h2>📖 Справка для администраторов</h2>
+          <span class="status-badge status-badge-done">Работает</span>
+        </div>
+        <p>Полная справка по всем разделам админки. Подробные инструкции, примеры использования и рекомендации.</p>
+        <div style="margin-top:1rem;">
+          <input type="text" id="help-search" placeholder="🔍 Поиск по справке..." value="${escapeHtml(helpSearchQuery)}" style="width:100%;padding:0.75rem;border:1px solid var(--border);border-radius:6px;font-size:1rem;" oninput="onHelpSearch(this.value)">
+        </div>
+        <div id="help-content" style="margin-top:1.5rem;"></div>
+      `;
+
+      renderHelpContent();
+    }
+
+    function onHelpSearch(query) {
+      helpSearchQuery = query;
+      renderHelpContent();
+    }
+
+    function renderHelpContent() {
+      const container = document.getElementById('help-content');
+      if (!container) return;
+
+      const query = helpSearchQuery.toLowerCase().trim();
+
+      // Категории
+      const categories = {
+        data: { title: '📦 Данные', sections: [] },
+        settings: { title: '⚙️ Настройки сайта', sections: [] }
+      };
+
+      const filtered = helpState.sections.filter(s => {
+        if (!query) return true;
+        return s.title.toLowerCase().includes(query) || s.content.toLowerCase().includes(query);
+      });
+
+      for (const section of filtered) {
+        if (categories[section.category]) {
+          categories[section.category].sections.push(section);
+        }
+      }
+
+      let html = '';
+      for (const [catKey, cat] of Object.entries(categories)) {
+        if (!cat.sections.length) continue;
+        html += `<div class="help-category">`;
+        html += `<h3 style="margin:1.5rem 0 1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);color:var(--text);">${cat.title}</h3>`;
+        for (const section of cat.sections) {
+          const isOpen = query && query.length > 2;
+          html += `<div class="help-section" style="margin-bottom:0.5rem;border:1px solid var(--border);border-radius:8px;overflow:hidden;">`;
+          html += `<div style="padding:1rem;background:#f8fafc;cursor:pointer;display:flex;align-items:center;justify-content:space-between;" onclick="toggleHelpSection(this)">`;
+          html += `<strong>${escapeHtml(section.title)}</strong>`;
+          html += `<span class="help-arrow" style="transform:rotate(${isOpen ? '90deg' : '0deg'});transition:transform 0.2s;">▶</span>`;
+          html += `</div>`;
+          html += `<div class="help-body" style="padding:1rem;display:${isOpen ? 'block' : 'none'};">`;
+          // Markdown-like rendering
+          html += renderHelpContentText(section.content);
+          html += `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">`;
+          html += `<button class="btn btn-sm btn-secondary" onclick="editHelpSection('${section.id}')">✏️ Редактировать</button>`;
+          html += `</div></div></div>`;
+        }
+        html += `</div>`;
+      }
+
+      if (!filtered.length) {
+        html = '<p style="color:var(--text-secondary);text-align:center;padding:2rem;">Ничего не найдено</p>';
+      }
+
+      container.innerHTML = html;
+    }
+
+    function renderHelpContentText(content) {
+      // Простой markdown → HTML
+      let html = escapeHtml(content);
+      html = html.replace(/^# (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h4>$1</h4>');
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+      html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+      html = html.replace(/\n\n/g, '</p><p>');
+      html = html.replace(/\n/g, '<br>');
+      return `<p>${html}</p>`;
+    }
+
+    function toggleHelpSection(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('.help-arrow');
+      if (body.style.display === 'none') {
+        body.style.display = 'block';
+        if (arrow) arrow.style.transform = 'rotate(90deg)';
+      } else {
+        body.style.display = 'none';
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function editHelpSection(id) {
+      const section = helpState.sections.find(s => s.id === id);
+      if (!section) return;
+
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.id = 'help-edit-modal';
+      modal.innerHTML = `
+        <div class="modal" style="max-width:800px;max-height:90vh;overflow:auto;">
+          <div class="modal-header">
+            <h3>✏️ Редактирование: ${escapeHtml(section.title)}</h3>
+            <button class="modal-close" onclick="closeHelpEditModal()">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Заголовок раздела</label>
+              <input type="text" id="help-edit-title" value="${escapeHtml(section.title)}" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+            </div>
+            <div class="form-group">
+              <label>Содержание (Markdown)</label>
+              <textarea id="help-edit-content" rows="20" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;font-family:monospace;font-size:0.9rem;">${escapeHtml(section.content)}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeHelpEditModal()">Отмена</button>
+            <button class="btn btn-success" onclick="saveHelpSection('${id}')">💾 Сохранить</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    function closeHelpEditModal() {
+      const modal = document.getElementById('help-edit-modal');
+      if (modal) modal.remove();
+    }
+
+    async function saveHelpSection(id) {
+      const title = document.getElementById('help-edit-title').value.trim();
+      const content = document.getElementById('help-edit-content').value;
+      const section = helpState.sections.find(s => s.id === id);
+      if (!section) return;
+
+      section.title = title;
+      section.content = content;
+
+      try {
+        const res = await api('/api/admin/save-help', {
+          method: 'POST',
+          body: JSON.stringify({ help: helpState })
+        });
+        if (res.ok) {
+          showToast('Справка сохранена');
+          closeHelpEditModal();
+          renderHelpContent();
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast('Ошибка: ' + (err.error || res.status), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка сохранения: ' + err.message, 'error');
+      }
     }
 
     function renderNewsSettingsView(box, db) {
@@ -873,7 +1820,10 @@
       if (sectionId === 'contacts') return 'Контакты из базы — используются в футере на всех страницах. Изменение — в следующем пакете.';
       if (sectionId === 'news-settings') return 'Настройки раздела новостей (defaultImage, defaultVideo, autoPublish). Сейчас пустые — работают значения по умолчанию.';
       if (sectionId === 'album') return 'Свободные фото общего альбома (страница «Альбом» пока выключена из навигации). Клик — просмотр. Загружаются ночным парсером из папки на диске.';
-      if (sectionId === 'data') return 'Все данные сайта (db.json): счётчики по разделам и просмотр содержимого каждого ключа.';
+      if (sectionId === 'email') return 'Настройки SMTP для отправки уведомлений и напоминаний. Настройка хоста, порта, логина, пароля и адресов получателей.';
+      if (sectionId === 'bots') return 'Управление ботами (Telegram, VK, WhatsApp). Интеграция с CRM, автоответы, рассылки. Раздел в разработке.';
+      if (sectionId === 'integrations') return 'Интеграции с внешними сервисами: CRM, email-рассылки, аналитика, облачные хранилища. Раздел в разработке.';
+      if (sectionId === 'help') return 'Справка для администраторов по всем разделам. Подробные инструкции, примеры использования, рекомендации и ответы на частые вопросы.';
       return 'Раздел в разработке. Здесь будет полноценный редактор.';
     }
 
@@ -887,10 +1837,14 @@
         contacts: ['address', 'phone', 'email', 'vk', 'telegram', 'social[]', 'additionalContacts'],
         'news-settings': ['defaultImage', 'defaultVideo', 'autoPublish'],
         dividers: ['globalDivider.enabled', 'globalDivider.textContent', 'globalDivider.height', 'globalDivider.background', 'globalDivider.fontSize'],
-        appearance: ['appearance.variables (--fs-*, --fw-*, --ff-*, --lh-*)', 'appearance.customCss'],
+        appearance: ['appearance.variables (--color-*, --fs-*, --fw-*, --ff-*, --lh-*)', 'appearance.customCss'],
         'main-data': ['siteSettings.title1', 'siteSettings.title2', 'siteSettings.logo'],
         album: ['id', 'image', 'thumb', 'title', 'date'],
+        email: ['emailConfig.smtpHost', 'emailConfig.smtpPort', 'emailConfig.smtpSecure', 'emailConfig.smtpUser', 'emailConfig.smtpPass', 'emailConfig.fromName', 'emailConfig.adminEmail', 'emailConfig.errorEmail[]'],
         crm: ['(заглушка — без данных)'],
+        bots: ['(заглушка — без данных)'],
+        integrations: ['(заглушка — без данных)'],
+        help: ['(справка формируется автоматически)'],
         data: ['db.json', 'backups/', 'static/js/data/']
       };
       return fieldsMap[sectionId] || [];
@@ -1595,8 +2549,8 @@
     }
 
     /* ============================================
-       Оформление: CSS-переменные + live preview (S73)
-       ============================================ */
+        Оформление: CSS-переменные + live preview (S73)
+        ============================================ */
     const APPEARANCE_GROUPS = [
       { title: '📄 Основной текст', vars: [
         { name: '--fs-body', label: 'Размер', default: '17px' },
@@ -1633,6 +2587,20 @@
         { name: '--fs-footer', label: 'Футер', default: '1rem' },
         { name: '--fs-entity-title', label: 'Заголовок сущности', default: '2.25rem' }
       ]}
+    ];
+
+    // S1: Цветовые переменные для колорпикера
+    // S82: реальные CSS-переменные сайта (static/css/style.css :root).
+    // Раньше здесь были admin-переменные (--primary и т.п.), которые сайт не использует.
+    const COLOR_VARS = [
+      { name: '--color-primary', label: 'Основной цвет (синий бренд)', default: '#003C52' },
+      { name: '--color-accent', label: 'Акцент (оранжевый)', default: '#F07E23' },
+      { name: '--color-accent-dark', label: 'Акцент тёмный (hover)', default: '#DC5014' },
+      { name: '--color-beige', label: 'Бежевый (фоны)', default: '#FEEED5' },
+      { name: '--color-phone-green', label: 'Зелёный (кнопки звонка)', default: '#22C55E' },
+      { name: '--color-phone-green-dark', label: 'Зелёный тёмный (hover)', default: '#16A34A' },
+      { name: '--color-text', label: 'Основной текст', default: '#111827' },
+      { name: '--color-text-muted', label: 'Вторичный текст', default: '#6B7280' }
     ];
 
     let appearanceState = { variables: {}, customCss: '' };
@@ -1692,6 +2660,27 @@
     function renderAppearanceForm() {
       const form = document.getElementById('ap-form');
       let html = '';
+
+      // S1: Цветовой колорпикер
+      html += '<div class="ap-group"><h3>🎨 Цвета</h3>';
+      for (const cv of COLOR_VARS) {
+        const value = appearanceState.variables[cv.name] || cv.default;
+        html += `<div class="color-editor" data-var="${escapeHtml(cv.name)}">
+          <div style="flex:1;">
+            <label>${escapeHtml(cv.label)}</label>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:0.25rem;">
+              <input type="color" value="${escapeHtml(value)}" data-color-picker="${escapeHtml(cv.name)}" style="width:50px;height:40px;border:2px solid var(--border);border-radius:6px;cursor:pointer;padding:2px;">
+              <input type="text" value="${escapeHtml(value)}" data-color-text="${escapeHtml(cv.name)}" style="flex:1;padding:0.4rem 0.75rem;border:1px solid var(--border);border-radius:6px;font-family:monospace;font-size:0.95rem;" maxlength="7">
+              <div style="width:40px;height:40px;border-radius:8px;border:1px solid var(--border);" data-color-preview="${escapeHtml(cv.name)}" style="background:${escapeHtml(value)};"></div>
+            </div>
+            <span style="font-size:0.75rem;color:var(--text-secondary);">по умолчанию: ${escapeHtml(cv.default)}</span>
+          </div>
+        </div>`;
+      }
+      html += '</div>';
+
+      html += '<hr style="margin:2rem 0;border:none;border-top:1px solid var(--border);">';
+
       for (const group of APPEARANCE_GROUPS) {
         html += `<div class="ap-group"><h3>${escapeHtml(group.title)}</h3>`;
         for (const v of group.vars) {
@@ -1715,6 +2704,33 @@
       }
       form.innerHTML = html;
 
+      // Подписка на изменения цветов
+      form.querySelectorAll('input[data-color-picker]').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const varName = e.target.dataset.colorPicker;
+          const color = e.target.value;
+          // Обновить текстовое поле и превью
+          const textEl = form.querySelector(`input[data-color-text="${varName}"]`);
+          const previewEl = form.querySelector(`div[data-color-preview="${varName}"]`);
+          if (textEl) textEl.value = color;
+          if (previewEl) previewEl.style.background = color;
+          onAppearanceChange();
+        });
+      });
+
+      form.querySelectorAll('input[data-color-text]').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const varName = e.target.dataset.colorText;
+          const color = e.target.value;
+          // Обновить колорпикер и превью
+          const pickerEl = form.querySelector(`input[data-color-picker="${varName}"]`);
+          const previewEl = form.querySelector(`div[data-color-preview="${varName}"]`);
+          if (pickerEl && /^#[0-9a-fA-F]{6}$/.test(color)) pickerEl.value = color;
+          if (previewEl) previewEl.style.background = color;
+          onAppearanceChange();
+        });
+      });
+
       /* Подписка на изменения → обновление предпросмотра */
       form.querySelectorAll('input[data-var], select[data-var]').forEach(el => {
         el.addEventListener('input', onAppearanceChange);
@@ -1730,10 +2746,19 @@
       const form = document.getElementById('ap-form');
       if (!form) return;
       appearanceState.variables = {};
+      // Собираем обычные переменные (font-size, font-weight, etc.)
       form.querySelectorAll('input[data-var], select[data-var]').forEach(el => {
         const val = el.value.trim();
         if (val && val !== el.dataset.default) {
           appearanceState.variables[el.dataset.var] = val;
+        }
+      });
+      // Собираем цветовые переменные (S1)
+      form.querySelectorAll('input[data-color-text]').forEach(el => {
+        const val = el.value.trim();
+        const defaultVal = COLOR_VARS.find(cv => cv.name === el.dataset.colorText);
+        if (val && /^#[0-9a-fA-F]{6}$/.test(val) && val.toLowerCase() !== (defaultVal ? defaultVal.default : '').toLowerCase()) {
+          appearanceState.variables[el.dataset.colorText] = val;
         }
       });
       appearanceState.customCss = document.getElementById('ap-custom-css').value || '';
@@ -1756,7 +2781,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=16">
+<link rel="stylesheet" href="/css/style.css?v=17">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">

@@ -25,6 +25,7 @@ import fs from 'fs';
 import path from 'path';
 import vm from 'vm';
 import { fileURLToPath } from 'url';
+import { flattenDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -39,9 +40,9 @@ vm.createContext(mdBox);
 vm.runInContext(mdSource, mdBox);
 const MD = mdBox.MD;
 
-// Читаем db.json
+// Читаем db.json (S4: плоский или вложенный — работаем с плоским представлением)
 const dbPath = path.join(root, 'db.json');
-const db = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
 
 // Скрытые объекты (hidden: true) не попадают ни в данные, ни в меню, ни в страницы
 const visiblePrograms = (db.programs || []).filter(p => !p.hidden);
@@ -117,6 +118,17 @@ const core = {
   },
   sections: (db.sections || []).map(s => ({ id: s.id, title: s.title || '' })),
 
+  // Настройки расписания (S2)
+  scheduleSettings: {
+    defaultView: ['images', 'table', 'hybrid'].includes(db.scheduleSettings?.defaultView)
+      ? db.scheduleSettings.defaultView
+      : 'images',
+    // S84: 'hybrid' = обе вкладки открыты одновременно (равно переключателю на главной)
+    hybridActiveTab: ['images', 'table', 'hybrid'].includes(db.scheduleSettings?.hybridActiveTab)
+      ? db.scheduleSettings.hybridActiveTab
+      : 'images'
+  },
+
   // Лёгкий срез для меню — только id и name (скрытые исключены)
   navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '' })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '' })),
@@ -190,10 +202,25 @@ const modules = {
     description: p.description || '',
     category: p.category || '',
     photoAlbum: (p.photoAlbum || []).map(a => ({ image: fixPath(a.image), caption: a.caption || '' })),
-    // Структурные поля (S21/S22); mode — онлайн/офлайн/гибрид (S45), по умолчанию offline
-    scheduleStructured: (p.scheduleStructured || []).map(s => ({
-      day: s.day || '', time: s.time || '', place: s.place || '', mode: s.mode || 'offline'
-    })),
+    // Структурные поля (S21/S22); mode — зал/онлайн/гибрид (S3), по умолчанию hybrid;
+    // hall — big/small; trainerId — ссылку на тренера (fallback — первый тренер программы),
+    // trainer — ФИО для отображения без загрузки trainers.js
+    scheduleStructured: (p.scheduleStructured || [])
+      .filter(s => s.visible !== false)
+      .map(s => {
+        const tid = s.trainerId != null ? Number(s.trainerId)
+          : (p.trainers && p.trainers[0] && p.trainers[0].id != null ? Number(p.trainers[0].id) : null);
+        const trainer = tid != null ? (visibleTrainers.find(t => Number(t.id) === tid) || {}).name || '' : '';
+        return {
+          day: s.day || '',
+          time: s.time || '',
+          place: s.place || '',
+          hall: s.hall === 'small' ? 'small' : 'big',
+          mode: ['hall', 'online', 'hybrid'].includes(s.mode) ? s.mode : 'hybrid',
+          trainerId: tid,
+          trainer
+        };
+      }),
     // Ссылки на тренеров: скрытые исключены, нераспознанные (id: null) остаются текстом
     trainers: (p.trainers || [])
       .filter(tr => tr.id == null || visibleTrainerIds.has(Number(tr.id)))
@@ -225,24 +252,39 @@ const modules = {
   newsAll: newsSlice(Infinity),
   newsFull: newsFullMap(),
 
+  // S86: interval (сек) и position слайда доезжают до сайта — main.js их применяет
   slider: (db.sliders || []).map(s => ({
     id: s.id,
     title: s.title || '',
-    image: fixPath(s.image)
+    image: fixPath(s.image),
+    interval: Number(s.interval) > 0 ? Number(s.interval) : 5,
+    position: ['left', 'center', 'right'].includes(s.position) ? s.position : 'center'
   })).slice(0, 10),
 
-  schedule: (db.schedule || []).map(s => ({ id: s.id, image: fixPath(s.image) })),
+  schedule: (db.schedule || []).filter(s => s.image && s.visible !== false).map(s => ({ id: s.id, image: fixPath(s.image) })),
 
-  // Общий массив всех слотов всех программ — табличный вид расписания (S23)
+  // Общий массив всех слотов всех программ — табличный вид расписания (S23/S3).
+  // Скрытые (visible:false) исключаются; поля: зал (big/small), режим (hall/online/hybrid), тренер.
   scheduleTable: visiblePrograms.flatMap(p =>
-    (p.scheduleStructured || []).map(s => ({
-      program: p.name || '',
-      programId: p.id,
-      day: s.day || '',
-      time: s.time || '',
-      place: s.place || '',
-      mode: s.mode || 'offline'
-    }))
+    (p.scheduleStructured || [])
+      .filter(s => s.visible !== false)
+      .map(s => {
+        // Тренер слота: свой trainerId, иначе первый тренер программы
+        const tid = s.trainerId != null ? Number(s.trainerId)
+          : (p.trainers && p.trainers[0] && p.trainers[0].id != null ? Number(p.trainers[0].id) : null);
+        const trainer = tid != null ? (visibleTrainers.find(t => Number(t.id) === tid) || {}).name || '' : '';
+        return {
+          program: p.name || '',
+          programId: p.id,
+          day: s.day || '',
+          time: s.time || '',
+          place: s.place || '',
+          hall: s.hall === 'small' ? 'small' : 'big',
+          mode: ['hall', 'online', 'hybrid'].includes(s.mode) ? s.mode : 'hybrid',
+          trainerId: tid,
+          trainer
+        };
+      })
   ),
 
   prices: (db.prices || []).map(p => ({ id: p.id, image: fixPath(p.image) })),

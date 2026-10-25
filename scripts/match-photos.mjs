@@ -19,6 +19,7 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { flattenDb, nestDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -128,7 +129,7 @@ function backupDB() {
   console.log(`💾 Бэкап: ${dst}`);
 }
 
-const db = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
 const usedSlugs = new Set();
 let set = 0, skipped = 0, missing = [];
 
@@ -172,7 +173,7 @@ processList(db.trainers || [], scanFolders(path.join(dataDir, 'trainers')), 'tra
 
 if (set) {
   backupDB();
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf-8');
+  fs.writeFileSync(dbPath, JSON.stringify(nestDb(db), null, 2), 'utf-8');
   console.log('✅ db.json сохранён');
 } else {
   console.log('✅ Изменений нет');

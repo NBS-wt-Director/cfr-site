@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-23T18:57:18.018Z
+ * Сгенерировано: 2026-10-25T13:46:33.981Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.scheduleTable = [
@@ -12,7 +12,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "10:45-11:40",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -20,7 +23,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Понедельник",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -28,7 +34,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "8:00-8:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -36,7 +45,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "15:00-15:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -44,7 +56,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -52,7 +67,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "15:00-15:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -60,7 +78,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -68,7 +89,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "8:00-8:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -76,7 +100,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "15:00-15:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -84,7 +111,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "15:00-15:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровая спина",
@@ -92,7 +122,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Оздоровительное Ушу для детей (6-12 лет)",
@@ -100,7 +133,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Оздоровительное Ушу для детей (6-12 лет)",
@@ -108,7 +144,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Воскресенье",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Изобразительное искусство (4+)",
@@ -116,7 +155,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "17:00-17:50",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": null,
+    "trainer": ""
   },
   {
     "program": "ЛФК УШУ (10-15 лет)",
@@ -124,7 +166,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "ЛФК УШУ (10-15 лет)",
@@ -132,7 +177,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "ОФП Ушу (10+)",
@@ -140,7 +188,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Понедельник",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "ОФП Ушу (10+)",
@@ -148,7 +199,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "ОФП Ушу (10+)",
@@ -156,7 +210,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "ОФП Ушу (10+)",
@@ -164,7 +221,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Развивающие УШУ (4-6 лет)",
@@ -172,7 +232,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Развивающие УШУ (4-6 лет)",
@@ -180,7 +243,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Специальное ОФП (6-12 лет)",
@@ -188,7 +254,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "14:00-14:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875064589,
+    "trainer": "Оберюхтин Иван"
   },
   {
     "program": "Тайцзи-Цигун",
@@ -196,7 +265,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "20:00-20:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Тайцзи-Цигун",
@@ -204,7 +276,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Тайцзи-Цюань",
@@ -212,7 +287,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Понедельник",
     "time": "7:00-7:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
   },
   {
     "program": "Тайцзи-Цюань",
@@ -220,7 +298,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "7:00-7:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
   },
   {
     "program": "Тайцзи-Цюань",
@@ -228,7 +309,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "8:30-9:25",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
   },
   {
     "program": "Тканевое дыхание",
@@ -236,7 +320,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Основы массажа",
@@ -244,7 +331,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "20:00-20:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   },
   {
     "program": "Основы массажа",
@@ -252,7 +342,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "20:00-20:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   },
   {
     "program": "Гимнастика для суставов",
@@ -260,7 +353,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Гимнастика для шеи и органов чувств",
@@ -268,7 +364,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Здоровое тело",
@@ -276,7 +375,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Воскресенье",
     "time": "16:00-16:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655036,
+    "trainer": "Романовский Николай"
   },
   {
     "program": "Здоровье +",
@@ -284,7 +386,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875064589,
+    "trainer": "Оберюхтин Иван"
   },
   {
     "program": "Здоровье +",
@@ -292,7 +397,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "17:00-17:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875064589,
+    "trainer": "Оберюхтин Иван"
   },
   {
     "program": "Здоровье женщины",
@@ -300,7 +408,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "9:30-10:25",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Массаж внутренних органов",
@@ -308,7 +419,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Воскресенье",
     "time": "15:00-15:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655036,
+    "trainer": "Романовский Николай"
   },
   {
     "program": "Массажные и восстановительные техники",
@@ -316,7 +430,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "8:30-9:25",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655036,
+    "trainer": "Романовский Николай"
   },
   {
     "program": "Мобилизация таза и поясницы",
@@ -324,7 +441,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "20:00-20:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874476663,
+    "trainer": "Кравец Оксана Борисовна"
   },
   {
     "program": "Мужское долголетие",
@@ -332,7 +452,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "9:30-10:25",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Растяжка",
@@ -340,7 +463,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Растяжка",
@@ -348,7 +474,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Техника самомассажа с палочкой",
@@ -356,7 +485,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875064589,
+    "trainer": "Оберюхтин Иван"
   },
   {
     "program": "Фейс Билдинг",
@@ -364,7 +496,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Среда",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770874411766,
+    "trainer": "Глазырина Илона"
   },
   {
     "program": "Акробатика для мозга",
@@ -372,7 +507,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   },
   {
     "program": "Координация",
@@ -380,7 +518,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Пятница",
     "time": "21:00-21:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   },
   {
     "program": "ОФП Меч",
@@ -388,7 +529,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Суббота",
     "time": "16:00-17:25",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": null,
+    "trainer": ""
   },
   {
     "program": "Функциональный тренинг",
@@ -396,7 +540,10 @@ window.SITE_DATA.scheduleTable = [
     "day": "Вторник",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   },
   {
     "program": "Функциональный тренинг",
@@ -404,6 +551,9 @@ window.SITE_DATA.scheduleTable = [
     "day": "Четверг",
     "time": "19:00-19:55",
     "place": "",
-    "mode": "offline"
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770800269014,
+    "trainer": "Глазырин Михаил"
   }
 ];

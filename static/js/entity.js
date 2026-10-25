@@ -63,7 +63,11 @@
   // Блок «Расписание» на странице программы
   function scheduleBlock(slots) {
     if (!slots || !slots.length) return '';
-    return '<h2 class="entity-subtitle">📅 Расписание</h2>' + slotsTable(slots, false);
+    // Обогощаем слоты hall/mode/trainer (trainer уже в exported данных)
+    var enriched = slots.map(function (s) {
+      return { day: s.day, time: s.time, hall: s.hall, mode: s.mode, trainer: s.trainer || '' };
+    });
+    return '<h2 class="entity-subtitle">📅 Расписание</h2>' + slotsTable(enriched, false);
   }
 
   // Убирает из описания тренера секции, которые выводятся отдельными блоками
@@ -98,7 +102,11 @@
       var mine = refs.some(function (tr) { return sameTrainer(tr, t); });
       if (!mine) return;
       (p.scheduleStructured || []).forEach(function (s) {
-        slots.push({ day: s.day, time: s.time, place: s.place, mode: s.mode, program: p.name, programId: p.id });
+        slots.push({
+          day: s.day, time: s.time, hall: s.hall, mode: s.mode,
+          program: p.name, programId: p.id,
+          trainer: s.trainer || ''
+        });
       });
     });
     return slots;

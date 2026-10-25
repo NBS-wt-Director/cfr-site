@@ -338,6 +338,18 @@ a { text-decoration: none; color: inherit; }
   border-radius: 1.5rem;
 }
 
+/* S86: позиция текста слайда из данных (position: left|center|right) */
+.slider-text.pos-left {
+  left: 5%;
+  transform: translate(0, -50%);
+  text-align: left;
+}
+.slider-text.pos-right {
+  left: auto; right: 5%;
+  transform: translate(0, -50%);
+  text-align: right;
+}
+
 .slider-title {
   font-size: clamp(2.25rem, 6vw, var(--fs-slider-title));
   font-weight: 900;
@@ -1350,15 +1362,15 @@ a.entity-trainer-card:hover {
 .week-chip-place { opacity: 0.75; font-size: 0.8125rem; }
 
 /* Режимы занятия (S45): онлайн — голубой, офлайн — зелёный, гибрид — оранжевый */
-.mode-online  { --mode-color: #0284c7; --mode-bg: #e0f2fe; }
-.mode-offline { --mode-color: #16a34a; --mode-bg: #dcfce7; }
-.mode-hybrid  { --mode-color: #ea580c; --mode-bg: #ffedd5; }
+.mode-hall   { --mode-color: #059669; --mode-bg: #d1fae5; }
+.mode-online { --mode-color: #0284c7; --mode-bg: #e0f2fe; }
+.mode-hybrid { --mode-color: #ea580c; --mode-bg: #ffedd5; }
 
-/* Чип на недельной доске: цветная рамка/подложка по режиму */
-.week-chip.mode-online, .week-chip.mode-offline, .week-chip.mode-hybrid {
-  border-color: var(--mode-color);
-  background: var(--mode-bg);
+.week-chip.mode-hall, .week-chip.mode-online, .week-chip.mode-hybrid {
+  border-left: 4px solid var(--mode-color);
 }
+
+.week-chip-trainer { display: block; font-size: 0.75rem; opacity: 0.65; }
 
 .week-chip-mode { font-size: 0.9375rem; line-height: 1; }
 

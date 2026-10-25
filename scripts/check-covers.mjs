@@ -22,6 +22,7 @@ import path from 'path';
 import { execFileSync } from 'child_process';
 import nodemailer from 'nodemailer';
 import { fileURLToPath } from 'url';
+import { flattenDb, nestDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -56,14 +57,16 @@ function backupDB() {
 
 function readDb() {
   try {
-    return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    // S4: плоский или вложенный — обработчики работают с плоским
+    return flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
   } catch {
     return {};
   }
 }
 
 function writeDb(db) {
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf-8');
+  // S4: всегда пишем вложенный формат (data.*/settings.*)
+  fs.writeFileSync(dbPath, JSON.stringify(nestDb(db), null, 2), 'utf-8');
 }
 
 // Получить размеры изображения через ImageMagick

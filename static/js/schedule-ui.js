@@ -8,17 +8,21 @@
  *
  * Правила:
  *   - сортировка: дни Пн→Вс, внутри дня — по возрастанию времени;
- *   - режим занятия mode ∈ online|offline|hybrid (по умолчанию offline):
- *     пиктограмма 🖥/🏠/🔄 + цвет (классы .mode-online/.mode-offline/.mode-hybrid).
+ *   - режим занятия mode ∈ hall|online|hybrid (по умолчанию hybrid):
+ *     🏋️ зал / 🖥 онлайн / 🔄 гибрид (классы .mode-hall/.mode-online/.mode-hybrid);
+ *   - зал hall ∈ big|small (большой/малый);
+ *   - тренер — ФИО из данных слота (trainer).
  */
 (function () {
   var DAYS = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 
   var MODES = {
+    hall: { icon: '🏋️', label: 'зал' },
     online: { icon: '🖥', label: 'онлайн' },
-    offline: { icon: '🏠', label: 'офлайн' },
     hybrid: { icon: '🔄', label: 'гибрид' }
   };
+
+  var HALLS = { big: 'большой зал', small: 'малый зал' };
 
   function esc(s) {
     return String(s)
@@ -27,7 +31,11 @@
   }
 
   function modeOf(slot) {
-    return MODES[slot.mode] ? slot.mode : 'offline';
+    return MODES[slot.mode] ? slot.mode : 'hybrid';
+  }
+
+  function hallOf(slot) {
+    return HALLS[slot.hall] ? slot.hall : 'big';
   }
 
   function modeBadge(slot) {
@@ -57,8 +65,8 @@
 
   /**
    * Недельная доска: 7 колонок (Пн–Вс), каждая тренировка — овальный чип
-   * с иконкой режима, временем и названием программы.
-   * slots: [{ day, time, place, mode, program, programId }]
+   * с иконкой режима, временем, названием программы, залом и тренером.
+   * slots: [{ day, time, hall, mode, program, programId, trainer }]
    */
   function weekBoard(slots) {
     var byDay = {};
@@ -68,12 +76,13 @@
     var cols = DAYS.map(function (day) {
       var chips = (byDay[day] || []).map(function (s) {
         var m = modeOf(s);
-        var place = s.place ? '<span class="week-chip-place">' + esc(s.place) + '</span>' : '';
+        var hall = '<span class="week-chip-place">' + (s.hall === 'small' ? 'малый зал' : 'большой зал') + '</span>';
+        var trainer = s.trainer ? '<span class="week-chip-trainer">🧑‍🏫 ' + esc(s.trainer) + '</span>' : '';
         var href = s.programId != null ? 'program.html?id=' + s.programId : '#';
         return '<a class="week-chip mode-' + m + '" href="' + href + '" title="' + esc(s.program || '') + '">' +
           '<span class="week-chip-mode">' + MODES[m].icon + '</span>' +
           '<span class="week-chip-time">' + esc(s.time) + '</span>' +
-          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + place + '</a>';
+          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + trainer + '</a>';
       }).join('');
       return '<div class="week-col">' +
         '<div class="week-col-title">' + day + '</div>' +
@@ -86,7 +95,7 @@
   /**
    * Компактная таблица (страницы программ и тренеров).
    * withProgram — добавлять колонку «Программа» (для «Мои тренировки»).
-   * Колонка «Место» не выводится (S26).
+   * Колонки: День | Время | Зал | Тренер
    */
   function table(slots, withProgram) {
     var rows = sortSlots(slots).map(function (s) {
@@ -97,17 +106,23 @@
           : '<td>' + esc(s.program || '') + '</td>';
       }
       return '<tr>' + prog + '<td>' + esc(s.day) + '</td>' +
-        '<td>' + modeBadge(s) + ' ' + esc(s.time) + '</td></tr>';
+        '<td>' + modeBadge(s) + ' ' + esc(s.time) + '</td>' +
+        '<td>' + esc(HALLS[hallOf(s)]) + '</td>' +
+        (s.trainer != null ? '<td>' + esc(s.trainer || '—') + '</td>' : '') +
+        '</tr>';
     }).join('');
-    var head = withProgram ? '<th>Программа</th>' : '';
+    var head = (withProgram ? '<th>Программа</th>' : '') +
+      '<th>День</th><th>Время</th><th>Зал</th>' +
+      (slots && slots.length && slots[0].trainer != null ? '<th>Тренер</th>' : '');
     return '<div class="schedule-table-wrap"><table class="schedule-table">' +
-      '<thead><tr>' + head + '<th>День</th><th>Время</th></tr></thead>' +
+      '<thead><tr>' + head + '</tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
   }
 
   window.ScheduleUI = {
     DAYS: DAYS,
     MODES: MODES,
+    HALLS: HALLS,
     sortSlots: sortSlots,
     weekBoard: weekBoard,
     table: table,

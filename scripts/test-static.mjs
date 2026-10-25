@@ -14,6 +14,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { JSDOM } from 'jsdom';
+import { flattenDb } from './db-format.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const staticDir = path.join(__dirname, '..', 'static');
@@ -45,52 +46,55 @@ function loadPage(htmlFile, query = '') {
   return window;
 }
 
-const db = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'));
+const db = flattenDb(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8')));
 const visPrograms = db.programs.filter(p => !p.hidden);
 const visTrainers = db.trainers.filter(t => !t.hidden);
 
-// ── Главная: расписание + переключатель ──
+// ── Главная: расписание (S2: режим управляется админкой; S3: зал/режимы) ──
 {
   const w = loadPage('index.html');
   const d = w.document;
   check('главная: картинки расписания отрисованы',
     d.querySelectorAll('#schedule-grid .schedule-item img').length > 0);
 
+  // S2: режим задаётся админкой (scheduleSettings.defaultView), переключатель — только в гибрид
+  const settings = w.SITE_DATA.scheduleSettings || {};
   const sw = d.getElementById('schedule-switch');
-  check('главная: переключатель виден', sw && !sw.hidden);
+  check('главная: scheduleSettings экспортирован в core.js (S2)',
+    ['images', 'table', 'hybrid'].includes(settings.defaultView));
+  check('главная: переключатель скрыт в режиме картинок / виден в гибриде (S2)',
+    settings.defaultView === 'hybrid' ? (sw && !sw.hidden) : (sw && sw.hidden));
+  check('главная: в режиме картинок таблица скрыта',
+    d.getElementById('schedule-table-view').hidden);
 
-  const tableBtn = sw && sw.querySelector('[data-view="table"]');
-  tableBtn.click();
-  const tableView = d.getElementById('schedule-table-view');
-  check('главная: недельная доска показана по клику', tableView && !tableView.hidden && d.getElementById('schedule-grid').hidden);
-  check('главная: доска = 7 колонок-дней (S32)', tableView.querySelectorAll('.week-col').length === 7);
+  // Недельная доска — напрямую через общий ScheduleUI (S45/S3)
+  const board = d.createElement('div');
+  board.innerHTML = w.ScheduleUI.weekBoard(w.SITE_DATA.scheduleTable);
+  check('главная: доска = 7 колонок-дней (S32)', board.querySelectorAll('.week-col').length === 7);
   check('главная: тренировки — овальные чипы со ссылками (S32)',
-    tableView.querySelectorAll('.week-chip[href^="program.html?id="]').length > 0 &&
-    tableView.querySelectorAll('.week-chip-time').length > 0);
-  check('главная: чипы с режимом онлайн/офлайн/гибрид (S45)',
-    tableView.querySelectorAll('.week-chip.mode-offline, .week-chip.mode-online, .week-chip.mode-hybrid').length > 0);
+    board.querySelectorAll('.week-chip[href^="program.html?id="]').length > 0 &&
+    board.querySelectorAll('.week-chip-time').length > 0);
+  check('главная: чипы с режимом зал/онлайн/гибрид (S3)',
+    board.querySelectorAll('.week-chip.mode-hall, .week-chip.mode-online, .week-chip.mode-hybrid').length > 0);
+  check('главная: чипы показывают зал (S3)', board.querySelectorAll('.week-chip-place').length > 0);
+  check('главная: чипы показывают тренера (S3)', board.querySelectorAll('.week-chip-trainer').length > 0);
   // S45: сортировка времени по возрастанию внутри каждого дня
   {
     const mins = t => { const m = /^(\d{1,2})[:.](\d{2})/.exec(t); return m ? +m[1] * 60 + +m[2] : 0; };
-    const okTime = [...tableView.querySelectorAll('.week-col-body')].every(col => {
+    const okTime = [...board.querySelectorAll('.week-col-body')].every(col => {
       const arr = [...col.querySelectorAll('.week-chip-time')].map(e => mins(e.textContent));
       return arr.every((v, i) => i === 0 || arr[i - 1] <= v);
     });
     check('главная: время в колонках по возрастанию (S45)', okTime);
   }
-  check('главная: по умолчанию активна вкладка «Картинки» (S36 откат)',
-    loadPage('index.html').document.querySelector('.schedule-switch-btn[data-view="images"]').classList.contains('active'));
-  check('главная: в режиме картинок таблица скрыта',
-    loadPage('index.html').document.getElementById('schedule-table-view').hidden);
   // S40: hidden должен скрывать на самом деле — display из класса не должен перебивать
   const cssText = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
   check('CSS: правило [hidden] { display: none !important } (S40)',
     /\[hidden\]\s*\{[^}]*display:\s*none\s*!important/.test(cssText));
-  check('главная: выбор сохранён в localStorage', w.localStorage.getItem('schedule-view') === 'images');
-
-  const imgBtn = sw.querySelector('[data-view="images"]');
-  imgBtn.click();
-  check('главная: возврат к картинкам', !d.getElementById('schedule-grid').hidden && tableView.hidden);
+  // S2: режим больше не хранится в localStorage — только настройка админки
+  const mainJs = fs.readFileSync(path.join(staticDir, 'js', 'main.js'), 'utf-8');
+  check('главная: localStorage для режима расписания не используется (S2)',
+    !/localStorage\.(get|set)Item\(['"]schedule-view/.test(mainJs));
 }
 
 // ── Страница программы: блоки S22 ──
@@ -123,7 +127,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // На Яндекс.Диске нет папок с фото для этих трёх программ — обложку взять неоткуда (S28)
   const NO_PHOTO_ON_DISK = ['Специальное ОФП (6-12 лет)', 'Основы работы с оружием', 'Массаж внутренних органов'];
   check('обложки: у всех видимых программ (кроме 3 без фото на диске) есть image и файл существует (S28)',
-    JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'))
+    flattenDb(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8')))
       .programs.filter(x => !x.hidden && !NO_PHOTO_ON_DISK.includes(x.name))
       .every(x => x.image && fs.existsSync(path.join(staticDir, x.image.replace(/^\//, '')))));
 }
@@ -209,7 +213,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
       f.includes('https://yandex.ru/maps/-/CXRGU2p2') && f.includes('https://go.2gis.com/WzwQ2') &&
       f.includes('OIA.UYe by KodaCode'));
   }
-  const albumData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8')).album || [];
+  const albumData = flattenDb(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'))).album || [];
   check(`альбом: заполнен из скачанных фото (S37, ${albumData.length} шт.)`,
     albumData.length > 100 && albumData.every(a =>
       a.thumb && fs.existsSync(path.join(staticDir, a.thumb.replace(/^\//, '')))));
