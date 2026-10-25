@@ -195,19 +195,38 @@ a { text-decoration: none; color: inherit; }
 .nav-desktop .dropdown-menu a:hover { background: #f3f4f6; }
 .nav-desktop .dropdown-menu ul { display: block; list-style: none; }
 
-/* S23: вложенные группы направлений в desktop-меню «Программы» */
-.nav-desktop .dropdown-menu .dgroup { padding: 0.25rem 0; border-top: 1px solid #f3f4f6; }
+/* S23: вложенные сворачиваемые группы направлений в desktop-меню «Программы» */
+.nav-desktop .dropdown-menu .dgroup { padding: 0; border-top: 1px solid #f3f4f6; }
 .nav-desktop .dropdown-menu .dgroup:first-child { border-top: none; }
+.nav-desktop .dropdown-menu .dgroup-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.nav-desktop .dropdown-menu .dgroup-toggle:hover { background: #f3f4f6; }
 .nav-desktop .dropdown-menu .dgroup-title {
-  display: block;
-  padding: 0.375rem 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--color-primary);
 }
-.nav-desktop .dropdown-menu .dgroup-list { padding-left: 0; }
+.nav-desktop .dropdown-menu .dgroup-toggle .caret {
+  transition: transform 0.2s;
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+}
+.nav-desktop .dropdown-menu .dgroup.open > .dgroup-toggle .caret { transform: rotate(180deg); }
+.nav-desktop .dropdown-menu .dgroup-list { display: none; padding-left: 0; }
+.nav-desktop .dropdown-menu .dgroup.open > .dgroup-list { display: block; }
 .nav-desktop .dropdown-menu .dgroup-list a { padding: 0.3rem 1rem 0.3rem 1.5rem; font-size: 0.9375rem; }
 
 .mobile-toggle {
@@ -533,36 +552,31 @@ a { text-decoration: none; color: inherit; }
 
 /* ============================================
    ГРУППИРОВКА ПРОГРАММ ПО НАПРАВЛЕНИЯМ (S23)
+   Панели — те же .collapsible, что на programs.html;
+   в шапке панели — ссылка на страницу направления
    ============================================ */
-.home-dir-section {
-  margin-bottom: 3rem;
-}
-.home-dir-header {
+.collapsible-head {
   display: flex;
-  justify-content: space-between;
+  align-items: stretch;
+}
+.collapsible-head .collapsible-toggle {
+  flex: 1;
+  width: auto;
+}
+.collapsible-more {
+  display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-primary);
-}
-.home-dir-title {
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  margin: 0;
-  color: var(--color-text);
-}
-.home-dir-more {
+  padding: 0 1.25rem;
+  background: #f3f4f6;
   font-size: 0.9375rem;
+  font-weight: 600;
   color: var(--color-primary);
-  text-decoration: underline;
+  text-decoration: none;
   white-space: nowrap;
-  flex-shrink: 0;
+  border-left: 1px solid #e5e7eb;
+  transition: background 0.2s;
 }
-.programs-grid-inner {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
+.collapsible-more:hover { background: #e5e7eb; color: #002A3A; }
 
 /* Программы — компактные плитки (без текста) */
 .programs-grid {

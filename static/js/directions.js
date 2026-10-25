@@ -110,7 +110,7 @@
       ? '<div class="direction-desc">' + esc(dir.description) + '</div>'
       : '';
 
-    return '<section class="direction-section" id="dir-' + dir.id + '">' +
+    return '<section class="direction-section" id="' + dir.id + '">' +
       '<h2 class="direction-name">' + esc(dir.name) + '</h2>' +
       coverWrap +
       descHtml +

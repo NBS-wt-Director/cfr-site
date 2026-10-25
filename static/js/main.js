@@ -146,8 +146,12 @@
     var directions = data.navDirections || data.directions || [];
     var visibleDirs = directions.filter(function (d) { return !d.hidden; });
 
-    // S23: группировка по направлениям (как на странице программ)
+    // S23: группировка по направлениям — сворачиваемые панели как на programs.html,
+    // у заголовка — ссылка на страницу направления
     if (visibleDirs.length > 0) {
+      var state = {};
+      try { state = JSON.parse(localStorage.getItem('home_sections') || '{}'); } catch (e) {}
+
       el.innerHTML = visibleDirs.map(function (d) {
         var dirPrograms = (d.programs || []).map(function (dp) {
           return data.programs.find(function (p) { return p.id === dp.id; });
@@ -168,17 +172,37 @@
           </div>`;
         }).join('');
 
-        return `<div class="home-dir-section">
-          <div class="home-dir-header">
-            <h3 class="home-dir-title">${escHtml(d.name)}</h3>
-            <a href="directions.html#dir-${d.id}" class="home-dir-more">Подробнее →</a>
+        const open = state[d.id] !== false; // по умолчанию раскрыто
+        return `<div class="collapsible${open ? ' open' : ''}" data-dir="${d.id}">
+          <div class="collapsible-head">
+            <button type="button" class="collapsible-toggle" aria-expanded="${open}">
+              <span class="collapsible-title">${escHtml(d.name)} <span class="collapsible-count">${dirPrograms.length}</span></span>
+              <span class="caret">▾</span>
+            </button>
+            <a class="collapsible-more" href="directions.html#${d.id}">Подробнее →</a>
           </div>
-          <div class="programs-grid-inner">${tiles}</div>
+          <div class="collapsible-body">
+            <div class="programs-grid">${tiles}</div>
+          </div>
         </div>`;
       }).join('');
+
+      // Сворачивание + сохранение состояния (как на programs.html)
+      el.querySelectorAll('.collapsible').forEach(function (panel) {
+        const btn = panel.querySelector('.collapsible-toggle');
+        btn.addEventListener('click', function () {
+          const isOpen = panel.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+          try {
+            const st = JSON.parse(localStorage.getItem('home_sections') || '{}');
+            st[panel.dataset.dir] = isOpen;
+            localStorage.setItem('home_sections', JSON.stringify(st));
+          } catch (e) {}
+        });
+      });
     } else {
       // Плоская сетка (обратная совместимость, если направлений нет)
-      el.innerHTML = data.programs.map(function (p) {
+      el.innerHTML = `<div class="programs-grid">` + data.programs.map(function (p) {
         return `<div class="program-card" id="program-${p.id}">
           ${tileImage(p.image, `program.html?id=${p.id}`, p.name)}
           <div class="program-content">
@@ -191,7 +215,7 @@
             </div>
           </div>
         </div>`;
-      }).join('');
+      }).join('') + `</div>`;
     }
   }
 

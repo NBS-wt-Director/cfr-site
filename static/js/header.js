@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .filter(function (d) { return !d.hidden && d.programs && d.programs.length > 0; });
 
   // S23: многоуровневое меню программ по направлениям (desktop)
+  // Группы сворачиваемые: заголовок-кнопка раскрывает список программ
   var desktopProgramsMenu;
   if (directions.length > 0) {
     desktopProgramsMenu = directions.map(function (d) {
@@ -20,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
       }).join('');
       return '<li class="dgroup">' +
-        '<span class="dgroup-title">' + d.name + '</span>' +
+        '<button type="button" class="dgroup-toggle" aria-expanded="false">' +
+          '<span class="dgroup-title">' + d.name + '</span>' +
+          '<span class="caret">▾</span>' +
+        '</button>' +
         '<ul class="dgroup-list">' + items + '</ul>' +
       '</li>';
     }).join('');
@@ -176,6 +180,19 @@ document.addEventListener('DOMContentLoaded', function() {
       var willOpen = !dropdown.classList.contains('dropdown-open');
       closeAllDropdowns(dropdown);
       setDropdown(dropdown, willOpen);
+    });
+  });
+
+  /* ============================================
+     S23: сворачиваемые группы направлений в desktop-меню
+     ============================================ */
+  document.querySelectorAll('.dgroup-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = btn.closest('.dgroup');
+      var open = group.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
     });
   });
 
