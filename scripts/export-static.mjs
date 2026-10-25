@@ -201,6 +201,7 @@ const modules = {
     image: fixPath(p.image),
     description: p.description || '',
     category: p.category || '',
+    directionId: p.directionId || '',  // связь с направлением (S23)
     photoAlbum: (p.photoAlbum || []).map(a => ({ image: fixPath(a.image), caption: a.caption || '' })),
     // Структурные поля (S21/S22); mode — зал/онлайн/гибрид (S3), по умолчанию hybrid;
     // hall — big/small; trainerId — ссылку на тренера (fallback — первый тренер программы),
@@ -240,6 +241,22 @@ const modules = {
     experienceCoach: t.experienceCoach || '',
     education: t.education || '',
     motto: t.motto || ''
+  })),
+
+  // S23: Направления (отдельная сущность)
+  // hidden: true = «Скрытые» (неудаляемый встроенный раздел)
+  directions: (db.directions || []).map(d => ({
+    id: d.id || '',
+    name: d.name || '',
+    description: d.description || '',
+    image: fixPath(d.image),
+    hidden: !!d.hidden,
+    isBuiltin: !!d.isBuiltin,  // встроенные (например «Скрытые») — не удаляются
+    programs: (d.programs || []).map(p => ({
+      id: p.id,
+      name: p.name || '',
+      image: fixPath(p.image)
+    }))
   })),
 
   // Новости разделены на три модуля по потребителю:

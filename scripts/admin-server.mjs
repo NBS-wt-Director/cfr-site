@@ -1421,6 +1421,74 @@ async function handleSendReminder(req, res) {
   }
 
   // ============================================
+  // S23: Направления
+  // ============================================
+  async function handleGetDirections(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const db = readDb();
+    const dirs = (db.directions || []).map(d => ({
+      id: d.id || '',
+      name: d.name || '',
+      description: d.description || '',
+      image: d.image || '',
+      hidden: !!d.hidden,
+      isBuiltin: !!d.isBuiltin,
+      programs: (d.programs || []).map(p => ({ id: p.id, name: p.name || '', image: p.image || '' }))
+    }));
+    sendJSON(res, 200, { directions: dirs });
+  }
+
+  async function handleSaveDirections(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    if (!body?.directions || !Array.isArray(body.directions)) {
+      return sendJSON(res, 400, { error: 'Нет данных направлений' });
+    }
+    try {
+      const db = readDb();
+      if (!db.settings) db.settings = {};
+      db.settings.directions = body.directions.map(d => ({
+        id: String(d.id || ''),
+        name: String(d.name || '').trim(),
+        description: String(d.description || '').trim(),
+        image: String(d.image || '').trim(),
+        hidden: !!d.hidden,
+        isBuiltin: !!d.isBuiltin,
+        programs: (d.programs || []).map(p => ({
+          id: p.id,
+          name: p.name || '',
+          image: p.image || ''
+        }))
+      }));
+      // Обновляем directionId в программах
+      const programs = db.data?.programs || db.programs || [];
+      programs.forEach(p => {
+        const dir = body.directions.find(d => d.programs && d.programs.some(pp => pp.id === p.id));
+        if (dir) {
+          p.directionId = dir.id;
+        } else if (p.hidden) {
+          p.directionId = 'dir-hidden';
+        } else {
+          delete p.directionId;
+        }
+      });
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения направлений:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
   // Справка для администраторов (S8)
   // ============================================
 
@@ -1684,6 +1752,14 @@ const server = http.createServer(async (req, res) => {
   // Занятия расписания (S3)
   if (pathname === '/api/admin/save-schedule-slots' && method === 'POST') {
     return handleSaveScheduleSlots(req, res);
+  }
+
+  // S23: Направления
+  if (pathname === '/api/admin/get-directions' && method === 'POST') {
+    return handleGetDirections(req, res);
+  }
+  if (pathname === '/api/admin/save-directions' && method === 'POST') {
+    return handleSaveDirections(req, res);
   }
 
   // Экспорт БД (S6)

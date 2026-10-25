@@ -21,7 +21,7 @@
 export const DATA_KEYS = ['news', 'programs', 'trainers', 'schedule', 'prices', 'album'];
 export const SETTINGS_KEYS = [
   'appearance', 'siteSettings', 'newsSettings', 'scheduleSettings',
-  'emailConfig', 'globalDivider', 'sliderSettings', 'contacts'
+  'emailConfig', 'globalDivider', 'sliderSettings', 'contacts', 'directions'
 ];
 
 function isPlainObject(v) {

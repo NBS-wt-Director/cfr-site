@@ -434,6 +434,7 @@
             <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
             <a href="#schedule" data-section="schedule">📅 Расписание</a>
             <a href="#prices" data-section="prices">💰 Цены</a>
+            <a href="#directions" data-section="directions">📁 Направления</a>
             <a href="#album" data-section="album">📸 Альбом</a>
           </div>
         </div>
@@ -810,6 +811,7 @@
       if (sectionId === 'appearance') loadAppearanceSection();
       if (sectionId === 'main-data') loadMainDataSection();
       if (sectionId === 'email') loadEmailSettings();
+      if (sectionId === 'directions') loadDirectionsSection();
       if (sectionId === 'help') loadHelpSection();
       if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
     }
@@ -1562,6 +1564,123 @@
       } catch (err) {
         resultDiv.innerHTML = `<p style="color:var(--danger);">❌ Ошибка: ${err.message}</p>`;
       }
+    }
+
+    /* ============================================
+       Направления (S23)
+       ============================================ */
+    let directionsState = { directions: [] };
+
+    async function loadDirectionsSection() {
+      const content = document.getElementById('admin-content');
+      content.innerHTML = '';
+
+      const card = document.createElement('div');
+      card.className = 'section-card';
+      content.appendChild(card);
+
+      const dirList = document.createElement('div');
+      dirList.id = 'directions-list';
+      card.appendChild(dirList);
+
+      await fetchDirections();
+    }
+
+    async function fetchDirections() {
+      const res = await api('/api/admin/get-directions', { method: 'POST', body: '{}' });
+      if (res.ok) {
+        directionsState.directions = res.data.directions || [];
+        renderDirectionsList();
+      }
+    }
+
+    function renderDirectionsList() {
+      const list = document.getElementById('directions-list');
+      if (!list) return;
+
+      list.innerHTML = directionsState.directions.map(function (d, i) {
+        var hidden = d.hidden ? ' 🙈 Скрыто' : ' 👁 Показывать';
+        var builtin = d.isBuiltin ? ' <small>(встроенное, нельзя удалить)</small>' : '';
+        var progList = (d.programs || []).map(function (p) {
+          return '<li>' + escHtml(p.name) + '</li>';
+        }).join('');
+
+        return '<div class="direction-admin-item" style="margin-bottom:1rem;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">' +
+            '<strong>' + escHtml(d.name) + hidden + builtin + '</strong>' +
+            (d.isBuiltin ? '' :
+              '<button class="btn btn-sm btn-danger" onclick="deleteDirection(' + i + ')">Удалить</button>') +
+          '</div>' +
+          '<div style="margin-bottom:0.5rem;">' +
+            '<label>Описание:</label><br>' +
+            '<textarea class="direction-desc-input" rows="2" style="width:100%;margin-top:0.25rem;">' + escHtml(d.description || '') + '</textarea>' +
+          '</div>' +
+          '<div style="margin-bottom:0.5rem;">' +
+            '<label>Обложка (путь или data:):</label><br>' +
+            '<input type="text" class="direction-img-input" value="' + escAttr(d.image || '') + '" style="width:100%;margin-top:0.25rem;">' +
+          '</div>' +
+          (progList ? '<div><strong>Программы (' + (d.programs || []).length + '):</strong><ul>' + progList + '</ul></div>' : '') +
+        '</div>';
+      }).join('');
+
+      // Кнопка сохранения
+      var saveBtn = document.createElement('button');
+      saveBtn.className = 'btn btn-primary';
+      saveBtn.textContent = '💾 Сохранить направления';
+      saveBtn.style.marginTop = '1rem';
+      saveBtn.onclick = saveDirections;
+      list.appendChild(saveBtn);
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function escAttr(s) {
+      return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    async function saveDirections() {
+      var items = document.querySelectorAll('.direction-admin-item');
+      var dirs = [];
+      items.forEach(function (item, i) {
+        var name = item.querySelector('strong').childNodes[0].textContent.replace(/ 🙈 Скрыто| 👁 Показывать| \(.*/, '').trim();
+        var desc = item.querySelector('.direction-desc-input').value;
+        var img = item.querySelector('.direction-img-input').value;
+        var hidden = item.querySelector('strong').textContent.includes('🙈');
+        var builtin = item.querySelector('strong').textContent.includes('встроенное');
+        var progs = [];
+        var progItems = item.querySelectorAll('ul li');
+        progItems.forEach(function (li) {
+          progs.push({ id: '', name: li.textContent.trim(), image: '' });
+        });
+        dirs.push({ id: directionsState.directions[i].id, name: name, description: desc, image: img, hidden: hidden, isBuiltin: builtin, programs: progs });
+      });
+
+      try {
+        var res = await api('/api/admin/save-directions', {
+          method: 'POST',
+          body: JSON.stringify({ directions: dirs })
+        });
+        if (res.ok) {
+          alert('✅ Направления сохранены!');
+          await fetchDirections();
+        } else {
+          alert('❌ Ошибка: ' + (res.data?.error || 'неизвестная'));
+        }
+      } catch (err) {
+        alert('❌ Ошибка сети: ' + err.message);
+      }
+    }
+
+    function deleteDirection(index) {
+      var d = directionsState.directions[index];
+      if (d.isBuiltin) {
+        alert('❌ Встроенное направление нельзя удалить!');
+        return;
+      }
+      if (!confirm('Удалить направление "' + d.name + '"?')) return;
+      directionsState.directions.splice(index, 1);
+      saveDirections();
     }
 
     /* ============================================
@@ -2781,7 +2900,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=17">
+<link rel="stylesheet" href="/css/style.css?v=18">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">

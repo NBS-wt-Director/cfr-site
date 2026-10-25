@@ -167,7 +167,8 @@ a { text-decoration: none; color: inherit; }
 .nav-desktop .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background: #fff;
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   border-radius: 0.5rem;
@@ -178,8 +179,12 @@ a { text-decoration: none; color: inherit; }
   display: none;
   z-index: 300;
 }
-.nav-desktop .dropdown-right .dropdown-menu { left: auto; right: 0; }
-.nav-desktop .dropdown:hover > .dropdown-menu { display: block; }
+.nav-desktop .dropdown-right .dropdown-menu {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+.nav-desktop .dropdown.dropdown-open > .dropdown-menu { display: block; }
 .nav-desktop .dropdown-menu a {
   display: block;
   padding: 0.5rem 1rem;
@@ -252,6 +257,47 @@ a { text-decoration: none; color: inherit; }
   margin-left: 1rem;
 }
 .m-group.open > .m-group-list { display: block; }
+
+/* S23: мобильное выпадающее меню направлений (вложенный аккордеон) */
+.m-dropdown { border-radius: 0.5rem; }
+.m-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  margin-top: 0.375rem;
+}
+.m-dropdown-toggle:hover { background: #f3f4f6; }
+.m-dropdown-toggle .caret { transition: transform 0.2s; font-size: 0.8em; }
+.m-dropdown.open > .m-dropdown-toggle .caret { transform: rotate(180deg); }
+.m-dropdown-menu {
+  display: none;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--color-accent);
+  margin-left: 0.75rem;
+  margin-top: 0.25rem;
+}
+.m-dropdown.open > .m-dropdown-menu { display: block; }
+.m-dropdown-menu li { list-style: none; }
+.m-dropdown-menu a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-radius: 0.375rem;
+}
+.m-dropdown-menu a:hover { background: #f3f4f6; color: var(--color-text); }
 
 .mobile-call {
   display: flex;
@@ -469,6 +515,39 @@ a { text-decoration: none; color: inherit; }
   margin: 0 auto;
 }
 .prices-item img { width: 100%; }
+
+/* ============================================
+   ГРУППИРОВКА ПРОГРАММ ПО НАПРАВЛЕНИЯМ (S23)
+   ============================================ */
+.home-dir-section {
+  margin-bottom: 3rem;
+}
+.home-dir-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+.home-dir-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text);
+}
+.home-dir-more {
+  font-size: 0.9375rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.programs-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
 
 /* Программы — компактные плитки (без текста) */
 .programs-grid {
@@ -1374,6 +1453,33 @@ a.entity-trainer-card:hover {
 
 .week-chip-mode { font-size: 0.9375rem; line-height: 1; }
 
+/* S88: Легенда пиктограмм режимов над таблицей/доской */
+.schedule-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+.schedule-legend--hidden { display: none; }
+.schedule-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: #f3f4f6;
+  color: var(--color-text-muted);
+}
+.schedule-legend-item.mode-active {
+  color: var(--color-text);
+  background: #e0f2fe;
+  font-weight: 600;
+}
+
 /* Тренерская недельная доска — full-bleed (S61), без вложенной сетки */
 body[data-entity="trainer"] { overflow-x: clip; }
 
@@ -1538,6 +1644,128 @@ body[data-entity="trainer"] { overflow-x: clip; }
 .crm-placeholder-icon { font-size: 3.5rem; margin-bottom: 1rem; }
 .crm-placeholder p { margin-bottom: 0.5rem; }
 .crm-placeholder-note { color: var(--color-text-muted); font-size: 0.9375rem; }
+
+/* ============================================
+   СТРАНИЦА НАПРАВЛЕНИЙ (S23)
+   ============================================ */
+.page-directions {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.page-title {
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.directions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.direction-section {
+  background: #fff;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 2rem;
+}
+.direction-name {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+.direction-cover-wrap {
+  margin-bottom: 1.5rem;
+}
+.direction-cover {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--card-border-radius);
+}
+/* S87: динамическая обложка направления (ротация обложек программ) */
+.direction-dynamic-cover-wrap {
+  position: relative;
+  height: 400px;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+.direction-dynamic-cover-wrap img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--card-border-radius);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.direction-dynamic-cover-wrap img.active {
+  opacity: 1;
+}
+.direction-desc {
+  color: var(--color-text-muted);
+  font-size: var(--fs-card-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.direction-programs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.direction-program-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.direction-program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.direction-program-cover {
+  height: 180px;
+  overflow: hidden;
+}
+.direction-program-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.direction-program-title {
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  padding: 1rem 1rem 0.5rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.direction-program-title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.direction-program-title a:hover {
+  color: var(--color-primary);
+}
+.direction-program-more {
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.direction-program-schedule {
+  padding: 0 1rem 1rem;
+}
+.direction-program-schedule .schedule-table-wrap {
+  font-size: 0.875rem;
+}
 
 /* ============================================
    МОБИЛЬНАЯ АДАПТАЦИЯ (<768px) — S24

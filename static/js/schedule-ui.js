@@ -64,6 +64,28 @@
   }
 
   /**
+   * Легенда режимов занятий (S88).
+   * Возвращает HTML строки с бейджами: 🏋️ Зал / 🖥 Онлайн / 🔄 Гибрид.
+   * Если есть хотя бы один слот с данным режимом — бейдж подсвечен, иначе — нейтральный.
+   */
+  function legend(slots) {
+    var hasSlots = slots && slots.length > 0;
+    var modes = {};
+    if (hasSlots) {
+      slots.forEach(function (s) {
+        var m = modeOf(s);
+        modes[m] = true;
+      });
+    }
+    var items = Object.keys(MODES).map(function (key) {
+      var m = MODES[key];
+      var cls = modes[key] ? ' mode-active' : '';
+      return '<span class="schedule-legend-item' + cls + '">' + m.icon + ' ' + m.label + '</span>';
+    }).join(' ');
+    return '<div class="schedule-legend' + (hasSlots ? '' : ' schedule-legend--hidden') + '">' + items + '</div>';
+  }
+
+  /**
    * Недельная доска: 7 колонок (Пн–Вс), каждая тренировка — овальный чип
    * с иконкой режима, временем, названием программы, залом и тренером.
    * slots: [{ day, time, hall, mode, program, programId, trainer }]
@@ -89,7 +111,7 @@
         '<div class="week-col-body">' + (chips || '<span class="week-col-empty">—</span>') + '</div>' +
         '</div>';
     }).join('');
-    return '<div class="week-board-wrap"><div class="week-board">' + cols + '</div></div>';
+    return '<div class="week-board-wrap">' + legend(slots) + '<div class="week-board">' + cols + '</div></div>';
   }
 
   /**
@@ -114,7 +136,7 @@
     var head = (withProgram ? '<th>Программа</th>' : '') +
       '<th>День</th><th>Время</th><th>Зал</th>' +
       (slots && slots.length && slots[0].trainer != null ? '<th>Тренер</th>' : '');
-    return '<div class="schedule-table-wrap"><table class="schedule-table">' +
+    return '<div class="schedule-table-wrap">' + legend(slots) + '<table class="schedule-table">' +
       '<thead><tr>' + head + '</tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
   }

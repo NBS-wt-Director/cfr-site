@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Сущность открывает общий шаблон: program.html?id=... / trainer.html?id=...
   const programNav = data.navPrograms || data.programs || [];
   const trainerNav = data.navTrainers || data.trainers || [];
+  var directions = data.directions || [];
 
+  // S23: плоский список для обратной совместимости
   const programsMenu = programNav.map(p =>
     `<li><a href="program.html?id=${p.id}">${p.name}</a></li>`
   ).join('');
@@ -16,6 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const trainersMenu = trainerNav.map(t =>
     `<li><a href="trainer.html?id=${t.id}">${t.name}</a></li>`
   ).join('');
+
+  // S23: многоуровневое меню программ по направлениям
+  var directionsMenu = directions
+    .filter(function (d) { return !d.hidden && d.programs && d.programs.length > 0; })
+    .map(function (d) {
+      var items = (d.programs || []).map(function (p) {
+        return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+      }).join('');
+      return '<li class="m-dropdown">' +
+        '<button type="button" class="m-dropdown-toggle">' + d.name + ' <span class="caret">▾</span></button>' +
+        '<ul class="m-dropdown-menu">' + items + '</ul>' +
+      '</li>';
+    }).join('');
 
   // Секции расписания и цен живут только на главной.
   // На главной — плавный якорь, с любой другой страницы — ссылка на index.html
@@ -55,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <ul>${trainersMenu}</ul>
               </div>
             </li>
+            <li><a href="directions.html">Направления</a></li>
             <li><a href="news.html">Новости</a></li>
             <!-- Альбом временно выключен (логика перерабатывается) -->
             <li><a href="lk.html">Личный кабинет</a></li>
@@ -100,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
           </li>
 
+          <li><a href="directions.html">📁 Направления</a></li>
           <li><a href="news.html">📰 Новости</a></li>
           <!-- Альбом временно выключен -->
           <li><a href="lk.html">👤 Личный кабинет</a></li>
@@ -121,16 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeAllDropdowns(except) {
     document.querySelectorAll('.dropdown.dropdown-open').forEach(function (d) {
       if (d !== except) setDropdown(d, false);
-    
+    });
+  }
+
   // Применяем siteSettings (S75)
   var settings = (window.SITE_DATA || {}).siteSettings || {};
   var title1El = document.getElementById('header-title1');
   if (title1El && settings.title1) title1El.textContent = settings.title1;
   var logoImg = document.querySelector('.logo img');
   if (logoImg && settings.logo) { logoImg.src = settings.logo; logoImg.alt = settings.title1 || 'Логотип'; }
-
-});
-  }
 
   document.querySelectorAll('[data-dropdown]').forEach(function (dropdown) {
     var toggle = dropdown.querySelector('.dropdown-toggle');
@@ -152,6 +168,19 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       var open = group.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  /* ============================================
+     MOBILE ВЫПАДАШКИ НАПРАВЛЕНИЙ (S23)
+     ============================================ */
+  document.querySelectorAll('.m-dropdown').forEach(function (dd) {
+    var btn = dd.querySelector('.m-dropdown-toggle');
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var open = dd.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(open));
     });
   });

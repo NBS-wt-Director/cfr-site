@@ -143,20 +143,56 @@
     const el = document.getElementById('programs-grid');
     if (!el || !data.programs) return;
 
-    el.innerHTML = data.programs.map(p => `
-      <div class="program-card" id="program-${p.id}">
-        ${tileImage(p.image, `program.html?id=${p.id}`, p.name)}
-        <div class="program-content">
-          <h3 class="program-title"><a href="program.html?id=${p.id}">${shortQuote(p.name)}</a></h3>
-          <div class="program-actions">
-            <a href="program.html?id=${p.id}" class="program-btn program-btn-primary">Подробнее</a>
-            <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">
-              <i class="icon-call"></i> Записаться
-            </button>
+    var directions = data.directions || [];
+    var visibleDirs = directions.filter(function (d) { return !d.hidden; });
+
+    // S23: группировка по направлениям (как на странице программ)
+    if (visibleDirs.length > 0) {
+      el.innerHTML = visibleDirs.map(function (d) {
+        var dirPrograms = (d.programs || []).map(function (dp) {
+          return data.programs.find(function (p) { return p.id === dp.id; });
+        }).filter(Boolean);
+
+        var tiles = dirPrograms.map(function (p) {
+          return `<div class="program-card" id="program-${p.id}">
+            ${tileImage(p.image, `program.html?id=${p.id}`, p.name)}
+            <div class="program-content">
+              <h3 class="program-title"><a href="program.html?id=${p.id}">${shortQuote(p.name)}</a></h3>
+              <div class="program-actions">
+                <a href="program.html?id=${p.id}" class="program-btn program-btn-primary">Подробнее</a>
+                <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">
+                  <i class="icon-call"></i> Записаться
+                </button>
+              </div>
+            </div>
+          </div>`;
+        }).join('');
+
+        return `<div class="home-dir-section">
+          <div class="home-dir-header">
+            <h3 class="home-dir-title">${escHtml(d.name)}</h3>
+            <a href="directions.html#dir-${d.id}" class="home-dir-more">Подробнее →</a>
           </div>
-        </div>
-      </div>
-    `).join('');
+          <div class="programs-grid-inner">${tiles}</div>
+        </div>`;
+      }).join('');
+    } else {
+      // Плоская сетка (обратная совместимость, если направлений нет)
+      el.innerHTML = data.programs.map(function (p) {
+        return `<div class="program-card" id="program-${p.id}">
+          ${tileImage(p.image, `program.html?id=${p.id}`, p.name)}
+          <div class="program-content">
+            <h3 class="program-title"><a href="program.html?id=${p.id}">${shortQuote(p.name)}</a></h3>
+            <div class="program-actions">
+              <a href="program.html?id=${p.id}" class="program-btn program-btn-primary">Подробнее</a>
+              <button class="program-btn program-btn-secondary" onclick="openCallModal('Записаться: ${shortQuote(p.name)}')">
+                <i class="icon-call"></i> Записаться
+              </button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
   }
 
   /* ============================================

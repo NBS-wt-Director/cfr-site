@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-25T13:46:33.981Z
+ * Сгенерировано: 2026-10-25T18:32:00.450Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.trainers = [
