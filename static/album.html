@@ -8,15 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=34">
 </head>
-<body>
+<body data-doc-title="Альбом">
   <div id="header-container"></div>
 
   <section class="section">
     <div class="container">
       <h1 class="section-title">Фотоальбом</h1>
       <p class="section-subtitle">Совместные фото, семинары и будни центра. Нажмите на фото, чтобы открыть его в полном размере.</p>
+      <div id="album-filters" class="album-filters" role="tablist" hidden></div>
       <div id="album-grid" class="album-grid album-grid-page"></div>
       <p id="album-empty" class="empty-note" hidden>Фотографии ещё не загружены</p>
     </div>
@@ -26,13 +27,15 @@
   <div id="footer-container"></div>
   <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
-  <script src="js/data/core.js?v=19"></script>
-  <script src="js/appearance.js?v=19"></script>
-  <script src="js/data/album.js?v=19"></script>
-  <script src="js/header.js?v=19"></script>
-  <script src="js/footer.js?v=19"></script>
-  <script src="js/modal.js?v=19"></script>
-  <script src="js/lightbox.js?v=19"></script>
+  <script src="js/data/core.js?v=34"></script>
+  <script src="js/appearance.js?v=34"></script>
+  <script src="js/layout.js?v=34"></script>
+  <script src="js/seo.js?v=34"></script>
+  <script src="js/data/album.js?v=34"></script>
+  <script src="js/header.js?v=34"></script>
+  <script src="js/footer.js?v=34"></script>
+  <script src="js/modal.js?v=34"></script>
+  <script src="js/lightbox.js?v=34"></script>
   <script>
     (function () {
       const data = window.SITE_DATA || {};
@@ -52,13 +55,44 @@
         return;
       }
 
-      // Превью в сетке, полный размер — по клику (data-full читает lightbox.js)
-      grid.innerHTML = album.map(a => `
-        <div class="album-item lightbox-zoom" data-full="${a.image}">
-          <img src="${a.thumb}" alt="${esc(a.title)}" loading="lazy">
-          ${a.title ? `<span class="album-item-title">${esc(a.title)}</span>` : ''}
-        </div>
-      `).join('');
+      // T7.2: фильтры по category (T7.1). Порядок: «Совместные фото» первой, далее по алфавиту.
+      // Без category — в группу «Другое». Категории берутся из данных, не захардкожены.
+      const ALL = 'Все';
+      const cats = [...new Set(album.map(a => a.category || 'Другое'))]
+        .sort((x, y) => (x === 'Совместные фото' ? -1 : y === 'Совместные фото' ? 1 : x.localeCompare(y, 'ru')));
+      const filters = document.getElementById('album-filters');
+
+      function tile(a) {
+        // Превью в сетке, полный размер — по клику (data-full читает lightbox.js)
+        return `
+          <div class="album-item lightbox-zoom" data-full="${a.image}">
+            <img src="${a.thumb}" alt="${esc(a.title)}" loading="lazy">
+            ${a.title ? `<span class="album-item-title">${esc(a.title)}</span>` : ''}
+          </div>`;
+      }
+
+      function render(cat) {
+        const list = cat === ALL ? album : album.filter(a => (a.category || 'Другое') === cat);
+        grid.innerHTML = list.map(tile).join('');
+        filters.querySelectorAll('button').forEach(b => {
+          const on = b.dataset.cat === cat;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+
+      // Фильтры показываем только если категорий больше одной
+      if (cats.length > 1) {
+        filters.hidden = false;
+        filters.innerHTML = [ALL, ...cats].map(c =>
+          `<button type="button" role="tab" class="album-filter" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+        filters.addEventListener('click', e => {
+          const btn = e.target.closest('button[data-cat]');
+          if (btn) render(btn.dataset.cat);
+        });
+      }
+
+      render(ALL);
     })();
   </script>
 </body>
