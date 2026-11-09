@@ -62,11 +62,53 @@ const NAME_FIXES = {
   'Оздоровительное УШУ (6-12 лет)': 'Оздоровительное Ушу для детей (6-12 лет)',
   'Тайцзи-цигун': 'Тайцзи-Цигун',
   'Тайцзи-цюань': 'Тайцзи-Цюань',
-  'Борьба': 'Греко-римская борьба'
+  'Борьба': 'Греко-римская борьба',
+  // Новое название программы (2026-10-29): «Основы работы с оружием» → «Координация…»
+  'Координация. Основы работы с оружием в УШУ': 'Координация. Основы работы с оружием в УШУ',
+  'Координация. Основы работы с оружием в ушу.': 'Координация. Основы работы с оружием в УШУ',
+  'Основы работы с оружием': 'Координация. Основы работы с оружием в УШУ'
 };
 
 // Ключевые слова для определения типа docx
 const GENERIC_DOCX_KEYWORDS = ['описание трен', 'описание.doc', 'описание', 'description'];
+
+// ── Служебные папки диска (начинаются с запятой) ──────────────────────────
+// Не являются сущностями, но их содержимое нужно маршрутизировать:
+//   ,СОВМЕСТНЫЕ ФОТО → слайдер страницы тренеров + скрытые слайды главной
+//   ,Фото тренеров   → альбом (категории)
+//   ,Тренера архив   → тренеры hidden:true
+const SERVICE_JOINT = 'СОВМЕСТНЫЕ ФОТО';
+const SERVICE_TRAINER_ARCHIVE = 'Тренера архив';
+const SERVICE_TRAINER_PHOTOS = 'Фото тренеров';
+const PROGRAM_ARCHIVE_ROOT = 'Архив направлений, программ';
+const ARCHIVE_SUBDIR = 'архив';
+
+function isServiceFolder(name) {
+  return /^\s*,/.test(String(name || ''));
+}
+
+// «,Фото тренеров » → «Фото тренеров»
+function serviceBase(name) {
+  return String(name || '').replace(/^\s*,\s*/, '').trim();
+}
+
+// Приоритет обложки: ГЛАВНОЕ ФОТО → coverFile из docx → имя папки → первое по алфавиту
+function chooseCover(folderPath, imgFiles, coverFile) {
+  if (!imgFiles || !imgFiles.length) return null;
+  const main = imgFiles.find(f => /^главное\s*фото\.[a-z0-9]+$/i.test(f));
+  if (main) return main;
+  if (coverFile) {
+    const want = String(coverFile).toLowerCase();
+    const byDoc = imgFiles.find(f =>
+      f.toLowerCase() === want ||
+      path.parse(f).name.toLowerCase() === path.parse(want).name);
+    if (byDoc) return byDoc;
+  }
+  const base = path.basename(folderPath).toLowerCase();
+  const byFolder = imgFiles.find(f => path.parse(f).name.toLowerCase() === base);
+  if (byFolder) return byFolder;
+  return imgFiles[0];
+}
 
 // ============================================
 // Утилиты
@@ -171,7 +213,10 @@ function scanFolder(folderPath) {
   const entries = fs.readdirSync(folderPath);
 
   const docxFiles = entries.filter(f => DOCX_EXTS.includes(path.extname(f).toLowerCase()));
-  const imgFiles = entries.filter(f => IMG_EXTS.includes(path.extname(f).toLowerCase()));
+  // Стабильный порядок (ru) — чтобы «первое фото» было предсказуемым
+  const imgFiles = entries
+    .filter(f => IMG_EXTS.includes(path.extname(f).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, 'ru'));
   const hasLockedPng = entries.some(f => f.toLowerCase() === 'locked.png');
 
   // Разделяем docx на общие и именные
@@ -181,9 +226,12 @@ function scanFolder(folderPath) {
   for (const f of docxFiles) {
     const lower = f.toLowerCase();
     const isGeneric = GENERIC_DOCX_KEYWORDS.some(kw => lower.includes(kw));
+    // Второй файл в папке нельзя терять: если «общий» уже занят, а новый файл
+    // тоже подходит под ключевые слова («описание ТЦ утро.docx» +
+    // «описание ТЦ КАВ КОБ.docx»), берём его как именной и сливаем оба.
     if (isGeneric && !genericDocx) {
       genericDocx = f;
-    } else if (!isGeneric && !namedDocx) {
+    } else if (!namedDocx) {
       namedDocx = f;
     }
   }
@@ -282,6 +330,12 @@ function splitTrainerNames(text) {
     .filter(s => s.split(/\s+/).length >= 2 || /^[А-ЯЁA-Z][а-яёa-z]+$/.test(s));
 }
 
+// Слитные маркеры программы: «ТренерКузнецов Александр» → «Тренер\nКузнецов Александр»
+function splitGluedMarkers(text) {
+  return String(text)
+    .replace(/(?<!^)(?<!\n)\s*(Тренер|Тренера|Педагог)(?=[А-ЯЁ][а-яё])/g, '\n$1\n');
+}
+
 function parseProgramDoc(text) {
   const result = {
     title: '',
@@ -292,6 +346,9 @@ function parseProgramDoc(text) {
     photoFiles: [],
     hidden: false
   };
+
+  // Слитные маркеры: «ТренерКузнецов Александр» → «Тренер\nКузнецов Александр»
+  text = splitGluedMarkers(text);
 
   // Проверка на скрытие
   if (HIDDEN_MARKER_RE.test(text)) {
@@ -644,44 +701,119 @@ async function sendEmailNotification(missing, db) {
 }
 
 // ============================================
+// Рекурсивный сбор «листовых» папок сущностей
+// ============================================
+
+function listSubdirs(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter(f => {
+    try { return fs.statSync(path.join(dir, f)).isDirectory(); } catch { return false; }
+  });
+}
+
+/**
+ * Рекурсивно собрать листовые папки сущностей.
+ *   - Лист = папка, где есть docx или картинки (folderName = имя сущности).
+ *   - Папка без docx/фото, но с подпапками → recurse (категории, «архив»,
+ *     архивные корни). Имя сущности наследуется от родителя, если спускаемся
+ *     в подпапку «архив» (чтобы не появилось сущности «архив»).
+ *   - Пустая папка (ни docx, ни фото, ни подпапок) → лист isEmpty:true, hidden:true.
+ *   - Папка «архив» (в любой позиции) → всё её содержимое hidden:true.
+ */
+function collectEntityFolders(rootDir, { hidden = false, category = null, entityName = null } = {}) {
+  const out = [];
+  if (!fs.existsSync(rootDir)) return out;
+  const base = path.basename(rootDir);
+  const isArchiveDir = /^архив$/i.test(base.trim());
+  hidden = hidden || isArchiveDir;
+
+  const entries = fs.readdirSync(rootDir);
+  const hasDocx = entries.some(f => DOCX_EXTS.includes(path.extname(f).toLowerCase()));
+  const hasImg = entries.some(f => IMG_EXTS.includes(path.extname(f).toLowerCase()));
+  const subs = entries.filter(f => {
+    try { return fs.statSync(path.join(rootDir, f)).isDirectory(); } catch { return false; }
+  });
+
+  if (hasDocx || hasImg) {
+    out.push({ folderPath: rootDir, folderName: entityName || base, category, hidden, isEmpty: false });
+  } else if (subs.length === 0) {
+    // Пустая папка → в архив + «требует внимания»
+    out.push({ folderPath: rootDir, folderName: entityName || base, category, hidden: true, isEmpty: true });
+  } else {
+    for (const sub of subs) {
+      const subIsArchive = /^архив$/i.test(sub.trim());
+      out.push(...collectEntityFolders(path.join(rootDir, sub), {
+        hidden,
+        category,
+        // спуск в «архив» не меняет имя сущности; иначе — имя = имя подпапки
+        entityName: subIsArchive ? (entityName || base) : sub
+      }));
+    }
+  }
+  return out;
+}
+
+// ============================================
 // Обработка тренеров
 // ============================================
 
 async function processTrainers(db) {
   const dir = path.join(dataDir, 'trainers');
-  if (!fs.existsSync(dir)) return { updated: 0, created: 0, hidden: 0, missing: [] };
+  if (!fs.existsSync(dir)) return { updated: 0, created: 0, hidden: 0, missing: [], attention: [] };
   let updated = 0, created = 0, hidden = 0;
   const missing = [];
+  const attention = [];
 
-  const folders = fs.readdirSync(dir).filter(f => fs.statSync(path.join(dir, f)).isDirectory());
-  log(`\n📂 Тренеры: ${folders.length} папок`);
+  const topDirs = listSubdirs(dir);
 
-  for (const folderName of folders) {
-    const folderPath = path.join(dir, folderName);
+  // Собираем «листья»: обычные папки тренеров + содержимое архива тренеров
+  const leaves = [];
+  for (const name of topDirs) {
+    if (isServiceFolder(name)) {
+      const base = serviceBase(name);
+      if (/^Тренера архив/i.test(base)) {
+        // Архивные тренеры → hidden:true
+        leaves.push(...collectEntityFolders(path.join(dir, name), { hidden: true }));
+      }
+      // «СОВМЕСТНЫЕ ФОТО» и «Фото тренеров » → альбом/слайдер (обрабатываются build-album.mjs)
+      continue;
+    }
+    leaves.push(...collectEntityFolders(path.join(dir, name), { hidden: false }));
+  }
+
+  log(`\n📂 Тренеры: ${topDirs.length} папок верхнего уровня, ${leaves.length} сущностей`);
+
+  for (const leaf of leaves) {
+    const folderPath = leaf.folderPath;
+    const folderName = leaf.folderName;
     const scanned = scanFolder(folderPath);
 
     // Определяем скрытие
-    let shouldBeHidden = false;
+    let shouldBeHidden = leaf.hidden;
     if (scanned.hasLockedPng) {
       shouldBeHidden = true;
       log(`  🔒 ${folderName} — locked.png → hidden`);
+    }
+    if (leaf.isEmpty) {
+      attention.push({ type: 'тренер', name: normalizeName(folderName), issue: 'Пустая папка (в архиве)' });
+      log(`  ⚠️ ${folderName} — пустая папка → архив + внимание`);
     }
 
     // Создаём/находим объект
     let trainer = findByName(db.trainers || [], folderName);
 
     if (!trainer) {
-      // Новый объект из папки
-      if (scanned.docxFiles.length > 0) {
-        // Есть docx → создаём видимый
+      if (scanned.docxFiles.length > 0 || leaf.isEmpty) {
+        // Есть docx (или пустая папка в архиве) → создаём
         trainer = {
           id: (db.trainers || []).length + 1,
           name: normalizeName(folderName),
           hidden: shouldBeHidden
         };
+        if (leaf.isEmpty) trainer.needsAttention = true;
         db.trainers.push(trainer);
         created++;
-        log(`  ✨ Создан тренер: ${trainer.name}`);
+        log(`  ✨ Создан тренер: ${trainer.name}${shouldBeHidden ? ' (скрыт)' : ''}`);
       } else if (scanned.imgFiles.length > 0) {
         // Только фото → создаём скрытый
         trainer = {
@@ -694,16 +826,14 @@ async function processTrainers(db) {
         hidden++;
         log(`  🙈 Создан скрытый тренер (только фото): ${trainer.name}`);
       } else {
-        // Нет ничего → в список пропущенных
         missing.push({ type: 'тренер', name: normalizeName(folderName), issue: 'Нет docx и нет фото' });
         log(`  ⏭️  ${folderName} — пусто (нет docx и фото)`);
         continue;
       }
     } else {
-      // Существующий объект
       if (shouldBeHidden) {
         trainer.hidden = true;
-        log(`  🔒 ${folderName} → hidden (locked.png)`);
+        log(`  🔒 ${folderName} → hidden`);
       }
     }
 
@@ -711,15 +841,17 @@ async function processTrainers(db) {
     if (scanned.genericDocx || scanned.namedDocx) {
       let genericParsed = null;
       let namedParsed = null;
+      let genericText = '';
+      let namedText = '';
 
       if (scanned.genericDocx) {
-        const genericText = await parseDocx(path.join(folderPath, scanned.genericDocx));
+        genericText = await parseDocx(path.join(folderPath, scanned.genericDocx));
         if (genericText) genericParsed = parseTrainerDoc(genericText);
         else log(`  ⚠️ ${folderName}: "${scanned.genericDocx}" пуст/не прочитан`);
       }
 
       if (scanned.namedDocx) {
-        const namedText = await parseDocx(path.join(folderPath, scanned.namedDocx));
+        namedText = await parseDocx(path.join(folderPath, scanned.namedDocx));
         if (namedText) namedParsed = parseTrainerDoc(namedText);
         else log(`  ⚠️ ${folderName}: "${scanned.namedDocx}" пуст/не прочитан`);
       }
@@ -729,7 +861,6 @@ async function processTrainers(db) {
       if (merged) {
         let changed = false;
 
-        // Структурные поля — всегда из документа
         const structFields = ['experienceUshu', 'experienceCoach', 'education', 'motto'];
         for (const f of structFields) {
           if (merged[f] && trainer[f] !== merged[f]) {
@@ -737,31 +868,34 @@ async function processTrainers(db) {
             changed = true;
           }
         }
-        // Специализация: из документа, если в db пусто или --force
         if (merged.specialization && (!trainer.specialization || FORCE)) {
           trainer.specialization = merged.specialization;
           changed = true;
         }
-        // Скрытие из текста
         if (merged.hidden) {
           trainer.hidden = true;
           changed = true;
           log(`  🔒 ${folderName} — "СКРЫТЬ" в docx → hidden`);
         }
-        // Опыт (experience) — если пусто, берём стаж ушу
         if (!trainer.experience && merged.experienceUshu) {
           trainer.experience = merged.experienceUshu;
           changed = true;
         }
-        // Описание — заполняем только пустое или --force
-        const cleanDesc = cleanTrainerDescription(merged.fio ? '' : ''); // Уже чистый
         if (!trainer.description || FORCE) {
-          // Берём чистое описание из merged (без ФИО/Девиза)
-          trainer.description = merged.fio ? cleanTrainerDescription(
-            (genericParsed ? await parseDocx(path.join(folderPath, scanned.genericDocx)) : '') +
-            (namedParsed ? await parseDocx(path.join(folderPath, scanned.namedDocx)) : '')
-          ) : '';
+          trainer.description = cleanTrainerDescription(genericText + '\n' + namedText);
           changed = true;
+        }
+
+        // Обложка: только если её ещё нет. Готовые кропы из
+        // static/uploads/covers/ (match-photos) не перетираем сырым файлом —
+        // иначе на сайт уедет полноразмерный снимок вместо сжатого.
+        if (!trainer.image) {
+          const cover = chooseCover(folderPath, scanned.imgFiles, merged.coverFile);
+          if (cover) {
+            trainer.image = `/uploads/${cover}`;
+            changed = true;
+            log(`  📸 ${trainer.name}: обложка из ${cover}`);
+          }
         }
 
         if (changed) {
@@ -770,25 +904,25 @@ async function processTrainers(db) {
           log(`  ✅ ${trainer.name} — структ. полей: ${tags}${scanned.genericDocx && scanned.namedDocx ? ' (2 docx)' : ''}`);
         }
       }
-    } else {
+    } else if (scanned.imgFiles.length > 0) {
       // Нет docx, но есть фото → добавляем фото в photoAlbum
-      if (scanned.imgFiles.length > 0) {
-        if (!trainer.photoAlbum) trainer.photoAlbum = [];
-        for (const img of scanned.imgFiles) {
-          if (!trainer.photoAlbum.find(a => a.image === `uploads/${img}`)) {
-            trainer.photoAlbum.push({ image: `uploads/${img}`, caption: '' });
-          }
+      if (!trainer.photoAlbum) trainer.photoAlbum = [];
+      for (const img of scanned.imgFiles) {
+        if (!trainer.photoAlbum.find(a => a.image === `uploads/${img}`)) {
+          trainer.photoAlbum.push({ image: `uploads/${img}`, caption: '' });
         }
-        // Пробуем найти фото для обложки
-        if (!trainer.image) {
-          trainer.image = `uploads/${scanned.imgFiles[0]}`;
-          log(`  📸 ${trainer.name}: обложка из ${scanned.imgFiles[0]}`);
+      }
+      if (!trainer.image) {
+        const cover = chooseCover(folderPath, scanned.imgFiles, trainer.coverFile);
+        if (cover) {
+          trainer.image = `uploads/${cover}`;
+          log(`  📸 ${trainer.name}: обложка из ${cover}`);
         }
       }
     }
   }
 
-  return { updated, created, hidden, missing };
+  return { updated, created, hidden, missing, attention };
 }
 
 // ============================================
@@ -797,160 +931,186 @@ async function processTrainers(db) {
 
 async function processPrograms(db) {
   const dir = path.join(dataDir, 'programs');
-  if (!fs.existsSync(dir)) return { updated: 0, created: 0, hidden: 0, missing: [] };
+  if (!fs.existsSync(dir)) return { updated: 0, created: 0, hidden: 0, missing: [], attention: [] };
   let updated = 0, created = 0, hidden = 0;
   const missing = [];
+  const attention = [];
 
-  const categories = fs.readdirSync(dir).filter(f => {
-    const fp = path.join(dir, f);
-    return fs.statSync(fp).isDirectory();
-  });
+  const categories = listSubdirs(dir);
 
+  // Собираем «листья»: обычные программы (категория/программа) + архивы
+  const leaves = [];
   for (const cat of categories) {
     const catDir = path.join(dir, cat);
-    if (!fs.statSync(catDir).isDirectory()) continue;
+    if (/^Архив/i.test(cat.trim())) {
+      // Архив направлений, программ → всё содержимое hidden:true.
+      // category=null: не перетирать существующую категорию программы.
+      leaves.push(...collectEntityFolders(catDir, { hidden: true, category: null }));
+      continue;
+    }
+    for (const name of listSubdirs(catDir)) {
+      leaves.push(...collectEntityFolders(path.join(catDir, name), { hidden: false, category: cat }));
+    }
+  }
 
-    const folders = fs.readdirSync(catDir).filter(f => {
-      const fp = path.join(catDir, f);
-      return fs.statSync(fp).isDirectory();
-    });
+  // Дубль-папки на диске (старое имя рядом с новым, «Растяжка » с пробелом,
+  // архивная копия рядом с обычной) ведут к одной программе — обрабатываем
+  // её один раз, чтобы не перезаписывать поля дважды.
+  // Сначала обычные папки, потом архивные: копия в «архив/» не должна скрывать
+  // программу, у которой есть живая папка.
+  const processedIds = new Set();
+  leaves.sort((a, b) => Number(!!a.hidden) - Number(!!b.hidden));
 
-    log(`\n📂 ${cat}: ${folders.length} папок`);
+  log(`\n📂 Программы: ${categories.length} категорий, ${leaves.length} сущностей`);
 
-    for (const folderName of folders) {
-      const folderPath = path.join(catDir, folderName);
-      const scanned = scanFolder(folderPath);
+  for (const leaf of leaves) {
+    const folderPath = leaf.folderPath;
+    const folderName = leaf.folderName;
+    const cat = leaf.category;
+    const scanned = scanFolder(folderPath);
 
-      // Определяем скрытие
-      let shouldBeHidden = false;
-      if (scanned.hasLockedPng) {
-        shouldBeHidden = true;
-        log(`  🔒 ${folderName} — locked.png → hidden`);
+    let shouldBeHidden = leaf.hidden;
+    if (scanned.hasLockedPng) {
+      shouldBeHidden = true;
+      log(`  🔒 ${folderName} — locked.png → hidden`);
+    }
+    if (leaf.isEmpty) {
+      attention.push({ type: 'программа', name: normalizeName(folderName), issue: 'Пустая папка (в архиве)' });
+      log(`  ⚠️ ${folderName} — пустая папка → архив + внимание`);
+    }
+
+    const normalizedName = normalizeName(folderName);
+    let program = findByName(db.programs || [], normalizedName);
+
+    // Уже обработан по другой папке-дублю — второй проход не нужен
+    if (program && processedIds.has(program.id)) continue;
+
+    if (!program) {
+      if (scanned.docxFiles.length > 0 || leaf.isEmpty) {
+        program = {
+          id: (db.programs || []).length + 1,
+          name: normalizedName,
+          category: cat,
+          hidden: shouldBeHidden
+        };
+        if (leaf.isEmpty) program.needsAttention = true;
+        db.programs.push(program);
+        created++;
+        log(`  ✨ Создана программа: ${program.name}${shouldBeHidden ? ' (скрыта)' : ''}`);
+      } else if (scanned.imgFiles.length > 0) {
+        program = {
+          id: (db.programs || []).length + 1,
+          name: normalizedName,
+          category: cat,
+          hidden: true,
+          photoAlbum: scanned.imgFiles.map(f => ({ image: `uploads/${f}`, caption: '' }))
+        };
+        db.programs.push(program);
+        hidden++;
+        log(`  🙈 Создана скрытая программа (только фото): ${program.name}`);
+      } else {
+        missing.push({ type: 'программа', name: normalizedName, issue: 'Нет docx и нет фото' });
+        log(`  ⏭️  ${folderName} — пусто (нет docx и фото)`);
+        continue;
+      }
+    } else {
+      if (cat && program.category !== cat) program.category = cat;
+      if (shouldBeHidden) {
+        program.hidden = true;
+        log(`  🔒 ${folderName} → hidden`);
+      }
+    }
+
+    processedIds.add(program.id);
+
+    // Парсим docx
+    if (scanned.genericDocx || scanned.namedDocx) {
+      let genericParsed = null;
+      let namedParsed = null;
+
+      if (scanned.genericDocx) {
+        const genericText = await parseDocx(path.join(folderPath, scanned.genericDocx));
+        if (genericText) genericParsed = parseProgramDoc(genericText);
+        else log(`  ⚠️ ${folderName}: "${scanned.genericDocx}" пуст/не прочитан`);
       }
 
-      // Создаём/находим объект
-      const normalizedName = normalizeName(folderName);
-      let program = findByName(db.programs || [], normalizedName);
-
-      if (!program) {
-        // Новый объект из папки
-        if (scanned.docxFiles.length > 0) {
-          program = {
-            id: (db.programs || []).length + 1,
-            name: normalizedName,
-            category: cat,
-            hidden: shouldBeHidden
-          };
-          db.programs.push(program);
-          created++;
-          log(`  ✨ Создана программа: ${program.name}`);
-        } else if (scanned.imgFiles.length > 0) {
-          program = {
-            id: (db.programs || []).length + 1,
-            name: normalizedName,
-            category: cat,
-            hidden: true,
-            photoAlbum: scanned.imgFiles.map(f => ({ image: `uploads/${f}`, caption: '' }))
-          };
-          db.programs.push(program);
-          hidden++;
-          log(`  🙈 Создана скрытая программа (только фото): ${program.name}`);
-        } else {
-          missing.push({ type: 'программа', name: normalizedName, issue: 'Нет docx и нет фото' });
-          log(`  ⏭️  ${folderName} — пусто (нет docx и фото)`);
-          continue;
-        }
-      } else {
-        // Существующий объект — обновляем category на случай опечатки
-        if (program.category !== cat) {
-          program.category = cat;
-        }
-        if (shouldBeHidden) {
-          program.hidden = true;
-          log(`  🔒 ${folderName} → hidden (locked.png)`);
-        }
+      if (scanned.namedDocx) {
+        const namedText = await parseDocx(path.join(folderPath, scanned.namedDocx));
+        if (namedText) namedParsed = parseProgramDoc(namedText);
+        else log(`  ⚠️ ${folderName}: "${scanned.namedDocx}" пуст/не прочитан`);
       }
 
-      // Парсим docx
-      if (scanned.genericDocx || scanned.namedDocx) {
-        let genericParsed = null;
-        let namedParsed = null;
+      const merged = mergeProgramParsed(genericParsed, namedParsed);
 
-        if (scanned.genericDocx) {
-          const genericText = await parseDocx(path.join(folderPath, scanned.genericDocx));
-          if (genericText) genericParsed = parseProgramDoc(genericText);
-          else log(`  ⚠️ ${folderName}: "${scanned.genericDocx}" пуст/не прочитан`);
-        }
+      if (merged) {
+        let changed = false;
 
-        if (scanned.namedDocx) {
-          const namedText = await parseDocx(path.join(folderPath, scanned.namedDocx));
-          if (namedText) namedParsed = parseProgramDoc(namedText);
-          else log(`  ⚠️ ${folderName}: "${scanned.namedDocx}" пуст/не прочитан`);
-        }
-
-        const merged = mergeProgramParsed(genericParsed, namedParsed);
-
-        if (merged) {
-          let changed = false;
-
-          // Структурные поля — всегда из документа
-          if (merged.scheduleStructured.length) {
-            program.scheduleStructured = merged.scheduleStructured;
-            changed = true;
-          }
-          if (merged.trainers.length) {
-            program.trainers = merged.trainers.map(tn => {
-              const t = findTrainerByName(db.trainers || [], tn);
-              return { name: tn, id: t ? t.id : null };
-            });
-            changed = true;
-          }
-          if (merged.coverFile) {
-            program.coverFile = merged.coverFile;
-            changed = true;
-          }
-          if (merged.photoFiles.length) {
-            program.photoFiles = merged.photoFiles;
-            changed = true;
-          }
-
-          // Скрытие из текста
-          if (merged.hidden) {
-            program.hidden = true;
-            changed = true;
-            log(`  🔒 ${program.name} — "СКРЫТЬ" в docx → hidden`);
-          }
-
-          // Описание — только если пусто или --force
-          if (!program.description || FORCE) {
-            program.description = merged.description;
-            changed = true;
-          }
-
-          if (changed) {
-            updated++;
-            log(`  ✅ ${program.name}: расписание=${merged.scheduleStructured.length}, тренеры=${merged.trainers.length}${scanned.genericDocx && scanned.namedDocx ? ' (2 docx)' : ''}`);
-          }
-        }
-      } else {
-        // Нет docx, но есть фото → добавляем в photoAlbum
-        if (scanned.imgFiles.length > 0) {
-          if (!program.photoAlbum) program.photoAlbum = [];
-          for (const img of scanned.imgFiles) {
-            if (!program.photoAlbum.find(a => a.image === `uploads/${img}`)) {
-              program.photoAlbum.push({ image: `uploads/${img}`, caption: '' });
+        // Переименование программы на диске («Основы работы с оружием» →
+        // «Координация. Основы работы с оружием в УШУ»): обновляем name в базе
+        // и в составе направлений, иначе сайт показывает старое имя.
+        if (normalizedName && program.name !== normalizedName) {
+          log(`  ✏️  ${program.name} → ${normalizedName}`);
+          program.name = normalizedName;
+          for (const d of db.directions || []) {
+            for (const dp of d.programs || []) {
+              if (String(dp.id) === String(program.id)) dp.name = normalizedName;
             }
           }
-          if (!program.image) {
-            program.image = `uploads/${scanned.imgFiles[0]}`;
-            log(`  📸 ${program.name}: обложка из ${scanned.imgFiles[0]}`);
-          }
+          changed = true;
+        }
+
+        if (merged.scheduleStructured.length) {
+          program.scheduleStructured = merged.scheduleStructured;
+          changed = true;
+        }
+        if (merged.trainers.length) {
+          program.trainers = merged.trainers.map(tn => {
+            const t = findTrainerByName(db.trainers || [], tn);
+            return { name: tn, id: t ? t.id : null };
+          });
+          changed = true;
+        }
+        if (merged.coverFile) {
+          program.coverFile = merged.coverFile;
+          changed = true;
+        }
+        if (merged.photoFiles.length) {
+          program.photoFiles = merged.photoFiles;
+          changed = true;
+        }
+        if (merged.hidden) {
+          program.hidden = true;
+          changed = true;
+          log(`  🔒 ${program.name} — "СКРЫТЬ" в docx → hidden`);
+        }
+        if (!program.description || FORCE) {
+          program.description = merged.description;
+          changed = true;
+        }
+
+        if (changed) {
+          updated++;
+          log(`  ✅ ${program.name}: расписание=${merged.scheduleStructured.length}, тренеры=${merged.trainers.length}${scanned.genericDocx && scanned.namedDocx ? ' (2 docx)' : ''}`);
+        }
+      }
+    } else if (scanned.imgFiles.length > 0) {
+      if (!program.photoAlbum) program.photoAlbum = [];
+      for (const img of scanned.imgFiles) {
+        if (!program.photoAlbum.find(a => a.image === `uploads/${img}`)) {
+          program.photoAlbum.push({ image: `uploads/${img}`, caption: '' });
+        }
+      }
+      if (!program.image) {
+        const cover = chooseCover(folderPath, scanned.imgFiles, program.coverFile);
+        if (cover) {
+          program.image = `uploads/${cover}`;
+          log(`  📸 ${program.name}: обложка из ${cover}`);
         }
       }
     }
   }
 
-  return { updated, created, hidden, missing };
+  return { updated, created, hidden, missing, attention };
 }
 
 // ============================================
@@ -986,11 +1146,15 @@ async function main() {
     }
   }
 
-  // 4. Собираем полный список пропущенных папок
-  log('\n📋 Шаг 4: Проверка пропущенных папок...');
-  const trainerFolderMissing = getUnfilledFolders(db, path.join(dataDir, 'trainers'), 'trainers');
-  const programFolderMissing = getUnfilledFolders(db, path.join(dataDir, 'programs'), 'programs');
-  const allMissing = [...baseMissing, ...trainerFolderMissing, ...programFolderMissing];
+  // 4. Собираем «требующие внимания» (пустые папки, автосозданные записи)
+  log('\n📋 Шаг 4: Объекты, требующие внимания...');
+  const attention = [...(trainerResult.attention || []), ...(programResult.attention || [])];
+  if (attention.length) {
+    for (const a of attention) log(`  ⚠️ ${a.type}: ${a.name} — ${a.issue}`);
+  } else {
+    log('  ✅ Нет объектов, требующих внимания');
+  }
+  const allMissing = [...baseMissing, ...(trainerResult.missing || []), ...(programResult.missing || [])];
 
   // 5. Сохранение
   if (trainerResult.updated > 0 || programResult.updated > 0 || trainerResult.created > 0 || programResult.created > 0) {
@@ -1020,6 +1184,7 @@ async function main() {
   log(`  Тренеры: обновлено ${trainerResult.updated}, создано ${trainerResult.created}, скрыто ${trainerResult.hidden}`);
   log(`  Программы: обновлено ${programResult.updated}, создано ${programResult.created}, скрыто ${programResult.hidden}`);
   log(`  Пропущенных папок: ${allMissing.length}`);
+  log(`  Требуют внимания: ${attention.length}`);
   log('='.repeat(60));
 }
 

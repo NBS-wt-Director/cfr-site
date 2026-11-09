@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллектив — Шифу Панда</title>
+  <meta name="description" content="Коллектив центра функционального развития: мастера Урало-Сибирской Федерации УШУ, тренеры и преподаватели.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=35">
+</head>
+<body data-doc-title="Коллектив">
+  <div id="header-container"></div>
+
+  <section class="section" id="joint-slider-section" hidden>
+    <div class="slider" id="joint-slider"></div>
+  </section>
+
+  <section class="section">
+    <div class="container" id="page-main">
+      <h1 class="section-title" data-section="trainers">Коллектив</h1>
+      <p class="section-subtitle" data-section="trainers">Нажмите на тренера, чтобы открыть подробности.</p>
+      <div id="trainers-grid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
+
+  <script src="js/data/core.js?v=35"></script>
+  <script src="js/appearance.js?v=35"></script>
+  <script src="js/layout.js?v=35"></script>
+  <script src="js/seo.js?v=35"></script>
+  <script src="js/panels.js?v=35"></script>
+  <script src="js/data/trainers.js?v=35"></script>
+  <script src="js/data/trainer-slider.js?v=35"></script>
+  <script src="js/header.js?v=35"></script>
+  <script src="js/footer.js?v=35"></script>
+  <script src="js/modal.js?v=35"></script>
+  <script src="js/lightbox.js?v=35"></script>
+  <script src="js/tiles.js?v=35"></script>
+  <script>
+    (function () {
+      const data = window.SITE_DATA || {};
+      const L = window.Layout;
+      const trainers = data.trainers || [];
+
+      // S127 (Р1): имя раздела (крошки · h1 · <title>) — одна настройка.
+      const SECTION = 'trainers';
+      const pageMain = document.getElementById('page-main');
+      const name = L ? L.sectionName(SECTION, 'Коллектив') : 'Коллектив';
+      if (L) {
+        L.applyDocumentTitle(SECTION, name);
+        L.renderCrumbs(pageMain, [
+          { href: 'index.html', label: 'Главная' },
+          { label: name }
+        ]);
+      }
+
+      // Единые плитки (S90): фото 2:3, ФИО в 2 строки по центру,
+      // кнопки столбиком (зелёная «Заказать звонок»), свайп фото мышью
+      const el = document.getElementById('trainers-grid');
+      el.innerHTML = window.Tiles.grid(trainers.map(t => window.Tiles.trainer(t)).join(''));
+      window.Tiles.initAll(el);
+
+      // S127 п.6: единый блок перекрёстных ссылок внизу общей страницы
+      if (L) L.renderCrossLinks(pageMain, SECTION);
+
+      // T6.1: слайдер совместных фото (папка ,СОВМЕСТНЫЕ ФОТО → категория «Совместные фото»).
+      // S138: выводится только при trainerSliderSettings.enabled === true (дефолт — выключен).
+      // Данные и экспорт trainer-slider.js не тронуты: S136 вернёт слайдер наполненным.
+      const sliderSettings = (window.SITE_DATA && window.SITE_DATA.trainerSliderSettings) || {};
+      const slides = (window.SITE_DATA && window.SITE_DATA.trainerSlider) || [];
+      if (sliderSettings.enabled !== true || !slides.length) return;
+      const wrap = document.getElementById('joint-slider');
+      document.getElementById('joint-slider-section').hidden = false;
+      wrap.innerHTML = slides.map((s, i) => `
+        <div class="slide ${i === 0 ? 'active' : ''}">
+          <img src="${s.image}" alt="${s.caption || 'Совместное фото'}" loading="${i === 0 ? 'eager' : 'lazy'}">
+        </div>`).join('') + (slides.length > 1 ? `
+        <button class="slider-nav slider-prev" aria-label="Назад">‹</button>
+        <button class="slider-nav slider-next" aria-label="Вперёд">›</button>
+        <div class="slider-dots">${slides.map((_, i) => `<button class="slider-dot ${i === 0 ? 'active' : ''}" aria-label="Слайд ${i + 1}"></button>`).join('')}</div>` : '');
+      if (slides.length < 2) return;
+
+      const items = wrap.querySelectorAll('.slide');
+      const dots = wrap.querySelectorAll('.slider-dot');
+      let cur = 0;
+      const show = n => {
+        cur = (n + items.length) % items.length;
+        items.forEach((el2, i) => el2.classList.toggle('active', i === cur));
+        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+      };
+      wrap.querySelector('.slider-prev').addEventListener('click', () => show(cur - 1));
+      wrap.querySelector('.slider-next').addEventListener('click', () => show(cur + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+      // S138: интервал прокрутки — из настройки (дефолт 5 с)
+      setInterval(() => show(cur + 1), (Number(sliderSettings.interval) > 0 ? Number(sliderSettings.interval) : 5) * 1000);
+    })();
+  </script>
+
+<script>
+try {
+  var g = document.querySelector('#trainers-grid .tiles-grid');
+  if (!g) throw new Error('no grid');
+  var out = Array.prototype.slice.call(g.children, 0, 6).map(function (k, i) { return i + ':x' + Math.round(k.getBoundingClientRect().left) + 'w' + Math.round(k.getBoundingClientRect().width); });
+  var pre = document.createElement('div');
+  pre.style.cssText = 'position:fixed;top:0;left:0;z-index:9999999;background:#ff0;color:#000;font:16px monospace;padding:6px;border:3px solid red;width:100%;';
+  pre.textContent = 'tpl=' + getComputedStyle(g).gridTemplateColumns + '  ' + out.join(' ');
+  document.body.appendChild(pre);
+} catch (e) { document.body.insertAdjacentHTML('afterbegin', '<div style="background:red;color:#fff;font-size:22px">ERR ' + e.message + '</div>'); }
+</script>
+</body>
+</html>

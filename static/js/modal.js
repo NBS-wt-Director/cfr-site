@@ -3,6 +3,10 @@
  * Логика отправки идентична Next.js CallModal: POST /api/send-email
  * Тело: { name, phone, email, message, reason }
  *
+ * S104: причина вызова НЕ показывается пользователю. Она собирается единообразно
+ * («<Место> — <Страница>. Есть вопрос, но, возможно без конкретики») и уходит
+ * только в письмо/заявку — администратору понятно, откуда нажали.
+ *
  * Если API недоступен (чистый статический предпросмотр) — fallback на mailto.
  */
 (function () {
@@ -10,6 +14,35 @@
   const FALLBACK_EMAIL = 'centr-fr@yandex.ru';
 
   let currentReason = 'Общий запрос';
+
+  // Человекочитаемое имя текущей страницы (по файлу), для причины у админа.
+  // S127 (Р1): имена разделов — из справочника settings.sectionNames.
+  // ⚠️ Эти строки уходят в причину звонка в письме (S104) — менять осознанно.
+  function pageName() {
+    var sec = function (id, fb) {
+      return (window.Layout && window.Layout.sectionName(id, fb)) || fb;
+    };
+    var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    var map = {
+      '': 'Главная', 'index.html': 'Главная',
+      'news.html': sec('news', 'Новости'),
+      'programs.html': sec('programs', 'Программы'),
+      'program.html': 'Программа',
+      'trainers.html': sec('trainers', 'Коллектив'),
+      'trainer.html': 'Тренер',
+      'directions.html': 'Направление',
+      'album.html': 'Альбом',
+      'crm.html': 'CRM',
+      'lk.html': 'Личный кабинет'
+    };
+    return map[file] || (document.title ? document.title.trim() : 'Сайт');
+  }
+
+  // S104: единый формат причины — место + страница + нейтральная формулировка.
+  function buildReason(place) {
+    var p = (place && String(place).trim()) || 'Сайт';
+    return p + ' — ' + pageName() + '. Есть вопрос, но, возможно без конкретики';
+  }
 
   function buildModal() {
     if (document.getElementById('callModalRoot')) return;
@@ -22,7 +55,6 @@
           <div class="modal-header">
             <h2 class="modal-title">
               Заказать обратный звонок
-              <span class="modal-reason" id="callReasonLabel"></span>
             </h2>
             <button type="button" class="modal-close" id="callCloseBtn" aria-label="Закрыть">×</button>
           </div>
@@ -31,7 +63,6 @@
             <input type="text" name="name" placeholder="Ваше имя *" required>
             <input type="tel" name="phone" placeholder="+7 (___) ___-__-__ *" required>
             <input type="email" name="email" placeholder="email@example.com">
-            <input type="text" name="reasonView" id="callReasonField" readonly class="readonly">
             <textarea name="message" rows="4" placeholder="Комментарий (необязательно)"></textarea>
 
             <div class="modal-error" id="callError" hidden></div>
@@ -66,11 +97,10 @@
     document.getElementById('callForm').addEventListener('submit', handleSubmit);
   }
 
-  window.openCallModal = function (reason) {
+  window.openCallModal = function (place) {
     buildModal();
-    currentReason = reason || 'Общий запрос';
-    document.getElementById('callReasonLabel').textContent = '«' + currentReason + '»';
-    document.getElementById('callReasonField').value = currentReason;
+    // S104: пользователь место вызова не видит — причина только для письма/заявки.
+    currentReason = buildReason(place);
     document.getElementById('callForm').hidden = false;
     document.getElementById('callSuccess').hidden = true;
     document.getElementById('callError').hidden = true;

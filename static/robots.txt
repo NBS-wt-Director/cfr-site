@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /lk.html
+Disallow: /crm.html
+Sitemap: https://xn----itbymbjqk.xn--p1ai/sitemap.xml

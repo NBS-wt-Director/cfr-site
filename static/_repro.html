@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+:root { --tiles-gap: 1.5rem; --tile-cols: 1; }
+@media (min-width: 768px) { :root { --tile-cols: 2; } }
+@media (min-width: 1024px) { :root { --tile-cols: 3; } }
+@media (min-width: 1280px) { :root { --tile-cols: 4; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.tiles-grid { display: grid; grid-template-columns: repeat(var(--tile-cols), 1fr); gap: var(--tiles-gap); }
+.tile { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 5px; display: flex; flex-direction: column; gap: 5px; }
+.tp { aspect-ratio: 2/3; background: #eee; }
+body { background: #ccc; }
+</style></head><body>
+<div class="tiles-grid" id="g">
+<div class="tile"><div class="tp"></div>AAA</div><div class="tile"><div class="tp"></div>BBB</div><div class="tile"><div class="tp"></div>CCC</div><div class="tile"><div class="tp"></div>DDD</div><div class="tile"><div class="tp"></div>EEE</div><div class="tile"><div class="tp"></div>FFF</div>
+</div>
+<script>
+var g = document.getElementById('g');
+var out = Array.prototype.slice.call(g.children).map(function (k, i) { return i + ':x' + Math.round(k.getBoundingClientRect().left); });
+var d = document.createElement('div');
+d.style.cssText = 'position:fixed;bottom:0;left:0;background:yellow;font:16px monospace;width:100%;z-index:9;';
+d.textContent = 'tpl=' + getComputedStyle(g).gridTemplateColumns + ' ' + out.join(' ');
+document.body.appendChild(d);
+</script>
+</body></html>

@@ -6,6 +6,7 @@
     "static:export": "node scripts/export-static.mjs",
     "admin": "node --env-file=.env.local scripts/admin-server.mjs",
     "parse-docs": "node scripts/parse-docs.mjs",
+    "apply-donor-data": "node scripts/apply-donor-data.mjs",
     "match-photos": "node scripts/match-photos.mjs",
     "build-album": "node scripts/build-album.mjs",
     "night-sync": "node scripts/night-sync.mjs",
@@ -14,7 +15,10 @@
     "test-menu": "node scripts/test-menu.mjs",
     "test-static": "node scripts/test-static.mjs",
     "sync:from-server": "node scripts/sync-from-server.mjs",
-    "merge:db": "node scripts/merge-db-structures.mjs"
+    "merge:db": "node scripts/merge-db-structures.mjs",
+    "pull-prod-news": "node scripts/pull-prod-news.mjs",
+    "migrate-halls": "node scripts/migrate-halls.mjs",
+    "parse-price": "node scripts/parse-price.mjs"
   },
   "dependencies": {
     "mammoth": "^1.11.0",

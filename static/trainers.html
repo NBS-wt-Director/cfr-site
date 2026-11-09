@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Наши тренеры — Шифу Панда</title>
-  <meta name="description" content="Тренеры центра функционального развития Шифу Панда: мастера Урало-Сибирской Федерации УШУ.">
+  <title>Коллектив — Шифу Панда</title>
+  <meta name="description" content="Коллектив центра функционального развития: мастера Урало-Сибирской Федерации УШУ, тренеры и преподаватели.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=36">
 </head>
-<body>
+<body data-doc-title="Коллектив">
   <div id="header-container"></div>
 
+  <section class="section" id="joint-slider-section" hidden>
+    <div class="slider" id="joint-slider"></div>
+  </section>
+
   <section class="section">
-    <div class="container">
-      <h1 class="section-title">Наши тренеры</h1>
-      <p class="section-subtitle">Нажмите на тренера, чтобы открыть подробности.</p>
-      <div id="trainers-grid" class="trainers-grid"></div>
+    <div class="container" id="page-main">
+      <h1 class="section-title" data-section="trainers">Коллектив</h1>
+      <p class="section-subtitle" data-section="trainers">Нажмите на тренера, чтобы открыть подробности.</p>
+      <div id="trainers-grid"></div>
     </div>
   </section>
 
@@ -25,37 +29,108 @@
   <div id="footer-container"></div>
   <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
-  <script src="js/data/core.js?v=19"></script>
-  <script src="js/appearance.js?v=19"></script>
-  <script src="js/data/trainers.js?v=19"></script>
-  <script src="js/header.js?v=19"></script>
-  <script src="js/footer.js?v=19"></script>
-  <script src="js/modal.js?v=19"></script>
-  <script src="js/lightbox.js?v=19"></script>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/seo.js?v=36"></script>
+  <script src="js/panels.js?v=36"></script>
+  <script src="js/data/trainers.js?v=36"></script>
+  <script src="js/data/staff.js?v=36"></script>
+  <script src="js/data/trainer-slider.js?v=36"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
+  <script src="js/modal.js?v=36"></script>
+  <script src="js/lightbox.js?v=36"></script>
+  <script src="js/tiles.js?v=36"></script>
   <script>
     (function () {
       const data = window.SITE_DATA || {};
+      const L = window.Layout;
       const trainers = data.trainers || [];
 
-      function shortQuote(s) {
-        return String(s)
-          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      // S127 (Р1): имя раздела (крошки · h1 · <title>) — одна настройка.
+      const SECTION = 'trainers';
+      const pageMain = document.getElementById('page-main');
+      const name = L ? L.sectionName(SECTION, 'Коллектив') : 'Коллектив';
+      if (L) {
+        L.applyDocumentTitle(SECTION, name);
+        L.renderCrumbs(pageMain, [
+          { href: 'index.html', label: 'Главная' },
+          { label: name }
+        ]);
       }
 
-      document.getElementById('trainers-grid').innerHTML = trainers.map(t => `
-        <div class="trainer-card" id="trainer-${t.id}">
-          <div class="trainer-photo-tile"><a href="trainer.html?id=${t.id}">${t.image
-            ? `<img src="${t.image}" alt="${shortQuote(t.name)}" loading="lazy">`
-            : `<img src="logo.png" alt="Шифу Панда" loading="lazy">`}</a></div>
-          <h3 class="trainer-name"><a href="trainer.html?id=${t.id}">${shortQuote(t.name)}</a></h3>
-          <p class="trainer-exp">${shortQuote(t.experience || '')}</p>
-          <div class="trainer-actions">
-            <a href="trainer.html?id=${t.id}" class="trainer-btn trainer-btn-primary">Подробнее</a>
-            <button class="trainer-btn trainer-btn-secondary" onclick="openCallModal('Заказать звонок: ${shortQuote(t.name)}')"><i class="icon-call"></i> Заказать звонок</button>
-          </div>
-        </div>
-      `).join('');
+      // Единые плитки (S90): фото 2:3, ФИО в 2 строки по центру,
+      // кнопки столбиком (зелёная «Заказать звонок»), свайп фото мышью
+      const el = document.getElementById('trainers-grid');
+      let html = window.Tiles.grid(trainers.map(t => window.Tiles.trainer(t)).join(''));
+
+      // S135: панель «Администраторы» — только при наличии видимых staff.
+      // Своей страницы у персонала нет (trainer.html?id= был бы 404) —
+      // плитка-карточка без ссылки «Подробнее».
+      const staff = (data.staff || []).filter(s => s.name);
+      if (staff.length) {
+        // Группировка по role (например «Администратор»)
+        const byRole = {};
+        staff.forEach(s => {
+          const r = s.role || 'Персонал';
+          (byRole[r] = byRole[r] || []).push(s);
+        });
+        const roles = Object.keys(byRole).sort();
+        roles.forEach(role => {
+          const people = byRole[role];
+          html += '<h2 class="entity-subtitle">' + escHtml(role) + '</h2>';
+          html += window.Tiles.grid(people.map(s => {
+            return '<div class="tile tile-trainer">' +
+              '<div class="tile-photo"><img src="' + escHtml(s.image) + '" alt="' + escHtml(s.name) + '" loading="lazy"></div>' +
+              '<div class="tile-title tile-title-2">' + escHtml(s.name) + '</div>' +
+              (s.role ? '<div class="tile-subrole">' + escHtml(s.role) + '</div>' : '') +
+              '</div>';
+          }).join(''));
+        });
+      }
+      el.innerHTML = html;
+      window.Tiles.initAll(el);
+
+      function escHtml(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // S127 п.6: единый блок перекрёстных ссылок внизу общей страницы
+      if (L) L.renderCrossLinks(pageMain, SECTION);
+
+      // T6.1: слайдер совместных фото (папка ,СОВМЕСТНЫЕ ФОТО → категория «Совместные фото»).
+      // S138: выводится только при trainerSliderSettings.enabled === true (дефолт — выключен).
+      // Данные и экспорт trainer-slider.js не тронуты: S136 вернёт слайдер наполненным.
+      const sliderSettings = (window.SITE_DATA && window.SITE_DATA.trainerSliderSettings) || {};
+      const slides = (window.SITE_DATA && window.SITE_DATA.trainerSlider) || [];
+      if (sliderSettings.enabled !== true || !slides.length) return;
+      const wrap = document.getElementById('joint-slider');
+      document.getElementById('joint-slider-section').hidden = false;
+      wrap.innerHTML = slides.map((s, i) => `
+        <div class="slide ${i === 0 ? 'active' : ''}">
+          <img src="${s.image}" alt="${s.caption || 'Совместное фото'}" loading="${i === 0 ? 'eager' : 'lazy'}">
+        </div>`).join('') + (slides.length > 1 ? `
+        <button class="slider-nav slider-prev" aria-label="Назад">‹</button>
+        <button class="slider-nav slider-next" aria-label="Вперёд">›</button>
+        <div class="slider-dots">${slides.map((_, i) => `<button class="slider-dot ${i === 0 ? 'active' : ''}" aria-label="Слайд ${i + 1}"></button>`).join('')}</div>` : '');
+      if (slides.length < 2) return;
+
+      const items = wrap.querySelectorAll('.slide');
+      const dots = wrap.querySelectorAll('.slider-dot');
+      let cur = 0;
+      const show = n => {
+        cur = (n + items.length) % items.length;
+        items.forEach((el2, i) => el2.classList.toggle('active', i === cur));
+        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+      };
+      wrap.querySelector('.slider-prev').addEventListener('click', () => show(cur - 1));
+      wrap.querySelector('.slider-next').addEventListener('click', () => show(cur + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+      // S138: интервал прокрутки — из настройки (дефолт 5 с)
+      setInterval(() => show(cur + 1), (Number(sliderSettings.interval) > 0 ? Number(sliderSettings.interval) : 5) * 1000);
     })();
   </script>
 </body>

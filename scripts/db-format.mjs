@@ -21,7 +21,29 @@
 export const DATA_KEYS = ['news', 'programs', 'trainers', 'schedule', 'prices', 'album'];
 export const SETTINGS_KEYS = [
   'appearance', 'siteSettings', 'newsSettings', 'scheduleSettings',
-  'emailConfig', 'globalDivider', 'sliderSettings', 'contacts', 'directions'
+  'emailConfig', 'globalDivider', 'sliderSettings', 'contacts', 'directions',
+  // S99: залы (название + картинка расписания). Без записи здесь ключ
+  // теряется при nestDb() — база перезаписывается без settings.halls.
+  'halls',
+  // S106: разделы главной (заголовок/фон/видимость/порядок). Без записи здесь
+  // ключ теряется при nestDb() — тот же класс бага, что с halls.
+  'homeSections',
+  // S115: цены и скидки. Тот же класс бага: не записанный здесь ключ
+  // исчезает из db.json при первой же save-операции через nestDb().
+  'priceItems', 'discounts',
+  // S113: ссылки подвала («Перейти к» / «Наши партнёры»).
+  'footerLinks',
+  // S120: статические страницы (заголовок/url/markdown/видимость/меню/порядок).
+  // Тот же класс бага: не записанный здесь ключ исчезает при nestDb().
+  'pages',
+  // S122: настройки шапки (цвета меню, тексты кнопок, видимость пунктов, стиль hover).
+  'headerSettings',
+  // S127 (Р1): единые имена разделов («Коллектив» и т.п.) — меню, подвал, крошки,
+  // <h1>, <title>. Тот же класс бага: не записанный здесь ключ исчезает при nestDb().
+  'sectionNames',
+  // S138: слайдер совместных фото на «Коллективе» (вкл/выкл + интервал).
+  // Тот же класс бага: не записанный здесь ключ исчезает при nestDb().
+  'trainerSliderSettings'
 ];
 
 function isPlainObject(v) {

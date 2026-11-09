@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-25T19:07:47.637Z
+ * Сгенерировано: 2026-11-09T07:51:55.982Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.programs = [
@@ -34,7 +34,7 @@ window.SITE_DATA.programs = [
     "scheduleStructured": [
       {
         "day": "Суббота",
-        "time": "10:45-11:40",
+        "time": "9:30-10:25",
         "place": "",
         "hall": "big",
         "mode": "hybrid",
@@ -47,7 +47,23 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [
+      {
+        "day": "Суббота",
+        "time": "10:45",
+        "params": []
+      }
+    ],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088471,
@@ -166,7 +182,68 @@ window.SITE_DATA.programs = [
         "name": "Пашкова Юлия",
         "id": 1770875159380
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [
+      {
+        "day": "Понедельник",
+        "time": "18:00",
+        "params": []
+      },
+      {
+        "day": "Вторник",
+        "time": "8:00",
+        "params": []
+      },
+      {
+        "day": "Вторник",
+        "time": "15:00",
+        "params": []
+      },
+      {
+        "day": "Вторник",
+        "time": "18:00",
+        "params": []
+      },
+      {
+        "day": "Среда",
+        "time": "15:00",
+        "params": []
+      },
+      {
+        "day": "Среда",
+        "time": "19:00",
+        "params": []
+      },
+      {
+        "day": "Четверг",
+        "time": "8:00",
+        "params": []
+      },
+      {
+        "day": "Четверг",
+        "time": "15:00",
+        "params": []
+      },
+      {
+        "day": "Пятница",
+        "time": "15:00",
+        "params": []
+      },
+      {
+        "day": "Суббота",
+        "time": "17:00",
+        "params": []
+      }
+    ],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088472,
@@ -218,7 +295,28 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [
+      {
+        "day": "Суббота",
+        "time": "19:00",
+        "params": []
+      },
+      {
+        "day": "Воскресенье",
+        "time": "18:00",
+        "params": []
+      }
+    ],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088473,
@@ -226,7 +324,7 @@ window.SITE_DATA.programs = [
     "image": "uploads/covers/p-izobrazitelnoe-iskusstvo-4.jpg",
     "description": "Изобразительная деятельность — это не только про творчество. Рисование является комплексной тренировкой мозга ребёнка. Это поможет ему: развить внимание и концентрацию, мелкую моторику. А также способствует снижению тревожности, развитию самостоятельности и выражению чувств через образы. Благодаря Изобразительному искусству формируется не только художественный вкус, но и внутренняя устойчивость ребёнка.",
     "category": "ДЕТСКИЕ НАПРАВЛЕНИЯ",
-    "directionId": "dir-0",
+    "directionId": "dir-iso",
     "photoAlbum": [],
     "scheduleStructured": [
       {
@@ -235,16 +333,35 @@ window.SITE_DATA.programs = [
         "place": "",
         "hall": "big",
         "mode": "hybrid",
-        "trainerId": null,
-        "trainer": ""
+        "trainerId": 13,
+        "trainer": "Мосоян Лусине"
+      },
+      {
+        "day": "Вторник",
+        "time": "18:00-18:50",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 13,
+        "trainer": "Мосоян Лусине"
       }
     ],
     "trainers": [
       {
         "name": "Лусине Мосоян",
-        "id": null
+        "id": 13
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088474,
@@ -279,7 +396,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088475,
@@ -332,7 +459,17 @@ window.SITE_DATA.programs = [
         "name": "Кузнецов Александр Вячеславочич",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088476,
@@ -367,7 +504,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088477,
@@ -393,23 +540,53 @@ window.SITE_DATA.programs = [
         "name": "Оберюхтин Иван",
         "id": 1770875064589
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088478,
-    "name": "Основы работы с оружием",
+    "name": "Координация. Основы работы с оружием в УШУ",
     "image": "",
     "description": "Понедельник 19:45\n\nОружие в ушу: тренировка внимания, реакции и контроля\n\nРабота с оружием в ушу требует высокого уровня включённости.\n\nЗдесь мало просто запомнить движение. Нужно удерживать цель, следить за положением тела, вовремя переключаться, быстро реагировать и при этом сохранять контроль над собой.\n\nТакая тренировка даёт сложную координационную нагрузку и хорошо включает нервную систему. В работу одновременно входят внимание, реакция, переключение между задачами, координация и контроль эмоций.\n\nНаш мозг с древних времён особенно реагирует на инструменты и оружие. Работа с ними требует высокой точности и концентрации, поэтому такая практика полезна тем, кому сложно долго удерживать внимание на одной задаче и не отвлекаться.\n\nЕсли у вас смартфон буквально выпадает из рук, а через минуту после входа в интернет вы уже забыли, зачем туда заходили, возможно, вам как раз пора потренировать концентрацию.\n\nЕсли хотите развивать внимание, реакцию, координацию и способность удерживать цель, приходите на тренировку.",
     "category": "ОБУЧАЮЩИЕ ПРОГРАММЫ",
     "directionId": "dir-3",
     "photoAlbum": [],
-    "scheduleStructured": [],
+    "scheduleStructured": [
+      {
+        "day": "Понедельник",
+        "time": "20:00-20:55",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
+      }
+    ],
     "trainers": [
       {
         "name": "Кузнецов Александр",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088479,
@@ -444,7 +621,17 @@ window.SITE_DATA.programs = [
         "name": "Кузнецов Александр Вечеславович",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088480,
@@ -481,6 +668,60 @@ window.SITE_DATA.programs = [
         "mode": "hybrid",
         "trainerId": 1770875655037,
         "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Понедельник",
+        "time": "19:00-20:55",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Четверг",
+        "time": "19:00-19:55",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Понедельник",
+        "time": "18:30-19:45",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Пятница",
+        "time": "18:30-19:45",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Воскресенье",
+        "time": "18:00-18:55",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
+      },
+      {
+        "day": "Вторник",
+        "time": "19:00-19:55",
+        "place": "",
+        "hall": "big",
+        "mode": "hybrid",
+        "trainerId": 1770875655037,
+        "trainer": "Хорошилова Елена"
       }
     ],
     "trainers": [
@@ -491,8 +732,26 @@ window.SITE_DATA.programs = [
       {
         "name": "Глазырина Илона",
         "id": 1770874411766
+      },
+      {
+        "name": "Кравец Оксана Борисовна",
+        "id": 1770874476663
+      },
+      {
+        "name": "Кузнецов Александр Вечеславович",
+        "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088481,
@@ -518,7 +777,17 @@ window.SITE_DATA.programs = [
         "name": "Кузнецов Александр Вячеславович",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088482,
@@ -530,6 +799,10 @@ window.SITE_DATA.programs = [
     "photoAlbum": [
       {
         "image": "uploads/p-1772563088482-a-0.jpg",
+        "caption": ""
+      },
+      {
+        "image": "uploads/ОСНОВЫ МАССАЖА.jpg",
         "caption": ""
       }
     ],
@@ -558,7 +831,17 @@ window.SITE_DATA.programs = [
         "name": "Глазырин Михаил",
         "id": 1770800269014
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088483,
@@ -584,7 +867,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088484,
@@ -610,7 +903,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088485,
@@ -636,7 +939,17 @@ window.SITE_DATA.programs = [
         "name": "Романовский Николай",
         "id": 1770875655036
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088486,
@@ -671,7 +984,17 @@ window.SITE_DATA.programs = [
         "name": "Иван Оберюхтин",
         "id": 1770875064589
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088487,
@@ -684,7 +1007,7 @@ window.SITE_DATA.programs = [
     "scheduleStructured": [
       {
         "day": "Суббота",
-        "time": "9:30-10:25",
+        "time": "10:30-11:25",
         "place": "",
         "hall": "big",
         "mode": "hybrid",
@@ -697,7 +1020,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088488,
@@ -723,7 +1056,17 @@ window.SITE_DATA.programs = [
         "name": "Романовский Николай",
         "id": 1770875655036
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088489,
@@ -749,7 +1092,17 @@ window.SITE_DATA.programs = [
         "name": "Романовский Николай",
         "id": 1770875655036
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088490,
@@ -775,7 +1128,17 @@ window.SITE_DATA.programs = [
         "name": "Кравец Оксана Борисовна",
         "id": 1770874476663
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088491,
@@ -788,7 +1151,7 @@ window.SITE_DATA.programs = [
     "scheduleStructured": [
       {
         "day": "Суббота",
-        "time": "9:30-10:25",
+        "time": "10:30-11:25",
         "place": "",
         "hall": "big",
         "mode": "hybrid",
@@ -801,7 +1164,17 @@ window.SITE_DATA.programs = [
         "name": "Кузнецов Александр Вячеславович",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088492,
@@ -813,6 +1186,14 @@ window.SITE_DATA.programs = [
     "photoAlbum": [
       {
         "image": "uploads/p-1772563088492-a-1.jpg",
+        "caption": ""
+      },
+      {
+        "image": "uploads/1.jpg",
+        "caption": ""
+      },
+      {
+        "image": "uploads/РАСТЯЖКА.jpg",
         "caption": ""
       }
     ],
@@ -841,7 +1222,17 @@ window.SITE_DATA.programs = [
         "name": "Кузнецов Александр Вячеславович",
         "id": 1770875124935
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088493,
@@ -867,7 +1258,17 @@ window.SITE_DATA.programs = [
         "name": "Оберюхтин Иван",
         "id": 1770875064589
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088494,
@@ -893,7 +1294,17 @@ window.SITE_DATA.programs = [
         "name": "Глазырина Илона",
         "id": 1770874411766
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088495,
@@ -919,7 +1330,17 @@ window.SITE_DATA.programs = [
         "name": "Глазырин Михаил",
         "id": 1770800269014
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088496,
@@ -945,7 +1366,17 @@ window.SITE_DATA.programs = [
         "name": "Глазырин Михаил",
         "id": 1770800269014
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088497,
@@ -962,11 +1393,26 @@ window.SITE_DATA.programs = [
         "place": "",
         "hall": "big",
         "mode": "hybrid",
-        "trainerId": null,
-        "trainer": ""
+        "trainerId": 1770875124935,
+        "trainer": "Кузнецов Александр Вячеславович"
       }
     ],
-    "trainers": []
+    "trainers": [
+      {
+        "name": "Кузнецов Александр Вячеславович",
+        "id": 1770875124935
+      }
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   },
   {
     "id": 1772563088498,
@@ -1001,6 +1447,154 @@ window.SITE_DATA.programs = [
         "name": "Глазырин Михаил",
         "id": 1770800269014
       }
-    ]
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
+  },
+  {
+    "id": 1780000000001,
+    "name": "Персональные тренировки",
+    "image": "",
+    "description": "Заниматься один на один с тренером — самый быстрый путь к результату. Программа строится под ваши задачи: техника УШУ, общая физическая подготовка, восстановление после травм, работа с весом своего тела или подготовка к выступлениям.\n\nТренер видит вашу технику в каждом повторении, сразу исправляет ошибки и дозирует нагрузку — на занятии нет «ожидания своей очереди», как в группе. Время и день выбираете вместе с тренером, включая ранние утра и вечерние слоты.\n\nФормат: индивидуальная запись. Расписание на сайте не публикуется — выберите тренера и оставьте заявку, мы согласуем удобное время.",
+    "category": "ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ",
+    "directionId": "dir-ind",
+    "photoAlbum": [],
+    "scheduleStructured": [],
+    "trainers": [
+      {
+        "name": "Глазырин Михаил",
+        "id": 1770800269014
+      },
+      {
+        "name": "Глазырина Илона",
+        "id": 1770874411766
+      },
+      {
+        "name": "Кравец Оксана Борисовна",
+        "id": 1770874476663
+      },
+      {
+        "name": "Половникова Тамара",
+        "id": 1770875029246
+      },
+      {
+        "name": "Кузнецов Александр Вячеславович",
+        "id": 1770875124935
+      },
+      {
+        "name": "Романовский Николай",
+        "id": 1770875655036
+      }
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
+  },
+  {
+    "id": 1780000000002,
+    "name": "Сплит",
+    "image": "",
+    "description": "Сплит-тренировка — занятие для пары: с партнёром, другом, ребёнком или второй половиной. Двое занимаються с одним тренером в одно время, и это вдвое интереснее: появляется соревнование, поддержка и взаимная страховка в упражнениях.\n\nПрограмму подбираем под уровень обоих — техники отличаются, если один занимается годами, а второй пришёл впервые. Подходит родителям с детьми и тем, кому проще заниматься «за компанию».\n\nФормат: индивидуальная запись на двоих. Расписание на сайте не публикуется — оставьте заявку, согласуем день и время с тренером.",
+    "category": "ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ",
+    "directionId": "dir-ind",
+    "photoAlbum": [],
+    "scheduleStructured": [],
+    "trainers": [
+      {
+        "name": "Глазырин Михаил",
+        "id": 1770800269014
+      },
+      {
+        "name": "Глазырина Илона",
+        "id": 1770874411766
+      },
+      {
+        "name": "Кравец Оксана Борисовна",
+        "id": 1770874476663
+      },
+      {
+        "name": "Половникова Тамара",
+        "id": 1770875029246
+      },
+      {
+        "name": "Кузнецов Александр Вячеславович",
+        "id": 1770875124935
+      },
+      {
+        "name": "Романовский Николай",
+        "id": 1770875655036
+      }
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
+  },
+  {
+    "id": 1780000000003,
+    "name": "Массаж",
+    "image": "",
+    "description": "Массаж в центре ведут тренеры, которые работают с телом ежедневно и понимают, где и почему появляется зажим. В ход идут классические приёмы, висцеральные техники и проработка суставов и мышц, задействованных в УШУ.\n\nПоказания типовые: сидячая работа, ноющие спина и шея, головные боли, восстановление после нагрузок и травм, подготовка тела к тренировкам. После сеанса тренер подскажет упражнения, чтобы эффект держался дольше.\n\nФормат: индивидуальная запись. Расписание на сайте не публикуется — оставьте заявку, подберём тренера и удобное время.",
+    "category": "ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ",
+    "directionId": "dir-ind",
+    "photoAlbum": [],
+    "scheduleStructured": [],
+    "trainers": [
+      {
+        "name": "Глазырин Михаил",
+        "id": 1770800269014
+      },
+      {
+        "name": "Глазырина Илона",
+        "id": 1770874411766
+      },
+      {
+        "name": "Кравец Оксана Борисовна",
+        "id": 1770874476663
+      },
+      {
+        "name": "Половникова Тамара",
+        "id": 1770875029246
+      },
+      {
+        "name": "Кузнецов Александр Вячеславович",
+        "id": 1770875124935
+      },
+      {
+        "name": "Романовский Николай",
+        "id": 1770875655036
+      }
+    ],
+    "ageFrom": "",
+    "ageTo": "",
+    "level": "",
+    "duration": "",
+    "trialLesson": "",
+    "takeWith": "",
+    "reviews": [],
+    "workouts": [],
+    "trainings": [],
+    "updatedAt": ""
   }
 ];

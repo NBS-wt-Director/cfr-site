@@ -99,12 +99,15 @@
       var chips = (byDay[day] || []).map(function (s) {
         var m = modeOf(s);
         var hall = '<span class="week-chip-place">' + (s.hall === 'small' ? 'малый зал' : 'большой зал') + '</span>';
+        // S128 п.10: place (место занятия) есть в экспорте слотов, но раньше
+        // не рендерился нигде — на вопрос «где проходят занятия» сайт не отвечал.
+        var place = s.place ? '<span class="week-chip-place">📍 ' + esc(s.place) + '</span>' : '';
         var trainer = s.trainer ? '<span class="week-chip-trainer">🧑‍🏫 ' + esc(s.trainer) + '</span>' : '';
         var href = s.programId != null ? 'program.html?id=' + s.programId : '#';
         return '<a class="week-chip mode-' + m + '" href="' + href + '" title="' + esc(s.program || '') + '">' +
           '<span class="week-chip-mode">' + MODES[m].icon + '</span>' +
           '<span class="week-chip-time">' + esc(s.time) + '</span>' +
-          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + trainer + '</a>';
+          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</a>';
       }).join('');
       return '<div class="week-col">' +
         '<div class="week-col-title">' + day + '</div>' +
@@ -117,9 +120,11 @@
   /**
    * Компактная таблица (страницы программ и тренеров).
    * withProgram — добавлять колонку «Программа» (для «Мои тренировки»).
-   * Колонки: День | Время | Зал | Тренер
+   * Колонки: Программа | День | Время | Зал | Место | Тренер
+   * S128 п.10: колонка «Место» выводится, если хоть у одного слота есть place.
    */
   function table(slots, withProgram) {
+    var hasPlace = (slots || []).some(function (s) { return s.place; });
     var rows = sortSlots(slots).map(function (s) {
       var prog = '';
       if (withProgram) {
@@ -130,15 +135,69 @@
       return '<tr>' + prog + '<td>' + esc(s.day) + '</td>' +
         '<td>' + modeBadge(s) + ' ' + esc(s.time) + '</td>' +
         '<td>' + esc(HALLS[hallOf(s)]) + '</td>' +
+        (hasPlace ? '<td>' + esc(s.place || '—') + '</td>' : '') +
         (s.trainer != null ? '<td>' + esc(s.trainer || '—') + '</td>' : '') +
         '</tr>';
     }).join('');
     var head = (withProgram ? '<th>Программа</th>' : '') +
       '<th>День</th><th>Время</th><th>Зал</th>' +
+      (hasPlace ? '<th>Место</th>' : '') +
       (slots && slots.length && slots[0].trainer != null ? '<th>Тренер</th>' : '');
     return '<div class="schedule-table-wrap">' + legend(slots) + '<table class="schedule-table">' +
       '<thead><tr>' + head + '</tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
+  }
+
+  /* ============================================
+     Переключатель «Доска / Таблица» (S132 п.4)
+     Один helper на все страницы сущностей и направление:
+     раньше страница программы показывала только компактную таблицу,
+     а главная/тренер/направление — недельную доску (три вида одного объекта).
+     Выбор сохраняется в localStorage (ключ передаётся вызывающим).
+     ============================================ */
+  function boardOrTable(slots, withProgram, storeKey) {
+    var key = storeKey || 'schedule-entity-view';
+    var view = 'board';
+    try { var v = localStorage.getItem(key); if (v === 'table' || v === 'board') view = v; } catch (e) {}
+
+    var switchHtml =
+      '<div class="schedule-switch schedule-board-switch" role="tablist">' +
+        '<button type="button" class="schedule-switch-btn' + (view === 'board' ? ' active' : '') +
+          '" data-view="board" role="tab" aria-selected="' + (view === 'board') + '">🗓 Доска</button>' +
+        '<button type="button" class="schedule-switch-btn' + (view === 'table' ? ' active' : '') +
+          '" data-view="table" role="tab" aria-selected="' + (view === 'table') + '">📋 Таблица</button>' +
+      '</div>';
+
+    return '<div class="schedule-switched" data-store="' + esc(key) + '" data-view="' + view + '">' +
+      switchHtml +
+      '<div class="schedule-view schedule-view-board"' + (view === 'board' ? '' : ' hidden') + '>' + weekBoard(slots) + '</div>' +
+      '<div class="schedule-view schedule-view-table"' + (view === 'table' ? '' : ' hidden') + '>' + table(slots, withProgram) + '</div>' +
+    '</div>';
+  }
+
+  // Подвязка переключения после вставки HTML
+  function initSwitches(root) {
+    var scope = root || document;
+    scope.querySelectorAll('.schedule-switched').forEach(function (wrap) {
+      if (wrap.getAttribute('data-switch-bound') === '1') return;
+      wrap.setAttribute('data-switch-bound', '1');
+      var key = wrap.getAttribute('data-store');
+      wrap.querySelectorAll('.schedule-switch-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = btn.getAttribute('data-view');
+          wrap.setAttribute('data-view', v);
+          wrap.querySelectorAll('.schedule-switch-btn').forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-selected', String(on));
+          });
+          wrap.querySelectorAll('.schedule-view').forEach(function (box) {
+            box.hidden = box.classList.contains('schedule-view-' + v) ? false : true;
+          });
+          try { localStorage.setItem(key, v); } catch (e) {}
+        });
+      });
+    });
   }
 
   window.ScheduleUI = {
@@ -148,6 +207,8 @@
     sortSlots: sortSlots,
     weekBoard: weekBoard,
     table: table,
+    boardOrTable: boardOrTable,
+    initSwitches: initSwitches,
     modeBadge: modeBadge
   };
 })();

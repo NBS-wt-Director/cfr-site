@@ -35,6 +35,8 @@ DISKS = {
 
 API = "https://cloud-api.yandex.net/v1/disk/public/resources"
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tiff", ".tif"}
+# Документы описаний тоже нужны парсеру (parse-docs.mjs читает .docx из static/data/)
+DOC_EXT = {".docx", ".doc"}
 
 API_TIMEOUT = 30
 DOWNLOAD_TIMEOUT = 120
@@ -89,8 +91,10 @@ def collect_tasks(sub, public_key, api_path="/", rel=""):
         child_rel = os.path.join(rel, name.replace("/", "_").strip()) if rel else name
         if it.get("type") == "dir":
             tasks.extend(collect_tasks(sub, public_key, child_api, child_rel))
-        elif it.get("media_type") == "image" or os.path.splitext(name)[1].lower() in IMG_EXT:
-            tasks.append({"sub": sub, "api": child_api, "rel": child_rel, "key": f"{sub}/{child_rel}"})
+        else:
+            ext = os.path.splitext(name)[1].lower()
+            if it.get("media_type") == "image" or ext in IMG_EXT or ext in DOC_EXT:
+                tasks.append({"sub": sub, "api": child_api, "rel": child_rel, "key": f"{sub}/{child_rel}"})
     return tasks
 
 
@@ -123,6 +127,9 @@ def is_image_downloaded(prog, key, local):
 def download_one(public_key, task, local):
     tmp = local + ".part"
     last_err = None
+    # Новые папки на диске (служебные «,...», «Архив направлений, программ», «архив/»)
+    # локально ещё не созданы — без этого .part не запишется (Errno 2).
+    os.makedirs(os.path.dirname(local), exist_ok=True)
     for attempt in range(MAX_RETRIES):
         try:
             href_url = (f"{API}/download?public_key={urllib.parse.quote(public_key, safe='')}"

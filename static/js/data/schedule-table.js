@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-25T19:07:47.637Z
+ * Сгенерировано: 2026-11-09T07:51:55.982Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.scheduleTable = [
@@ -10,7 +10,7 @@ window.SITE_DATA.scheduleTable = [
     "program": "Крепыши (2-4 года)",
     "programId": 1770965676349,
     "day": "Суббота",
-    "time": "10:45-11:40",
+    "time": "9:30-10:25",
     "place": "",
     "hall": "big",
     "mode": "hybrid",
@@ -157,8 +157,19 @@ window.SITE_DATA.scheduleTable = [
     "place": "",
     "hall": "big",
     "mode": "hybrid",
-    "trainerId": null,
-    "trainer": ""
+    "trainerId": 13,
+    "trainer": "Мосоян Лусине"
+  },
+  {
+    "program": "Изобразительное искусство (4+)",
+    "programId": 1772563088473,
+    "day": "Вторник",
+    "time": "18:00-18:50",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 13,
+    "trainer": "Мосоян Лусине"
   },
   {
     "program": "ЛФК УШУ (10-15 лет)",
@@ -260,6 +271,17 @@ window.SITE_DATA.scheduleTable = [
     "trainer": "Оберюхтин Иван"
   },
   {
+    "program": "Координация. Основы работы с оружием в УШУ",
+    "programId": 1772563088478,
+    "day": "Понедельник",
+    "time": "20:00-20:55",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
+  },
+  {
     "program": "Тайцзи-Цигун",
     "programId": 1772563088479,
     "day": "Среда",
@@ -308,6 +330,72 @@ window.SITE_DATA.scheduleTable = [
     "programId": 1772563088480,
     "day": "Суббота",
     "time": "8:30-9:25",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Понедельник",
+    "time": "19:00-20:55",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Четверг",
+    "time": "19:00-19:55",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Понедельник",
+    "time": "18:30-19:45",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Пятница",
+    "time": "18:30-19:45",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Воскресенье",
+    "time": "18:00-18:55",
+    "place": "",
+    "hall": "big",
+    "mode": "hybrid",
+    "trainerId": 1770875655037,
+    "trainer": "Хорошилова Елена"
+  },
+  {
+    "program": "Тайцзи-Цюань",
+    "programId": 1772563088480,
+    "day": "Вторник",
+    "time": "19:00-19:55",
     "place": "",
     "hall": "big",
     "mode": "hybrid",
@@ -406,7 +494,7 @@ window.SITE_DATA.scheduleTable = [
     "program": "Здоровье женщины",
     "programId": 1772563088487,
     "day": "Суббота",
-    "time": "9:30-10:25",
+    "time": "10:30-11:25",
     "place": "",
     "hall": "big",
     "mode": "hybrid",
@@ -450,7 +538,7 @@ window.SITE_DATA.scheduleTable = [
     "program": "Мужское долголетие",
     "programId": 1772563088491,
     "day": "Суббота",
-    "time": "9:30-10:25",
+    "time": "10:30-11:25",
     "place": "",
     "hall": "big",
     "mode": "hybrid",
@@ -531,8 +619,8 @@ window.SITE_DATA.scheduleTable = [
     "place": "",
     "hall": "big",
     "mode": "hybrid",
-    "trainerId": null,
-    "trainer": ""
+    "trainerId": 1770875124935,
+    "trainer": "Кузнецов Александр Вячеславович"
   },
   {
     "program": "Функциональный тренинг",

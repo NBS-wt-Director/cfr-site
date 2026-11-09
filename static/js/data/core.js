@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-10-25T19:07:47.637Z
+ * Сгенерировано: 2026-11-09T07:51:55.982Z
  */
 window.SITE_DATA = {
   "siteName": "ЦФР - Центр Развития",
@@ -32,7 +32,51 @@ window.SITE_DATA = {
   },
   "headerSettings": {
     "titleSuffix": " | Шифу Панда",
-    "secondLineText": "Сайт пока на стадии заполнения и разработки. Данные не полные."
+    "secondLineText": "Сайт пока на стадии заполнения и разработки. Данные не полные.",
+    "colors": {
+      "menuBg": "",
+      "menuText": "",
+      "hoverBg": "",
+      "hoverText": "",
+      "activeBg": "",
+      "activeText": ""
+    },
+    "buttons": {
+      "callText": "Заказать звонок"
+    },
+    "items": [
+      {
+        "id": "schedule",
+        "visible": true
+      },
+      {
+        "id": "prices",
+        "visible": true
+      },
+      {
+        "id": "programs",
+        "visible": true
+      },
+      {
+        "id": "staff",
+        "visible": true
+      },
+      {
+        "id": "news",
+        "visible": true
+      },
+      {
+        "id": "contacts",
+        "visible": true
+      },
+      {
+        "id": "lk",
+        "visible": true
+      }
+    ],
+    "hover": {
+      "style": "underline"
+    }
   },
   "divider": {
     "enabled": false,
@@ -43,11 +87,20 @@ window.SITE_DATA = {
   },
   "appearance": {
     "variables": {},
-    "customCss": ""
+    "customCss": "",
+    "containerWidth": {
+      "unit": "%",
+      "value": 90
+    },
+    "newsTileWidth": {
+      "unit": "px",
+      "value": 360
+    }
   },
   "siteSettings": {
     "title1": "Шифу Панда",
     "title2": "Центр Функционального Развития",
+    "baseUrl": "",
     "logo": "/uploads/logo.png"
   },
   "sections": [
@@ -57,24 +110,118 @@ window.SITE_DATA = {
     },
     {
       "id": "schedule",
-      "title": "Расписание занятий"
+      "title": "Наше расписание"
     },
     {
       "id": "programs",
-      "title": "Программы тренировок"
+      "title": "Наши тренировки"
     },
     {
       "id": "trainers",
-      "title": "Наши тренеры"
+      "title": "Наши тренера"
     },
     {
       "id": "news",
       "title": "Новости центра"
     }
   ],
+  "homeSections": [
+    {
+      "id": "slider",
+      "title": "",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    },
+    {
+      "id": "schedule",
+      "title": "Наше расписание",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    },
+    {
+      "id": "prices",
+      "title": "Наши цены",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    },
+    {
+      "id": "programs",
+      "title": "Наши тренировки",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    },
+    {
+      "id": "trainers",
+      "title": "Наши тренера",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    },
+    {
+      "id": "news",
+      "title": "Новости центра",
+      "subtitle": "",
+      "bgColor": "",
+      "visible": true
+    }
+  ],
+  "sectionNames": {
+    "schedule": "Наше расписание",
+    "prices": "Наши цены",
+    "programs": "Наши тренировки",
+    "trainers": "Коллектив",
+    "news": "Новости центра",
+    "contacts": "Контакты"
+  },
+  "footerLinks": [
+    {
+      "group": "nav",
+      "title": "📅 Расписание",
+      "url": "#schedule"
+    },
+    {
+      "group": "nav",
+      "title": "💰 Цены",
+      "url": "#prices"
+    },
+    {
+      "group": "nav",
+      "title": "🥋 Программы",
+      "url": "programs.html"
+    },
+    {
+      "group": "nav",
+      "title": "👥 Тренеры",
+      "url": "trainers.html"
+    },
+    {
+      "group": "nav",
+      "title": "📰 Новости",
+      "url": "news.html"
+    },
+    {
+      "group": "nav",
+      "title": "👤 Личный кабинет",
+      "url": "lk.html"
+    },
+    {
+      "group": "partners",
+      "title": "🐼 Урало-Сибирская федерация ушу",
+      "url": "https://www.usfu.ru/"
+    }
+  ],
+  "navPages": [],
   "scheduleSettings": {
     "defaultView": "hybrid",
     "hybridActiveTab": "images"
+  },
+  "trainerSliderSettings": {
+    "enabled": false,
+    "interval": 5
   },
   "navPrograms": [
     {
@@ -111,7 +258,7 @@ window.SITE_DATA = {
     },
     {
       "id": 1772563088478,
-      "name": "Основы работы с оружием"
+      "name": "Координация. Основы работы с оружием в УШУ"
     },
     {
       "id": 1772563088479,
@@ -192,6 +339,18 @@ window.SITE_DATA = {
     {
       "id": 1772563088498,
       "name": "Функциональный тренинг"
+    },
+    {
+      "id": 1780000000001,
+      "name": "Персональные тренировки"
+    },
+    {
+      "id": 1780000000002,
+      "name": "Сплит"
+    },
+    {
+      "id": 1780000000003,
+      "name": "Массаж"
     }
   ],
   "navTrainers": [
@@ -230,12 +389,19 @@ window.SITE_DATA = {
     {
       "id": 1770875655037,
       "name": "Хорошилова Елена"
+    },
+    {
+      "id": 13,
+      "name": "Мосоян Лусине"
     }
   ],
   "navDirections": [
     {
       "id": "dir-0",
       "name": "ДЕТСКИЕ НАПРАВЛЕНИЯ",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
       "programs": [
         {
           "id": 1770965676349,
@@ -246,11 +412,6 @@ window.SITE_DATA = {
           "id": 1772563088472,
           "name": "Оздоровительное Ушу для детей (6-12 лет)",
           "image": "/uploads/covers/p-ozdorovitelnoe-ushu-dlya-detey-6-12-let.jpg"
-        },
-        {
-          "id": 1772563088473,
-          "name": "Изобразительное искусство (4+)",
-          "image": "/uploads/covers/p-izobrazitelnoe-iskusstvo-4.jpg"
         },
         {
           "id": 1772563088474,
@@ -277,6 +438,9 @@ window.SITE_DATA = {
     {
       "id": "dir-2",
       "name": "ОЗДОРОВИТЕЛЬНЫЕ НАПРАВЛЕНИЯ",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
       "programs": [
         {
           "id": 1772563088471,
@@ -353,10 +517,13 @@ window.SITE_DATA = {
     {
       "id": "dir-3",
       "name": "ОБУЧАЮЩИЕ ПРОГРАММЫ",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
       "programs": [
         {
           "id": 1772563088478,
-          "name": "Основы работы с оружием",
+          "name": "Координация. Основы работы с оружием в УШУ",
           "image": ""
         },
         {
@@ -379,6 +546,9 @@ window.SITE_DATA = {
     {
       "id": "dir-4",
       "name": "ФУНКЦИОНАЛЬНЫЕ НАПРАВЛЕНИЯ",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
       "programs": [
         {
           "id": 1772563088495,
@@ -401,15 +571,56 @@ window.SITE_DATA = {
           "image": "/uploads/covers/p-funktsionalnyy-trening.jpg"
         }
       ]
+    },
+    {
+      "id": "dir-iso",
+      "name": "Изобразительное искусство",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
+      "programs": [
+        {
+          "id": 1772563088473,
+          "name": "Изобразительное искусство (4+)",
+          "image": "/uploads/covers/p-izobrazitelnoe-iskusstvo-4.jpg"
+        }
+      ]
+    },
+    {
+      "id": "dir-ind",
+      "name": "Индивидуальные занятия",
+      "showInMenu": true,
+      "showOnHome": true,
+      "priceGroup": "",
+      "programs": [
+        {
+          "id": 1780000000001,
+          "name": "Персональные тренировки",
+          "image": ""
+        },
+        {
+          "id": 1780000000002,
+          "name": "Сплит",
+          "image": ""
+        },
+        {
+          "id": 1780000000003,
+          "name": "Массаж",
+          "image": ""
+        }
+      ]
     }
   ],
   "slider": null,
   "schedule": null,
   "prices": null,
+  "priceItems": null,
+  "discounts": null,
   "programs": null,
   "trainers": null,
   "news": null,
   "newsAll": null,
   "newsFull": null,
-  "album": null
+  "album": null,
+  "trainerSlider": null
 };

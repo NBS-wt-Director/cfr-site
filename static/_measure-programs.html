@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Наши тренировки — Шифу Панда</title>
+  <meta name="description" content="Все тренировки центра: боевые, детские, обучающие, оздоровительные, функциональные направления.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=99cachebust">
+</head>
+<body data-doc-title="Наши тренировки">
+  <div id="header-container"></div>
+
+  <section class="section">
+    <div class="container" id="page-main">
+      <h1 class="section-title" data-section="programs">Наши тренировки</h1>
+      <p class="section-subtitle" data-section="programs">Нажмите на раздел, чтобы развернуть список. Нажмите на тренировку — чтобы открыть подробности.</p>
+
+      <!-- S130 п.4: счётчик «N тренировок в M направлениях» -->
+      <p class="programs-summary" id="programs-summary"></p>
+
+      <!-- S130 п.5: клиентские фильтры по уже загруженным данным -->
+      <div class="programs-filters" id="programs-filters" hidden>
+        <label class="programs-filter">
+          <span>Возраст</span>
+          <select id="filter-age">
+            <option value="">все</option>
+            <option value="kids">детские (до 15 лет)</option>
+            <option value="adult">взрослые</option>
+          </select>
+        </label>
+        <label class="programs-filter">
+          <span>Тренер</span>
+          <select id="filter-trainer"><option value="">все</option></select>
+        </label>
+        <label class="programs-filter programs-filter-check">
+          <input type="checkbox" id="filter-schedule">
+          <span>только с расписанием</span>
+        </label>
+        <button type="button" class="programs-filter-reset" id="filter-reset">✕ Сбросить</button>
+      </div>
+
+      <div id="programs-categories"></div>
+      <div class="programs-empty" id="programs-empty" hidden>
+        По выбранным фильтрам тренировок не найдено.
+        <a href="programs.html">Показать все →</a>
+      </div>
+
+      <!-- S130 п.4: CTA-подвал страницы -->
+      <div class="programs-cta" id="programs-cta"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
+
+  <script src="js/data/core.js?v=99cachebust"></script>
+  <script src="js/appearance.js?v=99cachebust"></script>
+  <script src="js/layout.js?v=99cachebust"></script>
+  <script src="js/seo.js?v=99cachebust"></script>
+  <script src="js/panels.js?v=99cachebust"></script>
+  <script src="js/data/programs.js?v=99cachebust"></script>
+  <script src="js/header.js?v=99cachebust"></script>
+  <script src="js/footer.js?v=99cachebust"></script>
+  <script src="js/modal.js?v=99cachebust"></script>
+  <script src="js/lightbox.js?v=99cachebust"></script>
+  <script src="js/tiles.js?v=99cachebust"></script>
+  <script src="js/programs-page.js?v=99cachebust"></script>
+</body>
+</html>

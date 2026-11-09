@@ -345,6 +345,17 @@ const core = {
       : 'images'
   },
 
+  // S138: слайдер совместных фото на странице «Коллектив» (trainers.html).
+  // enabled === false (дефолт) — слайдер не выводится; код и данные (trainer-slider.js)
+  // целы, S136 вернёт его наполненным. Вкл/выкл — настройка, не удаление кода.
+  trainerSliderSettings: {
+    enabled: db.trainerSliderSettings?.enabled === true,
+    interval: (function () {
+      const n = Number(db.trainerSliderSettings?.interval);
+      return Number.isFinite(n) && n >= 2 && n <= 20 ? Math.round(n) : 5;
+    })()
+  },
+
   // Лёгкий срез для меню — только id и name (скрытые исключены)
   navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '' })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '' })),
@@ -515,6 +526,22 @@ const modules = {
     split: !!t.split,
     massage: !!t.massage
   })),
+
+  // S135: персонал (администраторы) — только видимые, image — только локальные пути
+  staff: (function () {
+    const raw = db.staff || [];
+    return raw.filter(s => !s.hidden).map(s => {
+      const img = s.image || '';
+      // Внешний URL → фолбэк на logo.png
+      const localImg = /^https?:\/\//i.test(img) ? 'logo.png' : fixPath(img);
+      return {
+        id: String(s.id || ''),
+        name: s.name || '',
+        image: localImg,
+        role: s.role || ''
+      };
+    });
+  })(),
 
   // S23: Направления (отдельная сущность)
   // hidden: true не экспортируется на сайт (виден только в админке);

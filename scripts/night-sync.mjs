@@ -197,12 +197,23 @@ async function parseNewDocx(newFiles) {
 // Заполнение фото
 // ============================================
 
+// Приоритет обложки: ГЛАВНОЕ ФОТО → файл с именем папки → первое по алфавиту
+function pickCover(folderPath, files) {
+  const main = files.find(f => /^главное\s*фото\.[a-z0-9]+$/i.test(f));
+  if (main) return main;
+  const base = path.basename(folderPath).trim().toLowerCase();
+  const byFolder = files.find(f => path.parse(f).name.trim().toLowerCase() === base);
+  return byFolder || files[0];
+}
+
 function fillPhotos() {
   const db = readDb();
   if (!db.trainers || !db.programs) return 0;
 
   log('  📸 Заполнение фото...');
   let updated = 0;
+
+  const IMG = f => ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(f).toLowerCase());
 
   // Заполняем тренеров
   for (const trainer of db.trainers) {
@@ -211,64 +222,71 @@ function fillPhotos() {
     const trainerDir = path.join(dataDir, 'trainers', trainer.name);
     if (!fs.existsSync(trainerDir)) continue;
 
-    // Ищем фото
-    const files = fs.readdirSync(trainerDir).filter(f => {
-      const ext = path.extname(f).toLowerCase();
-      return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
-    }).sort();
-
+    const files = fs.readdirSync(trainerDir).filter(IMG).sort((a, b) => a.localeCompare(b, 'ru'));
     if (files.length > 0) {
+      const cover = pickCover(trainerDir, files);
       // Путь «uploads/<файл>» существует только после match-photos/build-album.
-      // Ставим image лишь когда файл реально лежит в static/uploads — иначе получаем битую обложку.
-      const candidate = path.join(root, 'static', 'uploads', files[0]);
+      const candidate = path.join(root, 'static', 'uploads', cover);
       if (!fs.existsSync(candidate)) continue;
-      trainer.image = `uploads/${files[0]}`;
+      trainer.image = `uploads/${cover}`;
       updated++;
-      log(`    ✅ ${trainer.name}: ${files[0]}`);
+      log(`    ✅ ${trainer.name}: ${cover}`);
     }
   }
 
-  // Заполняем программы
+  // Заполняем программы (рекурсивно: категория/программа, «архив»)
+  const programsDir = path.join(dataDir, 'programs');
+  const findProgramFolder = (dir, name) => {
+    if (!fs.existsSync(dir)) return null;
+    for (const entry of fs.readdirSync(dir)) {
+      const full = path.join(dir, entry);
+      if (!fs.statSync(full).isDirectory()) continue;
+      if (entry.toLowerCase() === name) return full;
+      const deeper = findProgramFolder(full, name);
+      if (deeper) return deeper;
+    }
+    return null;
+  };
+
   for (const program of db.programs) {
     if (program.image) continue;
-
-    // Ищем в static/data/programs/<CAT>/<NAME>/
-    const programsDir = path.join(dataDir, 'programs');
-    const categories = fs.readdirSync(programsDir).filter(f => {
-      const stat = fs.statSync(path.join(programsDir, f));
-      return stat.isDirectory();
-    });
-
-    for (const cat of categories) {
-      const catDir = path.join(programsDir, cat);
-      const programFolders = fs.readdirSync(catDir).filter(f => {
-        const stat = fs.statSync(path.join(catDir, f));
-        return stat.isDirectory();
-      });
-
-      for (const folder of programFolders) {
-        if (path.basename(folder).toLowerCase() === path.basename(program.name).toLowerCase()) {
-          const folderPath = path.join(catDir, folder);
-          const files = fs.readdirSync(folderPath).filter(f => {
-            const ext = path.extname(f).toLowerCase();
-            return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
-          }).sort();
-
-          if (files.length > 0) {
-            const candidate = path.join(root, 'static', 'uploads', files[0]);
-            if (!fs.existsSync(candidate)) continue;
-            program.image = `uploads/${files[0]}`;
-            updated++;
-            log(`    ✅ ${program.name}: ${files[0]}`);
-          }
-          break;
-        }
-      }
-      if (program.image) break;
-    }
+    const folderPath = findProgramFolder(programsDir, path.basename(program.name).toLowerCase());
+    if (!folderPath) continue;
+    const files = fs.readdirSync(folderPath).filter(IMG).sort((a, b) => a.localeCompare(b, 'ru'));
+    if (files.length === 0) continue;
+    const cover = pickCover(folderPath, files);
+    const candidate = path.join(root, 'static', 'uploads', cover);
+    if (!fs.existsSync(candidate)) continue;
+    program.image = `uploads/${cover}`;
+    updated++;
+    log(`    ✅ ${program.name}: ${cover}`);
   }
 
   return updated;
+}
+
+// ============================================
+// Запуск вспомогательного скрипта
+// ============================================
+
+function runScript(name, args, timeout) {
+  const scriptPath = path.join(root, 'scripts', name);
+  if (!fs.existsSync(scriptPath)) {
+    log(`  ⚠️  ${name} не найден — шаг пропущен`);
+    return false;
+  }
+  try {
+    execSync(`node "${scriptPath}" ${args}`.trim(), {
+      cwd: root,
+      stdio: 'inherit',
+      timeout
+    });
+    return true;
+  } catch (err) {
+    // Обложки/альбом — не критично: сайт работает и без них
+    log(`  ⚠️  ${name} завершился с ошибкой: ${String(err.message).slice(0, 120)}`);
+    return false;
+  }
 }
 
 // ============================================
@@ -312,6 +330,14 @@ async function main() {
   log('\n📸 Шаг 4: Заполнение фото...');
   const photosUpdated = fillPhotos();
   log(`  ✅ Обновлено: ${photosUpdated}`);
+
+  // 4a. Обложки: «ГЛАВНОЕ ФОТО» имеет приоритет над уже проставленной картинкой
+  log('\n🖼 Обложки (match-photos)...');
+  runScript('match-photos.mjs', '--main-only', 600000);
+
+  // 4b. Альбом: категории из служебных папок
+  log('\n🖼 Альбом (build-album)...');
+  runScript('build-album.mjs', '', 1800000);
 
   // 5. Сохраняем
   log('\n💾 Шаг 5: Сохранение db.json...');

@@ -17,7 +17,7 @@ window.HTMLElement.prototype.scrollIntoView = function () {};
 // Подключаем скрипты в том же порядке, что в index.html
 const dataFiles = ['core', 'slider', 'schedule', 'prices', 'programs', 'trainers', 'news']
   .map(n => `js/data/${n}.js`);
-for (const src of [...dataFiles, 'js/header.js', 'js/footer.js', 'js/modal.js', 'js/main.js']) {
+for (const src of [...dataFiles, 'js/header.js', 'js/footer.js', 'js/modal.js', 'js/tiles.js', 'js/main.js']) {
   window.eval(fs.readFileSync(path.join(root, src), 'utf-8'));
 }
 document.dispatchEvent(new window.Event('DOMContentLoaded', { bubbles: true }));
@@ -89,9 +89,23 @@ const box = document.querySelector('.modal-box');
 box.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
 check('клик внутри окна НЕ закрывает', overlay.classList.contains('open'));
 
-// Кнопки у программ и тренеров
-check('у программ есть кнопка "Подробнее"', !!document.querySelector('#programs-grid .program-btn-secondary'));
-check('у тренеров есть кнопка "Подробнее"', !!document.querySelector('#trainers-grid .trainer-btn-secondary'));
+// Кнопки в единых плитках (S90): «Подробнее» + зелёная «Заказать звонок»
+check('у программ есть кнопка "Подробнее"', !!document.querySelector('#programs-grid .tile .tile-btn-more'));
+check('у программ есть кнопка "Заказать звонок"', !!document.querySelector('#programs-grid .tile .tile-btn-call'));
+check('у тренеров есть кнопка "Подробнее"', !!document.querySelector('#trainers-grid .tile .tile-btn-more'));
+check('у тренеров есть кнопка "Заказать звонок"', !!document.querySelector('#trainers-grid .tile .tile-btn-call'));
+
+// S90: страницы «все направления» больше нет — пункта меню тоже нет.
+// S131 п.2: заголовок группы направлений в меню — ссылка на конкретное
+// направление (directions.html?id=…), это допустимо; запрещена ссылка на
+// несуществующую «общую» страницу направлений (без ?id=).
+check('меню: пункт «Направления» убран (S90)',
+  ![...document.querySelectorAll('.nav-list a, .mobile-list a')]
+    .some(a => (a.getAttribute('href') || '') === 'directions.html'));
+check('меню (S131 п.2): заголовки групп направлений ведут на directions.html?id=',
+  [...document.querySelectorAll('.nav-list a')]
+    .filter(a => (a.getAttribute('href') || '').startsWith('directions.html?id='))
+    .length > 0);
 
 // Итог
 let failed = 0;

@@ -8,15 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=36">
 </head>
-<body>
+<body data-doc-title="Новости">
   <div id="header-container"></div>
 
   <section class="section">
-    <div class="container">
-      <h1 class="section-title">Новости центра</h1>
-      <div id="news-grid" class="news-grid news-grid-full"></div>
+    <div class="container" id="page-main">
+      <h1 class="section-title" data-section="news">Новости центра</h1>
+      <p class="section-subtitle" data-section="news"></p>
+      <div id="news-grid" class="news-grid"></div>
       <p id="news-empty" class="empty-note" hidden>Новостей пока нет</p>
     </div>
   </section>
@@ -40,23 +41,39 @@
     </div>
   </div>
 
-  <script src="js/data/core.js?v=19"></script>
-  <script src="js/appearance.js?v=19"></script>
-  <script src="js/data/news-all.js?v=19"></script>
-  <script src="js/data/news-full.js?v=19"></script>
-  <script src="js/md.js?v=19"></script>
-  <script src="js/header.js?v=19"></script>
-  <script src="js/footer.js?v=19"></script>
-  <script src="js/modal.js?v=19"></script>
-  <script src="js/lightbox.js?v=19"></script>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/seo.js?v=36"></script>
+  <script src="js/panels.js?v=36"></script>
+  <script src="js/data/news-all.js?v=36"></script>
+  <script src="js/data/news-full.js?v=36"></script>
+  <script src="js/md.js?v=36"></script>
+  <script src="js/news-grid.js?v=36"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
+  <script src="js/modal.js?v=36"></script>
+  <script src="js/lightbox.js?v=36"></script>
   <script>
     (function () {
       const data = window.SITE_DATA || {};
+      const L = window.Layout;
       const news = Array.isArray(data.newsAll) ? data.newsAll : [];
       const full = data.newsFull || {};
       const grid = document.getElementById('news-grid');
       const empty = document.getElementById('news-empty');
       const overlay = document.getElementById('newsModal');
+      const pageMain = document.getElementById('page-main');
+
+      // S127 п.5/п.6: крошки и перекрёстные ссылки общей страницы
+      if (L) {
+        L.applyDocumentTitle('news', 'Новости центра');
+        L.renderCrumbs(pageMain, [
+          { href: 'index.html', label: 'Главная' },
+          { label: L.sectionName('news', 'Новости центра') }
+        ]);
+        L.renderCrossLinks(pageMain, 'news');
+      }
 
       function esc(s) {
         return String(s)
@@ -73,42 +90,41 @@
         grid.hidden = true;
         empty.hidden = false;
       } else {
-        grid.innerHTML = news.map(n => `
-          <article class="news-card" id="news-${n.id}">
-            ${n.image
-              ? `<a href="?id=${n.id}"><img src="${n.image}" alt="${esc(n.title)}" loading="lazy"></a>`
-              : '<div class="news-noimage"></div>'}
-            <div class="news-content">
-              <h3 class="news-title">${esc(n.title)}</h3>
-              ${n.date ? `<p class="news-date">${formatDate(n.date)}</p>` : ''}
-              <p class="news-excerpt">${esc(n.preview || '')}</p>
-              ${n.long || n.image || n.video ? `
-              <div class="news-actions">
-                <button type="button" class="news-more" onclick="openNews(${n.id})">${n.long ? 'Читать полностью →' : 'Смотреть фото →'}</button>
-              </div>` : ''}
-            </div>
-          </article>
-        `).join('');
+        grid.innerHTML = buildGrid(news);
+      }
+
+      /* S124/S125: разметка плитки общая с главной — js/news-grid.js.
+         news.html показывает ВСЕ новости, включая отмеченные «На главной» (showOnHome). */
+      function buildGrid(list) {
+        return window.NewsGrid.build(list, 'openNews', function (n) {
+          if (n.long) return 'Читать полностью →';
+          if (n.image || n.video) return 'Смотреть фото →';
+          return null;   // пустая карточка без медиа и без длинного текста — кнопки нет
+        });
       }
 
       /* ---------- Модалка ---------- */
       function openNews(id) {
         const n = news.filter(x => String(x.id) === String(id))[0];
-        if (!n) return;
+        if (!n) {
+          location.replace('404.html?from=' + encodeURIComponent('news.html?id=' + id) + '&id=' + encodeURIComponent(id));
+          return;
+        }
         document.getElementById('newsModalTitle').textContent = n.title;
         document.getElementById('newsModalDate').textContent = formatDate(n.date);
+        const gal = 'news-modal-' + n.id;
+        // S111: обложка — первый объект в теле новости, текст огибает; фото/видео — в конце (news-media)
+        const coverHtml = n.image
+          ? `<span class="lightbox-zoom news-cover-float" data-gallery="${gal}"><img src="${n.image}" alt="${esc(n.title)}"></span>`
+          : '';
         document.getElementById('newsModalBody').innerHTML =
-          window.MD ? window.MD.render(full[n.id] || n.preview || '') : esc(full[n.id] || '');
+          coverHtml + (window.MD ? window.MD.render(full[n.id] || n.preview || '') : esc(full[n.id] || ''));
 
         let media = '';
-        if (n.image) {
-          media += `<div class="lightbox-zoom"><img src="${n.image}" alt="${esc(n.title)}"></div>`;
-        }
-        // Галерея до 5 фото (S73) — каждое отдельной миниатюрой, клик → lightbox
         const photos = Array.isArray(n.photos) ? n.photos : [];
         if (photos.length) {
           media += `<div class="news-photos">` + photos.map(p =>
-            `<div class="lightbox-zoom news-photo"><img src="${p}" alt="${esc(n.title)}" loading="lazy"></div>`
+            `<div class="lightbox-zoom news-photo" data-gallery="${gal}"><img src="${p}" alt="${esc(n.title)}" loading="lazy"></div>`
           ).join('') + `</div>`;
         }
         if (n.video) {

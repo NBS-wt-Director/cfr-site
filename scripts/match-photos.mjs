@@ -12,6 +12,8 @@
  *
  *   npm run match-photos            — заполняет только пустые image
  *   npm run match-photos -- --force — переставляет обложки заново
+ *   npm run match-photos -- --main-only — только папки с явным «ГЛАВНОЕ ФОТО»
+ *                                        (переставить, даже если image уже есть)
  *
  * Идемпотентен, бэкапит db.json перед записью.
  */
@@ -27,6 +29,9 @@ const dataDir = path.join(root, 'static', 'data');
 const coversDir = path.join(root, 'static', 'uploads', 'covers');
 const dbPath = path.join(root, 'db.json');
 const FORCE = process.argv.includes('--force');
+// --main-only: трогаем только папки с явной обложкой «ГЛАВНОЕ ФОТО.*»
+// (администратор положил её на диск — она важнее уже проставленной картинки)
+const MAIN_ONLY = process.argv.includes('--main-only');
 
 // Те же исправления имён папок, что в parse-docs.mjs
 const NAME_FIXES = {
@@ -67,39 +72,39 @@ function key2(name) {
 
 const IMG_RE = /\.(jpe?g|png|webp)$/i;
 
-// Папки с фото: нормализованное имя → абсолютный путь папки
-function scanFolders(base) {
-  const map = new Map();
+// Папки с фото: нормализованное имя → { full, imgs }.
+// Рекурсивно (вход в «архив/», категории), служебные папки с запятой — пропуск.
+function scanFolders(base, map = new Map(), isRoot = true) {
   if (!fs.existsSync(base)) return map;
   for (const dir of fs.readdirSync(base)) {
     const full = path.join(base, dir);
     if (!fs.statSync(full).isDirectory()) continue;
+    if (/^\s*,/.test(dir)) continue; // служебные (,СОВМЕСТНЫЕ ФОТО и т.п.)
     const imgs = fs.readdirSync(full).filter(f => IMG_RE.test(f)).sort((a, b) => a.localeCompare(b, 'ru'));
-    if (imgs.length) map.set(normalizeName(dir), { full, imgs });
+    if (imgs.length) {
+      map.set(normalizeName(dir), { full, imgs });
+    } else {
+      // Нет фото на этом уровне → спускаемся глубже (категории/архив)
+      scanFolders(full, map, false);
+    }
   }
   return map;
 }
 
 // Программы: папки лежат на уровень глубже (по категориям)
 function scanProgramFolders() {
-  const base = path.join(dataDir, 'programs');
-  const map = new Map();
-  if (!fs.existsSync(base)) return map;
-  for (const cat of fs.readdirSync(base)) {
-    const catDir = path.join(base, cat);
-    if (!fs.statSync(catDir).isDirectory()) continue;
-    for (const [name, val] of scanFolders(catDir)) map.set(name, val);
-  }
-  return map;
+  return scanFolders(path.join(dataDir, 'programs'));
 }
 
-// Кандидаты обложки: coverFile → файл с именем папки → остальные по алфавиту.
+// Кандидаты обложки: ГЛАВНОЕ ФОТО → coverFile → файл с именем папки → алфавит.
 // Встречаются HEIC/HEIF с расширением .jpg — convert на них падает, поэтому
 // processList перебирает кандидатов до первого успешного.
 function coverCandidates(folder, entity) {
   const { full, imgs } = folder;
   const out = [];
   const push = f => { if (f && !out.includes(path.join(full, f))) out.push(path.join(full, f)); };
+  // Явная обложка: «ГЛАВНОЕ ФОТО.jpg» (регистр не важен)
+  push(imgs.find(f => /^главное\s*фото\.[a-z0-9]+$/i.test(f)));
   if (entity.coverFile) {
     const want = entity.coverFile.toLowerCase();
     push(imgs.find(f => f.toLowerCase() === want || path.parse(f).name.toLowerCase() === path.parse(want).name));
@@ -135,7 +140,7 @@ let set = 0, skipped = 0, missing = [];
 
 function processList(list, folders, kind) {
   for (const entity of list) {
-    if (entity.image && !FORCE) { skipped++; continue; }
+    if (entity.image && !FORCE && !MAIN_ONLY) { skipped++; continue; }
     let folder = folders.get(normalizeName(entity.name));
     if (!folder) {
       // нестрогий матчинг: фамилия+имя (тренеры) / нормализованное имя (программы)
@@ -143,6 +148,12 @@ function processList(list, folders, kind) {
       for (const [name, val] of folders) if (key2(name) === k) { folder = val; break; }
     }
     if (!folder) { missing.push(`${kind}: ${entity.name}`); continue; }
+
+    // --main-only: у сущности уже есть обложка, а «ГЛАВНОЕ ФОТО» в папке нет → не трогаем
+    if (MAIN_ONLY && entity.image) {
+      const hasMain = folder.imgs.some(f => /^главное\s*фото\.[a-z0-9]+$/i.test(f));
+      if (!hasMain) { skipped++; continue; }
+    }
 
     const candidates = coverCandidates(folder, entity);
     let s = `${kind === 'program' ? 'p' : 't'}-${slug(entity.name)}`;

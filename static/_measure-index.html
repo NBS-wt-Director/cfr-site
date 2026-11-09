@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Центр Функционального Развития «Шифу Панда»</title>
+  <meta name="description" content="Спорт, развитие детей и взрослых. Екатеринбург.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=35">
+</head>
+<body>
+
+  <!-- Хедер (вставляется из js/header.js) -->
+  <div id="header-container"></div>
+
+  <!-- Слайдер -->
+  <section class="slider" id="slider"></section>
+
+  <!-- Разделитель после слайдера: скрыт по умолчанию, включается из админки -->
+  <div class="divider" id="globalDivider"></div>
+
+  <!-- Расписание (картинки) -->
+  <section class="section" id="schedule">
+    <div class="container">
+      <h2 class="section-title">Наше расписание</h2>
+      <!-- S99: в гибриде ровно ДВА режима — «Картинки» (по одной на зал) и «Таблица».
+           Вариант B (2026-11-06): «Таблица» показывает картинки И таблицу;
+           «Картинки» — только картинки. -->
+      <div class="schedule-switch" id="schedule-switch" hidden>
+        <button type="button" class="schedule-switch-btn active" data-view="images">🖼 Картинки</button>
+        <button type="button" class="schedule-switch-btn" data-view="table">📋 Таблица</button>
+      </div>
+      <div class="schedule-grid" id="schedule-grid"></div>
+      <div id="schedule-table-view" hidden></div>
+    </div>
+  </section>
+
+  <!-- Цены (картинка) -->
+  <section class="section" id="prices">
+    <div class="container">
+      <h2 class="section-title">Наши цены</h2>
+      <div class="prices-grid" id="prices-grid"></div>
+    </div>
+  </section>
+
+  <!-- Наши тренировки (S90: единые плитки) -->
+  <section class="section" id="programs">
+    <div class="container">
+      <h2 class="section-title">Наши тренировки</h2>
+      <div id="programs-grid"></div>
+    </div>
+  </section>
+
+  <!-- Тренеры -->
+  <section class="section" id="trainers">
+    <div class="container">
+      <h2 class="section-title">Наши тренера</h2>
+      <div id="trainers-grid"></div>
+    </div>
+  </section>
+
+  <!-- Новости (динамика — данные из data.js) -->
+  <section class="section" id="news">
+    <div class="container">
+      <h2 class="section-title">Новости центра</h2>
+      <div class="news-grid" id="news-grid"></div>
+    </div>
+  </section>
+
+  <!-- Футер (вставляется из js/footer.js) -->
+  <div id="footer-container"></div>
+
+  <!-- Плавающая кнопка звонка (видна только на мобильных) -->
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
+
+  <!-- Модалка полного текста новости (S73): открытие без перехода на news.html -->
+  <div class="modal-overlay" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
+    <div class="modal-box news-modal-box">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="newsModalTitle"></h2>
+          <p class="modal-reason" id="newsModalDate"></p>
+        </div>
+        <button type="button" class="modal-close" id="newsModalClose" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="news-body" id="newsModalBody"></div>
+      <div class="news-media" id="newsModalMedia"></div>
+    </div>
+  </div>
+
+  <!-- Данные сайта. core.js обязателен и идёт первым, дальше — только модули
+       тех секций, что есть на этой странице. Генератор: npm run static:export -->
+  <script src="js/data/core.js?v=35"></script>
+  <script src="js/appearance.js?v=35"></script>
+  <script src="js/layout.js?v=35"></script>
+  <script src="js/seo.js?v=35"></script>
+  <script src="js/panels.js?v=35"></script>
+  <script src="js/data/slider.js?v=35"></script>
+  <script src="js/data/schedule.js?v=35"></script>
+  <script src="js/data/schedule-table.js?v=35"></script>
+  <script src="js/data/prices.js?v=35"></script>
+  <script src="js/data/price-items.js?v=35"></script>
+  <script src="js/data/discounts.js?v=35"></script>
+  <script src="js/data/programs.js?v=35"></script>
+  <script src="js/data/trainers.js?v=35"></script>
+  <script src="js/data/news.js?v=35"></script>
+  <script src="js/data/news-full.js?v=35"></script>
+  <script src="js/md.js?v=35"></script>
+  <script src="js/news-grid.js?v=35"></script>
+
+  <!-- Компоненты -->
+  <script src="js/header.js?v=35"></script>
+  <script src="js/footer.js?v=35"></script>
+  <script src="js/modal.js?v=35"></script>
+  <script src="js/lightbox.js?v=35"></script>
+
+  <!-- Основная логика (слайдер, рендер секций, мобильное меню) -->
+  <script src="js/schedule-ui.js?v=35"></script>
+  <script src="js/tiles.js?v=35"></script>
+  <script src="js/main.js?v=35"></script>
+
+
+<script>
+try {
+  var g = document.querySelector('#programs-grid .tiles-grid');
+  if (!g) throw new Error('no grid');
+  var out = Array.prototype.slice.call(g.children, 0, 6).map(function (k, i) { return i + ':x' + Math.round(k.getBoundingClientRect().left) + 'w' + Math.round(k.getBoundingClientRect().width); });
+  var pre = document.createElement('div');
+  pre.style.cssText = 'position:fixed;top:0;left:0;z-index:9999999;background:#ff0;color:#000;font:16px monospace;padding:6px;border:3px solid red;width:100%;';
+  pre.textContent = 'tpl=' + getComputedStyle(g).gridTemplateColumns + '  ' + out.join(' ');
+  document.body.appendChild(pre);
+} catch (e) { document.body.insertAdjacentHTML('afterbegin', '<div style="background:red;color:#fff;font-size:22px">ERR ' + e.message + '</div>'); }
+</script>
+</body>
+</html>

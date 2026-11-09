@@ -3,144 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>500 — Внутренняя ошибка сервера | ЦФР</title>
+  <title>500 — Внутренняя ошибка — Шифу Панда</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=36">
   <style>
-    :root {
-      --primary: #2563eb;
-      --danger: #dc2626;
-      --text: #1e293b;
-      --text-secondary: #64748b;
-      --bg: #f8fafc;
-      --card: #ffffff;
+    .not-found-hero { text-align: center; padding: 3rem 1rem; }
+    .not-found-code { font-size: 6rem; font-weight: 900; color: var(--color-danger, #dc2626); line-height: 1; margin-bottom: 0.5rem; }
+    .not-found-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    .not-found-text { color: var(--color-text-muted, #64748b); max-width: 480px; margin: 0 auto 2rem; line-height: 1.6; }
+    .not-found-links { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .not-found-links a {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem;
+      border-radius: 0.5rem; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      background: var(--color-primary, #2563eb); color: #fff;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .error-container {
-      background: var(--card);
-      padding: 3rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      max-width: 500px;
-      text-align: center;
-    }
-
-    .error-code {
-      font-size: 6rem;
-      font-weight: 700;
-      color: var(--danger);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .error-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .error-text {
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-size: 1rem;
-    }
-
-    .error-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-secondary {
-      background: #e2e8f0;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: #cbd5e1;
-      transform: translateY(-2px);
-    }
-
-    .emoji {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 640px) {
-      .error-container {
-        padding: 2rem 1.5rem;
-      }
-      
-      .error-code {
-        font-size: 4rem;
-      }
-      
-      .error-title {
-        font-size: 1.25rem;
-      }
-      
-      .error-actions {
-        flex-direction: column;
-      }
-      
-      .btn {
-        width: 100%;
-      }
-    }
+    .not-found-links a:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
   </style>
 </head>
-<body>
-  <div class="error-container">
-    <div class="emoji">⚠️</div>
-    <div class="error-code">500</div>
-    <h1 class="error-title">Внутренняя ошибка сервера</h1>
-    <p class="error-text">
-      Мы уже знаем о проблеме и работаем над исправлением.<br>
-      Попробуйте обновить страницу или зайдите позже.
-    </p>
-    <div class="error-actions">
-      <a href="/" class="btn btn-primary">🏠 На главную</a>
-      <button onclick="location.reload()" class="btn btn-secondary">🔄 Попробовать снова</button>
+<body data-doc-title="500">
+  <div id="header-container"></div>
+  <section class="section">
+    <div class="container" id="page-main">
+      <div class="not-found-hero">
+        <div class="not-found-code">500</div>
+        <h1 class="not-found-title">Внутренняя ошибка сервера</h1>
+        <p class="not-found-text">Что-то пошло не так. Попробуйте обновить страницу или вернитесь на главную.</p>
+        <div class="not-found-links">
+          <a href="index.html">🏠 На главную</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
 </body>
 </html>

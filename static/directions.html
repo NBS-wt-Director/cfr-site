@@ -3,45 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Направления — Центр Развития «Шифу Панда»</title>
-  <link rel="stylesheet" href="css/style.css?v=19">
-  <link rel="stylesheet" href="js/lightbox.css">
+  <title>Направление — Шифу Панда</title>
+  <meta name="description" content="Направление тренировок центра: состав занятий, тренеры, расписание и стоимость.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=36">
 </head>
-<body>
+<body data-doc-title="Направление">
   <div id="header-container"></div>
 
-  <main class="page-directions">
-    <h1 class="page-title">Направления</h1>
-
-    <div id="directions-list" class="directions-grid">
-      <!-- Рендерится из directions.js -->
+  <!-- Страница ОДНОГО направления (S90): directions.html?id=<dirId> -->
+  <!-- S127 п.5: разметка как на остальных страницах — .section > .container
+       (класс .page-directions сохранён, чтобы CSS не менялся) -->
+  <section class="section">
+    <div class="container page-directions" id="page-main">
+      <div id="direction-page"></div>
     </div>
-  </main>
+  </section>
 
+  <div class="divider"></div>
   <div id="footer-container"></div>
+  <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
-  <!-- Новостная модалка (общая для всех страниц) -->
-  <div id="newsModal" class="modal-overlay" style="display:none;">
-    <div class="modal-box">
-      <button class="modal-close" onclick="window.closeNewsModal()">&times;</button>
-      <div class="modal-body" id="newsModalBody"></div>
-    </div>
-  </div>
+  <!-- S127 п.3: узел #callModalRoot из разметки убран — modal.js создаёт окно сам.
+       Пока div существовал, modal.js делал ранний return и кнопка
+       «Заказать звонок» на странице направления не работала. -->
 
-  <!-- Модальное окно обратного звонка -->
-  <div id="callModalRoot"></div>
-
-  <script src="js/data/core.js"></script>
-  <script src="js/data/directions.js"></script>
-  <script src="js/data/programs.js"></script>
-  <script src="js/data/trainers.js"></script>
-  <script src="js/data/schedule-table.js"></script>
-  <script src="js/md.js?v=19"></script>
-  <script src="js/header.js?v=19"></script>
-  <script src="js/footer.js?v=19"></script>
-  <script src="js/lightbox.js?v=19"></script>
-  <script src="js/modal.js?v=19"></script>
-  <script src="js/schedule-ui.js?v=19"></script>
-  <script src="js/directions.js?v=19"></script>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/seo.js?v=36"></script>
+  <script src="js/panels.js?v=36"></script>
+  <script src="js/data/directions.js?v=36"></script>
+  <script src="js/data/programs.js?v=36"></script>
+  <script src="js/data/trainers.js?v=36"></script>
+  <script src="js/data/schedule-table.js?v=36"></script>
+  <!-- S131 п.5: блок стоимости направления -->
+  <script src="js/data/price-items.js?v=36"></script>
+  <script src="js/data/discounts.js?v=36"></script>
+  <script src="js/prices-ui.js?v=36"></script>
+  <script src="js/md.js?v=36"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
+  <script src="js/lightbox.js?v=36"></script>
+  <script src="js/modal.js?v=36"></script>
+  <script src="js/schedule-ui.js?v=36"></script>
+  <script src="js/tiles.js?v=36"></script>
+  <script src="js/directions.js?v=36"></script>
 </body>
 </html>

@@ -46,6 +46,10 @@ tsconfig.tsbuildinfo
 # Сессии админки (файл + память, перезапуск PM2 — токен в localStorage всё ещё валиден)
 .admin-sessions.json
 
+# Сменённый пароль админки (S126): sha256+salt, задаётся в «Главных данных».
+# Вне репозитория — приоритет выше, чем ADMIN_PASSWORD из окружения.
+.admin-password.json
+
 !.env.example
 
 # Данные с Яндекс.Диска (гигабайты, не коммитим) — содержимое
@@ -54,6 +58,12 @@ static/data/*
 !static/data/1.jpg
 !static/data/2.jpg
 !static/data/price-2026-10.jpg
+# ИСКЛЮЧЕНИЕ: исходные прайсы (.doc) — их парсит scripts/parse-price.mjs (S115)
+!static/data/prices/
+!static/data/prices/*
 
 # Старая версия Next.js — на антресолях (не включать в деплой)
 trash/
+
+# Свалка тикетов и мультитикетов
+tickets/trash/

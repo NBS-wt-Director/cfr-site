@@ -1,222 +1,118 @@
-# 🐼 Шифу Панда — Центр Функционального Развития
+# CFR-Site — Сайт Центра Функционального Развития
 
-Полнофункциональный веб-сайт спортивного центра с системой управления контентом (CMS).
+**Домен:** [центр-фр.рф](https://центр-фр.рф) · **Репо:** `https://github.com/NBS-wt-Director/cfr-site`
 
-## 🚀 Возможности
+Статический сайт спортивного центра с админкой, генератором данных и пайплайном наполнения из Яндекс.Диска.
 
-### Публичные страницы
-- **Главная страница** — слайдер, расписание, цены, программы, тренеры, новости, контакты
-- **Программы тренировок** — каталог программ с детальными страницами
-- **Тренеры** — профили с опытом, специализацией и фотоальбомом
-- **Расписание** — отображение расписания занятий
-- **Контакты** — страница с контактами, картой и подписками на соцсети
-- **Личный кабинет** — для зарегистрированных пользователей
-- **Медиагалерея** — слайдер всех фото тренеров и программ с ссылками на источник
-- **Новости** — отображение новостей центра с фото и видео
-- **Ручные страницы** — создаваемые страницы с поддержкой Markdown/HTML
+> ⚠️ **Важно:** старая Next.js-версия сайта **архивирована** в `trash/` (не деплоится).
+> Рабочий сайт — чистый HTML/CSS/JS в `static/`, админка — Node-сервер `scripts/admin-server.mjs`.
+> Перед любым деплоем — **обновить этот README.md** (см. `AGENTS.md` → «🚀 Деплой»).
 
-### Админ-панель
-- **Хедер** — настройка заголовка, анимаций, компонентов
-- **Слайдер** — управление слайдами с настраиваемым положением текста
-- **Расписание и цены** — загрузка изображений
-- **Программы** — полное управление программами тренировок
-- **Сотрудники** — управление тренерами и персоналом
-- **Новости** — публикация событий центра с фото и видео
-- **Страницы** — создание ручных страниц с Markdown/HTML
-- **Футер** — настройка отображения футера
-- **Контакты** — основные контакты центра
-- **Доп. контакты** — подписки на соцсети и Яндекс.Карта
-- **Разделы** — настройка секций главной страницы
-- **Разделители** — оформление разделителей между секциями
-- **Настройки** — SMTP, логотип, favicon
-- **Статистика** — посещаемость сайта
-- **Автозагрузка** — импорт контента с Яндекс.Диска
-- **Файлы** — управление загруженными файлами
-
-## 🛠 Технологии
-
-- **Frontend:** Next.js 14, React 18, TypeScript
-- **Стили:** Tailwind CSS + CSS Modules
-- **Backend:** Next.js API Routes
-- **База данных:** JSON-файл (db.json) через LowDB
-- **Изображения:** Локальная папка public/uploads
-- **Облако:** Яндекс.Диск для автозагрузки
-
-## 📋 Структура проекта
+## 🏗 Архитектура
 
 ```
-shifu-panda/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── page.tsx            # Главная страница
-│   │   ├── admin/              # Админ-панель
-│   │   ├── contacts/           # Страница контактов
-│   │   ├── programs/           # Программы (каталог + детали)
-│   │   ├── schedule/           # Расписание
-│   │   ├── trainers/           # Тренеры (каталог + детали)
-│   │   ├── lk/                 # Личный кабинет
-│   │   └── api/                # API маршруты
-│   │       ├── db/             # Работа с БД
-│   │       ├── upload/         # Загрузка файлов
-│   │       ├── send-email/     # Отправка писем
-│   │       └── admin/          # Админские функции
-│   ├── components/
-│   │   ├── ui/                 # Переиспользуемые компоненты
-│   │   ├── home/               # Компоненты главной страницы
-│   │   └── admin/              # Компоненты админ-панели
-├── public/
-│   └── uploads/                # Загруженные изображения
-├── db.json                     # База данных
-└── package.json
+Яндекс.Диск (docx/фото) → scripts/ → db.json → scripts/export-static.mjs → static/js/data/*.js → статика
 ```
 
-## 🚀 Запуск
+| Компонент | Что это |
+|-----------|---------|
+| `static/` | Публичный сайт: чистый HTML + ES6 JS + один `css/style.css`. Без сборки. |
+| `static/admin.html` | Админка (вход по паролю из env, смена пароля в «Главных данных») |
+| `scripts/admin-server.mjs` | Node-сервер (:3456): раздача сайта + API админки + запись `db.json` + авторегенерация статики |
+| `db.json` | **Источник данных** (новости, программы, тренеры, расписание, цены, направления, залы, настройки, альбом) |
+| `scripts/export-static.mjs` | Генератор `static/js/data/*.js` из `db.json` (+ sitemap.xml/robots.txt) |
+| `deploy/` | `deploy.sh`, PM2 (`ecosystem.config.js`), NGINX (`nginx-site.conf`) |
+| `tickets/` | Тикет-система (индекс — `tickets/README.md`) |
+| `info/` | Справочники: ключевые решения, сканы DanceStudio, анализ доноров, команды сервера |
 
-### Установка зависимостей
+## 📄 Страницы сайта
+
+| Страница | Назначение |
+|----------|-----------|
+| `index.html` | Главная: слайдер, расписание (гибрид: картинки/таблица), цены, направления, программы, «Коллектив», новости, контакты |
+| `programs.html` | Каталог программ по разделам (сворачиваемые панели, фильтры) |
+| `program.html?id=` | Шаблон страницы программы (один шаблон, рендер по `?id=`) |
+| `directions.html` / `directions.html?id=` | Направления (группы программ) |
+| `trainers.html` / `trainer.html?id=` | «Коллектив» (тренеры) и страница тренера (расписание, фотоальбом-карусель) |
+| `news.html` | Новости (сетка, модалка с полным текстом, markdown) |
+| `album.html` | Фотоальбом непривязанных фото |
+| `page.html?url=` | Ручные страницы из админки (markdown) |
+| `crm.html`, `lk.html` | Заглушки CRM и Личного кабинета |
+| `404.html` / `500.html` | Страницы ошибок |
+
+## 🛠 Команды
+
+| Команда | Что делает |
+|---------|-----------|
+| `npm run admin` | Запуск сайта+админки на http://localhost:3456 (пароль из `.env.local`) |
+| `npm run static:export` | Перегенерация `static/js/data/*.js` + sitemap/robots из `db.json` |
+| `npm run parse-docs` | Парсинг .docx с Яндекс.Диска → описания в `db.json` |
+| `npm run match-photos` | Фото-обложки программ/тренеров |
+| `npm run build-album` | Построение альбома из скачанных фото |
+| `npm run night-sync` | Синхронизация новых файлов с диска (cron в 3:00) |
+| `npm run parse-price` | Парсинг прайса (.doc) → `settings.priceItems`/`discounts` |
+| `npm run test-menu` | Тесты меню (26 проверок) |
+| `npm run test-static` | Смоук-тесты статики (jsdom) |
+| `npm run pull-prod-news` | Стягивание новостей с боевого прода |
+| `npm run sync:from-server` | Синхронизация данных с сервера |
+
+## 🚀 Деплой
+
+Полный протокол — `AGENTS.md` → «🚀 Деплой»; периодический регламент — `tickets/activ/periodic/deploy.md`.
+
+**Перед деплоем обязательно:** обновить `README.md`, если менялись страницы/API/структура.
+
 ```bash
-cd shifu-panda
-npm install
+# С сервера (cfr_balloo):
+cd /home/cfr_balloo/sites/cfrsite && ./deploy/deploy.sh
 ```
 
-### Запуск dev-сервера
-```bash
-npm run dev
+Стек прода: **Ubuntu 24.04 · PM2 (`cfrsite`, :3456) · NGINX (443 → статика + прокси API) · Let's Encrypt.**
+
+## 💾 База данных (`db.json`)
+
 ```
-Откроется на http://localhost:3000
-
-### Сборка для продакшена
-```bash
-npm run build
-npm start
-```
-
-## 📝 Структура базы данных (db.json)
-
-```json
 {
-  "siteSettings": { "logo": "", "favicon": "", "autoupload": {}, "yandexClientId": "" },
-  "schedule": [{ "id": 1, "image": "/расписание1.jpg" }],
-  "prices": [{ "id": 1, "image": "/цены1.jpg" }],
-  "sections": [
-    { "id": "prices", "title": "Наши цены", "background": "indigo-purple", "cols": 1 },
-    { "id": "schedule", "title": "Расписание занятий", "background": "yellow-orange", "cols": 4 },
-    { "id": "programs", "title": "Программы тренировок", "background": "blue-sky", "cols": 3 },
-    { "id": "trainers", "title": "Наши тренеры", "background": "red-pink", "cols": 3 },
-    { "id": "news", "title": "Новости центра", "background": "gray-white", "cols": 3 }
-  ],
-  "globalDivider": { "enabled": true, "height": "md", "background": "gradientGreen", "textContent": "🏃 🏋️ 🧘 💪", "fontSize": "small" },
-  "sliders": [{ "id": 1, "title": "Заголовок", "image": "/uploads/slider.jpg", "interval": 5, "position": "center" }],
-  "sliderSettings": { "textPositionMode": "static", "staticPosition": "bottom-right", "marginX": 10, "marginY": 10 },
-  "programs": [{ "id": 1, "name": "Название", "description": "...", "image": "/uploads/main.jpg", "photoAlbum": [], "trainers": [], "workouts": [] }],
-  "trainers": [{ "id": 1, "name": "Имя", "image": "/uploads/trainer.jpg", "experience": "Опыт", "specialization": "...", "description": "...", "photoAlbum": [] }],
-  "news": [
-    { "id": 1, "title": "Заголовок", "text": "Текст", "image": "/uploads/news.jpg", "videoUrl": "", "mediaType": "image" }
-  ],
-  "contacts": { "address": "...", "phone": "...", "email": "...", "vk": "...", "telegram": "...", "social": [] },
-  "additionalContacts": { "enabled": true, "title": "Подпишитесь на нас", "groups": [], "yandexMap": { "enabled": true, "center": [], "zoom": 15, "placemark": [], "address": "" } },
-  "headerSettings": { "titleSuffix": " | Шифу Панда", "componentsEnabled": { "callButton": true, "pageTitle": true, "menu": true }, "componentsOrder": [], "homeMenuEnabled": true, "logoAnimation": "none", "secondLineText": "", "secondLineAnimation": "none" },
-  "emailConfig": { "smtpHost": "", "smtpPort": 465, "smtpSecure": true, "smtpUser": "", "smtpPass": "", "fromName": "Шифу Панда", "adminEmail": "", "errorEmail": [] }
+  data:     { news, programs, trainers, schedule, prices, album },
+  settings: { appearance, siteSettings, scheduleSettings, emailConfig,
+              globalDivider, sliderSettings, contacts, directions, halls,
+              homeSections, priceItems, discounts, footerLinks,
+              headerSettings, sectionNames },
+  sections, sliders, employees, staff, additionalContacts,
+  designSettings, visits, mediaUsage, defaultInterval
 }
 ```
 
-## 📂 Дополнительные файлы данных
+- `db.json` — **коммитится** (176 КБ), на сервере является источником истины (деплой его сохраняет).
+- Бэкапы — в `backups/` (в `.gitignore`), правила — `AGENTS.md` → «💾 База данных».
 
-### data/pages.json — Ручные страницы
-```json
-[
-  {
-    "id": "obuchenie",
-    "slug": "/obuchenie",
-    "title": "Обучение",
-    "content": "Текст страницы",
-    "media": "/uploads/page-media.jpg",
-    "enabled": true,
-    "code": "## Markdown код\n\nТекст с **жирным** и *курсивом*",
-    "order": 1
-  }
-]
+## 🔐 Секреты
+
+Только через переменные окружения (`.env.local` для разработки, `.env.production` на сервере — оба в `.gitignore`).
+Перечень переменных: `.env.example`, `.env.production.example`.
+
+## 📁 Структура проекта
+
 ```
-
-### data/footer.json — Настройки футера
-```json
-{
-  "enabled": true,
-  "showContacts": true,
-  "showSocial": true,
-  "showCopyright": true,
-  "copyrightText": "© 2026 Шифу Панда. Екатеринбург. Все права защищены.",
-  "showDevInfo": false,
-  "links": [
-    { "text": "О нас", "href": "/about" }
-  ]
-}
+cfr-site/
+├── static/              # Сайт (HTML/CSS/JS) + uploads/ + data/ (донор, не коммитится)
+├── scripts/             # Node/Python-скрипты: админка, экспорт, парсеры, тесты
+├── deploy/              # deploy.sh, PM2, NGINX
+├── tickets/             # Тикет-система (activ / definded / done / trash + README-указатель)
+├── info/                # Справочники (решения, анализ доноров, команды сервера)
+├── documentation/       # Документация
+├── backups/             # Бэкапы db.json (не коммитится)
+├── db.json              # Источник данных (коммитится)
+├── AGENTS.md            # Протокол для AI (правила, деплой, тикеты)
+└── trash/               # Архив старой Next.js-версии (не коммитится)
 ```
-
-## 🔧 API Endpoints
-
-| Метод | Путь | Описание |
-|-------|------|----------|
-| GET/POST | `/api/db` | Получить/сохранить данные |
-| GET | `/api/programs` | Список программ |
-| GET | `/api/programs/[id]` | Программа по ID |
-| GET | `/api/trainers` | Список тренеров |
-| GET | `/api/trainers/[id]` | Тренер по ID |
-| POST | `/api/upload/` | Загрузка файла |
-| POST | `/api/send-email` | Отправить заявку |
-| POST | `/api/admin/autoupload` | Автозагрузка с Яндекс.Диска |
-| GET/POST | `/api/admin/stats` | Статистика |
-| GET | `/api/pages` | Список включенных страниц |
-| GET | `/api/pages/[slug]` | Страница по slug |
-| GET/POST/DELETE | `/api/admin/pages` | Управление страницами |
-| GET/POST | `/api/admin/footer` | Настройки футера |
-
-## 📱 Новости
-
-Новости хранятся в БД (db.json) и могут содержать:
-- **Фото** — загружается через админку или по URL
-- **Видео** — загружается напрямую (максимум 2 минуты)
-
-При загрузке видео:
-1. Нажмите "📁 Файл" в разделе медиа
-2. Выберите видеофайл (mp4, webm)
-3. Видео будет загружено на сервер и отображаться с плеером
-
-## 📄 Ручные страницы
-
-Создавайте страницы в админке (вкладка "Страницы"):
-- **slug** — адрес в URL (напр. `/obuchenie`)
-- **title** — название в меню и title страницы
-- **content** — обычный текст
-- **media** — фото или видео над текстом
-- **code** — Markdown или HTML (если заполнено, content/media игнорируются)
-- **enabled** — включить/выключить страницу
-
-Меню страниц автоматически добавляется в футер.
-
-## ⚙️ Настройки слайдера
-
-Поддерживается 3 режима расположения текста:
-- **Статично** — текст в одном из 9 положений (углы, центр, между ними)
-- **По отдельности** — у каждого слайда своя позиция
-- **Случайно** — позиция меняется при каждом показе
-
-9 позиций: top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right
-
-## ⚙️ Настройки хедера
-
-- Суффикс title (добавляется к заголовку страницы)
-- Включение/отключение компонентов (кнопка звонка, заголовок, меню)
-- Порядок компонентов
-- Включение меню разделов на главной
-- Анимация логотипа (none, pulse, bounce, rotate)
-- Вторая строка заголовка
-- Анимация второй строки (none, fade, slide, typewriter)
 
 ## 👥 Разработка
 
-- **Стиль кода:** TypeScript + Tailwind CSS
-- **Форматирование:** ESLint
+- **Стиль:** чистый JS (ES6, без фреймворков), комментарии на русском уместны.
+- **Тесты:** `npm run test-menu && npm run test-static` перед каждым коммитом.
+- **Тикеты:** `tickets/README.md` → `продолжай` / `добавь задачу` / `приберись в задачах`.
 
 ## 📄 Лицензия
 
-© 2026 Шифу Панда. Екатеринбург. Все права защищены.
+© 2026 ЦФР. Екатеринбург. Все права защищены.

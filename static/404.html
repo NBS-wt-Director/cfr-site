@@ -3,143 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Страница не найдена | ЦФР</title>
+  <title>404 — Страница не найдена — Шифу Панда</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=36">
   <style>
-    :root {
-      --primary: #2563eb;
-      --text: #1e293b;
-      --text-secondary: #64748b;
-      --bg: #f8fafc;
-      --card: #ffffff;
+    .not-found-hero { text-align: center; padding: 3rem 1rem; }
+    .not-found-code { font-size: 6rem; font-weight: 900; color: var(--color-primary, #2563eb); line-height: 1; margin-bottom: 0.5rem; }
+    .not-found-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    .not-found-text { color: var(--color-text-muted, #64748b); max-width: 480px; margin: 0 auto 2rem; line-height: 1.6; }
+    .not-found-links { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .not-found-links a, .not-found-links button {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem;
+      border-radius: 0.5rem; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    .not-found-links a:hover, .not-found-links button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .not-found-links .nf-primary { background: var(--color-primary, #2563eb); color: #fff; }
+    .not-found-links .nf-back { background: #e2e8f0; color: var(--color-text, #1e293b); }
+    .not-found-searched { text-align: center; margin-top: 2.5rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.75rem; }
+    .not-found-searched h3 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--color-text-muted, #64748b); }
+    .not-found-searched-grid { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .not-found-searched-grid a {
+      padding: 0.4rem 0.9rem; border-radius: 0.5rem; background: #fff; border: 1px solid #e2e8f0;
+      text-decoration: none; color: var(--color-text, #1e293b); font-size: 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
     }
-
-    .error-container {
-      background: var(--card);
-      padding: 3rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      max-width: 500px;
-      text-align: center;
-    }
-
-    .error-code {
-      font-size: 6rem;
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .error-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .error-text {
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-size: 1rem;
-    }
-
-    .error-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-secondary {
-      background: #e2e8f0;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: #cbd5e1;
-      transform: translateY(-2px);
-    }
-
-    .emoji {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 640px) {
-      .error-container {
-        padding: 2rem 1.5rem;
-      }
-      
-      .error-code {
-        font-size: 4rem;
-      }
-      
-      .error-title {
-        font-size: 1.25rem;
-      }
-      
-      .error-actions {
-        flex-direction: column;
-      }
-      
-      .btn {
-        width: 100%;
-      }
-    }
+    .not-found-searched-grid a:hover { background: var(--color-primary, #2563eb); color: #fff; border-color: var(--color-primary, #2563eb); }
+    @media (max-width: 640px) { .not-found-code { font-size: 4rem; } .not-found-title { font-size: 1.3rem; } }
   </style>
 </head>
-<body>
-  <div class="error-container">
-    <div class="emoji">🔍</div>
-    <div class="error-code">404</div>
-    <h1 class="error-title">Страница не найдена</h1>
-    <p class="error-text">
-      Запрашиваемая страница не существует или была удалена.<br>
-      Возможно, вы ввели неправильный адрес или ссылка устарела.
-    </p>
-    <div class="error-actions">
-      <a href="/" class="btn btn-primary">🏠 На главную</a>
-      <button onclick="history.back()" class="btn btn-secondary">← Назад</button>
+<body data-doc-title="404">
+  <div id="header-container"></div>
+  <section class="section">
+    <div class="container" id="page-main">
+      <div class="not-found-hero">
+        <div class="not-found-code">404</div>
+        <h1 class="not-found-title">Страница не найдена</h1>
+        <p class="not-found-text">Запрашиваемая страница не существует или была удалена.<br>Возможно, вы ввели неправильный адрес или ссылка устарела.</p>
+        <div class="not-found-links">
+          <a href="index.html" class="nf-primary">🏠 На главную</a>
+          <button onclick="history.back()" class="nf-back">← Назад</button>
+        </div>
+      </div>
+      <div class="not-found-searched">
+        <h3>🔎 Возможно, вы искали:</h3>
+        <div class="not-found-searched-grid" id="not-found-random-links"></div>
+      </div>
     </div>
-  </div>
+  </section>
+  <div class="divider"></div>
+  <div id="footer-container"></div>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
+  <script>
+    (function () {
+      var data = window.SITE_DATA || {};
+      var L = window.Layout;
+      if (L) L.applyDocumentTitle('404', 'Страница не найдена');
+
+      function pick(arr, n) {
+        var copy = [].concat(arr).sort(function () { return Math.random() - 0.5; });
+        return copy.slice(0, n);
+      }
+
+      var links = [];
+      // Разделы сайта
+      if (data.sections) {
+        data.sections.forEach(function (s) {
+          if (s.id === 'news') links.push({ label: 'Новости', href: 'news.html' });
+          else if (s.id === 'programs') links.push({ label: 'Программы', href: 'programs.html' });
+          else if (s.id === 'trainers') links.push({ label: L ? L.sectionName('trainers', 'Коллектив') : 'Коллектив', href: 'trainers.html' });
+          else if (s.id === 'schedule') links.push({ label: 'Расписание', href: 'index.html#schedule' });
+          else if (s.id === 'prices') links.push({ label: 'Цены', href: 'index.html#prices' });
+        });
+      }
+      // Случайные программы/тренеры
+      pick(data.navPrograms || [], 2).forEach(function (p) {
+        links.push({ label: p.name, href: 'program.html?id=' + p.id });
+      });
+      pick(data.navTrainers || [], 2).forEach(function (t) {
+        links.push({ label: t.name, href: 'trainer.html?id=' + t.id });
+      });
+
+      var seen = {};
+      var unique = links.filter(function (l) {
+        if (seen[l.href]) return false;
+        seen[l.href] = true;
+        return true;
+      });
+
+      var grid = document.getElementById('not-found-random-links');
+      if (grid) {
+        var shown = pick(unique, 5);
+        grid.innerHTML = shown.map(function (l) { return '<a href="' + l.href + '">' + l.label + '</a>'; }).join('');
+      }
+
+      // Логирование ошибки 404
+      try {
+        var params = new URLSearchParams(location.search);
+        fetch('/api/admin/log-404', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: location.pathname + location.search,
+            from: params.get('from') || document.referrer || '',
+            id: params.get('id') || '',
+            ua: navigator.userAgent,
+            screen: screen.width + 'x' + screen.height,
+            ts: new Date().toISOString()
+          })
+        }).catch(function () {});
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

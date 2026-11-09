@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=36">
 </head>
 <body>
 
@@ -24,11 +24,13 @@
   <!-- Расписание (картинки) -->
   <section class="section" id="schedule">
     <div class="container">
-      <h2 class="section-title">Расписание занятий</h2>
+      <h2 class="section-title">Наше расписание</h2>
+      <!-- S99: в гибриде ровно ДВА режима — «Картинки» (по одной на зал) и «Таблица».
+           Вариант B (2026-11-06): «Таблица» показывает картинки И таблицу;
+           «Картинки» — только картинки. -->
       <div class="schedule-switch" id="schedule-switch" hidden>
         <button type="button" class="schedule-switch-btn active" data-view="images">🖼 Картинки</button>
         <button type="button" class="schedule-switch-btn" data-view="table">📋 Таблица</button>
-        <button type="button" class="schedule-switch-btn" data-view="hybrid">🔄 Гибрид</button>
       </div>
       <div class="schedule-grid" id="schedule-grid"></div>
       <div id="schedule-table-view" hidden></div>
@@ -43,10 +45,10 @@
     </div>
   </section>
 
-  <!-- Программы -->
+  <!-- Наши тренировки (S90: единые плитки) -->
   <section class="section" id="programs">
     <div class="container">
-      <h2 class="section-title">Программы тренировок</h2>
+      <h2 class="section-title">Наши тренировки</h2>
       <div id="programs-grid"></div>
     </div>
   </section>
@@ -54,8 +56,8 @@
   <!-- Тренеры -->
   <section class="section" id="trainers">
     <div class="container">
-      <h2 class="section-title">Наши тренеры</h2>
-      <div class="trainers-grid" id="trainers-grid"></div>
+      <h2 class="section-title">Наши тренера</h2>
+      <div id="trainers-grid"></div>
     </div>
   </section>
 
@@ -90,26 +92,34 @@
 
   <!-- Данные сайта. core.js обязателен и идёт первым, дальше — только модули
        тех секций, что есть на этой странице. Генератор: npm run static:export -->
-  <script src="js/data/core.js?v=19"></script>
-  <script src="js/appearance.js?v=19"></script>
-  <script src="js/data/slider.js?v=19"></script>
-  <script src="js/data/schedule.js?v=19"></script>
-  <script src="js/data/schedule-table.js?v=19"></script>
-  <script src="js/data/prices.js?v=19"></script>
-  <script src="js/data/programs.js?v=19"></script>
-  <script src="js/data/trainers.js?v=19"></script>
-  <script src="js/data/news.js?v=19"></script>
-  <script src="js/data/news-full.js?v=19"></script>
-  <script src="js/md.js?v=19"></script>
+  <script src="js/data/core.js?v=36"></script>
+  <script src="js/appearance.js?v=36"></script>
+  <script src="js/layout.js?v=36"></script>
+  <script src="js/seo.js?v=36"></script>
+  <script src="js/panels.js?v=36"></script>
+  <script src="js/data/slider.js?v=36"></script>
+  <script src="js/data/schedule.js?v=36"></script>
+  <script src="js/data/schedule-table.js?v=36"></script>
+  <script src="js/data/prices.js?v=36"></script>
+  <script src="js/data/price-items.js?v=36"></script>
+  <script src="js/data/discounts.js?v=36"></script>
+  <script src="js/data/programs.js?v=36"></script>
+  <script src="js/data/trainers.js?v=36"></script>
+  <script src="js/data/news.js?v=36"></script>
+  <script src="js/data/news-full.js?v=36"></script>
+  <script src="js/md.js?v=36"></script>
+  <script src="js/news-grid.js?v=36"></script>
 
   <!-- Компоненты -->
-  <script src="js/header.js?v=19"></script>
-  <script src="js/footer.js?v=19"></script>
-  <script src="js/modal.js?v=19"></script>
+  <script src="js/header.js?v=36"></script>
+  <script src="js/footer.js?v=36"></script>
+  <script src="js/modal.js?v=36"></script>
+  <script src="js/lightbox.js?v=36"></script>
 
   <!-- Основная логика (слайдер, рендер секций, мобильное меню) -->
-  <script src="js/schedule-ui.js?v=19"></script>
-  <script src="js/main.js?v=19"></script>
+  <script src="js/schedule-ui.js?v=36"></script>
+  <script src="js/tiles.js?v=36"></script>
+  <script src="js/main.js?v=36"></script>
 
 </body>
 </html>

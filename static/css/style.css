@@ -17,6 +17,22 @@
   --section-padding: 2rem;
   --card-border-radius: 0.5rem;
 
+  /* Высота липкой шапки — используется для scroll-margin-top (S98) */
+  --header-h: 90px;
+
+  /* S117/S118: единая ширина контента. Управляется из админки
+     («Оформление» → «Ширина контейнеров», px или %); по умолчанию — как слайдер.
+     На неё посажены контейнеры (.container, шапка, страницы) и всплывающие окна. */
+  --container-w: 90%;
+
+  /* S102: ширина слайдера и всплывающих окон — производная от ширины контейнеров */
+  --content-w: var(--container-w);
+
+  /* S125: максимальная ширина плитки новости. Правится из админки
+     («Оформление» → «Ширина плитки новости», px или %). Колонки сетки
+     считаются из этой ширины — сколько плиток влезает в контейнер. */
+  --news-tile-max: 360px;
+
   /* Typography — управляется из админки («Оформление» → appearance.variables).
      Здесь значения по умолчанию. format: --fs-* размер, --fw-* насыщенность,
      --ff-* семейство, --lh-* межстрочный. */
@@ -41,6 +57,10 @@
   --fs-footer: 1rem;
   --fs-modal-title: 1.5rem;
   --fs-entity-title: 2.25rem;
+  /* S130/S132: размеры служебного текста (крошки, фильтры, мета-строка) —
+     тоже через переменную, чтобы правились из «🖌 Оформления» (S73) */
+  --fs-small: 0.9375rem;
+  --fs-crumb: 0.875rem;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,17 +81,17 @@ h4 { font-size: var(--fs-h4); font-weight: 600; line-height: 1.3; font-family: v
 img { max-width: 100%; height: auto; display: block; }
 
 /* Атрибут hidden должен работать всегда: display из правил класса его перебивал
-   (.schedule-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  margin: 0 5%;  /* S79: ширина как у слайдера */
-} показывал картинки в режиме таблицы, S40) */
+   (правило .schedule-grid показывал картинки в режиме таблицы, S40).
+   ВНИМАНИЕ: внутри CSS-комментариев НЕЛЬЗЯ писать последовательность
+   звезда-slash — CSS-комментарии не вложенные, парсер закрывает их досрочно,
+   и следующее правило (здесь [hidden]) превращается в битую конструкцию и
+   ДРОПАЕТСЯ. Это корень многолетнего бага S40/S99/S109/S139 с расписанием. */
 [hidden] { display: none !important; }
 a { text-decoration: none; color: inherit; }
 
 .container {
-  max-width: var(--container-max-width);
+  /* S117: ширина контейнеров = ширина слайдера (--container-w), правится из «Оформления» */
+  max-width: var(--container-w);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
@@ -97,6 +117,12 @@ a { text-decoration: none; color: inherit; }
   z-index: 100;
 }
 
+/* S98: якорная навигация (Расписание, Цены, …) — липкая шапка не должна
+   наезжать на верх блока. --header-h ставит header.js реальной высотой. */
+section[id] { scroll-margin-top: var(--header-h); }
+/* S119: якорь подвала («Контакты» в шапке) — тоже не уходит под sticky-шапку */
+#footer { scroll-margin-top: var(--header-h); }
+
 /* SVG-иконка трубки (красится через color) */
 .icon-call {
   display: inline-block;
@@ -113,7 +139,8 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-  max-width: 1200px;
+  /* S117: шапка по той же ширине, что контейнеры и слайдер */
+  max-width: var(--container-w);
   margin: 0 auto;
 }
 
@@ -160,6 +187,54 @@ a { text-decoration: none; color: inherit; }
 .nav-desktop a:hover,
 .nav-desktop .dropdown-toggle:hover { color: var(--color-primary); }
 
+/* ============================================
+   S122: цвета меню из админки («🎩 Шапка» → headerSettings.colors).
+   Переменные ставит js/header.js из core.js; пусто → брендовые значения.
+   ============================================ */
+.nav-desktop { background: var(--header-menu-bg, transparent); }
+.nav-desktop a, .nav-desktop .dropdown-toggle { color: var(--header-menu-text, inherit); }
+.nav-desktop a:hover, .nav-desktop .dropdown-toggle:hover {
+  color: var(--header-hover-text, var(--color-primary));
+  background: var(--header-hover-bg, transparent);
+}
+
+/* S122: стиль при наведении — класс на .header (header-hover-<style>) */
+.header-hover-underline .nav-desktop a:hover,
+.header-hover-underline .nav-desktop .dropdown-toggle:hover { text-decoration: underline; text-underline-offset: 4px; }
+.header-hover-background .nav-desktop a:hover,
+.header-hover-background .nav-desktop .dropdown-toggle:hover {
+  background: var(--header-hover-bg, #f3f4f6);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+.header-hover-scale .nav-desktop a:hover,
+.header-hover-scale .nav-desktop .dropdown-toggle:hover { transform: scale(1.08); }
+
+/* ============================================
+   Замечание администратора: выбранный (активный) пункт меню
+   выделяется цветом фона, цветом текста и размером.
+   Ставится классом nav-active из js/header.js (страница + прокрутка на главной).
+   ============================================ */
+.nav-desktop a.nav-active,
+.nav-desktop .dropdown-toggle.nav-active {
+  background: var(--header-active-bg, var(--color-accent));
+  color: var(--header-active-text, #fff);
+  font-size: calc(var(--fs-nav) * 1.15);
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.75rem;
+}
+.nav-desktop a.nav-active:hover,
+.nav-desktop .dropdown-toggle.nav-active:hover { color: #fff; }
+.mobile-menu a.nav-active,
+.mobile-menu .m-group-toggle.nav-active,
+.mobile-menu .m-dropdown-toggle.nav-active {
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 1.35rem;
+}
+.mobile-menu a.nav-active:hover,
+.mobile-menu .m-group-toggle.nav-active:hover { background: var(--color-accent-dark); color: #fff; }
+
 .nav-desktop .caret { display: inline-block; transition: transform 0.2s; font-size: 0.75em; }
 .nav-desktop .dropdown-open .caret { transform: rotate(180deg); }
 
@@ -198,33 +273,46 @@ a { text-decoration: none; color: inherit; }
 /* S23: вложенные сворачиваемые группы направлений в desktop-меню «Программы» */
 .nav-desktop .dropdown-menu .dgroup { padding: 0; border-top: 1px solid #f3f4f6; }
 .nav-desktop .dropdown-menu .dgroup:first-child { border-top: none; }
-.nav-desktop .dropdown-menu .dgroup-toggle {
+/* S131 п.2: заголовок группы — ссылка на страницу направления + кнопка-стрелка рядом */
+.nav-desktop .dropdown-menu .dgroup-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
   padding: 0.5rem 1rem;
+}
+.nav-desktop .dropdown-menu .dgroup-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
   background: none;
   border: none;
   font-family: inherit;
   cursor: pointer;
-  text-align: left;
+  border-radius: 6px;
 }
 .nav-desktop .dropdown-menu .dgroup-toggle:hover { background: #f3f4f6; }
 .nav-desktop .dropdown-menu .dgroup-title {
+  flex: 1;
+  min-width: 0;
   font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--color-primary);
 }
+.nav-desktop .dropdown-menu .dgroup-title:hover { text-decoration: underline; }
 .nav-desktop .dropdown-menu .dgroup-toggle .caret {
   transition: transform 0.2s;
   font-size: 0.75em;
   color: var(--color-text-muted);
 }
-.nav-desktop .dropdown-menu .dgroup.open > .dgroup-toggle .caret { transform: rotate(180deg); }
+.nav-desktop .dropdown-menu .dgroup.open > .dgroup-head .caret { transform: rotate(180deg); }
 .nav-desktop .dropdown-menu .dgroup-list { display: none; padding-left: 0; }
 .nav-desktop .dropdown-menu .dgroup.open > .dgroup-list { display: block; }
 .nav-desktop .dropdown-menu .dgroup-list a { padding: 0.3rem 1rem 0.3rem 1.5rem; font-size: 0.9375rem; }
@@ -294,7 +382,8 @@ a { text-decoration: none; color: inherit; }
 
 /* S23: мобильное выпадающее меню направлений (вложенный аккордеон) */
 .m-dropdown { border-radius: 0.5rem; }
-.m-dropdown-toggle {
+/* S131 п.2: заголовок группы — ссылка на страницу направления + кнопка-стрелка рядом */
+.m-dropdown-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -303,17 +392,35 @@ a { text-decoration: none; color: inherit; }
   background: #f9fafb;
   border: none;
   border-radius: 0.5rem;
+  margin-top: 0.375rem;
+}
+.m-dropdown-title {
+  flex: 1;
+  min-width: 0;
   font-family: inherit;
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--color-text);
-  cursor: pointer;
   text-align: left;
-  margin-top: 0.375rem;
+}
+.m-dropdown-title:hover { text-decoration: underline; }
+.m-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0.375rem;
+  font-family: inherit;
+  cursor: pointer;
 }
 .m-dropdown-toggle:hover { background: #f3f4f6; }
 .m-dropdown-toggle .caret { transition: transform 0.2s; font-size: 0.8em; }
-.m-dropdown.open > .m-dropdown-toggle .caret { transform: rotate(180deg); }
+.m-dropdown.open > .m-dropdown-head .caret { transform: rotate(180deg); }
 .m-dropdown-menu {
   display: none;
   padding-left: 0.75rem;
@@ -391,8 +498,16 @@ a { text-decoration: none; color: inherit; }
   max-height: 700px;
   overflow: hidden;
   background: #111;
-  margin: 0 5%;
-  border-radius: 0 0 0.75rem 0.75rem;
+  /* S98: зазор сверху, чтобы sticky-шапка (z-index:100) не наезжала на верхний край слайдера */
+  margin-top: 1rem;
+  /* S98: не выше экрана минус шапка — иначе нижний край уходит за fold */
+  max-height: calc(100vh - var(--header-h) - 2rem);
+  /* S102: ширина = --content-w (90%), по ней же выровнены всплывающие окна */
+  width: var(--content-w);
+  margin-left: auto;
+  margin-right: auto;
+  /* S107: скруглён только правый нижний угол (нижнее левое скругление убрано) */
+  border-radius: 0 0 0.75rem 0;
 }
 
 .slide {
@@ -530,25 +645,259 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .schedule-item img { width: 100%; }
+/* S99: подпись зала над картинкой расписания (по одной картинке на зал) */
+.schedule-hall-name {
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-headings);
+  padding: 0.75rem 1rem;
+  margin: 0;
+  color: var(--color-primary);
+  background: var(--color-beige);
+  text-align: center;
+}
+.schedule-hall-name:empty { display: none; }
 @media (min-width: 768px) { .schedule-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* Цены (картинка) */
+/* Цены (картинка — запасной вид, S115) */
 .prices-grid {
   border-radius: var(--card-border-radius);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  max-width: 900px;
-  margin: 0 auto;
-  margin: 0 5%;  /* S79: ширина как у слайдера */
 }
 .prices-item {
   border-radius: var(--card-border-radius);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  max-width: 900px;
+  /* S117: ширина = контейнер/слайдер (было 900px) */
+  max-width: var(--container-w);
   margin: 0 auto;
 }
 .prices-item img { width: 100%; }
+
+/* ============================================
+   S115: Витрина цен позициями
+   Ширина — как у других разделов главной (container),
+   без собственных отступов и max-width.
+   ============================================ */
+.price-groups { width: 100%; }
+.price-group {
+  margin-bottom: 2rem;
+}
+.price-group-title {
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-headings);
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+/* Замечание администратора: плитки цен — по три на строку */
+/* S125: плитки цен — стандартная ячейка как у плиток тренеров/программ:
+   те же колонки (--tile-cols) и промежутки (--tiles-gap). */
+.price-group-rows {
+  display: grid;
+  grid-template-columns: repeat(var(--tile-cols), minmax(0, 1fr));
+  gap: var(--tiles-gap);
+  align-items: stretch;
+}
+.price-row {
+  background: var(--color-beige);
+  border-radius: var(--card-border-radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+/* S139 п.6.б: подсветка при наведении — как у .tile:hover */
+.price-row:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.price-row-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.price-row-title {
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-headings);
+}
+.price-row-unit {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.price-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.price-variant {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+}
+.price-variant-label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.price-variant-value {
+  font-size: 1.1rem;
+  font-weight: var(--fw-headings);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.price-old {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+.price-badges {
+  display: flex;
+  gap: 0.3rem;
+  margin-left: auto;
+}
+.price-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.price-badge--percent {
+  background: var(--color-accent);
+  color: #fff;
+}
+.price-badge--amount {
+  background: var(--color-primary);
+  color: #fff;
+}
+.price-badge--bonus {
+  background: var(--color-phone-green);
+  color: #fff;
+}
+.price-row-links {
+  /* Ссылки прилипают к низу плитки: строки в сетке одинаковой высоты */
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+}
+.price-row-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.price-row-links a:hover {
+  text-decoration: underline;
+}
+.price-row-note {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+/* S139 п.6.в: контейнер «Скидки и условия» — без сплошного фона:
+   фон принадлежит КАЖДОЙ плитке, плитки не сливаются в единое пятно */
+.price-discounts {
+  margin-top: 2rem;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+/* S125: плитки скидок — стандартная ячейка как у плиток тренеров/программ */
+.price-discounts-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--tile-cols), minmax(0, 1fr));
+  gap: var(--tiles-gap);
+}
+.price-discounts-grid .price-discount {
+  margin-bottom: 0;
+}
+.price-discounts-title {
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-headings);
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+/* S139 п.6.в: плитка скидки — свой фон (светло-бежевый вариант брендового),
+   тень и hover-подсветка как у .tile; пояснения (--note) — тот же вид,
+   но светлее, чтобы отличались от скидок */
+.price-discount {
+  background: #FDF7EC;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.price-discount:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.price-discount--note { background: #F8FAFC; }
+.price-discount--note:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.price-discount-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  background: var(--color-accent);
+  color: #fff;
+}
+.price-discount-title {
+  font-weight: 600;
+}
+.price-discount-condition {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+.price-notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.price-notes li {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+.price-notes li strong {
+  color: var(--color-primary);
+}
+
+/* S115: блок «Стоимость» на странице программы/тренера (позиции прайса по привязкам) */
+.entity-prices {
+  margin: 0.5rem 0 1.5rem;
+}
+.entity-prices-group {
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-headings);
+  color: var(--color-primary);
+  margin: 1rem 0 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+.entity-prices-group:first-child {
+  margin-top: 0;
+}
+.entity-prices .price-row {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.entity-prices-more {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.entity-prices-more a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.entity-prices-more a:hover {
+  text-decoration: underline;
+}
 
 /* ============================================
    ГРУППИРОВКА ПРОГРАММ ПО НАПРАВЛЕНИЯМ (S23)
@@ -578,25 +927,7 @@ a { text-decoration: none; color: inherit; }
 }
 .collapsible-more:hover { background: #e5e7eb; color: #002A3A; }
 
-/* Программы — компактные плитки (без текста) */
-.programs-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-.program-card {
-  background: #fff;
-  border-radius: var(--card-border-radius);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.program-card:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-.program-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
-.program-content { padding: 1rem; }
-.program-title { font-size: var(--fs-card-title); font-weight: 700; margin-bottom: 0.75rem; }
-.program-title a { color: var(--color-text); }
-.program-title a:hover { color: var(--color-primary); }
+/* Программы — кнопки (используются на страницах сущностей и в админке) */
 .program-desc { color: var(--color-text-muted); font-size: var(--fs-card-text); margin-bottom: 1rem; }
 .program-btn {
   display: inline-block;
@@ -612,97 +943,147 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
 }
 
-.program-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
 .program-btn-primary { background: var(--color-primary); color: #fff; }
 .program-btn-primary:hover { background: #002A3A; }
 .program-btn-secondary { background: var(--color-primary); color: #fff; padding: 0.75rem 1.25rem; font-size: 1.0625rem; }
 .program-btn-secondary:hover { background: #002A3A; }
-@media (min-width: 768px) { .programs-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .programs-grid { grid-template-columns: repeat(4, 1fr); } }
 
-/* Тренеры — компактные плитки (без текста) */
-.trainers-grid {
+/* ============================================
+   ЕДИНЫЕ ПЛИТКИ (S90) — программы, тренеры, направления.
+   Фото 2:3 на всю ширину плитки, заголовок по центру (2 строки тренер /
+   3 строки программа), кнопки столбиком, «Заказать звонок» — зелёная.
+   Отступ содержимого от границы плитки — 5px.
+   ============================================ */
+/* Ширина плитки: 1 / 2 / 3 / 4 колонки по ширине экрана.
+   --tile-cols нужен и сетке, и обложке направления (1.5 ширины плитки). */
+:root { --tiles-gap: 1.5rem; --tile-cols: 1; }
+@media (min-width: 768px) { :root { --tile-cols: 2; } }
+@media (min-width: 1024px) { :root { --tile-cols: 3; } }
+@media (min-width: 1280px) { :root { --tile-cols: 4; } }
+
+.tiles-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(var(--tile-cols), 1fr);
+  gap: var(--tiles-gap);
 }
-.trainer-card {
+.tile {
   background: #fff;
   border-radius: var(--card-border-radius);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  padding: 0 0 1.5rem; /* фото на всю ширину, как у программ (S46) */
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-.trainer-card .trainer-name,
-.trainer-card .trainer-exp,
-.trainer-card .trainer-actions { padding-left: 1.5rem; padding-right: 1.5rem; }
-.trainer-card .trainer-name { margin-top: 1rem; }
-.trainer-card:hover { transform: translateY(-4px); }
-.trainer-img {
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 1rem;
-  display: block;
-}
-
-/* Плитка тренера (S46): фото как у программ — на всю ширину карточки,
-   маленькое фото растягивается (object-fit: cover + width/height 100%) */
-.trainer-photo-tile { display: block; }
-.trainer-photo-tile a { display: block; }
-.trainer-photo-tile img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Фолбэк-логотип в плитках и на страницах сущностей вместо эмодзи */
-.entity-cover-logo { object-fit: contain; background: #fff; padding: 1rem; }
-.trainer-name { font-size: var(--fs-card-title); font-weight: 700; margin-bottom: 0.5rem; }
-.trainer-name a { color: var(--color-text); }
-.trainer-name a:hover { color: var(--color-primary); }
-.trainer-exp { color: var(--color-text-muted); font-size: var(--fs-card-text); margin-bottom: 0.75rem; }
-.trainer-spec { font-size: 0.9375rem; margin-bottom: 0.75rem; }
-
-.trainer-actions {
+  padding: 5px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 5px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.trainer-btn {
+.tile:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+
+/* Фото 2:3 (2 — ширина, 3 — высота): растянуто на всю ширину плитки */
+.tile-photo {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: #f3f4f6;
+}
+.tile-photo a,
+.tile-photo img { display: block; width: 100%; height: 100%; }
+.tile-photo img { object-fit: cover; }
+/* Фолбэк-логотип (фото нет) — показываем целиком, без обрезки */
+.tile-photo img[src$="logo.png"] { object-fit: contain; padding: 5px; background: #fff; }
+
+/* Точки-индикатор: у сущности несколько фото (свайп по фото — S90) */
+.tile-photo-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  pointer-events: none;
+}
+.tile-photo-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+}
+.tile-photo-dot.active { background: #fff; }
+
+/* Заголовок — строго по центру плитки (и по горизонтали, и по вертикали) */
+.tile-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.tile-title a {
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tile-title a:hover { color: var(--color-primary); }
+/* 2 строки (ФИО тренера) / 3 строки (название программы) */
+.tile-title-2 { min-height: calc(var(--fs-card-title) * 1.25 * 2); }
+.tile-title-2 a { -webkit-line-clamp: 2; line-clamp: 2; }
+.tile-title-3 { min-height: calc(var(--fs-card-title) * 1.25 * 3); }
+.tile-title-3 a { -webkit-line-clamp: 3; line-clamp: 3; }
+
+/* S135: роль под ФИО в плитке персонала (администраторы) */
+.tile-subrole {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Кнопки — одна под другой */
+.tile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+}
+.tile-btn {
   display: block;
   width: 100%;
   padding: 0.625rem 1rem;
   border: none;
   border-radius: 0.5rem;
+  font-family: inherit;
   font-weight: 600;
   font-size: var(--fs-btn);
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 }
-.trainer-btn:active { transform: scale(0.97); }
-.trainer-btn-primary { background: var(--color-primary); color: #fff; }
-.trainer-btn-primary:hover { background: #002A3A; }
-.trainer-btn-secondary { background: var(--color-primary); color: #fff; }
-.trainer-btn-secondary:hover { background: #002A3A; }
-@media (min-width: 768px) { .trainers-grid { grid-template-columns: repeat(3, 1fr); } }
+.tile-btn:active { transform: scale(0.97); }
+.tile-btn-more { background: var(--color-primary); color: #fff; }
+.tile-btn-more:hover { background: #002A3A; }
+/* «Заказать звонок» — зелёная (цвет из бренд-переменных) */
+.tile-btn-call { background: var(--color-phone-green); color: #fff; }
+.tile-btn-call:hover { background: var(--color-phone-green-dark); }
+
+/* Фолбэк-логотип на страницах сущностей вместо эмодзи */
+.entity-cover-logo { object-fit: contain; background: #fff; padding: 1rem; }
 
 /* Новости */
+/* S125: сетка новостей — та же сетка, что у плиток тренеров/программ,
+   но колонка шире: 150% от стандартной ячейки (плитки тренеров).
+   Стандартная ячейка = (ширина контейнера − промежутки) / --tile-cols (4/3/2/1).
+   Из админки («Оформление» → «Ширина плитки новости») --news-tile-max
+   переопределяется — тогда колонок становится столько, сколько влезает. */
+:root {
+  --news-tile-max: calc(1.5 * (100% - var(--tiles-gap) * (var(--tile-cols) - 1)) / var(--tile-cols));
+}
 .news-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: var(--tiles-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--news-tile-max), 100%), 1fr));
+  justify-content: center;
 }
 .news-card {
   background: #fff;
@@ -710,8 +1091,41 @@ a { text-decoration: none; color: inherit; }
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-.news-card img { width: 100%; height: 200px; object-fit: cover; }
-.news-noimage { width: 100%; height: 200px; background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+/* S124: обложка в плитке новости — пропорция A4 вертикально (ш:в = 1:1.414), кроп по центру */
+.news-card .lightbox-zoom { display: block; }
+.news-card img { width: 100%; aspect-ratio: 1 / 1.414; height: auto; object-fit: cover; }
+.news-noimage { width: 100%; aspect-ratio: 1 / 1.414; height: auto; background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+
+/* S125: новость с высокой обложкой (есть обложка И высота больше ширины)
+   занимает ДВЕ ячейки сетки одну под другой (как «1 и 5» в сетке 4×2),
+   ширина ячейки при этом стандартная. Остальные новости — одиночная плитка. */
+.news-card.news-card-tall { grid-row: span 2; }
+
+/* S125: компактная карточка — для новостей БЕЗ обложки или с НЕ высокой обложкой.
+   2–3 такие карточки складываются в ОДНУ ячейку сетки — одну под другой
+   (`.news-grid-compact-stack` — вертикальный стек). */
+.news-grid-compact-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: 0.75rem;
+}
+.news-card.news-card-compact {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+.news-card.news-card-compact img { width: 92px; height: 68px; aspect-ratio: auto; border-radius: 4px; }
+.news-card.news-card-compact .news-noimage { display: none; }
+/* Обложки нет (data-no-cover) — колонка под миниатюру не нужна, текст на всю ширину */
+.news-card.news-card-compact[data-no-cover] { grid-template-columns: minmax(0, 1fr); }
+.news-card.news-card-compact .news-content { padding: 0; }
+.news-card.news-card-compact .news-title { font-size: var(--fs-card-title); margin-bottom: 0.25rem; }
+.news-card.news-card-compact .news-date { font-size: 0.8125rem; margin-bottom: 0.25rem; }
+.news-card.news-card-compact .news-excerpt { font-size: 0.875rem; }
+.news-card.news-card-compact .news-actions { margin-top: 0.5rem; }
 .news-content { padding: 1rem; }
 .news-title { font-size: var(--fs-card-title); font-weight: 700; margin-bottom: 0.5rem; }
 .news-date { color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 0.5rem; }
@@ -731,23 +1145,58 @@ a { text-decoration: none; color: inherit; }
 }
 .news-more:hover { text-decoration: underline; }
 .empty-note { text-align: center; color: var(--color-text-muted); padding: 2rem; }
-@media (min-width: 768px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* Страница новостей: карточки шире, чтобы влезало превью 200 символов */
-@media (min-width: 1024px) { .news-grid-full { grid-template-columns: repeat(2, 1fr); } }
-
-.news-modal-box { max-width: 800px; }
+/* S102: окно новостей — та же ширина, что у слайдера (не уже и не шире) */
+.news-modal-box { max-width: none; }
 .news-body { line-height: 1.8; }
 .news-body p { margin-bottom: 0.75rem; }
-.news-media { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+/* S111: обложка новости в модалке — первый объект, текст огибает */
+.news-body .news-cover-float {
+  float: left;
+  width: 45%;
+  max-width: 45%;
+  margin: 0 1rem 1rem 0;
+  border-radius: .75rem;
+  overflow: hidden;
+}
+.news-body .news-cover-float img { width: 100%; height: auto; display: block; }
+
+@media (max-width: 767px) {
+  .news-body .news-cover-float { float: none; width: 100%; max-width: 100%; margin: 0 0 1rem; }
+}
+
+/* S111: clear: both — медиа-блок после текста не залезает под обтекающую обложку */
+.news-media { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; clear: both; }
 .news-media img, .news-media video {
   width: 100%;
   max-height: 60vh;
   object-fit: contain;
   border-radius: 0.5rem;
 }
-/* Галерея до 5 фото новости (S73) */
-.news-photos { display: flex; flex-direction: column; gap: 1rem; }
+/* Галерея до 5 фото новости (S73). S123: доп. фото идут СТРОКОЙ (горизонтально),
+   миниатюры одного размера, перенос/скролл на узких экранах. */
+.news-photos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.news-photos .news-photo {
+  flex: 0 0 auto;
+  width: 200px;
+  max-width: 45%;
+}
+.news-photos .news-photo img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+@media (max-width: 767px) {
+  .news-photos { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .news-photos .news-photo { width: 60%; max-width: none; }
+}
 .news-photo img { border-radius: 0.5rem; }
 
 
@@ -897,15 +1346,17 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  padding: 1rem;
+  /* S102: горизонтальные поля такие, чтобы окно ровно совпало со слайдером (--content-w) */
+  padding: 1rem calc((100% - var(--content-w)) / 2);
 }
 .modal-overlay.open { display: flex; }
 .modal-box {
   background: #fff;
   border-radius: 1rem;
   padding: 2rem;
-  max-width: 480px;
+  /* S102: ширина всплывающего окна = ширина слайдера (не уже и не шире) */
   width: 100%;
+  max-width: none;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -983,13 +1434,14 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   z-index: 3000;
-  padding: 1rem;
+  padding: 1rem calc((100% - var(--content-w)) / 2);
 }
 .lightbox-overlay.open { display: flex; }
 
 .lightbox-box {
   position: relative;
-  max-width: 95vw;
+  /* S102: лайтбокс тоже по ширине слайдера, не шире контента */
+  max-width: 100%;
   max-height: 95vh;
   display: flex;
   flex-direction: column;
@@ -997,7 +1449,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .lightbox-img {
-  max-width: 95vw;
+  max-width: 100%;
   max-height: 88vh;
   object-fit: contain;
   border-radius: 0.5rem;
@@ -1023,11 +1475,47 @@ a { text-decoration: none; color: inherit; }
 }
 .lightbox-close:hover { color: #fbbf24; }
 
+/* S103: навигация по галерее (несколько фото новости) */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-nav:hover { background: rgba(0,0,0,0.8); }
+.lightbox-prev { left: -0.5rem; }
+.lightbox-next { right: -0.5rem; }
+.lightbox-counter {
+  color: #d1d5db;
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+/* S103: картинка новости/расписания по клику открывается больше.
+   Курсор-лупа — на обёртке .lightbox-zoom (наследуется картинкой),
+   селекторы ниже — для страховки на вложенных img. */
+.news-card .lightbox-zoom img,
+.news-photo img,
+.news-media img { cursor: zoom-in; }
+
 /* ============================================
    СТРАНИЦЫ СУЩНОСТЕЙ (программа, тренер)
    ============================================ */
 .entity-page {
-  max-width: 900px;
+  /* S117: страницы сущностей — по ширине контейнеров/слайдера (было 900px) */
+  max-width: var(--container-w);
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -1041,24 +1529,226 @@ a { text-decoration: none; color: inherit; }
 }
 .back-link:hover { text-decoration: underline; }
 
-/* Обложка — квадратная без обрезки (S43): показываем целиком */
+/* ============================================
+   S127 п.5: хлебные крошки. Модуль js/layout.js (Layout.crumbs)
+   рендерил их без стилей — классы были только в HTML.
+   ============================================ */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--fs-small, 0.875rem);
+  color: var(--color-text-muted, #6b7280);
+  margin-bottom: 1.25rem;
+}
+.crumbs .crumb { color: var(--color-primary); text-decoration: none; }
+.crumbs .crumb:hover { text-decoration: underline; }
+.crumbs .crumb-current { color: var(--color-text-muted, #6b7280); }
+.crumbs .crumb-sep { color: #cbd5e1; }
+
+/* ============================================
+   S127 п.6: единый блок перекрёстных ссылок внизу общей страницы
+   ============================================ */
+.cross-links {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+.cross-links-title {
+  font-size: var(--fs-h3, 1.25rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+.cross-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--tiles-gap, 1rem);
+}
+.cross-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--card-border-radius);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cross-link:hover { background: #eef2f7; border-color: var(--color-primary); }
+.cross-link-icon { font-size: 1.25rem; }
+
+/* ============================================
+   S130 п.4/п.5: страница всех программ — счётчик, фильтры, empty, CTA
+   ============================================ */
+.programs-summary {
+  color: var(--color-text-muted, #6b7280);
+  font-size: var(--fs-small, 0.9375rem);
+  margin: 0 0 1rem;
+}
+.programs-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.875rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--card-border-radius);
+}
+.programs-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: var(--fs-small, 0.8125rem);
+  color: var(--color-text-muted, #6b7280);
+}
+.programs-filter select { min-width: 190px; }
+.programs-filter-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.4375rem;
+  cursor: pointer;
+}
+.programs-filter-check input { width: auto; }
+.programs-filter-reset {
+  margin-left: auto;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--card-border-radius);
+  color: var(--color-text-muted, #6b7280);
+  font-size: var(--fs-small, 0.875rem);
+  cursor: pointer;
+}
+.programs-filter-reset:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.programs-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--color-text-muted, #6b7280);
+}
+.programs-empty a { display: inline-block; margin-left: 0.5rem; color: var(--color-primary); font-weight: 600; }
+.programs-cta { margin-top: 2.5rem; }
+.programs-cta-inner {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: var(--color-beige, #FEEED5);
+  border-radius: var(--card-border-radius);
+}
+.programs-cta-title { font-size: var(--fs-h2, 1.5rem); font-weight: 800; color: var(--color-primary); margin-bottom: 0.5rem; }
+.programs-cta-text { color: #6b5638; margin-bottom: 1.25rem; }
+.programs-cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+
+/* ============================================
+   S132 п.3/п.5/п.8 + S128 п.6: блоки страницы сущности
+   ============================================ */
+.entity-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted, #6b7280);
+  font-size: var(--fs-small, 0.9375rem);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.entity-meta-sep { color: #cbd5e1; }
+.entity-direction, .entity-leads {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: var(--fs-small, 0.9375rem);
+}
+.entity-direction a, .entity-leads a { color: var(--color-primary); font-weight: 600; }
+.entity-leads { color: var(--color-text-muted, #6b7280); }
+.entity-reviews { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+.entity-review {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border-left: 3px solid var(--color-accent, #F07E23);
+  border-radius: 0 var(--card-border-radius) var(--card-border-radius) 0;
+}
+.entity-review-title { display: block; margin-bottom: 0.375rem; color: var(--color-primary); }
+.entity-review-foot { margin-top: 0.625rem; font-size: var(--fs-small, 0.875rem); color: var(--color-text-muted, #6b7280); }
+.entity-trainings { margin: 0 0 1.5rem 1.25rem; line-height: 1.7; }
+/* S132 п.8: несколько путей записи вместо одной кнопки */
+.entity-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
+.entity-cta .program-btn { flex: 0 1 auto; }
+.program-btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.program-btn-ghost:hover { background: var(--color-primary); color: #fff; }
+
+/* S132 п.4: переключатель «Доска / Таблица» на страницах сущностей */
+.schedule-board-switch { margin-bottom: 1rem; }
+
+/* ============================================
+   S132 п.6 / S128 п.7: обложка страницы и фото тренера —
+   ТОТ ЖЕ кадр 2:3, что в плитке (было: у программы свободный кроп,
+   у тренера круг 200×200 — один и тот же кадр выглядел по-разному).
+   Круглый кадр — опция: --entity-photo-radius из «🖌 Оформления».
+   ============================================ */
 .entity-cover {
   width: 100%;
   max-width: 640px;
-  height: auto;
-  object-fit: initial;
-  border-radius: 0.5rem;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--card-border-radius);
   margin: 0 auto 1.5rem;
   display: block;
 }
+.entity-cover-logo { object-fit: contain; background: #fff; padding: 1rem; }
 
 .entity-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--entity-photo-radius, var(--card-border-radius));
   object-fit: cover;
   display: block;
   margin: 0 auto 1.5rem;
+}
+
+/* ============================================
+   S137: общая шапка страниц тренера и направления —
+   заголовок по центру сверху, обложка float у левого края,
+   описание и мета-строки обтекают справа. Прецедент —
+   обложка новости в модалке (.news-cover-float, S111).
+   flow-root оборачивает float: всё, что ниже обёртки,
+   идёт после clear (сетки и блоки не съезжают).
+   ============================================ */
+.entity-head-float {
+  display: flow-root;
+  margin-bottom: 2rem;
+}
+.entity-head-float .entity-head-cover {
+  float: left;
+  width: 42%;
+  max-width: 45%;
+  margin: 0 1.5rem 1rem 0;
+}
+/* Мета-строки внутри зоны обтекания — по левому краю (снаружи они по центру) */
+.entity-head-float .entity-meta,
+.entity-head-float .entity-spec {
+  text-align: left;
+}
+@media (max-width: 767px) {
+  /* Мобильный: float снять, обложка на всю ширину (как в новости) */
+  .entity-head-float .entity-head-cover {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem;
+  }
 }
 
 .entity-title {
@@ -1513,9 +2203,12 @@ a.entity-trainer-card:hover {
 body[data-entity="trainer"] { overflow-x: clip; }
 
 .trainer-week-board {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  max-width: var(--container-w, 1200px);
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 0.75rem 0.5rem;
+  overflow-x: auto;
 }
 
 .trainer-week-board .week-board-wrap {
@@ -1648,6 +2341,25 @@ body[data-entity="trainer"] { overflow-x: clip; }
 @media (min-width: 768px) {
   .album-grid-page { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 }
+/* T7.2: фильтры категорий альбома */
+.album-filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+.album-filter {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--color-primary, #2e7d32);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-primary, #2e7d32);
+  font: inherit; font-size: 0.9rem; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.album-filter:hover { background: rgba(46, 125, 50, 0.08); }
+.album-filter.active {
+  background: var(--color-primary, #2e7d32);
+  color: #fff;
+}
 .album-item { position: relative; }
 .album-item-title {
   position: absolute;
@@ -1678,122 +2390,145 @@ body[data-entity="trainer"] { overflow-x: clip; }
    СТРАНИЦА НАПРАВЛЕНИЙ (S23)
    ============================================ */
 .page-directions {
-  max-width: 1200px;
+  /* S117: по ширине контейнеров/слайдера */
+  max-width: var(--container-w);
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+/* ============================================
+   СТРАНИЦА НАПРАВЛЕНИЯ (S90) — directions.html?id=<id>
+   Заголовок → обложка 2:3 (на 50% шире подплитки) слева + описание справа
+   → плитки программ направления → недельное расписание
+   ============================================ */
 .page-title {
   font-size: var(--fs-h1);
   font-weight: 700;
   margin-bottom: 2rem;
   text-align: center;
 }
-.directions-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-.direction-section {
-  background: #fff;
-  border-radius: var(--card-border-radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 2rem;
-}
-.direction-name {
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-text);
-}
-.direction-cover-wrap {
-  margin-bottom: 1.5rem;
+/* S137: шапка направления переведена на общий float-класс .entity-head-float
+   (см. блок «S137» у .entity-photo) — flex-раскладка больше не нужна */
+.direction-head {
+  margin-bottom: 2rem;
 }
 .direction-cover {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: var(--card-border-radius);
-}
-/* S87: динамическая обложка направления (ротация обложек программ) */
-.direction-dynamic-cover-wrap {
-  position: relative;
-  height: 400px;
-  border-radius: var(--card-border-radius);
+  aspect-ratio: 2 / 3;
   overflow: hidden;
+  border-radius: var(--card-border-radius);
+  background: #f3f4f6;
 }
-.direction-dynamic-cover-wrap img {
+.direction-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.direction-desc {
+  color: var(--color-text-muted);
+  font-size: var(--fs-card-text);
+  line-height: 1.6;
+}
+/* Своей обложки нет — крутим обложки программ направления (S87) */
+.direction-cover-dynamic { position: relative; }
+.direction-cover-dynamic .direction-cover-img {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--card-border-radius);
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-.direction-dynamic-cover-wrap img.active {
-  opacity: 1;
-}
-.direction-desc {
+.direction-cover-dynamic .direction-cover-img.active { opacity: 1; }
+.direction-programs { margin-bottom: 2rem; }
+.direction-schedule { margin-top: 2rem; }
+
+/* Счётчик «N тренировок» */
+.direction-count {
+  text-align: center;
   color: var(--color-text-muted);
-  font-size: var(--fs-card-text);
+  font-size: 0.9375rem;
   margin-bottom: 1.5rem;
-  line-height: 1.6;
 }
-.direction-programs {
+
+/* Подзаголовок направления */
+.direction-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA-блок: кнопки столбиком, как в плитках */
+.direction-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* «Другие направления» — сетка плиток-ссылок */
+.direction-related {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
-.direction-program-card {
-  background: #fff;
+.direction-related-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: #f8fafc;
   border: 1px solid #e5e7eb;
   border-radius: var(--card-border-radius);
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s;
 }
-.direction-program-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+.direction-related-item:hover {
+  background: #eef2ff;
+  border-color: var(--color-primary);
 }
-.direction-program-cover {
-  height: 180px;
-  overflow: hidden;
-}
-.direction-program-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.direction-program-title {
-  font-size: var(--fs-card-title);
+.direction-related-count {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 1rem 1rem 0.5rem;
-  margin: 0;
+}
+
+/* Блок тренеров направления */
+.direction-trainers { margin-bottom: 2rem; }
+.direction-trainers .tiles-grid { margin: 0 -0.75rem; }
+
+/* Блок стоимости направления */
+.direction-prices { margin-bottom: 2rem; }
+
+/* Точки ротации обложки направления */
+.direction-cover-dots {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.5rem 0;
 }
-.direction-program-title a {
-  color: var(--color-text);
-  text-decoration: none;
+.direction-cover-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 0;
 }
-.direction-program-title a:hover {
-  color: var(--color-primary);
-}
-.direction-program-more {
-  font-size: 0.8125rem;
-  color: var(--color-primary);
-  text-decoration: underline;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.direction-program-schedule {
-  padding: 0 1rem 1rem;
-}
-.direction-program-schedule .schedule-table-wrap {
-  font-size: 0.875rem;
+.direction-cover-dot.active {
+  background: #fff;
+  transform: scale(1.2);
 }
 
 /* ============================================
@@ -1804,7 +2539,9 @@ body[data-entity="trainer"] { overflow-x: clip; }
   .entity-page { padding: 1.25rem 0.75rem; }
   .entity-title { font-size: 1.75rem; }
   .entity-subtitle { font-size: 1.375rem; margin-top: 1.5rem; }
-  .entity-photo { width: 160px; height: 160px; }
+  /* S128 п.7: на мобильном сохраняем кадр 2:3 (было 160×160 — круг/квадрат
+     расходились с плиткой, которая всегда 2:3) */
+  .entity-photo { width: 100%; max-width: 260px; height: auto; }
   .entity-cover { max-width: 100%; }
   .entity-actions .program-btn { width: 100%; }
   .entity-quote { padding: 1rem 1.1rem; font-size: 1.125rem; }
@@ -1824,19 +2561,22 @@ body[data-entity="trainer"] { overflow-x: clip; }
   .entity-text .md-table td, .entity-text .md-table th,
   .news-body .md-table td, .news-body .md-table th { white-space: normal; min-width: 6rem; }
 
-  /* Модалка новостей — на весь экран с внутренним скроллом */
-  #newsModal { padding: 0; }
+  /* S102: модалка новостей на мобильном — по ширине слайдера (90%),
+     как и все всплывающие окна. Требование S24 «на весь экран» заменено. */
+  #newsModal { padding: 1rem 5%; }
   .news-modal-box {
     max-width: 100%;
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
+    max-height: 85vh;
+    border-radius: 1rem;
   }
 
-  /* Карточки программ/тренеров компактнее */
-  .program-card img { height: 160px; }
-  .news-card img, .news-noimage { height: 160px; }
+  /* Карточки новостей компактнее (плитки S90 — адаптивные, aspect-ratio).
+     S110: фиксированной высоты нет — картинка следует соотношению 2:3 (ш:в). */
+
+  /* S137: шапка направления на мобильном — стек (обложка на всю ширину),
+     обеспечивает общее правило .entity-head-float .entity-head-cover выше */
+  .direction-desc { width: 100%; }
 
   /* Аккордеоны разделов */
   .collapsible-toggle { padding: 0.875rem 1rem; font-size: 1.125rem; }

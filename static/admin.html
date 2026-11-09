@@ -496,15 +496,24 @@
           <div class="sidebar-group-body open">
             <a href="#news" class="active" data-section="news">📰 Новости</a>
             <a href="#programs" data-section="programs">🥋 Программы</a>
-            <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
-            <a href="#schedule" data-section="schedule">📅 Расписание</a>
+             <a href="#trainers" data-section="trainers">👨‍🏫 Тренеры</a>
+             <a href="#staff" data-section="staff">👥 Персонал</a>
+             <a href="#schedule" data-section="schedule">📅 Расписание</a>
             <a href="#halls" data-section="halls">🏋️ Залы</a>
             <a href="#directions" data-section="directions">📁 Направления</a>
-            <a href="#album" data-section="album">📸 Альбом</a>
-          </div>
-        </div>
+             <a href="#album" data-section="album">📸 Альбом</a>
+           </div>
+         </div>
 
-        <!-- ⚙️ НАСТРОЙКИ САЙТА -->
+         <!-- 🧩 ШАБЛОНЫ -->
+         <div class="sidebar-group">
+           <div class="sidebar-group-header" data-group="templates" onclick="toggleGroup(this)">🧩 ШАБЛОНЫ ▸</div>
+           <div class="sidebar-group-body">
+             <a href="#templates" data-section="templates">🧩 Шаблоны</a>
+           </div>
+         </div>
+
+         <!-- ⚙️ НАСТРОЙКИ САЙТА -->
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="settings" onclick="toggleGroup(this)">⚙️ НАСТРОЙКИ САЙТА ▸</div>
           <div class="sidebar-group-body">
@@ -905,11 +914,14 @@
       { id: 'news', title: '📰 Новости', status: 'done', group: 'data' },
       { id: 'programs', title: '🥋 Программы', status: 'done', group: 'data' },
       { id: 'trainers', title: '👨‍🏫 Тренеры', status: 'done', group: 'data' },
+      { id: 'staff', title: '👥 Персонал', status: 'done', group: 'data' },
       { id: 'schedule', title: '📅 Расписание', status: 'done', group: 'data' },
       // S99: картинки расписания переехали в залы — раздел рабочий (название + картинка)
       { id: 'halls', title: '🏋️ Залы', status: 'done', group: 'data' },
       { id: 'directions', title: '📁 Направления', status: 'done', group: 'data' },
       { id: 'album', title: '📸 Альбом', status: 'done', group: 'data' },
+      // ШАБЛОНЫ
+      { id: 'templates', title: '🧩 Шаблоны', status: 'skeleton', group: 'templates' },
       // НАСТРОЙКИ САЙТА
       { id: 'appearance', title: '🖌 Оформление', status: 'done', group: 'settings' },
       { id: 'email', title: '✉️ Настройки электронной почты', status: 'done', group: 'settings' },
@@ -1031,8 +1043,10 @@
 
       if (sectionId === 'news') loadNewsList();
       if (sectionId === 'programs') loadProgramsList();
-      if (sectionId === 'trainers') loadTrainersList();
-      if (sectionId === 'dividers') loadDividerSection();
+      // S138: после списка тренеров — карточка настройки слайдера совместных фото
+       if (sectionId === 'trainers') loadTrainersList().then(loadTrainerSliderSettings);
+       if (sectionId === 'staff') loadStaffSection();
+       if (sectionId === 'dividers') loadDividerSection();
       if (sectionId === 'appearance') loadAppearanceSection();
       if (sectionId === 'main-data') loadMainDataSection();
       if (sectionId === 'header-settings') loadHeaderSettingsSection();
@@ -1046,6 +1060,7 @@
       if (sectionId === 'slider') loadSliderSection();
       if (sectionId === 'contacts') loadContactsSection();
       if (sectionId === 'album') loadAlbumSection();
+      if (sectionId === 'templates') loadTemplatesSection();
       // S115: редакторы цен позициями и скидок
       if (sectionId === 'prices') loadPriceItemsSection();
       if (sectionId === 'discounts') loadDiscountsSection();
@@ -5393,6 +5408,57 @@
     }
 
     /* ============================================
+       S138: слайдер совместных фото на странице «Коллектив».
+       Только вкл/выкл + интервал. Данные (категория «Совместные фото»
+       в альбоме) и экспорт trainer-slider.js не трогаем.
+       ============================================ */
+    async function loadTrainerSliderSettings() {
+      const content = document.getElementById('admin-content');
+      if (!content || document.getElementById('trainer-slider-section-card')) return;
+      let settings = { enabled: false, interval: 5 };
+      try {
+        const res = await api('/api/admin/get-trainer-slider-settings', { method: 'POST', body: '{}' });
+        if (res.ok) settings = (await res.json()).trainerSliderSettings || settings;
+      } catch (err) {
+        console.error('Ошибка загрузки настроек слайдера коллектива:', err);
+      }
+      content.insertAdjacentHTML('beforeend', `
+        <div class="section-card" id="trainer-slider-section-card">
+          <h2>🎠 Слайдер совместных фото на странице «Коллектив»</h2>
+          <p style="font-size:0.85rem;color:var(--text-secondary);">
+            Кадры берутся из альбома (категория «Совместные фото»). По умолчанию слайдер выключен (S138):
+            включение здесь покажет его на странице «Коллектив» после перегенерации.
+          </p>
+          <label style="display:flex;align-items:center;gap:0.5rem;margin:0.75rem 0;">
+            <input type="checkbox" id="trainer-slider-enabled" ${settings.enabled ? 'checked' : ''}>
+            Показывать слайдер совместных фото на странице «Коллектив»
+          </label>
+          <label style="display:flex;align-items:center;gap:0.5rem;margin:0.75rem 0;">
+            Интервал смены кадра, сек:
+            <input type="number" id="trainer-slider-interval" min="2" max="20" step="1"
+                   value="${Number(settings.interval) || 5}" style="width:5rem;">
+          </label>
+          <button class="btn btn-primary btn-sm" onclick="saveTrainerSliderSettings()">💾 Сохранить настройки слайдера</button>
+        </div>
+      `);
+    }
+
+    async function saveTrainerSliderSettings() {
+      const enabledEl = document.getElementById('trainer-slider-enabled');
+      const intervalEl = document.getElementById('trainer-slider-interval');
+      if (!enabledEl || !intervalEl) return;
+      const trainerSliderSettings = {
+        enabled: enabledEl.checked,
+        interval: Number(intervalEl.value) || 5
+      };
+      const res = await api('/api/admin/save-trainer-slider-settings', {
+        method: 'POST',
+        body: JSON.stringify({ trainerSliderSettings })
+      });
+      showToast(res.ok ? 'Настройки слайдера сохранены' : 'Ошибка сохранения', res.ok ? 'success' : 'error');
+    }
+
+    /* ============================================
        Скрытие/открытие и перестановка
        ============================================ */
     // S128 п.2: чекбокс «Показывать на сайте» → this.checked = true значит ПОКАЗЫВАТЬ,
@@ -6114,7 +6180,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=34">
+<link rel="stylesheet" href="/css/style.css?v=36">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -6319,7 +6385,10 @@
           body: JSON.stringify({ siteSettings: siteSettingsState })
         });
         if (res.ok) {
-          showToast('Главные данные сохранены');
+          const data = await res.json().catch(() => ({}));
+          // S134: при смене baseUrl — toast с числом URL в sitemap
+          const urlMsg = (siteSettingsState.baseUrl && data.urls) ? ', sitemap: ' + data.urls + ' URL' : '';
+          showToast('Главные данные сохранены' + urlMsg);
         } else {
           const err = await res.json().catch(() => ({}));
           showToast('Ошибка: ' + (err.error || res.status), 'error');
@@ -6407,11 +6476,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=34').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=34').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=34').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=34').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=34').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=36').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);
@@ -6712,6 +6781,220 @@
         showToast('Ошибка: ' + err.message, 'error');
       }
     }
+
+    // S142: раздел «🧩 Шаблоны» (задел, три пустых подраздела)
+    function loadTemplatesSection() {
+      const content = document.getElementById('admin-content');
+      const tabs = [
+        { id: 'text-masks', icon: '📝', label: 'Текстовые маски' },
+        { id: 'email-sms', icon: '✉️', label: 'Шаблоны писем/SMS' },
+        { id: 'site-mockups', icon: '🎨', label: 'Макеты сайта' }
+      ];
+      let activeTab = tabs[0].id;
+
+      function render() {
+        content.innerHTML = `
+          <h2>🧩 Шаблоны</h2>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
+          <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+            ${tabs.map(t => `
+              <button type="button" class="btn btn-sm ${t.id === activeTab ? 'btn-primary' : 'btn-secondary'}"
+                      onclick="event.stopPropagation(); window.__switchTplTab('${t.id}')">
+                ${t.icon} ${t.label}
+              </button>`).join('')}
+          </div>
+          <div id="tpl-tab-content" style="width:100%;min-height:300px;background:#f8fafc;border-radius:12px;padding:3rem;text-align:center;border:2px dashed #d1d5db;">
+            <div style="font-size:4rem;margin-bottom:1rem;">🧩</div>
+            <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${tabs.find(t => t.id === activeTab).label}</h3>
+            <p style="color:var(--text-secondary);margin-bottom:2rem;">Пока пусто. Шаблоны появятся здесь.</p>
+            <button type="button" class="btn btn-secondary" disabled style="opacity:0.5;cursor:not-allowed;">➕ Добавить шаблон (скоро)</button>
+          </div>`;
+      }
+
+      window.__switchTplTab = function (tabId) {
+        activeTab = tabId;
+        render();
+      };
+      render();
+    }
+
+    /* ============================================
+       S135: Раздел «👥 Персонал» (staff / администраторы)
+       ============================================ */
+    let staffState = { staff: [] };
+
+    function loadStaffList() {
+      api('/api/admin/get-staff', { method: 'POST', body: '{}' })
+        .then(r => r.json())
+        .then(data => {
+          staffState.staff = data.staff || [];
+          renderStaffSection();
+        })
+        .catch(err => showToast('Ошибка загрузки персонала: ' + err.message, 'error'));
+    }
+
+    function renderStaffSection() {
+      const box = document.getElementById('staff-section-box');
+      if (!box) return;
+      const items = staffState.staff.map((s, i) => `
+        <div class="staff-admin-item" data-idx="${i}" draggable="true"
+             ondragstart="onStaffDragStart(event)" ondragover="onStaffDragOver(event)"
+             ondragleave="onStaffDragLeave(event)" ondrop="onStaffDrop(event)"
+             ondragend="onStaffDragEnd(event)"
+             style="display:block;margin-bottom:1rem;padding:1rem;border:1px solid #e5e7eb;border-radius:.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.5rem;flex-wrap:wrap;">
+            <span class="news-drag-handle" title="Перетащите для перестановки">⠿</span>
+            <strong style="flex:1;min-width:120px;">${escapeHtml(s.name || 'Без имени')}</strong>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="toggleStaffHidden(${i})" title="Скрыть/показать на сайте">${s.hidden ? '🙈 скрыто' : '👁 показывать'}</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="deleteStaff(${i})" title="Удалить">🗑 Удалить</button>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+            <div class="form-group" style="flex:1;min-width:180px;margin:0;">
+              <label>ФИО</label>
+              <input type="text" class="staff-name-input" data-idx="${i}" value="${escAttr(s.name)}" maxlength="120"
+                     style="width:100%;padding:.4rem .5rem;border:1px solid var(--border);border-radius:6px;">
+            </div>
+            <div class="form-group" style="flex:1;min-width:140px;margin:0;">
+              <label>Роль</label>
+              <input type="text" class="staff-role-input" data-idx="${i}" value="${escAttr(s.role || '')}" maxlength="60"
+                     style="width:100%;padding:.4rem .5rem;border:1px solid var(--border);border-radius:6px;">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:.5rem;">
+            <label>Фото</label>
+            <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
+              ${s.image ? `<img src="${fileUrl(s.image)}" alt="" style="width:70px;height:90px;object-fit:cover;border-radius:4px;border:1px solid var(--border);">` : '<span class="meta">нет</span>'}
+              <button type="button" class="btn btn-sm btn-secondary" onclick="pickStaffImage(${i})">📤 Загрузить</button>
+              ${s.image ? `<button type="button" class="btn btn-sm btn-secondary" onclick="clearStaffImage(${i})">✕ Убрать</button>` : ''}
+            </div>
+          </div>
+        </div>`).join('');
+
+      box.innerHTML = `
+        <h2>👥 Персонал</h2>
+        <p style="font-size:1rem;">Администраторы и персонал центра. На сайте показывается панель «${staffState.staff.length > 0 ? 'Администраторы' : ''}».</p>
+        <div style="margin-bottom:1rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button type="button" class="btn btn-success" onclick="addStaff()">➕ Добавить сотрудника</button>
+          <button type="button" class="btn btn-primary" id="staff-save-btn" onclick="saveStaff()">💾 Сохранить персонал</button>
+        </div>
+        ${items || '<p class="meta">Сотрудников нет — добавьте первого.</p>'}
+      `;
+    }
+
+    function loadStaffSection() {
+      const content = document.getElementById('admin-content');
+      content.innerHTML = `<div id="staff-section-box"></div>`;
+      loadStaffList();
+    }
+
+    function addStaff() {
+      staffState.staff.push({ id: 'staff-' + Date.now(), name: '', role: 'Администратор', image: '', hidden: false });
+      renderStaffSection();
+    }
+
+    function deleteStaff(i) {
+      staffState.staff.splice(i, 1);
+      renderStaffSection();
+    }
+
+    function toggleStaffHidden(i) {
+      staffState.staff[i].hidden = !staffState.staff[i].hidden;
+      renderStaffSection();
+    }
+
+    function clearStaffImage(i) {
+      staffState.staff[i].image = '';
+      renderStaffSection();
+    }
+
+    function pickStaffImage(i) {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          // Загружаем на сервер
+          const formData = new FormData();
+          formData.append('file', file);
+          api('/api/admin/upload-image', { method: 'POST', body: formData })
+            .then(r => r.json())
+            .then(data => {
+              if (data.path) {
+                staffState.staff[i].image = data.path;
+                renderStaffSection();
+                showToast('Фото загружено');
+              }
+            })
+            .catch(err => showToast('Ошибка загрузки: ' + err.message, 'error'));
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    }
+
+    function syncStaffFromForm() {
+      document.querySelectorAll('.staff-name-input').forEach(inp => {
+        const idx = Number(inp.dataset.idx);
+        if (staffState.staff[idx]) staffState.staff[idx].name = inp.value.trim();
+      });
+      document.querySelectorAll('.staff-role-input').forEach(inp => {
+        const idx = Number(inp.dataset.idx);
+        if (staffState.staff[idx]) staffState.staff[idx].role = inp.value.trim();
+      });
+    }
+
+    async function saveStaff() {
+      const btn = document.getElementById('staff-save-btn');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
+      try {
+        syncStaffFromForm();
+        // Санитизация: image — только локальные пути
+        const sanitized = staffState.staff.map(s => {
+          const img = s.image || '';
+          const localImg = /^https?:\/\//i.test(img) ? '' : img.replace(/^\//, '');
+          return {
+            id: String(s.id || ''),
+            name: (s.name || '').trim().slice(0, 120),
+            role: (s.role || '').trim().slice(0, 60),
+            image: localImg,
+            hidden: !!s.hidden
+          };
+        });
+        const res = await api('/api/admin/save-staff', {
+          method: 'POST',
+          body: JSON.stringify({ staff: sanitized })
+        });
+        if (res.ok) {
+          showToast('Персонал сохранён, статика перегенерирована');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast('Ошибка: ' + (err.error || res.status), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      }
+      if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить персонал'; }
+    }
+
+    // Drag-and-drop для staff
+    let staffDragIdx = null;
+    function onStaffDragStart(e) { staffDragIdx = Number(e.currentTarget.dataset.idx); e.dataTransfer.effectAllowed = 'move'; }
+    function onStaffDragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }
+    function onStaffDragLeave(e) {}
+    function onStaffDrop(e) {
+      e.preventDefault();
+      const targetIdx = Number(e.currentTarget.dataset.idx);
+      if (staffDragIdx !== null && staffDragIdx !== targetIdx) {
+        const item = staffState.staff.splice(staffDragIdx, 1)[0];
+        staffState.staff.splice(targetIdx, 0, item);
+        renderStaffSection();
+      }
+    }
+    function onStaffDragEnd(e) { staffDragIdx = null; }
+
   </script>
 </body>
 </html>
