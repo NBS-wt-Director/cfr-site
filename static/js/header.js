@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (directions.length > 0) {
     desktopProgramsMenu = directions.map(function (d) {
       var items = (d.programs || []).map(function (p) {
-        return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+        return '<li><a href="program.html?id=' + (p.slug || p.id) + '">' + p.name + '</a></li>';
       }).join('');
       return '<li class="dgroup">' +
         '<div class="dgroup-head">' +
@@ -71,17 +71,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }).join('');
   } else {
     desktopProgramsMenu = programNav.map(function (p) {
-      return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+      return '<li><a href="program.html?id=' + (p.slug || p.id) + '">' + p.name + '</a></li>';
     }).join('');
   }
 
   // Плоский список программ (fallback для страниц без navDirections)
   const programsMenu = programNav.map(p =>
-    `<li><a href="program.html?id=${p.id}">${p.name}</a></li>`
+    `<li><a href="program.html?id=${p.slug || p.id}">${p.name}</a></li>`
   ).join('');
 
   const trainersMenu = trainerNav.map(t =>
-    `<li><a href="trainer.html?id=${t.id}">${t.name}</a></li>`
+    `<li><a href="trainer.html?id=${t.slug || t.id}">${t.name}</a></li>`
   ).join('');
 
   // S23: мобильный аккордеон направлений (вложенный)
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var directionsMenu = directions
     .map(function (d) {
       var items = (d.programs || []).map(function (p) {
-        return '<li><a href="program.html?id=' + p.id + '">' + p.name + '</a></li>';
+        return '<li><a href="program.html?id=' + (p.slug || p.id) + '">' + p.name + '</a></li>';
       }).join('');
       return '<li class="m-dropdown">' +
         '<div class="m-dropdown-head">' +

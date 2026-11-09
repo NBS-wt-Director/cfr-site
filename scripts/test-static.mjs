@@ -2563,5 +2563,87 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   }
 }
 
+// ── S18: Якоря по ФИО/транслит ──
+{
+  const { slugify: slugNode } = await import('./lib/slug.mjs');
+
+  // 1. Транслитерация (node-версия)
+  check('S18: slugify — греко-римская борьба', slugNode('Греко-римская борьба') === 'greko-rimskaya-borba');
+  check('S18: slugify — Ёлки-иголки → elki-igolki', slugNode('Ёлки-иголки') === 'elki-igolki');
+  check('S18: slugify — Щука-щука → schuka-schuka', slugNode('Щука-щука') === 'schuka-schuka');
+  check('S18: slugify — пустая строка → пустая', slugNode('') === '');
+  check('S18: slugify — спецсимволы → дефисы', slugNode('А! Б@ В#') === 'a-b-v');
+  check('S18: slugify — ведущие/замыкающие дефисы срезаны', slugNode(' -- Тест -- ') === 'test');
+  check('S18: slugify — ъ/ь не дают дефисов', slugNode('объект') === 'obekt');
+
+  // 2. Браузерная версия (window.slugify)
+  {
+    const slugSrc = fs.readFileSync(path.join(staticDir, 'js', 'slug.js'), 'utf-8');
+    const box = { globalThis: {} };
+    box.globalThis = box;
+    box.window = box;
+    const vm = await import('vm');
+    vm.createContext(box);
+    vm.runInContext(slugSrc, box);
+    check('S18: slug.js определяет window.slugify', typeof box.slugify === 'function');
+    check('S18: browser slugify — греко-римская борьба', box.slugify('Греко-римская борьба') === 'greko-rimskaya-borba');
+    check('S18: browser slugify — Щука-щука', box.slugify('Щука-щука') === 'schuka-schuka');
+
+    // 3. Эквивалентность двух реализаций
+    const testNames = [...new Set([...visPrograms.map(p => p.name), ...db.trainers.filter(t => !t.hidden).map(t => t.name)])].slice(0, 30);
+    const allMatch = testNames.every(name => box.slugify(name) === slugNode(name));
+    check('S18: browser и node slugify эквивалентны на реальных именах', allMatch);
+  }
+
+  // 4. navPrograms/navTrainers содержат slug
+  const coreSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'core.js'), 'utf-8');
+  const hasNavSlug = /navPrograms.*slug/s.test(coreSrc) && /navTrainers.*slug/s.test(coreSrc);
+  check('S18: navPrograms/navTrainers содержат slug в core.js', hasNavSlug);
+
+  // 5. entity.js резолвит slug
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+  check('S18: entity.js содержит поиск по slug', entitySrc.includes('x.slug === rawId'));
+  check('S18: entity.js сохраняет обратную совместимость (Number(rawId))', entitySrc.includes('Number(rawId)') && entitySrc.includes('!isNaN'));
+
+  // 6. Ссылки в tiles.js используют slug
+  const tilesSrc = fs.readFileSync(path.join(staticDir, 'js', 'tiles.js'), 'utf-8');
+  check('S18: tiles.js — program.html?id= с slug', tilesSrc.includes('p.slug || p.id'));
+  check('S18: tiles.js — trainer.html?id= с slug', tilesSrc.includes('t.slug || t.id'));
+
+  // 7. header.js — ссылки с slug
+  const headerSrc = fs.readFileSync(path.join(staticDir, 'js', 'header.js'), 'utf-8');
+  check('S18: header.js — program.html?id= с slug', headerSrc.includes('p.slug || p.id'));
+  check('S18: header.js — trainer.html?id= с slug', headerSrc.includes('t.slug || t.id'));
+
+  // 8. sitemap.mjs — slug в URL
+  const smSrc = fs.readFileSync(path.join(__dirname, 'lib', 'sitemap.mjs'), 'utf-8');
+  check('S18: sitemap.mjs — import slugify', smSrc.includes('import') && smSrc.includes('slugify'));
+  check('S18: sitemap.mjs — program.html?id= с slug', smSrc.includes('p.slug || p.id'));
+  check('S18: sitemap.mjs — trainer.html?id= с slug', smSrc.includes('t.slug || t.id'));
+
+  // 9. schedule-ui.js — slug в ссылках
+  const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'schedule-ui.js'), 'utf-8');
+  check('S18: schedule-ui.js — programSlug в ссылках', schedSrc.includes('s.programSlug || s.programId'));
+
+  // 10. Экспортированные программы/тренеры содержат slug
+  const programsSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'programs.js'), 'utf-8');
+  const trainersSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'trainers.js'), 'utf-8');
+  check('S18: programs.js — slug в данных', /"slug":\s*"/.test(programsSrc));
+  check('S18: trainers.js — slug в данных', /"slug":\s*"/.test(trainersSrc));
+
+  // 11. scheduleTable содержит programSlug
+  const schedDataSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'schedule-table.js'), 'utf-8');
+  check('S18: schedule-table.js — programSlug в scheduleTable', schedDataSrc.includes('"programSlug":'));
+
+  // 12. Sitemap сгенерирован со slug (после экспорта)
+  const sitemapPath2 = path.join(staticDir, 'sitemap.xml');
+  const sitemap2 = fs.existsSync(sitemapPath2) ? fs.readFileSync(sitemapPath2, 'utf-8') : '';
+  // Первый slug в sitemap (program.html?id=<slug>)
+  const slugLocs = [...sitemap2.matchAll(/program\.html\?id=([a-z0-9-]+)(&|<)/g)].map(m => m[1]);
+  check('S18: sitemap содержит slug-ссылки на программы (не числа)', slugLocs.length > 0);
+  const slugTrLocs = [...sitemap2.matchAll(/trainer\.html\?id=([a-z0-9-]+)(&|<)/g)].map(m => m[1]);
+  check('S18: sitemap содержит slug-ссылки на тренеров (не числа)', slugTrLocs.length > 0);
+}
+
 console.log(`\n${passed}/${passed + failed} пройдено`);
 process.exit(failed ? 1 : 0);

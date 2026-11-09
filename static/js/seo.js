@@ -247,7 +247,7 @@
           'itemListElement': (dir.programs || []).map(function (pr, i) {
             return {
               '@type': 'ListItem', 'position': i + 1,
-              'url': baseUrl() + '/program.html?id=' + encodeURIComponent(pr.id),
+              'url': baseUrl() + '/program.html?id=' + encodeURIComponent(pr.slug || pr.id),
               'name': pr.name
             };
           })

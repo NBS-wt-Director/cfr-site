@@ -148,8 +148,8 @@
     const prog = (data.navPrograms || []).filter(p => String(p.id) === String(item.programId))[0];
     const tr = (data.navTrainers || []).filter(t => String(t.id) === String(item.trainerId))[0];
     const links = [];
-    if (prog) links.push('<a href="program.html?id=' + encodeURIComponent(prog.id) + '">' + escHtml(prog.name) + ' →</a>');
-    if (tr) links.push('<a href="trainer.html?id=' + encodeURIComponent(tr.id) + '">' + escHtml(tr.name) + '</a>');
+    if (prog) links.push('<a href="program.html?id=' + encodeURIComponent(prog.slug || prog.id) + '">' + escHtml(prog.name) + ' →</a>');
+    if (tr) links.push('<a href="trainer.html?id=' + encodeURIComponent(tr.slug || tr.id) + '">' + escHtml(tr.name) + '</a>');
     return links.length ? '<div class="price-row-links">' + links.join(' · ') + '</div>' : '';
   }
 

@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-09T12:45:13.136Z
+ * Сгенерировано: 2026-11-09T21:45:26.477Z
  */
 window.SITE_DATA = {
   "siteName": "ЦФР - Центр Развития",
@@ -226,173 +226,215 @@ window.SITE_DATA = {
   "navPrograms": [
     {
       "id": 1770965676349,
-      "name": "Крепыши (2-4 года)"
+      "name": "Крепыши (2-4 года)",
+      "slug": "krepyshi-2-4-goda"
     },
     {
       "id": 1772563088471,
-      "name": "Здоровая спина"
+      "name": "Здоровая спина",
+      "slug": "zdorovaya-spina"
     },
     {
       "id": 1772563088472,
-      "name": "Оздоровительное Ушу для детей (6-12 лет)"
+      "name": "Оздоровительное Ушу для детей (6-12 лет)",
+      "slug": "ozdorovitelnoe-ushu-dlya-detei-6-12-let"
     },
     {
       "id": 1772563088473,
-      "name": "Изобразительное искусство (4+)"
+      "name": "Изобразительное искусство (4+)",
+      "slug": "izobrazitelnoe-iskusstvo-4"
     },
     {
       "id": 1772563088474,
-      "name": "ЛФК УШУ (10-15 лет)"
+      "name": "ЛФК УШУ (10-15 лет)",
+      "slug": "lfk-ushu-10-15-let"
     },
     {
       "id": 1772563088475,
-      "name": "ОФП Ушу (10+)"
+      "name": "ОФП Ушу (10+)",
+      "slug": "ofp-ushu-10"
     },
     {
       "id": 1772563088476,
-      "name": "Развивающие УШУ (4-6 лет)"
+      "name": "Развивающие УШУ (4-6 лет)",
+      "slug": "razvivayuschie-ushu-4-6-let"
     },
     {
       "id": 1772563088477,
-      "name": "Специальное ОФП (6-12 лет)"
+      "name": "Специальное ОФП (6-12 лет)",
+      "slug": "spetsialnoe-ofp-6-12-let"
     },
     {
       "id": 1772563088478,
-      "name": "Координация. Основы работы с оружием в УШУ"
+      "name": "Координация. Основы работы с оружием в УШУ",
+      "slug": "koordinatsiya-osnovy-raboty-s-oruzhiem-v-ushu"
     },
     {
       "id": 1772563088479,
-      "name": "Тайцзи-Цигун"
+      "name": "Тайцзи-Цигун",
+      "slug": "taitszi-tsigun"
     },
     {
       "id": 1772563088480,
-      "name": "Тайцзи-Цюань"
+      "name": "Тайцзи-Цюань",
+      "slug": "taitszi-tsyuan"
     },
     {
       "id": 1772563088481,
-      "name": "Тканевое дыхание"
+      "name": "Тканевое дыхание",
+      "slug": "tkanevoe-dykhanie"
     },
     {
       "id": 1772563088482,
-      "name": "Основы массажа"
+      "name": "Основы массажа",
+      "slug": "osnovy-massazha"
     },
     {
       "id": 1772563088483,
-      "name": "Гимнастика для суставов"
+      "name": "Гимнастика для суставов",
+      "slug": "gimnastika-dlya-sustavov"
     },
     {
       "id": 1772563088484,
-      "name": "Гимнастика для шеи и органов чувств"
+      "name": "Гимнастика для шеи и органов чувств",
+      "slug": "gimnastika-dlya-shei-i-organov-chuvstv"
     },
     {
       "id": 1772563088485,
-      "name": "Здоровое тело"
+      "name": "Здоровое тело",
+      "slug": "zdorovoe-telo"
     },
     {
       "id": 1772563088486,
-      "name": "Здоровье +"
+      "name": "Здоровье +",
+      "slug": "zdorove"
     },
     {
       "id": 1772563088487,
-      "name": "Здоровье женщины"
+      "name": "Здоровье женщины",
+      "slug": "zdorove-zhenschiny"
     },
     {
       "id": 1772563088488,
-      "name": "Массаж внутренних органов"
+      "name": "Массаж внутренних органов",
+      "slug": "massazh-vnutrennikh-organov"
     },
     {
       "id": 1772563088489,
-      "name": "Массажные и восстановительные техники"
+      "name": "Массажные и восстановительные техники",
+      "slug": "massazhnye-i-vosstanovitelnye-tekhniki"
     },
     {
       "id": 1772563088490,
-      "name": "Мобилизация таза и поясницы"
+      "name": "Мобилизация таза и поясницы",
+      "slug": "mobilizatsiya-taza-i-poyasnitsy"
     },
     {
       "id": 1772563088491,
-      "name": "Мужское долголетие"
+      "name": "Мужское долголетие",
+      "slug": "muzhskoe-dolgoletie"
     },
     {
       "id": 1772563088492,
-      "name": "Растяжка"
+      "name": "Растяжка",
+      "slug": "rastyazhka"
     },
     {
       "id": 1772563088493,
-      "name": "Техника самомассажа с палочкой"
+      "name": "Техника самомассажа с палочкой",
+      "slug": "tekhnika-samomassazha-s-palochkoi"
     },
     {
       "id": 1772563088494,
-      "name": "Фейс Билдинг"
+      "name": "Фейс Билдинг",
+      "slug": "feis-bilding"
     },
     {
       "id": 1772563088495,
-      "name": "Акробатика для мозга"
+      "name": "Акробатика для мозга",
+      "slug": "akrobatika-dlya-mozga"
     },
     {
       "id": 1772563088496,
-      "name": "Координация"
+      "name": "Координация",
+      "slug": "koordinatsiya"
     },
     {
       "id": 1772563088497,
-      "name": "ОФП Меч"
+      "name": "ОФП Меч",
+      "slug": "ofp-mech"
     },
     {
       "id": 1772563088498,
-      "name": "Функциональный тренинг"
+      "name": "Функциональный тренинг",
+      "slug": "funktsionalnyi-trening"
     },
     {
       "id": 1780000000001,
-      "name": "Персональные тренировки"
+      "name": "Персональные тренировки",
+      "slug": "personalnye-trenirovki"
     },
     {
       "id": 1780000000002,
-      "name": "Сплит"
+      "name": "Сплит",
+      "slug": "split"
     },
     {
       "id": 1780000000003,
-      "name": "Массаж"
+      "name": "Массаж",
+      "slug": "massazh"
     }
   ],
   "navTrainers": [
     {
       "id": 1770800269014,
-      "name": "Глазырин Михаил"
+      "name": "Глазырин Михаил",
+      "slug": "glazyrin-mikhail"
     },
     {
       "id": 1770874411766,
-      "name": "Глазырина Илона"
+      "name": "Глазырина Илона",
+      "slug": "glazyrina-ilona"
     },
     {
       "id": 1770874476663,
-      "name": "Кравец Оксана Борисовна"
+      "name": "Кравец Оксана Борисовна",
+      "slug": "kravets-oksana-borisovna"
     },
     {
       "id": 1770875029246,
-      "name": "Половникова Тамара"
+      "name": "Половникова Тамара",
+      "slug": "polovnikova-tamara"
     },
     {
       "id": 1770875064589,
-      "name": "Оберюхтин Иван"
+      "name": "Оберюхтин Иван",
+      "slug": "oberyukhtin-ivan"
     },
     {
       "id": 1770875124935,
-      "name": "Кузнецов Александр Вячеславович"
+      "name": "Кузнецов Александр Вячеславович",
+      "slug": "kuznetsov-aleksandr-vyacheslavovich"
     },
     {
       "id": 1770875159380,
-      "name": "Пашкова Юлия"
+      "name": "Пашкова Юлия",
+      "slug": "pashkova-yuliya"
     },
     {
       "id": 1770875655036,
-      "name": "Романовский Николай"
+      "name": "Романовский Николай",
+      "slug": "romanovskii-nikolai"
     },
     {
       "id": 1770875655037,
-      "name": "Хорошилова Елена"
+      "name": "Хорошилова Елена",
+      "slug": "khoroshilova-elena"
     },
     {
       "id": 13,
-      "name": "Мосоян Лусине"
+      "name": "Мосоян Лусине",
+      "slug": "mosoyan-lusine"
     }
   ],
   "navDirections": [

@@ -63,7 +63,7 @@
    */
   function programTile(p) {
     if (!p) return '';
-    var href = 'program.html?id=' + p.id;
+    var href = 'program.html?id=' + (p.slug || p.id);
     var photos = p.image ? [p.image] : [];
     return '<div class="tile tile-program" id="program-' + p.id + '">' +
       photoHtml(photos, href, p.name) +
@@ -78,7 +78,7 @@
    */
   function trainerTile(t) {
     if (!t) return '';
-    var href = 'trainer.html?id=' + t.id;
+    var href = 'trainer.html?id=' + (t.slug || t.id);
     return '<div class="tile tile-trainer" id="trainer-' + t.id + '">' +
       photoHtml(photosOf(t), href, t.name) +
       '<div class="tile-title tile-title-2"><a href="' + esc(href) + '">' + esc(t.name) + '</a></div>' +

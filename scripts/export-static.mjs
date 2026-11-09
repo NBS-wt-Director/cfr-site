@@ -29,6 +29,7 @@ import vm from 'vm';
 import { fileURLToPath } from 'url';
 import { flattenDb } from './db-format.mjs';
 import { renderSitemap, renderRobots } from './lib/sitemap.mjs';
+import { slugify } from './lib/slug.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -356,9 +357,9 @@ const core = {
     })()
   },
 
-  // Лёгкий срез для меню — только id и name (скрытые исключены)
-  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '' })),
-  navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '' })),
+  // S18: с лёгким срезом добавляем slug (транслит имени) для URL-ссылок.
+  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name) })),
+  navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '', slug: slugify(t.name) })),
 
   // S23: лёгкий срез направлений для меню и группировки на главной
   // (полные данные — в directions.js, он грузится только на directions.html)
@@ -458,6 +459,7 @@ const modules = {
   programs: visiblePrograms.map(p => ({
     id: p.id,
     name: p.name || '',
+    slug: slugify(p.name),  // S18: URL-якорь
     image: fixPath(p.image),
     description: p.description || '',
     category: p.category || '',
@@ -507,6 +509,7 @@ const modules = {
   trainers: visibleTrainers.map(t => ({
     id: t.id,
     name: t.name || '',
+    slug: slugify(t.name),  // S18: URL-якорь
     image: fixPath(t.image),
     experience: t.experience || '',
     specialization: t.specialization || '',
@@ -613,6 +616,7 @@ const modules = {
         return {
           program: p.name || '',
           programId: p.id,
+          programSlug: slugify(p.name),  // S18
           day: s.day || '',
           time: s.time || '',
           place: s.place || '',

@@ -119,7 +119,7 @@
         // не рендерился нигде — на вопрос «где проходят занятия» сайт не отвечал.
         var place = s.place ? '<span class="week-chip-place">📍 ' + esc(s.place) + '</span>' : '';
         var trainer = s.trainer ? '<span class="week-chip-trainer">🧑‍🏫 ' + esc(s.trainer) + '</span>' : '';
-        var href = s.programId != null ? 'program.html?id=' + s.programId : '#';
+        var href = s.programId != null ? 'program.html?id=' + (s.programSlug || s.programId) : '#';
         return '<a class="week-chip mode-' + m + '" href="' + href + '" title="' + esc(s.program || '') + '">' +
           '<span class="week-chip-mode">' + MODES[m].icon + '</span>' +
           '<span class="week-chip-time">' + esc(s.time) + '</span>' +
@@ -155,7 +155,7 @@
         var prog = '';
         if (withProgram) {
           prog = s.programId != null
-            ? '<td><a class="schedule-program-link" href="program.html?id=' + s.programId + '">' + esc(s.program) + '</a></td>'
+            ? '<td><a class="schedule-program-link" href="program.html?id=' + (s.programSlug || s.programId) + '">' + esc(s.program) + '</a></td>'
             : '<td>' + esc(s.program || '') + '</td>';
         }
         return '<tr>' + prog + '<td>' + esc(s.day) + '</td>' +

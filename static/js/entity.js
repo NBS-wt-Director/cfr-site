@@ -90,9 +90,13 @@
       return '<h2 class="entity-subtitle">👨‍🏫 Ведёт</h2>' + T.grid(cards, '', 'entity-trainers');
     }
     var chips = refs.map(function (tr) {
-      return tr.id != null
-        ? '<a class="entity-trainer-card" href="trainer.html?id=' + tr.id + '">🧑‍🏫 ' + esc(tr.name) + '</a>'
-        : '<span class="entity-trainer-card entity-trainer-card-plain">🧑‍🏫 ' + esc(tr.name) + '</span>';
+      if (tr.id == null) {
+        return '<span class="entity-trainer-card entity-trainer-card-plain">🧑‍🏫 ' + esc(tr.name) + '</span>';
+      }
+      // S18: ищем slug тренера в navTrainers или полных trainers
+      var all = (window.SITE_DATA || {}).navTrainers || (window.SITE_DATA || {}).trainers || [];
+      var found = all.filter(function (t) { return Number(t.id) === Number(tr.id); })[0];
+      return '<a class="entity-trainer-card" href="trainer.html?id=' + ((found && found.slug) || tr.id) + '">🧑‍🏫 ' + esc(tr.name) + '</a>';
     }).join('');
     return '<h2 class="entity-subtitle">👨‍🏫 Ведёт</h2>' +
       '<div class="entity-trainers">' + chips + '</div>';
@@ -260,7 +264,7 @@
       return String(p.name || '').trim().toLowerCase().indexOf(String(name).toLowerCase()) === 0;
     })[0];
     return found
-      ? '<a href="program.html?id=' + found.id + '">' + esc(found.name) + '</a>'
+      ? '<a href="program.html?id=' + (found.slug || found.id) + '">' + esc(found.name) + '</a>'
       : '';
   }
 
@@ -514,13 +518,24 @@
     var mount = document.getElementById('entity');
     if (!conf || !mount) return;
 
-    var id = Number(new URLSearchParams(location.search).get('id'));
+    var rawId = new URLSearchParams(location.search).get('id');
     var items = (window.SITE_DATA || {})[conf.list] || [];
-    var item = items.filter(function (x) { return Number(x.id) === id; })[0];
+    var item;
+
+    // S18: числовой id → поиск по id (обратная совместимость внешних ссылок).
+    // Строковый id → поиск по slug (транслит имени).
+    if (rawId !== null) {
+      var num = Number(rawId);
+      if (!isNaN(num) && num > 0) {
+        item = items.filter(function (x) { return Number(x.id) === num; })[0];
+      } else {
+        item = items.filter(function (x) { return x.slug === rawId; })[0];
+      }
+    }
 
     if (!item) {
       // S141: единая страница 404 с редиректом
-      location.replace('404.html?from=' + encodeURIComponent(conf.back + '?id=' + id) + '&id=' + encodeURIComponent(id));
+      location.replace('404.html?from=' + encodeURIComponent(conf.back + '?id=' + (rawId || '')) + '&id=' + encodeURIComponent(rawId || ''));
       return;
     }
 

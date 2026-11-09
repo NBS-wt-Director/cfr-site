@@ -10,6 +10,7 @@
  * через url.domainToASCII() — оба варианта не хардкодятся.
  */
 import { domainToASCII } from 'url';
+import { slugify } from './slug.mjs';
 
 export const DEFAULT_BASE_URL = 'https://центр-фр.рф';
 
@@ -79,12 +80,12 @@ export function collectUrls(db, buildDateISO) {
 
   // Видимые программы (lastmod — updatedAt программы, дефолт — дата сборки)
   (db.programs || []).filter(p => !p.hidden)
-    .forEach(p => push('program.html?id=' + encodeURIComponent(p.id),
+    .forEach(p => push('program.html?id=' + encodeURIComponent(p.slug || p.id),
       lastmodOf(p.updatedAt), 'monthly', '0.6'));
 
   // Видимые тренеры
   (db.trainers || []).filter(t => !t.hidden)
-    .forEach(t => push('trainer.html?id=' + encodeURIComponent(t.id),
+    .forEach(t => push('trainer.html?id=' + encodeURIComponent(t.slug || t.id),
       fallback, 'monthly', '0.6'));
 
   // Все новости (включая showOnHome:false — они есть на news.html).
