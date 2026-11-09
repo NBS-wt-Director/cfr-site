@@ -2196,19 +2196,47 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   }
 }
 
-// S142: админка «🧩 Шаблоны» — три пустых подраздела
+// S142/S145: админка «🧩 Шаблоны» — три подраздела по списку пользователя
 {
   const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
   check('S142: админка — раздел «🧩 Шаблоны»',
     adminSrc.includes('🧩 Шаблоны'));
-  check('S142: подраздел «Текстовые маски»',
+  check('S142/S145: подраздел «Текстовые маски»',
     adminSrc.includes('Текстовые маски'));
-  check('S142: подраздел «Шаблоны писем/SMS»',
+  check('S142/S145: подраздел «Шаблоны писем/SMS»',
     adminSrc.includes('Шаблоны писем/SMS') || adminSrc.includes('Шаблоны писем'));
-  check('S142: подраздел «Макеты сайта»',
-    adminSrc.includes('Макеты сайта'));
+  check('S145: подраздел «Макеты разделов/сущностей/страниц» (переименован из «Макеты сайта»)',
+    adminSrc.includes('Макеты разделов/сущностей/страниц') && !adminSrc.includes('Макеты сайта'));
   check('S142: loadTemplatesSection определена',
     adminSrc.includes('loadTemplatesSection'));
+}
+
+// S144: админка — компактные кнопки в строках списков (ФИО тренера не сжимается)
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  check('S144: btn-sm.btn-primary не растягивается на всю строку',
+    /\.btn-sm\.btn-primary\s*\{\s*width:\s*auto/.test(adminSrc));
+  check('S144: кнопки в .entity-item компактные',
+    /\.entity-item\s+\.btn\s*\{[^}]*width:\s*auto/.test(adminSrc));
+  check('S144: кнопки в .news-item компактные',
+    /\.news-item\s+\.btn\s*\{[^}]*width:\s*auto/.test(adminSrc));
+}
+
+// S145: «Справка» — три подраздела-заглушки
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  check('S145: сайдбар — ссылка «Техническая поддержка»',
+    adminSrc.includes('data-section="help-support"'));
+  check('S145: сайдбар — ссылка «Связаться с разработчиком»',
+    adminSrc.includes('data-section="help-developer"'));
+  check('S145: сайдбар — ссылка «Заказать/выбрать модуль»',
+    adminSrc.includes('data-section="help-modules"'));
+  check('S145: секции зарегистрированы в реестре (group help-stub)',
+    (adminSrc.match(/group:\s*'help-stub'/g) || []).length === 3);
+  check('S145: renderHelpStubSection определена и вызывается',
+    adminSrc.includes('function renderHelpStubSection') && adminSrc.includes('renderHelpStubSection(section)'));
+  check('S145: роутер обрабатывает help-stub',
+    /section\.group\s*===\s*'help-stub'/.test(adminSrc));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);

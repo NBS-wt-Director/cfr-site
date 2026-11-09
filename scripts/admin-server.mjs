@@ -148,7 +148,12 @@ function sendFile(res, filePath, contentType) {
       '.txt': 'text/plain; charset=utf-8',
       '.webmanifest': 'application/manifest+json'
     };
-    res.writeHead(200, { 'Content-Type': types[ext] || contentType });
+    // S144: HTML — no-cache, чтобы браузер всегда получал свежую админку/страницы
+    // (эвристическое кэширование без заголовков держало старый admin.html часами).
+    // CSS/JS инвалидируются версией ?v= в URL — для них кэш полезен.
+    const headers = { 'Content-Type': types[ext] || contentType };
+    if (ext === '.html') headers['Cache-Control'] = 'no-cache';
+    res.writeHead(200, headers);
     res.end(data);
   } catch (err) {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -3020,7 +3025,7 @@ async function handleSendReminder(req, res) {
     {
       id: 'templates',
       title: '🧩 Шаблоны',
-      content: `# Шаблоны (S142)\n\nЗадел на будущее.\n\n## Подразделы:\n- **📝 Текстовые маски** — шаблоны текстов описаний\n- **✉️ Шаблоны писем/SMS** — шаблоны уведомлений\n- **🎨 Макеты сайта** — готовые макеты страниц\n\n## Статус\nРаздел-скелет. Наполнение — отдельными тикетами.`,
+      content: `# Шаблоны (S142/S145)\n\nЗадел на будущее.\n\n## Подразделы:\n- **🎨 Макеты разделов/сущностей/страниц** — готовые макеты страниц сайта\n- **📝 Текстовые маски** — шаблоны текстов описаний\n- **✉️ Шаблоны писем/SMS** — шаблоны уведомлений\n\n## Статус\nРаздел-скелет. Наполнение — отдельными тикетами.`,
       category: 'templates'
     },
     {

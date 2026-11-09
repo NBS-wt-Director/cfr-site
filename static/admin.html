@@ -71,6 +71,13 @@
     }
     .btn-primary { background: var(--primary); color: white; width: 100%; }
     .btn-primary:hover { background: var(--primary-hover); }
+    /* S144: width:100% у btn-primary задуман для формы входа.
+       В строках списков (тренеры/программы/направления) он растягивал
+       кнопку ✏️ на всю ширину, а ФИО (flex:1; overflow:hidden) сжимал в ноль.
+       Компактные btn-sm нигде не должны растягиваться — только явный submit/login. */
+    .btn-sm.btn-primary { width: auto; }
+    .entity-item .btn { width: auto; flex-shrink: 0; }
+    .news-item .btn { width: auto; flex-shrink: 0; }
     .btn-danger { background: var(--danger); color: white; }
     .btn-danger:hover { background: var(--danger-hover); }
     .btn-success { background: var(--success); color: white; }
@@ -561,6 +568,10 @@
           <div class="sidebar-group-header" data-group="help" onclick="toggleGroup(this)">📖 СПРАВКА ▸</div>
           <div class="sidebar-group-body">
             <a href="#help" data-section="help">📖 Справка для администраторов</a>
+            <!-- S145: подразделы-заглушки -->
+            <a href="#help-support" data-section="help-support" class="sidebar-wip">🛟 Техническая поддержка (скоро)</a>
+            <a href="#help-developer" data-section="help-developer" class="sidebar-wip">👨‍💻 Связаться с разработчиком (скоро)</a>
+            <a href="#help-modules" data-section="help-modules" class="sidebar-wip">🧱 Заказать/выбрать модуль (скоро)</a>
           </div>
         </div>
       </nav>
@@ -943,7 +954,11 @@
       { id: 'bots', title: '🤖 Боты', status: 'wip', group: 'stubs' },
       { id: 'integrations', title: '🔗 Интеграции', status: 'wip', group: 'stubs' },
       // СПРАВКА
-      { id: 'help', title: '📖 Справка', status: 'done', group: 'help' }
+      { id: 'help', title: '📖 Справка', status: 'done', group: 'help' },
+      // S145: подразделы-заглушки «Справки»
+      { id: 'help-support', title: '🛟 Техническая поддержка', status: 'skeleton', group: 'help-stub' },
+      { id: 'help-developer', title: '👨‍💻 Связаться с разработчиком', status: 'skeleton', group: 'help-stub' },
+      { id: 'help-modules', title: '🧱 Заказать/выбрать модуль', status: 'skeleton', group: 'help-stub' }
     ];
 
     // toggleGroup: сворачивание/разворачивание группы в сайдбаре
@@ -1022,6 +1037,12 @@
       // Для справки — полноценная реализация (S8)
       if (sectionId === 'help') {
         loadHelpSection();
+        return;
+      }
+
+      // S145: подразделы-заглушки «Справки»
+      if (section.group === 'help-stub') {
+        renderHelpStubSection(section);
         return;
       }
 
@@ -4069,6 +4090,46 @@
     }
 
     /* ============================================
+       S145: подразделы-заглушки «Справки».
+       Тексты заготовлены; наполнение — отдельными тикетами.
+       ============================================ */
+    function renderHelpStubSection(section) {
+      const content = document.getElementById('admin-content');
+      const stubs = {
+        'help-support': {
+          icon: '🛟',
+          lead: 'Здесь появится форма обращения в техническую поддержку сайта и журнал заявок.',
+          todo: ['Форма заявки (тема, описание, срочность)', 'Журнал заявок и их статусов', 'Уведомления о статусе на почту/в админку']
+        },
+        'help-developer': {
+          icon: '👨‍💻',
+          lead: 'Здесь будут прямые каналы связи с разработчиком сайта.',
+          todo: ['Контакты разработчика (Telegram, e-mail)', 'Формат заявок и сроки', 'История обращений']
+        },
+        'help-modules': {
+          icon: '🧱',
+          lead: 'Здесь появится каталог модулей сайта с возможностью заказать или выбрать готовый.',
+          todo: ['Каталог модулей (запись клиентов, оплата, рассылки, CRM…)', 'Описание и цена каждого модуля', 'Заявка на подключение модуля']
+        }
+      };
+      const stub = stubs[section.id] || { icon: '📖', lead: 'Раздел в разработке.', todo: [] };
+      content.innerHTML = `
+        <div class="section-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <h2>${section.title}</h2>
+            <span class="status-badge status-badge-wip">В разработке</span>
+          </div>
+          <p style="margin:1rem 0;">${stub.lead}</p>
+          <div style="margin-top:2rem;padding:3rem 2rem;text-align:center;background:#f8fafc;border:2px dashed #d1d5db;border-radius:12px;">
+            <div style="font-size:4rem;margin-bottom:1rem;">${stub.icon}</div>
+            <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${section.title.replace(/^\S+\s/, '')}</h3>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
+            ${stub.todo.length ? `<ul style="display:inline-block;text-align:left;color:var(--text-secondary);font-size:0.9rem;">${stub.todo.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+          </div>
+        </div>`;
+    }
+
+    /* ============================================
        Справка для администраторов (S8)
        ============================================ */
     let helpState = { sections: [] };
@@ -6782,13 +6843,14 @@
       }
     }
 
-    // S142: раздел «🧩 Шаблоны» (задел, три пустых подраздела)
+    // S142/S145: раздел «🧩 Шаблоны» (задел). Подразделы по списку пользователя (S145):
+    // макеты разделов/сущностей/страниц → текстовые маски → шаблоны писем/SMS.
     function loadTemplatesSection() {
       const content = document.getElementById('admin-content');
       const tabs = [
+        { id: 'entity-mockups', icon: '🎨', label: 'Макеты разделов/сущностей/страниц' },
         { id: 'text-masks', icon: '📝', label: 'Текстовые маски' },
-        { id: 'email-sms', icon: '✉️', label: 'Шаблоны писем/SMS' },
-        { id: 'site-mockups', icon: '🎨', label: 'Макеты сайта' }
+        { id: 'email-sms', icon: '✉️', label: 'Шаблоны писем/SMS' }
       ];
       let activeTab = tabs[0].id;
 
