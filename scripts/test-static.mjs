@@ -2239,5 +2239,161 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     /section\.group\s*===\s*'help-stub'/.test(adminSrc));
 }
 
+/* ============================================================
+   S146: админка тренера — фото и стаж
+   1) банк кадров брался из data.db.album (такого ключа get-data не отдаёт) →
+      сетка «Фотоальбом» была пустой при «Выбрано кадров: 4»;
+   2) стаж должен выбираться годом, количество лет — считаться;
+   3) у преподавателей ИЗО — другие формулировки (админка и страница тренера);
+   4) режимы общей модалки тренер/программа.
+   ============================================================ */
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+
+  check('S146: ensureAlbumBank читает album из payload.data.album',
+    /const album = \(payload\.data && payload\.data\.album\)/.test(adminSrc));
+  check('S146: прежняя ветка data.db.album удалена',
+    !adminSrc.includes('data.db && data.db.album'));
+  check('S146: нормализация медиа-путей normImgPath определена',
+    /function normImgPath\(/.test(adminSrc));
+  check('S146: photoAlbum нормализуется при открытии модалки',
+    /\.map\(x => typeof x === 'string' \? x : x\.image\)\.filter\(Boolean\)\.map\(normImgPath\)/.test(adminSrc));
+  check('S146: превью банка берёт thumb (лёгкие миниатюры вместо 300 КБ full)',
+    /fileUrl\(a\.thumb \|\| a\.image\)/.test(adminSrc));
+  check('S146: выбранные кадры вне банка показываются отдельным блоком',
+    /const outside = editingTrainerAlbum\.filter\(p => !byPath\.has\(normImgPath\(p\)\)\)/.test(adminSrc) &&
+    adminSrc.includes('вне общего альбома'));
+  check('S146: пустой банк объясняется пользователю, а не молчит',
+    /Банк кадров пуст/.test(adminSrc));
+
+  // Стаж: год начала + автовычисление
+  check('S146: форма стажа — select года (ushu и coach)',
+    /<select id="trainer-exp-ushu-year"/.test(adminSrc) && /<select id="trainer-exp-coach-year"/.test(adminSrc));
+  check('S146: строка стажа сохраняется через hidden-поле (совместимость с экспортом)',
+    /<input type="hidden" id="trainer-exp-ushu-input">/.test(adminSrc) &&
+    /<input type="hidden" id="trainer-exp-coach-input">/.test(adminSrc));
+  check('S146: есть поле «свой текст» для нестандартных формулировок',
+    /<input type="text" id="trainer-exp-ushu-raw"/.test(adminSrc));
+  check('S146: формулировки по категориям (тренер ушу / преподаватель изо)',
+    /const TRAINER_EXP_LABELS = \{[\s\S]*'тренер ушу'[\s\S]*'преподаватель изо'/.test(adminSrc) &&
+    adminSrc.includes('Занимается ИЗО') && adminSrc.includes('Преподавательский стаж'));
+  check('S146: подписи полей обновляются при смене категории',
+    /getElementById\('trainer-category-input'\)\.onchange = applyTrainerCategoryLabels/.test(adminSrc) &&
+    /function applyTrainerCategoryLabels\(/.test(adminSrc));
+
+  // Функциональная проверка расчёта (извлекаем функции из админки и исполняем)
+  const pick = (name) => {
+    const m = adminSrc.match(new RegExp('function ' + name + '\\s*\\([^)]*\\)\\s*\\{[\\s\\S]*?\\n    \\}'));
+    if (!m) throw new Error('нет функции ' + name);
+    return m[0];
+  };
+  const expApi = new Function(
+    ['pluralYears', 'experienceYears', 'formatExperienceLine', 'parseExperienceYear'].map(pick).join('\n') +
+    '; return { pluralYears, experienceYears, formatExperienceLine, parseExperienceYear };')();
+
+  check('S146: плюрализация лет (1 год / 2 года / 5 лет / 11 лет / 21 год / 24 года)',
+    expApi.pluralYears(1) === 'год' && expApi.pluralYears(2) === 'года' &&
+    expApi.pluralYears(5) === 'лет' && expApi.pluralYears(11) === 'лет' &&
+    expApi.pluralYears(21) === 'год' && expApi.pluralYears(24) === 'года',
+    [1, 2, 5, 11, 21, 24].map(n => n + '→' + expApi.pluralYears(n)).join(', '));
+  const y = new Date().getFullYear();
+  check('S146: количество лет считается от текущего года',
+    expApi.experienceYears(y - 10) === 10 && expApi.experienceYears(y) === 0);
+  check('S146: строка стажа формируется корректно',
+    expApi.formatExperienceLine(y - 24) === `с ${y - 24} года (24 года)`,
+    expApi.formatExperienceLine(y - 24));
+  check('S146: парсер вытаскивает год из строки вида «с 2002 года (24 лет)»',
+    expApi.parseExperienceYear('с 2002 года (24 лет)') === 2002);
+  check('S146: составная строка (два года) не сводится к одному году',
+    expApi.parseExperienceYear('по борьбе: с 2022 года (4 года)Общий стаж: с 2010 года (16 лет)') === null);
+  check('S146: при открытии модалки стаж разбирается в форму',
+    /setExperienceField\('ushu', trainer \? trainer\.experienceUshu : ''\)/.test(adminSrc));
+
+  // Сквозная регрессия: исполняем ensureAlbumBank из админки на реальном db.json.
+  // До S146 функция читала album из data.db.album → банк был пуст → в модалке
+  // тренера «Выбрано кадров: 4» без единой картинки.
+  const fnStart = adminSrc.indexOf('async function ensureAlbumBank');
+  const fnEnd = adminSrc.indexOf('\n    }', fnStart);
+  const bankSrc = adminSrc.slice(fnStart, fnEnd + 6);
+  const payload = { data: { album: db.album } };   // так же, как отдаёт /api/admin/get-data
+  const win = {};
+  const runBank = new Function('api', 'window', bankSrc + '; return ensureAlbumBank;')(
+    async () => ({ ok: true, json: async () => payload }), win);
+  const bank = await runBank();
+  check('S146: банк кадров непустой (регрессия пустой сетки фотоальбома)',
+    bank.length > 500, `кадров: ${bank.length}`);
+  check('S146: банк отфильтрован по категории «тренер»',
+    bank.every(a => /тренер/i.test(String(a.category || ''))));
+  check('S146: у каждого кадра банка есть миниатюра thumb',
+    bank.every(a => a.thumb && String(a.thumb).startsWith('uploads/')));
+  // S146/S1: photoAlbum тренеров — битые ссылки на отсутствующие файлы (S1/S2/S3).
+  // Бобров (12) и Казанцев (2) ссылаются на uploads/IMG_*.jpg, которых нет в
+  // static/uploads/ (исходники лежат в static/data/trainers/). Это известная
+  // проблема, требующая отдельной задачи.
+  const brokenPhotos = [];
+  for (const t of (db.trainers || [])) {
+    for (const p of (t.photoAlbum || [])) {
+      const rel = String(typeof p === 'string' ? p : p.image).replace(/^\/+/, '');
+      if (!fs.existsSync(path.join(staticDir, rel))) brokenPhotos.push({trainer:t.name, path:rel});
+    }
+  }
+  if (brokenPhotos.length) {
+    console.log(`⚠️ S146/S1: ${brokenPhotos.length} кадров photoAlbum не найдены на диске`);
+    brokenPhotos.forEach(b => console.log(`   ${b.trainer} → ${b.path}`));
+  }
+  check('S146: битые кадры photoAlbum в пределах известного лимита (S1/S2/S3)',
+    brokenPhotos.length <= 14, `${brokenPhotos.length} кадров`);
+
+  // Режимы общей модалки тренер/программа
+  check('S146: режим формы выставляется явно (setTrainerFormMode)',
+    /function setTrainerFormMode\(mode\)/.test(adminSrc) &&
+    adminSrc.includes("setTrainerFormMode('trainer')") && adminSrc.includes("setTrainerFormMode('program')"));
+  check('S146: в режим «только тренер» входят стаж и фотоальбом',
+    adminSrc.includes("const TRAINER_ONLY_FIELDS = [") &&
+    adminSrc.includes("'trainer-exp-ushu-input'") && adminSrc.includes("'trainer-album-picker'"));
+  check('S146: обложка программы ставится в editingTrainerImage (мёртвая переменная убрана)',
+    /editingTrainerImage = prog \? prog\.image : null;/.test(adminSrc) &&
+    !/editingProgramImage =/.test(adminSrc));
+
+  // Страница тренера на сайте
+  check('S146: entity.js — подписи стажа по категории',
+    /\/изо\/i\.test\(String\(t\.category/.test(entitySrc) &&
+    entitySrc.includes('Занимается ИЗО') && entitySrc.includes('Преподавательский стаж'));
+  check('S146: entity.js использует ushuLabel/coachLabel в бейджах',
+    /ushuLabel \+ '<\/span>/.test(entitySrc) && /coachLabel \+ '<\/span>/.test(entitySrc));
+
+  // Сквозной рендер страницы тренера: подписи стажа по категории
+  {
+    const iso = db.trainers.find(t => /изо/i.test(String(t.category || '')));
+    const coachUshu = db.trainers.find(t => (t.category || 'тренер ушу') === 'тренер ушу' &&
+      (t.experienceUshu || t.experienceCoach));
+    if (iso) {
+      const wIso = loadPage('trainer.html', '?id=' + iso.id);
+      const txt = wIso.document.body.textContent;
+      check(`S146: страница «${iso.name}» — «Занимается ИЗО» вместо «Стаж в ушу»`,
+        txt.includes('Занимается ИЗО') && !txt.includes('Стаж в ушу'),
+        txt.slice(0, 120));
+      check('S146: страница преподавателя — «Преподавательский стаж»',
+        txt.includes('Преподавательский стаж') && !/🏆 Тренерский стаж/.test(txt));
+      wIso.close();
+    } else check('S146: в базе есть тренер категории «преподаватель изо»', false);
+
+    if (coachUshu) {
+      const wT = loadPage('trainer.html', '?id=' + coachUshu.id);
+      const txt = wT.document.body.textContent;
+      check(`S146: страница тренера ушу (${coachUshu.name}) — обычные подписи стажа`,
+        txt.includes('Стаж в ушу') && txt.includes('Тренерский стаж') &&
+        !txt.includes('Занимается ИЗО'));
+      wT.close();
+    }
+  }
+
+  // S146: битый кадр в picker помечается, а не остаётся пустой плиткой
+  check('S146: кадры без файла на диске помечаются в picker',
+    adminSrc.includes(".album-pick.broken") &&
+    /onerror="this\.closest\('\.album-pick'\)\.classList\.add\('broken'\)"/.test(adminSrc));
+}
+
 console.log(`\n${passed}/${passed + failed} пройдено`);
 process.exit(failed ? 1 : 0);

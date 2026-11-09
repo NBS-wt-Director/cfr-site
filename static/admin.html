@@ -334,6 +334,14 @@
     .album-pick img { width: 100%; height: 70px; object-fit: cover; display: block; }
     .album-pick input { position: absolute; top: 3px; left: 3px; }
     .album-pick.picked { border-color: var(--success); }
+    /* S146: кадр выбран, но файла на диске нет (битая ссылка в photoAlbum) —
+       иначе админ видит пустую сетку без объяснений («где фото?») */
+    .album-pick.broken { border-color: var(--danger); opacity: 0.6; }
+    .album-pick.broken::after {
+      content: "нет файла"; position: absolute; left: 0; right: 0; bottom: 0;
+      background: var(--danger); color: #fff; font-size: 0.65rem;
+      text-align: center; padding: 1px 0;
+    }
 
     /* Toast */
     .toast {
@@ -686,14 +694,32 @@
           <label>Описание (markdown) — визуальный редактор</label>
           <div id="trainer-md-editor"></div>
         </div>
+        <!-- S146: стаж — выбор года начала; количество лет вычисляется,
+             формулировка подписи зависит от категории тренера. -->
         <div class="form-row-2">
           <div class="form-group">
-            <label for="trainer-exp-ushu-input">Стаж в ушу (лет)</label>
-            <input type="text" id="trainer-exp-ushu-input" maxlength="40">
+            <label for="trainer-exp-ushu-year" id="trainer-exp-ushu-label">Стаж в ушу</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+              <select id="trainer-exp-ushu-year" data-exp="ushu" style="width:auto;"
+                      onchange="syncExperienceField('ushu')"></select>
+              <span class="meta" id="trainer-exp-ushu-years"></span>
+            </div>
+            <input type="text" id="trainer-exp-ushu-raw" maxlength="140" style="margin-top:0.4rem;"
+                   placeholder="свой текст, если стандартная формулировка не подходит"
+                   oninput="syncExperienceField('ushu')">
+            <input type="hidden" id="trainer-exp-ushu-input">
           </div>
           <div class="form-group">
-            <label for="trainer-exp-coach-input">Стаж тренером (лет)</label>
-            <input type="text" id="trainer-exp-coach-input" maxlength="40">
+            <label for="trainer-exp-coach-year" id="trainer-exp-coach-label">Стаж тренером</label>
+            <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+              <select id="trainer-exp-coach-year" data-exp="coach" style="width:auto;"
+                      onchange="syncExperienceField('coach')"></select>
+              <span class="meta" id="trainer-exp-coach-years"></span>
+            </div>
+            <input type="text" id="trainer-exp-coach-raw" maxlength="140" style="margin-top:0.4rem;"
+                   placeholder="свой текст, если стандартная формулировка не подходит"
+                   oninput="syncExperienceField('coach')">
+            <input type="hidden" id="trainer-exp-coach-input">
           </div>
         </div>
         <div class="form-group">
@@ -1120,6 +1146,12 @@
     function fileUrl(p) {
       if (!p) return '';
       return '/' + String(p).replace(/^\/?(static\/)?/, '');
+    }
+
+    // S146: медиа-пути в базе встречаются и как «uploads/x.jpg», и как «/uploads/x.jpg»
+    // (наследие парсеров и прод-выгрузок). Для сравнения и хранения — без ведущего слэша.
+    function normImgPath(p) {
+      return String(p || '').replace(/^\/+/, '');
     }
 
     async function loadViewSection(sectionId) {
@@ -5384,6 +5416,94 @@
       { key: 'massage', short: 'массаж', label: 'Ведёт массаж' }
     ];
 
+    /* ============================================
+       S146: стаж тренера — год начала + автоматический расчёт лет.
+       В базе стаж хранится одной строкой («с 2002 года (24 года)»), чтобы
+       не менять экспорт и страницу тренера; в форме выбирается год.
+       Подписи полей зависят от категории (тренер ушу / преподаватель изо).
+       ============================================ */
+    const EXP_YEAR_MIN = 1970;
+    const TRAINER_EXP_LABELS = {
+      'тренер ушу': { ushu: 'Стаж в ушу', coach: 'Стаж тренером' },
+      'преподаватель изо': { ushu: 'Занимается ИЗО', coach: 'Преподавательский стаж' }
+    };
+
+    // Русская плюрализация единицы «год»: 1 год / 2 года / 5 лет / 21 год / 24 года
+    function pluralYears(n) {
+      const m100 = n % 100, m10 = n % 10;
+      if (m100 >= 11 && m100 <= 14) return 'лет';
+      if (m10 === 1) return 'год';
+      if (m10 >= 2 && m10 <= 4) return 'года';
+      return 'лет';
+    }
+
+    function experienceYears(startYear) {
+      return Math.max(0, new Date().getFullYear() - Number(startYear));
+    }
+
+    function formatExperienceLine(startYear) {
+      const n = experienceYears(startYear);
+      return `с ${startYear} года (${n} ${pluralYears(n)})`;
+    }
+
+    // «с 2002 года (24 лет)» → 2002. Строка с двумя годами или без года → null
+    // (её нельзя выразить одним годом — оставляем как свой текст).
+    function parseExperienceYear(value) {
+      const found = String(value || '').match(/(19|20)\d{2}/g);
+      if (!found || found.length !== 1) return null;
+      return Number(found[0]);
+    }
+
+    function fillExperienceYearSelect(kind, selectedYear) {
+      const sel = document.getElementById(`trainer-exp-${kind}-year`);
+      if (!sel) return;
+      const now = new Date().getFullYear();
+      let html = '<option value="">— не указан —</option>';
+      for (let y = now; y >= EXP_YEAR_MIN; y--) html += `<option value="${y}">${y}</option>`;
+      sel.innerHTML = html;
+      sel.value = (selectedYear && selectedYear >= EXP_YEAR_MIN && selectedYear <= now)
+        ? String(selectedYear) : '';
+    }
+
+    // Итоговая строка: свой текст важнее года; год → вычисленная формулировка
+    function syncExperienceField(kind) {
+      const sel = document.getElementById(`trainer-exp-${kind}-year`);
+      const raw = document.getElementById(`trainer-exp-${kind}-raw`);
+      const hidden = document.getElementById(`trainer-exp-${kind}-input`);
+      const info = document.getElementById(`trainer-exp-${kind}-years`);
+      if (!sel || !raw || !hidden) return;
+      const custom = raw.value.trim();
+      const year = Number(sel.value) || 0;
+      hidden.value = custom || (year ? formatExperienceLine(year) : '');
+      if (info) {
+        if (custom) info.textContent = 'своя формулировка';
+        else if (year) {
+          const n = experienceYears(year);
+          info.textContent = `${n} ${pluralYears(n)} (считаем от ${new Date().getFullYear()} г.)`;
+        } else info.textContent = '';
+      }
+    }
+
+    // Разбор сохранённой строки в форму: год и, если строка нестандартная, — свой текст
+    function setExperienceField(kind, value) {
+      const year = parseExperienceYear(value);
+      fillExperienceYearSelect(kind, year);
+      const raw = document.getElementById(`trainer-exp-${kind}-raw`);
+      const text = String(value || '').trim();
+      raw.value = (text && year === null) ? text : '';
+      syncExperienceField(kind);
+    }
+
+    function applyTrainerCategoryLabels() {
+      const catEl = document.getElementById('trainer-category-input');
+      if (!catEl) return;
+      const labels = TRAINER_EXP_LABELS[catEl.value] || TRAINER_EXP_LABELS['тренер ушу'];
+      const lu = document.getElementById('trainer-exp-ushu-label');
+      const lc = document.getElementById('trainer-exp-coach-label');
+      if (lu) lu.textContent = labels.ushu;
+      if (lc) lc.textContent = labels.coach;
+    }
+
     // Меняет поле тренера и сохраняет весь список (сервер принимает массив целиком)
     async function setTrainerField(id, key, value) {
       const t = trainersData.find(e => String(e.id) === String(id));
@@ -5555,7 +5675,7 @@
        выбор кадров из album, флаги, сохранение через save-trainers.
        ============================================ */
     let editingTrainerImage = null;
-    let editingTrainerAlbum = [];   // выбранные пути photoAlbum
+    let editingTrainerAlbum = [];   // выбранные пути photoAlbum (без ведущего слэша)
 
     function fillTrainerCategorySelect(selected) {
       const sel = document.getElementById('trainer-category-input');
@@ -5586,8 +5706,11 @@
       try {
         const res = await api('/api/admin/get-data', { method: 'POST', body: '{}' });
         if (!res.ok) return [];
-        const data = await res.json();
-        const album = (data.db && data.db.album) || data.album || [];
+        // S146: get-data отдаёт { data: { news, programs, trainers, schedule, prices, album } }.
+        // Прежний код искал альбом в data.db.album / data.album — не находил, банк был пуст,
+        // и сетка кадров в модалке тренера не рендерилась («где фото?»).
+        const payload = await res.json();
+        const album = (payload.data && payload.data.album) || payload.album || [];
         window.__albumBank = album.filter(a =>
           /тренер/i.test(String(a.category || '')) && a.image &&
           String(a.image).startsWith('uploads/'));
@@ -5601,17 +5724,36 @@
       const box = document.getElementById('trainer-album-picker');
       if (!box) return;
       const bank = trainerAlbumBank();
-      const chosen = new Set(editingTrainerAlbum);
+      const byPath = new Map(bank.map(a => [normImgPath(a.image), a]));
+      const chosen = new Set(editingTrainerAlbum.map(normImgPath));
+      // S146: выбранные кадры, которых нет в банке (загружены на проде отдельными файлами,
+      // категория не «тренер» и т.п.) — без этого блока админка показывала
+      // «Выбрано кадров: 4» и ни одной картинки.
+      const outside = editingTrainerAlbum.filter(p => !byPath.has(normImgPath(p)));
       const list = bank.slice(0, 400);
       box.innerHTML =
         `<p class="meta">Выбрано кадров: ${editingTrainerAlbum.length}. Нажмите на фото, чтобы добавить/убрать.</p>` +
-        '<div class="album-picker-grid">' +
-        list.map(a => `
-          <label class="album-pick${chosen.has(a.image) ? ' picked' : ''}" data-img="${escapeHtml(a.image)}">
-            <input type="checkbox" ${chosen.has(a.image) ? 'checked' : ''} style="width:auto;">
-            <img src="${fileUrl(a.image)}" loading="lazy" alt="">
-          </label>`).join('') +
-        '</div>';
+        (outside.length
+          ? '<div class="album-picker-grid">' + outside.map(p => `
+              <label class="album-pick picked" data-img="${escapeHtml(p)}">
+                <input type="checkbox" checked style="width:auto;">
+                <img src="${fileUrl(p)}" loading="lazy" alt=""
+                     onerror="this.closest('.album-pick').classList.add('broken')">
+              </label>`).join('') + '</div>' +
+            '<p class="meta" style="margin:0.4rem 0 0.6rem;">↑ выбранные кадры вне общего альбома (нажмите ✕-галочку, чтобы убрать)</p>'
+          : '') +
+        (list.length
+          ? '<div class="album-picker-grid">' +
+            list.map(a => `
+              <label class="album-pick${chosen.has(normImgPath(a.image)) ? ' picked' : ''}" data-img="${escapeHtml(a.image)}">
+                <input type="checkbox" ${chosen.has(normImgPath(a.image)) ? 'checked' : ''} style="width:auto;">
+                <img src="${fileUrl(a.thumb || a.image)}" loading="lazy" alt="">
+              </label>`).join('') +
+            (bank.length > list.length
+              ? `<p class="meta" style="margin-top:0.5rem;">Показаны первые ${list.length} кадров из ${bank.length} — остальные уже выбранные остаются активными.</p>`
+              : '') +
+            '</div>'
+          : '<p class="meta">Банк кадров пуст: загрузите фото в раздел «Альбом» с категорией, содержащей «тренер».</p>');
       box.querySelectorAll('.album-pick').forEach(el => {
         el.addEventListener('click', (e) => {
           e.preventDefault();
@@ -5625,21 +5767,26 @@
 
     function openTrainerModal(trainer = null) {
       document.getElementById('trainer-modal').classList.add('active');
+      setTrainerFormMode('trainer');
       document.getElementById('trainer-modal-title').textContent = trainer ? 'Редактировать тренера' : 'Новый тренер';
       document.getElementById('trainer-id').value = trainer ? trainer.id : '';
       document.getElementById('trainer-name-input').value = trainer ? (trainer.name || '') : '';
       fillTrainerCategorySelect(trainer ? trainer.category : 'тренер ушу');
+      // S146: формулировки стажа зависят от категории — обновляем при её смене
+      document.getElementById('trainer-category-input').onchange = applyTrainerCategoryLabels;
       document.getElementById('trainer-specialization-input').value = trainer ? (trainer.specialization || '') : '';
       if (!MD_EDITORS['trainer-md-editor']) initMdEditor('trainer-md-editor', {});
       mdSetValue('trainer-md-editor', trainer ? (trainer.description || '') : '');
-      document.getElementById('trainer-exp-ushu-input').value = trainer ? (trainer.experienceUshu || '') : '';
-      document.getElementById('trainer-exp-coach-input').value = trainer ? (trainer.experienceCoach || '') : '';
+      // S146: стаж в форме — год начала, строка считается автоматически
+      applyTrainerCategoryLabels();
+      setExperienceField('ushu', trainer ? trainer.experienceUshu : '');
+      setExperienceField('coach', trainer ? trainer.experienceCoach : '');
       document.getElementById('trainer-education-input').value = trainer ? (trainer.education || '') : '';
       document.getElementById('trainer-motto-input').value = trainer ? (trainer.motto || '') : '';
       fillTrainerFlags(trainer);
       editingTrainerImage = trainer ? trainer.image : null;
       editingTrainerAlbum = trainer && Array.isArray(trainer.photoAlbum)
-        ? trainer.photoAlbum.map(x => typeof x === 'string' ? x : x.image).filter(Boolean) : [];
+        ? trainer.photoAlbum.map(x => typeof x === 'string' ? x : x.image).filter(Boolean).map(normImgPath) : [];
       renderTrainerImageInfo();
       renderTrainerAlbumPicker();
       ensureAlbumBank().then(() => renderTrainerAlbumPicker());
@@ -5648,11 +5795,15 @@
     function renderTrainerImageInfo() {
       const box = document.getElementById('trainer-image-info');
       if (!box) return;
+      // S146: превью обложки — кадр 2:3 (как плитка на сайте), а не 60×45 из .file-info img
+      const albumGroup = document.getElementById('trainer-album-picker');
+      const canPickAlbum = albumGroup && albumGroup.closest('.form-group') &&
+        !albumGroup.closest('.form-group').hidden;
       box.innerHTML = editingTrainerImage
-        ? `<div class="file-info"><img src="${fileUrl(editingTrainerImage)}" alt="" style="max-height:120px;">
+        ? `<div class="file-info"><img src="${fileUrl(editingTrainerImage)}" alt="" style="width:96px;height:132px;object-fit:cover;">
            <div class="file-name"><span>${escapeHtml(editingTrainerImage)}</span>
            <button type="button" class="file-remove" onclick="removeTrainerImage()">✕</button></div></div>`
-        : '';
+        : `<p class="meta">Обложка не выбрана — на сайте показывается логотип. Можно загрузить файл выше${canPickAlbum ? ' или выбрать кадр в «Фотоальбоме» ниже' : ''}.</p>`;
     }
 
     function removeTrainerImage() {
@@ -5755,52 +5906,53 @@
        S130: ПОЛНОЦЕННЫЙ CRUD ПРОГРАММЫ (модалка-форма)
        По образцу тренера: обложка, md-редактор, направление, тренеры, hidden.
        ============================================ */
-    let editingProgramImage = null;
+
+    // S146: модалка trainer-modal общая для тренера и программы. Раньше поля
+    // скрывались/возвращались в разных местах, и после «Отмены» в модалке
+    // программы у тренера оставались скрытыми стаж и фотоальбом («где фото?»).
+    // Теперь режим формы выставляется явно при каждом открытии.
+    const TRAINER_ONLY_FIELDS = ['trainer-category-input', 'trainer-specialization-input',
+      'trainer-exp-ushu-input', 'trainer-exp-coach-input',
+      'trainer-education-input', 'trainer-motto-input',
+      'trainer-flags', 'trainer-album-picker'];
+
+    function setTrainerFormMode(mode) {
+      TRAINER_ONLY_FIELDS.forEach(id => {
+        const el = document.getElementById(id);
+        const group = el && el.closest('.form-group');
+        if (group) group.hidden = mode !== 'trainer';
+      });
+      const nameLabel = document.querySelector('#trainer-form label[for="trainer-name-input"]');
+      if (nameLabel) nameLabel.innerHTML = mode === 'program'
+        ? 'Название программы <span class="req">*</span>'
+        : 'ФИО <span class="req">*</span>';
+      // Подпись меняем через span, не пересоздавая input: прежний innerHTML
+      // сбрасывал состояние чекбокса «Скрыто с сайта».
+      const hiddenSpan = document.querySelector('#trainer-hidden-input + span');
+      if (hiddenSpan) hiddenSpan.textContent = mode === 'program' ? '🙈 Скрыто с сайта' : '🙈 Скрыт с сайта';
+    }
 
     function openProgramModal(prog = null) {
       document.getElementById('trainer-modal').classList.add('active');
-      // Переиспользуем trainer-modal, но меняем заголовок и поля
+      setTrainerFormMode('program');
       document.getElementById('trainer-modal-title').textContent = prog ? 'Редактировать программу' : 'Новая программа';
-      // Переименовываем поля программно
-      const nameLabel = document.querySelector('#trainer-form label[for="trainer-name-input"]');
-      if (nameLabel) nameLabel.textContent = 'Название программы';
       document.getElementById('trainer-id').value = prog ? prog.id : '';
       document.getElementById('trainer-name-input').value = prog ? (prog.name || '') : '';
-      // Скрываем не нужные для программы поля
-      document.getElementById('trainer-category-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-specialization-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-exp-ushu-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-exp-coach-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-education-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-motto-input').closest('.form-group').hidden = true;
-      document.getElementById('trainer-flags').closest('.form-group').hidden = true;
-      document.getElementById('trainer-album-picker').closest('.form-group').hidden = true;
-      // Для программ hidden = не "скрыт", а "не показывать"
       document.getElementById('trainer-hidden-input').checked = !!(prog && prog.hidden);
-      document.getElementById('trainer-hidden-input').closest('label').innerHTML =
-        '<input type="checkbox" id="trainer-hidden-input" style="width:auto;"><span>🙈 Скрыто с сайта</span>';
 
       if (!MD_EDITORS['trainer-md-editor']) initMdEditor('trainer-md-editor', {});
       mdSetValue('trainer-md-editor', prog ? (prog.description || '') : '');
-      editingProgramImage = prog ? prog.image : null;
+      // S146: обложка программы показывается в том же превью. Прежний код писал
+      // в несуществующую editingProgramImage — превью оставалось от предыдущего
+      // тренера, а saveTrainerForm сохранял в программу его фото.
+      editingTrainerImage = prog ? prog.image : null;
+      document.getElementById('trainer-image-input').value = '';
       renderTrainerImageInfo();
     }
 
     function closeProgramModal() {
       closeTrainerModal();
-      // Восстанавливаем подписи тренера
-      const nameLabel = document.querySelector('#trainer-form label[for="trainer-name-input"]');
-      if (nameLabel) nameLabel.innerHTML = 'ФИО <span class="req">*</span>';
-      document.getElementById('trainer-category-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-specialization-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-exp-ushu-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-exp-coach-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-education-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-motto-input').closest('.form-group').hidden = false;
-      document.getElementById('trainer-flags').closest('.form-group').hidden = false;
-      document.getElementById('trainer-album-picker').closest('.form-group').hidden = false;
-      document.getElementById('trainer-hidden-input').closest('label').innerHTML =
-        '<input type="checkbox" id="trainer-hidden-input"><span>🙈 Скрыт с сайта</span>';
+      setTrainerFormMode('trainer');
     }
 
     let entityDragId = null;
@@ -6241,7 +6393,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=36">
+<link rel="stylesheet" href="/css/style.css?v=37">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -6537,11 +6689,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=36').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=36').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=37').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=37').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=37').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=37').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=37').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);

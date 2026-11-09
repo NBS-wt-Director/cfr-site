@@ -405,12 +405,16 @@
      программ → «Мои тренировки» → стоимость → альбом → CTA → related.
      ============================================ */
   function trainerBody(t, programs) {
-    // Бейджи стажа: новые структурированные поля или старый experience
+    // Бейджи стажа: новые структурированные поля или старый experience.
+    // S146: подписи зависят от категории — у преподавателей ИЗО другие формулировки.
     var badges = '';
     if (t.experienceUshu || t.experienceCoach) {
+      var iso = /изо/i.test(String(t.category || ''));
+      var ushuLabel = iso ? '🎨 Занимается ИЗО' : '🥋 Стаж в ушу';
+      var coachLabel = iso ? '📚 Преподавательский стаж' : '🏆 Тренерский стаж';
       badges = '<div class="entity-info-grid">' +
-        (t.experienceUshu ? '<div class="entity-badge"><span class="entity-badge-label">🥋 Стаж в ушу</span><span class="entity-badge-value">' + esc(t.experienceUshu) + '</span></div>' : '') +
-        (t.experienceCoach ? '<div class="entity-badge"><span class="entity-badge-label">🏆 Тренерский стаж</span><span class="entity-badge-value">' + esc(t.experienceCoach) + '</span></div>' : '') +
+        (t.experienceUshu ? '<div class="entity-badge"><span class="entity-badge-label">' + ushuLabel + '</span><span class="entity-badge-value">' + esc(t.experienceUshu) + '</span></div>' : '') +
+        (t.experienceCoach ? '<div class="entity-badge"><span class="entity-badge-label">' + coachLabel + '</span><span class="entity-badge-value">' + esc(t.experienceCoach) + '</span></div>' : '') +
         '</div>';
     }
     var education = t.education
