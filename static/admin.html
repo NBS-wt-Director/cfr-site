@@ -521,10 +521,19 @@
          </div>
 
          <!-- 🧩 ШАБЛОНЫ -->
+         <!-- S148: подразделы — отдельные разделы сайдбара (не вкладки одной страницы).
+              4 макета + 4 текстовые маски, все заглушки. -->
          <div class="sidebar-group">
            <div class="sidebar-group-header" data-group="templates" onclick="toggleGroup(this)">🧩 ШАБЛОНЫ ▸</div>
            <div class="sidebar-group-body">
-             <a href="#templates" data-section="templates">🧩 Шаблоны</a>
+             <a href="#templates-mockups-home" data-section="templates-mockups-home" class="sidebar-wip">🏠 Макеты разделов главной (скоро)</a>
+             <a href="#templates-mockups-site" data-section="templates-mockups-site" class="sidebar-wip">🧩 Макеты разделов сайта (скоро)</a>
+             <a href="#templates-mockups-entities" data-section="templates-mockups-entities" class="sidebar-wip">📦 Макеты сущностей (скоро)</a>
+             <a href="#templates-mockups-pages" data-section="templates-mockups-pages" class="sidebar-wip">📄 Макеты страниц (скоро)</a>
+             <a href="#templates-masks-site" data-section="templates-masks-site" class="sidebar-wip">📝 Текстовые маски сайта (скоро)</a>
+             <a href="#templates-masks-sms" data-section="templates-masks-sms" class="sidebar-wip">💬 Текстовые маски СМС (скоро)</a>
+             <a href="#templates-masks-email" data-section="templates-masks-email" class="sidebar-wip">✉️ Текстовые маски почты (скоро)</a>
+             <a href="#templates-masks-social" data-section="templates-masks-social" class="sidebar-wip">🌐 Текстовые маски ботов соцсетей (скоро)</a>
            </div>
          </div>
 
@@ -957,8 +966,15 @@
       { id: 'halls', title: '🏋️ Залы', status: 'done', group: 'data' },
       { id: 'directions', title: '📁 Направления', status: 'done', group: 'data' },
       { id: 'album', title: '📸 Альбом', status: 'done', group: 'data' },
-      // ШАБЛОНЫ
-      { id: 'templates', title: '🧩 Шаблоны', status: 'skeleton', group: 'templates' },
+      // S148: подразделы шаблонов — отдельные разделы сайдбара (8 шт.)
+      { id: 'templates-mockups-home', title: '🏠 Макеты разделов главной', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-mockups-site', title: '🧩 Макеты разделов сайта', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-mockups-entities', title: '📦 Макеты сущностей', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-mockups-pages', title: '📄 Макеты страниц', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-masks-site', title: '📝 Текстовые маски сайта', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-masks-sms', title: '💬 Текстовые маски СМС', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-masks-email', title: '✉️ Текстовые маски почты', status: 'skeleton', group: 'templates-stub' },
+      { id: 'templates-masks-social', title: '🌐 Текстовые маски ботов соцсетей', status: 'skeleton', group: 'templates-stub' },
       // НАСТРОЙКИ САЙТА
       { id: 'appearance', title: '🖌 Оформление', status: 'done', group: 'settings' },
       { id: 'email', title: '✉️ Настройки электронной почты', status: 'done', group: 'settings' },
@@ -1011,24 +1027,28 @@
     document.querySelectorAll('.admin-sidebar a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const sectionId = link.dataset.section;
-        document.querySelectorAll('.admin-sidebar a').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        renderSection(sectionId);
-        history.pushState(null, '', '#' + sectionId);
-        openGroupForSection(sectionId);
+        openSection(link.dataset.section);
       });
     });
 
-    function loadCurrentSection() {
-      const hash = location.hash.replace('#', '') || 'news';
+    // S148: переход к разделу — общий для сайдбара и перекрёстных ссылок внутри страниц
+    function openSection(sectionId) {
       document.querySelectorAll('.admin-sidebar a').forEach(l => l.classList.remove('active'));
-      const link = document.querySelector(`.admin-sidebar a[data-section="${hash}"]`);
-      if (link) {
-        link.classList.add('active');
-        openGroupForSection(hash);
+      const link = document.querySelector(`.admin-sidebar a[data-section="${sectionId}"]`);
+      if (link) link.classList.add('active');
+      renderSection(sectionId);
+      history.pushState(null, '', '#' + sectionId);
+      openGroupForSection(sectionId);
+    }
+
+    function loadCurrentSection() {
+      let hash = location.hash.replace('#', '') || 'news';
+      // S148: старый адрес единой страницы «Шаблоны» → первый подраздел
+      if (hash === 'templates') {
+        hash = 'templates-mockups-home';
+        history.replaceState(null, '', '#' + hash);
       }
-      renderSection(hash);
+      openSection(hash);
     }
 
     window.addEventListener('popstate', loadCurrentSection);
@@ -1072,6 +1092,12 @@
         return;
       }
 
+      // S148: подразделы-заглушки «Шаблоны» (8 отдельных разделов)
+      if (section.group === 'templates-stub') {
+        renderTemplatesStubSection(section);
+        return;
+      }
+
       content.innerHTML = `
         <div class="section-card">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -1107,7 +1133,7 @@
       if (sectionId === 'slider') loadSliderSection();
       if (sectionId === 'contacts') loadContactsSection();
       if (sectionId === 'album') loadAlbumSection();
-      if (sectionId === 'templates') loadTemplatesSection();
+      // S148: разделы «Шаблоны» обрабатываются выше (group templates-stub)
       // S115: редакторы цен позициями и скидок
       if (sectionId === 'prices') loadPriceItemsSection();
       if (sectionId === 'discounts') loadDiscountsSection();
@@ -6995,41 +7021,69 @@
       }
     }
 
-    // S142/S145: раздел «🧩 Шаблоны» (задел). Подразделы по списку пользователя (S145):
-    // макеты разделов/сущностей/страниц → текстовые маски → шаблоны писем/SMS.
-    function loadTemplatesSection() {
+     // S148: подразделы «Шаблоны» — 8 отдельных разделов сайдбара (не вкладки одной страницы).
+     // Каждый — заглушка с описанием и планом наполнения.
+     const TPL_STUBS = {
+       'templates-mockups-home': {
+         icon: '🏠', lead: 'Здесь будут варианты компоновки разделов на главной странице сайта.',
+         todo: ['Карточки разделов главной (слайдер, расписание, цены, новости, тренеры…)', 'Редактор порядка и видимости', 'Предпросмотр макета в реальном времени', 'Перегенерация главной после правки макета']
+       },
+       'templates-mockups-site': {
+         icon: '🧩', lead: 'Макеты разделов на всех страницах сайта (не только главная).',
+         todo: ['Компоновка страниц раздела (профиль, расписание, галерея)', 'Шаблоны списков и карточек', 'Адаптивный макет (мобильная версия)']
+       },
+       'templates-mockups-entities': {
+         icon: '📦', lead: 'Карточки, плитки и страницы для каждой сущности: тренер, программа, новость, направление.',
+         todo: ['Плитка списка (тренеры, программы, новости)', 'Страница сущности (hero, описание, расписание, альбом, CTA)', 'Адаптация под разные типы сущностей']
+       },
+       'templates-mockups-pages': {
+         icon: '📄', lead: 'Каркасы отдельных статических страниц: «О центре», «Контакты», «Команда» и др.',
+         todo: ['Набор готовых страниц', 'Редактор контента страниц', 'Предпросмотр']
+       },
+       'templates-masks-site': {
+         icon: '📝', lead: 'Шаблоны текстов для сайта: заголовки, описания, призывы к действию (CTA) с переменными.',
+         todo: ['Переменные: {имя}, {дата}, {время}, {цена}, {город}', 'Редактор масок с превью подстановки', 'Валидация длины (SEO, соцсети)']
+       },
+       'templates-masks-sms': {
+         icon: '💬', lead: 'Шаблоны SMS-сообщений с поддержкой переменных и лимитами по длине.',
+         todo: ['Переменные: {имя}, {дата}, {время}, {адрес}', 'Контроль длины SMS (160 / 70 символов)', 'Предпросмотр подстановки']
+       },
+       'templates-masks-email': {
+         icon: '✉️', lead: 'Шаблоны писем: тема + тело письма с переменными.',
+         todo: ['Тема письма, тело HTML + текст', 'Переменные: {имя}, {дата}, {ссылка}', 'Тестовая отправка на email администратора']
+       },
+       'templates-masks-social': {
+         icon: '🌐', lead: 'Шаблоны сообщений для ботов социальных сетей (VK, Telegram, WhatsApp).',
+         todo: ['Переменные: {имя}, {дата}, {время}, {ссылка}', 'Поддержка разных форматов (Markdown, HTML, plain)', 'Тестовая отправка боту']
+       }
+     };
+
+    function renderTemplatesStubSection(section) {
       const content = document.getElementById('admin-content');
-      const tabs = [
-        { id: 'entity-mockups', icon: '🎨', label: 'Макеты разделов/сущностей/страниц' },
-        { id: 'text-masks', icon: '📝', label: 'Текстовые маски' },
-        { id: 'email-sms', icon: '✉️', label: 'Шаблоны писем/SMS' }
-      ];
-      let activeTab = tabs[0].id;
-
-      function render() {
-        content.innerHTML = `
-          <h2>🧩 Шаблоны</h2>
-          <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
-          <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-            ${tabs.map(t => `
-              <button type="button" class="btn btn-sm ${t.id === activeTab ? 'btn-primary' : 'btn-secondary'}"
-                      onclick="event.stopPropagation(); window.__switchTplTab('${t.id}')">
-                ${t.icon} ${t.label}
-              </button>`).join('')}
+      const stub = TPL_STUBS[section.id] || { icon: '🧩', lead: 'Раздел в разработке.', todo: [] };
+      content.innerHTML = `
+        <div class="section-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <h2>${section.title}</h2>
+            <span class="status-badge status-badge-wip">В разработке</span>
           </div>
-          <div id="tpl-tab-content" style="width:100%;min-height:300px;background:#f8fafc;border-radius:12px;padding:3rem;text-align:center;border:2px dashed #d1d5db;">
-            <div style="font-size:4rem;margin-bottom:1rem;">🧩</div>
-            <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${tabs.find(t => t.id === activeTab).label}</h3>
-            <p style="color:var(--text-secondary);margin-bottom:2rem;">Пока пусто. Шаблоны появятся здесь.</p>
-            <button type="button" class="btn btn-secondary" disabled style="opacity:0.5;cursor:not-allowed;">➕ Добавить шаблон (скоро)</button>
-          </div>`;
-      }
-
-      window.__switchTplTab = function (tabId) {
-        activeTab = tabId;
-        render();
-      };
-      render();
+          <p style="margin:1rem 0;">${stub.lead}</p>
+          <div style="margin-top:2rem;padding:3rem 2rem;text-align:center;background:#f8fafc;border:2px dashed #d1d5db;border-radius:12px;">
+            <div style="font-size:4rem;margin-bottom:1rem;">${stub.icon}</div>
+            <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${section.title}</h3>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
+            ${stub.todo.length ? `<ul style="display:inline-block;text-align:left;color:var(--text-secondary);font-size:0.9rem;">${stub.todo.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+          </div>
+          <div style="margin-top:1.5rem;">
+            <strong style="color:var(--text-secondary);font-size:0.9rem;">Другие подразделы шаблонов:</strong><br>
+            <span style="font-size:0.85rem;color:var(--text-secondary);">
+              ${Object.keys(TPL_STUBS).filter(id => id !== section.id).map(id => {
+                const s = sections.find(x => x.id === id);
+                return s ? `<a href="#${id}" onclick="event.preventDefault();openSection('${id}')" style="color:var(--primary);text-decoration:none;">${s.title}</a>` : '';
+              }).join(' · ')}
+            </span>
+          </div>
+        </div>`;
     }
 
     /* ============================================

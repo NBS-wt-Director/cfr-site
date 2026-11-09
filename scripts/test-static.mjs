@@ -2196,19 +2196,64 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   }
 }
 
-// S142/S145: админка «🧩 Шаблоны» — три подраздела по списку пользователя
+// S142/S145 → S148: раздел «🧩 Шаблоны» — 8 ОТДЕЛЬНЫХ разделов сайдбара,
+// а не вкладки одной страницы (указание пользователя 2026-11-09).
 {
   const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
-  check('S142: админка — раздел «🧩 Шаблоны»',
-    adminSrc.includes('🧩 Шаблоны'));
-  check('S142/S145: подраздел «Текстовые маски»',
-    adminSrc.includes('Текстовые маски'));
-  check('S142/S145: подраздел «Шаблоны писем/SMS»',
-    adminSrc.includes('Шаблоны писем/SMS') || adminSrc.includes('Шаблоны писем'));
-  check('S145: подраздел «Макеты разделов/сущностей/страниц» (переименован из «Макеты сайта»)',
-    adminSrc.includes('Макеты разделов/сущностей/страниц') && !adminSrc.includes('Макеты сайта'));
-  check('S142: loadTemplatesSection определена',
-    adminSrc.includes('loadTemplatesSection'));
+  const TPL_IDS = [
+    'templates-mockups-home', 'templates-mockups-site', 'templates-mockups-entities',
+    'templates-mockups-pages', 'templates-masks-site', 'templates-masks-sms',
+    'templates-masks-email', 'templates-masks-social'
+  ];
+  const TPL_TITLES = [
+    'Макеты разделов главной', 'Макеты разделов сайта', 'Макеты сущностей', 'Макеты страниц',
+    'Текстовые маски сайта', 'Текстовые маски СМС', 'Текстовые маски почты',
+    'Текстовые маски ботов соцсетей'
+  ];
+  check('S142: сайдбар — группа «🧩 ШАБЛОНЫ»',
+    adminSrc.includes('🧩 ШАБЛОНЫ'));
+  for (const id of TPL_IDS) {
+    check(`S148: раздел ${id} — ссылка в сайдбаре`,
+      adminSrc.includes(`data-section="${id}"`));
+    check(`S148: раздел ${id} — зарегистрирован в реестре (templates-stub)`,
+      new RegExp(`\{ id: '${id}',[^}]*group: 'templates-stub'`).test(adminSrc));
+  }
+  for (const t of TPL_TITLES) {
+    check(`S148: название раздела «${t}»`, adminSrc.includes(t));
+  }
+  check('S148: все 8 подразделов — одна группа сайдбара (не разные группы)',
+    (adminSrc.match(/data-section="templates-/g) || []).length === 8);
+  check('S148: единая страница с вкладками удалена (loadTemplatesSection больше нет)',
+    !adminSrc.includes('loadTemplatesSection') && !adminSrc.includes('__switchTplTab'));
+  check('S148: renderTemplatesStubSection определена и вызывается из роутера',
+    /function renderTemplatesStubSection\(/.test(adminSrc) &&
+    /section\.group === 'templates-stub'/.test(adminSrc));
+  check('S148: у каждого раздела свой план наполнения (TPL_STUBS)',
+    /const TPL_STUBS = \{/.test(adminSrc) &&
+    TPL_IDS.every(id => adminSrc.includes(`'${id}': {`)));
+  check('S148: старый адрес #templates редиректится на первый подраздел',
+    /hash === 'templates'/.test(adminSrc) && adminSrc.includes("'templates-mockups-home'"));
+  check('S148: переход к разделу — общий хелпер openSection (сайдбар + перекрёстные ссылки)',
+    /function openSection\(sectionId\)/.test(adminSrc) &&
+    /onclick="event\.preventDefault\(\);openSection\('/.test(adminSrc));
+
+  // Функционально: каждый из 8 разделов рендерится в jsdom
+  const html = adminSrc;
+  const dom = new JSDOM(html, { runScripts: 'outside-only', url: 'http://localhost/admin.html' });
+  const w = dom.window;
+  w.api = async () => ({ ok: true, json: async () => ({}) });
+  const inline = [...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)][0][1];
+  try { w.eval(inline); } catch { /* вне браузера часть инициализации падает — рендер не нужен */ }
+  let rendered = 0;
+  for (const id of TPL_IDS) {
+    try {
+      w.eval(`renderSection(${JSON.stringify(id)})`);
+      const c = w.document.getElementById('admin-content').innerHTML;
+      if (c.includes('В разработке') && c.includes('Другие подразделы шаблонов')) rendered++;
+    } catch { /* не отрендерился */ }
+  }
+  check('S148: все 8 разделов рендерятся (jsdom)', rendered === 8, `рендер: ${rendered}/8`);
+  w.close();
 }
 
 // S144: админка — компактные кнопки в строках списков (ФИО тренера не сжимается)
