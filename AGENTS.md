@@ -119,36 +119,49 @@ module.exports = {
 > **Перед деплоем ОБЯЗАТЕЛЬНО обновить `README.md`**, если менялись страницы, API,
 > структура проекта или команды. README должен отражать текущее состояние репо.
 
+> **🔒 Правило (записано 2026-11-09 по указанию пользователя):** работа с сервером —
+> **строго через пользователя**. AI не выполняет SSH, не запускает команды на сервере,
+> не трогает pm2/nginx/базы прода. Роль AI: локальные проверки, git, готовая команда
+> и разбор вывода, который пришлёт пользователь.
+
+> ⚠️ Сайт — **статика + Node-админка**. Команды Next.js (`rm -rf .next`, `npm run build`,
+> `next start`, порт 3000) к текущему деплою **отношения не имеют** — старая версия в `trash/`.
+
 ```bash
 cd /home/cfr_balloo/sites/cfrsite
 
 # 0. Обновить README.md (если менялись страницы/API/структура)
 
-# 1. Бэкап — ВСЕГДА в backups/ (не в корень!)
+# 1. Бэкап серверной базы — ВСЕГДА в backups/ (не в корень!)
 cp db.json backups/db.json.backup.$(date +%s)
+cp db.json /tmp/db.server.json          # копия для мержа
 
-# 2. Остановить
-pm2 stop cfrsite
+# 2. Отбросить локальные расхождения сгенерированных файлов
+git checkout -- static/js/data/
 
 # 3. Обновить код
 git pull origin main
 
-# 4. Пересобрать
-rm -rf .next node_modules/.cache
-npm install
-npm run build
+# 4. СЛИТЬ базы, а не перезаписывать (запрет №1)
+node scripts/deploy-merge-db.mjs /tmp/db.server.json            # отчёт
+node scripts/deploy-merge-db.mjs /tmp/db.server.json --apply    # применить
 
-# 5. Запустить
-pm2 start ecosystem.config.js --update-env
+# 5. Перегенерировать статику из слитой базы
+npm ci
+npm run static:export
 
-# 6. Проверить
+# 6. Перезапустить (только свой процесс!)
+pm2 restart cfrsite --update-env
+
+# 7. Проверить
 sleep 5 && pm2 logs cfrsite --lines 20 --nostream
-curl -s -o /dev/null -w "HTTP: %{http_code}\n" http://localhost:3000
+curl -sk -o /dev/null -w "HTTP: %{http_code}\n" https://центр-фр.рф/
 ```
 
 **Откат:**
 ```bash
 cp backups/db.json.backup.<свежий_таймstamp> db.json
+npm run static:export
 pm2 restart cfrsite
 ```
 
@@ -163,12 +176,10 @@ pm2 restart cfrsite
 
 | Проблема | Решение |
 |----------|---------|
-| `Turbopack build failed` | `next build --webpack` |
-| `Property 'getData' does not exist` | Заменить на `getDb()` |
-| `Property 'xxx' does not exist on type` | Добавить в `DbData` или использовать `as any` |
-| `Type 'string \| undefined' is not assignable to type 'Url'` | Добавить `\|\| '#'` к href |
-| `Your local changes would be overwritten` | `git checkout -- .` перед `git pull` |
-| `502 Bad Gateway` | Пересобрать с webpack, проверить логи pm2 |
+| `Turbopack build failed` | `next build --webpack` (относится к архиву `trash/`, не к текущему деплою) |
+| `Property 'getData' does not exist` | Заменить на `getDb()` (архив `trash/`) |
+| `Your local changes would be overwritten` | **Только** `git checkout -- static/js/data/` (сгенерированные файлы). `git checkout -- .` **запрещён**: он отбросит серверный `db.json` и уничтожит данные прода. Перед pull серверную базу копировать в `/tmp/db.server.json` и мержить через `scripts/deploy-merge-db.mjs` |
+| `502 Bad Gateway` | Проверить `pm2 logs cfrsite`, порт 3456, NGINX-прокси `/api/` |
 
 ## 📁 Структура проекта
 ```

@@ -24,12 +24,37 @@
 
 Боевая команда — в `AGENTS.md` → секция «🚀 Деплой».
 
-```bash
-cd /home/cfr_balloo/sites/cfrsite && cp db.json /tmp/db.server.json && git checkout -- static/js/data/ && git pull origin main && cp /tmp/db.server.json db.json && npm run static:export && pm2 restart cfrsite --update-env && sleep 3 && pm2 logs cfrsite --lines 15 --nostream && curl -sk -o /dev/null -w "HTTP: %{http_code}\n" https://центр-фр.рф/
-```
+**db.json мержится, а не возвращается целиком.** Серверная база содержит записи,
+которых нет в репо (например, «Основы работы с оружием»); слепой `cp` их убьёт.
 
-> ⚠️ Если пачка меняет новости/данные — db.json **мержится**, а не возвращается целиком
-> (см. исключение в `withLord/S101-deploy-prep.md`).
+```bash
+cd /home/cfr_balloo/sites/cfrsite
+
+# 1. Бэкап серверной базы
+cp db.json backups/db.json.backup.$(date +%s)
+cp db.json /tmp/db.server.json
+
+# 2. Отбросить локальные расхождения сгенерированных файлов
+git checkout -- static/js/data/
+
+# 3. Обновить код
+git pull origin main
+
+# 4. СЛИТЬ базы, а не перезаписывать
+node scripts/deploy-merge-db.mjs /tmp/db.server.json            # отчёт
+node scripts/deploy-merge-db.mjs /tmp/db.server.json --apply    # применить
+
+# 5. Перегенерировать статику из слитой базы
+npm ci
+npm run static:export
+
+# 6. Перезапустить (только свой процесс!)
+pm2 restart cfrsite --update-env
+
+# 7. Проверить
+sleep 5 && pm2 logs cfrsite --lines 20 --nostream
+curl -sk -o /dev/null -w "HTTP: %{http_code}\n" https://центр-фр.рф/
+```
 
 ### Этап 3 — проверки после деплоя
 
@@ -46,8 +71,15 @@ node -e "const d=require('./db.json');console.log('программ',d.programs.
 ### Откат
 
 ```bash
-cp /tmp/db.server.json /home/cfr_balloo/sites/cfrsite/db.json \
-  && cd /home/cfr_balloo/sites/cfrsite && npm run static:export && pm2 restart cfrsite
+# Найти свежий бэкап в backups/ (не в /tmp!)
+ls -lt /home/cfr_balloo/sites/cfrsite/backups/db.json.backup.* | head -5
+
+# Восстановить и перегенерировать
+cp /home/cfr_balloo/sites/cfrsite/backups/db.json.backup.<свежий_таймstamp> \
+   /home/cfr_balloo/sites/cfrsite/db.json \
+&& cd /home/cfr_balloo/sites/cfrsite \
+&& npm run static:export \
+&& pm2 restart cfrsite
 ```
 
 ## Никогда при деплое

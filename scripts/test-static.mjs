@@ -2440,5 +2440,55 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     /onerror="this\.closest\('\.album-pick'\)\.classList\.add\('broken'\)"/.test(adminSrc));
 }
 
+/* ============================================================
+   S101: scripts/deploy-merge-db.mjs — мерж базы при деплое.
+   Guarantee: серверные данные не теряются, восстановленные данные дева
+   не откатываются, более свежая серверная запись выигрывает.
+   ============================================================ */
+{
+  const { execFileSync } = await import('child_process');
+  const os = await import('os');
+  const mergeScript = path.join(__dirname, 'deploy-merge-db.mjs');
+  check('S101: скрипт мержа базы существует', fs.existsSync(mergeScript));
+
+  if (fs.existsSync(mergeScript)) {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfr-merge-'));
+    // «репозиторий»: тренер А (только в репо), программа П (общая, репо-версия)
+    const repo = { data: { news: [], programs: [{ id: 1, name: 'П-репо' }], trainers: [{ id: 10, name: 'А-только-в-репо' }], schedule: [], prices: [], album: [] }, settings: { halls: [{ id: 'h1' }] }, visits: [] };
+    // «сервер»: тренер Б (только на сервере), программа П свежее, посещение
+    const server = { data: { news: [], programs: [{ id: 1, name: 'П-сервер', updatedAt: '2026-12-01T00:00:00Z' }], trainers: [{ id: 20, name: 'Б-только-на-сервере' }], schedule: [], prices: [], album: [] }, settings: { halls: [{ id: 'h1' }, { id: 'h2-сервер' }] }, visits: [{ id: 'v1' }] };
+    const repoFile = path.join(dir, 'db.json');
+    const serverFile = path.join(dir, 'db.server.json');
+    fs.writeFileSync(repoFile, JSON.stringify(repo));
+    fs.writeFileSync(serverFile, JSON.stringify(server));
+
+    const backupsDir = path.join(__dirname, '..', 'backups');
+    const before = new Set(fs.existsSync(backupsDir) ? fs.readdirSync(backupsDir) : []);
+
+    const out = execFileSync('node', [mergeScript, serverFile, repoFile, '--apply'], { encoding: 'utf-8' });
+    const merged = flattenDb(JSON.parse(fs.readFileSync(repoFile, 'utf-8')));
+
+    check('S101: мерж не теряет серверную запись, absent в репо',
+      merged.trainers.some(t => t.name === 'Б-только-на-сервере'), out.trim().slice(-120));
+    check('S101: мерж сохраняет запись репо, absent на сервере',
+      merged.trainers.some(t => t.name === 'А-только-в-репо'));
+    check('S101: более свежая серверная запись выигрывает',
+      merged.programs.find(p => p.id === 1)?.name === 'П-сервер');
+    check('S101: visits с сервера сохранены', (merged.visits || []).length === 1);
+    check('S101: серверный ключ settings не потерян',
+      (merged.halls || []).some(h => h.id === 'h2-сервер'));
+    // Бэкап, созданный тестовым прогоном, не должен оседать в backups/
+    const created = (fs.existsSync(backupsDir) ? fs.readdirSync(backupsDir) : []).filter(f => !before.has(f));
+    check('S101: перед записью создан бэкап db.json.pre-merge.*',
+      /Мерж базы/.test(out) && created.length === 1 && /^db\.json\.pre-merge\./.test(created[0]));
+    created.forEach(f => fs.rmSync(path.join(backupsDir, f), { force: true }));
+
+    // Повторный запуск идемпотентен: новых расхождений нет
+    const again = execFileSync('node', [mergeScript, serverFile, repoFile], { encoding: 'utf-8' });
+    check('S101: повторный мерж идемпотентен', /Расхождений нет/.test(again));
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 console.log(`\n${passed}/${passed + failed} пройдено`);
 process.exit(failed ? 1 : 0);

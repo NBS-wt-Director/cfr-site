@@ -16,27 +16,48 @@
 Мержится только то, что живёт на сервере: новости (S97 уже стянул их в девел),
 заявки/посещения (`visits`), контакты-формы, настройки из админки.
 
+**Инструмент мержа:** `scripts/deploy-merge-db.mjs` (S101-тесты в `scripts/test-static.mjs`).
+Режим по умолчанию — отчёт (ничего не пишет); `--apply` — применяет с бэкапом
+`backups/db.json.pre-merge.<ts>`. Идемпотентен.
+
 ## Шаги
 
 1. Локально: `node --check` всех изменённых `.js`/`.mjs`; `npm run static:export`; `npm run test-menu`; `npm run test-static`; HTTP-прогон всех страниц и ресурсов на `http://127.0.0.1:3456` (200, битых картинок нет).
-2. `git status` — проверить, что в диффе только ожидаемые файлы. **Что коммитить:** `db.json`, `static/js/data/*.js`, `static/uploads/**` (включая 3 картинки новостей), изменённые `static/*.html`, `static/js/**`, `static/css/style.css`, `scripts/**`, `package.json`, . **Не коммитить:** `static/data/**` (кроме исключений из `.gitignore`), `backups/`, `.env*`.
+2. `git status` — проверить, что в диффе только ожидаемые файлы. **Что коммитить:** `db.json`, `static/js/data/*.js`, `static/uploads/**` (включая 3 картинки новостей), изменённые `static/*.html`, `static/js/**`, `static/css/style.css`, `scripts/**`, `package.json`. **Не коммитить:** `static/data/**` (кроме исключений из `.gitignore`), `backups/`, `.env*`.
 3. Коммит + push в `origin/main` — **только после подтверждения пользователя** (правило: git-мутации по запросу).
 4. Сформировать для пользователя готовую команду деплоя (пользователь сам выполняет SSH на `aedgar`, `cfr_balloo@aedgar`, путь `/home/cfr_balloo/sites/cfrsite`):
    ```bash
-   cd /home/cfr_balloo/sites/cfrsite \
-     && cp db.json /tmp/db.server.$(date +%s).json \
-     && git checkout -- static/js/data/ \
-     && git pull origin main \
-     && node scripts/pull-prod-news.mjs --dry-run   # сверка: новости уже в репо?
-     && npm ci && npm run static:export \
-     && pm2 restart cfrsite --update-env \
-     && sleep 3 && pm2 logs cfrsite --lines 20 --nostream \
-     && curl -sk -o /dev/null -w "HTTP: %{http_code}\n" https://центр-фр.рф/
+   cd /home/cfr_balloo/sites/cfrsite
+
+   # 1. Бэкап серверной базы
+   cp db.json backups/db.json.backup.$(date +%s)
+   cp db.json /tmp/db.server.json
+
+   # 2. Отбросить локальные расхождения сгенерированных файлов
+   git checkout -- static/js/data/
+
+   # 3. Обновить код
+   git pull origin main
+
+   # 4. СЛИТЬ базы, а не перезаписывать
+   node scripts/deploy-merge-db.mjs /tmp/db.server.json            # отчёт
+   node scripts/deploy-merge-db.mjs /tmp/db.server.json --apply    # применить
+
+   # 5. Перегенерировать статику из слитой базы
+   npm ci
+   npm run static:export
+
+   # 6. Перезапустить (только свой процесс!)
+   pm2 restart cfrsite --update-env
+
+   # 7. Проверить
+   sleep 5 && pm2 logs cfrsite --lines 20 --nostream
+   curl -sk -o /dev/null -w "HTTP: %{http_code}\n" https://центр-фр.рф/
    ```
    и проверки из протокола (`/admin.html`, `POST /api/admin/login` → 200/401, `404` на несуществующую страницу).
-5. **Откат:** серверный `db.json` из `/tmp/db.server.*` + `npm run static:export` + `pm2 restart cfrsite`.
+5. **Откат:** `cp backups/db.json.backup.<свежий_таймstamp> db.json && npm run static:export && pm2 restart cfrsite`.
 6. NGINX **не трогать** (конфиг не менялся; `/api/admin/` уже проксирован). Cron `# CFR-NIGHT` не трогать. Чужие процессы/порты/конфиги не трогать (три запрета протокола).
-7. Обновить «📊 СОСТОЯНИЕ» + «ЖУРНАЛ» в ; при необходимости — `DEPLOY.md`.
+7. Обновить «📊 СОСТОЯНИЕ» + «ЖУРНАЛ» в `README.md`; при необходимости — `DEPLOY.md`.
 
 ## Критерий готовности
 
