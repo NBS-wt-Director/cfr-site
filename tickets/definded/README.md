@@ -4,10 +4,15 @@
 
 | Тикет | Статус | Описание |
 |-------|--------|----------|
-| [S134](S134-dynamic-baseurl.md) | 🕓 Разморожен | Динамический `baseUrl` (хост сайта из настроек) |
-| [S135](S135-collective-staff.md) | 🕓 Разморожен | «Коллектив»: персонал и администраторы |
 | [S136](S136-admin-album.md) | 🕓 Ожидает | Админка «Альбом»: CRUD альбомов, неиспользуемые фото |
 | [S1–S3](S1-S3-yandex-photos.md) | ⏸ Приостановлены | Фото с Яндекс.Диска: скачка → оптимизация → раскладка |
+| [MULTITICKET](MULTITICKET.md) | 🕓 Отложен | PostgreSQL миграция (ROADMAP п.1) |
+| [MULTITICKET-DANCESTUDIO](MULTITICKET-DANCESTUDIO.md) | 🕓 Отложен | Забор DanceStudio (ROADMAP п.2) |
+| [TICKET-DONOR-FORMAT](TICKET-DONOR-FORMAT.md) | 🕓 Отложен | Парсер донора (ROADMAP п.2) |
+| [NEXT-001](NEXT-001-next-return-3-apps.md) | 📋 План | Возврат фреймворка: 3 приложения + PG в Docker (ROADMAP п.1) |
+| [SEC-01…10, DB-001](SEC-DB-NEXTJS-ARCHIVED.md) | 🕓 Ждут NEXT-001 | Тикеты безопасности/схемы для фреймворк-версии |
+
+> S134, S135 — выполнены и перенесены в `../done/` (2026-11-07).
 
 ## Правила
 

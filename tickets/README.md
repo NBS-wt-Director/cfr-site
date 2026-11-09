@@ -26,28 +26,24 @@
 
 ### 📋 Индекс-указатель
 
+> 🗺 **Планы развития проекта** (субфреймворк + psql, забор DanceStudio CRM, своя CRM + ЛК,
+> шаблоны ботов, боты): [`../documentation/ROADMAP.md`](../documentation/ROADMAP.md)
+
 #### 🔴 Активные тикеты (`activ/`)
 
-**Волна 5 — очередь выполнения (главный рабочий план):**
-`S101 — выполнен (деплой 2026-11-10, коммиты 7360696 + 3484ae8)`
+**Волна 5** — ✅ выполнена полностью (S134…S142 + S101 в `done/`, деплой 2026-11-10).
 
-> ✅ S134, S135, S137, S138, S139, S140, S141, S142 — выполнены и перенесены в `done/`.
+**Волна 6** — ✅ выполнена и задеплоена (коммиты `4ab61d2`…`3484ae8`);
+все исправленные тикеты в `done/` (S140–S146, S148–S150, S62, S63).
 
-**Волна 6 — критические баги (2026-11-09, найдены после затирания БД):**
+Очередь:
 
 | Тикет | Статус | Описание |
 |-------|--------|----------|
-| [S140](activ/S140-critical-empty-db-overwrite.md) | ✅ Исправлен | Удаление администратора затирает всю БД |
-| [S141](activ/S141-critical-table-shows-images.md) | ✅ Исправлен | Режим «Таблица» показывает картинки (причина в CSS) |
-| [S142](activ/S142-price-tiles-verify.md) | ✅ Закрыт | Плитки цен/скидок — CSS верный, проблема в пустой БД |
-| [S143](activ/S143-css-hidden-comment-bug.md) | ✅ Исправлен | КОРНЕВОЙ CSS-баг: вложенный комментарий ломал [hidden] 9 лет |
-| [S144](activ/S144-admin-trainer-row-buttons.md) | ✅ Исправлен | Админка: кнопка ✏️ на всю строку, ФИО тренера не видно |
-| [S145](activ/S145-admin-templates-help-subsections.md) | ✅ Исправлен | Админка: подразделы «Шаблоны» и заглушки в «Справка» |
-| [S146](activ/S146-admin-trainer-photos-and-experience.md) | ✅ Исправлен | Админка: пустой фотоальбом тренера, стаж = выбор года + формулировки по категории |
 | [S147](activ/S147-rebind-broken-photoalbum.md) | 🔴 Активен | 14 битых кадров photoAlbum (Бобров, Казанцев) — перепривязка к «Архиву тренеров» |
-| [S148](activ/S148-admin-templates-8-separate-sections.md) | ✅ Исправлен | Админка: «Шаблоны» — 8 отдельных разделов в сайдбаре вместо вкладок |
-| [S149](activ/S149-mobile-header-call-button.md) | ✅ Исправлен | Мобильная шапка: кнопка звонка перенесена в меню, бургер доступен |
-| [S150](activ/S150-mobile-schedule-day-carousel.md) | ✅ Исправлен | Мобильное расписание: 1 (текущий) день + карусель дней (вкладки + свайп) |
+
+**Приёмка волны S140–S150** — за пользователем (мобильная шапка S149, карусель дней S150,
+админка S144–S148). После успешной приёмки — старт работ по ROADMAP.
 
 **Тикеты безопасности/схемы БД (Next.js-версия)** — разморожены вместе с мультитикетами,
 но направлены в архивированный Next.js-код (`trash/`). Детали и вопрос пользователю:
@@ -55,7 +51,7 @@
 | Тикет | Статус | Описание |
 |-------|--------|----------|
 | [SEC-DB-NEXTJS-ARCHIVED](definded/SEC-DB-NEXTJS-ARCHIVED.md) | ✅ Решение принято | 11 тикетов (SEC-01…10, DB-001) остаются в `definded/` до старта NEXT-001 |
-| [NEXT-001](definded/NEXT-001-next-return-3-apps.md) | 📋 План | **Возврат Next.js: 3 приложения (CRM, API, WEB на дизайне static) + одна PostgreSQL в Docker + docker-compose**. Env-файлы и сессии при переезде уходят в volumes |
+| [NEXT-001](definded/NEXT-001-next-return-3-apps.md) | 📋 План | **Возврат Next.js: 3 приложения (CRM, API, WEB на дизайне static) + одна PostgreSQL в Docker + docker-compose**. Env-файлы и сессии при переезде уходят в volumes. См. ROADMAP п.1–3 |
 
 **Спорные тикеты** (закрытие не подтверждено ЖУРНАЛОМ — проверить и закрыть или выполнить):
 
@@ -65,19 +61,15 @@
 | [S18](activ/S18-anchors-by-name.md) | ⚠️ Спорный  | Якоря страниц по ФИО/названию (транслит) |
 | [S20](activ/S20-final-check-S14-S19.md) | ⚠️ Спорный  | Финальная проверка S14–S19 |
 | [S52](activ/S52-final-check-S49-S51.md) | ⚠️ Спорный  | Финальная проверка S49–S51 |
-| [S62](activ/S62-photo-album-carousel.md) | ⚠️ Спорный  | Фотоальбом программы/тренера: карусель без обрезки |
-| [S63](activ/S63-deploy-prep.md) | ⚠️ Спорный  | Подготовка к деплою (перекрыт S101) |
 
 #### 🟡 Отложенные тикеты (`definded/`)
 
 | Тикет | Статус | Источник | Описание |
 |-------|--------|----------|----------|
-| [S134](definded/S134-dynamic-baseurl.md) | 🕐 Разморожен  | Динамический `baseUrl` (хост сайта) — в очереди волны 5 после S139 |
-| [S135](definded/S135-collective-staff.md) | 🕐 Разморожен  | «Коллектив»: персонал и администраторы — в очереди волны 5 после S134 |
 | [S136](definded/S136-admin-album.md) | 🕐 Ожидает  | Админка «Альбом»: CRUD, неиспользуемые фото — после деплоя |
 | [S1–S3](definded/S1-S3-yandex-photos.md) | ⏸ Приостановлены  | Фото с Яндекс.Диска: скачка → оптимизация → раскладка |
 | [MULTITICKET](definded/MULTITICKET.md) | 🕐 Отложен  | PostgreSQL миграция: T1–T4 выполнены, T5–T8 заблокированы |
-| [MULTITICKET-DANCESTUDIO](definded/MULTITICKET-DANCESTUDIO.md) | 🕐 Отложен  | DanceStudio: 1 выполнен (1.4), 14 заблокированы |
+| [MULTITICKET-DANCESTUDIO](definded/MULTITICKET-DANCESTUDIO.md) | 🕐 Отложен  | DanceStudio: 1 выполнен (1.4), 14 заблокированы — ROADMAP п.2 |
 | [TICKET-DONOR-FORMAT](definded/TICKET-DONOR-FORMAT.md) | 🕐 Отложен  | Парсер донора: T1–T5 выполнены, T6–T9 ждут. См. `info/DONOR-FORMAT-ANALYSIS.md` |
 
 #### 🟠 С участием пользователя (`activ/withLord/`)
@@ -100,9 +92,7 @@
 
 #### ⚪ Выполненные (`done/`)
 
-Перенесённые тикеты архивируются сюда.
-
-**Выполненные тикеты волны 5:**
+**Волна 5 (закрыты 2026-11-07, задеплоены 2026-11-10):**
 
 | Файл | Дата закрытия | Примечание |
 |------|---------------|------------|
@@ -111,12 +101,29 @@
 | [S139](done/S139-render-bugs.md) | 2026-11-07 | 6 багов рендеринга: переключатель, ширина расписания, nav-active, регресс-тест |
 | [S134](done/S134-dynamic-baseurl.md) | 2026-11-07 | Динамический baseUrl: sitemap/robots, fallback, тесты |
 | [S135](done/S135-collective-staff.md) | 2026-11-07 | «Коллектив»: персонал/администраторы, админка «👥 Персонал», панель на сайте |
-| [S140](done/S140-direction-descriptions.md) | 2026-11-07 | Генерация описаний пустых направлений, идемпотентный скрипт |
-| [S141](done/S141-unified-404.md) | 2026-11-07 | Единая 404: каркас сайта, случайные ссылки, log-404, email, redirect из entity/directions/page |
-| [S142](done/S142-admin-templates.md) | 2026-11-07 | Админка «🧩 Шаблоны» — три пустых подраздела (маски/письма/макеты) |
-| [S101](done/S101-deploy-prep.md) | 2026-11-10 | Подготовка к деплою: мерж баз вместо перезаписи, все тесты зелёные, деплой выполнен (волна S140–S150) |
+| [S140-direction-descriptions](done/S140-direction-descriptions.md) | 2026-11-07 | Генерация описаний пустых направлений, идемпотентный скрипт |
+| [S141-unified-404](done/S141-unified-404.md) | 2026-11-07 | Единая 404: каркас сайта, случайные ссылки, log-404, email, redirect |
+| [S142-admin-templates](done/S142-admin-templates.md) | 2026-11-07 | Админка «🧩 Шаблоны» — три пустых подраздела (переформатированы S145/S148) |
 
-**Мультитикеты из refreshed_trash (закрыты):**
+**Волна 6 (закрыты 2026-11-09/10, задеплоены 2026-11-10):**
+
+| Файл | Дата закрытия | Примечание |
+|------|---------------|------------|
+| [S140-critical-empty-db-overwrite](done/S140-critical-empty-db-overwrite.md) | 2026-11-09 | БД восстановлена; validateDbData() блокирует затирание |
+| [S141-critical-table-shows-images](done/S141-critical-table-shows-images.md) | 2026-11-09 | Режим «Таблица» показывал картинки (корень — CSS, S143) |
+| [S142-price-tiles-verify](done/S142-price-tiles-verify.md) | 2026-11-09 | Плитки цен/скидок — CSS верный, проблема была в пустой БД |
+| [S143-css-hidden-comment-bug](done/S143-css-hidden-comment-bug.md) | 2026-11-09 | КОРНЕВОЙ CSS-баг 9 лет: вложенный комментарий ломал [hidden] |
+| [S144-admin-trainer-row-buttons](done/S144-admin-trainer-row-buttons.md) | 2026-11-09 | Админка: кнопка ✏️ на всю строку, ФИО не видно |
+| [S145-admin-templates-help-subsections](done/S145-admin-templates-help-subsections.md) | 2026-11-09 | Админка: подразделы «Шаблоны» и заглушки «Справка» |
+| [S146-admin-trainer-photos-and-experience](done/S146-admin-trainer-photos-and-experience.md) | 2026-11-09 | Админка: фотоальбом тренера, стаж годами, подписи по категории |
+| [S148-admin-templates-8-separate-sections](done/S148-admin-templates-8-separate-sections.md) | 2026-11-09 | «Шаблоны» — 8 отдельных разделов сайдбара |
+| [S149-mobile-header-call-button](done/S149-mobile-header-call-button.md) | 2026-11-09 | Мобильная шапка: заказ звонка в меню, бургер доступен |
+| [S150-mobile-schedule-day-carousel](done/S150-mobile-schedule-day-carousel.md) | 2026-11-09 | Мобильное расписание: 1 день + карусель (вкладки + свайп) |
+| [S62-photo-album-carousel](done/S62-photo-album-carousel.md) | 2026-11-10 | Подтверждён тестами S62 в test-static |
+| [S63-deploy-prep](done/S63-deploy-prep.md) | 2026-11-10 | Перекрыт S101; деплой выполнен |
+| [S101](done/S101-deploy-prep.md) | 2026-11-10 | Деплой-подготовка: мерж баз, регламент, деплой волны выполнен |
+
+**Мультитикеты (закрыты):**
 
 | Файл | Дата закрытия | Тикетов | Примечание |
 |------|---------------|---------|------------|
@@ -136,6 +143,9 @@
 | [SERVER-TASKS.md](trash/SERVER-TASKS.md) | Не относится к cfr-site, сам просит «не грузить в git» |
 | [минусы.md](trash/минусы.md) | Пустой файл |
 | [DEPLOY.md](trash/DEPLOY.md) | Устарел: дублирует AGENTS.md, содержит несуществующую `npm run static:export` |
+| [MULTITICKET-DBSCHEMA](trash/MULTITICKET-DBSCHEMA.md) | Устарел: живая копия переехала в `definded/MULTITICKET.md` |
+| [TICKET-DB-001](trash/TICKET-DB-001.md) | Устарел: живая копия — `definded/DB-001-crm-schema.md` |
+| [TICKET-SECURITY-FIXES](trash/TICKET-SECURITY-FIXES.md) | Устарел: живые копии — `definded/SEC-01…10` |
 
 #### 📖 Справочная информация (`info/`)
 

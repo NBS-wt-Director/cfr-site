@@ -100,7 +100,7 @@ cfr-site/
 ├── deploy/              # deploy.sh, PM2, NGINX
 ├── tickets/             # Тикет-система (activ / definded / done / trash + README-указатель)
 ├── info/                # Справочники (решения, анализ доноров, команды сервера)
-├── documentation/       # Документация
+├── documentation/       # Документация + 🗺 ROADMAP (планы: фреймворк+psql, CRM, ЛК, боты)
 ├── backups/             # Бэкапы db.json (не коммитится)
 ├── db.json              # Источник данных (коммитится)
 ├── AGENTS.md            # Протокол для AI (правила, деплой, тикеты)
