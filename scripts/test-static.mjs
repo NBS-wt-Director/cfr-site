@@ -2563,18 +2563,19 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   }
 }
 
-// ── S18: Якоря по ФИО/транслит ──
+// ── S18: Якоря по ФИО/названию (slug кириллицей, «как записано») ──
 {
   const { slugify: slugNode } = await import('./lib/slug.mjs');
 
-  // 1. Транслитерация (node-версия)
-  check('S18: slugify — греко-римская борьба', slugNode('Греко-римская борьба') === 'greko-rimskaya-borba');
-  check('S18: slugify — Ёлки-иголки → elki-igolki', slugNode('Ёлки-иголки') === 'elki-igolki');
-  check('S18: slugify — Щука-щука → schuka-schuka', slugNode('Щука-щука') === 'schuka-schuka');
+  // 1. slugify (node-версия) — КИРИЛЛИЦЕЙ, без транслитерации
+  check('S18: slugify — греко-римская борьба → Греко-римская-борьба', slugNode('Греко-римская борьба') === 'Греко-римская-борьба');
+  check('S18: slugify — Ёлки-иголки → Ёлки-иголки (регистр и ё как записано)', slugNode('Ёлки-иголки') === 'Ёлки-иголки');
+  check('S18: slugify — Таицзи-Цюань → Таицзи-Цюань (дефис сохранён)', slugNode('Таицзи-Цюань') === 'Таицзи-Цюань');
+  check('S18: slugify — скобки вырезаются', slugNode('Крепыши (2-4 года)') === 'Крепыши-2-4-года');
   check('S18: slugify — пустая строка → пустая', slugNode('') === '');
-  check('S18: slugify — спецсимволы → дефисы', slugNode('А! Б@ В#') === 'a-b-v');
-  check('S18: slugify — ведущие/замыкающие дефисы срезаны', slugNode(' -- Тест -- ') === 'test');
-  check('S18: slugify — ъ/ь не дают дефисов', slugNode('объект') === 'obekt');
+  check('S18: slugify — спецсимволы вырезаются/дефисы', slugNode('А! Б@ В#') === 'А-Б-В');
+  check('S18: slugify — ведущие/замыкающие дефисы срезаны', slugNode(' -- Тест -- ') === 'Тест');
+  check('S18: slugify — слэш как разделитель', slugNode('Медитация / дыхание') === 'Медитация-дыхание');
 
   // 2. Браузерная версия (window.slugify)
   {
@@ -2586,8 +2587,8 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     vm.createContext(box);
     vm.runInContext(slugSrc, box);
     check('S18: slug.js определяет window.slugify', typeof box.slugify === 'function');
-    check('S18: browser slugify — греко-римская борьба', box.slugify('Греко-римская борьба') === 'greko-rimskaya-borba');
-    check('S18: browser slugify — Щука-щука', box.slugify('Щука-щука') === 'schuka-schuka');
+    check('S18: browser slugify — греко-римская борьба', box.slugify('Греко-римская борьба') === 'Греко-римская-борьба');
+    check('S18: browser slugify — Крепыши (2-4 года)', box.slugify('Крепыши (2-4 года)') === 'Крепыши-2-4-года');
 
     // 3. Эквивалентность двух реализаций
     const testNames = [...new Set([...visPrograms.map(p => p.name), ...db.trainers.filter(t => !t.hidden).map(t => t.name)])].slice(0, 30);
@@ -2595,15 +2596,27 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     check('S18: browser и node slugify эквивалентны на реальных именах', allMatch);
   }
 
+  // 3a. Все slug'ы реальных данных — кириллица (или цифры/дефис), без латинской транслитерации
+  {
+    const progSlugs = visPrograms.map(p => slugNode(p.name));
+    const trSlugs = db.trainers.filter(t => !t.hidden).map(t => slugNode(t.name));
+    const all = [...progSlugs, ...trSlugs];
+    check('S18: slug программ/тренеров содержат кириллицу', all.every(s => /[а-яёА-ЯЁ]/.test(s)));
+    const dup = all.length !== new Set(all).size;
+    check('S18: slug программ и тренеров уникальны (нет коллизий)', !dup);
+  }
+
   // 4. navPrograms/navTrainers содержат slug
   const coreSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'core.js'), 'utf-8');
   const hasNavSlug = /navPrograms.*slug/s.test(coreSrc) && /navTrainers.*slug/s.test(coreSrc);
   check('S18: navPrograms/navTrainers содержат slug в core.js', hasNavSlug);
 
-  // 5. entity.js резолвит slug
+  // 5. entity.js резолвит slug: точное совпадение + нестрогое (slugFold), всё лишнее → 404
   const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
-  check('S18: entity.js содержит поиск по slug', entitySrc.includes('x.slug === rawId'));
-  check('S18: entity.js сохраняет обратную совместимость (Number(rawId))', entitySrc.includes('Number(rawId)') && entitySrc.includes('!isNaN'));
+  check('S18: entity.js — точное совпадение по slug', entitySrc.includes('x.slug === rawId'));
+  check('S18: entity.js — нестрогое сравнение (регистр/ё-е) через slugFold', entitySrc.includes('slugFold'));
+  check('S18: entity.js — числовой id через test(rawId) c /^...$/', entitySrc.includes('$/.test(rawId)') && entitySrc.includes('/^'));
+  check('S18: entity.js — не-найдено → redirect 404.html', entitySrc.includes("location.replace('404.html?from='"));
 
   // 6. Ссылки в tiles.js используют slug
   const tilesSrc = fs.readFileSync(path.join(staticDir, 'js', 'tiles.js'), 'utf-8');
@@ -2615,11 +2628,11 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S18: header.js — program.html?id= с slug', headerSrc.includes('p.slug || p.id'));
   check('S18: header.js — trainer.html?id= с slug', headerSrc.includes('t.slug || t.id'));
 
-  // 8. sitemap.mjs — slug в URL
+  // 8. sitemap.mjs — slug в URL (slugify(name), flattenDb поля slug не имеет)
   const smSrc = fs.readFileSync(path.join(__dirname, 'lib', 'sitemap.mjs'), 'utf-8');
   check('S18: sitemap.mjs — import slugify', smSrc.includes('import') && smSrc.includes('slugify'));
-  check('S18: sitemap.mjs — program.html?id= с slug', smSrc.includes('p.slug || p.id'));
-  check('S18: sitemap.mjs — trainer.html?id= с slug', smSrc.includes('t.slug || t.id'));
+  check('S18: sitemap.mjs — program.html?id= с slugify(name)', smSrc.includes("program.html?id=' + encodeURIComponent(slugify(p.name) || p.id)"));
+  check('S18: sitemap.mjs — trainer.html?id= с slugify(name)', smSrc.includes("trainer.html?id=' + encodeURIComponent(slugify(t.name) || t.id)"));
 
   // 9. schedule-ui.js — slug в ссылках
   const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'schedule-ui.js'), 'utf-8');
@@ -2635,14 +2648,14 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   const schedDataSrc = fs.readFileSync(path.join(staticDir, 'js', 'data', 'schedule-table.js'), 'utf-8');
   check('S18: schedule-table.js — programSlug в scheduleTable', schedDataSrc.includes('"programSlug":'));
 
-  // 12. Sitemap сгенерирован со slug (после экспорта)
+  // 12. Sitemap сгенерирован со slug (кириллица percent-encoded в <loc>)
   const sitemapPath2 = path.join(staticDir, 'sitemap.xml');
   const sitemap2 = fs.existsSync(sitemapPath2) ? fs.readFileSync(sitemapPath2, 'utf-8') : '';
-  // Первый slug в sitemap (program.html?id=<slug>)
-  const slugLocs = [...sitemap2.matchAll(/program\.html\?id=([a-z0-9-]+)(&|<)/g)].map(m => m[1]);
-  check('S18: sitemap содержит slug-ссылки на программы (не числа)', slugLocs.length > 0);
-  const slugTrLocs = [...sitemap2.matchAll(/trainer\.html\?id=([a-z0-9-]+)(&|<)/g)].map(m => m[1]);
-  check('S18: sitemap содержит slug-ссылки на тренеров (не числа)', slugTrLocs.length > 0);
+  // slug кириллицей → в <loc> percent-encoded (%D0..%D1..)
+  const slugLocs = [...sitemap2.matchAll(/program\.html\?id=([^<&]+)(&|<)/g)].map(m => decodeURIComponent(m[1]));
+  check('S18: sitemap содержит slug-ссылки на программы (не числа)', slugLocs.length > 0 && slugLocs.every(s => /[а-яёА-ЯЁ]/.test(s)));
+  const slugTrLocs = [...sitemap2.matchAll(/trainer\.html\?id=([^<&]+)(&|<)/g)].map(m => decodeURIComponent(m[1]));
+  check('S18: sitemap содержит slug-ссылки на тренеров (не числа)', slugTrLocs.length > 0 && slugTrLocs.every(s => /[а-яёА-ЯЁ]/.test(s)));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);

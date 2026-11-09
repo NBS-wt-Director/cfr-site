@@ -2,14 +2,14 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-09T21:45:26.477Z
+ * Сгенерировано: 2026-11-09T23:01:53.456Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.trainers = [
   {
     "id": 1770800269014,
     "name": "Глазырин Михаил",
-    "slug": "glazyrin-mikhail",
+    "slug": "Глазырин-Михаил",
     "image": "uploads/covers/t-glazyrin-mihail.jpg",
     "experience": "Опытный",
     "specialization": "«Функциональный тренинг», «Акробатика для мозга», «Координация», «Основы массажа».",
@@ -27,7 +27,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770874411766,
     "name": "Глазырина Илона",
-    "slug": "glazyrina-ilona",
+    "slug": "Глазырина-Илона",
     "image": "uploads/covers/t-glazyrina-ilona.jpg",
     "experience": "Опытный",
     "specialization": "«Тайцзи-Цюань», «Гимнастика для лица шеи и плеч» (Фейс Билдинг)",
@@ -45,7 +45,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770874476663,
     "name": "Кравец Оксана Борисовна",
-    "slug": "kravets-oksana-borisovna",
+    "slug": "Кравец-Оксана-Борисовна",
     "image": "uploads/covers/t-kravets-oksana-borisovna.jpg",
     "experience": "Старший тренер УрСФУ",
     "specialization": "«Тайцзи-Цюань», «Здоровая спина», «Гимнастика для шеи и органов чувств», «Здоровье женщины», детская программа «Крепыши (2-4 года)», «Развивающие УШУ (4-6 лет)», «Оздоровительное Ушу для детей (6-12 лет)», «ЛФК УШУ (10-15 лет)»",
@@ -80,7 +80,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875029246,
     "name": "Половникова Тамара",
-    "slug": "polovnikova-tamara",
+    "slug": "Половникова-Тамара",
     "image": "uploads/covers/t-polovnikova-tamara.jpg",
     "experience": "Опытный",
     "specialization": "«Здоровая спина», «Индивидуальные тренировки».",
@@ -98,7 +98,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875064589,
     "name": "Оберюхтин Иван",
-    "slug": "oberyukhtin-ivan",
+    "slug": "Оберюхтин-Иван",
     "image": "uploads/covers/t-oberyuhtin-ivan.jpg",
     "experience": "Опытный",
     "specialization": "\"Здоровье +\"",
@@ -116,7 +116,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875124935,
     "name": "Кузнецов Александр Вячеславович",
-    "slug": "kuznetsov-aleksandr-vyacheslavovich",
+    "slug": "Кузнецов-Александр-Вячеславович",
     "image": "uploads/covers/t-kuznetsov-aleksandr-vyacheslavovich.jpg",
     "experience": "Старший тренер УрСФУ",
     "specialization": "«ОФП (с 10 лет)», младшие и старшие года обучения УШУ по программе обучения УСФУ, группы «Тайцзи-Цюань», «Тайцзи-Цигун», «Здоровая спина», «Функциональная растяжка», «Мужское долголетие», «ОФП Меч», «Основы дыхания»",
@@ -134,7 +134,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875159380,
     "name": "Пашкова Юлия",
-    "slug": "pashkova-yuliya",
+    "slug": "Пашкова-Юлия",
     "image": "uploads/covers/t-pashkova-yuliya.jpg",
     "experience": "Опытный",
     "specialization": "«Здоровая спина», работа, направленная на восстановление подвижности суставов, развитие координации, гибкости, силы и способности к произвольному расслаблению, массажные практики.",
@@ -152,7 +152,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875655036,
     "name": "Романовский Николай",
-    "slug": "romanovskii-nikolai",
+    "slug": "Романовский-Николай",
     "image": "uploads/covers/t-romanovskiy-nikolay.jpg",
     "experience": "Опытный",
     "specialization": "«Массажные и восстановительные техники», «Здоровое тело», «Массаж внутренних органов»",
@@ -170,7 +170,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 1770875655037,
     "name": "Хорошилова Елена",
-    "slug": "khoroshilova-elena",
+    "slug": "Хорошилова-Елена",
     "image": "uploads/covers/t-horoshilova-elena.jpg",
     "experience": "Тренер УрСФУ",
     "specialization": "«Тайцзи-Цюань»",
@@ -188,7 +188,7 @@ window.SITE_DATA.trainers = [
   {
     "id": 13,
     "name": "Мосоян Лусине",
-    "slug": "mosoyan-lusine",
+    "slug": "Мосоян-Лусине",
     "image": "uploads/covers/t-mosoyan-lusine.jpg",
     "experience": "с 2016 года (10 лет)",
     "specialization": "\"Изобразительное искусство (4+)\"",

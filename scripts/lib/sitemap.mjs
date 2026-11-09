@@ -78,14 +78,16 @@ export function collectUrls(db, buildDateISO) {
   (db.directions || []).filter(d => !d.hidden && (d.programs || []).length > 0)
     .forEach(d => push('directions.html?id=' + encodeURIComponent(d.id), fallback, 'weekly', '0.7'));
 
-  // Видимые программы (lastmod — updatedAt программы, дефолт — дата сборки)
+  // Видимые программы (lastmod — updatedAt программы, дефолт — дата сборки).
+  // S18: slug = имя «как записано» (кириллицей). Берём slugify(name) —
+  // flattenDb(db.json) поля slug не имеет, он вычисляется здесь же, где и в экспорте.
   (db.programs || []).filter(p => !p.hidden)
-    .forEach(p => push('program.html?id=' + encodeURIComponent(p.slug || p.id),
+    .forEach(p => push('program.html?id=' + encodeURIComponent(slugify(p.name) || p.id),
       lastmodOf(p.updatedAt), 'monthly', '0.6'));
 
   // Видимые тренеры
   (db.trainers || []).filter(t => !t.hidden)
-    .forEach(t => push('trainer.html?id=' + encodeURIComponent(t.slug || t.id),
+    .forEach(t => push('trainer.html?id=' + encodeURIComponent(slugify(t.name) || t.id),
       fallback, 'monthly', '0.6'));
 
   // Все новости (включая showOnHome:false — они есть на news.html).

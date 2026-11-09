@@ -21,6 +21,11 @@
       .replace(/"/g, '&quot;');
   }
 
+  // S18: нестрогое сравнение slug — регистр + ё/е (для вручную набранных ссылок)
+  function slugFold(s) {
+    return String(s).toLowerCase().replace(/ё/g, 'е');
+  }
+
   // S126: название сайта берётся из «Главных данных» (siteSettings.title1),
   // а не захардкожено в разметке фолбэка логотипа.
   function brandAlt() {
@@ -522,14 +527,20 @@
     var items = (window.SITE_DATA || {})[conf.list] || [];
     var item;
 
-    // S18: числовой id → поиск по id (обратная совместимость внешних ссылок).
-    // Строковый id → поиск по slug (транслит имени).
+    // S18: slug — КИРИЛЛИЦЕЙ, «как записано» в имени (без транслитерации).
+    // 1) числовой id → поиск по id (обратная совместимость внешних ссылок);
+    // 2) строка → точное совпадение slug; при промахе — нестрогое
+    //    (регистр + ё/е — для ссылок, набранных вручную);
+    // 3) всё остальное (пусто, нет id, нет совпадения) → 404.
     if (rawId !== null) {
-      var num = Number(rawId);
-      if (!isNaN(num) && num > 0) {
-        item = items.filter(function (x) { return Number(x.id) === num; })[0];
+      if (/^\d+$/.test(rawId) && Number(rawId) > 0) {
+        item = items.filter(function (x) { return Number(x.id) === Number(rawId); })[0];
       } else {
         item = items.filter(function (x) { return x.slug === rawId; })[0];
+        if (!item) {
+          var key = slugFold(rawId);
+          item = items.filter(function (x) { return x.slug && slugFold(x.slug) === key; })[0];
+        }
       }
     }
 

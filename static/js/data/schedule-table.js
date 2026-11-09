@@ -2,14 +2,14 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-09T21:45:26.477Z
+ * Сгенерировано: 2026-11-09T23:01:53.456Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.scheduleTable = [
   {
     "program": "Крепыши (2-4 года)",
     "programId": 1770965676349,
-    "programSlug": "krepyshi-2-4-goda",
+    "programSlug": "Крепыши-2-4-года",
     "day": "Суббота",
     "time": "9:30-10:25",
     "place": "",
@@ -21,7 +21,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Понедельник",
     "time": "18:00-18:55",
     "place": "",
@@ -33,7 +33,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Вторник",
     "time": "8:00-8:55",
     "place": "",
@@ -45,7 +45,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Вторник",
     "time": "15:00-15:55",
     "place": "",
@@ -57,7 +57,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Вторник",
     "time": "18:00-18:55",
     "place": "",
@@ -69,7 +69,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Среда",
     "time": "15:00-15:55",
     "place": "",
@@ -81,7 +81,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Среда",
     "time": "19:00-19:55",
     "place": "",
@@ -93,7 +93,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Четверг",
     "time": "8:00-8:55",
     "place": "",
@@ -105,7 +105,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Четверг",
     "time": "15:00-15:55",
     "place": "",
@@ -117,7 +117,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Пятница",
     "time": "15:00-15:55",
     "place": "",
@@ -129,7 +129,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровая спина",
     "programId": 1772563088471,
-    "programSlug": "zdorovaya-spina",
+    "programSlug": "Здоровая-спина",
     "day": "Суббота",
     "time": "17:00-17:55",
     "place": "",
@@ -141,7 +141,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Оздоровительное Ушу для детей (6-12 лет)",
     "programId": 1772563088472,
-    "programSlug": "ozdorovitelnoe-ushu-dlya-detei-6-12-let",
+    "programSlug": "Оздоровительное-Ушу-для-детей-6-12-лет",
     "day": "Среда",
     "time": "19:00-19:55",
     "place": "",
@@ -153,7 +153,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Оздоровительное Ушу для детей (6-12 лет)",
     "programId": 1772563088472,
-    "programSlug": "ozdorovitelnoe-ushu-dlya-detei-6-12-let",
+    "programSlug": "Оздоровительное-Ушу-для-детей-6-12-лет",
     "day": "Воскресенье",
     "time": "18:00-18:55",
     "place": "",
@@ -165,7 +165,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Изобразительное искусство (4+)",
     "programId": 1772563088473,
-    "programSlug": "izobrazitelnoe-iskusstvo-4",
+    "programSlug": "Изобразительное-искусство-4",
     "day": "Суббота",
     "time": "17:00-17:50",
     "place": "",
@@ -177,7 +177,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Изобразительное искусство (4+)",
     "programId": 1772563088473,
-    "programSlug": "izobrazitelnoe-iskusstvo-4",
+    "programSlug": "Изобразительное-искусство-4",
     "day": "Вторник",
     "time": "18:00-18:50",
     "place": "",
@@ -189,7 +189,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ЛФК УШУ (10-15 лет)",
     "programId": 1772563088474,
-    "programSlug": "lfk-ushu-10-15-let",
+    "programSlug": "ЛФК-УШУ-10-15-лет",
     "day": "Среда",
     "time": "18:00-18:55",
     "place": "",
@@ -201,7 +201,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ЛФК УШУ (10-15 лет)",
     "programId": 1772563088474,
-    "programSlug": "lfk-ushu-10-15-let",
+    "programSlug": "ЛФК-УШУ-10-15-лет",
     "day": "Пятница",
     "time": "18:00-18:55",
     "place": "",
@@ -213,7 +213,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ОФП Ушу (10+)",
     "programId": 1772563088475,
-    "programSlug": "ofp-ushu-10",
+    "programSlug": "ОФП-Ушу-10",
     "day": "Понедельник",
     "time": "17:00-17:55",
     "place": "",
@@ -225,7 +225,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ОФП Ушу (10+)",
     "programId": 1772563088475,
-    "programSlug": "ofp-ushu-10",
+    "programSlug": "ОФП-Ушу-10",
     "day": "Вторник",
     "time": "17:00-17:55",
     "place": "",
@@ -237,7 +237,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ОФП Ушу (10+)",
     "programId": 1772563088475,
-    "programSlug": "ofp-ushu-10",
+    "programSlug": "ОФП-Ушу-10",
     "day": "Четверг",
     "time": "17:00-17:55",
     "place": "",
@@ -249,7 +249,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ОФП Ушу (10+)",
     "programId": 1772563088475,
-    "programSlug": "ofp-ushu-10",
+    "programSlug": "ОФП-Ушу-10",
     "day": "Пятница",
     "time": "17:00-17:55",
     "place": "",
@@ -261,7 +261,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Развивающие УШУ (4-6 лет)",
     "programId": 1772563088476,
-    "programSlug": "razvivayuschie-ushu-4-6-let",
+    "programSlug": "Развивающие-УШУ-4-6-лет",
     "day": "Вторник",
     "time": "19:00-19:55",
     "place": "",
@@ -273,7 +273,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Развивающие УШУ (4-6 лет)",
     "programId": 1772563088476,
-    "programSlug": "razvivayuschie-ushu-4-6-let",
+    "programSlug": "Развивающие-УШУ-4-6-лет",
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
@@ -285,7 +285,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Специальное ОФП (6-12 лет)",
     "programId": 1772563088477,
-    "programSlug": "spetsialnoe-ofp-6-12-let",
+    "programSlug": "Специальное-ОФП-6-12-лет",
     "day": "Суббота",
     "time": "14:00-14:55",
     "place": "",
@@ -297,7 +297,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Координация. Основы работы с оружием в УШУ",
     "programId": 1772563088478,
-    "programSlug": "koordinatsiya-osnovy-raboty-s-oruzhiem-v-ushu",
+    "programSlug": "Координация-Основы-работы-с-оружием-в-УШУ",
     "day": "Понедельник",
     "time": "20:00-20:55",
     "place": "",
@@ -309,7 +309,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цигун",
     "programId": 1772563088479,
-    "programSlug": "taitszi-tsigun",
+    "programSlug": "Тайцзи-Цигун",
     "day": "Среда",
     "time": "20:00-20:55",
     "place": "",
@@ -321,7 +321,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цигун",
     "programId": 1772563088479,
-    "programSlug": "taitszi-tsigun",
+    "programSlug": "Тайцзи-Цигун",
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
@@ -333,7 +333,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Понедельник",
     "time": "7:00-7:55",
     "place": "",
@@ -345,7 +345,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Среда",
     "time": "7:00-7:55",
     "place": "",
@@ -357,7 +357,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Суббота",
     "time": "8:30-9:25",
     "place": "",
@@ -369,7 +369,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Понедельник",
     "time": "19:00-20:55",
     "place": "",
@@ -381,7 +381,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Четверг",
     "time": "19:00-19:55",
     "place": "",
@@ -393,7 +393,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Понедельник",
     "time": "18:30-19:45",
     "place": "",
@@ -405,7 +405,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Пятница",
     "time": "18:30-19:45",
     "place": "",
@@ -417,7 +417,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Воскресенье",
     "time": "18:00-18:55",
     "place": "",
@@ -429,7 +429,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тайцзи-Цюань",
     "programId": 1772563088480,
-    "programSlug": "taitszi-tsyuan",
+    "programSlug": "Тайцзи-Цюань",
     "day": "Вторник",
     "time": "19:00-19:55",
     "place": "",
@@ -441,7 +441,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Тканевое дыхание",
     "programId": 1772563088481,
-    "programSlug": "tkanevoe-dykhanie",
+    "programSlug": "Тканевое-дыхание",
     "day": "Суббота",
     "time": "19:00-19:55",
     "place": "",
@@ -453,7 +453,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Основы массажа",
     "programId": 1772563088482,
-    "programSlug": "osnovy-massazha",
+    "programSlug": "Основы-массажа",
     "day": "Вторник",
     "time": "20:00-20:55",
     "place": "",
@@ -465,7 +465,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Основы массажа",
     "programId": 1772563088482,
-    "programSlug": "osnovy-massazha",
+    "programSlug": "Основы-массажа",
     "day": "Четверг",
     "time": "20:00-20:55",
     "place": "",
@@ -477,7 +477,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Гимнастика для суставов",
     "programId": 1772563088483,
-    "programSlug": "gimnastika-dlya-sustavov",
+    "programSlug": "Гимнастика-для-суставов",
     "day": "Пятница",
     "time": "19:00-19:55",
     "place": "",
@@ -489,7 +489,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Гимнастика для шеи и органов чувств",
     "programId": 1772563088484,
-    "programSlug": "gimnastika-dlya-shei-i-organov-chuvstv",
+    "programSlug": "Гимнастика-для-шеи-и-органов-чувств",
     "day": "Четверг",
     "time": "18:00-18:55",
     "place": "",
@@ -501,7 +501,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровое тело",
     "programId": 1772563088485,
-    "programSlug": "zdorovoe-telo",
+    "programSlug": "Здоровое-тело",
     "day": "Воскресенье",
     "time": "16:00-16:55",
     "place": "",
@@ -513,7 +513,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровье +",
     "programId": 1772563088486,
-    "programSlug": "zdorove",
+    "programSlug": "Здоровье",
     "day": "Вторник",
     "time": "17:00-17:55",
     "place": "",
@@ -525,7 +525,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровье +",
     "programId": 1772563088486,
-    "programSlug": "zdorove",
+    "programSlug": "Здоровье",
     "day": "Четверг",
     "time": "17:00-17:55",
     "place": "",
@@ -537,7 +537,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Здоровье женщины",
     "programId": 1772563088487,
-    "programSlug": "zdorove-zhenschiny",
+    "programSlug": "Здоровье-женщины",
     "day": "Суббота",
     "time": "10:30-11:25",
     "place": "",
@@ -549,7 +549,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Массаж внутренних органов",
     "programId": 1772563088488,
-    "programSlug": "massazh-vnutrennikh-organov",
+    "programSlug": "Массаж-внутренних-органов",
     "day": "Воскресенье",
     "time": "15:00-15:55",
     "place": "",
@@ -561,7 +561,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Массажные и восстановительные техники",
     "programId": 1772563088489,
-    "programSlug": "massazhnye-i-vosstanovitelnye-tekhniki",
+    "programSlug": "Массажные-и-восстановительные-техники",
     "day": "Суббота",
     "time": "8:30-9:25",
     "place": "",
@@ -573,7 +573,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Мобилизация таза и поясницы",
     "programId": 1772563088490,
-    "programSlug": "mobilizatsiya-taza-i-poyasnitsy",
+    "programSlug": "Мобилизация-таза-и-поясницы",
     "day": "Среда",
     "time": "20:00-20:55",
     "place": "",
@@ -585,7 +585,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Мужское долголетие",
     "programId": 1772563088491,
-    "programSlug": "muzhskoe-dolgoletie",
+    "programSlug": "Мужское-долголетие",
     "day": "Суббота",
     "time": "10:30-11:25",
     "place": "",
@@ -597,7 +597,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Растяжка",
     "programId": 1772563088492,
-    "programSlug": "rastyazhka",
+    "programSlug": "Растяжка",
     "day": "Вторник",
     "time": "18:00-18:55",
     "place": "",
@@ -609,7 +609,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Растяжка",
     "programId": 1772563088492,
-    "programSlug": "rastyazhka",
+    "programSlug": "Растяжка",
     "day": "Четверг",
     "time": "18:00-18:55",
     "place": "",
@@ -621,7 +621,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Техника самомассажа с палочкой",
     "programId": 1772563088493,
-    "programSlug": "tekhnika-samomassazha-s-palochkoi",
+    "programSlug": "Техника-самомассажа-с-палочкой",
     "day": "Пятница",
     "time": "18:00-18:55",
     "place": "",
@@ -633,7 +633,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Фейс Билдинг",
     "programId": 1772563088494,
-    "programSlug": "feis-bilding",
+    "programSlug": "Фейс-Билдинг",
     "day": "Среда",
     "time": "18:00-18:55",
     "place": "",
@@ -645,7 +645,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Акробатика для мозга",
     "programId": 1772563088495,
-    "programSlug": "akrobatika-dlya-mozga",
+    "programSlug": "Акробатика-для-мозга",
     "day": "Суббота",
     "time": "18:00-18:55",
     "place": "",
@@ -657,7 +657,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Координация",
     "programId": 1772563088496,
-    "programSlug": "koordinatsiya",
+    "programSlug": "Координация",
     "day": "Пятница",
     "time": "21:00-21:55",
     "place": "",
@@ -669,7 +669,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "ОФП Меч",
     "programId": 1772563088497,
-    "programSlug": "ofp-mech",
+    "programSlug": "ОФП-Меч",
     "day": "Суббота",
     "time": "16:00-17:25",
     "place": "",
@@ -681,7 +681,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Функциональный тренинг",
     "programId": 1772563088498,
-    "programSlug": "funktsionalnyi-trening",
+    "programSlug": "Функциональный-тренинг",
     "day": "Вторник",
     "time": "19:00-19:55",
     "place": "",
@@ -693,7 +693,7 @@ window.SITE_DATA.scheduleTable = [
   {
     "program": "Функциональный тренинг",
     "programId": 1772563088498,
-    "programSlug": "funktsionalnyi-trening",
+    "programSlug": "Функциональный-тренинг",
     "day": "Четверг",
     "time": "19:00-19:55",
     "place": "",
