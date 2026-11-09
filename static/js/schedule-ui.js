@@ -15,6 +15,22 @@
  */
 (function () {
   var DAYS = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+  var DAYS_SHORT = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+  // S150: индекс текущего дня (Пн=0 … Вс=6)
+  function todayIndex() {
+    var d = (new Date()).getDay(); // Вс=0 … Сб=6
+    return d === 0 ? 6 : d - 1;
+  }
+
+  // S150: вкладки дней для мобильной карусели (на десктопе скрыты CSS)
+  function dayTabs() {
+    var ti = todayIndex();
+    return '<div class="week-day-tabs" role="tablist">' + DAYS.map(function (day, i) {
+      return '<button type="button" class="week-day-tab' + (i === ti ? ' active' : '') +
+        '" data-day-idx="' + i + '" role="tab" aria-selected="' + (i === ti) + '">' + DAYS_SHORT[i] + '</button>';
+    }).join('') + '</div>';
+  }
 
   var MODES = {
     hall: { icon: '🏋️', label: 'зал' },
@@ -95,7 +111,7 @@
     sortSlots(slots).forEach(function (s) {
       (byDay[s.day] = byDay[s.day] || []).push(s);
     });
-    var cols = DAYS.map(function (day) {
+    var cols = DAYS.map(function (day, di) {
       var chips = (byDay[day] || []).map(function (s) {
         var m = modeOf(s);
         var hall = '<span class="week-chip-place">' + (s.hall === 'small' ? 'малый зал' : 'большой зал') + '</span>';
@@ -109,12 +125,13 @@
           '<span class="week-chip-time">' + esc(s.time) + '</span>' +
           '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</a>';
       }).join('');
-      return '<div class="week-col">' +
+      return '<div class="week-col' + (di === todayIndex() ? ' day-active' : '') + '" data-day-idx="' + di + '">' +
         '<div class="week-col-title">' + day + '</div>' +
         '<div class="week-col-body">' + (chips || '<span class="week-col-empty">—</span>') + '</div>' +
         '</div>';
     }).join('');
-    return '<div class="week-board-wrap">' + legend(slots) + '<div class="week-board">' + cols + '</div></div>';
+    // S150: вкладки дней (видны только на мобильном — CSS)
+    return '<div class="week-board-wrap">' + legend(slots) + dayTabs() + '<div class="week-board">' + cols + '</div></div>';
   }
 
   /**
@@ -122,30 +139,46 @@
    * withProgram — добавлять колонку «Программа» (для «Мои тренировки»).
    * Колонки: Программа | День | Время | Зал | Место | Тренер
    * S128 п.10: колонка «Место» выводится, если хоть у одного слота есть place.
+   * S150: строки сгруппированы по дням в <tbody data-day="..."> для карусели дней.
    */
   function table(slots, withProgram) {
     var hasPlace = (slots || []).some(function (s) { return s.place; });
-    var rows = sortSlots(slots).map(function (s) {
-      var prog = '';
-      if (withProgram) {
-        prog = s.programId != null
-          ? '<td><a class="schedule-program-link" href="program.html?id=' + s.programId + '">' + esc(s.program) + '</a></td>'
-          : '<td>' + esc(s.program || '') + '</td>';
-      }
-      return '<tr>' + prog + '<td>' + esc(s.day) + '</td>' +
-        '<td>' + modeBadge(s) + ' ' + esc(s.time) + '</td>' +
-        '<td>' + esc(HALLS[hallOf(s)]) + '</td>' +
-        (hasPlace ? '<td>' + esc(s.place || '—') + '</td>' : '') +
-        (s.trainer != null ? '<td>' + esc(s.trainer || '—') + '</td>' : '') +
-        '</tr>';
+    // S150: группировка по дням
+    var byDay = {};
+    sortSlots(slots).forEach(function (s) {
+      (byDay[s.day] = byDay[s.day] || []).push(s);
+    });
+    // S150: tbody на каждый день
+    var hasTrainerCol = !!(slots && slots.length && slots[0].trainer != null);
+    var dayBodies = DAYS.map(function (day, di) {
+      var rows = (byDay[day] || []).map(function (s) {
+        var prog = '';
+        if (withProgram) {
+          prog = s.programId != null
+            ? '<td><a class="schedule-program-link" href="program.html?id=' + s.programId + '">' + esc(s.program) + '</a></td>'
+            : '<td>' + esc(s.program || '') + '</td>';
+        }
+        return '<tr>' + prog + '<td>' + esc(s.day) + '</td>' +
+          '<td>' + modeBadge(s) + ' ' + esc(s.time) + '</td>' +
+          '<td>' + esc(HALLS[hallOf(s)]) + '</td>' +
+          (hasPlace ? '<td>' + esc(s.place || '—') + '</td>' : '') +
+          (s.trainer != null ? '<td>' + esc(s.trainer || '—') + '</td>' : '') +
+          '</tr>';
+      }).join('');
+      // Пустой день: заглушка на всю ширину (число колонок = как в thead)
+      var nCols = (withProgram ? 1 : 0) + 3 + (hasPlace ? 1 : 0) + (hasTrainerCol ? 1 : 0);
+      var emptyRow = rows
+        ? ''
+        : '<tr class="sched-day-empty"><td colspan="' + nCols + '">Нет занятий в этот день</td></tr>';
+      return '<tbody class="sched-day-body' + (di === todayIndex() ? ' day-active' : '') + '" data-day-idx="' + di + '">' + rows + emptyRow + '</tbody>';
     }).join('');
     var head = (withProgram ? '<th>Программа</th>' : '') +
       '<th>День</th><th>Время</th><th>Зал</th>' +
       (hasPlace ? '<th>Место</th>' : '') +
-      (slots && slots.length && slots[0].trainer != null ? '<th>Тренер</th>' : '');
-    return '<div class="schedule-table-wrap">' + legend(slots) + '<table class="schedule-table">' +
+      (hasTrainerCol ? '<th>Тренер</th>' : '');
+    return '<div class="schedule-table-wrap">' + legend(slots) + dayTabs() + '<table class="schedule-table">' +
       '<thead><tr>' + head + '</tr></thead>' +
-      '<tbody>' + rows + '</tbody></table></div>';
+      dayBodies + '</table></div>';
   }
 
   /* ============================================
@@ -200,6 +233,78 @@
     });
   }
 
+  /* ============================================
+     S150: карусель дней — переключение вкладок + свайп
+     Вешается на document (работает на всех .week-board-wrap и .schedule-table-wrap).
+     На мобильном ≤767px: одна колонка/таблица на день + вкладки + свайп.
+     На десктопе — ничего не меняет (все дни видны).
+     ============================================ */
+  var dayCarouselBound = false;
+  function initDayCarousel() {
+    if (dayCarouselBound) return;
+    dayCarouselBound = true;
+
+    // matchMedia может отсутствовать (старые браузеры/тестовая среда) —
+    // тогда свайп считаем активным по ширине окна
+    var mq = (typeof window.matchMedia === 'function')
+      ? window.matchMedia('(max-width: 767px)')
+      : { matches: false };
+    function isMobile() {
+      return mq.matches || (window.innerWidth <= 767);
+    }
+
+    function setActiveDay(wrap, idx) {
+      // Колонки доски
+      wrap.querySelectorAll('.week-col').forEach(function (c) {
+        c.classList.toggle('day-active', Number(c.getAttribute('data-day-idx')) === idx);
+      });
+      // Вкладки
+      wrap.querySelectorAll('.week-day-tab').forEach(function (t) {
+        t.classList.toggle('active', Number(t.getAttribute('data-day-idx')) === idx);
+        t.setAttribute('aria-selected', String(Number(t.getAttribute('data-day-idx')) === idx));
+      });
+      // Строки таблицы
+      wrap.querySelectorAll('.sched-day-body').forEach(function (tb) {
+        tb.classList.toggle('day-active', Number(tb.getAttribute('data-day-idx')) === idx);
+      });
+    }
+
+    // Привязка кликов по вкладкам
+    document.addEventListener('click', function (e) {
+      var tab = e.target.closest('.week-day-tab');
+      if (!tab) return;
+      var wrap = tab.closest('.week-board-wrap, .schedule-table-wrap');
+      if (!wrap) return;
+      setActiveDay(wrap, Number(tab.getAttribute('data-day-idx')));
+    });
+
+    // Свайп влево/вправо на .week-board-wrap и .schedule-table-wrap
+    var SWIPE_THRESHOLD = 40;
+    document.addEventListener('touchstart', function (e) {
+      var el = e.target.closest('.week-board-wrap, .schedule-table-wrap');
+      if (!el || !isMobile()) return;
+      el._swipeStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      var el = e.target.closest('.week-board-wrap, .schedule-table-wrap');
+      if (!el || !isMobile() || !el._swipeStartX) return;
+      var dx = e.changedTouches[0].clientX - el._swipeStartX;
+      el._swipeStartX = null;
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+      // Найти текущий активный день
+      var activeIdx = -1;
+      el.querySelectorAll('.week-col, .sched-day-body').forEach(function (el2) {
+        if (el2.classList.contains('day-active')) activeIdx = Number(el2.getAttribute('data-day-idx'));
+      });
+      if (activeIdx === -1) activeIdx = todayIndex();
+      var dir = dx > 0 ? -1 : 1; // свайп вправо = предыдущий день, влево = следующий
+      var next = (activeIdx + dir + 7) % 7;
+      setActiveDay(el, next);
+    }, { passive: true });
+  }
+
   window.ScheduleUI = {
     DAYS: DAYS,
     MODES: MODES,
@@ -209,6 +314,11 @@
     table: table,
     boardOrTable: boardOrTable,
     initSwitches: initSwitches,
+    initDayCarousel: initDayCarousel,
     modeBadge: modeBadge
   };
+
+  // S150: инициализируем карусель сразу после загрузки скрипта
+  // (все обработчики — через document, поэтому работает и для DOM, добавленного позже)
+  initDayCarousel();
 })();

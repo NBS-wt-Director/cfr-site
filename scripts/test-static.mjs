@@ -571,7 +571,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check(`программа «${p.name}»: ссылка на тренера`, !!d.querySelector('.entity-trainers a[href^="trainer.html?id="]'));
   check(`программа «${p.name}»: блок «Расписание»`, !!d.querySelector('.entity-subtitle') &&
     [...d.querySelectorAll('.entity-subtitle')].some(h => h.textContent.includes('Расписание')));
-  check(`программа «${p.name}»: таблица расписания`, d.querySelectorAll('.schedule-table tbody tr').length === (p.scheduleStructured || []).length);
+  // S150: tbody на каждый день + строки-заглушки пустых дней (видны только на мобильном) —
+  // считаем только реальные слоты
+  check(`программа «${p.name}»: таблица расписания`, d.querySelectorAll('.schedule-table tbody tr:not(.sched-day-empty)').length === (p.scheduleStructured || []).length);
   check('программа: в таблице НЕТ колонки «Место» (S26)', ![...d.querySelectorAll('.schedule-table th')].some(h => /мест/i.test(h.textContent)));
   // S62: фотоальбом программы — карусель необрезанных фото
   {
@@ -2438,6 +2440,77 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S146: кадры без файла на диске помечаются в picker',
     adminSrc.includes(".album-pick.broken") &&
     /onerror="this\.closest\('\.album-pick'\)\.classList\.add\('broken'\)"/.test(adminSrc));
+}
+
+/* ============================================================
+   S149: мобильная шапка — кнопка «Заказать звонок» перенесена в меню.
+   guarantee: на ≤767px кнопка в header-actions скрыта, в мобильном меню есть своя.
+   ============================================================ */
+{
+  const css = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+  check('S149: на мобильном кнопка звонка в шапке скрыта',
+    /@media \(max-width: 767px\)\s*\{\s*\.header-actions\s+\.header-call-btn\s*\{\s*display:\s*none;/.test(css));
+  const headerSrc = fs.readFileSync(path.join(staticDir, 'js', 'header.js'), 'utf-8');
+  check('S149: кнопка звонка есть внутри мобильного меню (.mobile-call)',
+    /mobile-menu[\s\S]*mobile-call/.test(headerSrc));
+}
+
+/* ============================================================
+   S150: мобильная карусель дней расписания — 1 (текущий) день + вкладки + свайп.
+   guarantee: weekBoard/table рендерят вкладки дней и day-разметку; CSS переключает
+   показ по дню только на ≤767px; десктоп не затронут.
+   ============================================================ */
+{
+  const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'schedule-ui.js'), 'utf-8');
+  const css = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+
+  check('S150: schedule-ui — вкладки дней рендерятся (dayTabs)',
+    /function dayTabs/.test(schedSrc) && schedSrc.includes('week-day-tab'));
+  check('S150: schedule-ui — текущий день вычисляется (todayIndex)',
+    /function todayIndex/.test(schedSrc));
+  check('S150: weekBoard — колонки с data-day-idx и day-active по умолчанию',
+    /class="week-col' .*\+ \(di === todayIndex\(\)|data-day-idx/.test(schedSrc) &&
+    schedSrc.includes("day-active"));
+  check('S150: table — tbody на день (sched-day-body)',
+    schedSrc.includes('sched-day-body') && schedSrc.includes('data-day-idx'));
+  check('S150: initDayCarousel — вкладки и свайп привязаны',
+    /function initDayCarousel/.test(schedSrc) &&
+    /touchstart/.test(schedSrc) && /touchend/.test(schedSrc) &&
+    /initDayCarousel:\s*initDayCarousel/.test(schedSrc));
+
+  // CSS: мобильные правила карусели идут ПОСЛЕ базовых .week-board{min-width:1050px}
+  const baseWB = css.indexOf('.week-board {');
+  const mobCarousel = css.indexOf('.week-col.day-active');
+  check('S150: CSS — мобильный блок карусели после базовых стилей доски (перебивает min-width)',
+    baseWB !== -1 && mobCarousel !== -1 && mobCarousel > baseWB);
+  check('S150: CSS — на мобильном колонка видна только активная',
+    /\.week-col\s*{\s*display:\s*none/.test(css.slice(mobCarousel - 500, mobCarousel)) &&
+    /\.week-col\.day-active\s*{\s*display:\s*flex/.test(css));
+  check('S150: CSS — tbody виден только активный день',
+    /\.sched-day-body\s*{\s*display:\s*none/.test(css) &&
+    /\.sched-day-body\.day-active\s*{\s*display:\s*table-row-group/.test(css));
+  check('S150: CSS — вкладки скрыты на десктопе',
+    /\.week-day-tabs\s*\{\s*display:\s*none;\s*\}/.test(css));
+  check('S150: CSS — заглушка пустого дня только на мобильном',
+    /@media \(min-width: 768px\) {\s*\.sched-day-empty\s*{\s*display:\s*none/.test(css));
+
+  // Рендер на странице программы: 7 tbody, вкладки, активный день = сегодня
+  const progs = flattenDb(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'))).programs;
+  const withSched = progs.filter(p => !p.hidden && (p.scheduleStructured || []).length)[0];
+  if (withSched) {
+    const w = loadPage('program.html', '?id=' + withSched.id);
+    const d = w.document;
+    check('S150: страница программы — 7 tbody по дням',
+      d.querySelectorAll('.schedule-table .sched-day-body').length === 7);
+    check('S150: страница программы — вкладки дней в доске и таблице',
+      d.querySelectorAll('.week-day-tabs').length >= 2);
+    const today = (() => { const g = new Date().getDay(); return g === 0 ? 6 : g - 1; })();
+    check('S150: активен текущий день (доска)',
+      [...d.querySelectorAll('.week-col.day-active')].every(c => Number(c.getAttribute('data-day-idx')) === today) &&
+      d.querySelectorAll('.week-col.day-active').length === 1);
+    check('S150: активный tbody = текущий день (таблица)',
+      [...d.querySelectorAll('.sched-day-body.day-active')].every(t => Number(t.getAttribute('data-day-idx')) === today));
+  } else check('S150: в базе есть программа с расписанием', false);
 }
 
 /* ============================================================

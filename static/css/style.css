@@ -1200,7 +1200,9 @@ section[id] { scroll-margin-top: var(--header-h); }
 .news-photo img { border-radius: 0.5rem; }
 
 
-/* S80: Мобильный слайдер расписания по дням */
+/* S80: мобильный слайдер расписания по дням
+   (S150: правила .week-board/.week-col перенесены в блок S150 в конце файла —
+   карусель «1 день + вкладки» заменила горизонтальный скролл) */
 @media (max-width: 767px) {
   .schedule-switch {
     overflow-x: auto;
@@ -1211,28 +1213,6 @@ section[id] { scroll-margin-top: var(--header-h); }
   .schedule-switch-btn {
     flex-shrink: 0;
     white-space: nowrap;
-  }
-  .week-board {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    gap: 0;
-  }
-  .week-col {
-    flex: 0 0 auto;
-    min-width: 140px;
-    scroll-snap-align: start;
-    border-right: 1px solid var(--color-border);
-  }
-  .week-col:last-child {
-    border-right: none;
-  }
-  .week-col-header {
-    position: sticky;
-    left: 0;
-    background: var(--color-beige);
-    z-index: 1;
   }
 }
 
@@ -2589,4 +2569,92 @@ body[data-entity="trainer"] { overflow-x: clip; }
   .carousel-item img { max-height: 280px; }
   .carousel-track { gap: 0.75rem; padding: 0.25rem 0.75rem 0.75rem; }
   .carousel-btn { width: 2rem; height: 2rem; font-size: 1.25rem; }
+}
+
+/* ============================================
+   S149: мобильная шапка — заказ звонка перенесён в меню
+   ============================================ */
+@media (max-width: 767px) {
+  .header-actions .header-call-btn { display: none; }
+}
+
+/* ============================================
+   S150: мобильная карусель дней расписания
+   1 день + вкладки Пн..Вс + свайп. Десктоп не затронут:
+   вкладки скрыты, все колонки/tbody видимы как раньше.
+   Блок в конце файла — перебивает базовые min-width у .week-board/.schedule-table.
+   ============================================ */
+.week-day-tabs {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .week-day-tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+  }
+  .week-day-tab {
+    flex: 0 0 auto;
+    padding: 0.4rem 0.85rem;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .week-day-tab:hover { background: #eef2ff; color: var(--color-primary); }
+  .week-day-tab.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+
+  /* Доска: одна колонка — текущий день */
+  .week-board {
+    display: block;
+    min-width: 0;
+    overflow: visible;
+    gap: 0;
+  }
+  .week-col {
+    display: none;
+    flex: none;
+    min-width: 0;
+  }
+  .week-col.day-active {
+    display: flex;
+  }
+
+  /* Таблица: tbody одного дня */
+  .schedule-table-wrap {
+    overflow-x: visible;
+  }
+  .schedule-table {
+    min-width: 0;
+  }
+  .sched-day-body {
+    display: none;
+  }
+  .sched-day-body.day-active {
+    display: table-row-group;
+  }
+}
+
+/* Строка «Нет занятий в этот день» — видна только на мобильном
+   (в десктопной таблице пустые дни не показываем — как до S150) */
+.sched-day-empty td {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .sched-day-empty { display: none; }
 }
