@@ -17,8 +17,8 @@
 | Компонент | Что это |
 |-----------|---------|
 | `static/` | Публичный сайт: чистый HTML + ES6 JS + один `css/style.css`. Без сборки. |
-| `static/admin.html` | Админка (вход по паролю из env, смена пароля в «Главных данных») |
-| `scripts/admin-server.mjs` | Node-сервер (:3456): раздача сайта + API админки + запись `db.json` + авторегенерация статики |
+| `static/admin.html` | Админка (вход по паролю из env, смена пароля в «Главных данных»). Группы сайдбара: ДАННЫЕ · ШАБЛОНЫ (8 отдельных разделов-заготовок) · НАСТРОЙКИ САЙТА · CRM · БОТЫ · ИНТЕГРАЦИИ · СПРАВКА |
+| `scripts/admin-server.mjs` | Node-сервер (:3456): раздача сайта + API админки + запись `db.json` + авторегенерация статики. Запись пустого раздела поверх непустой базы блокируется (`validateDbData`, S140); HTML отдаётся с `Cache-Control: no-cache` |
 | `db.json` | **Источник данных** (новости, программы, тренеры, расписание, цены, направления, залы, настройки, альбом) |
 | `scripts/export-static.mjs` | Генератор `static/js/data/*.js` из `db.json` (+ sitemap.xml/robots.txt) |
 | `deploy/` | `deploy.sh`, PM2 (`ecosystem.config.js`), NGINX (`nginx-site.conf`) |
@@ -51,8 +51,8 @@
 | `npm run build-album` | Построение альбома из скачанных фото |
 | `npm run night-sync` | Синхронизация новых файлов с диска (cron в 3:00) |
 | `npm run parse-price` | Парсинг прайса (.doc) → `settings.priceItems`/`discounts` |
-| `npm run test-menu` | Тесты меню (26 проверок) |
-| `npm run test-static` | Смоук-тесты статики (jsdom) |
+| `npm run test-menu` | Тесты меню (27 проверок) |
+| `npm run test-static` | Смоук-тесты статики (jsdom, 584 проверки) |
 | `npm run pull-prod-news` | Стягивание новостей с боевого прода |
 | `npm run sync:from-server` | Синхронизация данных с сервера |
 
@@ -83,7 +83,7 @@ cd /home/cfr_balloo/sites/cfrsite && ./deploy/deploy.sh
 }
 ```
 
-- `db.json` — **коммитится** (176 КБ), на сервере является источником истины (деплой его сохраняет).
+- `db.json` — **коммитится** (~460 КБ), на сервере является источником истины (деплой его сохраняет).
 - Бэкапы — в `backups/` (в `.gitignore`), правила — `AGENTS.md` → «💾 База данных».
 
 ## 🔐 Секреты
