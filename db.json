@@ -11205,7 +11205,7 @@
       "name": "Тест Администратор",
       "role": "Администратор",
       "image": "uploads/1770874476663.jpg",
-      "hidden": false
+      "hidden": true
     }
   ],
   "additionalContacts": {
