@@ -67,3 +67,4 @@ trash/
 
 # Свалка тикетов и мультитикетов
 tickets/trash/
+logs/

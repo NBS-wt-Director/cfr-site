@@ -357,7 +357,7 @@ const core = {
     })()
   },
 
-  // S18: с лёгким срезом добавляем slug (транслит имени) для URL-ссылок.
+  // S18: slug = имя «как записано» (кириллицей) — URL-ссылки program/trainer.html.
   navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name) })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '', slug: slugify(t.name) })),
 
