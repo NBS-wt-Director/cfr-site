@@ -1,11 +1,8 @@
 # S151 — Плитки расписания: действия по клику + отдельная база заявок обратной связи
 
-> **Статус:** 🟡 В работе (сессия 2026-11-10). Выполнено: export-static.mjs (hasAlbum в navPrograms,
-> programHasAlbum в слотах scheduleTable), schedule-ui.js (чипы → .week-chip-wrap с data-target/data-album,
-> chip-menu из 3 кнопок, initChipMenu с делегированием, Escape, openCallModal(reason)).
-> Осталось: modal.js (POST /api/admin/lead-create), admin-server.mjs (leads.json + lead-create/get-leads/save-leads + анти-спам),
-> admin.html (CRM «Вызовы форм обратной связи» со статусами), CSS (.week-chip.chip-open / .chip-menu),
-> entity.js (id="album"), бамп ?v=40, тесты test-static.mjs, static:export, push.
+> **Статус:** ✅ Готов к закрытию (сессия 2026-11-10). Все шаги выполнены, 39 тестов проходят.
+> Коммиты: b806acb → cbcff5a → fff6abe → 68e87e1 → ab76cfd → 39f2e67.
+> Ждёт деплоя на прод (git pull + npm ci + static:export + pm2 restart).
 
 ## Постановка (слова пользователя)
 
