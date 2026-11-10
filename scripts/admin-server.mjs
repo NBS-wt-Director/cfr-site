@@ -2959,6 +2959,135 @@ async function handleSendReminder(req, res) {
   }
 
   // ============================================
+  // S151: Leads (заявки «Вызовы форм обратной связи»)
+  // ============================================
+  const LEADS_DB_PATH = path.join(root, 'leads.json');
+  const LEADS_STATUS_WHITELIST = [
+    'Новая', 'Звонок', 'Объяснено',
+    'Клиент_пришёл_на_первую', 'Клиент_ходит'
+  ];
+  // Анти-спам: один IP → максимум 1 запись в период 30 секунд
+  const LEADS_THROTTLE = {};
+  const LEADS_THROTTLE_MS = 30 * 1000;
+
+  function readLeads() {
+    try {
+      const raw = JSON.parse(fs.readFileSync(LEADS_DB_PATH, 'utf-8'));
+      return Array.isArray(raw.leads) ? raw.leads : [];
+    } catch { return []; }
+  }
+
+  function writeLeads(list) {
+    const dir = path.join(root, 'backups');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(LEADS_DB_PATH, JSON.stringify({ leads: list }, null, 2), 'utf-8');
+  }
+
+  function backupLeads() {
+    try {
+      const ts = Date.now();
+      const backupPath = path.join(root, 'backups', `leads.json.backup.${ts}`);
+      fs.copyFileSync(LEADS_DB_PATH, backupPath);
+    } catch { /* бэкап необязателен */ }
+  }
+
+  function getClientIp(req) {
+    const forwarded = req.headers['x-forwarded-for'];
+    if (typeof forwarded === 'string') return forwarded.split(',')[0].trim();
+    return req.socket.remoteAddress || '';
+  }
+
+  async function handleCreateLead(req, res) {
+    try {
+      const ip = getClientIp(req);
+      const now = Date.now();
+      // Анти-спам: один IP — 1 запись за 30 секунд
+      if (LEADS_THROTTLE[ip] && now - LEADS_THROTTLE[ip] < LEADS_THROTTLE_MS) {
+        return sendJSON(res, 429, { error: 'Слишком часто. Повторите через 30 секунд.' });
+      }
+      LEADS_THROTTLE[ip] = now;
+
+      const body = await readBody(req);
+      if (!body) return sendJSON(res, 400, { error: 'Нет данных' });
+
+      const name = String(body.name || '').trim().slice(0, 120);
+      const phone = String(body.phone || '').trim().slice(0, 60);
+      if (!name || !phone) {
+        return sendJSON(res, 400, { error: 'Имя и телефон обязательны' });
+      }
+
+      const lead = {
+        id: now,
+        ts: new Date().toISOString(),
+        name,
+        phone,
+        email: String(body.email || '').trim().slice(0, 200),
+        message: String(body.message || '').trim().slice(0, 2000),
+        reason: String(body.reason || '').trim().slice(0, 500),
+        page: String(body.page || '').trim().slice(0, 120),
+        ua: String(body.ua || '').trim().slice(0, 500),
+        status: 'Новая'
+      };
+
+      const leads = readLeads();
+      leads.unshift(lead);
+      writeLeads(leads);
+
+      console.log(`📣 Новая заявка от "${lead.name}" (${lead.page})`);
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка lead-create:', err.message);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  async function handleGetLeads(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const leads = readLeads();
+    // Новые первыми
+    const sorted = leads.slice().sort((a, b) => {
+      const order = LEADS_STATUS_WHITELIST.indexOf(a.status) - LEADS_STATUS_WHITELIST.indexOf(b.status);
+      if (order !== 0) return order;
+      return (b.id || 0) - (a.id || 0);
+    });
+    sendJSON(res, 200, { leads: sorted });
+  }
+
+  async function handleSaveLeads(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    const body = await readBody(req);
+    const updated = body?.leads;
+    if (!Array.isArray(updated)) {
+      return sendJSON(res, 400, { error: 'Нет списка заявок' });
+    }
+    try {
+      const leads = readLeads();
+      const map = new Map(leads.map(l => [l.id, l]));
+      for (const item of updated) {
+        const lead = map.get(Number(item.id));
+        if (!lead) continue;
+        // Whitelist статусов
+        const st = String(item.status || '').trim();
+        if (LEADS_STATUS_WHITELIST.includes(st)) {
+          lead.status = st;
+        }
+      }
+      backupLeads();
+      writeLeads(leads);
+      sendJSON(res, 200, { ok: true });
+    } catch (err) {
+      console.error('❌ Ошибка save-leads:', err.message);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ============================================
   // Справка для администраторов (S8)
   // ============================================
   const DEFAULT_HELP_SECTIONS = [
@@ -3380,6 +3509,17 @@ const server = http.createServer(async (req, res) => {
   // S141: журнал ошибок 404 (без авторизации, только запись)
   if (pathname === '/api/admin/log-404' && method === 'POST') {
     return handleLog404(req, res);
+  }
+
+  // S151: заявки с форм обратного звонка (lead-create — публичный, как log-404)
+  if (pathname === '/api/admin/lead-create' && method === 'POST') {
+    return handleCreateLead(req, res);
+  }
+  if (pathname === '/api/admin/get-leads' && method === 'POST') {
+    return handleGetLeads(req, res);
+  }
+  if (pathname === '/api/admin/save-leads' && method === 'POST') {
+    return handleSaveLeads(req, res);
   }
 
   // Экспорт БД (S6)
