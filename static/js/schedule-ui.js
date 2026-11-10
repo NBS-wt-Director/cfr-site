@@ -104,9 +104,11 @@
   /**
    * Недельная доска: 7 колонок (Пн–Вс), каждая тренировка — овальный чип
    * с иконкой режима, временем, названием программы, залом и тренером.
-   * slots: [{ day, time, hall, mode, program, programId, trainer }]
+   * slots: [{ day, time, hall, mode, program, programId, programSlug, programHasAlbum, trainer }]
+   * selfProgram (опц., S151): { id, slug, hasAlbum } — для страниц, где слоты
+   *   самой программы (program.html): чип ведёт на неё же.
    */
-  function weekBoard(slots) {
+  function weekBoard(slots, selfProgram) {
     var byDay = {};
     sortSlots(slots).forEach(function (s) {
       (byDay[s.day] = byDay[s.day] || []).push(s);
@@ -119,11 +121,36 @@
         // не рендерился нигде — на вопрос «где проходят занятия» сайт не отвечал.
         var place = s.place ? '<span class="week-chip-place">📍 ' + esc(s.place) + '</span>' : '';
         var trainer = s.trainer ? '<span class="week-chip-trainer">🧑‍🏫 ' + esc(s.trainer) + '</span>' : '';
-        var href = s.programId != null ? 'program.html?id=' + (s.programSlug || s.programId) : '#';
-        return '<a class="week-chip mode-' + m + '" href="' + href + '" title="' + esc(s.program || '') + '">' +
+        // S151: ссылок-переходов у чипа больше нет — клик открывает меню (см. chip-menu).
+        // Данные цели — в data-атрибутах; если программы нет (слот вне программы) —
+        // href остаётся и чип работает как раньше (прямая ссылка).
+        var pid = s.programId != null ? s.programId
+          : (selfProgram && selfProgram.id != null ? selfProgram.id : null);
+        var pslug = s.programSlug || (selfProgram && selfProgram.slug) || '';
+        var phasAlbum = s.programHasAlbum != null ? !!s.programHasAlbum
+          : (selfProgram ? !!selfProgram.hasAlbum : false);
+        if (pid == null && !pslug) {
+          return '<div class="week-chip-wrap"><a class="week-chip mode-' + m + '" href="#">' +
+            '<span class="week-chip-mode">' + MODES[m].icon + '</span>' +
+            '<span class="week-chip-time">' + esc(s.time) + '</span>' +
+            '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</a></div>';
+        }
+        var target = 'program.html?id=' + encodeURIComponent(pslug || pid);
+        var callReason = esc('Расписание: ' + (s.day || '') + ' ' + (s.time || '') + ' — ' + (s.program || ''));
+        return '<div class="week-chip-wrap" data-target="' + esc(target) + '"' +
+          (phasAlbum ? ' data-album="1"' : '') + '>' +
+          '<button type="button" class="week-chip mode-' + m + '" aria-expanded="false" title="' + esc(s.program || '') + '">' +
           '<span class="week-chip-mode">' + MODES[m].icon + '</span>' +
           '<span class="week-chip-time">' + esc(s.time) + '</span>' +
-          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</a>';
+          '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</button>' +
+          '<div class="chip-menu" hidden>' +
+            '<a class="chip-menu-btn chip-menu-more" href="' + esc(target) + '">Подробнее</a>' +
+            (phasAlbum
+              ? '<a class="chip-menu-btn chip-menu-view" href="' + esc(target) + '#album">Посмотреть</a>'
+              : '<a class="chip-menu-btn chip-menu-view" hidden></a>') +
+            '<button type="button" class="chip-menu-btn chip-menu-signup" data-call="' + callReason + '">Записаться</button>' +
+          '</div>' +
+          '</div>';
       }).join('');
       return '<div class="week-col' + (di === todayIndex() ? ' day-active' : '') + '" data-day-idx="' + di + '">' +
         '<div class="week-col-title">' + day + '</div>' +
@@ -188,7 +215,7 @@
      а главная/тренер/направление — недельную доску (три вида одного объекта).
      Выбор сохраняется в localStorage (ключ передаётся вызывающим).
      ============================================ */
-  function boardOrTable(slots, withProgram, storeKey) {
+  function boardOrTable(slots, withProgram, storeKey, selfProgram) {
     var key = storeKey || 'schedule-entity-view';
     var view = 'board';
     try { var v = localStorage.getItem(key); if (v === 'table' || v === 'board') view = v; } catch (e) {}
@@ -203,10 +230,72 @@
 
     return '<div class="schedule-switched" data-store="' + esc(key) + '" data-view="' + view + '">' +
       switchHtml +
-      '<div class="schedule-view schedule-view-board"' + (view === 'board' ? '' : ' hidden') + '>' + weekBoard(slots) + '</div>' +
+      '<div class="schedule-view schedule-view-board"' + (view === 'board' ? '' : ' hidden') + '>' + weekBoard(slots, selfProgram) + '</div>' +
       '<div class="schedule-view schedule-view-table"' + (view === 'table' ? '' : ' hidden') + '>' + table(slots, withProgram) + '</div>' +
     '</div>';
   }
+
+  /* ============================================
+     S151: меню действий чипа расписания
+     Клик по чипу: чип чуть увеличивается (класс chip-open) и под ним
+     появляется меню: «Подробнее» / «Посмотреть» (если есть альбом) /
+     «Записаться» (форма звонка; причина = тренировка + страница).
+     Делегирование на document — работает на любой странице расписания.
+     ============================================ */
+  var chipMenuBound = false;
+  function closeAllChipMenus(except) {
+    document.querySelectorAll('.week-chip-wrap.chip-open').forEach(function (w) {
+      if (w === except) return;
+      w.classList.remove('chip-open');
+      var menu = w.querySelector('.chip-menu');
+      if (menu) menu.hidden = true;
+      var chip = w.querySelector('.week-chip');
+      if (chip) chip.setAttribute('aria-expanded', 'false');
+    });
+  }
+  function initChipMenu() {
+    if (chipMenuBound) return;
+    chipMenuBound = true;
+
+    document.addEventListener('click', function (e) {
+      // 1) Кнопка «Записаться» — форма обратной связи с причиной-тренировкой
+      var signup = e.target.closest('.chip-menu-signup');
+      if (signup) {
+        e.preventDefault();
+        var reason = signup.getAttribute('data-call') || 'Расписание';
+        if (window.openCallModal) window.openCallModal(reason);
+        closeAllChipMenus(null);
+        return;
+      }
+      // 2) Кнопки-ссылки меню («Подробнее»/«Посмотреть») — штатный переход,
+      //    меню закрываем, чтобы не мешало следующей странице
+      var link = e.target.closest('.chip-menu-btn');
+      if (link) { closeAllChipMenus(null); return; }
+      // 3) Клик по чипу — открыть/закрыть меню
+      var chip = e.target.closest('.week-chip');
+      if (chip) {
+        var wrap = chip.closest('.week-chip-wrap');
+        if (!wrap) return;
+        var target = wrap.getAttribute('data-target');
+        if (!target) return; // чип без цели — прямая ссылка как раньше
+        e.preventDefault();
+        var wasOpen = wrap.classList.contains('chip-open');
+        closeAllChipMenus(wrap);
+        wrap.classList.toggle('chip-open', !wasOpen);
+        var menu = wrap.querySelector('.chip-menu');
+        if (menu) menu.hidden = wasOpen;
+        chip.setAttribute('aria-expanded', String(!wasOpen));
+        return;
+      }
+      // 4) Клик мимо — закрыть
+      closeAllChipMenus(null);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAllChipMenus(null);
+    });
+  }
+  initChipMenu();
 
   // Подвязка переключения после вставки HTML
   function initSwitches(root) {
@@ -315,6 +404,7 @@
     boardOrTable: boardOrTable,
     initSwitches: initSwitches,
     initDayCarousel: initDayCarousel,
+    initChipMenu: initChipMenu,
     modeBadge: modeBadge
   };
 

@@ -358,7 +358,8 @@ const core = {
   },
 
   // S18: slug = имя «как записано» (кириллицей) — URL-ссылки program/trainer.html.
-  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name) })),
+  // S151: hasAlbum — есть ли у программы фотоальбом (кнопка «Посмотреть» в чипе расписания).
+  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name), hasAlbum: (p.photoAlbum || []).length > 0 })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '', slug: slugify(t.name) })),
 
   // S23: лёгкий срез направлений для меню и группировки на главной
@@ -617,6 +618,7 @@ const modules = {
           program: p.name || '',
           programId: p.id,
           programSlug: slugify(p.name),  // S18
+          programHasAlbum: (p.photoAlbum || []).length > 0,  // S151: кнопка «Посмотреть»
           day: s.day || '',
           time: s.time || '',
           place: s.place || '',
