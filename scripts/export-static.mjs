@@ -282,6 +282,9 @@ const core = {
     title2: typeof db.siteSettings?.title2 === 'string' ? db.siteSettings.title2 : 'Центр Функционального Развития',
     // S133: хост для canonical/og (пусто → дефолт https://центр-фр.рф в seo.js)
     baseUrl: typeof db.siteSettings?.baseUrl === 'string' ? db.siteSettings.baseUrl.trim() : '',
+    // S152: текст подтверждения после отправки формы обратного звонка
+    callSuccessText: typeof db.siteSettings?.callSuccessText === 'string' && db.siteSettings.callSuccessText.trim()
+      ? db.siteSettings.callSuccessText.trim() : '',
     // logo: путь uploads/... → '/uploads/...'; data: URI (наследие) → как есть
     logo: (function () {
       const l = typeof db.siteSettings?.logo === 'string' ? db.siteSettings.logo.trim() : '';

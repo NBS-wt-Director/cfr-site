@@ -66,10 +66,10 @@
             </button>
           </form>
 
-          <div class="modal-success" id="callSuccess" hidden>
+            <div class="modal-success" id="callSuccess" hidden>
             <div class="modal-success-icon">✅</div>
             <h3>Заявка отправлена!</h3>
-            <p>Мы перезвоним вам в течение 15 минут</p>
+            <p id="callSuccessText"></p>
           </div>
         </div>
       </div>
