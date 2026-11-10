@@ -2681,7 +2681,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S155: modal.js — buildReason', modalSrc.includes('buildReason'));
   check('S155: modal.js — isGeneric', modalSrc.includes('isGeneric'));
   check('S155: modal.js — pageName с URLSearchParams', modalSrc.includes('URLSearchParams'));
-  check('S155: modal.js — ?v=43', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=43'));
+  check('S155: modal.js — ?v=44', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=44'));
 
   // 3. export-static.mjs: hasAlbum / programHasAlbum
   const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
@@ -2718,7 +2718,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
   // 8. Бамп кэша: в index.html v=43 (S155)
-  check('S151/S155: index.html — ?v=43', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=43'));
+  check('S151/S155: index.html — ?v=44', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=44'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -2845,6 +2845,129 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S156: toggleGroup — через .grp-arrow', tgMatch && tgMatch[0].includes("querySelector('.grp-arrow')"));
   check('S156: openGroupForSection — через .grp-arrow',
     adminSrc.includes("header.querySelector('.grp-arrow')"));
+}
+
+// ── S157: меню чипа расписания на страницах программы и тренера ──
+{
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+  const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'schedule-ui.js'), 'utf-8');
+
+  // Причина бага: на program.html слоты брались из p.scheduleStructured и теряли
+  // programId/programSlug → weekBoard рендерил чип как <a href="#"> без .chip-menu.
+  // Лечение: selfProgram прокидывается entity.js → scheduleView → boardOrTable → weekBoard.
+  check('S157: scheduleView принимает selfProgram',
+    /function scheduleView\(slots, withProgram, storeKey, selfProgram\)/.test(entitySrc));
+  check('S157: boardOrTable вызывается с selfProgram',
+    /boardOrTable\(slots, withProgram, storeKey, selfProgram\)/.test(entitySrc));
+  check('S157: fallback weekBoard тоже с selfProgram',
+    /weekBoard\(slots, selfProgram\)/.test(entitySrc));
+  check('S157: scheduleBlock принимает selfProgram',
+    /function scheduleBlock\(slots, storeKey, selfProgram\)/.test(entitySrc));
+  check('S157: страница программы передаёт selfProgram {id, slug, hasAlbum}',
+    /scheduleBlock\(p\.scheduleStructured,[^)]*\{[\s\S]{0,160}id:\s*p\.id[\s\S]{0,80}slug:\s*p\.slug[\s\S]{0,120}hasAlbum/.test(entitySrc));
+  // Слоты тренера должны нести slug и флаг альбома программы (иначе «Посмотреть» не появится)
+  check('S157: trainerSlots несёт programSlug', /programSlug:\s*p\.slug/.test(entitySrc));
+  check('S157: trainerSlots несёт programHasAlbum', /programHasAlbum:.*p\.photoAlbum/.test(entitySrc));
+  check('S157: boardOrTable пробрасывает selfProgram в weekBoard',
+    /weekBoard\(slots, selfProgram\)/.test(schedSrc));
+
+  // Функционально: рендер program.html по реальным данным — чип обязан быть кнопкой с меню
+  const programsJs = fs.readFileSync(path.join(staticDir, 'js', 'data', 'programs.js'), 'utf-8');
+  const trainersJs = fs.readFileSync(path.join(staticDir, 'js', 'data', 'trainers.js'), 'utf-8');
+  const stubs = [
+    `window.MD={render:function(t){return '<p>'+String(t||'')+'</p>'},plainText:function(t){return String(t||'')}};`,
+    `window.Tiles={grid:function(h){return '<div class="tiles">'+h+'</div>'},` +
+      `program:function(p){return '<a href="program.html?id='+p.id+'">'+p.name+'</a>'},` +
+      `trainer:function(t){return '<a href="trainer.html?id='+t.id+'">'+t.name+'</a>'}};`,
+    `window.Panels={directionName:function(d){return d.name},categoryName:function(c){return c||''}};`,
+    `window.PricesUI={block:function(){return ''},byEntity:function(){return []}};`
+  ];
+
+  function entityWindow(entity, id) {
+    const dom = new JSDOM(
+      `<!doctype html><html><body data-entity="${entity}"><div id="entity"></div></body></html>`,
+      { url: `http://localhost/${entity}.html?id=${encodeURIComponent(id)}`, runScripts: 'outside-only', pretendToBeVisual: true }
+    );
+    const w = dom.window;
+    w.matchMedia = () => ({ matches: false, addListener() {}, addEventListener() {}, removeEventListener() {} });
+    w.eval(programsJs);
+    w.eval(trainersJs);
+    for (const s of stubs) w.eval(s);
+    w.eval(schedSrc);
+    w.eval(entitySrc);
+    w.document.dispatchEvent(new w.Event('DOMContentLoaded', { bubbles: true }));
+    return w;
+  }
+
+  // программа с расписанием и альбомом — полный набор кнопок меню
+  const probe = entityWindow('program', 'x');
+  const progs = (probe.SITE_DATA || {}).programs || [];
+  const target = progs.filter(p => (p.scheduleStructured || []).length)
+    .sort((a, b) => ((b.photoAlbum || []).length > 0 ? 1 : 0) - ((a.photoAlbum || []).length > 0 ? 1 : 0))[0];
+
+  if (!target) {
+    check('S157: в данных есть программа с расписанием', false, 'нет ни одной — проверить экспорт');
+  } else {
+    const w = entityWindow('program', target.slug || target.id);
+    const d = w.document;
+    const wraps = d.querySelectorAll('.week-chip-wrap');
+    const btns = d.querySelectorAll('button.week-chip');
+    const links = d.querySelectorAll('a.week-chip');
+    const menus = d.querySelectorAll('.chip-menu');
+    const more = d.querySelectorAll('.chip-menu-more');
+    const signup = d.querySelectorAll('.chip-menu-signup');
+
+    check('S157: program.html — чипы расписания отрисованы', wraps.length > 0, `wrap=${wraps.length}`);
+    check('S157: program.html — чип это <button>, не <a href="#">',
+      btns.length === wraps.length && btns.length > 0 && links.length === 0, `button=${btns.length} a=${links.length}`);
+    check('S157: program.html — у каждого чипа есть .chip-menu',
+      menus.length === wraps.length && menus.length > 0, `menu=${menus.length}/${wraps.length}`);
+    check('S157: program.html — «Подробнее» ведёт на эту же программу',
+      more.length === wraps.length && Array.from(more).every(b =>
+        b.getAttribute('href') === 'program.html?id=' + encodeURIComponent(String(target.slug || target.id))),
+      `href=${more[0] && more[0].getAttribute('href')}`);
+    check('S157: program.html — «Записаться» с точной причиной',
+      signup.length === wraps.length && signup.length > 0 && /расписании/.test(signup[0].getAttribute('data-call') || ''),
+      `call=${String(signup[0] && signup[0].getAttribute('data-call')).slice(0, 60)}`);
+
+    // клик по чипу открывает меню и переносит его в body (иначе обрезается overflow)
+    if (btns.length) {
+      const wrap0 = btns[0].closest('.week-chip-wrap');
+      btns[0].click();
+      check('S157: program.html — клик открыл меню', wrap0.classList.contains('chip-open'));
+      check('S157: program.html — меню перенесено в body',
+        wrap0.querySelector('.chip-menu') === null && d.body.querySelectorAll('.chip-menu').length === 1);
+
+      let reason = null;
+      w.openCallModal = (r) => { reason = r; };
+      const sb = d.body.querySelector('.chip-menu-signup');
+      if (sb) sb.click();
+      check('S157: program.html — «Записаться» вызывает openCallModal', !!reason && /расписании/.test(reason));
+      check('S157: program.html — после вызова меню закрыто',
+        d.querySelectorAll('.week-chip-wrap.chip-open').length === 0);
+    }
+
+    if ((target.photoAlbum || []).length) {
+      check('S157: program.html — «Посмотреть» активна при альбоме',
+        d.querySelectorAll('.chip-menu-view:not([hidden])').length === wraps.length,
+        `view=${d.querySelectorAll('.chip-menu-view:not([hidden])').length}`);
+    }
+  }
+
+  // страница тренера: «Мои тренировки» тоже обязаны давать меню
+  const tp = progs.map(p => (p.trainers || [])[0]).filter(x => x && x.id != null)[0];
+  if (tp) {
+    const w = entityWindow('trainer', tp.id);
+    const btns = w.document.querySelectorAll('button.week-chip');
+    const links = w.document.querySelectorAll('a.week-chip');
+    const menus = w.document.querySelectorAll('.chip-menu');
+    const more = w.document.querySelectorAll('.chip-menu-more');
+    check('S157: trainer.html — чипы это <button>', btns.length > 0 && links.length === 0, `button=${btns.length}`);
+    check('S157: trainer.html — меню у каждого чипа', btns.length > 0 && menus.length === btns.length, `menu=${menus.length}`);
+    check('S157: trainer.html — «Подробнее» ведёт на программу (slug)',
+      more.length > 0 && /^program\.html\?id=/.test(more[0].getAttribute('href') || ''),
+      `href=${more[0] && more[0].getAttribute('href')}`);
+  }
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);

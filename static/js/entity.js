@@ -66,12 +66,12 @@
   // S132 п.4: расписание — тот же компонент, что на главной/у тренера/направления,
   // с переключателем «Доска/Таблица» (общий helper ScheduleUI.boardOrTable).
   // Если ScheduleUI не загружен — остаётся прежняя компактная таблица.
-  function scheduleView(slots, withProgram, storeKey) {
+  function scheduleView(slots, withProgram, storeKey, selfProgram) {
     if (!window.ScheduleUI) return '';
     if (window.ScheduleUI.boardOrTable) {
-      return window.ScheduleUI.boardOrTable(slots, withProgram, storeKey);
+      return window.ScheduleUI.boardOrTable(slots, withProgram, storeKey, selfProgram);
     }
-    return window.ScheduleUI.weekBoard(slots);
+    return window.ScheduleUI.weekBoard(slots, selfProgram);
   }
 
   // Блок «Ведёт» на странице программы.
@@ -177,13 +177,13 @@
   }
 
   // Блок «Расписание» на странице программы (S132 п.4 — доска с переключателем)
-  function scheduleBlock(slots, storeKey) {
+  function scheduleBlock(slots, storeKey, selfProgram) {
     if (!slots || !slots.length) return '';
     // Обогащаем слоты hall/mode/trainer/place (trainer уже в exported данных)
     var enriched = slots.map(function (s) {
       return { day: s.day, time: s.time, hall: s.hall, mode: s.mode, place: s.place, trainer: s.trainer || '' };
     });
-    return '<h2 class="entity-subtitle">📅 Расписание</h2>' + scheduleView(enriched, false, storeKey);
+    return '<h2 class="entity-subtitle">📅 Расписание</h2>' + scheduleView(enriched, false, storeKey, selfProgram);
   }
 
   /* ============================================
@@ -247,6 +247,9 @@
           // поэтому «где проходят занятия» не показывал никто
           place: s.place,
           program: p.name, programId: p.id,
+          // S151: slug + флаг альбома — нужны меню чипа («Подробнее»/«Посмотреть»)
+          programSlug: p.slug,
+          programHasAlbum: !!(p.photoAlbum && p.photoAlbum.length),
           trainer: s.trainer || ''
         });
       });
@@ -394,7 +397,12 @@
       dirLink +
       '<div class="entity-text">' + md(p.description) + '</div>' +
       trainersBlock(p.trainers) +
-      scheduleBlock(p.scheduleStructured, 'program-view-' + p.id) +
+      // S151: selfProgram — чтобы чипы расписания на странице программы открывали
+      // меню («Подробнее» / «Посмотреть» / «Записаться»); без него слоты теряют
+      // programId/programSlug и чип остаётся пустой ссылкой.
+      scheduleBlock(p.scheduleStructured, 'program-view-' + p.id, {
+        id: p.id, slug: p.slug, hasAlbum: !!(p.photoAlbum && p.photoAlbum.length)
+      }) +
       workoutsBlock(p.workouts) +
       trainingsBlock(p.trainings) +
       reviewsBlock(p.reviews) +
