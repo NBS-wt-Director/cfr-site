@@ -1,16 +1,10 @@
 /**
  * Форма обратного звонка.
- * Логика отправки идентична Next.js CallModal: POST /api/send-email
- * Тело: { name, phone, email, message, reason }
- *
- * S104: причина вызова НЕ показывается пользователю. Она собирается единообразно
- * («<Место> — <Страница>. Есть вопрос, но, возможно без конкретики») и уходит
- * только в письмо/заявку — администратору понятно, откуда нажали.
- *
+ * Логика отправки: POST /api/admin/lead-create → запись в leads.json.
  * Если API недоступен (чистый статический предпросмотр) — fallback на mailto.
  */
 (function () {
-  const API_ENDPOINT = '/api/send-email';
+  const API_ENDPOINT = '/api/admin/lead-create';
   const FALLBACK_EMAIL = 'centr-fr@yandex.ru';
 
   let currentReason = 'Общий запрос';
@@ -126,7 +120,9 @@
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
       message: form.message.value.trim(),
-      reason: currentReason
+      reason: currentReason,
+      page: pageName(),
+      ua: navigator.userAgent
     };
 
     btn.disabled = true;
