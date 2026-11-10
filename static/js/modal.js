@@ -9,9 +9,8 @@
 
   let currentReason = 'Общий запрос';
 
-  // Человекочитаемое имя текущей страницы (по файлу), для причины у админа.
-  // S127 (Р1): имена разделов — из справочника settings.sectionNames.
-  // ⚠️ Эти строки уходят в причину звонка в письме (S104) — менять осознанно.
+  // S155: человекочитаемое имя текущей страницы с точными деталями (имя сущности).
+  // ⚠️ Строки уходят в причину звонка в письме (S104) — менять осознанно.
   function pageName() {
     var sec = function (id, fb) {
       return (window.Layout && window.Layout.sectionName(id, fb)) || fb;
@@ -29,13 +28,52 @@
       'crm.html': 'CRM',
       'lk.html': 'Личный кабинет'
     };
-    return map[file] || (document.title ? document.title.trim() : 'Сайт');
+    var base = map[file] || (document.title ? document.title.trim() : 'Сайт');
+
+    // S155: добавляем имя сущности (тренер/программа/направление/новость) по ?id=.
+    var data = (window.SITE_DATA || {});
+    var rawId = new URLSearchParams(location.search).get('id');
+    if (!rawId) return base;
+    var pairs = [
+      { list: 'trainers', label: 'Тренер' },
+      { list: 'programs', label: 'Программа' },
+      { list: 'directions', label: 'Направление' },
+      { list: 'news',     label: 'Новость' }
+    ];
+    for (var i = 0; i < pairs.length; i++) {
+      var p = pairs[i];
+      var items = (data[p.list] || []);
+      var found = null;
+      for (var j = 0; j < items.length; j++) {
+        var sl = String(items[j].slug || items[j].id);
+        if (sl === rawId || sl === decodeURIComponent(rawId)) {
+          found = items[j];
+          break;
+        }
+        // S155: также ищем по numeric id (программа/тренер загружены по ?id=N)
+        if (items[j].id != null && String(items[j].id) === rawId) {
+          found = items[j];
+          break;
+        }
+      }
+      if (found) return p.label + ': ' + found.name;
+    }
+    return base + ' (id=' + rawId + ')';
   }
 
-  // S104: единый формат причины — место + страница + нейтральная формулировка.
+  // S155: единый формат причины.
+  // Для кнопок в шапке/подвале/плавающей — «Есть вопрос…»,
+  // для кнопок на страницах сущностей — точное место без «шума».
   function buildReason(place) {
     var p = (place && String(place).trim()) || 'Сайт';
-    return p + ' — ' + pageName() + '. Есть вопрос, но, возможно без конкретики';
+    var page = pageName();
+    // Generic call points — кнопка не привязана к сущности
+    var isGeneric = /^(Кнопка в хедере|Кнопка в мобильном меню|Шапка(?: \(мобильное меню\))?|Подвал|Плавающая кнопка)/.test(p);
+    if (isGeneric) {
+      return p + '. Есть вопрос, но, возможно без конкретики (страница: ' + page + ')';
+    }
+    // Конкретное место — пишем точно
+    return p + ' (страница: ' + page + ')';
   }
 
   function buildModal() {

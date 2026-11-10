@@ -122,6 +122,25 @@ function mergeDict(name, serverObj, repoObj) {
   if (!serverObj || typeof serverObj !== 'object' || Array.isArray(serverObj)) return repoObj ?? serverObj;
   if (!repoObj || typeof repoObj !== 'object' || Array.isArray(repoObj)) return repoObj ?? serverObj;
   const out = { ...serverObj, ...repoObj };   // репозиторий выигрывает по общим ключам
+  // S155: секреты — серверный источник истины ВСЕГДА (кроме случая, когда на
+  // сервере пусто, а в репо значение есть). Пароль SMTP вводится админом через
+  // UI только на проде; любое репозиторное значение (пустое, старое или из
+  // локального теста) не имеет права его затирать — иначе каждый деплой ломает
+  // отправку писем (корень бага S155: «тестовое идёт, из формы — нет»).
+  const SECRET_KEY_RE = /pass|secret|token|password/i;
+  const protectedKeys = [];
+  for (const k of Object.keys(repoObj)) {
+    if (!SECRET_KEY_RE.test(k)) continue;
+    const rv = repoObj[k], sv = serverObj[k];
+    if (typeof sv === 'string' && sv !== '' && sv !== rv) {
+      out[k] = sv;
+      protectedKeys.push(k);
+    }
+  }
+  if (protectedKeys.length) {
+    report.push([name, Object.keys(serverObj).length, Object.keys(repoObj).length,
+      Object.keys(out).length, `🔒 серверный секрет сохранён (сервер — источник истины): ${protectedKeys.join(', ')}`]);
+  }
   const onlyServer = Object.keys(serverObj).filter(k => !(k in repoObj));
   if (onlyServer.length) {
     report.push([name, Object.keys(serverObj).length, Object.keys(repoObj).length,

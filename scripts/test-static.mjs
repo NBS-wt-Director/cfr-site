@@ -2673,11 +2673,15 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: schedule-ui.js — якорь #album у кнопки Посмотреть', schedSrc.includes('#album'));
   check('S151: schedule-ui.js — openCallModal(reason) при Записаться', schedSrc.includes('openCallModal'));
 
-  // 2. modal.js: эндпоинт lead-create + page/ua
+  // 2. modal.js: эндпоинт lead-create + page/ua + S155: buildReason/pageName
   const modalSrc = fs.readFileSync(path.join(staticDir, 'js', 'modal.js'), 'utf-8');
   check('S151: modal.js — POST /api/admin/lead-create', modalSrc.includes('/api/admin/lead-create'));
   check('S151: modal.js — page в payload', modalSrc.includes('page:'));
   check('S151: modal.js — ua в payload', modalSrc.includes('ua:'));
+  check('S155: modal.js — buildReason', modalSrc.includes('buildReason'));
+  check('S155: modal.js — isGeneric', modalSrc.includes('isGeneric'));
+  check('S155: modal.js — pageName с URLSearchParams', modalSrc.includes('URLSearchParams'));
+  check('S155: modal.js — ?v=43', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=43'));
 
   // 3. export-static.mjs: hasAlbum / programHasAlbum
   const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
@@ -2713,8 +2717,8 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu', cssSrc.includes('.chip-menu'));
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
-  // 8. Бамп кэша: в index.html v=42
-  check('S151: index.html — ?v=42', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=42'));
+  // 8. Бамп кэша: в index.html v=43 (S155)
+  check('S151/S155: index.html — ?v=43', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=43'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -2751,6 +2755,96 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // 4. admin-server.mjs — help section
   const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
   check('S152: admin-server.mjs — help integrations-dance', serverSrc.includes("id: 'integrations-dance'"));
+}
+
+// ── S155: письмо о заявке (формат + фильтр Яндекса + защита smtpPass) ──
+{
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  // Письмо: from = «"<smtpUser>" <smtpUser>» — проходит фильтр Яндекса
+  check('S155: письмо — from как в фильтре', /from:\s*'"'\s*\+\s*smtpUser\s*\+\s*'" <'/.test(serverSrc));
+  // Тема начинается с «Заявка:» (фильтр «Тема содержит Заявка:»)
+  check('S155: письмо — тема содержит "Заявка:"', /subject\s*=\s*'[^']*Заявка:/.test(serverSrc));
+  // UA убран из письма (остался только в leads.json)
+  const notifFn = serverSrc.slice(serverSrc.indexOf('async function sendLeadNotification'));
+  check('S155: письмо — без UA', !notifFn.slice(0, notifFn.indexOf('markLeadEmailSent(lead.id, true)')).includes('lead.ua'));
+  // Человекочитаемое время
+  check('S155: письмо — formatLeadTime', serverSrc.includes('formatLeadTime'));
+  // Старый концепт сохранён
+  check('S155: письмо — "Срочно перезвоните клиенту!"', serverSrc.includes('Срочно перезвоните клиенту!'));
+  check('S155: письмо — "Желание:"', notifFn.includes('Желание:'));
+  // Журнал ошибок SMTP
+  check('S155: письмо — logs/leads-email.log', serverSrc.includes('leads-email.log'));
+  // emailSent в лид (диагностика в UI)
+  check('S155: письмо — markLeadEmailSent', serverSrc.includes('markLeadEmailSent'));
+  check('S155: admin.html — колонка ✉️ Письмо', fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8').includes('✉️ Письмо'));
+
+  // deploy-merge-db: серверный секрет всегда побеждает
+  const mergeSrc = fs.readFileSync(path.join(__dirname, 'deploy-merge-db.mjs'), 'utf-8');
+  check('S155: мерж — SECRET_KEY_RE', mergeSrc.includes('SECRET_KEY_RE'));
+  check('S155: мерж — серверный smtpPass источник истины',
+    mergeSrc.includes("typeof sv === 'string' && sv !== '' && sv !== rv"));
+}
+
+// ── S154: почта в БОТАХ + 8 заглушек ботов ──
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  // 1. Пункт email убран из «НАСТРОЙКИ САЙТА», появился в «БОТЫ»
+  check('S154: сайдбар — #email убран из НАСТРОЙКИ САЙТА',
+    !adminSrc.includes('data-section="email"'));
+  check('S154: сайдбар — #bots-email в группе bots',
+    adminSrc.includes('data-section="bots-email"'));
+  // 2. 8 заглушек ботов
+  const botStubs = ['bots-sms','bots-vk-mail','bots-max','bots-tg','bots-wapp','bots-vk-group','bots-baloo','bots-tasks'];
+  for (const id of botStubs) {
+    check('S154: сайдбар — ' + id, adminSrc.includes('data-section="' + id + '"'));
+  }
+  // 3. Реестр sections — 8 заглушек со status skeleton + группа bots-stub
+  for (const id of botStubs) {
+    check('S154: sections — ' + id + ' skeleton/bots-stub',
+      new RegExp("id: '" + id + "',.*status: 'skeleton', group: 'bots-stub'").test(adminSrc));
+  }
+  // 4. renderSection роутинг
+  check('S154: renderSection — bots-stub → renderBotsStubSection',
+    adminSrc.includes("section.group === 'bots-stub'") && adminSrc.includes('renderBotsStubSection(section)'));
+  check('S154: renderSection — bots-email → loadEmailSettings',
+    adminSrc.includes("sectionId === 'bots-email'") && adminSrc.includes('loadEmailSettings()'));
+  // 5. BOTS_STUBS содержит все 8 ключей
+  const botsStubsBlock = adminSrc.slice(adminSrc.indexOf('const BOTS_STUBS'), adminSrc.indexOf('function renderBotsStubSection'));
+  for (const id of botStubs) {
+    check('S154: BOTS_STUBS — ' + id, botsStubsBlock.includes("'" + id + "'"));
+  }
+  // 6. Кнопка напоминаний о фото + таблица маршрутов
+  check('S154: кнопка sendMissingPhotosReminder', adminSrc.includes('sendMissingPhotosReminder'));
+  check('S154: таблица почтовых маршрутов', adminSrc.includes('Почтовые маршруты'));
+  // 7. Справка — миграция id email → bots-email (admin-server)
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  check('S154: DEFAULT_HELP_SECTIONS — bots-email', serverSrc.includes("id: 'bots-email'"));
+  check('S154: getHelpSections — миграция email → bots-email',
+    serverSrc.includes("s.id === 'email'") && serverSrc.includes("s.id = 'bots-email'"));
+  // 8. getSectionFields / getSectionDescription
+  check('S154: getSectionFields — bots-email', adminSrc.includes("'bots-email': ["));
+  check('S154: getSectionDescription — bots-email', adminSrc.includes("sectionId === 'bots-email'"));
+}
+
+// ── S156: счётчики сабразделов в заголовках групп ──
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  // 1. Функция renderGroupCounts
+  check('S156: renderGroupCounts существует', /function renderGroupCounts/.test(adminSrc));
+  check('S156: renderGroupCounts вызывается', /renderGroupCounts\(\)/.test(adminSrc));
+  // 2. Подсчёт по sidebar-wip (заглушки) / без него (активные)
+  check('S156: подсчёт через sidebar-wip', adminSrc.includes("classList.contains('sidebar-wip')"));
+  // 3. dataset.base — идемпотентность
+  check('S156: dataset.base (идемпотентность)', adminSrc.includes('header.dataset.base'));
+  // 4. CSS-классы
+  check('S156: CSS .grp-count', adminSrc.includes('.grp-count'));
+  check('S156: CSS .grp-count-active', adminSrc.includes('.grp-count-active'));
+  check('S156: CSS .grp-count-stub', adminSrc.includes('.grp-count-stub'));
+  // 5. toggleGroup трогает только .grp-arrow (не затирает счётчики)
+  const tgMatch = adminSrc.match(/function toggleGroup[\s\S]*?\n    \}/);
+  check('S156: toggleGroup — через .grp-arrow', tgMatch && tgMatch[0].includes("querySelector('.grp-arrow')"));
+  check('S156: openGroupForSection — через .grp-arrow',
+    adminSrc.includes("header.querySelector('.grp-arrow')"));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);

@@ -151,6 +151,26 @@
       background: #f1f5f9;
     }
 
+    /* S154: бейджи счётчиков сабразделов в заголовках групп */
+    .grp-count {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .grp-count-active {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .grp-count-stub {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
     /* S1: Цветовые редакторы */
     .color-editor {
       margin-bottom: 1rem;
@@ -537,24 +557,23 @@
            </div>
          </div>
 
-         <!-- ⚙️ НАСТРОЙКИ САЙТА -->
-        <div class="sidebar-group">
-          <div class="sidebar-group-header" data-group="settings" onclick="toggleGroup(this)">⚙️ НАСТРОЙКИ САЙТА ▸</div>
-          <div class="sidebar-group-body">
-            <a href="#appearance" data-section="appearance">🖌 Оформление</a>
-            <a href="#email" data-section="email">✉️ Настройки электронной почты</a>
-            <a href="#contacts" data-section="contacts">📞 Контакты</a>
-            <a href="#slider" data-section="slider">🎞 Слайдер</a>
-            <a href="#dividers" data-section="dividers">🎨 Разделители</a>
-            <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
-            <a href="#header-settings" data-section="header-settings">🎩 Шапка</a>
-            <a href="#home-sections" data-section="home-sections">🧩 Разделы главной</a>
-            <a href="#pages" data-section="pages">📄 Страницы</a>
-            <a href="#footer-links" data-section="footer-links">🔗 Ссылки подвала</a>
-            <a href="#prices" data-section="prices">💰 Цены</a>
-            <a href="#discounts" data-section="discounts">🏷 Скидки</a>
-          </div>
-        </div>
+          <!-- ⚙️ НАСТРОЙКИ САЙТА -->
+         <div class="sidebar-group">
+           <div class="sidebar-group-header" data-group="settings" onclick="toggleGroup(this)">⚙️ НАСТРОЙКИ САЙТА ▸</div>
+           <div class="sidebar-group-body">
+             <a href="#appearance" data-section="appearance">🖌 Оформление</a>
+             <a href="#contacts" data-section="contacts">📞 Контакты</a>
+             <a href="#slider" data-section="slider">🎞 Слайдер</a>
+             <a href="#dividers" data-section="dividers">🎨 Разделители</a>
+             <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
+             <a href="#header-settings" data-section="header-settings">🎩 Шапка</a>
+             <a href="#home-sections" data-section="home-sections">🧩 Разделы главной</a>
+             <a href="#pages" data-section="pages">📄 Страницы</a>
+             <a href="#footer-links" data-section="footer-links">🔗 Ссылки подвала</a>
+             <a href="#prices" data-section="prices">💰 Цены</a>
+             <a href="#discounts" data-section="discounts">🏷 Скидки</a>
+           </div>
+         </div>
 
         <!-- 📊 CRM -->
         <div class="sidebar-group">
@@ -565,11 +584,19 @@
           </div>
         </div>
 
-        <!-- 🤖 БОТЫ -->
+        <!-- 🤖 БОТЫ (S154: почта перенесена сюда + 8 разделов-заглушек) -->
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="bots" onclick="toggleGroup(this)">🤖 БОТЫ ▸</div>
           <div class="sidebar-group-body">
-            <a href="#bots" data-section="bots" class="sidebar-wip">🤖 Боты (скоро)</a>
+            <a href="#bots-email" data-section="bots-email">✉️ Почта (SMTP, уведомления)</a>
+            <a href="#bots-sms" data-section="bots-sms" class="sidebar-wip">💬 СМС-рассылки (скоро)</a>
+            <a href="#bots-vk-mail" data-section="bots-vk-mail" class="sidebar-wip">📧 вк-рассылки (скоро)</a>
+            <a href="#bots-max" data-section="bots-max" class="sidebar-wip">🅼 max-бот (скоро)</a>
+            <a href="#bots-tg" data-section="bots-tg" class="sidebar-wip">📱 tg-бот (скоро)</a>
+            <a href="#bots-wapp" data-section="bots-wapp" class="sidebar-wip">🟢 wapp-бот (скоро)</a>
+            <a href="#bots-vk-group" data-section="bots-vk-group" class="sidebar-wip">🌐 вк-группа (скоро)</a>
+            <a href="#bots-baloo" data-section="bots-baloo" class="sidebar-wip">🎈 балу-бот (скоро)</a>
+            <a href="#bots-tasks" data-section="bots-tasks" class="sidebar-wip">✅ Задачи для ботов (скоро)</a>
           </div>
         </div>
 
@@ -979,7 +1006,6 @@
       { id: 'templates-masks-social', title: '🌐 Текстовые маски ботов соцсетей', status: 'skeleton', group: 'templates-stub' },
       // НАСТРОЙКИ САЙТА
       { id: 'appearance', title: '🖌 Оформление', status: 'done', group: 'settings' },
-      { id: 'email', title: '✉️ Настройки электронной почты', status: 'done', group: 'settings' },
       { id: 'contacts', title: '📞 Контакты', status: 'done', group: 'settings' },
       { id: 'slider', title: '🎞 Слайдер', status: 'done', group: 'settings' },
       { id: 'dividers', title: '🎨 Разделители', status: 'done', group: 'settings' },
@@ -997,7 +1023,16 @@
       { id: 'crm-leads', title: '📣 Вызовы форм', status: 'done', group: 'crm' },
       // ЗАГЛУШКИ
       { id: 'crm', title: '📊 CRM', status: 'wip', group: 'stubs' },
-      { id: 'bots', title: '🤖 Боты', status: 'wip', group: 'stubs' },
+      // S154: БОТЫ — 1 рабочий раздел (почта) + 8 заглушек
+      { id: 'bots-email', title: '✉️ Почта (SMTP, уведомления)', status: 'done', group: 'bots' },
+      { id: 'bots-sms', title: '💬 СМС-рассылки', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-vk-mail', title: '📧 вк-рассылки', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-max', title: '🅼 max-бот', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-tg', title: '📱 tg-бот', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-wapp', title: '🟢 wapp-бот', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-vk-group', title: '🌐 вк-группа', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-baloo', title: '🎈 балу-бот', status: 'skeleton', group: 'bots-stub' },
+      { id: 'bots-tasks', title: '✅ Задачи для ботов', status: 'skeleton', group: 'bots-stub' },
       { id: 'integrations-dance', title: '💃 Dance (DanceStudio)', status: 'done', group: 'integrations' },
       { id: 'integrations', title: '🔗 Интеграции', status: 'wip', group: 'stubs' },
       // СПРАВКА
@@ -1014,7 +1049,10 @@
       if (!body || !body.classList) return;
       const isOpen = body.classList.contains('open');
       body.classList.toggle('open');
-      header.textContent = header.textContent.replace(/▸|▾/, isOpen ? '▸' : '▾');
+      // S154: стрелка — отдельный span, чтобы не затирать счётчики
+      const arrow = header.querySelector('.grp-arrow');
+      if (arrow) arrow.textContent = isOpen ? '▸' : '▾';
+      else header.textContent = header.textContent.replace(/▸|▾/, isOpen ? '▸' : '▾');
     }
 
     // Открыть группу при загрузке раздела
@@ -1025,9 +1063,39 @@
       if (body) {
         body.classList.add('open');
         const header = body.parentElement.querySelector('.sidebar-group-header');
-        if (header) header.textContent = header.textContent.replace(/▸/, '▾');
+        if (header) {
+          const arrow = header.querySelector('.grp-arrow');
+          if (arrow) arrow.textContent = '▾';
+          else header.textContent = header.textContent.replace(/▸/, '▾');
+        }
       }
     }
+
+    /* ============================================
+       S154: счётчики сабразделов в заголовках групп.
+       2 цифры: активных | заглушек (считаем по ссылкам сайдбара).
+       Вызывается один раз при загрузке — состав разделов статичен.
+       ============================================ */
+    function renderGroupCounts() {
+      document.querySelectorAll('.admin-sidebar .sidebar-group').forEach(function (group) {
+        var header = group.querySelector('.sidebar-group-header');
+        var body = group.querySelector('.sidebar-group-body');
+        if (!header || !body) return;
+        if (header.dataset.base === undefined) {
+          header.dataset.base = header.textContent.replace(/[▸▾]/g, '').trim();
+        }
+        var active = 0, stubs = 0;
+        body.querySelectorAll('a[data-section]').forEach(function (a) {
+          if (a.classList.contains('sidebar-wip')) stubs++; else active++;
+        });
+        var open = body.classList.contains('open');
+        header.innerHTML = header.dataset.base + ' ' +
+          '<span class="grp-arrow">' + (open ? '▾' : '▸') + '</span>' +
+          '<span class="grp-count grp-count-active" title="Активных подразделов: ' + active + '">' + active + '</span>' +
+          '<span class="grp-count grp-count-stub" title="Подразделов-заглушек: ' + stubs + '">' + stubs + '</span>';
+      });
+    }
+    renderGroupCounts();
 
     document.querySelectorAll('.admin-sidebar a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -1103,6 +1171,12 @@
         return;
       }
 
+      // S154: подразделы-заглушки «Боты» (8 заглушек)
+      if (section.group === 'bots-stub') {
+        renderBotsStubSection(section);
+        return;
+      }
+
       content.innerHTML = `
         <div class="section-card">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -1128,7 +1202,7 @@
       if (sectionId === 'appearance') loadAppearanceSection();
       if (sectionId === 'main-data') loadMainDataSection();
       if (sectionId === 'header-settings') loadHeaderSettingsSection();
-      if (sectionId === 'email') loadEmailSettings();
+      if (sectionId === 'bots-email') loadEmailSettings();
       if (sectionId === 'directions') loadDirectionsSection();
       if (sectionId === 'halls') loadHallsSection();
       if (sectionId === 'home-sections') loadHomeSectionsSection();
@@ -3578,6 +3652,10 @@
         const statusOptions = Object.keys(statusLabels).map(s =>
           `<option value="${s}" ${lead.status === s ? 'selected' : ''}>${statusLabels[s]}</option>`
         ).join('');
+        // S155: индикатор отправки письма-уведомления о заявке
+        let emailCell = '<span title="Нет данных об отправке (старая заявка или сервер до S155)" style="opacity:.35;">—</span>';
+        if (lead.emailSent === true) emailCell = '<span title="Письмо на почту отправлено" style="color:var(--success);">✅ отправлено</span>';
+        else if (lead.emailSent === false) emailCell = '<span title="' + escapeHtml(lead.emailError || 'Ошибка не записана') + '" style="color:var(--danger);">❌ не отправлено</span>';
 
         return `
           <tr data-idx="${idx}" style="${lead.status === 'Новая' ? 'background:#f0fdf4;' : ''}">
@@ -3589,6 +3667,7 @@
               <div style="font-size:.85rem;font-weight:500;">${escapeHtml(lead.reason || '—')}</div>
               <div style="font-size:.75rem;opacity:.6;">${escapeHtml(lead.page || '—')}</div>
             </td>
+            <td style="white-space:nowrap;font-size:.8rem;">${emailCell}</td>
             <td>
               <select class="lead-status" data-idx="${idx}" style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:4px;font-size:.8rem;min-width:160px;">
                 ${statusOptions}
@@ -3619,10 +3698,11 @@
                 <th style="padding:.4rem;">Телефон</th>
                 <th style="padding:.4rem;">Email</th>
                 <th style="padding:.4rem;">Причина / страница</th>
+                <th style="padding:.4rem;">✉️ Письмо</th>
                 <th style="padding:.4rem;">Статус</th>
               </tr>
             </thead>
-            <tbody>${rows || '<tr><td colspan="6" style="padding:1rem;text-align:center;opacity:.6;">Заявок пока нет</td></tr>'}</tbody>
+            <tbody>${rows || '<tr><td colspan="7" style="padding:1rem;text-align:center;opacity:.6;">Заявок пока нет</td></tr>'}</tbody>
           </table>
         </div>
         <p class="meta" style="margin-top:.75rem;">Всего заявок: ${leadsState.length}</p>
@@ -3957,9 +4037,9 @@
       }
 
       box.innerHTML = `
-        <h2>✉️ Настройки электронной почты</h2>
+        <h2>✉️ Почта (SMTP, уведомления)</h2>
         <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:1.5rem;">
-          SMTP-настройки для отправки уведомлений, напоминаний и тестовых писем.
+          Единый раздел почты: SMTP-настройки, все автоматические письма и тестовая отправка.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div class="form-group">
@@ -4008,6 +4088,35 @@
           </div>
         </div>
         <div id="test-email-result" style="margin-top:1rem;"></div>
+        <div style="margin-top:2rem;padding:1rem;background:#f8fafc;border-radius:6px;border:1px solid var(--border);">
+          <h3 style="font-size:1rem;margin-bottom:0.5rem;">📬 Почтовые маршруты</h3>
+          <p style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:0.75rem;">Все автоматические письма, которые отправляет сайт:</p>
+          <table style="width:100%;font-size:0.8rem;border-collapse:collapse;">
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:0.3rem;"><strong>📣 Новая заявка</strong></td>
+              <td style="padding:0.3rem;">→ <code>adminEmail</code></td>
+              <td style="padding:0.3rem;">Автоматически при POST /api/admin/lead-create</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:0.3rem;"><strong>🔴 Ошибка 404</strong></td>
+              <td style="padding:0.3rem;">→ <code>adminEmail</code></td>
+              <td style="padding:0.3rem;">При обращении к несуществующей странице</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:0.3rem;"><strong>📷 Нет фото</strong></td>
+              <td style="padding:0.3rem;">→ <code>adminEmail</code> + <code>errorEmail[]</code></td>
+              <td style="padding:0.3rem;">Ручной запуск (кнопка ниже)</td>
+            </tr>
+            <tr>
+              <td style="padding:0.3rem;"><strong>🧪 Тестовое письмо</strong></td>
+              <td style="padding:0.3rem;">→ вручную</td>
+              <td style="padding:0.3rem;">Кнопка «Тестовое письмо» выше</td>
+            </tr>
+          </table>
+          <div style="margin-top:1rem;">
+            <button class="btn btn-sm btn-secondary" onclick="sendMissingPhotosReminder()">📨 Напомнить о незаполненных фото</button>
+          </div>
+        </div>
       `;
     }
 
@@ -4063,6 +4172,29 @@
         }
       } catch (err) {
         resultDiv.innerHTML = `<p style="color:var(--danger);">❌ Ошибка: ${err.message}</p>`;
+      }
+    }
+
+    // S154: ручная кнопка «Напомнить о незаполненных фото»
+    async function sendMissingPhotosReminder() {
+      const btn = document.querySelector('[onclick="sendMissingPhotosReminder()"]');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Проверка…'; }
+      try {
+        const res = await api('/api/admin/missing-photos', { method: 'GET' });
+        const data = await res.json();
+        const missing = data.missing || [];
+        if (!missing.length) {
+          showToast('Все объекты заполнены — напоминать не о чем');
+        } else {
+          const sendRes = await api('/api/admin/send-reminder', { method: 'POST', body: '{}' });
+          const sendData = await sendRes.json();
+          if (sendData.ok) showToast('📨 Напоминание отправлено (' + sendData.sent + ' объектов)');
+          else showToast('Ошибка: ' + (sendData.error || 'не отправлено'), 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка: ' + err.message, 'error');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = '📨 Напомнить о незаполненных фото'; }
       }
     }
 
@@ -4654,8 +4786,8 @@
       if (sectionId === 'contacts') return 'Контакты из базы — используются в футере на всех страницах. Изменение — в следующем пакете.';
       if (sectionId === 'news-settings') return 'Настройки раздела новостей (defaultImage, defaultVideo, autoPublish). Сейчас пустые — работают значения по умолчанию.';
       if (sectionId === 'album') return 'Свободные фото общего альбома (страница «Альбом» пока выключена из навигации). Клик — просмотр. Загружаются ночным парсером из папки на диске.';
-      if (sectionId === 'email') return 'Настройки SMTP для отправки уведомлений и напоминаний. Настройка хоста, порта, логина, пароля и адресов получателей.';
-      if (sectionId === 'bots') return 'Управление ботами (Telegram, VK, WhatsApp). Интеграция с CRM, автоответы, рассылки. Раздел в разработке.';
+      if (sectionId === 'bots-email') return 'Настройки SMTP для отправки уведомлений о заявках, напоминаний и тестовых писем. Хост, порт, логин, пароль, адрес получателя. Все почтовые маршруты в одном разделе.';
+      if (sectionId === 'bots-email') return 'Единый раздел почты: SMTP-настройки, все автоматические письма и тестовая отправка. Хост, порт, логин, пароль, адрес получателя.';
       if (sectionId === 'integrations-dance') return 'Синхронизация данных центра из DanceStudio (XML-донор) в PostgreSQL с экспортом на сайт. Пока только таблица статусов: компоненты ждут реализации моста (MULTITICKET-DANCESTUDIO, тикеты 2.1–2.3). Кнопка ручного запуска неактивна.';
       if (sectionId === 'integrations') return 'Интеграции с внешними сервисами: CRM, email-рассылки, аналитика, облачные хранилища. Раздел в разработке.';
       if (sectionId === 'help') return 'Справка для администраторов по всем разделам. Подробные инструкции, примеры использования, рекомендации и ответы на частые вопросы.';
@@ -4682,9 +4814,9 @@
         pages: ['pages[].id', 'pages[].title', 'pages[].url', 'pages[].text', 'pages[].visible', 'pages[].showInMenu', 'pages[].order'],
         'footer-links': ['footerLinks[].id', 'footerLinks[].group', 'footerLinks[].title', 'footerLinks[].url', 'footerLinks[].visible'],
         album: ['id', 'image', 'thumb', 'title', 'date'],
-        email: ['emailConfig.smtpHost', 'emailConfig.smtpPort', 'emailConfig.smtpSecure', 'emailConfig.smtpUser', 'emailConfig.smtpPass', 'emailConfig.fromName', 'emailConfig.adminEmail', 'emailConfig.errorEmail[]'],
+        'bots-email': ['emailConfig.smtpHost', 'emailConfig.smtpPort', 'emailConfig.smtpSecure', 'emailConfig.smtpUser', 'emailConfig.smtpPass', 'emailConfig.fromName', 'emailConfig.adminEmail', 'emailConfig.errorEmail[]'],
         crm: ['(заглушка — без данных)'],
-        'crm-leads': ['id', 'ts', 'name', 'phone', 'email', 'message', 'reason', 'page', 'ua', 'status'],
+        'crm-leads': ['id', 'ts', 'name', 'phone', 'email', 'message', 'reason', 'page', 'ua', 'status', 'emailSent', 'emailError'],
         bots: ['(заглушка — без данных)'],
         integrations: ['(заглушка — без данных)'],
         help: ['(справка формируется автоматически)'],
@@ -6626,7 +6758,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=42">
+<link rel="stylesheet" href="/css/style.css?v=43">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -6934,11 +7066,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=42').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=43').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=43').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=43').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=43').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=43').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);
@@ -7275,7 +7407,71 @@
          icon: '🌐', lead: 'Шаблоны сообщений для ботов социальных сетей (VK, Telegram, WhatsApp).',
          todo: ['Переменные: {имя}, {дата}, {время}, {ссылка}', 'Поддержка разных форматов (Markdown, HTML, plain)', 'Тестовая отправка боту']
        }
-     };
+      };
+
+      // S154: подразделы «Боты» — 8 заглушек (по образцу Шаблонов)
+      const BOTS_STUBS = {
+        'bots-sms': {
+          icon: '💬', lead: 'Автоматические СМС-рассылки клиентам: напоминание о занятии, поздравления, акции.',
+          todo: ['Подключение СМС-провайдера (API-ключ, баланс)', 'Шаблоны СМС с переменными {имя}, {дата}, {время}', 'Расписание отправок (cron)', 'Журнал доставок и отчёты']
+        },
+        'bots-vk-mail': {
+          icon: '📧', lead: 'Рассылки сообщений ВКонтакте: уведомления, анонсы, ответы на заявки.',
+          todo: ['Подключение VK API (токен группы)', 'Шаблоны сообщений', 'Сегментация аудитории', 'Журнал отправок']
+        },
+        'bots-max': {
+          icon: '🅼', lead: 'Бот в мессенджере MAX: автоответы, запись на занятия, уведомления.',
+          todo: ['Подключение MAX Bot API', 'Сценарии диалогов', 'Запись на занятие через бота', 'Интеграция с CRM']
+        },
+        'bots-tg': {
+          icon: '📱', lead: 'Telegram-бот центра: расписание, запись, напоминания, оплата.',
+          todo: ['Токен бота и webhook', 'Клавиатура: расписание / записаться / контакты', 'Личный кабинет в боте', 'Оплата через ЮKassa / СБП']
+        },
+        'bots-wapp': {
+          icon: '🟢', lead: 'WhatsApp-бот: автоответы, подтверждение записи, напоминания о занятиях.',
+          todo: ['Подключение WhatsApp Business API', 'Шаблоны сообщений (одобрение Meta)', 'Двусторонний чат с админом', 'Интеграция с заявками (leads)']
+        },
+        'bots-vk-group': {
+          icon: '🌐', lead: 'Автоведение группы ВКонтакте: посты, истории, ответы на комментарии.',
+          todo: ['Автопостинг новостей с сайта', 'Ответы на комментарии (модерация)', 'Публикация расписания и наборов', 'Отчёт о вовлечённости']
+        },
+        'bots-baloo': {
+          icon: '🎈', lead: 'Бот балу / развлекательный бот для детей: викторины, достижения, поощрения.',
+          todo: ['Сценарии для детей (геймификация)', 'Начисление баллов за посещение', 'Дипломы и достижения', 'Уведомления родителям']
+        },
+        'bots-tasks': {
+          icon: '✅', lead: 'Задачи и чек-листы для ботов: что, когда и кому отправлять.',
+          todo: ['Реестр задач всех ботов в одном месте', 'Планировщик (cron) с визуальным редактором', 'Лог выполнений и ошибок', 'Ручной запуск / пауза']
+        }
+      };
+
+      function renderBotsStubSection(section) {
+        const content = document.getElementById('admin-content');
+        const stub = BOTS_STUBS[section.id] || { icon: '🤖', lead: 'Раздел в разработке.', todo: [] };
+        content.innerHTML = `
+          <div class="section-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+              <h2>${section.title}</h2>
+              <span class="status-badge status-badge-wip">В разработке</span>
+            </div>
+            <p style="margin:1rem 0;">${stub.lead}</p>
+            <div style="margin-top:2rem;padding:3rem 2rem;text-align:center;background:#f8fafc;border:2px dashed #d1d5db;border-radius:12px;">
+              <div style="font-size:4rem;margin-bottom:1rem;">${stub.icon}</div>
+              <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${section.title}</h3>
+              <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
+              ${stub.todo.length ? `<ul style="display:inline-block;text-align:left;color:var(--text-secondary);font-size:0.9rem;">${stub.todo.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+            </div>
+            <div style="margin-top:1.5rem;">
+              <strong style="color:var(--text-secondary);font-size:0.9rem;">Другие подразделы ботов:</strong><br>
+              <span style="font-size:0.85rem;color:var(--text-secondary);">
+                ${Object.keys(BOTS_STUBS).filter(id => id !== section.id).map(id => {
+                  const s = sections.find(x => x.id === id);
+                  return s ? `<a href="#${id}" onclick="event.preventDefault();openSection('${id}')" style="color:var(--primary);text-decoration:none;">${s.title}</a>` : '';
+                }).join(' · ')}
+              </span>
+            </div>
+          </div>`;
+      }
 
     function renderTemplatesStubSection(section) {
       const content = document.getElementById('admin-content');

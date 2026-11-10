@@ -3056,7 +3056,52 @@ async function handleSendReminder(req, res) {
     }
   }
 
-  // S153: отправка уведомления о новой заявке
+  // S153/S155: отправка уведомления о новой заявке.
+  // Результат пишется в logs/leads-email.log + обновляется emailSent в leads.json
+  // (раньше .catch(() => {}) скрывал причину, и баг искали вслепую).
+  function logLeadEmail(entry) {
+    try {
+      const logDir = path.join(root, 'logs');
+      if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+      fs.appendFileSync(path.join(logDir, 'leads-email.log'),
+        JSON.stringify({ ts: new Date().toISOString(), ...entry }) + '\n', 'utf-8');
+    } catch { /* журнал не критичен */ }
+  }
+
+  /**
+   * S155: обновить поле emailSent в записи лида (для диагностики в UI).
+   * После успешной/неудачной отправки — записать результат в leads.json,
+   * чтобы в CRM админ видел, отправлено ли письмо о заявке.
+   */
+  function markLeadEmailSent(leadId, sent, error) {
+    try {
+      const leads = readLeads();
+      const lead = leads.find(l => l.id === leadId);
+      if (!lead) return;
+      lead.emailSent = sent;
+      if (error) {
+        lead.emailError = String(error).slice(0, 300);
+      } else {
+        delete lead.emailError;
+      }
+      writeLeads(leads);
+    } catch { /* не критично — письмо и так отправлено/не отправлено */ }
+  }
+
+  // S155: письмо проходит фильтр Яндекса «От кого содержит centr-fr@yandex.ru
+  // И Тема содержит Заявка: → папка Заявки с сайта». Тема начинается с
+  // «Заявка:», от = smtpUser (как в старом шаблоне Next.js-версии).
+  function formatLeadTime(iso) {
+    try {
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return iso;
+      return d.toLocaleString('ru-RU', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Yekaterinburg'
+      }) + ' (Екб)';
+    } catch { return iso; }
+  }
+
   async function sendLeadNotification(lead) {
     try {
       const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
@@ -3068,6 +3113,8 @@ async function handleSendReminder(req, res) {
       const smtpPass = ec.smtpPass;
       if (!smtpUser || !smtpPass) {
         console.warn('⚠️ SMTP пароль не установлен — уведомление о заявке не отправлено');
+        logLeadEmail({ leadId: lead.id, ok: false, error: 'smtpUser или smtpPass пустой' });
+        markLeadEmailSent(lead.id, false, 'smtpUser или smtpPass пустой');
         return;
       }
       const nodemailer = (await import('nodemailer')).default;
@@ -3078,26 +3125,47 @@ async function handleSendReminder(req, res) {
         auth: { user: smtpUser, pass: smtpPass }
       });
       const to = ec.adminEmail || smtpUser;
-      const fromName = ec.fromName || 'Шифу Панда';
-      const subject = '📣 Новая заявка с сайта: ' + lead.name + ' (' + lead.page + ')';
-      const html = '<h3>Новая заявка с формы «Заказать обратный звонок»</h3>' +
-        '<p><b>Имя:</b> ' + escapeHtml(lead.name) + '</p>' +
-        '<p><b>Телефон:</b> ' + escapeHtml(lead.phone) + '</p>' +
-        '<p><b>Email:</b> ' + escapeHtml(lead.email || '—') + '</p>' +
-        '<p><b>Сообщение:</b> ' + escapeHtml(lead.message || '—') + '</p>' +
-        '<p><b>Причина:</b> ' + escapeHtml(lead.reason) + '</p>' +
-        '<p><b>Страница:</b> ' + escapeHtml(lead.page) + '</p>' +
-        '<p><b>UA:</b> ' + escapeHtml(lead.ua) + '</p>' +
-        '<p><b>Время:</b> ' + lead.ts + '</p>';
-      await transporter.sendMail({
-        from: fromName + ' <' + smtpUser + '>',
+      // S155: тема «Заявка: ...» — по фильтру Яндекса (папка «Заявки с сайта»)
+      const subject = '🐼 Заявка: ' + lead.name + ' (' + (lead.page || 'Сайт') + ')';
+      const time = formatLeadTime(lead.ts);
+      const text = 'Имя: ' + lead.name +
+        '\nТелефон: ' + lead.phone +
+        '\nEmail: ' + (lead.email || '—') +
+        '\nЖелание: ' + (lead.reason || '—') +
+        '\nСообщение: ' + (lead.message || '—') +
+        '\nВремя: ' + time;
+      // Старый шаблон (Next.js send-email/route.ts): зелёный блок + «Срочно перезвоните».
+      // S155: UA в письмо не пишем (есть в leads.json), время — человекочитаемое.
+      const html =
+        '<div style="font-family: Arial, sans-serif; max-width: 600px;">' +
+        '<h2 style="color: #10b981;">🐼 Новая заявка!</h2>' +
+        '<div style="background: #d1fae5; padding: 20px; border-radius: 12px; border-left: 5px solid #10b981;">' +
+        '<p style="margin:6px 0;"><strong>👤 Имя:</strong> ' + escapeHtml(lead.name) + '</p>' +
+        '<p style="margin:6px 0;"><strong>📱 Телефон:</strong> <a href="tel:' + escapeHtml(lead.phone.replace(/[^\d+]/g, '')) + '" style="color:#059669;">' + escapeHtml(lead.phone) + '</a></p>' +
+        '<p style="margin:6px 0;"><strong>✉️ Email:</strong> ' + escapeHtml(lead.email || '—') + '</p>' +
+        '<p style="margin:6px 0;"><strong>🎯 Желание:</strong> ' + escapeHtml(lead.reason || '—') + '</p>' +
+        '<p style="margin:6px 0;"><strong>💬 Сообщение:</strong> ' + escapeHtml(lead.message || '—').replace(/\n/g, '<br>') + '</p>' +
+        '<p style="margin:6px 0;opacity:.75;font-size:.9em;">🕐 ' + escapeHtml(time) + '</p>' +
+        '</div>' +
+        '<hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">' +
+        '<p style="color: #ef4444; font-weight: bold;">⚡ Срочно перезвоните клиенту!</p>' +
+        '</div>';
+      const info = await transporter.sendMail({
+        // S155: from = «"<адрес>" <адрес>» — ровно как в старом шаблоне,
+        // чтобы проходил фильтр Яндекса «От кого содержит "centr-fr@yandex.ru" <centr-fr@yandex.ru>»
+        from: '"' + smtpUser + '" <' + smtpUser + '>',
         to: to,
         subject: subject,
+        text: text,
         html: html
       });
-      console.log('📧 Уведомление о заявке отправлено на ' + to);
+      console.log('📧 Уведомление о заявке отправлено на ' + to + ' (id: ' + info.messageId + ')');
+      logLeadEmail({ leadId: lead.id, ok: true, to: to, subject: subject, messageId: info.messageId, response: info.response });
+      markLeadEmailSent(lead.id, true);
     } catch (e) {
       console.warn('⚠️ Не удалось отправить уведомление о заявке:', e.message);
+      logLeadEmail({ leadId: lead && lead.id, ok: false, error: e.message, code: e.code || '' });
+      markLeadEmailSent(lead.id, false, e.message);
     }
   }
 
@@ -3236,10 +3304,10 @@ async function handleSendReminder(req, res) {
       category: 'settings'
     },
     {
-      id: 'email',
-      title: '✉️ Настройки электронной почты',
-      content: `# Настройки электронной почты\n\nSMTP-настройки для отправки уведомлений.\n\n## Возможности:\n- Настройка SMTP-сервера\n- Тестовая отправка писем\n- Настройка адресов для ошибок\n\n## Поля:\n- **SMTP-хост** — адрес SMTP-сервера\n- **SMTP-порт** — порт (465 для SSL, 587 для TLS)\n- **SSL/TLS** — использовать защищённое соединение\n- **Пользователь** — логин SMTP\n- **Пароль** — пароль SMTP\n- **Имя отправителя** — отображается в письмах\n- **Email админа** — основной адрес\n- **Email ошибок** — через запятую`,
-      category: 'settings'
+      id: 'bots-email',
+      title: '✉️ Почта (SMTP, уведомления)',
+      content: `# Почта (SMTP, уведомления)\n\nЕдиный раздел всех почтовых настроек и писем сайта (S154: перенесён из «Настроек сайта» в «Боты»).\n\n## Возможности:\n- Настройка SMTP-сервера\n- Тестовая отправка писем\n- Настройка адресов для ошибок\n- Обзор всех почтовых маршрутов сайта\n- Ручное напоминание о незаполненных фото\n\n## Поля:\n- **SMTP-хост** — адрес SMTP-сервера\n- **SMTP-порт** — порт (465 для SSL, 587 для TLS)\n- **SSL/TLS** — использовать защищённое соединение\n- **Пользователь** — логин SMTP\n- **Пароль** — пароль приложения Яндекса (пустое поле = не менять)\n- **Имя отправителя** — отображается в письмах\n- **Email админа** — основной адрес получателя\n- **Email ошибок** — через запятую\n\n## Почтовые маршруты\n- **Заявка с формы** → Email админа (тема «🐼 Заявка: …», попадает в фильтр «Заявки с сайта»)\n- **Ошибка 404** → Email админа\n- **Нет фото у объектов** → Email админа + Email ошибок (ручной запуск)\n\n## Важно\nПароль SMTP вводится только здесь и хранится на сервере. При деплое он НЕ затирается\nсерверным мержем базы — прод всегда источник истины для пароля.`,
+      category: 'bots'
     },
     {
       id: 'contacts',
@@ -3288,6 +3356,11 @@ async function handleSendReminder(req, res) {
   function getHelpSections() {
     const db = readDb();
     const help = db.help || { sections: [] };
+    // S154: раздел почты переехал из «Настроек сайта» в «Боты» —
+    // миграция сохранённой в базе справки по старому id.
+    for (const s of help.sections) {
+      if (s && s.id === 'email') { s.id = 'bots-email'; s.category = 'bots'; }
+    }
     // Добавляем дефолтные секции, которых нет
     const existingIds = new Set(help.sections.map(s => s.id));
     for (const def of DEFAULT_HELP_SECTIONS) {

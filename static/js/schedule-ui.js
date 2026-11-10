@@ -136,7 +136,9 @@
             '<span class="week-chip-name">' + esc(s.program || '') + '</span>' + hall + place + trainer + '</a></div>';
         }
         var target = 'program.html?id=' + encodeURIComponent(pslug || pid);
-        var callReason = esc('Расписание: ' + (s.day || '') + ' ' + (s.time || '') + ' — ' + (s.program || ''));
+        // S155: точное место вызова — кнопка + занятия + тренер (для письма админу)
+        var callReason = esc('Кнопка «Записаться» в расписании: ' + (s.day || '') + ' ' + (s.time || '') + ' — ' + (s.program || '') +
+          (s.trainer ? ', тренер ' + s.trainer : ''));
         return '<div class="week-chip-wrap" data-target="' + esc(target) + '"' +
           (phasAlbum ? ' data-album="1"' : '') + '>' +
           '<button type="button" class="week-chip mode-' + m + '" aria-expanded="false" title="' + esc(s.program || '') + '">' +
