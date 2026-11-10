@@ -560,6 +560,7 @@
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="crm" onclick="toggleGroup(this)">📊 CRM ▸</div>
           <div class="sidebar-group-body">
+            <a href="#crm-leads" data-section="crm-leads">📣 Вызовы форм</a>
             <a href="#crm" data-section="crm" class="sidebar-wip">📊 CRM (скоро)</a>
           </div>
         </div>
@@ -991,6 +992,8 @@
       // S115: цены позициями и скидки (settings.priceItems / settings.discounts)
       { id: 'prices', title: '💰 Цены', status: 'done', group: 'settings' },
       { id: 'discounts', title: '🏷 Скидки', status: 'done', group: 'settings' },
+      // CRM
+      { id: 'crm-leads', title: '📣 Вызовы форм', status: 'done', group: 'crm' },
       // ЗАГЛУШКИ
       { id: 'crm', title: '📊 CRM', status: 'wip', group: 'stubs' },
       { id: 'bots', title: '🤖 Боты', status: 'wip', group: 'stubs' },
@@ -1137,6 +1140,8 @@
       // S115: редакторы цен позициями и скидок
       if (sectionId === 'prices') loadPriceItemsSection();
       if (sectionId === 'discounts') loadDiscountsSection();
+      // S151: вызовы форм обратной связи
+      if (sectionId === 'crm-leads') loadCrmLeadsSection();
       if (sectionId === 'help') loadHelpSection();
       if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
     }
@@ -3519,6 +3524,133 @@
       showToast('Порядок изменён — нажмите «Сохранить скидки»');
     }
 
+    // ============================================
+    // S151: Вызовы форм обратной связи (leads)
+    // ============================================
+    let leadsState = [];
+
+    async function loadCrmLeadsSection() {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+
+      const old = content.querySelector('#crm-leads-card');
+      if (old) old.remove();
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      box.id = 'crm-leads-card';
+      card.insertAdjacentElement('afterend', box);
+      box.innerHTML = '<p class="meta">Загрузка заявок…</p>';
+
+      try {
+        const res = await api('/api/admin/get-leads', { method: 'POST', body: '{}' });
+        if (!res.ok) throw new Error('get-leads: ' + res.status);
+        const payload = await res.json();
+        leadsState = (payload.leads || []);
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Не удалось загрузить заявки: ' +
+          escapeHtml(err.message) + '</p>';
+        return;
+      }
+
+      renderCrmLeads();
+    }
+
+    function renderCrmLeads() {
+      const box = document.getElementById('crm-leads-card');
+      if (!box) return;
+
+      const statusLabels = {
+        'Новая': '🆕 Новая',
+        'Звонок': '📞 Звонок',
+        'Объяснено': '✅ Объяснено',
+        'Клиент_пришёл_на_первую': '🎯 Клиент_пришёл_на_первую',
+        'Клиент_ходит': '🔄 Клиент_ходит'
+      };
+
+      const rows = leadsState.map((lead, idx) => {
+        const ts = lead.ts ? new Date(lead.ts).toLocaleString('ru-RU') : '—';
+        const statusOptions = Object.keys(statusLabels).map(s =>
+          `<option value="${s}" ${lead.status === s ? 'selected' : ''}>${statusLabels[s]}</option>`
+        ).join('');
+
+        return `
+          <tr data-idx="${idx}" style="${lead.status === 'Новая' ? 'background:#f0fdf4;' : ''}">
+            <td style="white-space:nowrap;font-size:.8rem;opacity:.7;">${ts}</td>
+            <td>${escapeHtml(lead.name)}</td>
+            <td>${escapeHtml(lead.phone)}</td>
+            <td>${escapeHtml(lead.email || '—')}</td>
+            <td style="max-width:200px;">
+              <div style="font-size:.85rem;font-weight:500;">${escapeHtml(lead.reason || '—')}</div>
+              <div style="font-size:.75rem;opacity:.6;">${escapeHtml(lead.page || '—')}</div>
+            </td>
+            <td>
+              <select class="lead-status" data-idx="${idx}" style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:4px;font-size:.8rem;min-width:160px;">
+                ${statusOptions}
+              </select>
+            </td>
+          </tr>`;
+      }).join('');
+
+      box.innerHTML = `
+        <h2>📣 Вызовы форм обратной связи</h2>
+        <p style="font-size:1rem;">Заявки с формы «Заказать обратный звонок». Статусы ведутся по воронке:
+          <b>Новая → Звонок → Объяснено → Клиент_пришёл_на_первую → Клиент_ходит</b>.
+          Новые заявки подсвечены зелёным.</p>
+        <div style="margin:1rem 0;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" id="leads-save-btn" onclick="saveLeads()">
+            💾 Сохранить статусы
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="loadCrmLeadsSection()">
+            🔄 Обновить
+          </button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border);text-align:left;">
+                <th style="padding:.4rem;">Дата</th>
+                <th style="padding:.4rem;">Имя</th>
+                <th style="padding:.4rem;">Телефон</th>
+                <th style="padding:.4rem;">Email</th>
+                <th style="padding:.4rem;">Причина / страница</th>
+                <th style="padding:.4rem;">Статус</th>
+              </tr>
+            </thead>
+            <tbody>${rows || '<tr><td colspan="6" style="padding:1rem;text-align:center;opacity:.6;">Заявок пока нет</td></tr>'}</tbody>
+          </table>
+        </div>
+        <p class="meta" style="margin-top:.75rem;">Всего заявок: ${leadsState.length}</p>
+      `;
+    }
+
+    function saveLeads() {
+      const selects = document.querySelectorAll('.lead-status');
+      selects.forEach(sel => {
+        const idx = Number(sel.dataset.idx);
+        if (leadsState[idx]) leadsState[idx].status = sel.value;
+      });
+      const btn = document.getElementById('leads-save-btn');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
+      api('/api/admin/save-leads', {
+        method: 'POST',
+        body: JSON.stringify({ leads: leadsState })
+      }).then(async res => {
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          showToast('Статусы заявок сохранены');
+          loadCrmLeadsSection();
+        } else {
+          showToast('Ошибка: ' + (data.error || res.status), 'error');
+          if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить статусы'; }
+        }
+      }).catch(err => {
+        showToast('Ошибка сохранения: ' + err.message, 'error');
+        if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить статусы'; }
+      });
+    }
+
     // ── CRUD слотов таблицы занятий (scheduleStructured программ) ──
     function fillSlotProgramSelect(selectedId) {
       const sel = document.getElementById('slot-program');
@@ -4445,6 +4577,7 @@
       if (sectionId === 'halls') return 'Залы центра: название и картинка расписания. По одной картинке на каждый зал — они показываются на сайте в режиме «Картинки». Порядок и видимость (👁/🙈) — здесь же. Картинки расписания переехали сюда из раздела «Расписание».';
       if (sectionId === 'prices') return 'Позиции прайса (S115). Из них собирается раздел «Наши цены» на главной и блоки стоимости на страницах программ и тренеров. Название, группа, подвид (вариант цены), цена и старая цена, срок, пояснение, привязка к программе/тренеру, 👁/🙈 и порядок перетаскиванием. Внизу — служебные поля для CRM (оплата тренеру, режим оплаты, оплата за бесплатную): клиент их не видит и на сайт они не экспортируются.';
       if (sectionId === 'discounts') return 'Скидки и условия к позициям прайса (S115). Тип: процент, сумма, бонус или пояснение. Отметка «применяется к позициям» рисует бейдж у цены на сайте; пояснения без бейджа попадают в блок «Скидки и условия» внизу раздела.';
+      if (sectionId === 'crm-leads') return 'Заявки с формы «Заказать обратный звонок» на сайте. Воронка: Новая → Звонок → Объяснено → Клиент_пришёл_на_первую → Клиент_ходит. Статусы сохраняются в leads.json.';
       if (sectionId === 'slider') return 'Слайды главной страницы (порядок = порядок в списке). Клик — просмотр. Редактирование — в следующем пакете.';
       if (sectionId === 'contacts') return 'Контакты из базы — используются в футере на всех страницах. Изменение — в следующем пакете.';
       if (sectionId === 'news-settings') return 'Настройки раздела новостей (defaultImage, defaultVideo, autoPublish). Сейчас пустые — работают значения по умолчанию.';
@@ -4478,6 +4611,7 @@
         album: ['id', 'image', 'thumb', 'title', 'date'],
         email: ['emailConfig.smtpHost', 'emailConfig.smtpPort', 'emailConfig.smtpSecure', 'emailConfig.smtpUser', 'emailConfig.smtpPass', 'emailConfig.fromName', 'emailConfig.adminEmail', 'emailConfig.errorEmail[]'],
         crm: ['(заглушка — без данных)'],
+        'crm-leads': ['id', 'ts', 'name', 'phone', 'email', 'message', 'reason', 'page', 'ua', 'status'],
         bots: ['(заглушка — без данных)'],
         integrations: ['(заглушка — без данных)'],
         help: ['(справка формируется автоматически)'],
