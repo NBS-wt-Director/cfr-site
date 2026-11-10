@@ -344,7 +344,7 @@
     // Если модуль карусели загружен — карусель (фото целиком, без crop)
     if (window.Carousel && window.Carousel.render) {
       return '<h2 class="entity-subtitle">Фотоальбом</h2>' +
-        '<div class="entity-album">' + window.Carousel.render(album, altBase) + '</div>';
+        '<div id="album" class="entity-album">' + window.Carousel.render(album, altBase) + '</div>';
     }
     // Фолбэк: старая сетка (если carousel.js не подключён)
     var items = album.map(function (a) {
@@ -353,7 +353,7 @@
         '</div>';
     }).join('');
     return '<h2 class="entity-subtitle">Фотоальбом</h2>' +
-      '<div class="album-grid">' + items + '</div>';
+      '<div id="album" class="album-grid">' + items + '</div>';
   }
 
   function notFound(backHref, backLabel) {
