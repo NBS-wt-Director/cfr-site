@@ -243,6 +243,27 @@
      Делегирование на document — работает на любой странице расписания.
      ============================================ */
   var chipMenuBound = false;
+  var chipMenuEl = null;   // меню в body (position:fixed), если открыто
+  var chipMenuWrap = null; // обёртка чипа, к которой привязано меню
+  var chipRepos = null;    // слушатель репозиционирования
+
+  function detachChipMenu() {
+    if (!chipMenuEl) return;
+    if (chipRepos) {
+      window.removeEventListener('scroll', chipRepos, true);
+      window.removeEventListener('resize', chipRepos);
+      chipRepos = null;
+    }
+    var w = chipMenuWrap;
+    chipMenuEl.style.position = '';
+    chipMenuEl.style.top = '';
+    chipMenuEl.style.left = '';
+    chipMenuEl.style.width = '';
+    if (w) w.appendChild(chipMenuEl); // возвращаем в обёртку
+    chipMenuEl = null;
+    chipMenuWrap = null;
+  }
+
   function closeAllChipMenus(except) {
     document.querySelectorAll('.week-chip-wrap.chip-open').forEach(function (w) {
       if (w === except) return;
@@ -252,7 +273,31 @@
       var chip = w.querySelector('.week-chip');
       if (chip) chip.setAttribute('aria-expanded', 'false');
     });
+    // Активное меню (в body) тоже закрыть, если оно не у except
+    if (chipMenuEl && chipMenuWrap !== except) {
+      var ew = chipMenuWrap;
+      detachChipMenu();
+      if (ew) {
+        ew.classList.remove('chip-open');
+        var m = ew.querySelector('.chip-menu');
+        if (m) m.hidden = true;
+        var c = ew.querySelector('.week-chip');
+        if (c) c.setAttribute('aria-expanded', 'false');
+      }
+    }
   }
+
+  function positionChipMenu(menu, chip) {
+    var rect = chip.getBoundingClientRect();
+    var menuW = 180;
+    var left = rect.left + rect.width / 2 - menuW / 2;
+    if (left < 8) left = 8;
+    if (left + menuW > window.innerWidth - 8) left = window.innerWidth - 8 - menuW;
+    menu.style.left = left + 'px';
+    menu.style.top = (rect.bottom + 6) + 'px';
+    menu.style.width = menuW + 'px';
+  }
+
   function initChipMenu() {
     if (chipMenuBound) return;
     chipMenuBound = true;
@@ -263,14 +308,15 @@
       if (signup) {
         e.preventDefault();
         var reason = signup.getAttribute('data-call') || 'Расписание';
-        if (window.openCallModal) window.openCallModal(reason);
         closeAllChipMenus(null);
+        detachChipMenu();
+        if (window.openCallModal) window.openCallModal(reason);
         return;
       }
       // 2) Кнопки-ссылки меню («Подробнее»/«Посмотреть») — штатный переход,
       //    меню закрываем, чтобы не мешало следующей странице
       var link = e.target.closest('.chip-menu-btn');
-      if (link) { closeAllChipMenus(null); return; }
+      if (link) { closeAllChipMenus(null); detachChipMenu(); return; }
       // 3) Клик по чипу — открыть/закрыть меню
       var chip = e.target.closest('.week-chip');
       if (chip) {
@@ -281,18 +327,37 @@
         e.preventDefault();
         var wasOpen = wrap.classList.contains('chip-open');
         closeAllChipMenus(wrap);
-        wrap.classList.toggle('chip-open', !wasOpen);
+        detachChipMenu();
+        if (wasOpen) {
+          wrap.classList.remove('chip-open');
+          var menuClose = wrap.querySelector('.chip-menu');
+          if (menuClose) menuClose.hidden = true;
+          chip.setAttribute('aria-expanded', 'false');
+          return;
+        }
         var menu = wrap.querySelector('.chip-menu');
-        if (menu) menu.hidden = wasOpen;
-        chip.setAttribute('aria-expanded', String(!wasOpen));
+        if (!menu) return;
+        wrap.classList.add('chip-open');
+        chip.setAttribute('aria-expanded', 'true');
+        // Переносим в body → не обрезается overflow и не прячется под компонентами
+        document.body.appendChild(menu);
+        menu.style.position = 'fixed';
+        menu.hidden = false;
+        chipMenuEl = menu;
+        chipMenuWrap = wrap;
+        positionChipMenu(menu, chip);
+        chipRepos = function () { positionChipMenu(menu, chip); };
+        window.addEventListener('scroll', chipRepos, true);
+        window.addEventListener('resize', chipRepos);
         return;
       }
       // 4) Клик мимо — закрыть
       closeAllChipMenus(null);
+      detachChipMenu();
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAllChipMenus(null);
+      if (e.key === 'Escape') { closeAllChipMenus(null); detachChipMenu(); }
     });
   }
   initChipMenu();

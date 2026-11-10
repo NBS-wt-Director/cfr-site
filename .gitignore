@@ -68,3 +68,6 @@ trash/
 # Свалка тикетов и мультитикетов
 tickets/trash/
 logs/
+
+# S151: leads.json — отдельная БД заявок обратной связи (не db.json, не коммитится)
+leads.json

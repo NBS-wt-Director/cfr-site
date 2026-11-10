@@ -2658,5 +2658,77 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S18: sitemap содержит slug-ссылки на тренеров (не числа)', slugTrLocs.length > 0 && slugTrLocs.every(s => /[а-яёА-ЯЁ]/.test(s)));
 }
 
+// ── S151: чипы расписания + leads ──
+{
+  // 1. schedule-ui.js: чип-обёртки + chip-menu + делегирование
+  const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'schedule-ui.js'), 'utf-8');
+  check('S151: schedule-ui.js — .week-chip-wrap обёртка', schedSrc.includes('week-chip-wrap'));
+  check('S151: schedule-ui.js — chip-menu (3 кнопки)', schedSrc.includes('chip-menu-btn'));
+  check('S151: schedule-ui.js — chip-menu-more (Подробнее)', schedSrc.includes('chip-menu-more'));
+  check('S151: schedule-ui.js — chip-menu-view (Посмотреть)', schedSrc.includes('chip-menu-view'));
+  check('S151: schedule-ui.js — chip-menu-signup (Записаться)', schedSrc.includes('chip-menu-signup'));
+  check('S151: schedule-ui.js — data-target в обёртке', schedSrc.includes('data-target'));
+  check('S151: schedule-ui.js — data-album в обёртке', schedSrc.includes('data-album'));
+  check('S151: schedule-ui.js — initChipMenu экспортирован', schedSrc.includes('initChipMenu'));
+  check('S151: schedule-ui.js — якорь #album у кнопки Посмотреть', schedSrc.includes('#album'));
+  check('S151: schedule-ui.js — openCallModal(reason) при Записаться', schedSrc.includes('openCallModal'));
+
+  // 2. modal.js: эндпоинт lead-create + page/ua
+  const modalSrc = fs.readFileSync(path.join(staticDir, 'js', 'modal.js'), 'utf-8');
+  check('S151: modal.js — POST /api/admin/lead-create', modalSrc.includes('/api/admin/lead-create'));
+  check('S151: modal.js — page в payload', modalSrc.includes('page:'));
+  check('S151: modal.js — ua в payload', modalSrc.includes('ua:'));
+
+  // 3. export-static.mjs: hasAlbum / programHasAlbum
+  const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
+  check('S151: export-static.mjs — hasAlbum в navPrograms', exportSrc.includes('hasAlbum'));
+  check('S151: export-static.mjs — programHasAlbum в scheduleTable', exportSrc.includes('programHasAlbum'));
+
+  // 4. entity.js: id="album"
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+  check('S151: entity.js — id="album" у блока альбома', /id="album"/.test(entitySrc));
+
+  // 5. admin-server.mjs: leads маршруты + анти-спам + whitelist
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  check('S151: admin-server.mjs — /api/admin/lead-create', serverSrc.includes('/api/admin/lead-create'));
+  check('S151: admin-server.mjs — /api/admin/get-leads', serverSrc.includes('/api/admin/get-leads'));
+  check('S151: admin-server.mjs — /api/admin/save-leads', serverSrc.includes('/api/admin/save-leads'));
+  check('S151: admin-server.mjs — leads.json', serverSrc.includes('leads.json'));
+  check('S151: admin-server.mjs — анти-спам 30с', serverSrc.includes('LEADS_THROTTLE_MS'));
+  check('S151: admin-server.mjs — whitelist статусов', serverSrc.includes('LEADS_STATUS_WHITELIST'));
+  check('S151: admin-server.mjs — 5 статусов воронки', serverSrc.includes('Клиент_пришёл_на_первую') && serverSrc.includes('Клиент_ходит'));
+
+  // 6. admin.html: раздел crm-leads
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  check('S151: admin.html — ссылка crm-leads в сайдбаре', adminSrc.includes('data-section="crm-leads"'));
+  check('S151: admin.html — loadCrmLeadsSection', adminSrc.includes('loadCrmLeadsSection'));
+  check('S151: admin.html — renderCrmLeads', adminSrc.includes('renderCrmLeads'));
+  check('S151: admin.html — saveLeads', adminSrc.includes('saveLeads'));
+  check('S151: admin.html — get-leads вызов', adminSrc.includes('/api/admin/get-leads'));
+  check('S151: admin.html — save-leads вызов', adminSrc.includes('/api/admin/save-leads'));
+
+  // 7. CSS: chip-open, chip-menu
+  const cssSrc = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+  check('S151: style.css — .week-chip-wrap.chip-open', cssSrc.includes('.week-chip-wrap.chip-open'));
+  check('S151: style.css — .chip-menu', cssSrc.includes('.chip-menu'));
+  check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
+
+  // 8. Бамп кэша: в index.html v=40
+  check('S151: index.html — ?v=40', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=40'));
+
+  // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
+  const w = loadPage('index.html');
+  const board = w.document.createElement('div');
+  board.innerHTML = w.ScheduleUI.weekBoard(w.SITE_DATA.scheduleTable);
+  check('S151: weekBoard — .week-chip-wrap есть', board.querySelectorAll('.week-chip-wrap').length > 0);
+  check('S151: weekBoard — .chip-menu есть', board.querySelectorAll('.chip-menu').length > 0);
+  check('S151: weekBoard — кнопка Подробнее (.chip-menu-more)', board.querySelectorAll('.chip-menu-more').length > 0);
+  check('S151: weekBoard — кнопка Записаться (.chip-menu-signup)', board.querySelectorAll('.chip-menu-signup').length > 0);
+  check('S151: weekBoard — чип это <button>, не <a>', board.querySelectorAll('button.week-chip').length > 0);
+  // Посмотреть: видима только если у программы есть альбом
+  const viewBtns = [...board.querySelectorAll('.chip-menu-view')];
+  check('S151: weekBoard — Посмотреть скрыт без альбома (hidden)', viewBtns.some(b => b.hidden));
+}
+
 console.log(`\n${passed}/${passed + failed} пройдено`);
 process.exit(failed ? 1 : 0);
