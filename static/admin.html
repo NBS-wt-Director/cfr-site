@@ -577,6 +577,7 @@
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="integrations" onclick="toggleGroup(this)">🔗 ИНТЕГРАЦИИ ▸</div>
           <div class="sidebar-group-body">
+            <a href="#integrations-dance" data-section="integrations-dance">💃 Dance (DanceStudio)</a>
             <a href="#integrations" data-section="integrations" class="sidebar-wip">🔗 Интеграции (скоро)</a>
           </div>
         </div>
@@ -997,6 +998,7 @@
       // ЗАГЛУШКИ
       { id: 'crm', title: '📊 CRM', status: 'wip', group: 'stubs' },
       { id: 'bots', title: '🤖 Боты', status: 'wip', group: 'stubs' },
+      { id: 'integrations-dance', title: '💃 Dance (DanceStudio)', status: 'done', group: 'integrations' },
       { id: 'integrations', title: '🔗 Интеграции', status: 'wip', group: 'stubs' },
       // СПРАВКА
       { id: 'help', title: '📖 Справка', status: 'done', group: 'help' },
@@ -1142,6 +1144,8 @@
       if (sectionId === 'discounts') loadDiscountsSection();
       // S151: вызовы форм обратной связи
       if (sectionId === 'crm-leads') loadCrmLeadsSection();
+      // S152: сабраздел Dance в Интеграциях
+      if (sectionId === 'integrations-dance') loadDanceIntegrationSection();
       if (sectionId === 'help') loadHelpSection();
       if (VIEW_SECTIONS[sectionId]) loadViewSection(sectionId);
     }
@@ -3651,6 +3655,74 @@
       });
     }
 
+    // ============================================
+    // S152b: Интеграции → Dance (DanceStudio)
+    // Пока только статусы и кнопка ручного запуска (неактивная).
+    // ============================================
+    async function loadDanceIntegrationSection() {
+      const content = document.getElementById('admin-content');
+      const card = content.querySelector('.section-card');
+      if (!card) return;
+
+      const old = content.querySelector('#dance-integration-card');
+      if (old) old.remove();
+
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      box.id = 'dance-integration-card';
+      card.insertAdjacentElement('afterend', box);
+
+      const statuses = [
+        { name: 'XML-донор (данные/_DB/)',        status: '🕓 Ожидает',  note: '64 файла, ~140 МБ' },
+        { name: 'ПостgreSQL (Docker)',             status: '🕓 Ожидает',  note: 'Контейнер под данные DanceStudio' },
+        { name: 'Мост синхронизации (XML → PG)',   status: '🕓 Ожидает',  note: 'MULTITICKET-DANCESTUDIO, тикет 2.2' },
+        { name: 'Периодическая синхронизация',     status: '🕓 Ожидает',  note: 'cron / systemd timer' },
+        { name: 'ЛК клиента (dance-soft.ru)',      status: '✅ Работает', note: 'static/lk.html — Dropbox API напрямую' },
+        { name: 'Экспорт на сайт (программы/расписание)', status: '🕓 Ожидает', note: 'Через мост → db.json → static:export' }
+      ];
+
+      const rows = statuses.map(s => `
+        <tr style="border-bottom:1px solid #f1f5f9;">
+          <td style="padding:.5rem .6rem;font-weight:500;">${escapeHtml(s.name)}</td>
+          <td style="padding:.5rem .6rem;">${s.status}</td>
+          <td style="padding:.5rem .6rem;color:var(--text-secondary);font-size:.85rem;">${escapeHtml(s.note)}</td>
+        </tr>`).join('');
+
+      box.innerHTML = `
+        <h2>💃 Dance — интеграция с DanceStudio</h2>
+        <p style="font-size:1rem;color:var(--text-secondary);margin-bottom:1rem;">
+          Синхронизация данных центра из DanceStudio (XML-донор) в PostgreSQL с экспортом на сайт.
+          Мульти-тикет: <code>MULTITICKET-DANCESTUDIO</code> (отложен).</p>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:.9rem;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border);text-align:left;">
+                <th style="padding:.5rem .6rem;">Компонент</th>
+                <th style="padding:.5rem .6rem;">Статус</th>
+                <th style="padding:.5rem .6rem;">Примечание</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" disabled title="Синхронизация ещё не реализована">
+            ▶️ Ручной запуск синхронизации
+          </button>
+          <span style="font-size:.8rem;color:var(--text-secondary);">
+            Кнопка станет активной после реализации моста (тикеты 2.1–2.3)
+          </span>
+        </div>
+        <hr style="margin:1.5rem 0;border:none;border-top:1px solid var(--border);">
+        <h3>📎 Документы</h3>
+        <ul style="font-size:.9rem;color:var(--text-secondary);">
+          <li><code>tickets/definded/MULTITICKET-DANCESTUDIO.md</code> — 15 тикетов, 1 выполнен (1.4)</li>
+          <li><code>info/DANCESTUDIO-SCANS.md</code> — сканы XML-донора + маппинг PG</li>
+          <li><code>info/DANCESTUDIO-SCANS_analis.md</code> — оценка, DDL, правила импорта</li>
+        </ul>
+      `;
+    }
+
     // ── CRUD слотов таблицы занятий (scheduleStructured программ) ──
     function fillSlotProgramSelect(selectedId) {
       const sel = document.getElementById('slot-program');
@@ -4584,6 +4656,7 @@
       if (sectionId === 'album') return 'Свободные фото общего альбома (страница «Альбом» пока выключена из навигации). Клик — просмотр. Загружаются ночным парсером из папки на диске.';
       if (sectionId === 'email') return 'Настройки SMTP для отправки уведомлений и напоминаний. Настройка хоста, порта, логина, пароля и адресов получателей.';
       if (sectionId === 'bots') return 'Управление ботами (Telegram, VK, WhatsApp). Интеграция с CRM, автоответы, рассылки. Раздел в разработке.';
+      if (sectionId === 'integrations-dance') return 'Синхронизация данных центра из DanceStudio (XML-донор) в PostgreSQL с экспортом на сайт. Пока только таблица статусов: компоненты ждут реализации моста (MULTITICKET-DANCESTUDIO, тикеты 2.1–2.3). Кнопка ручного запуска неактивна.';
       if (sectionId === 'integrations') return 'Интеграции с внешними сервисами: CRM, email-рассылки, аналитика, облачные хранилища. Раздел в разработке.';
       if (sectionId === 'help') return 'Справка для администраторов по всем разделам. Подробные инструкции, примеры использования, рекомендации и ответы на частые вопросы.';
       return 'Раздел в разработке. Здесь будет полноценный редактор.';
@@ -6553,7 +6626,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=41">
+<link rel="stylesheet" href="/css/style.css?v=42">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -6861,11 +6934,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=41').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=42').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=42').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);

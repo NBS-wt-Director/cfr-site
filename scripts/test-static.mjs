@@ -2713,8 +2713,8 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu', cssSrc.includes('.chip-menu'));
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
-  // 8. Бамп кэша: в index.html v=41
-  check('S151: index.html — ?v=41', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=41'));
+  // 8. Бамп кэша: в index.html v=42
+  check('S151: index.html — ?v=42', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=42'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -2728,6 +2728,29 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // Посмотреть: видима только если у программы есть альбом
   const viewBtns = [...board.querySelectorAll('.chip-menu-view')];
   check('S151: weekBoard — Посмотреть скрыт без альбома (hidden)', viewBtns.some(b => b.hidden));
+}
+
+// ── S152: callSuccessText + Dance интеграция ──
+{
+  // 1. export-static.mjs — callSuccessText
+  const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
+  check('S152: export-static.mjs — callSuccessText в siteSettings', exportSrc.includes('callSuccessText'));
+
+  // 2. modal.js — callSuccessText element + showSuccess
+  const modalSrc = fs.readFileSync(path.join(staticDir, 'js', 'modal.js'), 'utf-8');
+  check('S152: modal.js — id="callSuccessText"', modalSrc.includes('callSuccessText'));
+  check('S152: modal.js — showSuccess подставляет текст', modalSrc.includes('SITE_DATA') && modalSrc.includes('callSuccessText'));
+
+  // 3. admin.html — sidebar dance link
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  check('S152: admin.html — сабраздел dance в sidebar', adminSrc.includes('data-section="integrations-dance"'));
+  check('S152: admin.html — loadDanceIntegrationSection', adminSrc.includes('loadDanceIntegrationSection'));
+  check('S152: admin.html — disabled кнопка ручного запуска', adminSrc.includes('Ручной запуск') && /disabled/.test(adminSrc));
+  check('S152: admin.html — описание dance', adminSrc.includes('DanceStudio'));
+
+  // 4. admin-server.mjs — help section
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  check('S152: admin-server.mjs — help integrations-dance', serverSrc.includes("id: 'integrations-dance'"));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);
