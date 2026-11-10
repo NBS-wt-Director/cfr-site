@@ -1333,6 +1333,12 @@ async function handleSendReminder(req, res) {
       if (!db.siteSettings) db.siteSettings = {};
       db.siteSettings.title1 = String(body.siteSettings.title1 || 'Шифу Панда');
       db.siteSettings.title2 = String(body.siteSettings.title2 || 'Центр Функционального Развития');
+      // S152: текст подтверждения после отправки формы обратного звонка
+      if (Object.prototype.hasOwnProperty.call(body.siteSettings, 'callSuccessText')) {
+        const t = String(body.siteSettings.callSuccessText || '').trim();
+        if (t === '') { delete db.siteSettings.callSuccessText; }
+        else { db.siteSettings.callSuccessText = t.slice(0, 120); }
+      }
       // S133 п.7: baseUrl — хост для canonical/og/sitemap. Значение по умолчанию
       // (https://центр-фр.рф, Р3) задаётся в генераторе; здесь — только валидация
       // ввода админа: https://, без завершающего /, без пути/query/пробелов; IDN разрешён.
@@ -2926,15 +2932,20 @@ async function handleSendReminder(req, res) {
     try {
       const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
       const ec = db.emailConfig || {};
-      if (!ec.host || !ec.user) return; // нет SMTP — пропускаем
-      const nodemailer = await import('nodemailer');
+      const smtpHost = ec.smtpHost || 'smtp.yandex.ru';
+      const smtpPort = ec.smtpPort || 465;
+      const smtpSecure = ec.smtpSecure !== false;
+      const smtpUser = ec.smtpUser;
+      const smtpPass = ec.smtpPass;
+      if (!smtpUser || !smtpPass) return; // нет SMTP — пропускаем
+      const nodemailer = (await import('nodemailer')).default;
       const transporter = nodemailer.createTransport({
-        host: ec.host,
-        port: Number(ec.port) || 465,
-        secure: ec.secure !== false,
-        auth: { user: ec.user, pass: ec.password }
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpSecure,
+        auth: { user: smtpUser, pass: smtpPass }
       });
-      const to = ec.techEmail || ec.user;
+      const to = ec.adminEmail || smtpUser;
       const subject = '404 на центр-фр.рф: ' + entry.url;
       const html = '<h3>Ошибка 404</h3>' +
         '<p><b>URL:</b> ' + escapeHtml(entry.url) + '</p>' +
@@ -2944,13 +2955,13 @@ async function handleSendReminder(req, res) {
         '<p><b>Экран:</b> ' + escapeHtml(entry.screen) + '</p>' +
         '<p><b>Время:</b> ' + entry.ts + '</p>';
       await transporter.sendMail({
-        from: ec.fromName ? ec.fromName + ' <' + ec.user + '>' : ec.user,
+        from: ec.fromName ? ec.fromName + ' <' + smtpUser + '>' : smtpUser,
         to: to,
         subject: subject,
         html: html
       });
     } catch (e) {
-      // письмо не критично
+      console.warn('Не удалось отправить письмо 404:', e.message);
     }
   }
 
@@ -3034,10 +3045,59 @@ async function handleSendReminder(req, res) {
       writeLeads(leads);
 
       console.log(`📣 Новая заявка от "${lead.name}" (${lead.page})`);
+
+      // S153: уведомление на adminEmail о новой заявке
+      sendLeadNotification(lead).catch(() => {}); // ошибка письма не блокирует ответ
+
       sendJSON(res, 200, { ok: true });
     } catch (err) {
       console.error('❌ Ошибка lead-create:', err.message);
       sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // S153: отправка уведомления о новой заявке
+  async function sendLeadNotification(lead) {
+    try {
+      const db = flattenDb(JSON.parse(fs.readFileSync(dbPath, 'utf-8')));
+      const ec = db.emailConfig || {};
+      const smtpHost = ec.smtpHost || 'smtp.yandex.ru';
+      const smtpPort = ec.smtpPort || 465;
+      const smtpSecure = ec.smtpSecure !== false;
+      const smtpUser = ec.smtpUser;
+      const smtpPass = ec.smtpPass;
+      if (!smtpUser || !smtpPass) {
+        console.warn('⚠️ SMTP пароль не установлен — уведомление о заявке не отправлено');
+        return;
+      }
+      const nodemailer = (await import('nodemailer')).default;
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpSecure,
+        auth: { user: smtpUser, pass: smtpPass }
+      });
+      const to = ec.adminEmail || smtpUser;
+      const fromName = ec.fromName || 'Шифу Панда';
+      const subject = '📣 Новая заявка с сайта: ' + lead.name + ' (' + lead.page + ')';
+      const html = '<h3>Новая заявка с формы «Заказать обратный звонок»</h3>' +
+        '<p><b>Имя:</b> ' + escapeHtml(lead.name) + '</p>' +
+        '<p><b>Телефон:</b> ' + escapeHtml(lead.phone) + '</p>' +
+        '<p><b>Email:</b> ' + escapeHtml(lead.email || '—') + '</p>' +
+        '<p><b>Сообщение:</b> ' + escapeHtml(lead.message || '—') + '</p>' +
+        '<p><b>Причина:</b> ' + escapeHtml(lead.reason) + '</p>' +
+        '<p><b>Страница:</b> ' + escapeHtml(lead.page) + '</p>' +
+        '<p><b>UA:</b> ' + escapeHtml(lead.ua) + '</p>' +
+        '<p><b>Время:</b> ' + lead.ts + '</p>';
+      await transporter.sendMail({
+        from: fromName + ' <' + smtpUser + '>',
+        to: to,
+        subject: subject,
+        html: html
+      });
+      console.log('📧 Уведомление о заявке отправлено на ' + to);
+    } catch (e) {
+      console.warn('⚠️ Не удалось отправить уведомление о заявке:', e.message);
     }
   }
 

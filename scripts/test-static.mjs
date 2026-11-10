@@ -2713,8 +2713,8 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu', cssSrc.includes('.chip-menu'));
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
-  // 8. Бамп кэша: в index.html v=40
-  check('S151: index.html — ?v=40', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=40'));
+  // 8. Бамп кэша: в index.html v=41
+  check('S151: index.html — ?v=41', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=41'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');

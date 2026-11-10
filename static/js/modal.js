@@ -160,6 +160,10 @@
   function showSuccess(form) {
     form.reset();
     form.hidden = true;
+    // S152: текст подтверждения из админки (siteSettings.callSuccessText)
+    var text = (window.SITE_DATA && window.SITE_DATA.siteSettings && window.SITE_DATA.siteSettings.callSuccessText)
+      || 'Свяжемся, как только сможем';
+    document.getElementById('callSuccessText').textContent = text;
     document.getElementById('callSuccess').hidden = false;
     setTimeout(function () {
       closeCallModal();

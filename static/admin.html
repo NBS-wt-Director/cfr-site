@@ -6553,7 +6553,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=40">
+<link rel="stylesheet" href="/css/style.css?v=41">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -6677,6 +6677,15 @@
             <label for="title2-input">Второе название (footer, title страницы)</label>
             <input type="text" id="title2-input" value="${escapeHtml(siteSettingsState.title2)}" maxlength="80" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
           </div>
+          <!-- S152: текст подтверждения после отправки формы обратного звонка -->
+          <div class="form-group">
+            <label for="callsuccesstext-input">📞 Текст «заявка отправлена» (модалка обратного звонка)</label>
+            <input type="text" id="callsuccesstext-input" value="${escapeHtml(siteSettingsState.callSuccessText || 'Свяжемся, как только сможем')}"
+                   placeholder="Свяжемся, как только сможем" maxlength="120"
+                   style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;">
+            <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:0.25rem;">
+              Показывается клиенту после отправки формы. Пустое значение = «Свяжемся, как только сможем».</p>
+          </div>
           <!-- S133 п.7: адрес сайта для canonical/og/sitemap (хост подтверждён Р3) -->
           <div class="form-group">
             <label for="baseurl-input">🌐 Адрес сайта (baseUrl)</label>
@@ -6748,6 +6757,9 @@
 
       siteSettingsState.title1 = document.getElementById('title1-input').value.trim();
       siteSettingsState.title2 = document.getElementById('title2-input').value.trim();
+      // S152: текст подтверждения формы
+      const cst = document.getElementById('callsuccesstext-input');
+      siteSettingsState.callSuccessText = cst ? cst.value.trim() : '';
       // S133: baseUrl (пусто → сервер удалит ключ, генератор возьмёт дефолт)
       const bu = document.getElementById('baseurl-input');
       siteSettingsState.baseUrl = bu ? bu.value.trim() : '';
@@ -6849,11 +6861,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=40').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=40').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=40').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=40').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=40').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=41').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=41').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);

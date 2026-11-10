@@ -9639,7 +9639,7 @@
       "smtpPort": 465,
       "smtpSecure": true,
       "smtpUser": "centr-fr@yandex.ru",
-      "smtpPass": "",
+      "smtpPass": "kbhogrqznoachbrp",
       "fromName": "Шифу Панда",
       "adminEmail": "centr-fr@yandex.ru",
       "errorEmail": [
