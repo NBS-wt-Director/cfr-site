@@ -2428,6 +2428,16 @@ async function handleSendReminder(req, res) {
     return '';
   }
 
+  // S158: позиции текста слайдера (9 вариантов + миграция старых left/right)
+  const SLIDER_POS = [
+    'top-left','top-center','top-right',
+    'center-left','center','center-right',
+    'bottom-left','bottom-center','bottom-right'
+  ];
+  const SLIDER_POS_MIGRATE = { left: 'center-left', right: 'center-right' };
+  // Валидация hex-цвета
+  const HEX_RE = /^#[0-9a-fA-F]{6}$/;
+
   function sanitizeSlides(raw) {
     const src = Array.isArray(raw) ? raw : [];
     const seen = new Set();
@@ -2441,12 +2451,36 @@ async function handleSendReminder(req, res) {
       if (seen.has(id)) continue;
       seen.add(id);
       const interval = Number(item.interval);
+      const pos = SLIDER_POS_MIGRATE[item.position] || item.position;
+      // S158: новые поля
+      const textColor = HEX_RE.test(item.textColor) ? item.textColor : '#ffffff';
+      const textSize = Number.isFinite(Number(item.textSize))
+        ? Math.max(16, Math.min(96, Math.round(Number(item.textSize)))) : 42;
+      const tm = item.textMargin || {};
+      const textMargin = {
+        top: Math.max(0, Math.min(200, Math.round(Number(tm.top ?? 20)))),
+        right: Math.max(0, Math.min(200, Math.round(Number(tm.right ?? 20)))),
+        bottom: Math.max(0, Math.min(200, Math.round(Number(tm.bottom ?? 20)))),
+        left: Math.max(0, Math.min(200, Math.round(Number(tm.left ?? 20))))
+      };
+      const ov = item.overlay || {};
+      const overlay = {
+        enabled: ov.enabled !== false,
+        color: HEX_RE.test(ov.color) ? ov.color : '#000000',
+        opacity: Number.isFinite(Number(ov.opacity))
+          ? Math.max(0, Math.min(0.9, Number(ov.opacity))) : 0.4
+      };
+      const link = String(item.link || '').trim().slice(0, 300);
       out.push({
         id,
         title: cleanPriceText(item.title, 80),
+        description: cleanPriceText(item.description || '', 500),
         image,
+        link: link || '',
+        linkTarget: item.linkTarget === '_blank' ? '_blank' : '_self',
         interval: Number.isFinite(interval) && interval > 0 && interval <= 120 ? Math.round(interval) : 5,
-        position: ['left', 'center', 'right'].includes(item.position) ? item.position : 'center',
+        position: SLIDER_POS.includes(pos) ? pos : 'center',
+        textColor, textSize, textMargin, overlay,
         hidden: item.hidden === true
       });
     }
@@ -2486,6 +2520,60 @@ async function handleSendReminder(req, res) {
       sendJSON(res, 200, { ok: true, slides, defaultInterval: Number(db.defaultInterval) || 5 });
     } catch (err) {
       console.error('❌ Ошибка сохранения слайдера:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // S158: менеджер фото — сканирование uploads/ + album/full/, поиск, used/unused
+  async function handleGetPhotoAlbum(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+    try {
+      const body = await readBody(req).catch(() => ({}));
+      const query = String(body.query || '').trim().toLowerCase();
+      const filter = ['all', 'unused', 'used'].includes(body.filter) ? body.filter : 'all';
+      const page = Math.max(1, Number(body.page) || 1);
+      const perPage = Math.max(1, Math.min(100, Number(body.per_page) || 24));
+
+      // Собираем пути всех слайдов + альбомов тренеров/программ для used-фильтра
+      const db = readDb();
+      const usedPaths = new Set();
+      (db.sliders || []).forEach(s => { if (s.image) usedPaths.add(s.image.replace(/^\//, '')); });
+      (db.programs || []).forEach(p => (p.photoAlbum || []).forEach(a => { if (a.image) usedPaths.add(a.image.replace(/^\//, '')); }));
+      (db.trainers || []).forEach(t => (t.photoAlbum || []).forEach(a => { if (a.image) usedPaths.add(a.image.replace(/^\//, '')); }));
+
+      // Сканируем каталоги
+      const IMG_RE = /\.(jpg|jpeg|png|webp|gif)$/i;
+      const photos = [];
+      const dirs = [
+        { base: 'uploads', scan: uploadsDir },
+        { base: 'uploads/album/full', scan: path.join(uploadsDir, 'album', 'full') }
+      ];
+      for (const { base, scan } of dirs) {
+        if (!fs.existsSync(scan)) continue;
+        let entries;
+        try { entries = fs.readdirSync(scan, { withFileTypes: true }); } catch { continue; }
+        for (const e of entries) {
+          if (!e.isFile() || !IMG_RE.test(e.name)) continue;
+          const rel = base + '/' + e.name;
+          if (query && !e.name.toLowerCase().includes(query)) continue;
+          const used = usedPaths.has(rel);
+          if (filter === 'used' && !used) continue;
+          if (filter === 'unused' && used) continue;
+          let size = 0;
+          try { size = fs.statSync(path.join(scan, e.name)).size; } catch {}
+          photos.push({ path: rel, name: e.name, size, used });
+        }
+      }
+
+      // Сортировка: сначала неиспользованные, затем по имени
+      photos.sort((a, b) => (a.used ? 1 : 0) - (b.used ? 1 : 0) || a.name.localeCompare(b.name, 'ru'));
+
+      const total = photos.length;
+      const paged = photos.slice((page - 1) * perPage, page * perPage);
+      sendJSON(res, 200, { photos: paged, total, page, per_page: perPage });
+    } catch (err) {
+      console.error('❌ Ошибка фото-альбома:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
@@ -3600,6 +3688,10 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/save-slides' && method === 'POST') {
     return handleSaveSlides(req, res);
+  }
+  // S158: менеджер фото (popup в админке)
+  if (pathname === '/api/admin/get-photo-album' && method === 'POST') {
+    return handleGetPhotoAlbum(req, res);
   }
   if (pathname === '/api/admin/get-contacts' && method === 'POST') {
     return handleGetContacts(req, res);

@@ -67,6 +67,20 @@ function numOrEmpty(v) {
   return (v !== '' && v !== null && v !== undefined && Number.isFinite(n) && n > 0) ? n : '';
 }
 
+// S158: утилиты для слайдера
+function clamp(v, lo, hi) {
+  const n = Number(v);
+  return Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : lo;
+}
+
+const SLIDER_POS = [
+  'top-left','top-center','top-right',
+  'center-left','center','center-right',
+  'bottom-left','bottom-center','bottom-right'
+];
+// Старые позиции left/right → center-left/right
+const SLIDER_POS_MIGRATE = { left: 'center-left', right: 'center-right' };
+
 // S124: размеры картинки (ширина/высота) — по заголовкам файла, без зависимостей.
 // Нужно, чтобы определить «горизонтальная обложка» для компактной плитки новости.
 // Поддержка JPEG/PNG/WebP/GIF; при неудаче возвращает null (трактуем как «нет данных»).
@@ -590,13 +604,35 @@ const modules = {
 
   // S86: interval (сек) и position слайда доезжают до сайта — main.js их применяет
   // T6.2: скрытые слайды (hidden:true) на главную НЕ попадают — они видны только в админке
-  slider: (db.sliders || []).filter(s => !s.hidden).map(s => ({
-    id: s.id,
-    title: s.title || '',
-    image: fixPath(s.image),
-    interval: Number(s.interval) > 0 ? Number(s.interval) : 5,
-    position: ['left', 'center', 'right'].includes(s.position) ? s.position : 'center'
-  })).slice(0, 10),
+  // S158: добавлены description, link, textColor, textSize, textMargin, overlay,
+  //       9 позиций вместо 3, снят лимит .slice(0, 10)
+  slider: (db.sliders || []).filter(s => !s.hidden).map(s => {
+    const pos = SLIDER_POS_MIGRATE[s.position] || s.position;
+    const ov = s.overlay || {};
+    return {
+      id: s.id,
+      title: s.title || '',
+      description: s.description || '',
+      image: fixPath(s.image),
+      link: s.link || '',
+      linkTarget: s.linkTarget === '_blank' ? '_blank' : '_self',
+      interval: Number(s.interval) > 0 ? Number(s.interval) : 5,
+      position: SLIDER_POS.includes(pos) ? pos : 'center',
+      textColor: /^#[0-9a-fA-F]{6}$/.test(s.textColor) ? s.textColor : '#ffffff',
+      textSize: clamp(s.textSize || 42, 16, 96),
+      textMargin: {
+        top: clamp(s.textMargin?.top ?? 20, 0, 200),
+        right: clamp(s.textMargin?.right ?? 20, 0, 200),
+        bottom: clamp(s.textMargin?.bottom ?? 20, 0, 200),
+        left: clamp(s.textMargin?.left ?? 20, 0, 200)
+      },
+      overlay: {
+        enabled: ov.enabled !== false,
+        color: /^#[0-9a-fA-F]{6}$/.test(ov.color) ? ov.color : '#000000',
+        opacity: clamp(ov.opacity ?? 0.4, 0, 0.9)
+      }
+    };
+  }),
 
   // S99: картинки расписания = залы (settings.halls), по одной на зал.
   // Только visible, только с картинкой. Если залов в базе нет (например, сервер

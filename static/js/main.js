@@ -7,18 +7,54 @@
   /* ============================================
      РЕНДЕР СЛАЙДЕРА
      ============================================ */
+  function escAttr(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function escHtml(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function escText(s) {
+    return String(s || '').replace(/\n/g,'<br>');
+  }
+
   function renderSlider() {
     const el = document.getElementById('slider');
     if (!el || !data.slider) return;
 
-    const slides = data.slider.map((s, i) => `
-      <div class="slide ${i === 0 ? 'active' : ''}">
-        <img src="${s.image}" alt="${s.title}">
-        <div class="slider-text pos-${s.position || 'center'}">
-          <h1 class="slider-title">${s.title}</h1>
+    const slides = data.slider.map((s, i) => {
+      const pos = s.position || 'center';
+      const tm = s.textMargin || {};
+      const ov = s.overlay || {};
+      // Инлайн-стили для текстового блока
+      const textStyle = [
+        s.textColor ? 'color:' + s.textColor : '',
+        s.textSize ? 'font-size:' + s.textSize + 'px' : '',
+        (tm.top !== undefined || tm.right !== undefined || tm.bottom !== undefined || tm.left !== undefined)
+          ? 'margin:' + (tm.top ?? 20) + 'px ' + (tm.right ?? 20) + 'px ' + (tm.bottom ?? 20) + 'px ' + (tm.left ?? 20) + 'px'
+          : ''
+      ].filter(Boolean).join(';');
+      // Инлайн-стиль для overlay
+      const overlayStyle = (ov.enabled !== false)
+        ? 'background:' + (ov.color || '#000') + ';opacity:' + (ov.opacity ?? 0.4)
+        : 'display:none';
+      // Описание
+      const descHtml = s.description ? '<p class="slider-desc">' + escText(s.description) + '</p>' : '';
+      // Заголовок: ссылка или текст
+      const titleHtml = s.link
+        ? '<a class="slider-link" href="' + escAttr(s.link) + '" target="' + escAttr(s.linkTarget === '_blank' ? '_blank' : '_self') + '">' + escHtml(s.title) + '</a>'
+        : escHtml(s.title);
+
+      return `
+        <div class="slide ${i === 0 ? 'active' : ''}">
+          <img src="${escAttr(s.image)}" alt="${escAttr(s.title)}">
+          <div class="slide-overlay" style="${overlayStyle}"></div>
+          <div class="slider-text pos-${pos}" style="${textStyle}">
+            <h1 class="slider-title">${titleHtml}</h1>
+            ${descHtml}
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     const dots = data.slider.map((_, i) =>
       `<button class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></button>`

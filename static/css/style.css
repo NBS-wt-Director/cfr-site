@@ -519,37 +519,61 @@ section[id] { scroll-margin-top: var(--header-h); }
 .slide.active { opacity: 1; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
+/* S158: overlay — затемнение фото для читаемости текста */
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* S158: текстовый блок — 9 позиций через flex (вместо transform-translate) */
 .slider-text {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
   color: #fff;
   text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
-  padding: 2rem;
-  max-width: 90%;
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.3);
-  border-radius: 1.5rem;
+  /* padding/отступы теперь задаются inline из данных (textMargin) */
 }
 
-/* S86: позиция текста слайда из данных (position: left|center|right) */
-.slider-text.pos-left {
-  left: 5%;
-  transform: translate(0, -50%);
-  text-align: left;
-}
-.slider-text.pos-right {
-  left: auto; right: 5%;
-  transform: translate(0, -50%);
-  text-align: right;
-}
+/* 9 позиций — сетка 3×3 */
+.slider-text.pos-top-left     { align-items: flex-start;   justify-content: flex-start;   text-align: left; }
+.slider-text.pos-top-center   { align-items: center;       justify-content: flex-start;   text-align: center; }
+.slider-text.pos-top-right    { align-items: flex-end;     justify-content: flex-start;   text-align: right; }
+.slider-text.pos-center-left  { align-items: flex-start;   justify-content: center;       text-align: left; }
+.slider-text.pos-center       { align-items: center;       justify-content: center;       text-align: center; }
+.slider-text.pos-center-right { align-items: flex-end;     justify-content: center;       text-align: right; }
+.slider-text.pos-bottom-left  { align-items: flex-start;   justify-content: flex-end;     text-align: left; }
+.slider-text.pos-bottom-center{ align-items: center;       justify-content: flex-end;     text-align: center; }
+.slider-text.pos-bottom-right { align-items: flex-end;     justify-content: flex-end;     text-align: right; }
+
+/* Обратная совместимость: старые left/right → center-left/center-right */
+.slider-text.pos-left  { align-items: flex-start;   justify-content: center;       text-align: left; }
+.slider-text.pos-right { align-items: flex-end;     justify-content: center;       text-align: right; }
 
 .slider-title {
-  font-size: clamp(2.25rem, 6vw, var(--fs-slider-title));
   font-weight: 900;
-  color: #fff;
   line-height: 1.1;
+  /* font-size задаётся inline из данных (textSize) */
+}
+
+/* Ссылка в заголовке */
+.slider-title a.slider-link {
+  color: inherit;
+  text-decoration: none;
+}
+.slider-title a.slider-link:hover {
+  text-decoration: underline;
+}
+
+/* Описание под заголовком */
+.slider-desc {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  /* color задаётся inline из данных (textColor) */
 }
 
 .slider-nav {

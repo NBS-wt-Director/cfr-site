@@ -2637,34 +2637,93 @@
       const box = document.getElementById('slider-card');
       if (!box) return;
 
-      const items = slidesState.map((s, i) => `
+      // S158: 9 позиций текста
+      const POSITIONS = [
+        ['top-left','↖ верх-лево'], ['top-center','↑ верх-центр'], ['top-right','↗ верх-право'],
+        ['center-left','← центр-лево'], ['center','• по центру'], ['center-right','→ центр-право'],
+        ['bottom-left','↙ низ-лево'], ['bottom-center','↓ низ-центр'], ['bottom-right','↘ низ-право']
+      ];
+      // Обратная совместимость: старые left/right → center-left/center-right
+      const posMigrate = { left: 'center-left', right: 'center-right' };
+
+      const items = slidesState.map((s, i) => {
+        const pos = posMigrate[s.position] || s.position || 'center';
+        const tm = s.textMargin || {};
+        const ov = s.overlay || {};
+        return `
         <div class="news-item slider-item" data-idx="${i}" draggable="true"
              ondragstart="onSliderDragStart(event)" ondragover="onSliderDragOver(event)"
              ondragleave="onSliderDragLeave(event)" ondrop="onSliderDrop(event)"
              ondragend="onSliderDragEnd(event)">
           <span class="news-drag-handle" title="Перетащите для изменения порядка">⠿</span>
-          <img src="${fileUrl(s.image)}" alt="" style="width:120px;height:68px;object-fit:cover;border-radius:6px;flex:0 0 auto;">
-          <div class="news-info" style="flex:1;display:flex;flex-direction:column;gap:.4rem;">
+          <div style="display:flex;gap:.5rem;align-items:flex-start;flex-wrap:wrap;">
+            <img src="${fileUrl(s.image)}" alt="" style="width:120px;height:68px;object-fit:cover;border-radius:6px;flex:0 0 auto;">
+            <button class="btn btn-sm btn-secondary" onclick="openPhotoManager(${i})" title="Выбрать из фотоархива">📸</button>
+          </div>
+          <div class="news-info" style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:.4rem;">
             <input type="text" value="${escAttr(s.title)}" maxlength="80" placeholder="Заголовок слайда"
                    oninput="slidesState[${i}].title = this.value"
                    style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;">
+            <textarea rows="2" placeholder="Описание (опционально)"
+                   oninput="slidesState[${i}].description = this.value"
+                   style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;resize:vertical;font-size:.85rem;">${escapeHtml(s.description || '')}</textarea>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
+              <input type="text" placeholder="Ссылка (program.html?id=...)"
+                     value="${escAttr(s.link || '')}"
+                     oninput="slidesState[${i}].link = this.value"
+                     style="flex:1;min-width:160px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+              <label title="Открыть в новой вкладке">
+                <input type="checkbox" ${s.linkTarget === '_blank' ? 'checked' : ''}
+                       onchange="slidesState[${i}].linkTarget = this.checked ? '_blank' : '_self'"> новая
+              </label>
+            </div>
             <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
               <label>Интервал, с:
                 <input type="number" min="1" max="120" value="${s.interval || slidesDefaultInterval}"
                        onchange="slidesState[${i}].interval = Number(this.value)"
-                       style="width:70px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
               </label>
               <label>Позиция текста:
                 <select onchange="slidesState[${i}].position = this.value"
                         style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
-                  <option value="left"${s.position === 'left' ? ' selected' : ''}>слева</option>
-                  <option value="center"${s.position === 'center' ? ' selected' : ''}>по центру</option>
-                  <option value="right"${s.position === 'right' ? ' selected' : ''}>справа</option>
+                  ${POSITIONS.map(([v, l]) => `<option value="${v}"${pos === v ? ' selected' : ''}>${l}</option>`).join('')}
                 </select>
               </label>
-              <label>Картинка:
-                <input type="file" accept="image/*" onchange="uploadSliderImage(${i}, this)">
+              <label>Цвет текста:
+                <input type="color" value="${s.textColor || '#ffffff'}"
+                       onchange="slidesState[${i}].textColor = this.value"
+                       style="width:40px;height:28px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
               </label>
+              <label>Размер заголовка:
+                <input type="number" min="16" max="96" value="${s.textSize || 42}"
+                       onchange="slidesState[${i}].textSize = Number(this.value)"
+                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+              </label>
+            </div>
+            <div style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;font-size:.8rem;">
+              <span>Отступы (px):</span>
+              <label>Т<input type="number" min="0" max="200" value="${tm.top ?? 20}"
+                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.top = Number(this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>П<input type="number" min="0" max="200" value="${tm.right ?? 20}"
+                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.right = Number(this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>Н<input type="number" min="0" max="200" value="${tm.bottom ?? 20}"
+                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.bottom = Number(this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>Л<input type="number" min="0" max="200" value="${tm.left ?? 20}"
+                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.left = Number(this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <span style="margin-left:.5rem;">Наложение:
+                <label><input type="checkbox" ${ov.enabled !== false ? 'checked' : ''}
+                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.enabled = this.checked"> вкл</label>
+                <input type="color" value="${ov.color || '#000000'}"
+                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.color = this.value"
+                       style="width:32px;height:24px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
+                <input type="number" min="0" max="0.9" step="0.1" value="${ov.opacity ?? 0.4}"
+                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.opacity = Number(this.value)"
+                       style="width:50px;padding:.2rem;border:1px solid var(--border);border-radius:4px;" title="Прозрачность 0–0.9">
+              </span>
             </div>
           </div>
           <div class="news-actions">
@@ -2672,12 +2731,14 @@
             <button class="btn btn-sm btn-danger" onclick="deleteSlide(${i})" title="Удалить слайд">🗑</button>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
 
       box.innerHTML = `
         <h2>🎞 Слайдер главной</h2>
-        <p style="font-size:1rem;">Слайды главной страницы: картинка, заголовок, интервал показа, позиция текста,
-          видимость и порядок (перетаскивание за ⠿).</p>
+        <p style="font-size:1rem;">Слайды главной страницы: заголовок, описание, ссылка, время показа,
+          раскладка текста (9 позиций), цвет/размер/отступы, наложение поверх фото.
+          Порядок — перетаскивание за ⠿.</p>
         <div class="news-list">${items || '<p class="meta">Слайдов нет. Добавьте первый кнопкой ниже.</p>'}</div>
         <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
           <button class="btn btn-secondary" onclick="addSlide()">➕ Добавить слайд</button>
@@ -2693,8 +2754,12 @@
 
     function addSlide() {
       slidesState.push({
-        id: Date.now(), title: '', image: '', interval: slidesDefaultInterval,
-        position: 'center', hidden: false
+        id: Date.now(), title: '', description: '', image: '', link: '',
+        linkTarget: '_self', interval: slidesDefaultInterval,
+        position: 'center', textColor: '#ffffff', textSize: 42,
+        textMargin: { top: 20, right: 20, bottom: 20, left: 20 },
+        overlay: { enabled: true, color: '#000000', opacity: 0.4 },
+        hidden: false
       });
       renderSliderEditor();
     }
@@ -2770,6 +2835,176 @@
       sliderDragIdx = null;
       renderSliderEditor();
       showToast('Порядок изменён — нажмите «Сохранить слайдер»');
+    }
+
+    // ── S158: менеджер фото (popup для выбора фото в слайдере) ──
+    let pmSlideIdx = null;   // индекс слайда, для которого выбираем фото
+    let pmPage = 1;
+    let pmFilter = 'all';
+    let pmQuery = '';
+    let pmTotal = 0;
+    let pmPerPage = 24;
+
+    function openPhotoManager(slideIdx) {
+      pmSlideIdx = slideIdx;
+      pmPage = 1;
+      pmQuery = '';
+      pmFilter = 'all';
+      renderPhotoManager();
+    }
+
+    function renderPhotoManager() {
+      // Если popup уже открыт — обновить контент
+      let pmOverlay = document.getElementById('pm-overlay');
+      let pmBody = document.getElementById('pm-body');
+      if (!pmOverlay) {
+        // Создаём popup
+        pmOverlay = document.createElement('div');
+        pmOverlay.id = 'pm-overlay';
+        pmOverlay.style.cssText = `
+          position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;
+          display:flex;align-items:center;justify-content:center;
+        `;
+        pmBody = document.createElement('div');
+        pmBody.id = 'pm-body';
+        pmBody.style.cssText = `
+          background:var(--bg);border-radius:12px;padding:1.5rem;
+          max-width:800px;width:95%;max-height:85vh;overflow-y:auto;
+          box-shadow:0 4px 24px rgba(0,0,0,.3);
+        `;
+        pmOverlay.appendChild(pmBody);
+        pmOverlay.onclick = function(e) { if (e.target === pmOverlay) closePhotoManager(); };
+        document.body.appendChild(pmOverlay);
+      }
+
+      const slides = slidesState[pmSlideIdx];
+      const currentImg = slides ? slides.image : '';
+
+      pmBody.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <h3 style="margin:0;font-size:1.1rem;">📸 Выбор фотографии</h3>
+          <button onclick="closePhotoManager()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-secondary);">✕</button>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;">
+          <input type="text" id="pm-search" placeholder="Поиск по имени…" value="${escapeHtml(pmQuery)}"
+                 style="flex:1;min-width:150px;padding:.4rem .6rem;border:1px solid var(--border);border-radius:6px;">
+          <select id="pm-filter" style="padding:.4rem;border:1px solid var(--border);border-radius:6px;">
+            <option value="all"${pmFilter === 'all' ? ' selected' : ''}>Все</option>
+            <option value="unused"${pmFilter === 'unused' ? ' selected' : ''}>Неиспользованные</option>
+            <option value="used"${pmFilter === 'used' ? ' selected' : ''}>Использованные</option>
+          </select>
+          <button class="btn btn-sm btn-secondary" onclick="uploadNewPhotoFromManager()">📤 Загрузить</button>
+        </div>
+        <div id="pm-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.5rem;margin-bottom:1rem;"></div>
+        <div id="pm-pager" style="display:flex;gap:.5rem;align-items:center;font-size:.85rem;"></div>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;justify-content:flex-end;">
+          <button class="btn btn-secondary" onclick="closePhotoManager()">Отмена</button>
+        </div>
+      `;
+
+      // Поиск + Enter
+      const searchInput = pmBody.querySelector('#pm-search');
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { pmQuery = searchInput.value; pmPage = 1; loadPhotoManagerPage(); }
+      });
+
+      // Фильтр
+      pmBody.querySelector('#pm-filter').onchange = function() {
+        pmFilter = this.value; pmPage = 1; loadPhotoManagerPage();
+      };
+
+      loadPhotoManagerPage();
+    }
+
+    function closePhotoManager() {
+      const pmOverlay = document.getElementById('pm-overlay');
+      if (pmOverlay) pmOverlay.remove();
+      pmSlideIdx = null;
+    }
+
+    function loadPhotoManagerPage() {
+      const grid = document.getElementById('pm-grid');
+      const pager = document.getElementById('pm-pager');
+      if (!grid) return;
+      grid.innerHTML = '<p style="color:var(--text-secondary);">Загрузка…</p>';
+
+      api('/api/admin/get-photo-album', {
+        method: 'POST',
+        body: JSON.stringify({ query: pmQuery, filter: pmFilter, page: pmPage, per_page: pmPerPage })
+      }).then(async res => {
+        if (!res.ok) throw new Error(res.status);
+        return res.json();
+      }).then(data => {
+        pmTotal = data.total || 0;
+        const photos = data.photos || [];
+        grid.innerHTML = photos.map(p => {
+          const isCurrent = p.path === (slidesState[pmSlideIdx]?.image || '');
+          const usedBadge = p.used ? 'used' : 'unused';
+          return `
+            <div class="pm-photo ${usedBadge} ${isCurrent ? 'pm-selected' : ''}"
+                 onclick="selectPhoto('${escapeHtml(p.path)}')"
+                 style="cursor:pointer;position:relative;border-radius:6px;overflow:hidden;
+                        ${isCurrent ? 'box-shadow:0 0 0 3px var(--primary);' : ''}">
+              <img src="${fileUrl(p.path)}" alt="${escapeHtml(p.name)}"
+                   style="width:100%;height:80px;object-fit:cover;display:block;">
+              <div style="font-size:.65rem;padding:2px 4px;
+                          background:${p.used ? 'rgba(255,193,7,.8)' : 'rgba(0,0,0,.5)'};
+                          color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                ${p.used ? '✓' : '○'} ${p.name.slice(0, 14)}
+              </div>
+            </div>
+          `;
+        }).join('') || '<p style="color:var(--text-secondary);grid-column:1/-1;">Фото не найдено</p>';
+
+        // Пагинация
+        const totalPages = Math.max(1, Math.ceil(pmTotal / pmPerPage));
+        let pagerHtml = `<span>${pmTotal} фото</span>`;
+        if (totalPages > 1) {
+          pagerHtml += `<button class="btn btn-sm" onclick="pmPage--;loadPhotoManagerPage()"
+                    ${pmPage <= 1 ? 'disabled' : ''}>‹</button>`;
+          for (let p = Math.max(1, pmPage - 2); p <= Math.min(totalPages, pmPage + 2); p++) {
+            pagerHtml += `<button class="btn btn-sm ${p === pmPage ? 'btn-primary' : ''}"
+                      onclick="pmPage=${p};loadPhotoManagerPage()">${p}</button>`;
+          }
+          pagerHtml += `<button class="btn btn-sm" onclick="pmPage++;loadPhotoManagerPage()"
+                    ${pmPage >= totalPages ? 'disabled' : ''}>›</button>`;
+        }
+        pager.innerHTML = pagerHtml;
+      }).catch(err => {
+        grid.innerHTML = `<p style="color:var(--danger);grid-column:1/-1;">Ошибка: ${escapeHtml(err.message)}</p>`;
+      });
+    }
+
+    function selectPhoto(path) {
+      if (pmSlideIdx === null) return;
+      slidesState[pmSlideIdx].image = path;
+      renderSliderEditor();
+      showToast('Фото выбрано — нажмите «Сохранить слайдер»');
+    }
+
+    function uploadNewPhotoFromManager() {
+      // Создаём скрытый input для загрузки
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async function() {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        try {
+          const p = await uploadFile(file, 'image');
+          if (pmSlideIdx !== null) {
+            slidesState[pmSlideIdx].image = p;
+            renderSliderEditor();
+            showToast('Фото загружено — нажмите «Сохранить слайдер»');
+          }
+          // Перезагрузить страницу фотоменеджера
+          pmPage = 1;
+          loadPhotoManagerPage();
+        } catch (err) {
+          showToast('Ошибка загрузки: ' + err.message, 'error');
+        }
+      };
+      input.click();
     }
 
     // ── Контакты ──
@@ -6758,7 +6993,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=44">
+<link rel="stylesheet" href="/css/style.css?v=45">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -7066,11 +7301,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=44').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=44').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=44').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=44').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=44').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=45').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);

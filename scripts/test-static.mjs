@@ -2681,7 +2681,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S155: modal.js — buildReason', modalSrc.includes('buildReason'));
   check('S155: modal.js — isGeneric', modalSrc.includes('isGeneric'));
   check('S155: modal.js — pageName с URLSearchParams', modalSrc.includes('URLSearchParams'));
-  check('S155: modal.js — ?v=44', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=44'));
+  check('S155: modal.js — ?v=45', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=45'));
 
   // 3. export-static.mjs: hasAlbum / programHasAlbum
   const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
@@ -2718,7 +2718,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
   // 8. Бамп кэша: в index.html v=43 (S155)
-  check('S151/S155: index.html — ?v=44', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=44'));
+  check('S151/S155: index.html — ?v=45', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=45'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -2968,6 +2968,66 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
       more.length > 0 && /^program\.html\?id=/.test(more[0].getAttribute('href') || ''),
       `href=${more[0] && more[0].getAttribute('href')}`);
   }
+}
+
+// ── S158: слайдер главной — полные настройки каждого слайда ──
+{
+  const schedSrc = fs.readFileSync(path.join(staticDir, 'js', 'main.js'), 'utf-8');
+  const cssSrc = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+  const exportSrc = fs.readFileSync(path.resolve('scripts', 'export-static.mjs'), 'utf-8');
+  const serverSrc = fs.readFileSync(path.resolve('scripts', 'admin-server.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+
+  // 1. Экспорт: новые поля слайдов
+  check('S158: export — description в слайдере', exportSrc.includes('description: s.description'));
+  check('S158: export — link в слайдере', exportSrc.includes('link: s.link'));
+  check('S158: export — linkTarget в слайдере', exportSrc.includes('linkTarget'));
+  check('S158: export — textColor в слайдере', exportSrc.includes('textColor'));
+  check('S158: export — textSize в слайдере', exportSrc.includes('textSize'));
+  check('S158: export — textMargin в слайдере', exportSrc.includes('textMargin'));
+  check('S158: export — overlay в слайдере', exportSrc.includes('overlay'));
+  check('S158: export — 9 позиций (SLIDER_POS)', exportSrc.includes('SLIDER_POS'));
+  check('S158: export — миграция left/right', exportSrc.includes('SLIDER_POS_MIGRATE'));
+  check('S158: export — clamp для числовых полей', exportSrc.includes('function clamp'));
+  check('S158: export — снят .slice(0, 10)', !exportSrc.includes('.slice(0, 10)') || exportSrc.includes('SLIDER_POS'));
+
+  // 2. Публичная часть (main.js)
+  check('S158: main.js — overlay', schedSrc.includes('slide-overlay'));
+  check('S158: main.js — description', schedSrc.includes('slider-desc'));
+  check('S158: main.js — link', schedSrc.includes('slider-link'));
+  check('S158: main.js — inline color', schedSrc.includes('color:') && schedSrc.includes('s.textColor'));
+  check('S158: main.js — inline font-size', schedSrc.includes('font-size:') && schedSrc.includes('s.textSize'));
+  check('S158: main.js — textMargin', schedSrc.includes('s.textMargin'));
+
+  // 3. CSS — 9 позиций
+  for (const pos of ['top-left','top-center','top-right','center-left','center','center-right','bottom-left','bottom-center','bottom-right']) {
+    check(`S158: CSS .pos-${pos}`, cssSrc.includes(`.slider-text.pos-${pos}`));
+  }
+  check('S158: CSS .slide-overlay', cssSrc.includes('.slide-overlay'));
+  check('S158: CSS .slider-desc', cssSrc.includes('.slider-desc'));
+  check('S158: CSS .slider-link', cssSrc.includes('.slider-link'));
+
+  // 4. Админка
+  check('S158: admin — description поле', adminSrc.includes('slidesState[${i}].description'));
+  check('S158: admin — link поле', adminSrc.includes('slidesState[${i}].link'));
+  check('S158: admin — textColor', adminSrc.includes('slidesState[${i}].textColor'));
+  check('S158: admin — textSize', adminSrc.includes('slidesState[${i}].textSize'));
+  check('S158: admin — textMargin', adminSrc.includes('textMargin'));
+  check('S158: admin — overlay', adminSrc.includes('overlay'));
+  check('S158: admin — 9 позиций', adminSrc.includes('top-left') && adminSrc.includes('bottom-right'));
+  check('S158: admin — openPhotoManager', adminSrc.includes('function openPhotoManager'));
+  check('S158: admin — renderPhotoManager', adminSrc.includes('function renderPhotoManager'));
+  check('S158: admin — loadPhotoManagerPage', adminSrc.includes('function loadPhotoManagerPage'));
+  check('S158: admin — selectPhoto', adminSrc.includes('function selectPhoto'));
+
+  // 5. Сервер
+  check('S158: server — get-photo-album route', serverSrc.includes('get-photo-album'));
+  check('S158: server — handleGetPhotoAlbum', serverSrc.includes('handleGetPhotoAlbum'));
+  check('S158: server — sanitizeSlides с textColor', serverSrc.includes('HEX_RE.test(item.textColor)'));
+  check('S158: server — sanitizeSlides с textSize', serverSrc.includes('item.textSize'));
+  check('S158: server — sanitizeSlides с textMargin', serverSrc.includes('tm.top'));
+  check('S158: server — sanitizeSlides с overlay', serverSrc.includes('ov.enabled'));
+  check('S158: server — SLIDER_POS', serverSrc.includes('SLIDER_POS'));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);
