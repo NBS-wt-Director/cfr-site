@@ -84,6 +84,44 @@ document.addEventListener('DOMContentLoaded', function() {
     `<li><a href="trainer.html?id=${t.slug || t.id}">${t.name}</a></li>`
   ).join('');
 
+  /* S166: Мероприятия — ссылка + две раскрывающиеся группы (Планируемые/Прошедшие).
+     Статус считается по dateEnd на клиенте — меню верно и при устаревшей сборке.
+     Пустой раздел (нет видимых мероприятий) не показывается вовсе. */
+  function eventIsPast(e) {
+    var d = new Date(String(e.dateEnd || e.dateStart || ''));
+    return !isNaN(d.getTime()) && d.getTime() < Date.now();
+  }
+  var navEvents = (data.navEvents || []).filter(function (e) { return e && e.name; });
+  var eventsPlanned = navEvents.filter(function (e) { return !eventIsPast(e); })
+    .sort(function (a, b) { return String(a.dateStart).localeCompare(String(b.dateStart)); });
+  var eventsPast = navEvents.filter(eventIsPast)
+    .sort(function (a, b) { return String(b.dateStart).localeCompare(String(a.dateStart)); });
+  var eventsMenuVisible = itemVisible('events') && navEvents.length > 0;
+
+  function eventMenuItems(list) {
+    return list.map(function (e) {
+      return '<li><a href="event.html?id=' + encodeURIComponent(e.id) + '">' + e.name + '</a></li>';
+    }).join('');
+  }
+  // Desktop: сворачиваемые группы в dropdown (тот же .dgroup, что у программ)
+  var desktopEventsMenu =
+    (eventsPlanned.length ? '<li class="dgroup">' +
+      '<div class="dgroup-head"><span class="dgroup-title">🗓 Планируемые</span>' +
+      '<button type="button" class="dgroup-toggle" aria-expanded="false" aria-label="Раскрыть список"><span class="caret">▾</span></button></div>' +
+      '<ul class="dgroup-list">' + eventMenuItems(eventsPlanned) + '</ul></li>' : '') +
+    (eventsPast.length ? '<li class="dgroup">' +
+      '<div class="dgroup-head"><span class="dgroup-title">✅ Прошедшие</span>' +
+      '<button type="button" class="dgroup-toggle" aria-expanded="false" aria-label="Раскрыть список"><span class="caret">▾</span></button></div>' +
+      '<ul class="dgroup-list">' + eventMenuItems(eventsPast) + '</ul></li>' : '');
+  // Mobile: аккордеоны .m-dropdown (заголовок — не ссылка, группы не имеют страницы направления)
+  function mobileEventGroup(label, list) {
+    if (!list.length) return '';
+    return '<li class="m-dropdown">' +
+      '<div class="m-dropdown-head"><span class="m-dropdown-title">' + label + '</span>' +
+      '<button type="button" class="m-dropdown-toggle" aria-label="Раскрыть список"><span class="caret">▾</span></button></div>' +
+      '<ul class="m-dropdown-menu">' + eventMenuItems(list) + '</ul></li>';
+  }
+
   // S23: мобильный аккордеон направлений (вложенный)
   // S131 п.2: название группы ведёт на страницу направления, стрелка раскрывает список
   var directionsMenu = directions
@@ -142,6 +180,15 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </li>` : ''}
             ${itemVisible('news') ? `<li><a href="news.html" data-nav="news">Новости</a></li>` : ''}
+            ${eventsMenuVisible ? `<li class="dropdown" data-dropdown>
+              <button type="button" class="dropdown-toggle" data-nav="events" aria-expanded="false" aria-haspopup="true">
+                Мероприятия <span class="caret">▾</span>
+              </button>
+              <div class="dropdown-menu">
+                <a href="events.html">Все мероприятия</a>
+                <ul>${desktopEventsMenu}</ul>
+              </div>
+            </li>` : ''}
             ${pagesMenu}
             ${itemVisible('contacts') ? `<li><a href="${contactsHref}" data-nav="contacts">Контакты</a></li>` : ''}
             <!-- Альбом временно выключен (логика перерабатывается) -->
@@ -189,6 +236,16 @@ document.addEventListener('DOMContentLoaded', function() {
           </li>` : ''}
 
           ${itemVisible('news') ? `<li><a href="news.html" data-nav="news">📰 Новости</a></li>` : ''}
+          ${eventsMenuVisible ? `<li class="m-group" data-mgroup>
+            <button type="button" class="m-group-toggle" data-nav="events" aria-expanded="false">
+              🎪 Мероприятия <span class="caret">▾</span>
+            </button>
+            <ul class="m-group-list">
+              <li><a href="events.html">Все мероприятия</a></li>
+              ${mobileEventGroup('🗓 Планируемые', eventsPlanned)}
+              ${mobileEventGroup('✅ Прошедшие', eventsPast)}
+            </ul>
+          </li>` : ''}
           ${pagesMenu ? navPages.map(function (p) {
             return '<li><a href="page.html?url=' + encodeURIComponent(p.url) + '" data-nav="page-' + p.id + '">📄 ' + p.title + '</a></li>';
           }).join('') : ''}
@@ -311,6 +368,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'trainers.html': 'staff',
     'trainer.html': 'staff',
     'news.html': 'news',
+    'events.html': 'events',
+    'event.html': 'events',
     'lk.html': 'lk'
   };
 

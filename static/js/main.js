@@ -5,67 +5,35 @@
   const data = window.SITE_DATA || {};
 
   /* ============================================
-     РЕНДЕР СЛАЙДЕРА
+     РЕНДЕР СЛАЙДЕРА (S158: единый движок SliderCore —
+     ту же логику и разметку наследуют все фотоальбомы сайта)
      ============================================ */
-  function escAttr(s) {
-    return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
   function escHtml(s) {
     return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
-  function escText(s) {
-    return String(s || '').replace(/\n/g,'<br>');
-  }
+
+  var mainSlider = null;
 
   function renderSlider() {
     const el = document.getElementById('slider');
     if (!el || !data.slider) return;
+    if (!window.SliderCore) return;
 
-    const slides = data.slider.map((s, i) => {
-      const pos = s.position || 'center';
-      const tm = s.textMargin || {};
-      const ov = s.overlay || {};
-      // Инлайн-стили для текстового блока
-      const textStyle = [
-        s.textColor ? 'color:' + s.textColor : '',
-        s.textSize ? 'font-size:' + s.textSize + 'px' : '',
-        (tm.top !== undefined || tm.right !== undefined || tm.bottom !== undefined || tm.left !== undefined)
-          ? 'margin:' + (tm.top ?? 20) + 'px ' + (tm.right ?? 20) + 'px ' + (tm.bottom ?? 20) + 'px ' + (tm.left ?? 20) + 'px'
-          : ''
-      ].filter(Boolean).join(';');
-      // Инлайн-стиль для overlay
-      const overlayStyle = (ov.enabled !== false)
-        ? 'background:' + (ov.color || '#000') + ';opacity:' + (ov.opacity ?? 0.4)
-        : 'display:none';
-      // Описание
-      const descHtml = s.description ? '<p class="slider-desc">' + escText(s.description) + '</p>' : '';
-      // Заголовок: ссылка или текст
-      const titleHtml = s.link
-        ? '<a class="slider-link" href="' + escAttr(s.link) + '" target="' + escAttr(s.linkTarget === '_blank' ? '_blank' : '_self') + '">' + escHtml(s.title) + '</a>'
-        : escHtml(s.title);
+    // S158: глобальные настройки слайдера (высота, стрелки, точки, автопрокрутка)
+    const gs = data.sliderSettings || {};
+    if (gs.height > 0) {
+      el.style.setProperty('--slider-height', gs.height + 'px');
+    } else {
+      el.style.removeProperty('--slider-height');
+    }
 
-      return `
-        <div class="slide ${i === 0 ? 'active' : ''}">
-          <img src="${escAttr(s.image)}" alt="${escAttr(s.title)}">
-          <div class="slide-overlay" style="${overlayStyle}"></div>
-          <div class="slider-text pos-${pos}" style="${textStyle}">
-            <h1 class="slider-title">${titleHtml}</h1>
-            ${descHtml}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    const dots = data.slider.map((_, i) =>
-      `<button class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></button>`
-    ).join('');
-
-    el.innerHTML = `
-      ${slides}
-      <button class="slider-nav slider-prev" onclick="prevSlide()">‹</button>
-      <button class="slider-nav slider-next" onclick="nextSlide()">›</button>
-      <div class="slider-dots">${dots}</div>
-    `;
+    mainSlider = SliderCore.mount(el, data.slider, {
+      id: 'main-slider',
+      autoplay: gs.autoplay !== false,
+      showArrows: gs.showArrows !== false,
+      showDots: gs.showDots !== false,
+      interval: Number(data.defaultInterval) || 5
+    });
   }
 
   /* ============================================
@@ -597,44 +565,12 @@
   };
 
   /* ============================================
-     СЛАЙДЕР (навигация)
+     СЛАЙДЕР (навигация) — S158: вся логика в SliderCore,
+     здесь только тонкие прокси для обратных вызовов из разметки.
      ============================================ */
-  let currentSlide = 0;
-  let slideTimer = null;
-
-  function showSlide(index) {
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slider-dot');
-    if (!slides.length) return;
-    slides.forEach((s, i) => s.classList.toggle('active', i === index));
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-    currentSlide = index;
-  }
-
-  window.nextSlide = function () {
-    const total = document.querySelectorAll('.slide').length;
-    showSlide((currentSlide + 1) % total);
-    resetTimer();
-  };
-
-  window.prevSlide = function () {
-    const total = document.querySelectorAll('.slide').length;
-    showSlide((currentSlide - 1 + total) % total);
-    resetTimer();
-  };
-
-  window.goToSlide = function (index) {
-    showSlide(index);
-    resetTimer();
-  };
-
-  function resetTimer() {
-    clearInterval(slideTimer);
-    // S86: интервал показа — из данных текущего слайда (сек), fallback 5с
-    const slide = (data.slider || [])[currentSlide];
-    const sec = slide && Number(slide.interval) > 0 ? Number(slide.interval) : 5;
-    slideTimer = setInterval(window.nextSlide, sec * 1000);
-  }
+  window.nextSlide = function () { if (mainSlider) mainSlider.next(); };
+  window.prevSlide = function () { if (mainSlider) mainSlider.prev(); };
+  window.goToSlide = function (index) { if (mainSlider) mainSlider.goTo(index); };
 
   /* ============================================
      СТАРТ
@@ -647,7 +583,6 @@
     renderTrainers();
     renderNews();
     applyHomeSections();
-    resetTimer();
 
     // Закрытие модалки новости (S73): крестик, клик по фону, Escape
     const newsOverlay = document.getElementById('newsModal');

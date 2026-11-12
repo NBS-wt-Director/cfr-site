@@ -18,7 +18,10 @@
  * стал вложенным. Ничего не ломается ни в одну сторону.
  */
 
-export const DATA_KEYS = ['news', 'programs', 'trainers', 'schedule', 'prices', 'album'];
+export const DATA_KEYS = ['news', 'programs', 'trainers', 'schedule', 'prices', 'album',
+  // S166: мероприятия (смешанная сущность: новости+программы+альбом+страницы).
+  // Без записи здесь ключ теряется при nestDb().
+  'events'];
 export const SETTINGS_KEYS = [
   'appearance', 'siteSettings', 'newsSettings', 'scheduleSettings',
   'emailConfig', 'globalDivider', 'sliderSettings', 'contacts', 'directions',

@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-10T07:46:06.578Z
+ * Сгенерировано: 2026-11-12T16:14:40.180Z
  */
 window.SITE_DATA = {
   "siteName": "ЦФР - Центр Развития",
@@ -206,6 +206,11 @@ window.SITE_DATA = {
     },
     {
       "group": "nav",
+      "title": "🎪 Мероприятия",
+      "url": "events.html"
+    },
+    {
+      "group": "nav",
       "title": "👤 Личный кабинет",
       "url": "lk.html"
     },
@@ -223,6 +228,16 @@ window.SITE_DATA = {
   "trainerSliderSettings": {
     "enabled": false,
     "interval": 5
+  },
+  "sliderSettings": {
+    "autoplay": true,
+    "showArrows": true,
+    "showDots": true,
+    "height": 0,
+    "defaultPosition": "center",
+    "defaultTextColor": "#ffffff",
+    "defaultTextSize": 42,
+    "albumInterval": 6
   },
   "navPrograms": [
     {
@@ -686,6 +701,40 @@ window.SITE_DATA = {
       ]
     }
   ],
+  "navEvents": [
+    {
+      "id": 1794600000004,
+      "name": "Праздник окончания летнего сезона",
+      "dateStart": "2026-09-01T11:00",
+      "dateEnd": "2026-09-01T15:00",
+      "type": "праздник",
+      "hasGallery": true
+    },
+    {
+      "id": 1794600000003,
+      "name": "Тестирование на ученические разряды",
+      "dateStart": "2026-10-15T12:00",
+      "dateEnd": "2026-10-15T17:00",
+      "type": "тестирование",
+      "hasGallery": true
+    },
+    {
+      "id": 1794600000001,
+      "name": "Семинар по функциональной подготовке",
+      "dateStart": "2026-12-06T11:00",
+      "dateEnd": "2026-12-06T14:00",
+      "type": "семинар",
+      "hasGallery": false
+    },
+    {
+      "id": 1794600000002,
+      "name": "Открытое мероприятие: день открытых дверей",
+      "dateStart": "2026-12-20T10:00",
+      "dateEnd": "2026-12-20T13:00",
+      "type": "открытое_мероприятие",
+      "hasGallery": false
+    }
+  ],
   "slider": null,
   "schedule": null,
   "prices": null,
@@ -697,5 +746,6 @@ window.SITE_DATA = {
   "newsAll": null,
   "newsFull": null,
   "album": null,
-  "trainerSlider": null
+  "trainerSlider": null,
+  "events": null
 };

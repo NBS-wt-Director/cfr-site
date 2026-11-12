@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=45">
+  <link rel="stylesheet" href="css/style.css?v=48">
 </head>
 <body data-doc-title="Альбом">
   <div id="header-container"></div>
@@ -18,7 +18,10 @@
       <h1 class="section-title">Фотоальбом</h1>
       <p class="section-subtitle">Совместные фото, семинары и будни центра. Нажмите на фото, чтобы открыть его в полном размере.</p>
       <div id="album-filters" class="album-filters" role="tablist" hidden></div>
-      <div id="album-grid" class="album-grid album-grid-page"></div>
+      <!-- S159: альбом наследует рендеринг и логику слайдера (js/slider-core.js) -->
+      <div id="album-slider" class="album-slider"></div>
+      <div id="album-thumbs" class="album-thumbs" hidden></div>
+      <div id="album-grid" class="album-grid album-grid-page" hidden></div>
       <p id="album-empty" class="empty-note" hidden>Фотографии ещё не загружены</p>
     </div>
   </section>
@@ -27,21 +30,23 @@
   <div id="footer-container"></div>
   <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
-  <script src="js/data/core.js?v=45"></script>
-  <script src="js/appearance.js?v=45"></script>
-  <script src="js/layout.js?v=45"></script>
-  <script src="js/seo.js?v=45"></script>
-  <script src="js/data/album.js?v=45"></script>
-  <script src="js/header.js?v=45"></script>
-  <script src="js/footer.js?v=45"></script>
-  <script src="js/modal.js?v=45"></script>
-  <script src="js/lightbox.js?v=45"></script>
+  <script src="js/data/core.js?v=48"></script>
+  <script src="js/appearance.js?v=48"></script>
+  <script src="js/layout.js?v=48"></script>
+  <script src="js/seo.js?v=48"></script>
+  <script src="js/data/album.js?v=48"></script>
+  <script src="js/header.js?v=48"></script>
+  <script src="js/footer.js?v=48"></script>
+  <script src="js/modal.js?v=48"></script>
+  <script src="js/slider-core.js?v=48"></script>
+  <script src="js/lightbox.js?v=48"></script>
   <script>
     (function () {
       const data = window.SITE_DATA || {};
       const album = Array.isArray(data.album) ? data.album : [];
       const grid = document.getElementById('album-grid');
       const empty = document.getElementById('album-empty');
+      const sliderBox = document.getElementById('album-slider');
 
       function esc(s) {
         return String(s)
@@ -62,24 +67,54 @@
         .sort((x, y) => (x === 'Совместные фото' ? -1 : y === 'Совместные фото' ? 1 : x.localeCompare(y, 'ru')));
       const filters = document.getElementById('album-filters');
 
-      function tile(a) {
-        // Превью в сетке, полный размер — по клику (data-full читает lightbox.js)
-        return `
-          <div class="album-item lightbox-zoom" data-full="${a.image}">
-            <img src="${a.thumb}" alt="${esc(a.title)}" loading="lazy">
-            ${a.title ? `<span class="album-item-title">${esc(a.title)}</span>` : ''}
-          </div>`;
-      }
+      // S159: альбом — слайдер на общем движке. Клик по фото — lightbox,
+      // сетка миниатюр под слайдером служит навигацией (клик листает к фото).
+      const gs = data.sliderSettings || {};
+      const thumbs = document.getElementById('album-thumbs');
+      let slider = null;
+      let current = [];
 
       function render(cat) {
-        const list = cat === ALL ? album : album.filter(a => (a.category || 'Другое') === cat);
-        grid.innerHTML = list.map(tile).join('');
+        current = cat === ALL ? album : album.filter(a => (a.category || 'Другое') === cat);
+        const items = current.map(a => ({ image: a.image, title: a.title || '' }));
+
+        if (window.SliderCore) {
+          if (slider && slider.destroy) slider.destroy();
+          slider = SliderCore.mount(sliderBox, items, {
+            id: 'album-page-slider',
+            cssClass: 'slider--embed slider--album',
+            autoplay: gs.autoplay !== false,
+            showArrows: gs.showArrows !== false,
+            showDots: gs.showDots !== false,
+            interval: Number(gs.albumInterval) > 0 ? Number(gs.albumInterval) : 6,
+            onClick: function (slide) {
+              const img = slide.querySelector('img');
+              if (window.openLightbox && img) window.openLightbox(img.getAttribute('src'), img.getAttribute('alt'));
+            }
+          });
+        }
+
+        // Миниатюры — навигация по альбому
+        thumbs.hidden = false;
+        thumbs.innerHTML = current.map((a, i) =>
+          `<button type="button" class="album-thumb${i === 0 ? ' active' : ''}" data-idx="${i}">` +
+          `<img src="${a.thumb || a.image}" alt="${esc(a.title || '')}" loading="lazy"></button>`).join('');
+
         filters.querySelectorAll('button').forEach(b => {
           const on = b.dataset.cat === cat;
           b.classList.toggle('active', on);
           b.setAttribute('aria-selected', on ? 'true' : 'false');
         });
       }
+
+      thumbs.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-idx]');
+        if (!btn || !slider) return;
+        slider.goTo(Number(btn.dataset.idx));
+        thumbs.querySelectorAll('.album-thumb').forEach(t =>
+          t.classList.toggle('active', t === btn));
+        sliderBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
 
       // Фильтры показываем только если категорий больше одной
       if (cats.length > 1) {
@@ -95,5 +130,6 @@
       render(ALL);
     })();
   </script>
+  <script src="js/visit-tracker.js?v=48"></script>
 </body>
 </html>

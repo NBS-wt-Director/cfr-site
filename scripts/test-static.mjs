@@ -575,20 +575,26 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // считаем только реальные слоты
   check(`программа «${p.name}»: таблица расписания`, d.querySelectorAll('.schedule-table tbody tr:not(.sched-day-empty)').length === (p.scheduleStructured || []).length);
   check('программа: в таблице НЕТ колонки «Место» (S26)', ![...d.querySelectorAll('.schedule-table th')].some(h => /мест/i.test(h.textContent)));
-  // S62: фотоальбом программы — карусель необрезанных фото
+  // S62 → S159: фотоальбом программы = слайдер на общем движке js/slider-core.js
   {
     const pa = visPrograms.find(x => (x.photoAlbum || []).length);
     if (pa) {
       const wp = loadPage('program.html', '?id=' + pa.id);
       const dp = wp.document;
-      check(`программа «${pa.name}»: фотоальбом = карусель (S62)`,
-        !!dp.querySelector('.entity-album .entity-carousel .carousel-track'));
-      check(`программа «${pa.name}»: слайдов = фото в альбоме (S62)`,
-        dp.querySelectorAll('.carousel-item').length === pa.photoAlbum.length);
+      check(`программа «${pa.name}»: фотоальбом = слайдер SliderCore (S159)`,
+        !!dp.querySelector('#album .entity-album .slider .slide') ||
+        !!dp.querySelector('.entity-album .slider .slide'));
+      check(`программа «${pa.name}»: слайдов = фото в альбоме (S159)`,
+        dp.querySelectorAll('.entity-album .slide').length === pa.photoAlbum.length);
       check(`программа «${pa.name}»: в альбоме НЕТ старой сетки .album-grid (S62)`,
         !dp.querySelector('.entity-album .album-grid'));
-      check(`программа «${pa.name}»: есть счётчик и стрелки карусели (S62)`,
-        !!dp.querySelector('.carousel-counter') && !!dp.querySelector('.carousel-prev') && !!dp.querySelector('.carousel-next'));
+      check(`программа «${pa.name}»: есть стрелки и точки слайдера (S159)`,
+        !!dp.querySelector('.entity-album .slider-prev') && !!dp.querySelector('.entity-album .slider-next')
+        && dp.querySelectorAll('.entity-album .slider-dot').length === pa.photoAlbum.length);
+      check(`программа «${pa.name}»: у каждого слайда есть overlay (S159)`,
+        dp.querySelectorAll('.entity-album .slide .slide-overlay').length === pa.photoAlbum.length);
+      check(`программа «${pa.name}»: слайдер инициализирован (data-slider-ready, S159)`,
+        dp.querySelector('.entity-album .slider').getAttribute('data-slider-ready') !== null);
     }
   }
   // На Яндекс.Диске нет папок с фото для этих трёх программ — обложку взять неоткуда (S28)
@@ -643,9 +649,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
       /\.carousel-item img\s*\{[^}]*object-fit:\s*contain/.test(srcCss));
     if (ta) {
       const wt = loadPage('trainer.html', '?id=' + ta.id);
-      check(`тренер «${ta.name}»: фотоальбом = карусель (S62)`,
-        !!wt.document.querySelector('.entity-album .entity-carousel .carousel-track') &&
-        wt.document.querySelectorAll('.carousel-item').length === ta.photoAlbum.length);
+      check(`тренер «${ta.name}»: фотоальбом = слайдер SliderCore (S159)`,
+        !!wt.document.querySelector('.entity-album .slider .slide') &&
+        wt.document.querySelectorAll('.entity-album .slide').length === ta.photoAlbum.length);
     }
   }
   const footDoc = loadPage('index.html').document;
@@ -1409,8 +1415,10 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     /const VIEW_SECTIONS = \{\s*schedule: 'schedule', 'news-settings': 'newsSettings'\s*\}/.test(admin));
 
   // Диспатчер
+  // S158: слайдер вызывается отдельным ранним return (без карточки-заглушки) —
+  // проверка учитывает обе формы вызова.
   check('S114: диспатчер вызывает loadSliderSection/loadContactsSection/loadAlbumSection',
-    /sectionId === 'slider'\) loadSliderSection/.test(admin) &&
+    /sectionId === 'slider'[\s\S]{0,80}loadSliderSection\(\)/.test(admin) &&
     /sectionId === 'contacts'\) loadContactsSection/.test(admin) &&
     /sectionId === 'album'\) loadAlbumSection/.test(admin));
 
@@ -1437,17 +1445,21 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     /sanitizeSocial/.test(serverSrc) && /sanitizeAlbum/.test(serverSrc));
   check('S114: пути только uploads/ и data/ (защита от traversal)',
     /\(uploads\|data\)/.test(serverSrc));
-  check('S114: слайд без картинки отбрасывается, интервал ≤ 120',
-    /if \(!image\) continue;/.test(serverSrc) && /interval <= 120/.test(serverSrc));
+  check('S114: слайд без картинки сохраняется как скрытый (S162), интервал ≤ 120',
+    /hidden: image \? wasHidden : true/.test(serverSrc) && /interval <= 120/.test(serverSrc));
 
   // Факт: разделы действительно отдают данные
   const w = loadPage('index.html');
   check('S114: на главной слайдер рендерится (данные живы)',
     w.document.querySelectorAll('#slider .slide').length > 0);
   const rawDb = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'));
-  check('S114: слайды в базе целы (не потеряны смоук-тестом)',
-    Array.isArray(rawDb.sliders) && rawDb.sliders.length === 29 &&
-    rawDb.sliders.filter(s => !s.hidden).length === 5);
+  // Слайды: проверяем целостность структуры, а не конкретное количество —
+  // число слайдов меняет пользователь из админки (S162: скрытые сохраняются).
+  check('S114: слайды в базе целы (структура не потеряна смоук-тестом)',
+    Array.isArray(rawDb.sliders) && rawDb.sliders.length > 0 &&
+    rawDb.sliders.every(s => s && typeof s.id === 'number' && typeof s.title === 'string' &&
+      typeof s.image === 'string' && typeof s.link === 'string') &&
+    rawDb.sliders.filter(s => !s.hidden).length > 0);
   check('S114: альбом в базе цел', Array.isArray(rawDb.data.album) && rawDb.data.album.length > 100);
 }
 
@@ -2681,7 +2693,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S155: modal.js — buildReason', modalSrc.includes('buildReason'));
   check('S155: modal.js — isGeneric', modalSrc.includes('isGeneric'));
   check('S155: modal.js — pageName с URLSearchParams', modalSrc.includes('URLSearchParams'));
-  check('S155: modal.js — ?v=45', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=45'));
+  check('S155: modal.js — ?v=48', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=48'));
 
   // 3. export-static.mjs: hasAlbum / programHasAlbum
   const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
@@ -2718,7 +2730,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
   // 8. Бамп кэша: в index.html v=43 (S155)
-  check('S151/S155: index.html — ?v=45', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=45'));
+  check('S151/S155: index.html — ?v=48', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=48'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -2991,13 +3003,15 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S158: export — clamp для числовых полей', exportSrc.includes('function clamp'));
   check('S158: export — снят .slice(0, 10)', !exportSrc.includes('.slice(0, 10)') || exportSrc.includes('SLIDER_POS'));
 
-  // 2. Публичная часть (main.js)
-  check('S158: main.js — overlay', schedSrc.includes('slide-overlay'));
-  check('S158: main.js — description', schedSrc.includes('slider-desc'));
-  check('S158: main.js — link', schedSrc.includes('slider-link'));
-  check('S158: main.js — inline color', schedSrc.includes('color:') && schedSrc.includes('s.textColor'));
-  check('S158: main.js — inline font-size', schedSrc.includes('font-size:') && schedSrc.includes('s.textSize'));
-  check('S158: main.js — textMargin', schedSrc.includes('s.textMargin'));
+  // 2. Публичная часть: рендер переехал в общий движок js/slider-core.js (S159),
+  //    main.js лишь монтирует его — проверяем и движок, и делегирование.
+  const coreSrc = fs.readFileSync(path.join(staticDir, 'js', 'slider-core.js'), 'utf-8');
+  check('S158: slider-core — overlay', coreSrc.includes('slide-overlay'));
+  check('S158: slider-core — description', coreSrc.includes('slider-desc'));
+  check('S158: slider-core — link', coreSrc.includes('slider-link'));
+  check('S158: slider-core — inline color', coreSrc.includes('color:') && coreSrc.includes('s.textColor'));
+  check('S158: slider-core — inline font-size', coreSrc.includes('font-size:') && coreSrc.includes('s.textSize'));
+  check('S158: slider-core — textMargin', coreSrc.includes('s.textMargin'));
 
   // 3. CSS — 9 позиций
   for (const pos of ['top-left','top-center','top-right','center-left','center','center-right','bottom-left','bottom-center','bottom-right']) {
@@ -3028,6 +3042,197 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S158: server — sanitizeSlides с textMargin', serverSrc.includes('tm.top'));
   check('S158: server — sanitizeSlides с overlay', serverSrc.includes('ov.enabled'));
   check('S158: server — SLIDER_POS', serverSrc.includes('SLIDER_POS'));
+
+  // 6. S158 (правки по замечаниям пользователя): дубль раздела, скрытые слайды,
+  //    выбор страницы из списка, настройки самого слайдера
+  check('S158: admin — дубль просмотра слайдера убран (renderSliderView)',
+    !adminSrc.includes('renderSliderView'));
+  check('S158: admin — раздел slider рендерит только редактор (ранний return)',
+    /if \(sectionId === 'slider'\) \{\s*content\.innerHTML = '';\s*loadSliderSection\(\);/.test(adminSrc));
+  check('S158: admin — скрытые слайды в сворачиваемой группе',
+    adminSrc.includes('hiddenItems') && /🙈 Скрытые слайды/.test(adminSrc) && adminSrc.includes('<details'));
+  check('S158: admin — скрытые слайды без drag-handle (не мешают очереди)',
+    /renderItem\(s, i, false\)/.test(adminSrc));
+  check('S158: admin — ссылка выбирается из списка (sliderLinkSelectHtml)',
+    adminSrc.includes('function sliderLinkSelectHtml') && adminSrc.includes('<optgroup'));
+  check('S158: admin — список целей строится из базы (страницы/программы/тренеры/новости)',
+    adminSrc.includes('function sliderLinkGroups')
+    && adminSrc.includes("program.html?id=") && adminSrc.includes("trainer.html?id=")
+    && adminSrc.includes("news.html?id=") && adminSrc.includes("directions.html?id=")
+    && adminSrc.includes("page.html?url="));
+  check('S158: admin — ручной ввод сохраняется как запасной режим «Другая»',
+    adminSrc.includes('__custom__') && adminSrc.includes('function onSliderLinkPick'));
+  check('S158: admin — блок «Настройки слайдера»',
+    /⚙️ Настройки слайдера/.test(adminSrc) && adminSrc.includes('slidesSettingsState'));
+  check('S158: admin — настройки: автопрокрутка/стрелки/точки/высота',
+    adminSrc.includes('slidesSettingsState.autoplay') && adminSrc.includes('slidesSettingsState.showArrows')
+    && adminSrc.includes('slidesSettingsState.showDots') && adminSrc.includes('slidesSettingsState.height'));
+  check('S158: admin — настройки уезжают на сервер в save-slides',
+    /sliderSettings: slidesSettingsState/.test(adminSrc));
+  check('S158: admin — новый слайд берёт дефолты из настроек',
+    /position: gs\.defaultPosition/.test(adminSrc) && /textSize: gs\.defaultTextSize/.test(adminSrc));
+  check('S158: server — sanitizeSliderSettings', serverSrc.includes('function sanitizeSliderSettings'));
+  check('S158: server — get-slides отдаёт sliderSettings',
+    /sliderSettings: db\.sliderSettings \|\| null/.test(serverSrc));
+  check('S158: server — save-slides сохраняет sliderSettings',
+    serverSrc.includes('db.sliderSettings = sanitizeSliderSettings(body.sliderSettings)'));
+  check('S158: export — sliderSettings попадает в core.js',
+    exportSrc.includes('sliderSettings:') && /"sliderSettings"/.test(
+      fs.readFileSync(path.join(staticDir, 'js', 'data', 'core.js'), 'utf-8')));
+  const coreData = (() => {
+    const src = fs.readFileSync(path.join(staticDir, 'js', 'data', 'core.js'), 'utf-8');
+    const w = {};
+    new Function('window', src)(w);
+    return w.SITE_DATA || {};
+  })();
+  check('S158: core.js — sliderSettings содержит реальные поля',
+    !!coreData.sliderSettings && coreData.sliderSettings.autoplay === true
+    && coreData.sliderSettings.showArrows === true && coreData.sliderSettings.showDots === true
+    && typeof coreData.sliderSettings.height === 'number');
+  check('S158: main.js — передаёт autoplay/showArrows/showDots в SliderCore',
+    schedSrc.includes('SliderCore.mount') && schedSrc.includes('gs.showArrows')
+    && schedSrc.includes('gs.showDots') && schedSrc.includes('gs.autoplay'));
+  check('S158: slider-core — автопрокрутка выключается autoplay:false',
+    /opts\.autoplay === false/.test(coreSrc));
+  check('S158: slider-core — интервал слайда перебивает общий (data-interval)',
+    coreSrc.includes('data-interval') && /getAttribute\('data-interval'\)/.test(coreSrc));
+  check('S158: main.js — высота через --slider-height',
+    schedSrc.includes("'--slider-height'"));
+  check('S158: CSS — высота слайдера через переменную',
+    /height:\s*var\(--slider-height/.test(cssSrc));
+  check('S158: CSS — вложенных комментариев нет (регресс S40/S143)',
+    !/\/\*[^*]*\/\*/.test(cssSrc.replace(/\/\*[\s\S]*?\*\//g, m => m.replace(/\*/g, '§'))));
+}
+
+// ── S159: слайдер-движок SliderCore + менеджер фотографий ──
+{
+  const coreSrc = fs.readFileSync(path.join(staticDir, 'js', 'slider-core.js'), 'utf-8');
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+  const cssSrc = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+  const serverSrc = fs.readFileSync(path.resolve('scripts', 'admin-server.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  const exportSrc = fs.readFileSync(path.resolve('scripts', 'export-static.mjs'), 'utf-8');
+
+  // 1. slider-core.js: единый движок
+  check('S159: slider-core — экспортирует render/renderInner/wire/initAll/mount',
+    /function (render|renderInner|wire|initAll|mount)/.test(coreSrc)
+    && /window\.SliderCore = \{[\s\S]*render: render,[\s\S]*renderInner: renderInner,[\s\S]*wire: wire,[\s\S]*initAll: initAll,[\s\S]*mount: mount/.test(coreSrc));
+  check('S159: slider-core — lazy загрузка (data-src) для >12 фото',
+    coreSrc.includes('data-src') && /total > 12/.test(coreSrc));
+  check('S159: slider-core — счётчик вместо точек для >12 слайдов',
+    coreSrc.includes('.slider-counter') && coreSrc.includes('1 / '));
+  check('S159: slider-core — onClick для lightbox',
+    coreSrc.includes('opts.onClick'));
+  check('S159: slider-core — автопрокрутка по data-interval слайда',
+    coreSrc.includes('getAttribute(\'data-interval\')'));
+  check('S159: slider-core — пауза на hover',
+    coreSrc.includes('mouseenter') && coreSrc.includes('mouseleave'));
+  check('S159: slider-core — идемпотентный wire (data-slider-ready)',
+    coreSrc.includes('data-slider-ready'));
+  check('S159: slider-core — autoplay:false отключает ротацию',
+    coreSrc.includes('autoplay === false'));
+
+  // 2. entity.js: albumHtml использует SliderCore
+  check('S159: entity — albumHtml вызывает SliderCore.render',
+    entitySrc.includes('SliderCore.render'));
+  check('S159: entity — albumSliderOpts задаёт albumInterval',
+    entitySrc.includes('albumInterval'));
+  check('S159: entity — onClick → openLightbox',
+    entitySrc.includes('openLightbox'));
+  check('S159: entity — SliderCore.initAll для wire',
+    entitySrc.includes('SliderCore.initAll'));
+
+  // 3. album.html: слайдер + миниатюры-навигация
+  check('S159: album.html — подключает slider-core.js',
+    fs.readFileSync(path.join(staticDir, 'album.html'), 'utf-8').includes('slider-core.js'));
+  check('S159: album.html — mount SliderCore на #album-slider',
+    fs.readFileSync(path.join(staticDir, 'album.html'), 'utf-8').includes('SliderCore.mount')
+    && fs.readFileSync(path.join(staticDir, 'album.html'), 'utf-8').includes('album-slider'));
+  check('S159: album.html — лента миниатюр #album-thumbs',
+    fs.readFileSync(path.join(staticDir, 'album.html'), 'utf-8').includes('album-thumbs'));
+
+  // 4. trainers.html: совместный слайдер
+  check('S159: trainers.html — mount SliderCore на #joint-slider',
+    fs.readFileSync(path.join(staticDir, 'trainers.html'), 'utf-8').includes('SliderCore.mount')
+    && fs.readFileSync(path.join(staticDir, 'trainers.html'), 'utf-8').includes('joint-slider'));
+
+  // 5. style.css: новые модификаторы
+  check('S159: CSS — .slider--embed', cssSrc.includes('.slider--embed'));
+  check('S159: CSS — .slider--album', cssSrc.includes('.slider--album'));
+  check('S159: CSS — .slider--joint', cssSrc.includes('.slider--joint'));
+  check('S159: CSS — .slider-clickable', cssSrc.includes('.slider-clickable'));
+  check('S159: CSS — .slider-counter', cssSrc.includes('.slider-counter'));
+  check('S159: CSS — .album-slider', cssSrc.includes('.album-slider'));
+  check('S159: CSS — .album-thumbs', cssSrc.includes('.album-thumbs'));
+  check('S159: CSS — .album-thumb', cssSrc.includes('.album-thumb'));
+
+  // 6. export: albumInterval в sliderSettings
+  check('S159: export — albumInterval в sliderSettings',
+    exportSrc.includes('albumInterval'));
+  check('S159: export — defaultInterval в sliderSettings',
+    exportSrc.includes('defaultInterval'));
+  const coreData = (() => {
+    const src = fs.readFileSync(path.join(staticDir, 'js', 'data', 'core.js'), 'utf-8');
+    const w = {};
+    new Function('window', src)(w);
+    return w.SITE_DATA || {};
+  })();
+  check('S159: core.js — sliderSettings.albumInterval присутствует',
+    !!coreData.sliderSettings && coreData.sliderSettings.albumInterval > 0);
+
+  // 7. server: get-photo-manager + delete-photos
+  check('S159: server — get-photo-manager route', serverSrc.includes('get-photo-manager'));
+  check('S159: server — handleGetPhotoManager', serverSrc.includes('handleGetPhotoManager'));
+  check('S159: server — collectPhotoUsage охватывает все разделы',
+    serverSrc.includes('collectPhotoUsage') && serverSrc.includes('db.album')
+    && serverSrc.includes('db.directions') && serverSrc.includes('db.schedule'));
+  check('S159: server — walkUploads рекурсивный скан',
+    serverSrc.includes('walkUploads') && serverSrc.includes('isDirectory') && serverSrc.includes('isFile'));
+  check('S159: server — removePhotoRefs для всех разделов',
+    serverSrc.includes('removePhotoRefs') && serverSrc.includes('programAlbum')
+    && serverSrc.includes('trainerAlbum') && serverSrc.includes('newsPhotos'));
+  check('S159: server — delete-photos route + защита used',
+    serverSrc.includes('delete-photos') && serverSrc.includes('handleDeletePhotos')
+    && serverSrc.includes('reason:') && serverSrc.includes('used'));
+
+  // 8. admin: раздел «Менеджер фото»
+  check('S159: admin — section entry в settings',
+    adminSrc.includes("id: 'photo-manager'") && adminSrc.includes("'🖼 Менеджер фото'"));
+  check('S159: admin — renderSection dispatch photo-manager',
+    /if \(sectionId === 'photo-manager'\)/.test(adminSrc));
+  check('S159: admin — sidebar link',
+    adminSrc.includes("data-section=\"photo-manager\""));
+  check('S159: admin — loadPhotoManagerSection',
+    adminSrc.includes('function loadPhotoManagerSection'));
+  check('S159: admin — phtRender (рендер списка)',
+    adminSrc.includes('function phtRender'));
+  check('S159: admin — phtDeleteOne (удалить один)',
+    adminSrc.includes('function phtDeleteOne'));
+  check('S159: admin — phtDeleteUnused (удалить все неиспользуемые)',
+    adminSrc.includes('function phtDeleteUnused'));
+  check('S159: admin — phtStatusCell (метки статуса)',
+    adminSrc.includes('function phtStatusCell'));
+  check('S159: admin — поиск/фильтр/пагинация',
+    adminSrc.includes('phtSetFilter') && adminSrc.includes('phtSetPage') && adminSrc.includes('phtSetQuery') && adminSrc.includes('phtSetScope'));
+}
+
+// ── S162: пакетное сохранение слайдера + удаление скрытых ──
+{
+  const serverSrc = fs.readFileSync(path.resolve('scripts', 'admin-server.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+
+  // Проверяем что в ТЕЛЕ sanitizeSlides нет if (!image) continue;
+  const ssMatch = serverSrc.match(/function sanitizeSlides[\s\S]*?\n  \}/);
+  check('S162: sanitizeSlides НЕ выбрасывает слайды без картинки',
+    !!ssMatch && !/if \(!image\) continue;/.test(ssMatch[0]));
+  check('S162: слайд без картинки = hidden:true',
+    /hidden: image \? wasHidden : true/.test(serverSrc));
+  check('S162: server — delete-hidden-slides route',
+    serverSrc.includes('delete-hidden-slides') && serverSrc.includes('handleDeleteHiddenSlides'));
+  check('S162: admin — кнопка «Удалить все скрытые»',
+    adminSrc.includes('deleteHiddenSlides') && /🗑 Удалить все скрытые/.test(adminSrc));
+  check('S162: admin — confirm перед удалением скрытых',
+    /confirm\(.*скрытых слайдов/.test(adminSrc));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);

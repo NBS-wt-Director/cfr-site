@@ -23,6 +23,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import os from 'os';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { flattenDb, nestDb, isNested, DATA_KEYS, SETTINGS_KEYS } from './db-format.mjs';
@@ -2444,12 +2445,13 @@ async function handleSendReminder(req, res) {
     const out = [];
     for (const item of src) {
       if (!item || typeof item !== 'object') continue;
-      const image = cleanMediaPath(item.image);
-      if (!image) continue;                 // слайд без картинки бессмыслен
       let id = Number(item.id);
       if (!Number.isFinite(id) || id <= 0) id = Date.now() + out.length;
       if (seen.has(id)) continue;
       seen.add(id);
+      // S162: слайды БЕЗ картинки НЕ выбрасываются — сохраняются с пустой картинкой и hidden:true
+      // чтобы пакетное сохранение не теряло слайды при изменении полей
+      const image = cleanMediaPath(item.image);
       const interval = Number(item.interval);
       const pos = SLIDER_POS_MIGRATE[item.position] || item.position;
       // S158: новые поля
@@ -2471,6 +2473,7 @@ async function handleSendReminder(req, res) {
           ? Math.max(0, Math.min(0.9, Number(ov.opacity))) : 0.4
       };
       const link = String(item.link || '').trim().slice(0, 300);
+      const wasHidden = item.hidden === true;
       out.push({
         id,
         title: cleanPriceText(item.title, 80),
@@ -2481,10 +2484,34 @@ async function handleSendReminder(req, res) {
         interval: Number.isFinite(interval) && interval > 0 && interval <= 120 ? Math.round(interval) : 5,
         position: SLIDER_POS.includes(pos) ? pos : 'center',
         textColor, textSize, textMargin, overlay,
-        hidden: item.hidden === true
+        hidden: image ? wasHidden : true   // S162: без картинки = всегда скрыт
       });
     }
     return out;
+  }
+
+  // S158: глобальные настройки слайдера (в db.settings.sliderSettings).
+  // Мёртвые поля старой Next.js-версии (textPositionMode/staticPosition/marginX/marginY)
+  // не сохраняются — вместо них реальные настройки, которые применяет main.js.
+  function sanitizeSliderSettings(raw) {
+    const s = raw && typeof raw === 'object' ? raw : {};
+    const num = (v, dflt, min, max) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.max(min, Math.min(max, Math.round(n))) : dflt;
+    };
+    const pos = SLIDER_POS_MIGRATE[s.defaultPosition] || s.defaultPosition;
+    return {
+      autoplay: s.autoplay !== false,
+      showArrows: s.showArrows !== false,
+      showDots: s.showDots !== false,
+      // 0 = автовысота по картинке
+      height: num(s.height, 0, 0, 1200),
+      defaultPosition: SLIDER_POS.includes(pos) ? pos : 'center',
+      defaultTextColor: HEX_RE.test(s.defaultTextColor) ? s.defaultTextColor : '#ffffff',
+      defaultTextSize: num(s.defaultTextSize, 42, 16, 96),
+      // S159: интервал прокрутки фотоальбомов (программы, тренеры, альбом, обложки)
+      albumInterval: num(s.albumInterval, 6, 1, 120)
+    };
   }
 
   async function handleGetSlides(req, res) {
@@ -2492,7 +2519,13 @@ async function handleSendReminder(req, res) {
     if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
     try {
       const db = readDb();
-      sendJSON(res, 200, { slides: sanitizeSlides(db.sliders), defaultInterval: Number(db.defaultInterval) || 5 });
+      // S158: глобальные настройки слайдера — плоский ключ sliderSettings
+      // (на диске лежит в settings.*, readDb() его выносит наверх)
+      sendJSON(res, 200, {
+        slides: sanitizeSlides(db.sliders),
+        defaultInterval: Number(db.defaultInterval) || 5,
+        sliderSettings: db.sliderSettings || null
+      });
     } catch (err) {
       console.error('❌ Ошибка чтения слайдера:', err);
       sendJSON(res, 500, { error: err.message });
@@ -2514,56 +2547,373 @@ async function handleSendReminder(req, res) {
         const di = Number(body.defaultInterval);
         if (Number.isFinite(di) && di > 0 && di <= 120) db.defaultInterval = Math.round(di);
       }
+      // S158: глобальные настройки слайдера (плоский ключ sliderSettings,
+      // nestDb() положит его в settings.sliderSettings)
+      if (body.sliderSettings !== undefined) {
+        db.sliderSettings = sanitizeSliderSettings(body.sliderSettings);
+      }
       backupDB();
       writeDb(db);
       regenerateStatic();
-      sendJSON(res, 200, { ok: true, slides, defaultInterval: Number(db.defaultInterval) || 5 });
+      sendJSON(res, 200, {
+        ok: true, slides, defaultInterval: Number(db.defaultInterval) || 5,
+        sliderSettings: db.sliderSettings || null
+      });
     } catch (err) {
       console.error('❌ Ошибка сохранения слайдера:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
 
-  // S158: менеджер фото — сканирование uploads/ + album/full/, поиск, used/unused
+  // S162: удаление всех скрытых слайдов
+  async function handleDeleteHiddenSlides(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+    try {
+      const db = readDb();
+      const before = db.sliders || [];
+      const hiddenCount = before.filter(s => s.hidden === true).length;
+      if (!hiddenCount) return sendJSON(res, 200, { ok: true, removed: 0, note: 'Скрытых слайдов нет' });
+      db.sliders = before.filter(s => s.hidden !== true);
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      console.log(`🗑 Скрытые слайды удалены: ${hiddenCount} → ${db.sliders.length}`);
+      sendJSON(res, 200, { ok: true, removed: hiddenCount, remaining: db.sliders.length });
+    } catch (err) {
+      console.error('❌ Ошибка удаления скрытых слайдов:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  /* ================================================================
+     S166: Мероприятия (events)
+     ================================================================
+     Конструктивно — смесь новостей (текст-md + связь с новостью),
+     программ (обложка, описание, отзывы), альбома (фотогалерея-слайдер)
+     и страниц (отдельная страница event.html?id=).
+
+     Правила автоматизации:
+      • создали мероприятие на будущее  → заводим новость (showOnHome,
+        со ссылкой на страницу мероприятия); связь хранится в event.newsId;
+      • мероприятие прошло (dateEnd < now) → связанную новость скрываем,
+        администраторам — письмо «загрузите фото/видео» + заметка в
+        разделе «Статус → Проблемы» (collectSiteProblems);
+      • переход «будущее → прошедшее» ловится и при сохранении, и
+        периодической проверкой (дата могла пройти, пока базу не трогали).
+  */
+  const EVENT_TYPES = ['семинар', 'тестирование', 'праздник', 'беседа',
+    'открытое_мероприятие', 'выездной_семинар'];
+
+  // S167: альбом = слайдер. Кадры photoAlbum хранят те же поля, что слайды
+  // главного слайдера (title/description/link/position/текст/overlay/hidden).
+  // Общая санитизация — для мероприятий; тренеры/программы пишутся как есть,
+  // но экспорт и сайт читают этот же набор полей.
+  const SLIDE_POS_MIGRATE = { left: 'center-left', right: 'center-right' };
+  function sanitizeAlbumSlides(raw) {
+    const src = Array.isArray(raw) ? raw : [];
+    const out = [];
+    for (const a of src) {
+      const item = typeof a === 'string' ? { image: a } : (a && typeof a === 'object' ? a : null);
+      if (!item) continue;
+      const image = cleanMediaPath(item.image);
+      if (!image) continue;
+      const rec = { image };
+      const title = cleanPriceText(item.title || item.caption || '', 80);
+      if (title) { rec.title = title; rec.caption = title; }
+      const description = String(item.description || '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').slice(0, 300);
+      if (description.trim()) rec.description = description.trim();
+      // ссылка — как у слайдов главного слайдера (произвольный адрес страницы)
+      const link = String(item.link || '').replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 300);
+      if (link) { rec.link = link; rec.linkTarget = item.linkTarget === '_blank' ? '_blank' : '_self'; }
+      const interval = Number(item.interval);
+      if (Number.isFinite(interval) && interval >= 1 && interval <= 120) rec.interval = interval;
+      const position = String(item.position || '');
+      if (position) rec.position = SLIDE_POS_MIGRATE[position] || position;
+      if (/^#[0-9a-fA-F]{3,8}$/.test(String(item.textColor || ''))) rec.textColor = String(item.textColor);
+      const textSize = Number(item.textSize);
+      if (Number.isFinite(textSize) && textSize >= 16 && textSize <= 96) rec.textSize = textSize;
+      if (item.textMargin && typeof item.textMargin === 'object') {
+        const tm = {};
+        for (const k of ['top', 'right', 'bottom', 'left']) {
+          const v = Number(item.textMargin[k]);
+          if (Number.isFinite(v) && v >= 0 && v <= 200) tm[k] = v;
+        }
+        if (Object.keys(tm).length) rec.textMargin = tm;
+      }
+      if (item.overlay && typeof item.overlay === 'object') {
+        const ov = {};
+        if (item.overlay.enabled === false) ov.enabled = false;
+        if (/^#[0-9a-fA-F]{3,8}$/.test(String(item.overlay.color || ''))) ov.color = String(item.overlay.color);
+        const op = Number(item.overlay.opacity);
+        if (Number.isFinite(op) && op >= 0 && op <= 0.9) ov.opacity = op;
+        if (Object.keys(ov).length) rec.overlay = ov;
+      }
+      if (item.hidden === true) rec.hidden = true;
+      out.push(rec);
+      if (out.length >= 60) break;
+    }
+    return out;
+  }
+
+  function sanitizeEvents(raw) {
+    const src = Array.isArray(raw) ? raw : [];
+    const seen = new Set();
+    const out = [];
+    for (const item of src) {
+      if (!item || typeof item !== 'object') continue;
+      let id = Number(item.id);
+      if (!Number.isFinite(id) || id <= 0) id = Date.now() + out.length;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      const ds = String(item.dateStart || '').slice(0, 16);
+      let de = String(item.dateEnd || '').slice(0, 16);
+      // без окончания — считаем «в тот же день, +3 часа» от начала
+      if (!eventDate(de) && eventDate(ds)) {
+        const d = eventDate(ds);
+        d.setHours(d.getHours() + 3);
+        const p = (n) => String(n).padStart(2, '0');
+        de = `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+      }
+      const num = (v) => (v != null && v !== '' && Number.isFinite(Number(v)) ? Number(v) : null);
+      out.push({
+        id,
+        name: cleanPriceText(item.name, 60),
+        type: EVENT_TYPES.includes(item.type) ? item.type : '',
+        dateStart: eventDate(ds) ? ds : '',
+        dateEnd: eventDate(de) ? de : '',
+        image: cleanMediaPath(item.image),
+        shortDescription: cleanPriceText(item.shortDescription || '', 120),
+        description: String(item.description || '').slice(0, 20000),
+        reviews: (Array.isArray(item.reviews) ? item.reviews : [])
+          .map(r => r && typeof r === 'object'
+            ? { name: cleanPriceText(r.name || '', 80), text: String(r.text || '').slice(0, 1000) }
+            : null)
+          .filter(Boolean)
+          .filter(r => r.name || r.text)
+          .slice(0, 50),
+        photoAlbum: sanitizeAlbumSlides(item.photoAlbum),
+        videos: (Array.isArray(item.videos) ? item.videos : [])
+          .map(v => v && typeof v === 'object'
+            ? { title: cleanPriceText(v.title || '', 80), url: normalizeEventVideoUrl(v.url) }
+            : null)
+          .filter(Boolean)
+          .filter(v => v.url)
+          .slice(0, 15),
+        hidden: item.hidden === true,
+        newsId: num(item.newsId),
+        createdAt: typeof item.createdAt === 'string' ? item.createdAt : new Date().toISOString().slice(0, 10),
+        updatedAt: new Date().toISOString().slice(0, 10),
+      });
+    }
+    return out;
+  }
+
+  // Текст авто-новости: анонс + ссылка на страницу мероприятия
+  function eventNewsText(ev) {
+    const when = String(ev.dateStart || '').replace('T', ' ');
+    const lines = [];
+    if (when) lines.push('**📅 ' + when + '**');
+    if (ev.type) lines.push('*' + EVENT_TYPES.includes(ev.type) ? ev.type.replace(/_/g, ' ') : '' + '*');
+    if (ev.shortDescription) lines.push('', ev.shortDescription);
+    lines.push('', 'Подробности, фото и запись: [Открыть страницу мероприятия](event.html?id=' + ev.id + ')');
+    return lines.filter((l, i) => l !== '' || i > 0).join('\n');
+  }
+
+  // Создание новости для планируемого мероприятия (без email/regen — только правка db-объекта)
+  function createNewsForEvent(db, ev) {
+    // id не зависит от скорости вызовов: два события в одну миллисекунду
+    // не должны получить одинаковый id
+    let id = Date.now();
+    while ((db.news || []).some(n => Number(n.id) === id)) id++;
+    const news = {
+      id,
+      title: String(ev.name || 'Мероприятие').slice(0, 50),
+      text: eventNewsText(ev),
+      date: new Date().toISOString().slice(0, 10),
+      image: ev.image || '',
+      video: '',
+      photos: [],
+      showOnHome: true,
+      hidden: false,
+      category: 'Мероприятия',
+      pinned: false,
+      programId: null,
+      trainerId: null,
+      updatedAt: new Date().toISOString().slice(0, 10),
+      preview: previewOf(eventNewsText(ev)),
+    };
+    if (!Array.isArray(db.news)) db.news = [];
+    db.news.push(news);
+    return id;
+  }
+
+  // Луч-effort письмо администраторам (SMTP из emailConfig). Ошибку не роняем.
+  async function sendAdminMail(subject, text) {
+    try {
+      const db = readDb();
+      const emailConfig = db.emailConfig || {};
+      const smtpUser = emailConfig.smtpUser, smtpPass = emailConfig.smtpPass;
+      const adminEmail = emailConfig.adminEmail;
+      if (!smtpUser || !smtpPass || !adminEmail) return { ok: false, error: 'SMTP не настроен' };
+      const nodemailer = (await import('nodemailer')).default;
+      const transporter = nodemailer.createTransport({
+        host: emailConfig.smtpHost || 'smtp.yandex.ru',
+        port: emailConfig.smtpPort || 465,
+        secure: emailConfig.smtpSecure !== false,
+        auth: { user: smtpUser, pass: smtpPass },
+      });
+      const recipients = [adminEmail, ...(emailConfig.errorEmail || [])].filter(Boolean);
+      await transporter.sendMail({
+        from: `"${emailConfig.fromName || 'Сайт центр-фр.рф'}" <${smtpUser}>`,
+        to: recipients.join(', '),
+        subject,
+        text,
+      });
+      return { ok: true, sent: recipients.length };
+    } catch (err) {
+      console.error('❌ Письмо администраторам не отправлено:', err.message);
+      return { ok: false, error: err.message };
+    }
+  }
+
+  // Письмо «мероприятие прошло — загрузите фото/видео»
+  async function notifyEventPassed(ev) {
+    const subject = `Мероприятие прошло: ${ev.name} — загрузите фото и видео`;
+    const text =
+      `Уважаемые Коллеги!\n\n` +
+      `Мероприятие «${ev.name}» (начало ${ev.dateStart || '?'}) завершено.\n` +
+      `Просьба загрузить в админке, раздел «Данные → Мероприятия»:\n` +
+      `  • фотогалерею (слайдер на странице мероприятия);\n` +
+      `  • ссылкu(и) на видео, если снимали;\n` +
+      `  • отзывы участников (ФИО + текст).\n\n` +
+      `Связанная новость с главной автоматически скрыта.\n` +
+      `Если фото есть — страница мероприятия сразу станет привлекательнее для посетителей.\n\n` +
+      `С Уважением, робот сайта центр-фр.рф`;
+    return sendAdminMail(subject, text);
+  }
+
+  // Переходы статусов: будущие без новости → создать; прошедшие с видимой новостью → скрыть.
+  // Возвращает { created: [...], hiddenNews: [...], notified: bool }.
+  function applyEventTransitions(db, now) {
+    const result = { created: [], hiddenNews: [], needNotify: [] };
+    const events = db.events || [];
+    for (const ev of events) {
+      if (!ev || ev.hidden) continue;
+      const past = eventIsPast(ev, now);
+      if (!past && !ev.newsId && ev.dateStart) {
+        const id = createNewsForEvent(db, ev);
+        ev.newsId = id;
+        result.created.push({ id: ev.id, newsId: id });
+      }
+      if (past && ev.newsId) {
+        const n = (db.news || []).find(x => Number(x.id) === Number(ev.newsId));
+        if (n && !n.hidden) {
+          n.hidden = true;
+          n.updatedAt = new Date().toISOString().slice(0, 10);
+          result.hiddenNews.push({ id: ev.id, newsId: n.id });
+          result.needNotify.push(ev);
+        }
+      }
+    }
+    return result;
+  }
+
+  async function handleGetEvents(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+    try {
+      const db = readDb();
+      sendJSON(res, 200, {
+        events: db.events || [],
+        types: EVENT_TYPES,
+        news: (db.news || []).map(n => ({ id: n.id, title: n.title, hidden: !!n.hidden })),
+      });
+    } catch (err) {
+      console.error('❌ Ошибка чтения мероприятий:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  async function handleSaveEvents(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+    const body = await readBody(req);
+    if (!body || !Array.isArray(body.events)) {
+      return sendJSON(res, 400, { error: 'Нет списка мероприятий' });
+    }
+    try {
+      const db = readDb();
+      db.events = sanitizeEvents(body.events);
+      const tr = applyEventTransitions(db, Date.now());
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      let mail = null;
+      if (tr.needNotify.length) {
+        for (const ev of tr.needNotify) mail = await notifyEventPassed(ev);
+      }
+      sendJSON(res, 200, {
+        ok: true,
+        events: db.events,
+        newsCreated: tr.created.length,
+        newsHidden: tr.hiddenNews.length,
+        mail: mail ? mail.ok ? 'отправлено' : 'не отправлено: ' + mail.error : null,
+      });
+    } catch (err) {
+      console.error('❌ Ошибка сохранения мероприятий:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // Периодическая проверка (дата прошла, а базу не сохраняли):
+  // скрываем новость прошедшего мероприятия, уведомляем, перегенерируем.
+  const EVENTS_CHECK_MS = 6 * 60 * 60 * 1000;
+  async function checkEventsTransitions() {
+    try {
+      const db = readDb();
+      if (!Array.isArray(db.events) || !db.events.length) return;
+      const tr = applyEventTransitions(db, Date.now());
+      const changed = tr.created.length + tr.hiddenNews.length;
+      if (!changed) return;
+      backupDB();
+      writeDb(db);
+      regenerateStatic();
+      console.log(`🗓 S166: переходы мероприятий — новостей создано ${tr.created.length}, скрыто ${tr.hiddenNews.length}`);
+      for (const ev of tr.needNotify) await notifyEventPassed(ev);
+    } catch (err) {
+      console.error('❌ Периодическая проверка мероприятий:', err.message);
+    }
+  }
+
+  // S158: выбор фото для слайда — общий скан uploads/ + usage из всей базы
   async function handleGetPhotoAlbum(req, res) {
     const token = extractTokenFromCookie(req.headers);
     if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
     try {
       const body = await readBody(req).catch(() => ({}));
-      const query = String(body.query || '').trim().toLowerCase();
-      const filter = ['all', 'unused', 'used'].includes(body.filter) ? body.filter : 'all';
-      const page = Math.max(1, Number(body.page) || 1);
-      const perPage = Math.max(1, Math.min(100, Number(body.per_page) || 24));
+      const query = String((body && body.query) || '').trim().toLowerCase();
+      const filter = ['all', 'unused', 'used'].includes(body && body.filter) ? body.filter : 'all';
+      const page = Math.max(1, Number(body && body.page) || 1);
+      const perPage = Math.max(1, Math.min(200, Number(body && body.per_page) || 24));
 
-      // Собираем пути всех слайдов + альбомов тренеров/программ для used-фильтра
       const db = readDb();
-      const usedPaths = new Set();
-      (db.sliders || []).forEach(s => { if (s.image) usedPaths.add(s.image.replace(/^\//, '')); });
-      (db.programs || []).forEach(p => (p.photoAlbum || []).forEach(a => { if (a.image) usedPaths.add(a.image.replace(/^\//, '')); }));
-      (db.trainers || []).forEach(t => (t.photoAlbum || []).forEach(a => { if (a.image) usedPaths.add(a.image.replace(/^\//, '')); }));
+      const usage = collectPhotoUsage(db);
 
-      // Сканируем каталоги
-      const IMG_RE = /\.(jpg|jpeg|png|webp|gif)$/i;
+      const files = [];
+      walkUploads(path.join(root, 'static', 'uploads'), 'uploads', files);
+
       const photos = [];
-      const dirs = [
-        { base: 'uploads', scan: uploadsDir },
-        { base: 'uploads/album/full', scan: path.join(uploadsDir, 'album', 'full') }
-      ];
-      for (const { base, scan } of dirs) {
-        if (!fs.existsSync(scan)) continue;
-        let entries;
-        try { entries = fs.readdirSync(scan, { withFileTypes: true }); } catch { continue; }
-        for (const e of entries) {
-          if (!e.isFile() || !IMG_RE.test(e.name)) continue;
-          const rel = base + '/' + e.name;
-          if (query && !e.name.toLowerCase().includes(query)) continue;
-          const used = usedPaths.has(rel);
-          if (filter === 'used' && !used) continue;
-          if (filter === 'unused' && used) continue;
-          let size = 0;
-          try { size = fs.statSync(path.join(scan, e.name)).size; } catch {}
-          photos.push({ path: rel, name: e.name, size, used });
-        }
+      for (const f of files) {
+        if (query && !f.path.toLowerCase().includes(query)) continue;
+        const usages = usage.get(f.path) || [];
+        const status = usages.some((x) => !x.hidden) ? 'used' : (usages.length ? 'hidden' : 'unused');
+        if (filter === 'used' && status === 'unused') continue;
+        if (filter === 'unused' && status !== 'unused') continue;
+        photos.push({
+          path: f.path, name: path.basename(f.path), size: f.bytes,
+          used: status === 'used', status,
+        });
       }
 
       // Сортировка: сначала неиспользованные, затем по имени
@@ -2574,6 +2924,321 @@ async function handleSendReminder(req, res) {
       sendJSON(res, 200, { photos: paged, total, page, per_page: perPage });
     } catch (err) {
       console.error('❌ Ошибка фото-альбома:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ── S159. Менеджер фотографий ────────────────────────────────────────
+  // Фото живут в static/uploads/** и static/data/**. Использование собирается
+  // изо ВСЕХ разделов базы (не только слайдеры/программы/тренеры, как в
+  // handleGetPhotoAlbum), поэтому файл считается «неиспользуемым» только когда
+  // на него реально никто не ссылается.
+  const PHOTO_EXTS_RE = /\.(jpg|jpeg|png|webp|gif|svg)$/i;
+
+  function walkUploads(dir, relBase, out) {
+    let entries;
+    try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+    for (const e of entries) {
+      const abs = path.join(dir, e.name);
+      const rel = relBase ? `${relBase}/${e.name}` : e.name;
+      if (e.isDirectory()) { walkUploads(abs, rel, out); continue; }
+      if (!e.isFile() || !PHOTO_EXTS_RE.test(e.name)) continue;
+      let size = 0, mtime = 0;
+      try { const st = fs.statSync(abs); size = st.size; mtime = st.mtimeMs; } catch {}
+      out.push({ path: rel, bytes: size, mtime });
+    }
+    return out;
+  }
+
+  // Все ссылки на файлы в базе: relPath → [{ kind, id, name, url, hidden }]
+  function collectPhotoUsage(db) {
+    const map = new Map();
+    const add = (raw, u) => {
+      if (typeof raw !== 'string') return;
+      let rel = raw.trim();
+      if (!rel || rel.startsWith('http') || rel.startsWith('data:')) return;
+      rel = rel.replace(/^\/+/, '');
+      if (!PHOTO_EXTS_RE.test(rel)) return;
+      let arr = map.get(rel);
+      if (!arr) { arr = []; map.set(rel, arr); }
+      // дубликаты (одна и та же сущность) не плодим
+      if (!arr.some((x) => x.kind === u.kind && String(x.id) === String(u.id))) arr.push(u);
+    };
+
+    for (const s of (db.sliders || [])) add(s.image, { kind: 'slider', id: s.id, name: s.title || 'Слайд', url: '/#home-slider', hidden: !!s.hidden });
+    for (const p of (db.programs || [])) {
+      add(p.image, { kind: 'program', id: p.id, name: p.title || 'Программа', url: `/program.html?id=${p.id}`, hidden: !!p.hidden });
+      for (const ph of (p.photoAlbum || [])) add(ph.image, { kind: 'program', id: p.id, name: `${p.title || 'Программа'} · альбом`, url: `/program.html?id=${p.id}`, hidden: !!p.hidden });
+    }
+    for (const t of (db.trainers || [])) {
+      add(t.image, { kind: 'trainer', id: t.id, name: t.name || 'Тренер', url: `/trainer.html?id=${t.id}`, hidden: !!t.hidden });
+      for (const ph of (t.photoAlbum || [])) add(ph.image, { kind: 'trainer', id: t.id, name: `${t.name || 'Тренер'} · альбом`, url: `/trainer.html?id=${t.id}`, hidden: !!t.hidden });
+    }
+    for (const n of (db.news || [])) {
+      add(n.image, { kind: 'news', id: n.id, name: n.title || 'Новость', url: `/news.html?id=${n.id}`, hidden: !!n.hidden });
+      for (const ph of (n.photos || [])) add(ph, { kind: 'news', id: n.id, name: `${n.title || 'Новость'} · галерея`, url: `/news.html?id=${n.id}`, hidden: !!n.hidden });
+    }
+    for (const d of (db.directions || [])) {
+      add(d.image, { kind: 'direction', id: d.id, name: d.name || 'Направление', url: `/directions.html?id=${d.id}`, hidden: !!d.hidden });
+      for (const p of (d.programs || [])) add(p.image, { kind: 'direction', id: d.id, name: `${d.name || 'Направление'} · ${p.title || ''}`, url: `/directions.html?id=${d.id}`, hidden: !!d.hidden });
+    }
+    for (const a of (db.album || [])) {
+      add(a.image, { kind: 'album', id: a.id, name: a.caption || a.title || 'Фото альбома', url: '/album.html', hidden: false });
+      add(a.thumb, { kind: 'album', id: a.id, name: a.caption || a.title || 'Миниатюра альбома', url: '/album.html', hidden: false });
+    }
+    // S166: мероприятия — обложка и фотогалерея
+    for (const ev of (db.events || [])) {
+      add(ev.image, { kind: 'event', id: ev.id, name: ev.name || 'Мероприятие', url: `/event.html?id=${ev.id}`, hidden: !!ev.hidden });
+      for (const ph of (ev.photoAlbum || [])) add(ph.image, { kind: 'event', id: ev.id, name: `${ev.name || 'Мероприятие'} · галерея`, url: `/event.html?id=${ev.id}`, hidden: !!ev.hidden });
+    }
+    for (const s of (db.staff || [])) add(s.image, { kind: 'staff', id: s.id, name: s.name || 'Сотрудник', url: '/#contacts', hidden: !!s.hidden });
+    for (const e of (db.employees || [])) add(e.image, { kind: 'staff', id: e.id, name: e.name || 'Сотрудник', url: '/#contacts', hidden: !!e.hidden });
+    for (const h of (db.halls || [])) add(h.image, { kind: 'hall', id: h.id, name: h.name || 'Зал', url: '/#schedule', hidden: h.visible === false });
+    for (const g of (db.schedule || [])) {
+      add(g.image, { kind: 'schedule', id: g.id, name: g.name || 'Расписание', url: '/#schedule', hidden: !!g.hidden });
+      for (const el of (g.elements || [])) add(el.image, { kind: 'schedule', id: g.id, name: g.name || 'Расписание', url: '/#schedule', hidden: !!g.hidden });
+    }
+    for (const pr of (db.prices || [])) {
+      add(pr.image, { kind: 'price', id: pr.id, name: pr.title || pr.name || 'Прайс', url: '/#prices', hidden: !!pr.hidden });
+      for (const it of (pr.items || [])) add(it.image, { kind: 'price', id: pr.id, name: pr.title || pr.name || 'Прайс', url: '/#prices', hidden: !!pr.hidden });
+    }
+    for (const it of (db.priceItems || [])) add(it.image, { kind: 'price', id: it.id, name: it.title || it.name || 'Позиция прайса', url: '/#prices', hidden: !!it.hidden });
+    add((db.globalDivider || {}).image, { kind: 'site', id: 'divider', name: 'Разделитель', url: '/', hidden: false });
+    add((db.siteSettings || {}).logo, { kind: 'site', id: 'logo', name: 'Логотип', url: '/', hidden: false });
+    add((db.siteSettings || {}).favicon, { kind: 'site', id: 'favicon', name: 'Favicon', url: '/', hidden: false });
+
+    return map;
+  }
+
+  // ── GET /api/admin/get-photo-manager ────────────────────────────────
+  async function handleGetPhotoManager(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    try {
+      const body = (await readBody(req)) || {};
+      const u = new URL(req.url, 'http://localhost');
+      const p = (key, dflt) => (body[key] !== undefined && body[key] !== null && body[key] !== ''
+        ? body[key] : (u.searchParams.get(key) !== null ? u.searchParams.get(key) : dflt));
+      const filter = ['all', 'used', 'hidden', 'unused'].includes(p('filter', 'all')) ? p('filter', 'all') : 'all';
+      // scope: uploads (веб-медиа сайта, по умолчанию) | data (рабочий архив) | all
+      const scope = ['uploads', 'data', 'all'].includes(p('scope', 'uploads')) ? p('scope', 'uploads') : 'uploads';
+      const query = String(p('q', p('query', '')) || '').trim().toLowerCase();
+      const page = Math.max(1, parseInt(p('page', '1'), 10) || 1);
+      const perPage = Math.min(500, Math.max(10, parseInt(p('per_page', '60'), 10) || 60));
+
+      const db = readDb();
+      const usage = collectPhotoUsage(db);
+
+      const files = [];
+      walkUploads(path.join(root, 'static', 'uploads'), 'uploads', files);
+      walkUploads(path.join(root, 'static', 'data'), 'data', files);
+
+      const existing = new Set(files.map((f) => f.path));
+      // Битые ссылки: в базе путь есть, файла на диске нет
+      const missing = [];
+      for (const [rel, usages] of usage) {
+        if (existing.has(rel)) continue;
+        missing.push({ path: rel, usages: usages.slice(0, 4) });
+      }
+
+      const photos = [];
+      let bytesTotal = 0, bytesUsed = 0, bytesHidden = 0, bytesUnused = 0;
+      let nUsed = 0, nHidden = 0, nUnused = 0;
+      const scopeStats = { uploads: { files: 0, bytes: 0 }, data: { files: 0, bytes: 0 } };
+
+      for (const f of files) {
+        const usages = usage.get(f.path) || [];
+        const visible = usages.some((x) => !x.hidden);
+        const status = visible ? 'used' : (usages.length ? 'hidden' : 'unused');
+        bytesTotal += f.bytes;
+        if (status === 'used') { nUsed++; bytesUsed += f.bytes; }
+        else if (status === 'hidden') { nHidden++; bytesHidden += f.bytes; }
+        else { nUnused++; bytesUnused += f.bytes; }
+        const sc = f.path.startsWith('data/') ? 'data' : 'uploads';
+        scopeStats[sc].files++; scopeStats[sc].bytes += f.bytes;
+        if (scope !== 'all' && scope !== sc) continue;
+        if (filter !== 'all' && filter !== status) continue;
+        if (query && !f.path.toLowerCase().includes(query)) continue;
+        photos.push({
+          path: f.path, name: path.basename(f.path), bytes: f.bytes, mtime: f.mtime,
+          status, scope: sc, usages,
+        });
+      }
+
+      // Сортировка: сначала то, что можно очистить (hidden → unused), затем used
+      const rank = { hidden: 0, unused: 1, used: 2 };
+      photos.sort((a, b) => (rank[a.status] - rank[b.status]) || a.path.localeCompare(b.path, 'ru'));
+
+      sendJSON(res, 200, {
+        photos: photos.slice((page - 1) * perPage, page * perPage),
+        total: photos.length,
+        page, per_page: perPage,
+        scope,
+        stats: {
+          files: files.length, used: nUsed, hidden: nHidden, unused: nUnused,
+          bytes_total: bytesTotal, bytes_used: bytesUsed,
+          bytes_hidden: bytesHidden, bytes_unused: bytesUnused,
+          scope_stats: scopeStats,
+          missing: missing.length,
+          missing_list: missing.slice(0, 50),
+        },
+      });
+    } catch (err) {
+      console.error('❌ Ошибка менеджера фото:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // Чистка ссылок на удалённые файлы во всех разделах базы.
+  // Слайды, оставшиеся без картинки, удаляются целиком (пустая картинка = битый слайд).
+  function removePhotoRefs(db, removedSet) {
+    const hit = (v) => typeof v === 'string' && removedSet.has(v.trim().replace(/^\/+/, ''));
+    const cleared = { sliders: 0, programAlbum: 0, trainerAlbum: 0, newsPhotos: 0, album: 0, images: 0 };
+
+    if (Array.isArray(db.sliders)) {
+      const keep = [];
+      for (const s of db.sliders) {
+        if (hit(s.image)) { cleared.sliders++; continue; }
+        keep.push(s);
+      }
+      db.sliders = keep;
+    }
+    for (const p of (db.programs || [])) {
+      if (Array.isArray(p.photoAlbum)) {
+        const before = p.photoAlbum.length;
+        p.photoAlbum = p.photoAlbum.filter((x) => !hit(x && x.image));
+        cleared.programAlbum += before - p.photoAlbum.length;
+      }
+      if (hit(p.image)) { p.image = ''; cleared.images++; }
+    }
+    for (const t of (db.trainers || [])) {
+      if (Array.isArray(t.photoAlbum)) {
+        const before = t.photoAlbum.length;
+        t.photoAlbum = t.photoAlbum.filter((x) => !hit(x && x.image));
+        cleared.trainerAlbum += before - t.photoAlbum.length;
+      }
+      if (hit(t.image)) { t.image = ''; cleared.images++; }
+    }
+    for (const n of (db.news || [])) {
+      if (Array.isArray(n.photos)) {
+        const before = n.photos.length;
+        n.photos = n.photos.filter((x) => !hit(x));
+        cleared.newsPhotos += before - n.photos.length;
+      }
+      if (hit(n.image)) { n.image = ''; cleared.images++; }
+    }
+    if (Array.isArray(db.album)) {
+      const before = db.album.length;
+      db.album = db.album.filter((a) => !(hit(a.image) || hit(a.thumb)));
+      cleared.album = before - db.album.length;
+    }
+    for (const d of (db.directions || [])) {
+      if (hit(d.image)) { d.image = ''; cleared.images++; }
+      for (const p of (d.programs || [])) if (hit(p.image)) { p.image = ''; cleared.images++; }
+    }
+    for (const s of (db.staff || [])) if (hit(s.image)) { s.image = ''; cleared.images++; }
+    for (const e of (db.employees || [])) if (hit(e.image)) { e.image = ''; cleared.images++; }
+    for (const h of (db.halls || [])) if (hit(h.image)) { h.image = ''; cleared.images++; }
+    for (const g of (db.schedule || [])) {
+      if (hit(g.image)) { g.image = ''; cleared.images++; }
+      for (const el of (g.elements || [])) if (hit(el.image)) { el.image = ''; cleared.images++; }
+    }
+    for (const pr of (db.prices || [])) {
+      if (hit(pr.image)) { pr.image = ''; cleared.images++; }
+      for (const it of (pr.items || [])) if (hit(it.image)) { it.image = ''; cleared.images++; }
+    }
+    for (const it of (db.priceItems || [])) if (hit(it.image)) { it.image = ''; cleared.images++; }
+    if (db.globalDivider && hit(db.globalDivider.image)) { db.globalDivider.image = ''; cleared.images++; }
+    const ss = db.siteSettings || {};
+    for (const k of ['logo', 'favicon']) if (hit(ss[k])) { ss[k] = ''; cleared.images++; }
+
+    return cleared;
+  }
+
+  // ── POST /api/admin/delete-photos { paths: [...] } ──────────────────
+  // Файлы НЕ удаляются напрямую — переносятся в trash/uploads/<timestamp>/,
+  // ссылки в базе чистятся, статика перегенерируется.
+  async function handleDeletePhotos(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    try {
+      const data = (await readBody(req)) || {};
+      const requested = Array.isArray(data.paths) ? data.paths : [];
+      if (!requested.length) return sendJSON(res, 400, { error: 'Не передан список путей' });
+      if (requested.length > 2000) return sendJSON(res, 400, { error: 'Слишком много файлов за раз (макс. 2000)' });
+
+      // Нормализация + защита от выхода за пределы static/
+      const rels = new Set();
+      for (const raw of requested) {
+        if (typeof raw !== 'string') continue;
+        const rel = raw.trim().replace(/^\/+/, '');
+        if (!rel || rel.includes('..')) continue;
+        if (!rel.startsWith('uploads/') && !rel.startsWith('data/')) continue;
+        if (!PHOTO_EXTS_RE.test(rel)) continue;
+        rels.add(rel);
+      }
+      // Миниатюры album/full/X → album/thumb/X удаляем парами
+      for (const rel of Array.from(rels)) {
+        const m = rel.match(/^uploads\/album\/full\/(.+)$/);
+        if (m) { const t = `uploads/album/thumb/${m[1]}`; if (fs.existsSync(path.join(root, 'static', t))) rels.add(t); }
+        const t = rel.match(/^uploads\/album\/thumb\/(.+)$/);
+        if (t) { const f = `uploads/album/full/${t[1]}`; if (fs.existsSync(path.join(root, 'static', f))) rels.add(f); }
+      }
+
+      // Защита: файлы, на которые ссылывается видимая сущность, не трогаем
+      // (пока не запрошено явное force). Скрытые/безымянные — можно.
+      const db = readDb();
+      const usage = collectPhotoUsage(db);
+      const force = data.force === true;
+      const skipped = [];
+      if (!force) {
+        for (const rel of Array.from(rels)) {
+          const us = usage.get(rel) || [];
+          if (us.some((x) => !x.hidden)) {
+            rels.delete(rel);
+            skipped.push({ path: rel, reason: 'used', usages: us.slice(0, 3) });
+          }
+        }
+      }
+      if (!rels.size) {
+        return sendJSON(res, 200, { removed: [], freed_bytes: 0, skipped, note: 'Все файлы используются сайтом' });
+      }
+
+      const trashDir = path.join(root, 'trash', 'uploads', String(Date.now()));
+      const removed = [];
+      let freedBytes = 0;
+      for (const rel of rels) {
+        const abs = path.join(root, 'static', rel);
+        if (!fs.existsSync(abs)) continue;
+        const dest = path.join(trashDir, rel);
+        try {
+          fs.mkdirSync(path.dirname(dest), { recursive: true });
+          fs.renameSync(abs, dest);
+          let size = 0; try { size = fs.statSync(dest).size; } catch {}
+          freedBytes += size;
+          removed.push(rel);
+        } catch (e) { console.warn('⚠️ Не перенесён в корзину:', rel, e.message); }
+      }
+      if (!removed.length) return sendJSON(res, 200, { removed: [], freed_bytes: 0, skipped, note: 'Файлы не найдены' });
+
+      const removedSet = new Set(removed);
+      const cleared = removePhotoRefs(db, removedSet);
+      backupDB();
+      writeDb(db);
+      await regenerateStatic();
+
+      console.log(`🗑 В корзину: ${removed.length} фото (${(freedBytes / 1048576).toFixed(1)} МБ) → trash/uploads/${path.basename(trashDir)}`);
+      sendJSON(res, 200, {
+        removed, freed_bytes: freedBytes, cleared, skipped,
+        trash: `trash/uploads/${path.basename(trashDir)}`,
+        staticRegenerated: true,
+      });
+    } catch (err) {
+      console.error('❌ Ошибка удаления фото:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
@@ -3689,9 +4354,27 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/admin/save-slides' && method === 'POST') {
     return handleSaveSlides(req, res);
   }
+  // S162: удаление всех скрытых слайдов
+  if (pathname === '/api/admin/delete-hidden-slides' && method === 'POST') {
+    return handleDeleteHiddenSlides(req, res);
+  }
+  // S166: мероприятия (CRUD + авто-новости/скрытие/уведомления)
+  if (pathname === '/api/admin/get-events' && method === 'POST') {
+    return handleGetEvents(req, res);
+  }
+  if (pathname === '/api/admin/save-events' && method === 'POST') {
+    return handleSaveEvents(req, res);
+  }
   // S158: менеджер фото (popup в админке)
   if (pathname === '/api/admin/get-photo-album' && method === 'POST') {
     return handleGetPhotoAlbum(req, res);
+  }
+  // S159: менеджер фотографий — полный обзор (в настройках сайта)
+  if (pathname === '/api/admin/get-photo-manager' && method === 'POST') {
+    return handleGetPhotoManager(req, res);
+  }
+  if (pathname === '/api/admin/delete-photos' && method === 'POST') {
+    return handleDeletePhotos(req, res);
   }
   if (pathname === '/api/admin/get-contacts' && method === 'POST') {
     return handleGetContacts(req, res);
@@ -3781,6 +4464,18 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/save-help' && method === 'POST') {
     return handleSaveHelp(req, res);
+  }
+
+  // S161/S163: посещаемость и состояние сайта
+  // Пиксель учёта — публичный (без авторизации), отдаёт 1×1 GIF.
+  if (pathname === '/api/admin/track-visit' && method === 'GET') {
+    return handleTrackVisit(req, res, url);
+  }
+  if (pathname === '/api/admin/get-visits' && method === 'POST') {
+    return handleGetVisits(req, res);
+  }
+  if (pathname === '/api/admin/site-status' && method === 'POST') {
+    return handleSiteStatus(req, res);
   }
 
   // === API ===
@@ -3933,6 +4628,607 @@ async function handleExportDB(req, res) {
 }
 
 // ============================================
+// S161/S163: посещаемость (заходы на сайт) + состояние сайта и сервера
+// ============================================
+//
+// Визиты храним в ОТДЕЛЬНОМ файле visits.json, а не в db.json:
+//  • db.json коммитится и мержится при деплое (deploy-merge-db.mjs) —
+//    поток сервисных записей раздул бы базу и ломал мерж;
+//  • backupDB() перед каждой записью залил бы backups/ мусором.
+//
+// MAC-адрес посетителя записать невозможно: он не выходит за пределы
+// L2 и браузер его не передаёт (и не отдаёт скриптам). Поле mac есть в
+// структуре записи и всегда пустое — см. тикет S163. Реально фиксируются:
+// IP, URL страницы, referer (откуда перешли), User-Agent, экран, язык.
+
+const visitsPath = path.join(root, 'visits.json');
+const VISITS_MAX = 20000;          // записей в кольцевом буфере
+const VISITS_FLUSH_MS = 1500;      // как часто сбрасываем буфер на диск
+const VISITS_DEDUPE_MS = 15000;    // повторный заход на ту же страницу за это время не считаем
+
+let visitsCache = null;
+let visitsSaveTimer = null;
+
+function loadVisits() {
+  if (visitsCache) return visitsCache;
+  try {
+    const raw = JSON.parse(fs.readFileSync(visitsPath, 'utf-8'));
+    visitsCache = Array.isArray(raw) ? raw : [];
+  } catch {
+    visitsCache = [];
+  }
+  return visitsCache;
+}
+
+function writeVisitsNow() {
+  if (visitsSaveTimer) { clearTimeout(visitsSaveTimer); visitsSaveTimer = null; }
+  try {
+    fs.writeFileSync(visitsPath, JSON.stringify(visitsCache || []), 'utf-8');
+  } catch (err) {
+    console.error('❌ Не удалось записать visits.json:', err.message);
+  }
+}
+
+function scheduleVisitsSave() {
+  if (visitsSaveTimer) return;
+  visitsSaveTimer = setTimeout(writeVisitsNow, VISITS_FLUSH_MS);
+  if (visitsSaveTimer.unref) visitsSaveTimer.unref();
+}
+
+// IP: на проде за запросом стоит NGINX, поэтому настоящий адрес только
+// в x-forwarded-for (первый в цепочке). При прямом обращении — сокет.
+function clientIp(req) {
+  const xff = String(req.headers['x-forwarded-for'] || '');
+  if (xff) {
+    const first = xff.split(',')[0].trim();
+    if (first) return first.slice(0, 60);
+  }
+  const real = String(req.headers['x-real-ip'] || '').trim();
+  if (real) return real.slice(0, 60);
+  const addr = (req.socket && req.socket.remoteAddress) || '';
+  return String(addr).replace(/^::ffff:/, '').slice(0, 60);
+}
+
+function visitStr(v, max) {
+  return String(v == null ? '' : v)
+    .replace(/[\u0000-\u001f\u007f]/g, '')
+    .trim()
+    .slice(0, max || 200);
+}
+
+// Путь страницы → раздел сайта (для группировки «по разделам»)
+const VISIT_SECTIONS = [
+  [/^index\.html?$|^\/$/, 'Главная'],
+  [/^programs?\.html/, 'Программы'],
+  [/^trainers?\.html/, 'Тренеры'],
+  [/^news\.html/, 'Новости'],
+  [/^album\.html/, 'Альбом'],
+  [/^directions\.html/, 'Направления'],
+  [/^page\.html/, 'Статические страницы'],
+  [/^lk\.html/, 'Личный кабинет'],
+  [/^crm\.html/, 'CRM'],
+  [/^admin\.html/, 'Админка'],
+  [/^hall\.html/, 'Залы'],
+  [/^prices?\.html/, 'Цены'],
+  [/^schedule\.html/, 'Расписание'],
+  [/^contacts\.html/, 'Контакты'],
+];
+
+function visitSection(page) {
+  const clean = String(page || '').split('?')[0].split('#')[0].replace(/^\//, '') || 'index.html';
+  for (const [re, name] of VISIT_SECTIONS) if (re.test(clean)) return name;
+  return 'Прочее';
+}
+
+function visitFileName(page) {
+  const clean = String(page || '').split('?')[0].split('#')[0].replace(/^\//, '') || 'index.html';
+  return clean;
+}
+
+// Локальные дата/время (не UTC!) — иначе статистика «по дням» разъезжается
+function localDay(ts) {
+  const d = new Date(ts);
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+function localTime(ts) {
+  const d = new Date(ts);
+  const p = (n) => String(n).padStart(2, '0');
+  return `${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+const PIXEL_GIF = Buffer.from(
+  'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
+
+function sendPixel(res) {
+  res.writeHead(200, {
+    'Content-Type': 'image/gif',
+    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+    'Pragma': 'no-cache',
+  });
+  res.end(PIXEL_GIF);
+}
+
+// GET /api/admin/track-visit?page=…&ref=…&scr=…&lang=…&sid=…
+// Публичный (без авторизации) — вызывается пикселем с pages сайта.
+function handleTrackVisit(req, res, url) {
+  try {
+    const q = url.searchParams;
+    const now = Date.now();
+    const list = loadVisits();
+    const sid = visitStr(q.get('sid'), 40);
+    const file = visitFileName(q.get('page') || '');
+
+    // Троттлинг повторных заходов (перезагрузка страницы, два пикселя)
+    const last = list[list.length - 1];
+    if (last && sid && last.sid === sid && last.page === file &&
+        now - Number(last.t) < VISITS_DEDUPE_MS) {
+      return sendPixel(res);
+    }
+
+    // ref (document.referrer) — ОТКУДА пришёл посетитель. Если скрипт его
+    // не прислал, берём заголовок Referer запроса = сама страница-источник.
+    const ref = visitStr(q.get('ref') || req.headers.referer || req.headers.referrer || '', 300);
+
+    list.push({
+      t: now,
+      d: localDay(now),
+      tm: localTime(now),
+      ip: clientIp(req),
+      mac: '',                                    // недоступен из HTTP (см. тикет S163)
+      page: file,
+      section: visitSection(file),
+      url: visitStr(q.get('page') || '', 300),
+      ref,
+      ref_host: ref ? (ref.replace(/^https?:\/\//, '').split('/')[0] || '') : '',
+      ua: visitStr(req.headers['user-agent'], 250),
+      scr: visitStr(q.get('scr'), 20),
+      lang: visitStr(q.get('lang'), 20),
+      sid,
+    });
+    if (list.length > VISITS_MAX) list.splice(0, list.length - VISITS_MAX);
+    scheduleVisitsSave();
+  } catch (err) {
+    console.error('❌ Ошибка учёта визита:', err.message);
+  }
+  // Пиксель всегда отвечает картинкой — сломанный учёт не должен
+  // показывать битую картинку/ошибку на странице сайта.
+  return sendPixel(res);
+}
+
+function topCount(items, keyFn, limit) {
+  const map = new Map();
+  for (const it of items) {
+    const k = keyFn(it);
+    if (!k) continue;
+    const cur = map.get(k);
+    if (cur) { cur.count++; cur.ipSet.add(it.ip); }
+    else map.set(k, { name: k, count: 1, ipSet: new Set([it.ip]) });
+  }
+  return [...map.values()]
+    .map(v => ({ name: v.name, count: v.count, unique: v.ipSet.size }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit || 15);
+}
+
+function aggregateVisits(list, periodDays) {
+  const now = Date.now();
+  const from = periodDays == null ? 0 : now - periodDays * 86400000;
+  const rows = list.filter(v => Number(v.t) >= from);
+  const byDay = new Map();
+  for (const v of rows) {
+    const d = v.d || localDay(Number(v.t));
+    const cur = byDay.get(d);
+    if (cur) { cur.count++; cur.ipSet.add(v.ip); }
+    else byDay.set(d, { date: d, count: 1, ipSet: new Set([v.ip]) });
+  }
+  const uniq = new Set(rows.map(v => v.ip));
+  return {
+    total: rows.length,
+    unique: uniq.size,
+    days: [...byDay.values()]
+      .map(v => ({ date: v.date, count: v.count, unique: v.ipSet.size }))
+      .sort((a, b) => (a.date < b.date ? -1 : 1)),
+    sections: topCount(rows, v => v.section || visitSection(v.page)),
+    pages: topCount(rows, v => v.page),
+    sources: topCount(rows, v => (v.ref_host || (/^https?:/.test(v.ref || '') ? '' : 'напрямую'))),
+    langs: topCount(rows, v => v.lang, 8),
+  };
+}
+
+async function handleGetVisits(req, res) {
+  const token = extractTokenFromCookie(req.headers);
+  if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+  try {
+    const list = loadVisits();
+    sendJSON(res, 200, {
+      ok: true,
+      stored: list.length,
+      max: VISITS_MAX,
+      mac_note: 'MAC-адреса недоступны на уровне HTTP — поле всегда пустое',
+      day: aggregateVisits(list, 1),
+      week: aggregateVisits(list, 7),
+      month: aggregateVisits(list, 30),
+      year: aggregateVisits(list, 365),
+      all: aggregateVisits(list, null),
+      last: list.slice(-30).reverse(),
+    });
+  } catch (err) {
+    console.error('❌ Ошибка чтения посещаемости:', err.message);
+    sendJSON(res, 500, { error: err.message });
+  }
+}
+
+// ── S161: состояние сайта и сервера ───────────────────────────────
+
+const SITE_PAGES = [
+  'index.html', 'programs.html', 'program.html', 'trainers.html', 'trainer.html',
+  'news.html', 'album.html', 'directions.html', 'page.html', 'lk.html',
+  'crm.html', '404.html',
+];
+
+function dirStats(dir) {
+  const st = { files: 0, bytes: 0 };
+  if (!fs.existsSync(dir)) return st;
+  const stack = [dir];
+  while (stack.length) {
+    const cur = stack.pop();
+    let entries;
+    try { entries = fs.readdirSync(cur, { withFileTypes: true }); } catch { continue; }
+    for (const e of entries) {
+      const full = path.join(cur, e.name);
+      if (e.isDirectory()) { stack.push(full); continue; }
+      try {
+        const s = fs.statSync(full);
+        st.files++; st.bytes += s.size;
+      } catch { /* гонка/права — пропускаем */ }
+    }
+  }
+  return st;
+}
+
+function runShell(cmd, timeoutMs) {
+  try {
+    return String(execSync(cmd, { encoding: 'utf-8', timeout: timeoutMs || 3000, stdio: ['ignore', 'pipe', 'ignore'] })).trim();
+  } catch { return ''; }
+}
+
+function staticCacheVersion() {
+  try {
+    const html = fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8');
+    const m = html.match(/[?&]v=(\d+)/);
+    return m ? Number(m[1]) : null;
+  } catch { return null; }
+}
+
+function gitInfo() {
+  const quoted = JSON.stringify(root).replace(/^"|"$/g, '');
+  const sha = runShell('git -C ' + quoted + ' rev-parse --short HEAD');
+  const branch = runShell('git -C ' + quoted + ' rev-parse --abbrev-ref HEAD');
+  const dirty = runShell('git -C ' + quoted + ' status --porcelain');
+  return {
+    commit: sha || '',
+    branch: branch || '',
+    dirty: dirty ? dirty.split('\n').filter(Boolean).length : 0,
+    available: !!sha,
+  };
+}
+
+// Проверки «битости»: ссылки слайдов и картинки, на которые ссылаются данные
+// S166: разбор даты мероприятия «2026-12-06T11:00» → Date | null
+// (хелпер на верхнем уровне — нужен и collectSiteProblems, и обработкам)
+function eventDate(v) {
+  const s = String(v || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(s)) return null;
+  const d = new Date(s.length === 10 ? s + 'T00:00' : s);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function eventIsPast(ev, now) {
+  const end = eventDate(ev.dateEnd) || eventDate(ev.dateStart);
+  if (!end) return false;
+  return end.getTime() < (now || Date.now());
+}
+
+// S166: нормализация URL видео — внешняя ссылка http(s) либо загруженный файл uploads/...
+function normalizeEventVideoUrl(raw) {
+  const s = String(raw == null ? '' : raw).trim().slice(0, 300);
+  if (!s) return '';
+  if (/^https?:\/\//i.test(s)) return s;
+  const rel = s.replace(/^\/+/, '');
+  if (rel.startsWith('uploads/')) return rel;
+  return '';
+}
+
+function collectSiteProblems(db, problems) {
+  const add = (level, title, detail) => problems.push({ level, title, detail: detail || '' });
+
+  // 1. Ссылки слайдера должны вести на существующие сущности
+  const programs = db.programs || [];
+  const trainers = db.trainers || [];
+  const news = db.news || [];
+  const findIn = (arr, id) => arr.some(x => String(x.id) === String(id));
+  for (const s of (db.sliders || [])) {
+    if (s.hidden) continue;
+    const link = String(s.link || '');
+    if (!link || !/^(index|programs?|trainers?|news|album|directions|page|lk|crm)\.html/.test(link) && !/^[#.?a-zA-Z]/.test(link)) continue;
+    let m;
+    if ((m = link.match(/^program\.html\?id=(.+)$/))) {
+      if (!findIn(programs, m[1])) add('error', `Слайд «${s.title || s.id}»: ссылка ведёт на несуществующую программу`, link);
+    } else if ((m = link.match(/^trainer\.html\?id=(.+)$/))) {
+      if (!findIn(trainers, m[1])) add('error', `Слайд «${s.title || s.id}»: ссылка ведёт на несуществующего тренера`, link);
+    } else if ((m = link.match(/^news\.html\?id=(.+)$/))) {
+      if (!findIn(news, m[1])) add('error', `Слайд «${s.title || s.id}»: ссылка ведёт на несуществующую новость`, link);
+    } else if ((m = link.match(/^directions\.html\?id=(.+)$/))) {
+      const dirs = db.directions || [];
+      if (!findIn(dirs, m[1])) add('error', `Слайд «${s.title || s.id}»: ссылка ведёт на несуществующее направление`, link);
+    } else if ((m = link.match(/^page\.html\?url=(.+)$/))) {
+      const pages = db.pages || [];
+      const want = decodeURIComponent(m[1]);
+      if (!pages.some(p => String(p.url) === want)) add('warn', `Слайд «${s.title || s.id}»: ссылка на страницу, которой нет в разделе «Страницы»`, link);
+    } else if (!/^(index|programs?|trainers?|news|album|directions|page|lk|crm)\.html/.test(link) && !link.startsWith('#')) {
+      add('warn', `Слайд «${s.title || s.id}»: нестандартная ссылка`, link);
+    }
+  }
+
+  // 2. Картинки слайдов должны лежать на диске
+  for (const s of (db.sliders || [])) {
+    if (s.hidden) continue;
+    const img = String(s.image || '');
+    if (!img) { add('warn', `Слайд «${s.title || s.id}»: нет картинки`, ''); continue; }
+    if (!fs.existsSync(path.join(staticDir, img.replace(/^\//, '')))) {
+      add('error', `Слайд «${s.title || s.id}»: файл картинки отсутствует`, img);
+    }
+  }
+
+  // 3. Скрытые слайды (информационно)
+  const hidden = (db.sliders || []).filter(s => s.hidden).length;
+  if (hidden) add('info', 'В слайдере есть скрытые слайды', `Скрытых: ${hidden}`);
+
+  // 4. Файлы картинок новостей/программ/тренеров — выборочно, чтобы не сканировать всё
+  const checkPic = (kind, name, pic) => {
+    const p = String(pic || '');
+    if (!p || /^https?:/.test(p)) return;
+    if (!fs.existsSync(path.join(staticDir, p.replace(/^\//, '')))) {
+      add('error', `Отсутствует файл ${kind}`, `${name}: ${p}`);
+    }
+  };
+  for (const n of news.slice(0, 50)) if (n.hidden) continue; else checkPic('картинки новости', n.title, n.image);
+  for (const p of programs.slice(0, 80)) if (p.hidden) continue; else checkPic('обложки программы', p.name, p.image);
+  for (const t of trainers.slice(0, 80)) if (t.hidden) continue; else checkPic('фото тренера', t.name, t.image);
+
+  // S166: прошедшие мероприятия без фотогалереи/видео — просим загрузить
+  for (const ev of (db.events || [])) {
+    if (ev.hidden) continue;
+    checkPic('обложки мероприятия', ev.name, ev.image);
+    const end = eventDate(ev.dateEnd) || eventDate(ev.dateStart);
+    if (end && end.getTime() < Date.now()) {
+      const hasMedia = (ev.photoAlbum && ev.photoAlbum.length) || (ev.videos && ev.videos.length);
+      if (!hasMedia) {
+        add('warn', `Мероприятие «${ev.name || ev.id}» прошло — нет фото и видео`,
+          'Загрузите в админке: Данные → Мероприятия (фотогалерея, видео, отзывы)');
+      }
+    }
+  }
+}
+
+function collectServerProblems(status, problems) {
+  const add = (level, title, detail) => problems.push({ level, title, detail: detail || '' });
+  const mem = status.server.memory;
+  if (mem && mem.usedPercent > 92) add('error', 'Память сервера почти заполнена', `${mem.usedPercent}%`);
+  else if (mem && mem.usedPercent > 82) add('warn', 'Высокое потребление памяти', `${mem.usedPercent}%`);
+  const disk = status.server.disk;
+  if (disk) {
+    if (disk.freeGB != null && disk.freeGB < 1) add('error', 'Мало свободного места на диске', `${disk.freeGB} ГБ`);
+    else if (disk.usedPercent > 90) add('error', 'Диск почти заполнен', `${disk.usedPercent}%`);
+    else if (disk.usedPercent > 80) add('warn', 'Заполнение диска', `${disk.usedPercent}%`);
+  }
+  const load = status.server.load1m;
+  const cpus = status.server.cpus;
+  if (load != null && cpus && load > cpus * 2) add('warn', 'Высокая загрузка CPU', `load1=${load} при ${cpus} ядрах`);
+  if (!status.server.pm2.available) add('info', 'pm2 не виден админ-серверу', 'Команда pm2 jlist недоступна (окружение без pm2)');
+  if (!status.site.git.available) add('info', 'git недоступен', 'Метрики кода не собираются');
+}
+
+function collectSiteHealth(db, status, problems) {
+  const add = (level, title, detail) => problems.push({ level, title, detail: detail || '' });
+
+  // 5. Статика устарела: js/data/* старше db.json
+  const dbMtime = fs.existsSync(dbPath) ? fs.statSync(dbPath).mtimeMs : 0;
+  const genFile = path.join(staticDir, 'js', 'data', 'slider.js');
+  if (dbMtime && fs.existsSync(genFile)) {
+    const genMtime = fs.statSync(genFile).mtimeMs;
+    if (genMtime < dbMtime - 5000) {
+      add('error', 'Статика не перегенерирована после изменений базы',
+        `js/data/slider.js старше db.json на ${Math.round((dbMtime - genMtime) / 60000)} мин`);
+    }
+  } else if (!fs.existsSync(genFile)) {
+    add('error', 'Отсутствует сгенерированный файл данных', 'static/js/data/slider.js');
+  }
+
+  // 6. Обязательные страницы
+  for (const p of SITE_PAGES) {
+    if (p === '404.html') continue;
+    if (!fs.existsSync(path.join(staticDir, p))) add('error', 'Отсутствует страница сайта', p);
+  }
+
+  // 7. Версия кэша одинакова во всех страницах
+  const versions = new Set();
+  for (const p of SITE_PAGES) {
+    const f = path.join(staticDir, p);
+    if (!fs.existsSync(f)) continue;
+    try {
+      const html = fs.readFileSync(f, 'utf-8');
+      const m = html.match(/[?&]v=(\d+)/);
+      if (m) versions.add(Number(m[1]));
+    } catch { /* ignore */ }
+  }
+  if (versions.size > 1) add('warn', 'Разные версии кэша CSS/JS на страницах', [...versions].join(', '));
+
+  // 8. Размер базы
+  const dbKB = status.site.db.sizeKB;
+  if (dbKB > 8192) add('error', 'Файл db.json слишком большой', `${(dbKB / 1024).toFixed(1)} МБ`);
+  else if (dbKB > 4096) add('warn', 'db.json растёт', `${(dbKB / 1024).toFixed(1)} МБ`);
+
+  // 9. Логи 404 за сегодня
+  try {
+    const logFile = path.join(root, 'logs', '404.log');
+    if (fs.existsSync(logFile)) {
+      const tail = fs.readFileSync(logFile, 'utf-8').split('\n').filter(Boolean).slice(-500);
+      const today = localDay(Date.now());
+      const hits = tail.filter(l => l.includes(today)).length;
+      if (hits > 20) add('warn', 'Много 404-ошибок за сегодня', `${hits} записей в logs/404.log`);
+      else if (hits) add('info', 'Есть 404-ошибки за сегодня', `${hits} записей`);
+    }
+  } catch { /* ignore */ }
+}
+
+async function handleSiteStatus(req, res) {
+  const token = extractTokenFromCookie(req.headers);
+  if (!isValidSession(token)) return sendJSON(res, 401, { error: 'Не авторизован' });
+  try {
+    const db = readDb();
+    const problems = [];
+
+    // ── сайт ──
+    let dbSize = 0;
+    try { dbSize = fs.statSync(dbPath).size; } catch { problems.push({ level: 'error', title: 'Не читается db.json', detail: 'файл отсутствует' }); }
+    const uploads = dirStats(path.join(staticDir, 'uploads'));
+    const dataDir = dirStats(path.join(staticDir, 'js', 'data'));
+    const counters = {
+      sliders: (db.sliders || []).length,
+      slidersVisible: (db.sliders || []).filter(s => !s.hidden).length,
+      news: (db.news || []).length,
+      programs: (db.programs || []).length,
+      trainers: (db.trainers || []).length,
+      directions: (db.directions || []).length,
+      pages: (db.pages || []).length,
+      halls: (db.halls || []).length,
+      album: (db.album || []).length,
+      schedule: (db.schedule || []).length,
+    };
+    const pagesExist = SITE_PAGES.map(p => ({
+      page: p,
+      exists: fs.existsSync(path.join(staticDir, p)),
+      sizeKB: fs.existsSync(path.join(staticDir, p)) ? Math.round(fs.statSync(path.join(staticDir, p)).size / 1024) : 0,
+    }));
+
+    const site = {
+      domain: 'центр-фр.рф',
+      git: gitInfo(),
+      cacheVersion: staticCacheVersion(),
+      db: {
+        sizeKB: Math.round(dbSize / 1024),
+        mtime: fs.existsSync(dbPath) ? new Date(fs.statSync(dbPath).mtimeMs).toISOString() : null,
+      },
+      counters,
+      files: {
+        uploadsFiles: uploads.files,
+        uploadsMB: Math.round(uploads.bytes / 1024 / 1024 * 10) / 10,
+        dataFiles: dataDir.files,
+        dataMB: Math.round(dataDir.bytes / 1024 / 1024 * 10) / 10,
+      },
+      pages: pagesExist,
+    };
+
+    // ── сервер ──
+    const totalMem = os.totalmem();
+    const freeMem = os.freemem();
+    const load = os.loadavg();
+    let disk = null;
+    const df = runShell(`df -Pk "${root}" 2>/dev/null | tail -1`);
+    if (df) {
+      const parts = df.split(/\s+/);
+      if (parts.length >= 5) {
+        const totalKB = Number(parts[1]), usedKB = Number(parts[2]), availKB = Number(parts[3]);
+        disk = {
+          totalGB: Math.round(totalKB / 1024 / 1024 * 10) / 10,
+          usedGB: Math.round(usedKB / 1024 / 1024 * 10) / 10,
+          freeGB: Math.round(availKB / 1024 / 1024 * 10) / 10,
+          usedPercent: totalKB ? Math.round(usedKB / totalKB * 100) : 0,
+        };
+      }
+    }
+    const pm2Raw = runShell('pm2 jlist 2>/dev/null', 5000);
+    let pm2 = { available: false, processes: [] };
+    if (pm2Raw) {
+      try {
+        const list = JSON.parse(pm2Raw);
+        pm2 = {
+          available: true,
+          processes: list.map(p => ({
+            name: p.name,
+            status: p.pm2_env ? p.pm2_env.status : 'unknown',
+            restarts: p.pm2_env ? p.pm2_env.restart_time : null,
+            uptime: p.pm2_env && p.pm2_env.pm_uptime ? new Date(p.pm2_env.pm_uptime).toISOString() : null,
+            memMB: p.monit && p.monit.memory ? Math.round(p.monit.memory / 1024 / 1024 * 10) / 10 : null,
+          })),
+        };
+      } catch { pm2 = { available: false, processes: [] }; }
+    }
+    let nginx = '';
+    const pgrep = runShell('pgrep -x nginx 2>/dev/null | head -1');
+    nginx = pgrep ? 'работает' : 'не найден';
+
+    const server = {
+      hostname: os.hostname(),
+      platform: os.platform() + ' ' + os.release(),
+      node: process.version,
+      uptimeSec: Math.round(os.uptime()),
+      procUptimeSec: Math.round(process.uptime()),
+      cpus: os.cpus().length,
+      cpuModel: (os.cpus()[0] || {}).model || '',
+      load1m: Math.round(load[0] * 100) / 100,
+      load5m: Math.round(load[1] * 100) / 100,
+      load15m: Math.round(load[2] * 100) / 100,
+      memory: {
+        totalGB: Math.round(totalMem / 1024 / 1024 / 1024 * 10) / 10,
+        freeGB: Math.round(freeMem / 1024 / 1024 / 1024 * 10) / 10,
+        usedGB: Math.round((totalMem - freeMem) / 1024 / 1024 / 1024 * 10) / 10,
+        usedPercent: totalMem ? Math.round((totalMem - freeMem) / totalMem * 100) : 0,
+      },
+      disk,
+      nginx,
+      pm2,
+    };
+
+    // ── посещаемость ──
+    const list = loadVisits();
+    const visits = {
+      stored: list.length,
+      day: aggregateVisits(list, 1),
+      week: aggregateVisits(list, 7),
+      month: aggregateVisits(list, 30),
+      year: aggregateVisits(list, 365),
+    };
+
+    const status = { ok: true, generatedAt: new Date().toISOString(), site, server, visits };
+
+    // ── автодиагностика проблем ──
+    collectSiteProblems(db, problems);
+    collectSiteHealth(db, status, problems);
+    collectServerProblems(status, problems);
+    if (!visits.day.total) problems.push({ level: 'info', title: 'За сегодня заходов не зафиксировано', detail: 'Пиксель учёта мог не отработать (локальный просмотр, блокировщик, не задеплоен)' });
+
+    const rank = { error: 0, warn: 1, info: 2 };
+    problems.sort((a, b) => rank[a.level] - rank[b.level]);
+    status.problems = {
+      count: problems.length,
+      errors: problems.filter(p => p.level === 'error').length,
+      warns: problems.filter(p => p.level === 'warn').length,
+      infos: problems.filter(p => p.level === 'info').length,
+      list: problems,
+    };
+    status.state = status.problems.errors ? 'error' : status.problems.warns ? 'warn' : 'ok';
+
+    sendJSON(res, 200, status);
+  } catch (err) {
+    console.error('❌ Ошибка сбора статуса:', err);
+    sendJSON(res, 500, { error: err.message });
+  }
+}
+
+// ============================================
 // Запуск
 // ============================================
 
@@ -3942,10 +5238,16 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log(`   Только localhost — не для продакшна!\n`);
   // Сигнал готовности для PM2 (ecosystem: wait_ready: true)
   if (typeof process.send === 'function') process.send('ready');
+
+  // S166: переходы мероприятий (будущее→прошедшее) не зависят от сохранений:
+  // первая проверка через 20 сек после старта, далее каждые 6 часов
+  setTimeout(() => checkEventsTransitions(), 20000).unref?.();
+  setInterval(() => checkEventsTransitions(), EVENTS_CHECK_MS).unref?.();
 });
 
 // Graceful shutdown
 process.on('SIGINT', () => {
+  writeVisitsNow();   // S163: не теряем накопленные визиты
   console.log('\n👋 Сервер остановлен');
   process.exit(0);
 });

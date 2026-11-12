@@ -151,6 +151,17 @@
       background: #f1f5f9;
     }
 
+    /* S159: менеджер фотографий — строки списка */
+    .pht-row:hover {
+      background: #f8fafc;
+    }
+    .pht-row img {
+      transition: transform .15s ease;
+    }
+    .pht-row:hover img {
+      transform: scale(1.04);
+    }
+
     /* S154: бейджи счётчиков сабразделов в заголовках групп */
     .grp-count {
       display: inline-block;
@@ -208,6 +219,77 @@
     .status-badge-wip { background: #fef3c7; color: #92400e; }
     .status-badge-done { background: #dcfce7; color: #166534; }
     .status-badge-view { background: #e0e7ff; color: #3730a3; }
+
+    /* S164: кнопка состояния сайта в шапке админки */
+    .hdr-status {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .3rem .7rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid var(--border); background: #f8fafc;
+      font-size: .8rem; font-weight: 600; color: var(--text);
+      transition: box-shadow .15s, background .15s;
+    }
+    .hdr-status:hover { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .hdr-status-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #94a3b8; flex: none;
+    }
+    .hdr-status-nums { font-variant-numeric: tabular-nums; opacity: .85; }
+    .hdr-status-ok      { background: #dcfce7; border-color: #86efac; }
+    .hdr-status-ok .hdr-status-dot { background: #16a34a; }
+    .hdr-status-warn    { background: #fef3c7; border-color: #fcd34d; }
+    .hdr-status-warn .hdr-status-dot { background: #d97706; }
+    .hdr-status-error   { background: #fee2e2; border-color: #fca5a5; }
+    .hdr-status-error .hdr-status-dot { background: #dc2626; }
+    .hdr-status-unknown .hdr-status-dot { background: #94a3b8; }
+
+    /* S164: раздел «Статус» */
+    .st-summary {
+      display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+      margin-bottom: 1rem;
+    }
+    .st-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: .9rem 1rem; margin-bottom: 1rem; background: #fff;
+    }
+    .st-card > h3 {
+      margin: 0 0 .7rem; font-size: 1rem;
+      display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+    }
+    .st-grid {
+      display: grid; gap: .35rem 1.2rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .st-cell { font-size: .85rem; }
+    .st-cell b { display: block; font-size: .72rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+    .st-problems { border-left: 4px solid #dc2626; }
+    .st-problems.st-problems-clean { border-left-color: #16a34a; }
+    .st-prob {
+      display: flex; gap: .6rem; align-items: flex-start;
+      padding: .5rem .6rem; border-radius: 6px; margin-bottom: .4rem;
+      background: #f8fafc; font-size: .85rem;
+    }
+    .st-prob-error { background: #fee2e2; }
+    .st-prob-warn  { background: #fef3c7; }
+    .st-prob-info  { background: #eff6ff; }
+    .st-prob-tag {
+      flex: none; font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      padding: .1rem .4rem; border-radius: 4px; margin-top: .1rem;
+    }
+    .st-prob-detail { color: var(--text-secondary); font-family: monospace; font-size: .78rem; word-break: break-all; }
+    .st-bar-row { display: flex; align-items: center; gap: .5rem; font-size: .8rem; margin-bottom: .25rem; }
+    .st-bar-name { flex: 0 0 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .st-bar { flex: 1; height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; }
+    .st-bar > i { display: block; height: 100%; background: var(--primary); }
+    .st-bar-num { flex: none; width: 52px; text-align: right; font-variant-numeric: tabular-nums; }
+    .st-tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .8rem; }
+    .st-tab {
+      padding: .25rem .7rem; border: 1px solid var(--border); border-radius: 999px;
+      background: #fff; cursor: pointer; font-size: .8rem;
+    }
+    .st-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .st-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+    .st-table th, .st-table td { text-align: left; padding: .3rem .5rem; border-bottom: 1px solid var(--border); }
+    .st-table th { font-size: .72rem; text-transform: uppercase; color: var(--text-secondary); }
 
     /* Новости CRUD */
     .news-list { margin-top: 1rem; }
@@ -516,6 +598,13 @@
     <header class="admin-header">
       <h1>⚙️ Админка</h1>
       <div class="user-info">
+        <!-- S164: состояние сайта — цвет + цифры, клик открывает раздел «Статус» -->
+        <button type="button" id="hdr-status-btn" class="hdr-status hdr-status-unknown"
+                onclick="openSection('status')" title="Состояние сайта — нажмите, чтобы открыть раздел «Статус»">
+          <span class="hdr-status-dot" id="hdr-status-dot"></span>
+          <span class="hdr-status-label">Состояние сайта</span>
+          <span class="hdr-status-nums" id="hdr-status-nums">…</span>
+        </button>
         <!-- Ссылка на сайт (клиентская часть открывается в новой вкладке) -->
         <a href="/" target="_blank" rel="noopener" class="btn btn-sm btn-secondary" title="Открыть сайт в новой вкладке">🌐 Открыть сайт</a>
         <span class="status-badge status-badge-done">Авторизован</span>
@@ -525,6 +614,14 @@
 
     <div class="admin-layout">
       <nav class="admin-sidebar">
+        <!-- 📋 ИНФОРМАЦИЯ (S164: суперраздел; группа всегда открыта при входе) -->
+        <div class="sidebar-group">
+          <div class="sidebar-group-header" data-group="info" onclick="toggleGroup(this)">📋 ИНФОРМАЦИЯ ▾</div>
+          <div class="sidebar-group-body open">
+            <a href="#status" data-section="status">📟 Статус</a>
+          </div>
+        </div>
+
         <!-- 📦 ДАННЫЕ -->
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="data" onclick="toggleGroup(this)">📦 ДАННЫЕ ▾</div>
@@ -536,8 +633,9 @@
              <a href="#schedule" data-section="schedule">📅 Расписание</a>
             <a href="#halls" data-section="halls">🏋️ Залы</a>
             <a href="#directions" data-section="directions">📁 Направления</a>
-             <a href="#album" data-section="album">📸 Альбом</a>
-           </div>
+              <a href="#album" data-section="album">📸 Альбом</a>
+              <a href="#events" data-section="events">🎪 Мероприятия</a>
+            </div>
          </div>
 
          <!-- 🧩 ШАБЛОНЫ -->
@@ -564,6 +662,7 @@
              <a href="#appearance" data-section="appearance">🖌 Оформление</a>
              <a href="#contacts" data-section="contacts">📞 Контакты</a>
              <a href="#slider" data-section="slider">🎞 Слайдер</a>
+             <a href="#photo-manager" data-section="photo-manager">🖼 Менеджер фото</a>
              <a href="#dividers" data-section="dividers">🎨 Разделители</a>
              <a href="#main-data" data-section="main-data">🏠 Главные данные</a>
              <a href="#header-settings" data-section="header-settings">🎩 Шапка</a>
@@ -791,6 +890,84 @@
     </div>
   </div>
 
+  <!-- S166: Модалка редактора мероприятия.
+       Смесь: поля новости (текст-md, обложка), программы (описание, отзывы),
+       альбома (фотогалерея) и страницы (event.html?id=). -->
+  <div class="modal-overlay" id="event-modal">
+    <div class="modal">
+      <h3 id="event-modal-title">Новое мероприятие</h3>
+      <form id="event-form">
+        <input type="hidden" id="event-id">
+        <div class="form-group">
+          <label for="event-name-input">Название <span class="req">*</span> <span id="event-name-counter">0 / 60</span></label>
+          <input type="text" id="event-name-input" maxlength="60" required
+                 oninput="document.getElementById('event-name-counter').textContent = this.value.length + ' / 60'">
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="event-type-input">Тип мероприятия</label>
+            <select id="event-type-input"></select>
+          </div>
+          <div class="form-group">
+            <label for="event-image-input">Фотообложка</label>
+            <input type="file" id="event-image-input" accept="image/*">
+            <div id="event-image-info"></div>
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="event-start-input">Дата и время начала <span class="req">*</span></label>
+            <input type="datetime-local" id="event-start-input" required>
+          </div>
+          <div class="form-group">
+            <label for="event-end-input">Дата и время окончания</label>
+            <input type="datetime-local" id="event-end-input">
+            <p class="meta" style="margin:.25rem 0 0;">пусто — нач+3ч</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="event-short-input">Короткое описание <span id="event-short-counter">0 / 120</span></label>
+          <input type="text" id="event-short-input" maxlength="120"
+                 oninput="document.getElementById('event-short-counter').textContent = this.value.length + ' / 120'">
+        </div>
+        <div class="form-group">
+          <label>Описание (markdown) — визуальный редактор, как у тренеров</label>
+          <div id="event-md-editor"></div>
+        </div>
+        <div class="form-group">
+          <label>Фотогалерея (показывается слайдером на странице прошедшего мероприятия)</label>
+          <div id="event-album-picker" class="album-picker"></div>
+          <p class="meta">Кадры берутся из общего альбома («Данные → Альбом»). Клик по фото — добавить/убрать.</p>
+        </div>
+        <div class="form-group">
+          <label>Видео (до 15) — на сайте показывается плеером в цветах сайта</label>
+          <p class="meta" style="margin:0 0 .4rem;">Предпочтительно <b>ссылка</b> (YouTube, VK Видео, Rutube) — не нагружает сервер. Можно загрузить файл (mp4/webm), но он занимает место на диске.</p>
+          <div id="event-videos-list"></div>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="addEventVideoRow()">+ Добавить видео</button>
+        </div>
+        <div class="form-group">
+          <label>Отзывы участников (ФИО + текст) — заносят администраторы</label>
+          <div id="event-reviews-list"></div>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="addEventReviewRow()">+ Добавить отзыв</button>
+        </div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
+            <input type="checkbox" id="event-hidden-input">
+            <span>🙈 Скрыто (не показывается на сайте)</span>
+          </label>
+        </div>
+        <div class="form-group" id="event-news-status" style="display:none;">
+          <span class="meta" id="event-news-status-text"></span>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeEventModal()">Отмена</button>
+          <button type="button" class="btn btn-secondary" id="event-open-page" onclick="openEventPage()">🔗 Открыть страницу</button>
+          <button type="submit" class="btn btn-success" id="event-save-btn">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Модалка просмотра (только чтение): детали сущностей, JSON данных -->
   <div class="modal-overlay" id="view-modal">
     <div class="modal">
@@ -971,6 +1148,7 @@
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('admin-panel').style.display = 'block';
       loadCurrentSection();
+      initHeaderStatus();
     }
 
     // Токен из localStorage может быть от умершего/перезапущенного сервера.
@@ -985,6 +1163,8 @@
        Навигация по разделам
        ============================================ */
     const sections = [
+      // 📋 ИНФОРМАЦИЯ (S164)
+      { id: 'status', title: '📟 Статус', status: 'done', group: 'info' },
       // ДАННЫЕ
       { id: 'news', title: '📰 Новости', status: 'done', group: 'data' },
       { id: 'programs', title: '🥋 Программы', status: 'done', group: 'data' },
@@ -995,6 +1175,8 @@
       { id: 'halls', title: '🏋️ Залы', status: 'done', group: 'data' },
       { id: 'directions', title: '📁 Направления', status: 'done', group: 'data' },
       { id: 'album', title: '📸 Альбом', status: 'done', group: 'data' },
+      // S166: мероприятия (смесь новостей/программ/альбома/страниц)
+      { id: 'events', title: '🎪 Мероприятия', status: 'done', group: 'data' },
       // S148: подразделы шаблонов — отдельные разделы сайдбара (8 шт.)
       { id: 'templates-mockups-home', title: '🏠 Макеты разделов главной', status: 'skeleton', group: 'templates-stub' },
       { id: 'templates-mockups-site', title: '🧩 Макеты разделов сайта', status: 'skeleton', group: 'templates-stub' },
@@ -1008,6 +1190,7 @@
       { id: 'appearance', title: '🖌 Оформление', status: 'done', group: 'settings' },
       { id: 'contacts', title: '📞 Контакты', status: 'done', group: 'settings' },
       { id: 'slider', title: '🎞 Слайдер', status: 'done', group: 'settings' },
+      { id: 'photo-manager', title: '🖼 Менеджер фото', status: 'done', group: 'settings' },
       { id: 'dividers', title: '🎨 Разделители', status: 'done', group: 'settings' },
       { id: 'main-data', title: '🏠 Главные данные', status: 'done', group: 'settings' },
       // S122: настройки шапки (headerSettings)
@@ -1177,6 +1360,28 @@
         return;
       }
 
+      // S158: слайдер имеет полноценный редактор — служебная карточка с описанием
+      // и структурой данных дублировала раздел, показывая устаревшую информацию.
+      if (sectionId === 'slider') {
+        content.innerHTML = '';
+        loadSliderSection();
+        return;
+      }
+
+      // S159: менеджер фотографий — полный обзор фото на сайте
+      if (sectionId === 'photo-manager') {
+        content.innerHTML = '';
+        loadPhotoManagerSection();
+        return;
+      }
+
+      // S164: раздел «Статус» (суперраздел «Информация»)
+      if (sectionId === 'status') {
+        content.innerHTML = '';
+        loadStatusSection();
+        return;
+      }
+
       content.innerHTML = `
         <div class="section-card">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -1209,9 +1414,10 @@
       if (sectionId === 'pages') loadPagesSection();
       if (sectionId === 'footer-links') loadFooterLinksSection();
       // S114: CRUD разделов, бывших «только просмотр»
-      if (sectionId === 'slider') loadSliderSection();
       if (sectionId === 'contacts') loadContactsSection();
       if (sectionId === 'album') loadAlbumSection();
+      // S166: мероприятия
+      if (sectionId === 'events') loadEventsSection();
       // S148: разделы «Шаблоны» обрабатываются выше (group templates-stub)
       // S115: редакторы цен позициями и скидок
       if (sectionId === 'prices') loadPriceItemsSection();
@@ -1287,7 +1493,8 @@
 
       if (sectionId === 'schedule') renderScheduleView(box, db.schedule || [], db.scheduleSettings || {});
       if (sectionId === 'prices') renderPricesView(box, db.prices || []);
-      if (sectionId === 'slider') renderSliderView(box, db.sliders || [], db);
+      // S158: слайдер имеет полноценный редактор (loadSliderSection) — отдельный
+      // просмотр-заглушка здесь дублировал раздел и показывал устаревшую структуру данных.
       if (sectionId === 'contacts') renderContactsView(box, db.contacts || {}, db);
       if (sectionId === 'album') renderAlbumView(box, db.album || []);
       if (sectionId === 'news-settings') renderNewsSettingsView(box, db);
@@ -2242,7 +2449,8 @@
        ============================================ */
     const HEADER_MENU_LABELS = {
       schedule: '📅 Расписание', prices: '💰 Цены', programs: '🥋 Программы',
-      staff: '👥 Коллектив', news: '📰 Новости', contacts: '📞 Контакты', lk: '👤 Личный кабинет'
+      staff: '👥 Коллектив', news: '📰 Новости', contacts: '📞 Контакты', lk: '👤 Личный кабинет',
+      events: '🎪 Мероприятия'
     };
     const HEADER_HOVER_LABELS = {
       color: 'Смена цвета', underline: 'Подчёркивание', background: 'Фон', scale: 'Увеличение'
@@ -2298,7 +2506,7 @@
                  style="flex:1;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:monospace;">
         </label>`;
 
-      const itemRows = ['schedule', 'prices', 'programs', 'staff', 'news', 'contacts', 'lk'].map(id => {
+      const itemRows = ['schedule', 'prices', 'programs', 'staff', 'news', 'contacts', 'lk', 'events'].map(id => {
         const it = items.filter(x => x && x.id === id)[0];
         const visible = !it || it.visible !== false;
         return `<label style="display:flex;align-items:center;gap:.5rem;padding:.25rem 0;cursor:pointer;">
@@ -2605,158 +2813,238 @@
     // ── Слайдер ──
     let slidesState = [];
     let slidesDefaultInterval = 5;
+    // S158: глобальные настройки слайдера (db.settings.sliderSettings) — применяются
+    // на сайте (main.js renderSlider/resetTimer + CSS-переменная --slider-height).
+    let slidesSettingsState = {
+      autoplay: true, showArrows: true, showDots: true, height: 0,
+      defaultPosition: 'center', defaultTextColor: '#ffffff', defaultTextSize: 42
+    };
+    // S158: кэш целей для ссылок слайда (страницы сайта + контент из базы)
+    let sliderLinkGroupsCache = [];
+
+    // S158: чем можно сослаться со слайда. Значение — относительный URL,
+    // как его уже использует сайт (program.html?id=…, page.html?url=…).
+    function sliderLinkGroups(db) {
+      const groups = [];
+      const push = (label, options) => {
+        const opts = (options || []).filter(o => o && o.value && o.label);
+        if (opts.length) groups.push({ label, options: opts });
+      };
+
+      push('Страницы сайта', [
+        { value: 'index.html', label: 'Главная' },
+        { value: 'programs.html', label: 'Все программы' },
+        { value: 'trainers.html', label: 'Коллектив' },
+        { value: 'directions.html', label: 'Направления' },
+        { value: 'news.html', label: 'Все новости' },
+        { value: 'album.html', label: 'Альбом' },
+        { value: 'lk.html', label: 'Личный кабинет' }
+      ]);
+
+      push('Разделы главной', [
+        ['#schedule', 'Расписание'], ['#prices', 'Наши цены'],
+        ['#programs', 'Программы'], ['#trainers', 'Тренеры'],
+        ['#news', 'Новости'], ['#contacts', 'Контакты']
+      ].map(([hash, name]) => ({ value: 'index.html' + hash, label: name })));
+
+      const dirs = (db.directions || []).filter(d => !d.hidden);
+      push('Направления', dirs.map(d => ({
+        value: 'directions.html?id=' + d.id, label: '▸ ' + (d.name || 'без названия')
+      })));
+
+      const dirName = id => {
+        const d = dirs.find(x => String(x.id) === String(id));
+        return d ? d.name : '';
+      };
+      push('Программы', (db.programs || []).filter(p => !p.hidden).map(p => {
+        const dn = dirName(p.directionId);
+        return { value: 'program.html?id=' + p.id, label: (dn ? dn + ' → ' : '') + (p.name || 'без названия') };
+      }));
+
+      push('Тренеры', (db.trainers || []).filter(t => !t.hidden).map(t => ({
+        value: 'trainer.html?id=' + t.id, label: t.name || 'без названия'
+      })));
+
+      push('Новости', (db.news || []).filter(n => !n.hidden).map(n => ({
+        value: 'news.html?id=' + n.id, label: n.title || 'без названия'
+      })));
+
+      push('Статические страницы', (db.pages || [])
+        .filter(p => p && !p.hidden && p.visible !== false && p.url)
+        .map(p => ({ value: 'page.html?url=' + p.url, label: p.title || p.url })));
+
+      return groups;
+    }
 
     async function loadSliderSection() {
       const content = document.getElementById('admin-content');
-      const card = content.querySelector('.section-card');
-      if (!card) return;
       const old = content.querySelector('#slider-card');
       if (old) old.remove();
 
       const box = document.createElement('div');
       box.className = 'section-card';
       box.id = 'slider-card';
-      card.insertAdjacentElement('afterend', box);
+      // S158: редактор слайдера — единственный контент раздела,
+      // служебная карточка-заглушка сверху больше не рендерится.
+      const card = content.querySelector('.section-card');
+      if (card) card.insertAdjacentElement('afterend', box);
+      else content.appendChild(box);
       box.innerHTML = '<p class="meta">Загрузка слайдера…</p>';
 
       try {
-        const res = await api('/api/admin/get-slides', { method: 'POST', body: '{}' });
+        const [res, db] = await Promise.all([
+          api('/api/admin/get-slides', { method: 'POST', body: '{}' }),
+          getDbData().catch(() => null)
+        ]);
         if (!res.ok) throw new Error(String(res.status));
         const payload = await res.json();
         slidesState = (payload.slides || []).map(s => ({ ...s }));
         slidesDefaultInterval = payload.defaultInterval || 5;
+        if (payload.sliderSettings) {
+          slidesSettingsState = { ...slidesSettingsState, ...payload.sliderSettings };
+        }
+        sliderLinkGroupsCache = sliderLinkGroups(db || {});
       } catch (err) {
         box.innerHTML = '<p style="color:var(--danger);">Не удалось загрузить слайдер: ' +
           escapeHtml(err.message) + '</p>';
         return;
       }
-      renderSliderEditor();
+      // Ошибка рендера должна быть видна, а не оставлять «Загрузка слайдера…» навсегда
+      try {
+        renderSliderEditor();
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Ошибка отрисовки редактора: ' +
+          escapeHtml(err.message) + '</p>';
+        console.error('renderSliderEditor:', err);
+      }
     }
 
     function renderSliderEditor() {
       const box = document.getElementById('slider-card');
       if (!box) return;
+      // S167: строки слайдов — через универсальный редактор (он же для альбомов)
+      slideRenderers.main = renderSliderEditor;
 
       // S158: 9 позиций текста
-      const POSITIONS = [
-        ['top-left','↖ верх-лево'], ['top-center','↑ верх-центр'], ['top-right','↗ верх-право'],
-        ['center-left','← центр-лево'], ['center','• по центру'], ['center-right','→ центр-право'],
-        ['bottom-left','↙ низ-лево'], ['bottom-center','↓ низ-центр'], ['bottom-right','↘ низ-право']
-      ];
+      const POSITIONS = SLIDE_POSITIONS;
       // Обратная совместимость: старые left/right → center-left/center-right
-      const posMigrate = { left: 'center-left', right: 'center-right' };
+      const posMigrate = slidePosMigrate;
 
-      const items = slidesState.map((s, i) => {
-        const pos = posMigrate[s.position] || s.position || 'center';
-        const tm = s.textMargin || {};
-        const ov = s.overlay || {};
-        return `
-        <div class="news-item slider-item" data-idx="${i}" draggable="true"
-             ondragstart="onSliderDragStart(event)" ondragover="onSliderDragOver(event)"
-             ondragleave="onSliderDragLeave(event)" ondrop="onSliderDrop(event)"
-             ondragend="onSliderDragEnd(event)">
-          <span class="news-drag-handle" title="Перетащите для изменения порядка">⠿</span>
-          <div style="display:flex;gap:.5rem;align-items:flex-start;flex-wrap:wrap;">
-            <img src="${fileUrl(s.image)}" alt="" style="width:120px;height:68px;object-fit:cover;border-radius:6px;flex:0 0 auto;">
-            <button class="btn btn-sm btn-secondary" onclick="openPhotoManager(${i})" title="Выбрать из фотоархива">📸</button>
-          </div>
-          <div class="news-info" style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:.4rem;">
-            <input type="text" value="${escAttr(s.title)}" maxlength="80" placeholder="Заголовок слайда"
-                   oninput="slidesState[${i}].title = this.value"
-                   style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;">
-            <textarea rows="2" placeholder="Описание (опционально)"
-                   oninput="slidesState[${i}].description = this.value"
-                   style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;resize:vertical;font-size:.85rem;">${escapeHtml(s.description || '')}</textarea>
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
-              <input type="text" placeholder="Ссылка (program.html?id=...)"
-                     value="${escAttr(s.link || '')}"
-                     oninput="slidesState[${i}].link = this.value"
-                     style="flex:1;min-width:160px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
-              <label title="Открыть в новой вкладке">
-                <input type="checkbox" ${s.linkTarget === '_blank' ? 'checked' : ''}
-                       onchange="slidesState[${i}].linkTarget = this.checked ? '_blank' : '_self'"> новая
-              </label>
-            </div>
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
-              <label>Интервал, с:
-                <input type="number" min="1" max="120" value="${s.interval || slidesDefaultInterval}"
-                       onchange="slidesState[${i}].interval = Number(this.value)"
-                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
-              </label>
-              <label>Позиция текста:
-                <select onchange="slidesState[${i}].position = this.value"
-                        style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
-                  ${POSITIONS.map(([v, l]) => `<option value="${v}"${pos === v ? ' selected' : ''}>${l}</option>`).join('')}
-                </select>
-              </label>
-              <label>Цвет текста:
-                <input type="color" value="${s.textColor || '#ffffff'}"
-                       onchange="slidesState[${i}].textColor = this.value"
-                       style="width:40px;height:28px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
-              </label>
-              <label>Размер заголовка:
-                <input type="number" min="16" max="96" value="${s.textSize || 42}"
-                       onchange="slidesState[${i}].textSize = Number(this.value)"
-                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
-              </label>
-            </div>
-            <div style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;font-size:.8rem;">
-              <span>Отступы (px):</span>
-              <label>Т<input type="number" min="0" max="200" value="${tm.top ?? 20}"
-                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.top = Number(this.value)"
-                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
-              <label>П<input type="number" min="0" max="200" value="${tm.right ?? 20}"
-                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.right = Number(this.value)"
-                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
-              <label>Н<input type="number" min="0" max="200" value="${tm.bottom ?? 20}"
-                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.bottom = Number(this.value)"
-                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
-              <label>Л<input type="number" min="0" max="200" value="${tm.left ?? 20}"
-                     onchange="slidesState[${i}].textMargin = slidesState[${i}].textMargin || {}; slidesState[${i}].textMargin.left = Number(this.value)"
-                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
-              <span style="margin-left:.5rem;">Наложение:
-                <label><input type="checkbox" ${ov.enabled !== false ? 'checked' : ''}
-                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.enabled = this.checked"> вкл</label>
-                <input type="color" value="${ov.color || '#000000'}"
-                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.color = this.value"
-                       style="width:32px;height:24px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
-                <input type="number" min="0" max="0.9" step="0.1" value="${ov.opacity ?? 0.4}"
-                       onchange="slidesState[${i}].overlay = slidesState[${i}].overlay || {}; slidesState[${i}].overlay.opacity = Number(this.value)"
-                       style="width:50px;padding:.2rem;border:1px solid var(--border);border-radius:4px;" title="Прозрачность 0–0.9">
-              </span>
-            </div>
-          </div>
-          <div class="news-actions">
-            <button class="btn btn-sm btn-secondary" onclick="toggleSliderHidden(${i})" title="Скрыть/показать слайд">${s.hidden ? '🙈' : '👁'}</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteSlide(${i})" title="Удалить слайд">🗑</button>
-          </div>
-        </div>
-      `;
-      }).join('');
+      // S158: скрытые слайды — отдельная сворачиваемая группа, они не мешают
+      // основной очереди и на сайт не экспортируются.
+      const gs = slidesSettingsState;
+      const hiddenCount = slidesState.filter(s => s.hidden).length;
+      const hiddenBadge = hiddenCount ? ` (${hiddenCount})` : '';
 
       box.innerHTML = `
         <h2>🎞 Слайдер главной</h2>
         <p style="font-size:1rem;">Слайды главной страницы: заголовок, описание, ссылка, время показа,
           раскладка текста (9 позиций), цвет/размер/отступы, наложение поверх фото.
           Порядок — перетаскивание за ⠿.</p>
-        <div class="news-list">${items || '<p class="meta">Слайдов нет. Добавьте первый кнопкой ниже.</p>'}</div>
+        <div class="news-list" style="margin-top:1rem;">${slideListHtml('main', slidesState)}</div>
+        ${hiddenCount ? `
+        <div style="margin-top:1rem;">
+          <button class="btn btn-sm btn-danger" onclick="deleteHiddenSlides()" title="Удалить все скрытые слайды из базы">🗑 Удалить все скрытые слайды</button>
+        </div>` : ''}
         <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
           <button class="btn btn-secondary" onclick="addSlide()">➕ Добавить слайд</button>
           <button class="btn btn-primary" id="slider-save-btn" onclick="saveSlides()">💾 Сохранить слайдер</button>
-          <label style="font-size:.85rem;color:var(--text-secondary);">Интервал по умолчанию, с:
+        </div>
+
+        <hr style="margin:1.75rem 0;border:none;border-top:1px solid var(--border);">
+        <h3>⚙️ Настройки слайдера</h3>
+        <p style="font-size:.8rem;color:var(--text-secondary);margin:.25rem 0 .75rem;">
+          Относятся ко всему слайдеру, а не к отдельному слайду. Применяются на сайте
+          после сохранения и перегенерации статики.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem 1.5rem;">
+          <label style="font-size:.85rem;">Интервал по умолчанию, с
             <input type="number" min="1" max="120" value="${slidesDefaultInterval}"
                    onchange="slidesDefaultInterval = Number(this.value)"
+                   style="width:80px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+            <span style="color:var(--text-secondary);">· для новых слайдов</span>
+          </label>
+          <label style="font-size:.85rem;">Высота слайдера, px
+            <input type="number" min="0" max="1200" step="10" value="${gs.height || 0}"
+                   onchange="slidesSettingsState.height = Number(this.value)"
+                   style="width:90px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+            <span style="color:var(--text-secondary);">· 0 = авто (80vh)</span>
+          </label>
+          <label style="font-size:.85rem;">Позиция текста по умолчанию
+            <select onchange="slidesSettingsState.defaultPosition = this.value"
+                    style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+              ${POSITIONS.map(([v, l]) => `<option value="${v}"${(posMigrate[gs.defaultPosition] || gs.defaultPosition) === v ? ' selected' : ''}>${l}</option>`).join('')}
+            </select>
+          </label>
+          <label style="font-size:.85rem;">Цвет текста по умолчанию
+            <input type="color" value="${gs.defaultTextColor || '#ffffff'}"
+                   onchange="slidesSettingsState.defaultTextColor = this.value"
+                   style="width:40px;height:28px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;vertical-align:middle;">
+          </label>
+          <label style="font-size:.85rem;">Размер заголовка по умолчанию
+            <input type="number" min="16" max="96" value="${gs.defaultTextSize || 42}"
+                   onchange="slidesSettingsState.defaultTextSize = Number(this.value)"
                    style="width:70px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
           </label>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
+            <label><input type="checkbox" ${gs.autoplay !== false ? 'checked' : ''}
+                   onchange="slidesSettingsState.autoplay = this.checked"> Автопрокрутка</label>
+            <label><input type="checkbox" ${gs.showArrows !== false ? 'checked' : ''}
+                   onchange="slidesSettingsState.showArrows = this.checked"> Стрелки</label>
+            <label><input type="checkbox" ${gs.showDots !== false ? 'checked' : ''}
+                   onchange="slidesSettingsState.showDots = this.checked"> Точки</label>
+          </div>
         </div>
       `;
     }
 
+    // S167: key — 'main' (главный слайдер) или ключ альбома ('trainer','event')
+    function sliderLinkSelectHtml(key, i, link) {
+      const cur = String(link || '');
+      const groups = sliderLinkGroupsCache || [];
+      const known = new Set();
+      groups.forEach(g => g.options.forEach(o => known.add(o.value)));
+      const isCustom = !!cur && !known.has(cur);
+      const parts = ['<option value=""' + (cur ? '' : ' selected') + '>— без ссылки —</option>'];
+      groups.forEach(g => {
+        parts.push('<optgroup label="' + escAttr(g.label) + '">' + g.options.map(o =>
+          '<option value="' + escAttr(o.value) + '"' + (o.value === cur && !isCustom ? ' selected' : '') + '>' +
+          escapeHtml(o.label) + '</option>').join('') + '</optgroup>');
+      });
+      parts.push('<option value="__custom__"' + (isCustom ? ' selected' : '') + '>✏️ Другая (вручную)…</option>');
+      const uid = key + '-' + i;
+      const inputStyle = (isCustom ? '' : 'display:none;') + 'flex:1;min-width:170px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;font-family:monospace;';
+      return '<select onchange="onSliderLinkPick(\'' + key + '\', ' + i + ', this.value)" title="Куда ведёт ссылка слайда" ' +
+        'style="flex:2;min-width:220px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">' +
+        parts.join('') + '</select>' +
+        '<input type="text" id="slider-link-custom-' + uid + '" placeholder="program.html?id=…" ' +
+        'value="' + escAttr(isCustom ? cur : '') + '" oninput="slideField(\'' + key + '\', ' + i + ', \'link\', this.value)" ' +
+        'style="' + inputStyle + '">';
+    }
+
+    function onSliderLinkPick(key, i, v) {
+      const inp = document.getElementById('slider-link-custom-' + key + '-' + i);
+      const arr = slideArr(key);
+      if (v === '__custom__') {
+        if (inp) {
+          inp.style.display = '';
+          if (!inp.value) inp.value = (arr[i] && arr[i].link) || '';
+          inp.focus();
+        }
+        return;
+      }
+      if (inp) { inp.style.display = 'none'; inp.value = ''; }
+      slideField(key, i, 'link', v || '');
+    }
+
     function addSlide() {
+      // S158: новый слайд берёт значения из глобальных настроек слайдера
+      const gs = slidesSettingsState;
       slidesState.push({
         id: Date.now(), title: '', description: '', image: '', link: '',
         linkTarget: '_self', interval: slidesDefaultInterval,
-        position: 'center', textColor: '#ffffff', textSize: 42,
+        position: gs.defaultPosition || 'center',
+        textColor: gs.defaultTextColor || '#ffffff',
+        textSize: gs.defaultTextSize || 42,
         textMargin: { top: 20, right: 20, bottom: 20, left: 20 },
         overlay: { enabled: true, color: '#000000', opacity: 0.4 },
         hidden: false
@@ -2789,18 +3077,44 @@
       }
     }
 
+    // S162: удаление всех скрытых слайдов из базы
+    async function deleteHiddenSlides() {
+      const hiddenCount = slidesState.filter(s => s.hidden).length;
+      if (!hiddenCount) { showToast('Скрытых слайдов нет', 'error'); return; }
+      if (!confirm(`Удалить ${hiddenCount} скрытых слайдов из базы? Это действие нельзя отменить.`)) return;
+      try {
+        const res = await api('/api/admin/delete-hidden-slides', { method: 'POST', body: '{}' });
+        const d = await res.json();
+        if (!res.ok) throw new Error(d.error || String(res.status));
+        if (d.removed > 0) {
+          slidesState = slidesState.filter(s => !s.hidden);
+          showToast(`Удалено ${d.removed} скрытых слайдов`);
+          renderSliderEditor();
+        } else {
+          showToast(d.note || 'Скрытых слайдов не найдено', 'error');
+        }
+      } catch (err) {
+        showToast('Ошибка удаления: ' + err.message, 'error');
+      }
+    }
+
     async function saveSlides() {
       const btn = document.getElementById('slider-save-btn');
       if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
       try {
         const res = await api('/api/admin/save-slides', {
           method: 'POST',
-          body: JSON.stringify({ slides: slidesState, defaultInterval: slidesDefaultInterval })
+          body: JSON.stringify({
+            slides: slidesState,
+            defaultInterval: slidesDefaultInterval,
+            sliderSettings: slidesSettingsState
+          })
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
           slidesState = (data.slides || []).map(s => ({ ...s }));
           slidesDefaultInterval = data.defaultInterval || slidesDefaultInterval;
+          if (data.sliderSettings) slidesSettingsState = { ...slidesSettingsState, ...data.sliderSettings };
           showToast('Слайдер сохранён, статика перегенерирована');
           renderSliderEditor();
         } else {
@@ -2812,41 +3126,18 @@
       if (btn) { btn.disabled = false; btn.textContent = '💾 Сохранить слайдер'; }
     }
 
-    let sliderDragIdx = null;
-    function onSliderDragStart(e) {
-      sliderDragIdx = Number(e.currentTarget.dataset.idx);
-      e.currentTarget.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    }
-    function onSliderDragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; e.currentTarget.classList.add('drag-over'); }
-    function onSliderDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
-    function onSliderDragEnd(e) {
-      e.currentTarget.classList.remove('dragging');
-      document.querySelectorAll('.slider-item').forEach(el => el.classList.remove('drag-over', 'dragging'));
-      sliderDragIdx = null;
-    }
-    function onSliderDrop(e) {
-      e.preventDefault();
-      e.currentTarget.classList.remove('drag-over');
-      const toIdx = Number(e.currentTarget.dataset.idx);
-      if (sliderDragIdx === null || sliderDragIdx === toIdx) return;
-      const [moved] = slidesState.splice(sliderDragIdx, 1);
-      slidesState.splice(toIdx, 0, moved);
-      sliderDragIdx = null;
-      renderSliderEditor();
-      showToast('Порядок изменён — нажмите «Сохранить слайдер»');
-    }
+    // S167: drag-обработчики едины для всех списков слайдов — см. onSlideDragStart выше
 
     // ── S158: менеджер фото (popup для выбора фото в слайдере) ──
-    let pmSlideIdx = null;   // индекс слайда, для которого выбираем фото
+    let pmTarget = null;     // { key, idx } — для какого слайда какого редактора выбираем фото
     let pmPage = 1;
     let pmFilter = 'all';
     let pmQuery = '';
     let pmTotal = 0;
     let pmPerPage = 24;
 
-    function openPhotoManager(slideIdx) {
-      pmSlideIdx = slideIdx;
+    function openPhotoManager(key, idx) {
+      pmTarget = { key: key || 'main', idx: Number(idx) };
       pmPage = 1;
       pmQuery = '';
       pmFilter = 'all';
@@ -2877,8 +3168,9 @@
         document.body.appendChild(pmOverlay);
       }
 
-      const slides = slidesState[pmSlideIdx];
-      const currentImg = slides ? slides.image : '';
+      const pmArr = pmTarget ? slideArr(pmTarget.key) : [];
+      const pmSlide = pmTarget ? pmArr[pmTarget.idx] : null;
+      const currentImg = pmSlide ? pmSlide.image : '';
 
       pmBody.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
@@ -2919,7 +3211,7 @@
     function closePhotoManager() {
       const pmOverlay = document.getElementById('pm-overlay');
       if (pmOverlay) pmOverlay.remove();
-      pmSlideIdx = null;
+      pmTarget = null;
     }
 
     function loadPhotoManagerPage() {
@@ -2938,7 +3230,7 @@
         pmTotal = data.total || 0;
         const photos = data.photos || [];
         grid.innerHTML = photos.map(p => {
-          const isCurrent = p.path === (slidesState[pmSlideIdx]?.image || '');
+          const isCurrent = pmTarget && p.path === (slideArr(pmTarget.key)[pmTarget.idx] || {}).image;
           const usedBadge = p.used ? 'used' : 'unused';
           return `
             <div class="pm-photo ${usedBadge} ${isCurrent ? 'pm-selected' : ''}"
@@ -2976,10 +3268,21 @@
     }
 
     function selectPhoto(path) {
-      if (pmSlideIdx === null) return;
-      slidesState[pmSlideIdx].image = path;
-      renderSliderEditor();
-      showToast('Фото выбрано — нажмите «Сохранить слайдер»');
+      if (!pmTarget) return;
+      const s = slideArr(pmTarget.key)[pmTarget.idx];
+      if (!s) return;
+      s.image = path;
+      slideRerender(pmTarget.key);
+      showToast('Фото выбрано — сохраните запись');
+      const t = pmTarget;
+      closePhotoManager();
+      // если под редактором открыт банк-грид альбома — обновить подсветку выбора
+      const contMap = { trainer: 'trainer-album-picker', event: 'event-album-picker' };
+      const cid = contMap[t.key];
+      if (cid) {
+        const bank = document.getElementById(cid + '-bank');
+        if (bank && bank.style.display !== 'none') renderAlbumBankGrid(t.key, cid);
+      }
     }
 
     function uploadNewPhotoFromManager() {
@@ -2992,10 +3295,13 @@
         if (!file) return;
         try {
           const p = await uploadFile(file, 'image');
-          if (pmSlideIdx !== null) {
-            slidesState[pmSlideIdx].image = p;
-            renderSliderEditor();
-            showToast('Фото загружено — нажмите «Сохранить слайдер»');
+          if (pmTarget) {
+            const s = slideArr(pmTarget.key)[pmTarget.idx];
+            if (s) {
+              s.image = p;
+              slideRerender(pmTarget.key);
+              showToast('Фото загружено — сохраните запись');
+            }
           }
           // Перезагрузить страницу фотоменеджера
           pmPage = 1;
@@ -3005,6 +3311,545 @@
         }
       };
       input.click();
+    }
+
+    // ── S159: Менеджер фотографий ──────────────────────────────────────
+    // Обзор всех фото сайта: что используется, что скрыто, что не нужно.
+    // Данные берутся из /api/admin/get-photo-manager (обход всей базы).
+    const pht = { scope: 'uploads', filter: 'all', q: '', page: 1, per: 48, stats: null, photos: [], total: 0, busy: false };
+
+    const PHT_SCOPES = {
+      uploads: 'фото сайта (uploads)',
+      data: 'рабочий архив (data)',
+      all: 'все каталоги',
+    };
+
+    function phtBytes(n) {
+      n = Number(n) || 0;
+      if (n >= 1073741824) return (n / 1073741824).toFixed(2) + ' ГБ';
+      if (n >= 1048576) return (n / 1048576).toFixed(1) + ' МБ';
+      if (n >= 1024) return (n / 1024).toFixed(0) + ' КБ';
+      return n + ' Б';
+    }
+
+    async function loadPhotoManagerSection() {
+      const content = document.getElementById('admin-content');
+      const old = content.querySelector('#photo-manager-card');
+      if (old) old.remove();
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      box.id = 'photo-manager-card';
+      box.innerHTML = '<p class="meta">Загрузка фотографий…</p>';
+      const card = content.querySelector('.section-card');
+      if (card) card.insertAdjacentElement('afterend', box); else content.appendChild(box);
+      try {
+        await phtFetch();
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Не удалось загрузить менеджер фото: ' +
+          escapeHtml(err.message) + '</p>';
+        return;
+      }
+      try {
+        phtRender();
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Ошибка отрисовки: ' + escapeHtml(err.message) + '</p>';
+        console.error('phtRender:', err);
+      }
+    }
+
+    async function phtFetch() {
+      const res = await api('/api/admin/get-photo-manager', {
+        method: 'POST',
+        body: JSON.stringify({ scope: pht.scope, filter: pht.filter, q: pht.q, page: pht.page, per_page: pht.per }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const d = await res.json();
+      pht.photos = d.photos || [];
+      pht.total = d.total || 0;
+      pht.stats = d.stats || null;
+    }
+
+    async function phtReload() {
+      if (pht.busy) return;
+      pht.busy = true;
+      const btn = document.getElementById('pht-refresh');
+      if (btn) { btn.disabled = true; btn.textContent = 'Обновление…'; }
+      try {
+        await phtFetch();
+        phtRender();
+        showToast('Данные обновлены');
+      } catch (err) {
+        showToast('Не удалось обновить: ' + err.message, 'error');
+      } finally {
+        pht.busy = false;
+      }
+    }
+
+    // Метка статуса: «используется» — со ссылкой на страницу сайта
+    function phtStatusCell(photo) {
+      const usages = photo.usages || [];
+      if (photo.status === 'used') {
+        const first = usages[0] || {};
+        const label = `<a href="${escapeHtml(first.url || '/')}" target="_blank" rel="noopener"
+            style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#e6f4ea;color:#1a7f37;
+                   font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid #a7d7b4;">используется</a>`;
+        if (usages.length === 1) return label;
+        return label + ` <span class="meta" style="font-size:.75rem;">(+${usages.length - 1})</span>` +
+          `<details style="margin-top:.2rem;"><summary style="cursor:pointer;font-size:.72rem;color:var(--text-secondary);">где</summary>` +
+          usages.map((x) => `<div style="font-size:.75rem;">· <a href="${escapeHtml(x.url || '/')}" target="_blank" rel="noopener">${escapeHtml(x.name || x.kind)}</a></div>`).join('') +
+          '</details>';
+      }
+      if (photo.status === 'hidden') {
+        return `<span style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#fff8c5;color:#9a6700;
+                 font-size:.78rem;font-weight:600;border:1px solid #e7d38a;">скрыто</span>` +
+          `<details style="margin-top:.2rem;"><summary style="cursor:pointer;font-size:.72rem;color:var(--text-secondary);">кем скрыто</summary>` +
+          usages.map((x) => `<div style="font-size:.75rem;">· <a href="${escapeHtml(x.url || '/')}" target="_blank" rel="noopener">${escapeHtml(x.name || x.kind)}</a></div>`).join('') +
+          '</details>';
+      }
+      return `<span style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#fdecee;color:#b3261e;
+               font-size:.78rem;font-weight:600;border:1px solid #f5b5b5;">не используется</span>`;
+    }
+
+    function phtRender() {
+      const box = document.getElementById('photo-manager-card');
+      if (!box) return;
+      const s = pht.stats || {};
+      const chips = [['all', 'все'], ['used', 'используется'], ['hidden', 'скрыто'], ['unused', 'не используется']];
+      const pages = Math.max(1, Math.ceil(pht.total / pht.per));
+      const freeable = (s.bytes_unused || 0) + (s.bytes_hidden || 0);
+
+      const rows = pht.photos.map((p) => {
+        const src = '/' + p.path.replace(/^\/+/, '');
+        const canDelete = p.status !== 'used';
+        return `
+          <div class="pht-row" style="display:flex;align-items:flex-start;gap:.7rem;padding:.55rem .2rem;border-bottom:1px solid var(--border);">
+            <a href="${escapeHtml(src)}" target="_blank" rel="noopener" title="открыть в новой вкладке"
+               style="flex:0 0 auto;width:64px;height:64px;border-radius:6px;overflow:hidden;background:#f2f2f2;display:block;">
+              <img src="${escapeHtml(src)}" loading="lazy" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </a>
+            <div style="flex:1 1 auto;min-width:0;">
+              <div style="font-size:.82rem;word-break:break-all;">${escapeHtml(p.path)}</div>
+              <div class="meta" style="font-size:.75rem;">${phtBytes(p.bytes)}</div>
+            </div>
+            <div style="flex:0 0 auto;width:190px;">${phtStatusCell(p)}</div>
+            <div style="flex:0 0 auto;width:96px;text-align:right;">
+              ${canDelete ? `<button class="btn btn-sm btn-danger" onclick="phtDeleteOne('${encodeURIComponent(p.path)}')">Удалить</button>` : ''}
+            </div>
+          </div>`;
+      }).join('');
+
+      box.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+          <h2>🖼 Менеджер фотографий</h2>
+          <span class="status-badge status-badge-done">Обзор медиа</span>
+        </div>
+
+        <!-- Справка -->
+        <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin:0 0 .9rem;">
+          <div style="display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.9rem;">
+            <div><b>${s.files || 0}</b> фото всего</div>
+            <div><b style="color:#1a7f37;">${s.used || 0}</b> используются</div>
+            <div><b style="color:#9a6700;">${s.hidden || 0}</b> скрыто</div>
+            <div><b style="color:#b3261e;">${s.unused || 0}</b> не используется</div>
+            <div>занято на диске: <b>${phtBytes(s.bytes_total)}</b></div>
+          </div>
+          <div class="meta" style="margin-top:.5rem;font-size:.78rem;">
+            Область: ${PHT_SCOPES[pht.scope] || pht.scope} ·
+            uploads: ${s.scope_stats ? s.scope_stats.uploads.files : 0} файлов (${phtBytes(s.scope_stats && s.scope_stats.uploads.bytes)}) ·
+            data: ${s.scope_stats ? s.scope_stats.data.files : 0} файлов (${phtBytes(s.scope_stats && s.scope_stats.data.bytes)})<br>
+            Освободится при очистке скрытых и неиспользуемых: <b>${phtBytes(freeable)}</b>.
+            Файлы переносятся в <code>trash/uploads/&lt;дата&gt;</code> — место на диске освобождается после уборки корзины.
+            ${s.missing ? `<br><span style="color:#b3261e;">Битых ссылок в базе (файл не найден): ${s.missing}</span>` : ''}
+          </div>
+          ${s.missing && s.missing_list && s.missing_list.length ? `
+            <details style="margin-top:.4rem;"><summary style="cursor:pointer;font-size:.78rem;color:var(--text-secondary);">показать битые ссылки</summary>
+              ${s.missing_list.map((m) => `<div style="font-size:.75rem;">· ${escapeHtml(m.path)} <span class="meta">← ${escapeHtml((m.usages || []).map((u) => u.name || u.kind).join(', '))}</span></div>`).join('')}
+            </details>` : ''}
+        </div>
+
+        <!-- Действия и фильтры -->
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-bottom:.7rem;">
+          <button class="btn btn-danger" onclick="phtDeleteUnused()">🧹 Удалить неиспользуемые</button>
+          <select class="input" style="width:auto;padding:.35rem .5rem;" onchange="phtSetScope(this.value)">
+            ${Object.keys(PHT_SCOPES).map((k) => `<option value="${k}" ${k === pht.scope ? 'selected' : ''}>${PHT_SCOPES[k]}</option>`).join('')}
+          </select>
+          <div style="display:flex;gap:.3rem;flex-wrap:wrap;">
+            ${chips.map(([k, l]) => `<button class="btn btn-sm ${pht.filter === k ? 'btn-primary' : ''}" onclick="phtSetFilter('${k}')">${l}</button>`).join('')}
+          </div>
+          <input id="pht-q" class="input" style="flex:1 1 180px;min-width:160px;" placeholder="поиск по пути…" value="${escapeHtml(pht.q)}"
+                 onkeydown="if(event.key==='Enter')phtSetQuery(this.value)">
+          <button class="btn btn-sm" onclick="phtSetQuery(document.getElementById('pht-q').value)">Найти</button>
+        </div>
+
+        <p class="meta" style="margin-bottom:.4rem;">Показано ${pht.photos.length} из ${pht.total} (стр. ${pht.page} из ${pages})</p>
+        ${rows ? `<div>${rows}</div>` : '<p class="meta">Ничего не найдено — измените фильтр или область.</p>'}
+
+        <!-- Пагинация + обновление -->
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.9rem;">
+          <div style="display:flex;gap:.4rem;">
+            <button class="btn btn-sm" onclick="phtSetPage(${pht.page - 1})" ${pht.page <= 1 ? 'disabled' : ''}>← Назад</button>
+            <button class="btn btn-sm" onclick="phtSetPage(${pht.page + 1})" ${pht.page >= pages ? 'disabled' : ''}>Вперёд →</button>
+          </div>
+          <button id="pht-refresh" class="btn btn-primary" onclick="phtReload()">🔄 Обновить данные</button>
+        </div>
+      `;
+    }
+
+    function phtSetScope(v) { pht.scope = v; pht.page = 1; phtReload(); }
+    function phtSetFilter(v) { pht.filter = v; pht.page = 1; phtReload(); }
+    function phtSetQuery(v) { pht.q = String(v || '').trim(); pht.page = 1; phtReload(); }
+    function phtSetPage(v) { pht.page = Math.max(1, Number(v) || 1); phtReload(); }
+
+    async function phtDeleteOne(encPath) {
+      const rel = decodeURIComponent(encPath);
+       if (!confirm('Переместить в корзину?\n' + rel + '\n\nФайл попадёт в trash/uploads/ и будет убран из базы, если на него ссылаются скрытые объекты.')) return;
+       try {
+        const res = await api('/api/admin/delete-photos', { method: 'POST', body: JSON.stringify({ paths: [rel] }) });
+        const d = await res.json();
+        if (!res.ok) throw new Error(d.error || String(res.status));
+        if (!d.removed || !d.removed.length) {
+          showToast((d.skipped && d.skipped.length) ? 'Файл используется сайтом — не удалён' : (d.note || 'Файл не найден'), 'error');
+        } else {
+          showToast('Удалено: ' + phtBytes(d.freed_bytes) + ' → ' + (d.trash || 'корзина'));
+        }
+        await phtFetch(); phtRender();
+      } catch (err) {
+        showToast('Ошибка удаления: ' + err.message, 'error');
+      }
+    }
+
+    // Сбор путей всех неиспользуемых (текущая область) постранично
+    async function phtCollectUnused() {
+      const out = [];
+      let page = 1;
+      for (;;) {
+        const res = await api('/api/admin/get-photo-manager', {
+          method: 'POST',
+          body: JSON.stringify({ scope: pht.scope, filter: 'unused', page, per_page: 500 }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        const d = await res.json();
+        (d.photos || []).forEach((p) => out.push(p.path));
+        if (out.length >= (d.total || 0) || !(d.photos || []).length) break;
+        page++;
+        if (page > 40) break;
+      }
+      return out;
+    }
+
+    async function phtDeleteUnused() {
+      if (pht.busy) return;
+      pht.busy = true;
+      try {
+        const paths = await phtCollectUnused();
+        if (!paths.length) { showToast('Неиспользуемых фото нет', 'error'); return; }
+        const note = (pht.stats && pht.stats.bytes_unused) ? 'Освободится (после уборки корзины): ' + phtBytes(pht.stats.bytes_unused) + '.\n' : '';
+        if (!confirm('В корзину будут перемещены ' + paths.length + ' неиспользуемых фото.\n' + note +
+          '\nФайлы, на которые ссылается скрытый объект, удаляются и из базы. Продолжить?')) return;
+        for (let i = 0; i < paths.length; i += 200) {
+          const chunk = paths.slice(i, i + 200);
+          const res = await api('/api/admin/delete-photos', { method: 'POST', body: JSON.stringify({ paths: chunk }) });
+          const d = await res.json();
+          if (!res.ok) throw new Error(d.error || String(res.status));
+        }
+        showToast('Удалено неиспользуемых фото: ' + paths.length);
+      } catch (err) {
+        showToast('Ошибка очистки: ' + err.message, 'error');
+      } finally {
+        pht.busy = false;
+      }
+      try { await phtFetch(); phtRender(); } catch {}
+    }
+
+    /* ============================================
+       S164: раздел «Статус» (суперраздел «Информация»)
+       Состояние сайта + состояние сервера + посещаемость + проблемы.
+       Данные: POST /api/admin/site-status (server/scripts/admin-server.mjs).
+       ============================================ */
+    let statusState = { data: null, period: 'week', loading: false, pages: null };
+
+    function stFmtBytes(n) {
+      if (n == null || !isFinite(n)) return '—';
+      if (n >= 1073741824) return (n / 1073741824).toFixed(2) + ' ГБ';
+      if (n >= 1048576) return (n / 1048576).toFixed(1) + ' МБ';
+      if (n >= 1024) return (n / 1024).toFixed(1) + ' КБ';
+      return n + ' Б';
+    }
+
+    function stFmtUptime(sec) {
+      if (sec == null || !isFinite(sec)) return '—';
+      const d = Math.floor(sec / 86400), h = Math.floor((sec % 86400) / 3600), m = Math.floor((sec % 3600) / 60);
+      return (d ? d + ' д ' : '') + h + ' ч ' + m + ' мин';
+    }
+
+    function stFmtIso(iso) {
+      if (!iso) return '—';
+      try {
+        const d = new Date(iso);
+        const p = (n) => String(n).padStart(2, '0');
+        return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`;
+      } catch { return iso; }
+    }
+
+    function stCell(label, value) {
+      return `<div class="st-cell"><b>${escapeHtml(label)}</b>${value == null || value === '' ? '—' : value}</div>`;
+    }
+
+    // Горизонтальные полоски для списков посещаемости
+    function stBars(list, emptyText) {
+      if (!list || !list.length) return `<p class="meta">${emptyText || 'Нет данных'}</p>`;
+      const max = Math.max(...list.map(x => x.count), 1);
+      return list.map(x => `
+        <div class="st-bar-row">
+          <span class="st-bar-name" title="${escAttr(x.name)}">${escapeHtml(x.name)}</span>
+          <span class="st-bar"><i style="width:${Math.round(x.count / max * 100)}%"></i></span>
+          <span class="st-bar-num">${x.count}${x.unique != null ? ' / ' + x.unique : ''}</span>
+        </div>`).join('');
+    }
+
+    const ST_PROB_LABEL = { error: 'ошибка', warn: 'внимание', info: 'к сведению' };
+
+    function stProblemsCard(problems) {
+      const list = (problems && problems.list) || [];
+      const clean = !list.some(p => p.level === 'error' || p.level === 'warn');
+      const head = `
+        <h3>🚨 Проблемы
+          <span class="status-badge ${problems.errors ? 'status-badge-wip' : 'status-badge-done'}"
+                style="background:${problems.errors ? '#fee2e2' : clean ? '#dcfce7' : '#fef3c7'};color:${problems.errors ? '#991b1b' : clean ? '#166534' : '#92400e'}">
+            ошибок: ${problems.errors} · предупреждений: ${problems.warns} · к сведению: ${problems.infos}
+          </span>
+        </h3>`;
+      if (!list.length) return `<div class="st-card st-problems st-problems-clean">${head}<p>Проблем не обнаружено — автодиагностика прошла чисто.</p></div>`;
+      return `<div class="st-card st-problems">${head}` + list.map(p => `
+        <div class="st-prob st-prob-${p.level}">
+          <span class="st-prob-tag" style="background:${p.level === 'error' ? '#fecaca' : p.level === 'warn' ? '#fde68a' : '#bfdbfe'}">${ST_PROB_LABEL[p.level] || p.level}</span>
+          <span>
+            ${escapeHtml(p.title)}
+            ${p.detail ? `<div class="st-prob-detail">${escapeHtml(p.detail)}</div>` : ''}
+          </span>
+        </div>`).join('') + `</div>`;
+    }
+
+    function stServerCard(srv) {
+      const mem = srv.memory || {};
+      const disk = srv.disk || {};
+      const pm2rows = (srv.pm2 && srv.pm2.processes || []).map(p =>
+        `<tr><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.status)}</td><td>${p.restarts == null ? '—' : p.restarts}</td><td>${p.memMB == null ? '—' : p.memMB + ' МБ'}</td><td>${stFmtIso(p.uptime)}</td></tr>`).join('');
+      return `
+        <div class="st-card">
+          <h3>🖥 Сервер</h3>
+          <div class="st-grid">
+            ${stCell('Хост', escapeHtml(srv.hostname || ''))}
+            ${stCell('ОС', escapeHtml(srv.platform || ''))}
+            ${stCell('Node.js', escapeHtml(srv.node || ''))}
+            ${stCell('Аптайм сервера', stFmtUptime(srv.uptimeSec))}
+            ${stCell('Аптайм админ-сервера', stFmtUptime(srv.procUptimeSec))}
+            ${stCell('CPU', escapeHtml((srv.cpus || 0) + ' ядер · ' + (srv.cpuModel || '')).slice(0, 120))}
+            ${stCell('Загрузка (1/5/15 мин)', `${srv.load1m} / ${srv.load5m} / ${srv.load15m}`)}
+            ${stCell('Память', `${mem.usedGB} из ${mem.totalGB} ГБ (${mem.usedPercent}%)`)}
+            ${stCell('Диск', disk.totalGB != null ? `${disk.usedGB} из ${disk.totalGB} ГБ · свободно ${disk.freeGB} ГБ (${disk.usedPercent}% занято)` : '—')}
+            ${stCell('NGINX', escapeHtml(srv.nginx || '—'))}
+          </div>
+          ${srv.pm2 && srv.pm2.available
+            ? `<table class="st-table" style="margin-top:.7rem;"><thead><tr><th>Процесс pm2</th><th>Статус</th><th>Рестартов</th><th>Память</th><th>С запущен</th></tr></thead><tbody>${pm2rows || '<tr><td colspan="5">нет процессов</td></tr>'}</tbody></table>`
+            : '<p class="meta" style="margin-top:.5rem;">pm2 недоступен в этом окружении.</p>'}
+        </div>`;
+    }
+
+    function stSiteCard(site) {
+      const g = site.git || {};
+      const c = site.counters || {};
+      const f = site.files || {};
+      const cnt = Object.keys(c).map(k => `${k}: ${c[k]}`).join(' · ');
+      return `
+        <div class="st-card">
+          <h3>🌐 Сайт <span class="meta">${escapeHtml(site.domain || '')}</span></h3>
+          <div class="st-grid">
+            ${stCell('Код (git)', g.available ? `${escapeHtml(g.branch || '?')} · <code>${escapeHtml(g.commit || '?')}</code>${g.dirty ? ` · изменений файлов: <b style="color:#d97706">${g.dirty}</b>` : ' · чисто'}` : 'git недоступен')}
+            ${stCell('Версия кэша CSS/JS', site.cacheVersion != null ? `?v=${site.cacheVersion}` : 'не определена')}
+            ${stCell('Размер базы', stFmtBytes((site.db.sizeKB || 0) * 1024))}
+            ${stCell('База изменена', stFmtIso(site.db.mtime))}
+            ${stCell('Файлов в uploads/', `${f.uploadsFiles} · ${f.uploadsMB} МБ`)}
+            ${stCell('Данных в js/data/', `${f.dataFiles} · ${f.dataMB} МБ`)}
+          </div>
+          <p class="meta" style="margin-top:.6rem;">Записи базы — ${escapeHtml(cnt)}</p>
+        </div>`;
+    }
+
+    function stPagesCard(pages) {
+      const checked = statusState.pages;
+      const rows = (pages || []).map(p => {
+        const http = checked && checked[p.page] !== undefined ? checked[p.page] : null;
+        const httpCell = http == null
+          ? '<span class="meta">не проверено</span>'
+          : http === 'ERR'
+            ? '<span style="color:#dc2626;font-weight:600;">недоступна</span>'
+            : `<span style="color:${http < 400 ? '#16a34a' : '#dc2626'};font-weight:600;">HTTP ${http}</span>`;
+        return `<tr>
+          <td><code>${escapeHtml(p.page)}</code></td>
+          <td>${p.exists ? '✅ есть' : '<b style="color:#dc2626;">❌ нет</b>'}</td>
+          <td>${p.sizeKB} КБ</td>
+          <td>${httpCell}</td>
+          <td>${p.exists ? `<a href="/${encodeURIComponent(p.page)}" target="_blank" rel="noopener">открыть</a>` : '—'}</td>
+        </tr>`;
+      }).join('');
+      return `
+        <div class="st-card">
+          <h3>📄 Страницы сайта
+            <button class="btn btn-sm btn-secondary" onclick="stCheckPages()" style="margin-left:auto;">
+              ${checked ? '⟳ Проверить доступность' : '🌐 Проверить доступность'}
+            </button>
+          </h3>
+          <p class="meta">Проверка «файл на месте» выполняется админ-сервером. Доступность — HEAD-запросом через NGINX по адресу, с которого открыта админка (на проде это реальный сайт).</p>
+          <table class="st-table"><thead><tr><th>Страница</th><th>Файл</th><th>Размер</th><th>Доступность</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+        </div>`;
+    }
+
+    const ST_PERIODS = [
+      ['day', 'День'], ['week', 'Неделя'], ['month', 'Месяц'], ['year', 'Год'],
+    ];
+
+    function stVisitsCard(v) {
+      const per = statusState.period;
+      const agg = v[per] || {};
+      const tabs = ST_PERIODS.map(([k, label]) =>
+        `<button class="st-tab${k === per ? ' active' : ''}" onclick="stSetPeriod('${k}')">${label}</button>`).join('');
+      const days = (agg.days || []).slice(-31);
+      return `
+        <div class="st-card">
+          <h3>📈 Посещаемость <span class="meta">заходы на сайт (пиксель S163)</span></h3>
+          <div class="st-tabs">${tabs}</div>
+          <div class="st-grid" style="margin-bottom:.8rem;">
+            ${stCell('Заходов', '<b>' + (agg.total || 0) + '</b>')}
+            ${stCell('Уникальных IP', '<b>' + (agg.unique || 0) + '</b>')}
+            ${stCell('Хранится записей', `${v.stored} (кольцевой буфер)`)}
+          </div>
+          <h3 style="font-size:.9rem;">По дням</h3>
+          ${stBars(days.map(d => ({ name: d.date, count: d.count, unique: d.unique })), 'Заходов ещё не было')}
+          <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:.8rem;">
+            <div><h3 style="font-size:.9rem;">По разделам</h3>${stBars(agg.sections)}</div>
+            <div><h3 style="font-size:.9rem;">По страницам</h3>${stBars(agg.pages)}</div>
+            <div><h3 style="font-size:.9rem;">Откуда пришли</h3>${stBars(agg.sources)}</div>
+            <div><h3 style="font-size:.9rem;">Язык браузера</h3>${stBars(agg.langs)}</div>
+          </div>
+        </div>`;
+    }
+
+    function stLastVisitsCard(last) {
+      const rows = (last || []).map(x => `<tr>
+        <td>${escapeHtml(x.d || '')} ${escapeHtml(x.tm || '')}</td>
+        <td><code>${escapeHtml(x.ip || '')}</code></td>
+        <td><code>${escapeHtml(x.page || '')}</code></td>
+        <td>${escapeHtml(x.section || '')}</td>
+        <td class="st-prob-detail">${escapeHtml(x.ref || 'напрямую')}</td>
+        <td>${escapeHtml(x.scr || '')}</td>
+        <td>${escapeHtml(x.lang || '')}</td>
+        <td class="st-prob-detail">${escapeHtml((x.ua || '').slice(0, 40))}</td>
+      </tr>`).join('');
+      return `
+        <div class="st-card">
+          <h3>🕒 Последние заходы <span class="meta">MAC-адрес: ${escapeHtml('недоступен на уровне HTTP — поле пустое')}</span></h3>
+          <table class="st-table"><thead><tr><th>Когда</th><th>IP</th><th>Страница</th><th>Раздел</th><th>Откуда</th><th>Экран</th><th>Язык</th><th>UA</th></tr></thead>
+          <tbody>${rows || '<tr><td colspan="8" class="meta">Пока пусто</td></tr>'}</tbody></table>
+        </div>`;
+    }
+
+    function renderStatusSection() {
+      const d = statusState.data;
+      const box = document.getElementById('status-body') || document.getElementById('status-card');
+      if (!box || !d) return;
+      box.innerHTML = `
+        <div class="st-summary">
+          <span class="status-badge" style="background:${d.state === 'ok' ? '#dcfce7' : d.state === 'warn' ? '#fef3c7' : '#fee2e2'};color:${d.state === 'ok' ? '#166534' : d.state === 'warn' ? '#92400e' : '#991b1b'};">
+            ${d.state === 'ok' ? '🟢 Всё в порядке' : d.state === 'warn' ? '🟡 Есть замечания' : '🔴 Есть ошибки'}
+          </span>
+          <span class="meta">Собрано: ${stFmtIso(d.generatedAt)}</span>
+          <button class="btn btn-sm btn-secondary" onclick="loadStatusSection()" style="margin-left:auto;">⟳ Обновить</button>
+        </div>
+        ${stProblemsCard(d.problems)}
+        ${stSiteCard(d.site)}
+        ${stPagesCard(d.site.pages)}
+        ${stServerCard(d.server)}
+        ${stVisitsCard(d.visits)}
+        ${stLastVisitsCard(d.visits.last)}
+      `;
+    }
+
+    async function loadStatusSection() {
+      const content = document.getElementById('admin-content');
+      content.innerHTML = '<div class="section-card" id="status-card">' +
+        '<h2>📟 Статус</h2><p class="meta">Собираем состояние сайта и сервера…</p></div>';
+      if (statusState.loading) return;
+      statusState.loading = true;
+      try {
+        const res = await api('/api/admin/site-status', { method: 'POST', body: '{}' });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || 'HTTP ' + res.status);
+        statusState.data = data;
+        document.getElementById('status-card').innerHTML =
+          '<h2>📟 Статус <span class="meta">состояние сайта, сервера и посещаемость</span></h2><div id="status-body"></div>';
+        renderStatusSection();
+        refreshHeaderStatus(data);
+      } catch (err) {
+        const box = document.getElementById('status-card');
+        if (box) box.innerHTML = '<h2>📟 Статус</h2><p style="color:var(--danger);">Не удалось получить состояние: ' +
+          escapeHtml(err.message) + '</p>';
+      } finally {
+        statusState.loading = false;
+      }
+    }
+
+    function stSetPeriod(p) {
+      statusState.period = p;
+      renderStatusSection();
+    }
+
+    // Доступность страниц — HEAD-запросами через тот же адрес, откуда открыта
+    // админка: на проде это реальный обход NGINX, локально — локальный сервер.
+    async function stCheckPages() {
+      const d = statusState.data;
+      if (!d) return;
+      const pages = (d.site.pages || []).map(p => p.page).filter(Boolean);
+      const out = {};
+      await Promise.all(pages.map(async (p) => {
+        try {
+          const r = await fetch('/' + encodeURIComponent(p), { method: 'HEAD', cache: 'no-store' });
+          out[p] = r.status;
+        } catch { out[p] = 'ERR'; }
+      }));
+      statusState.pages = out;
+      renderStatusSection();
+      showToast('Проверка доступности выполнена');
+    }
+
+    // Кнопка состояния в шапке (S164)
+    function refreshHeaderStatus(data) {
+      const btn = document.getElementById('hdr-status-btn');
+      const dot = document.getElementById('hdr-status-dot');
+      const nums = document.getElementById('hdr-status-nums');
+      if (!btn || !nums) return;
+      if (!data) {
+        btn.className = 'hdr-status hdr-status-unknown';
+        nums.textContent = '…';
+        return;
+      }
+      const p = data.problems || {};
+      btn.className = 'hdr-status hdr-status-' + (data.state === 'ok' ? 'ok' : data.state === 'warn' ? 'warn' : 'error');
+      const today = (data.visits && data.visits.day && data.visits.day.total) || 0;
+      nums.textContent = data.state === 'ok'
+        ? `OK · заходов сегодня: ${today}`
+        : `ошибок ${p.errors || 0} · замечаний ${p.warns || 0} · заходов сегодня ${today}`;
+      btn.title = 'Состояние сайта: ' + (data.state === 'ok' ? 'всё в порядке' : data.state === 'warn' ? 'есть замечания' : 'есть ошибки') +
+        ' — нажмите, чтобы открыть раздел «Статус»';
+    }
+
+    async function initHeaderStatus() {
+      try {
+        const res = await api('/api/admin/site-status', { method: 'POST', body: '{}' });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) { refreshHeaderStatus(data); if (!statusState.data) statusState.data = data; }
+        else refreshHeaderStatus(null);
+      } catch { refreshHeaderStatus(null); }
     }
 
     // ── Контакты ──
@@ -4215,16 +5060,6 @@
       body.innerHTML = html;
     }
 
-    function renderSliderView(box, items, db) {
-      const body = viewHead(box, '🎞 Слайдер главной', items.length, 'интервал по умолчанию: ' + (db.defaultInterval || 5) + ' с');
-      if (!items.length) { body.innerHTML = '<p class="meta">Нет данных</p>'; return; }
-      body.innerHTML = '<div class="thumb-row">' + items.map((s, i) => `
-        <div class="thumb-item" onclick="openImageView('${fileUrl(s.image)}', ${escapeHtml(s.title || 'Слайд ' + (i + 1))})">
-          <img src="${fileUrl(s.image)}" alt="${escapeHtml(s.title || '')}" loading="lazy">
-          <div class="cap">${s.hidden ? '🙈 скрыт · ' : ''}${escapeHtml(s.title || 'без названия')} · ${escapeHtml(String(s.interval || db.defaultInterval || 5))}с</div>
-        </div>`).join('') + '</div>';
-    }
-
     function renderContactsView(box, c, db) {
       const body = viewHead(box, '📞 Контакты', Object.keys(c).filter(k => c[k]).length);
       const social = Array.isArray(c.social) ? c.social.map(s => `${s.title || s.id}: ${s.url || '—'}`).join('\n') : '';
@@ -5017,10 +5852,11 @@
       if (sectionId === 'prices') return 'Позиции прайса (S115). Из них собирается раздел «Наши цены» на главной и блоки стоимости на страницах программ и тренеров. Название, группа, подвид (вариант цены), цена и старая цена, срок, пояснение, привязка к программе/тренеру, 👁/🙈 и порядок перетаскиванием. Внизу — служебные поля для CRM (оплата тренеру, режим оплаты, оплата за бесплатную): клиент их не видит и на сайт они не экспортируются.';
       if (sectionId === 'discounts') return 'Скидки и условия к позициям прайса (S115). Тип: процент, сумма, бонус или пояснение. Отметка «применяется к позициям» рисует бейдж у цены на сайте; пояснения без бейджа попадают в блок «Скидки и условия» внизу раздела.';
       if (sectionId === 'crm-leads') return 'Заявки с формы «Заказать обратный звонок» на сайте. Воронка: Новая → Звонок → Объяснено → Клиент_пришёл_на_первую → Клиент_ходит. Статусы сохраняются в leads.json.';
-      if (sectionId === 'slider') return 'Слайды главной страницы (порядок = порядок в списке). Клик — просмотр. Редактирование — в следующем пакете.';
+      if (sectionId === 'slider') return 'Слайды главной страницы (порядок = порядок в списке). У каждого слайда — заголовок, описание, ссылка на страницу из списка, время показа, одна из 9 позиций текста, цвет/размер/отступы и наложение поверх фото. Скрытые слайды на сайт не попадают. Ниже — настройки самого слайдера: автопрокрутка, стрелки, точки, высота и значения по умолчанию.';
       if (sectionId === 'contacts') return 'Контакты из базы — используются в футере на всех страницах. Изменение — в следующем пакете.';
       if (sectionId === 'news-settings') return 'Настройки раздела новостей (defaultImage, defaultVideo, autoPublish). Сейчас пустые — работают значения по умолчанию.';
       if (sectionId === 'album') return 'Свободные фото общего альбома (страница «Альбом» пока выключена из навигации). Клик — просмотр. Загружаются ночным парсером из папки на диске.';
+      if (sectionId === 'events') return 'Мероприятия центра: семинары, тестирования, праздники, беседы, открытые мероприятия, выездные семинары. У каждого — название, тип, дата+время начала/окончания, фотообложка, короткое описание, полное описание (markdown), а у прошедших — фотогалерея (слайдер), видео и отзывы участников. Планируемые показываются на сайте плиткой, прошедшие — слайдером. При создании мероприятия на будущее автоматически заводится новость на главной; когда мероприятие проходит — новость скрывается, а администраторам приходит письмо «загрузите фото и видео». Если мероприятий нет или все скрыты — раздел исчезает из меню сайта.';
       if (sectionId === 'bots-email') return 'Настройки SMTP для отправки уведомлений о заявках, напоминаний и тестовых писем. Хост, порт, логин, пароль, адрес получателя. Все почтовые маршруты в одном разделе.';
       if (sectionId === 'bots-email') return 'Единый раздел почты: SMTP-настройки, все автоматические письма и тестовая отправка. Хост, порт, логин, пароль, адрес получателя.';
       if (sectionId === 'integrations-dance') return 'Синхронизация данных центра из DanceStudio (XML-донор) в PostgreSQL с экспортом на сайт. Пока только таблица статусов: компоненты ждут реализации моста (MULTITICKET-DANCESTUDIO, тикеты 2.1–2.3). Кнопка ручного запуска неактивна.';
@@ -5038,7 +5874,7 @@
         directions: ['id', 'name', 'description', 'image', 'hidden', 'isBuiltin', 'programs[]'],
         prices: ['id', 'group', 'title', 'variant', 'price', 'priceOld', 'unit', 'note', 'programId', 'trainerId', 'discountIds[]', 'visible', 'order', '🔒 trainerPay', '🔒 payMode', '🔒 freeTrainerPay'],
         discounts: ['id', 'title', 'type (percent|amount|bonus|note)', 'value', 'condition', 'appliesTo[]', 'visible', 'order'],
-        slider: ['id', 'title', 'image', 'interval', 'position'],
+        slider: ['id', 'title', 'description', 'image', 'link', 'linkTarget', 'interval', 'position', 'textColor', 'textSize', 'textMargin{top,right,bottom,left}', 'overlay{enabled,color,opacity}', 'hidden'],
         contacts: ['address', 'phone', 'email', 'vk', 'telegram', 'social[]', 'additionalContacts'],
         'news-settings': ['defaultImage', 'defaultVideo', 'autoPublish'],
         dividers: ['globalDivider.enabled', 'globalDivider.textContent', 'globalDivider.height', 'globalDivider.background', 'globalDivider.fontSize'],
@@ -5049,6 +5885,7 @@
         pages: ['pages[].id', 'pages[].title', 'pages[].url', 'pages[].text', 'pages[].visible', 'pages[].showInMenu', 'pages[].order'],
         'footer-links': ['footerLinks[].id', 'footerLinks[].group', 'footerLinks[].title', 'footerLinks[].url', 'footerLinks[].visible'],
         album: ['id', 'image', 'thumb', 'title', 'date'],
+        events: ['id', 'name', 'type (семинар|тестирование|праздник|беседа|открытое_мероприятие|выездной_семинар)', 'dateStart', 'dateEnd', 'image', 'shortDescription', 'description (markdown)', 'reviews[].{name,text}', 'photoAlbum[].{image,caption}', 'videos[].{title,url}', 'hidden', 'newsId'],
         'bots-email': ['emailConfig.smtpHost', 'emailConfig.smtpPort', 'emailConfig.smtpSecure', 'emailConfig.smtpUser', 'emailConfig.smtpPass', 'emailConfig.fromName', 'emailConfig.adminEmail', 'emailConfig.errorEmail[]'],
         crm: ['(заглушка — без данных)'],
         'crm-leads': ['id', 'ts', 'name', 'phone', 'email', 'message', 'reason', 'page', 'ua', 'status', 'emailSent', 'emailError'],
@@ -5058,6 +5895,355 @@
         data: ['db.json', 'backups/', 'static/js/data/']
       };
       return fieldsMap[sectionId] || [];
+    }
+
+    /* ============================================
+       S167: ЕДИНЫЙ РЕДАКТОР СЛАЙДОВ
+       Альбом = слайдер. Во всех альбомах сайта (фотоальбомы
+       программ/тренеров, галерея мероприятий) заполнение и вид
+       — как у главного слайдера: заголовок, описание, ссылка,
+       интервал, 9 позиций текста, цвет/размер/отступы, наложение,
+       скрытие, порядок перетаскиванием.
+       Состояния адресуются ключом: 'main' → slidesState,
+       'trainer' → editingTrainerAlbum, 'event' → editingEventAlbum.
+       ============================================ */
+    const slideStates = {
+      main: () => slidesState,
+      trainer: () => editingTrainerAlbum,
+      event: () => editingEventAlbum,
+    };
+    const slideRenderers = {}; // key → функция перерисовки контейнера
+
+    function slideArr(key) {
+      const f = slideStates[key];
+      return f ? f() : [];
+    }
+    function slideRerender(key) {
+      const r = slideRenderers[key];
+      if (r) r();
+    }
+    function slideField(key, i, field, value) {
+      const s = slideArr(key)[i];
+      if (s) s[field] = value;
+    }
+    function slideFieldNum(key, i, field, value) {
+      slideField(key, i, field, Number(value));
+    }
+    // Вложенные поля: 'textMargin.top', 'overlay.color', 'overlay.opacity'
+    function slideFieldPath(key, i, path, value) {
+      const s = slideArr(key)[i];
+      if (!s) return;
+      const dot = path.indexOf('.');
+      const obj = path.slice(0, dot), prop = path.slice(dot + 1);
+      s[obj] = s[obj] || {};
+      s[obj][prop] = (obj === 'overlay' && prop === 'enabled') ? !!value : Number(value);
+    }
+    function slideToggleHidden(key, i) {
+      const s = slideArr(key)[i];
+      if (!s) return;
+      s.hidden = !s.hidden;
+      slideRerender(key);
+    }
+    function slideDelete(key, i) {
+      const a = slideArr(key);
+      const s = a[i];
+      if (!s) return;
+      if (!confirm('Удалить кадр «' + (s.title || 'без названия') + '»?')) return;
+      a.splice(i, 1);
+      slideRerender(key);
+      showToast('Кадр удалён — сохраните запись');
+    }
+
+    // Новый слайд: значения по умолчанию как у главного слайдера
+    function newSlide(image, title) {
+      const gs = slidesSettingsState || {};
+      return {
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        image: image || '', title: title || '', description: '', link: '', linkTarget: '_self',
+        interval: 0,
+        position: gs.defaultPosition || 'center',
+        textColor: gs.defaultTextColor || '#ffffff',
+        textSize: gs.defaultTextSize || 42,
+        textMargin: { top: 20, right: 20, bottom: 20, left: 20 },
+        overlay: { enabled: true, color: '#000000', opacity: 0.4 },
+        hidden: false
+      };
+    }
+
+    // Строка слайда — общая для главного слайдера и всех альбомов
+    const SLIDE_POSITIONS = [
+      ['top-left','↖ верх-лево'], ['top-center','↑ верх-центр'], ['top-right','↗ верх-право'],
+      ['center-left','← центр-лево'], ['center','• по центру'], ['center-right','→ центр-право'],
+      ['bottom-left','↙ низ-лево'], ['bottom-center','↓ низ-центр'], ['bottom-right','↘ низ-право']
+    ];
+    const slidePosMigrate = { left: 'center-left', right: 'center-right' };
+
+    function renderSlideRow(key, s, i, draggable) {
+      const pos = slidePosMigrate[s.position] || s.position || 'center';
+      const tm = s.textMargin || {};
+      const ov = s.overlay || {};
+      const dftInterval = key === 'main' ? slidesDefaultInterval : 0;
+      return `
+        <div class="news-item slider-item" data-key="${key}" data-idx="${i}"${draggable ? ` draggable="true"
+             ondragstart="onSlideDragStart(event)" ondragover="onSlideDragOver(event)"
+             ondragleave="onSlideDragLeave(event)" ondrop="onSlideDrop(event)"
+             ondragend="onSlideDragEnd(event)"` : ''}>
+          ${draggable ? '<span class="news-drag-handle" title="Перетащите для изменения порядка">⠿</span>' : '<span class="news-drag-handle" style="visibility:hidden">⠿</span>'}
+          <div style="display:flex;gap:.5rem;align-items:flex-start;flex-wrap:wrap;">
+            <img src="${fileUrl(s.image)}" alt="" style="width:120px;height:68px;object-fit:cover;border-radius:6px;flex:0 0 auto;">
+            <button class="btn btn-sm btn-secondary" onclick="openPhotoManager('${key}', ${i})" title="Выбрать из фотоархива">📸</button>
+          </div>
+          <div class="news-info" style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:.4rem;">
+            <input type="text" value="${escAttr(s.title || '')}" maxlength="80" placeholder="Заголовок слайда"
+                   oninput="slideField('${key}', ${i}, 'title', this.value)"
+                   style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;">
+            <textarea rows="2" placeholder="Описание (опционально)"
+                   oninput="slideField('${key}', ${i}, 'description', this.value)"
+                   style="width:100%;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;resize:vertical;font-size:.85rem;">${escapeHtml(s.description || '')}</textarea>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
+              ${sliderLinkSelectHtml(key, i, s.link)}
+              <label title="Открыть в новой вкладке">
+                <input type="checkbox" ${s.linkTarget === '_blank' ? 'checked' : ''}
+                       onchange="slideField('${key}', ${i}, 'linkTarget', this.checked ? '_blank' : '_self')"> новая
+              </label>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.85rem;">
+              <label>Интервал, с:
+                <input type="number" min="1" max="120" value="${s.interval || dftInterval || 5}"
+                       onchange="slideFieldNum('${key}', ${i}, 'interval', this.value)"
+                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+              </label>
+              <label>Позиция текста:
+                <select onchange="slideField('${key}', ${i}, 'position', this.value)"
+                        style="padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+                  ${SLIDE_POSITIONS.map(([v, l]) => `<option value="${v}"${pos === v ? ' selected' : ''}>${l}</option>`).join('')}
+                </select>
+              </label>
+              <label>Цвет текста:
+                <input type="color" value="${s.textColor || '#ffffff'}"
+                       onchange="slideField('${key}', ${i}, 'textColor', this.value)"
+                       style="width:40px;height:28px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
+              </label>
+              <label>Размер заголовка:
+                <input type="number" min="16" max="96" value="${s.textSize || 42}"
+                       onchange="slideFieldNum('${key}', ${i}, 'textSize', this.value)"
+                       style="width:60px;padding:.25rem .4rem;border:1px solid var(--border);border-radius:6px;">
+              </label>
+            </div>
+            <div style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;font-size:.8rem;">
+              <span>Отступы (px):</span>
+              <label>Т<input type="number" min="0" max="200" value="${tm.top ?? 20}"
+                     onchange="slideFieldPath('${key}', ${i}, 'textMargin.top', this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>П<input type="number" min="0" max="200" value="${tm.right ?? 20}"
+                     onchange="slideFieldPath('${key}', ${i}, 'textMargin.right', this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>Н<input type="number" min="0" max="200" value="${tm.bottom ?? 20}"
+                     onchange="slideFieldPath('${key}', ${i}, 'textMargin.bottom', this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <label>Л<input type="number" min="0" max="200" value="${tm.left ?? 20}"
+                     onchange="slideFieldPath('${key}', ${i}, 'textMargin.left', this.value)"
+                     style="width:45px;padding:.2rem;border:1px solid var(--border);border-radius:4px;"></label>
+              <span style="margin-left:.5rem;">Наложение:
+                <label><input type="checkbox" ${ov.enabled !== false ? 'checked' : ''}
+                       onchange="slideFieldPath('${key}', ${i}, 'overlay.enabled', this.checked)"> вкл</label>
+                <input type="color" value="${ov.color || '#000000'}"
+                       onchange="slideFieldPath('${key}', ${i}, 'overlay.color', this.value)"
+                       style="width:32px;height:24px;padding:0;border:1px solid var(--border);border-radius:4px;cursor:pointer;">
+                <input type="number" min="0" max="0.9" step="0.1" value="${ov.opacity ?? 0.4}"
+                       onchange="slideFieldPath('${key}', ${i}, 'overlay.opacity', this.value)"
+                       style="width:50px;padding:.2rem;border:1px solid var(--border);border-radius:4px;" title="Прозрачность 0–0.9">
+              </span>
+            </div>
+          </div>
+           <div class="news-actions">
+             <button class="btn btn-sm btn-secondary" onclick="slideToggleHidden('${key}', ${i})" title="${s.hidden ? 'Показать на сайте' : 'Скрыть с сайта'}">${s.hidden ? '🙈' : '👁'}</button>
+             <button class="btn btn-sm btn-danger" onclick="slideDelete('${key}', ${i})" title="Удалить слайд">🗑</button>
+           </div>
+         </div>`;
+    }
+
+    // Свойства-настройки для строки-обёртки ( caption по altBase не нужен —
+    // заголовок теперь поле слайда )
+    function slideListHtml(key, arr) {
+      const pairs = arr.map((s, i) => [s, i]);
+      const shown = pairs.filter(([s]) => !s.hidden).map(([s, i]) => renderSlideRow(key, s, i, true));
+      const hidden = pairs.filter(([s]) => s.hidden).map(([s, i]) => renderSlideRow(key, s, i, false));
+      const hiddenBlock = hidden.length ? `
+        <details style="margin-top:.75rem;border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;background:var(--bg-secondary,#fafafa);">
+          <summary style="cursor:pointer;font-weight:600;color:var(--text-secondary);">
+            🙈 Скрытые кадры (${hidden.length}) — не показываются на сайте
+          </summary>
+          <div class="news-list" style="margin-top:.75rem;opacity:.75;">${hidden.join('')}</div>
+        </details>` : '';
+      return `<div class="news-list">${shown.join('') || '<p class="meta">Кадров нет. Добавьте кнопками ниже.</p>'}</div>${hiddenBlock}`;
+    }
+
+    // Drag-and-drop для любого списка слайдов
+    let slideDrag = null; // { key, idx }
+    function onSlideDragStart(e) {
+      slideDrag = { key: e.currentTarget.dataset.key, idx: Number(e.currentTarget.dataset.idx) };
+      e.currentTarget.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+    function onSlideDragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; e.currentTarget.classList.add('drag-over'); }
+    function onSlideDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+    function onSlideDragEnd(e) {
+      e.currentTarget.classList.remove('dragging');
+      document.querySelectorAll('.slider-item').forEach(el => el.classList.remove('drag-over', 'dragging'));
+      slideDrag = null;
+    }
+    function onSlideDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      const key = e.currentTarget.dataset.key;
+      const toIdx = Number(e.currentTarget.dataset.idx);
+      if (!slideDrag || slideDrag.key !== key || slideDrag.idx === toIdx) { slideDrag = null; return; }
+      const arr = slideArr(key);
+      const [moved] = arr.splice(slideDrag.idx, 1);
+      arr.splice(toIdx, 0, moved);
+      slideDrag = null;
+      slideRerender(key);
+      showToast('Порядок изменён — сохраните запись');
+    }
+
+    // Старые альбомы хранили строки/{image,caption} — приводим к слайдам
+    function normalizeAlbumSlides(list) {
+      return (Array.isArray(list) ? list : []).map((x, i) => {
+        if (typeof x === 'string') return Object.assign(newSlide(''), { image: x, title: '' });
+        const base = newSlide(x.image || '', x.title || x.caption || '');
+        if (typeof x.description === 'string') base.description = x.description;
+        if (x.link) base.link = x.link;
+        if (x.linkTarget) base.linkTarget = x.linkTarget;
+        if (Number(x.interval) > 0) base.interval = Number(x.interval);
+        if (x.position) base.position = slidePosMigrate[x.position] || x.position;
+        if (x.textColor) base.textColor = x.textColor;
+        if (Number(x.textSize) > 0) base.textSize = Number(x.textSize);
+        if (x.textMargin && typeof x.textMargin === 'object') base.textMargin = { ...base.textMargin, ...x.textMargin };
+        if (x.overlay && typeof x.overlay === 'object') base.overlay = { ...base.overlay, ...x.overlay };
+        base.hidden = x.hidden === true;
+        return base;
+      });
+    }
+
+    // Панель добавления кадров: банк (сетка) + загрузка файла
+    function albumEditorToolbar(key, containerId, bankFilter) {
+      return `
+        <div style="margin-top:.6rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
+          <button type="button" class="btn btn-sm btn-secondary" onclick="toggleAlbumBank('${key}','${containerId}')">📷 Кадр из альбома</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="albumUploadClick('${key}','${containerId}')">📤 Загрузить файл</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="slideAddBlank('${key}')">➕ Пустой кадр</button>
+          <input type="file" id="${containerId}-upload" accept="image/*" multiple style="display:none"
+                 onchange="albumUploadFiles('${key}','${containerId}',this)">
+        </div>
+        <div id="${containerId}-bank" class="album-picker" style="display:none;margin-top:.6rem;" data-bank-filter="${bankFilter || ''}"></div>`;
+    }
+
+    function slideAddBlank(key) {
+      slideArr(key).push(newSlide('', ''));
+      slideRerender(key);
+    }
+
+    // Главный рендер редактора альбома (в контейнере модалки)
+    const albumBankOpen = {}; // key → открыт ли банк-грид
+    function renderAlbumSlideEditor(key, containerId, bankFilter) {
+      const box = document.getElementById(containerId);
+      if (!box) return;
+      slideRenderers[key] = () => renderAlbumSlideEditor(key, containerId, bankFilter);
+      const arr = slideArr(key);
+      box.innerHTML =
+        `<p class="meta">Альбом — это слайдер, как главный слайдер сайта: у каждого кадра заголовок, описание, ссылка, интервал, позиция и стиль текста, наложение. Порядок — перетаскиванием за ⠿, кадр можно скрыть (🙈). Кадров: ${arr.length}.</p>` +
+        slideListHtml(key, arr) +
+        albumEditorToolbar(key, containerId, bankFilter);
+      if (albumBankOpen[key]) renderAlbumBankGrid(key, containerId);
+    }
+
+    // Запись альбома для базы: слайд-поля + caption=title (обратная совместимость)
+    function albumRecords(arr) {
+      return (Array.isArray(arr) ? arr : []).map(s => {
+        const rec = { image: s.image || '' };
+        if (s.title) { rec.title = s.title; rec.caption = s.title; }
+        if (s.description) rec.description = s.description;
+        if (s.link) { rec.link = s.link; rec.linkTarget = s.linkTarget === '_blank' ? '_blank' : '_self'; }
+        if (Number(s.interval) > 0) rec.interval = Number(s.interval);
+        if (s.position) rec.position = s.position;
+        if (s.textColor) rec.textColor = s.textColor;
+        if (Number(s.textSize) > 0) rec.textSize = Number(s.textSize);
+        if (s.textMargin) rec.textMargin = s.textMargin;
+        if (s.overlay) rec.overlay = s.overlay;
+        if (s.hidden === true) rec.hidden = true;
+        return rec;
+      }).filter(r => r.image);
+    }
+
+    function albumUploadClick(key, containerId) {
+      const inp = document.getElementById(containerId + '-upload');
+      if (inp) inp.click();
+    }
+
+    async function albumUploadFiles(key, containerId, input) {
+      const files = Array.from(input.files || []);
+      if (!files.length) return;
+      for (const f of files) {
+        try {
+          const p = await uploadFile(f, 'album-image');
+          slideArr(key).push(Object.assign(newSlide(p, ''), { title: '' }));
+        } catch (err) {
+          showToast('Ошибка загрузки ' + f.name + ': ' + err.message, 'error');
+        }
+      }
+      input.value = '';
+      slideRerender(key);
+      showToast('Загружено кадров: ' + files.length + ' — сохраните запись');
+    }
+
+    // Сетка банка кадров (по образцу прежнего album-picker)
+    async function toggleAlbumBank(key, containerId) {
+      const bankBox = document.getElementById(containerId + '-bank');
+      if (!bankBox) return;
+      if (bankBox.style.display !== 'none') {
+        bankBox.style.display = 'none';
+        albumBankOpen[key] = false;
+        return;
+      }
+      bankBox.style.display = '';
+      albumBankOpen[key] = true;
+      await renderAlbumBankGrid(key, containerId);
+    }
+
+    async function renderAlbumBankGrid(key, containerId) {
+      const bankBox = document.getElementById(containerId + '-bank');
+      if (!bankBox) return;
+      const filter = bankBox.dataset.bankFilter || '';
+      let bank = await ensureEventBank();
+      if (filter === 'trainer') bank = bank.filter(a => /тренер/i.test(String(a.category || '')));
+      const arr = slideArr(key);
+      const chosen = new Set(arr.map(a => normImgPath(a.image)));
+      const list = bank.slice(0, 400);
+      bankBox.innerHTML = '<p class="meta">Клик по фото — добавить кадр в слайдер (повторный клик — убрать).</p>' +
+        (list.length
+          ? '<div class="album-picker-grid">' + list.map(a => `
+              <label class="album-pick${chosen.has(normImgPath(a.image)) ? ' picked' : ''}" data-img="${escapeHtml(a.image)}">
+                <input type="checkbox" ${chosen.has(normImgPath(a.image)) ? 'checked' : ''} style="width:auto;">
+                <img src="${fileUrl(a.thumb || a.image)}" loading="lazy" alt="">
+              </label>`).join('') + '</div>'
+          : '<p class="meta">Банк кадров пуст: загрузите фото в раздел «Данные → Альбом».</p>');
+      bankBox.querySelectorAll('.album-pick').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const img = el.dataset.img;
+          const a2 = slideArr(key);
+          const i = a2.findIndex(x => normImgPath(x.image) === normImgPath(img));
+          if (i === -1) {
+            const src = (eventBank || []).find(b => normImgPath(b.image) === normImgPath(img));
+            a2.push(Object.assign(newSlide(img, (src && src.title) || '')));
+          } else {
+            a2.splice(i, 1);
+          }
+          // перерисовка редактора восстановит и банк-грид (albumBankOpen)
+          slideRerender(key);
+        });
+      });
     }
 
     /* ============================================
@@ -5911,8 +7097,14 @@
 
     document.getElementById('trainer-form').addEventListener('submit', saveTrainerForm);
 
+    document.getElementById('event-form').addEventListener('submit', saveEventForm);
+
     document.getElementById('news-modal').addEventListener('click', (e) => {
       if (e.target === document.getElementById('news-modal')) closeNewsModal();
+    });
+
+    document.getElementById('event-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('event-modal')) closeEventModal();
     });
 
     /* ============================================
@@ -6320,49 +7512,11 @@
       return window.__albumBank;
     }
 
+    // S167: фотоальбом тренера/программы = слайдер, редактор — как у главного слайдера
+    let currentTrainerFormMode = 'trainer';
     function renderTrainerAlbumPicker() {
-      const box = document.getElementById('trainer-album-picker');
-      if (!box) return;
-      const bank = trainerAlbumBank();
-      const byPath = new Map(bank.map(a => [normImgPath(a.image), a]));
-      const chosen = new Set(editingTrainerAlbum.map(normImgPath));
-      // S146: выбранные кадры, которых нет в банке (загружены на проде отдельными файлами,
-      // категория не «тренер» и т.п.) — без этого блока админка показывала
-      // «Выбрано кадров: 4» и ни одной картинки.
-      const outside = editingTrainerAlbum.filter(p => !byPath.has(normImgPath(p)));
-      const list = bank.slice(0, 400);
-      box.innerHTML =
-        `<p class="meta">Выбрано кадров: ${editingTrainerAlbum.length}. Нажмите на фото, чтобы добавить/убрать.</p>` +
-        (outside.length
-          ? '<div class="album-picker-grid">' + outside.map(p => `
-              <label class="album-pick picked" data-img="${escapeHtml(p)}">
-                <input type="checkbox" checked style="width:auto;">
-                <img src="${fileUrl(p)}" loading="lazy" alt=""
-                     onerror="this.closest('.album-pick').classList.add('broken')">
-              </label>`).join('') + '</div>' +
-            '<p class="meta" style="margin:0.4rem 0 0.6rem;">↑ выбранные кадры вне общего альбома (нажмите ✕-галочку, чтобы убрать)</p>'
-          : '') +
-        (list.length
-          ? '<div class="album-picker-grid">' +
-            list.map(a => `
-              <label class="album-pick${chosen.has(normImgPath(a.image)) ? ' picked' : ''}" data-img="${escapeHtml(a.image)}">
-                <input type="checkbox" ${chosen.has(normImgPath(a.image)) ? 'checked' : ''} style="width:auto;">
-                <img src="${fileUrl(a.thumb || a.image)}" loading="lazy" alt="">
-              </label>`).join('') +
-            (bank.length > list.length
-              ? `<p class="meta" style="margin-top:0.5rem;">Показаны первые ${list.length} кадров из ${bank.length} — остальные уже выбранные остаются активными.</p>`
-              : '') +
-            '</div>'
-          : '<p class="meta">Банк кадров пуст: загрузите фото в раздел «Альбом» с категорией, содержащей «тренер».</p>');
-      box.querySelectorAll('.album-pick').forEach(el => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          const img = el.dataset.img;
-          const i = editingTrainerAlbum.indexOf(img);
-          if (i === -1) editingTrainerAlbum.push(img); else editingTrainerAlbum.splice(i, 1);
-          renderTrainerAlbumPicker();
-        });
-      });
+      // в режиме тренера банк фильтруется категорией «тренер», в режиме программы — весь банк
+      renderAlbumSlideEditor('trainer', 'trainer-album-picker', currentTrainerFormMode === 'trainer' ? 'trainer' : '');
     }
 
     function openTrainerModal(trainer = null) {
@@ -6385,8 +7539,8 @@
       document.getElementById('trainer-motto-input').value = trainer ? (trainer.motto || '') : '';
       fillTrainerFlags(trainer);
       editingTrainerImage = trainer ? trainer.image : null;
-      editingTrainerAlbum = trainer && Array.isArray(trainer.photoAlbum)
-        ? trainer.photoAlbum.map(x => typeof x === 'string' ? x : x.image).filter(Boolean).map(normImgPath) : [];
+      editingTrainerAlbum = normalizeAlbumSlides(trainer && trainer.photoAlbum);
+      document.getElementById('trainer-image-input').value = '';
       renderTrainerImageInfo();
       renderTrainerAlbumPicker();
       ensureAlbumBank().then(() => renderTrainerAlbumPicker());
@@ -6454,6 +7608,8 @@
            rec.name = name;
            rec.description = mdGetValue('trainer-md-editor');
            if (image) rec.image = image; else delete rec.image;
+           // S167: альбом программы редактируется так же, как у тренера (единый редактор)
+           rec.photoAlbum = albumRecords(editingTrainerAlbum);
            rec.hidden = document.getElementById('trainer-hidden-input').checked;
            programsData[progIdx] = rec;
            const res = await api('/api/admin/save-programs', {
@@ -6477,7 +7633,7 @@
            rec.education = document.getElementById('trainer-education-input').value.trim();
            rec.motto = document.getElementById('trainer-motto-input').value.trim();
            if (image) rec.image = image; else delete rec.image;
-           rec.photoAlbum = editingTrainerAlbum.map(p => ({ image: p }));
+           rec.photoAlbum = albumRecords(editingTrainerAlbum);
            rec.hidden = document.getElementById('trainer-hidden-input').checked;
            document.querySelectorAll('#trainer-flags input').forEach(cb => {
              rec[cb.dataset.flag] = cb.checked;
@@ -6514,9 +7670,10 @@
     const TRAINER_ONLY_FIELDS = ['trainer-category-input', 'trainer-specialization-input',
       'trainer-exp-ushu-input', 'trainer-exp-coach-input',
       'trainer-education-input', 'trainer-motto-input',
-      'trainer-flags', 'trainer-album-picker'];
+      'trainer-flags'];
 
     function setTrainerFormMode(mode) {
+      currentTrainerFormMode = mode;
       TRAINER_ONLY_FIELDS.forEach(id => {
         const el = document.getElementById(id);
         const group = el && el.closest('.form-group');
@@ -6548,6 +7705,10 @@
       editingTrainerImage = prog ? prog.image : null;
       document.getElementById('trainer-image-input').value = '';
       renderTrainerImageInfo();
+      // S167: альбом программы — тот же редактор, что у тренера и главного слайдера
+      editingTrainerAlbum = normalizeAlbumSlides(prog && prog.photoAlbum);
+      renderTrainerAlbumPicker();
+      ensureAlbumBank().then(() => renderTrainerAlbumPicker());
     }
 
     function closeProgramModal() {
@@ -6613,6 +7774,362 @@
       });
       entityDragId = null;
       entityDragType = null;
+    }
+
+    /* ============================================
+       S166: МЕРОПРИЯТИЯ (events) — CRUD в суперразделе «Данные»
+       Поля: название/тип/дата+время начала и окончания/фотообложка/
+       короткое описание/md-описание/фотогалерея/видео/отзывы/скрытие.
+       Сервер при сохранении сам создаёт новость для будущего события
+       и скрывает новость у прошедшего (см. admin-server.mjs).
+       ============================================ */
+    let eventsData = [];
+    let eventsTypes = ['семинар', 'тестирование', 'праздник', 'беседа', 'открытое_мероприятие', 'выездной_семинар'];
+    let eventsNewsIndex = []; // [{id,title,hidden}] — связь мероприятий с новостями
+    let editingEventImage = null;
+    let editingEventAlbum = []; // пути кадров фотогалереи
+    let eventBank = null;       // банк кадров общего альбома (без фильтра категории)
+
+    function eventIsPast(ev) {
+      const s = String(ev.dateEnd || ev.dateStart || '');
+      if (!s) return false;
+      const d = new Date(s.length === 10 ? s + 'T00:00' : s);
+      return !isNaN(d.getTime()) && d.getTime() < Date.now();
+    }
+
+    function eventStatusLabel(ev) {
+      if (ev.hidden) return '🙈 скрыто';
+      return eventIsPast(ev) ? '✅ прошло' : '🗓 планируется';
+    }
+
+    async function ensureEventBank() {
+      if (eventBank && eventBank.length) return eventBank;
+      try {
+        const res = await api('/api/admin/get-data', { method: 'POST', body: '{}' });
+        if (!res.ok) return [];
+        const payload = await res.json();
+        const album = (payload.data && payload.data.album) || payload.album || [];
+        eventBank = album.filter(a => a.image && String(a.image).startsWith('uploads/'));
+      } catch (e) {
+        eventBank = [];
+      }
+      return eventBank;
+    }
+
+    async function loadEventsSection() {
+      const content = document.getElementById('admin-content');
+      const old = content.querySelector('#events-card');
+      if (old) old.remove();
+      try {
+        const res = await api('/api/admin/get-events', { method: 'POST', body: '{}' });
+        if (!res.ok) {
+          const d = await res.json().catch(() => ({}));
+          content.insertAdjacentHTML('beforeend',
+            `<div class="section-card" id="events-card"><p style="color:var(--danger);">Не удалось загрузить мероприятия: ${escapeHtml(d.error || res.status)}</p></div>`);
+          return;
+        }
+        const data = await res.json();
+        eventsData = data.events || [];
+        if (Array.isArray(data.types) && data.types.length) eventsTypes = data.types;
+        eventsNewsIndex = data.news || [];
+        renderEventsSection();
+      } catch (err) {
+        content.insertAdjacentHTML('beforeend',
+          `<div class="section-card" id="events-card"><p style="color:var(--danger);">Ошибка загрузки: ${escapeHtml(err.message)}</p></div>`);
+      }
+    }
+
+    function renderEventsSection() {
+      const content = document.getElementById('admin-content');
+      const old = content.querySelector('#events-card');
+      if (old) old.remove();
+
+      const planned = eventsData.filter(e => !e.hidden && eventIsPast(e) === false);
+      const past = eventsData.filter(e => !e.hidden && eventIsPast(e));
+      const hiddenCnt = eventsData.filter(e => e.hidden).length;
+
+      const rows = eventsData.map(ev => {
+        const news = ev.newsId ? eventsNewsIndex.find(n => String(n.id) === String(ev.newsId)) : null;
+        const newsNote = !ev.newsId
+          ? (eventIsPast(ev) ? '' : '<span class="meta" title="новость создастся при сохранении">— авто-новость будет создана —</span>')
+          : `<span class="meta">📰 новость «${escapeHtml(news ? news.title : ev.newsId)}»${news && news.hidden ? ' (скрыта)' : ''}</span>`;
+        return `
+        <div class="news-item" data-id="${ev.id}" style="align-items:flex-start;">
+          ${ev.image ? `<img src="${fileUrl(ev.image)}" alt="" style="width:80px;height:45px;object-fit:cover;border-radius:4px;flex-shrink:0;">` : '<div style="width:80px;height:45px;background:#e2e8f0;border-radius:4px;flex-shrink:0;"></div>'}
+          <div class="news-info">
+            <h4>${escapeHtml(ev.name || 'Без названия')}
+              <span style="font-size:0.78rem;color:${eventIsPast(ev) ? '#64748b' : '#7c3aed'};font-weight:600;"> · ${eventStatusLabel(ev)}</span>
+            </h4>
+            <span>${(ev.dateStart || '?').replace('T', ' ')}${ev.dateEnd ? ' → ' + ev.dateEnd.replace('T', ' ') : ''}${ev.type ? ' · 🎯 ' + escapeHtml(String(ev.type).replace(/_/g, ' ')) : ''}${(ev.photoAlbum && ev.photoAlbum.length) ? ' · 🖼 ' + ev.photoAlbum.length : ''}${(ev.reviews && ev.reviews.length) ? ' · 💬 ' + ev.reviews.length : ''}${(ev.videos && ev.videos.length) ? ' · 🎬 ' + ev.videos.length : ''}${ev.hidden ? ' <span style="color:#ef4444;">🙈</span>' : ''}</span>
+            ${ev.shortDescription ? `<p class="meta" style="margin:.2rem 0 0;">${escapeHtml(ev.shortDescription)}</p>` : ''}
+            ${newsNote}
+            ${(!eventIsPast(ev) && ev.hidden === false && !(ev.photoAlbum || []).length && !(ev.videos || []).length) ? '' : ''}
+          </div>
+          <div class="news-actions">
+            <button class="btn btn-sm btn-secondary" onclick="openEventModal(${ev.id})" title="Редактировать">✏️</button>
+            <button class="btn btn-sm ${ev.hidden ? 'btn-secondary' : 'btn-secondary'}" onclick="toggleEventHidden(${ev.id})" title="${ev.hidden ? 'Показать на сайте' : 'Скрыть с сайта'}">${ev.hidden ? '👁' : '🙈'}</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteEvent(${ev.id})" title="Удалить">🗑</button>
+          </div>
+        </div>`;
+      }).join('');
+
+      const pastNoMedia = past.filter(e => !(e.photoAlbum && e.photoAlbum.length) && !(e.videos && e.videos.length));
+      const reminder = pastNoMedia.length ? `
+        <p style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:.6rem .8rem;font-size:.9rem;">
+          ⚠️ Прошедшие мероприятия без фото/видео: <b>${pastNoMedia.map(e => escapeHtml(e.name)).join(', ')}</b>.
+          Загрузите фотогалерею, видео и отзывы — посетителям страница с медиа заметно интереснее.
+        </p>` : '';
+
+      content.insertAdjacentHTML('beforeend', `
+        <div class="section-card" id="events-card">
+          <h2>🎪 Управление мероприятиями</h2>
+          <p>Всего: ${eventsData.length} · планируется: ${planned.length} · прошло: ${past.length}${hiddenCnt ? ' · скрыто: ' + hiddenCnt : ''}.
+          Планируемые — плиткой на <a href="events.html" target="_blank">events.html</a>, прошедшие — слайдером.</p>
+          ${reminder}
+          <div class="news-list">${rows || '<p class="meta">Мероприятий пока нет — создайте первое кнопкой ниже.</p>'}</div>
+          <div style="margin-top:1rem;">
+            <button class="btn btn-success" onclick="openEventModal()">+ Добавить мероприятие</button>
+          </div>
+          <p class="meta" style="margin-top:.8rem;">Ссылка «🎪 Мероприятия» в верхнем меню включается/выключается в разделе «Настройки сайта → 🎩 Шапка» (пункт «Мероприятия»).
+          Скрытый пункт исчезает с сайта, когда мероприятий нет или все скрыты — автоматически.</p>
+        </div>
+      `);
+    }
+
+    async function postEventsAndReload(notify) {
+      const btn = document.getElementById('event-save-btn');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ Сохранение…'; }
+      try {
+        const res = await api('/api/admin/save-events', {
+          method: 'POST',
+          body: JSON.stringify({ events: eventsData })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) { showToast('Ошибка: ' + (data.error || res.status), 'error'); return false; }
+        if (data.events) eventsData = data.events;
+        let msg = notify || 'Мероприятия сохранены';
+        if (data.newsCreated) msg += ` · создана авто-новость (${data.newsCreated})`;
+        if (data.newsHidden) msg += ` · новость скрыта (${data.newsHidden})`;
+        if (data.mail) msg += ` · письмо админам: ${data.mail}`;
+        showToast(msg);
+        // обновить индекс новостей (сервер мог создать/скрыть)
+        try {
+          const r2 = await api('/api/admin/get-events', { method: 'POST', body: '{}' });
+          if (r2.ok) {
+            const d2 = await r2.json();
+            eventsNewsIndex = d2.news || eventsNewsIndex;
+          }
+        } catch (e) { /* не критично */ }
+        return true;
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Сохранить'; }
+      }
+    }
+
+    async function toggleEventHidden(id) {
+      const ev = eventsData.find(x => String(x.id) === String(id));
+      if (!ev) return;
+      ev.hidden = !ev.hidden;
+      const ok = await postEventsAndReload(ev.hidden ? 'Мероприятие скрыто' : 'Мероприятие показано');
+      if (ok) renderEventsSection();
+    }
+
+    async function deleteEvent(id) {
+      const ev = eventsData.find(x => String(x.id) === String(id));
+      if (!ev) return;
+      if (!confirm(`Удалить мероприятие «${ev.name}»? Связанная новость (${ev.newsId ? 'id ' + ev.newsId : 'нет'}) останется в базе.`)) return;
+      eventsData = eventsData.filter(x => String(x.id) !== String(id));
+      const ok = await postEventsAndReload('Мероприятие удалено');
+      if (ok) renderEventsSection();
+    }
+
+    function fillEventTypeSelect(selected) {
+      const sel = document.getElementById('event-type-input');
+      sel.innerHTML = '<option value="">— не выбран —</option>' +
+        eventsTypes.map(t => `<option value="${t}"${t === selected ? ' selected' : ''}>${escapeHtml(String(t).replace(/_/g, ' '))}</option>`).join('');
+    }
+
+    function renderEventImageInfo() {
+      const box = document.getElementById('event-image-info');
+      if (!box) return;
+      box.innerHTML = editingEventImage
+        ? `<div class="file-info"><img src="${fileUrl(editingEventImage)}" alt="" style="width:96px;height:54px;object-fit:cover;">
+           <div class="file-name"><span>${escapeHtml(editingEventImage)}</span>
+           <button type="button" class="file-remove" onclick="removeEventImage()">✕</button></div></div>`
+        : '<p class="meta">Обложка не выбрана — плитка без фото.</p>';
+    }
+
+    function removeEventImage() {
+      editingEventImage = null;
+      document.getElementById('event-image-input').value = '';
+      renderEventImageInfo();
+    }
+
+    // S167: фотогалерея мероприятия = слайдер, редактор — как у главного слайдера
+    function renderEventAlbumPicker() {
+      renderAlbumSlideEditor('event', 'event-album-picker', '');
+    }
+
+    function addEventVideoRow(video) {
+      const box = document.getElementById('event-videos-list');
+      if (!box) return;
+      if (box.querySelectorAll('.event-media-row').length >= 15) {
+        showToast('Максимум 15 видео на мероприятие', 'error');
+        return;
+      }
+      const row = document.createElement('div');
+      row.className = 'event-media-row';
+      row.style.cssText = 'display:flex;gap:.5rem;margin-bottom:.4rem;align-items:center;flex-wrap:wrap;';
+      row.innerHTML = `
+        <input type="text" placeholder="название" maxlength="80" style="flex:0 0 140px;" value="${escapeHtml(video ? video.title || '' : '')}">
+        <input type="url" placeholder="https:// (YouTube, VK, Rutube) — предпочтительно" maxlength="300" style="flex:1;min-width:200px;" value="${escapeHtml(video ? video.url || '' : '')}">
+        <label style="display:flex;align-items:center;gap:.3rem;font-size:.85rem;cursor:pointer;">
+          <input type="file" accept="video/*" style="width:auto;max-width:150px;font-size:.8rem;"> или файл
+        </label>
+        <button type="button" class="btn btn-sm btn-danger" title="Убрать" onclick="this.parentElement.remove()">✕</button>`;
+      box.appendChild(row);
+    }
+
+    function addEventReviewRow(review) {
+      const box = document.getElementById('event-reviews-list');
+      if (!box) return;
+      const row = document.createElement('div');
+      row.className = 'event-media-row';
+      row.style.cssText = 'display:flex;gap:.5rem;margin-bottom:.4rem;align-items:flex-start;';
+      row.innerHTML = `
+        <input type="text" placeholder="ФИО" maxlength="80" style="flex:0 0 160px;" value="${escapeHtml(review ? review.name || '' : '')}">
+        <textarea placeholder="текст отзыва" rows="2" maxlength="1000" style="flex:1;">${escapeHtml(review ? review.text || '' : '')}</textarea>
+        <button type="button" class="btn btn-sm btn-danger" title="Убрать" onclick="this.parentElement.remove()">✕</button>`;
+      box.appendChild(row);
+    }
+
+    // Сбор видео: если в строке выбран файл — загружаем и используем его путь;
+    // иначе — ссылка из url-поля. Пустые строки пропускаются.
+    async function collectEventVideos() {
+      const out = [];
+      const rows = document.querySelectorAll('#event-videos-list .event-media-row');
+      for (const row of rows) {
+        const inputs = row.querySelectorAll('input');
+        const title = String(inputs[0].value || '').trim();
+        const url = String(inputs[1].value || '').trim();
+        const file = inputs[2] && inputs[2].files && inputs[2].files[0];
+        let finalUrl = url;
+        if (file) {
+          finalUrl = await uploadFile(file, 'event-video');
+        }
+        if (!finalUrl && !title) continue;
+        if (!finalUrl) continue; // без адреса видео нет смысла
+        out.push({ title, url: finalUrl });
+        if (out.length >= 15) break;
+      }
+      return out;
+    }
+
+    function collectEventMediaRows(listId) {
+      const out = [];
+      document.querySelectorAll('#' + listId + ' .event-media-row').forEach(row => {
+        const inputs = row.querySelectorAll('input, textarea');
+        const a = String(inputs[0].value || '').trim();
+        const b = String(inputs[1].value || '').trim();
+        if (a || b) out.push({ a, b });
+      });
+      return out;
+    }
+
+    function openEventModal(id) {
+      const ev = id != null ? eventsData.find(x => String(x.id) === String(id)) : null;
+      document.getElementById('event-modal').classList.add('active');
+      document.getElementById('event-modal-title').textContent = ev ? 'Редактировать мероприятие' : 'Новое мероприятие';
+      document.getElementById('event-id').value = ev ? ev.id : '';
+      const nameIn = document.getElementById('event-name-input');
+      nameIn.value = ev ? (ev.name || '') : '';
+      document.getElementById('event-name-counter').textContent = nameIn.value.length + ' / 60';
+      fillEventTypeSelect(ev ? ev.type : '');
+      const fmt = (v) => String(v || '').slice(0, 16); // 'YYYY-MM-DDTHH:MM' для datetime-local
+      document.getElementById('event-start-input').value = ev ? fmt(ev.dateStart) : '';
+      document.getElementById('event-end-input').value = ev ? fmt(ev.dateEnd) : '';
+      const shortIn = document.getElementById('event-short-input');
+      shortIn.value = ev ? (ev.shortDescription || '') : '';
+      document.getElementById('event-short-counter').textContent = shortIn.value.length + ' / 120';
+      if (!MD_EDITORS['event-md-editor']) initMdEditor('event-md-editor', {});
+      mdSetValue('event-md-editor', ev ? (ev.description || '') : '');
+      editingEventImage = ev ? ev.image : null;
+      document.getElementById('event-image-input').value = '';
+      renderEventImageInfo();
+      editingEventAlbum = normalizeAlbumSlides(ev && ev.photoAlbum);
+      renderEventAlbumPicker();
+      ensureEventBank().then(() => renderEventAlbumPicker());
+      document.getElementById('event-videos-list').innerHTML = '';
+      ((ev && ev.videos) || []).forEach(v => addEventVideoRow(v));
+      document.getElementById('event-reviews-list').innerHTML = '';
+      ((ev && ev.reviews) || []).forEach(r => addEventReviewRow(r));
+      document.getElementById('event-hidden-input').checked = !!(ev && ev.hidden);
+      // статус связанной новости
+      const statusBox = document.getElementById('event-news-status');
+      const statusText = document.getElementById('event-news-status-text');
+      if (ev && ev.newsId) {
+        const n = eventsNewsIndex.find(x => String(x.id) === String(ev.newsId));
+        statusBox.style.display = '';
+        statusText.textContent = '📰 Связанная новость: «' + (n ? n.title : ev.newsId) + '»' + (n && n.hidden ? ' — скрыта (мероприятие прошло)' : ' — видна на главной');
+      } else {
+        statusBox.style.display = 'none';
+      }
+      document.getElementById('event-open-page').style.display = ev ? '' : 'none';
+    }
+
+    function closeEventModal() {
+      document.getElementById('event-modal').classList.remove('active');
+      document.getElementById('event-form').reset();
+      editingEventImage = null;
+      editingEventAlbum = [];
+    }
+
+    function openEventPage() {
+      const id = document.getElementById('event-id').value;
+      if (id) window.open('/event.html?id=' + id, '_blank');
+    }
+
+    async function saveEventForm(e) {
+      e.preventDefault();
+      const idRaw = document.getElementById('event-id').value;
+      const name = document.getElementById('event-name-input').value.trim();
+      if (!name) { showToast('Введите название мероприятия', 'error'); return; }
+      const dateStart = document.getElementById('event-start-input').value;
+      if (!dateStart) { showToast('Укажите дату и время начала', 'error'); return; }
+      const dateEnd = document.getElementById('event-end-input').value;
+      if (dateEnd && dateEnd < dateStart) { showToast('Окончание раньше начала', 'error'); return; }
+
+      let image = editingEventImage;
+      const imgInput = document.getElementById('event-image-input');
+      if (imgInput.files.length > 0) {
+        try { image = await uploadFile(imgInput.files[0], 'event-image'); }
+        catch (err) { showToast('Не удалось загрузить обложку: ' + err.message, 'error'); return; }
+      }
+
+      const recId = idRaw ? (isNaN(Number(idRaw)) ? idRaw : Number(idRaw)) : Date.now();
+      const existing = eventsData.find(x => String(x.id) === String(recId)) || {};
+      const rec = Object.assign({}, existing);
+      rec.id = recId;
+      rec.name = name;
+      rec.type = document.getElementById('event-type-input').value;
+      rec.dateStart = dateStart;
+      rec.dateEnd = dateEnd || '';
+      rec.shortDescription = document.getElementById('event-short-input').value.trim();
+      rec.description = mdGetValue('event-md-editor');
+      if (image) rec.image = image; else delete rec.image;
+      rec.photoAlbum = albumRecords(editingEventAlbum);
+      rec.videos = await collectEventVideos();
+      rec.reviews = collectEventMediaRows('event-reviews-list').map(r => ({ name: r.a, text: r.b }));
+      rec.hidden = document.getElementById('event-hidden-input').checked;
+
+      const idx = eventsData.findIndex(x => String(x.id) === String(rec.id));
+      if (idx === -1) eventsData.push(rec); else eventsData[idx] = rec;
+
+      const ok = await postEventsAndReload(idRaw ? 'Мероприятие сохранено' : 'Мероприятие создано');
+      if (ok) {
+        closeEventModal();
+        renderEventsSection();
+      }
     }
 
     /* ============================================
@@ -6993,7 +8510,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=45">
+<link rel="stylesheet" href="/css/style.css?v=48">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -7301,11 +8818,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=45').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=45').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=48').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);

@@ -2,7 +2,7 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-10T07:46:06.578Z
+ * Сгенерировано: 2026-11-12T16:14:40.180Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.trainers = [
@@ -53,19 +53,23 @@ window.SITE_DATA.trainers = [
     "photoAlbum": [
       {
         "image": "uploads/1770958220930-5bk292aw9.jpg",
-        "caption": "Фото 1"
+        "caption": "Фото 1",
+        "title": "Фото 1"
       },
       {
         "image": "uploads/1770958234580-2m6vh0jvt.jpg",
-        "caption": "Фото 2"
+        "caption": "Фото 2",
+        "title": "Фото 2"
       },
       {
         "image": "uploads/1770958242861-adixw4ugp.jpg",
-        "caption": "Фото 3"
+        "caption": "Фото 3",
+        "title": "Фото 3"
       },
       {
         "image": "uploads/1770958251891-l6l825d6z.jpg",
-        "caption": "Фото 4"
+        "caption": "Фото 4",
+        "title": "Фото 4"
       }
     ],
     "experienceUshu": "с 2002 года (24 лет)",

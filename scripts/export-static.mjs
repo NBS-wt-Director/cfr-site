@@ -60,6 +60,31 @@ function fixPath(p) {
   return p.replace(/^\//, '');
 }
 
+// S167: альбом = слайдер. Кадры photoAlbum экспортируются полным набором
+// полей слайда (title/description/link/position/текст/overlay/interval);
+// скрытые кадры на сайт не попадают — как скрытые слайды главного слайдера.
+function exportAlbumSlides(list) {
+  const posMigrate = { left: 'center-left', right: 'center-right' };
+  return (Array.isArray(list) ? list : []).map((raw) => {
+    const a = typeof raw === 'string' ? { image: raw } : (raw || {});
+    const image = fixPath(a.image);
+    if (!image) return null;
+    const rec = { image, caption: String(a.caption || '').slice(0, 120) };
+    const title = String(a.title || a.caption || '').slice(0, 80);
+    if (title) rec.title = title;
+    if (a.description) rec.description = String(a.description).slice(0, 300);
+    if (a.link) { rec.link = String(a.link).slice(0, 300); rec.linkTarget = a.linkTarget === '_blank' ? '_blank' : '_self'; }
+    if (Number(a.interval) > 0) rec.interval = Number(a.interval);
+    if (a.position) rec.position = posMigrate[a.position] || a.position;
+    if (a.textColor) rec.textColor = String(a.textColor);
+    if (Number(a.textSize) > 0) rec.textSize = Number(a.textSize);
+    if (a.textMargin && typeof a.textMargin === 'object') rec.textMargin = a.textMargin;
+    if (a.overlay && typeof a.overlay === 'object') rec.overlay = a.overlay;
+    if (a.hidden === true) rec.hidden = true;
+    return rec;
+  }).filter(Boolean).filter(a => !a.hidden);
+}
+
 // S132 п.3: числовое поле возраста — пустое остаётся пустым (не нулём),
 // иначе страница показала бы «с 0 лет» там, где админ ничего не вводил.
 function numOrEmpty(v) {
@@ -374,9 +399,31 @@ const core = {
     })()
   },
 
+  // S158: глобальные настройки слайдера главной (плоский ключ sliderSettings,
+  // на диске — settings.sliderSettings).
+  // Старые поля Next.js-эпохи (textPositionMode/staticPosition/marginX/marginY)
+  // сайтом не использовались — заменены реальными: autoplay, стрелки, точки,
+  // высота и значения по умолчанию для новых слайдов. Применяются в main.js.
+  sliderSettings: (function () {
+    const s = db.sliderSettings || {};
+    const pos = SLIDER_POS_MIGRATE[s.defaultPosition] || s.defaultPosition;
+    return {
+      autoplay: s.autoplay !== false,
+      showArrows: s.showArrows !== false,
+      showDots: s.showDots !== false,
+      height: Number.isFinite(Number(s.height)) ? Math.max(0, Math.min(1200, Math.round(Number(s.height)))) : 0,
+      defaultPosition: SLIDER_POS.includes(pos) ? pos : 'center',
+      defaultTextColor: /^#[0-9a-fA-F]{6}$/.test(s.defaultTextColor) ? s.defaultTextColor : '#ffffff',
+      defaultTextSize: Number.isFinite(Number(s.defaultTextSize)) ? clamp(s.defaultTextSize, 16, 96) : 42,
+      // S159: интервал прокрутки фотоальбомов (плоский ключ db.defaultInterval
+      // для слайдера главной живёт отдельно — он выше по этому же файлу)
+      albumInterval: Number.isFinite(Number(s.albumInterval)) ? clamp(s.albumInterval, 1, 120) : 6
+    };
+  })(),
+
   // S18: slug = имя «как записано» (кириллицей) — URL-ссылки program/trainer.html.
   // S151: hasAlbum — есть ли у программы фотоальбом (кнопка «Посмотреть» в чипе расписания).
-  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name), hasAlbum: (p.photoAlbum || []).length > 0 })),
+  navPrograms: visiblePrograms.map(p => ({ id: p.id, name: p.name || '', slug: slugify(p.name), hasAlbum: exportAlbumSlides(p.photoAlbum).length > 0 })),
   navTrainers: visibleTrainers.map(t => ({ id: t.id, name: t.name || '', slug: slugify(t.name) })),
 
   // S23: лёгкий срез направлений для меню и группировки на главной
@@ -397,6 +444,25 @@ const core = {
     }))
     .filter(d => d.programs.length > 0),
 
+  /* ============================================
+     S166: Мероприятия — лёгкий навигационный срез для меню и счётчиков.
+     Полный контент — в модуле events.js (страницы events.html / event.html).
+     Статус (planned|past) считается на клиенте по dateEnd — здесь кладём
+     вычисленный при сборке как подсказку, но страница не зависит от свежести сборки.
+     ============================================ */
+  navEvents: (db.events || [])
+    .filter(e => e && !e.hidden && e.name)
+    .map(e => ({
+      id: e.id,
+      name: String(e.name).slice(0, 60),
+      dateStart: String(e.dateStart || ''),
+      dateEnd: String(e.dateEnd || ''),
+      type: String(e.type || ''),
+      hasGallery: exportAlbumSlides(e.photoAlbum).length > 0 ||
+                  (Array.isArray(e.videos) && e.videos.length > 0),
+    }))
+    .sort((a, b) => String(a.dateStart).localeCompare(String(b.dateStart))),
+
   // Заглушки: тяжёлые данные подмешивают свои модули
   slider: null,
   schedule: null,
@@ -409,7 +475,8 @@ const core = {
   newsAll: null,
   newsFull: null,
   album: null,
-  trainerSlider: null
+  trainerSlider: null,
+  events: null
 };
 
 /* ============================================
@@ -482,7 +549,7 @@ const modules = {
     description: p.description || '',
     category: p.category || '',
     directionId: p.directionId || '',  // связь с направлением (S23)
-    photoAlbum: (p.photoAlbum || []).map(a => ({ image: fixPath(a.image), caption: a.caption || '' })),
+    photoAlbum: exportAlbumSlides(p.photoAlbum),
     // Структурные поля (S21/S22); mode — зал/онлайн/гибрид (S3), по умолчанию hybrid;
     // hall — big/small; trainerId — ссылку на тренера (fallback — первый тренер программы),
     // trainer — ФИО для отображения без загрузки trainers.js
@@ -532,7 +599,7 @@ const modules = {
     experience: t.experience || '',
     specialization: t.specialization || '',
     description: t.description || '',
-    photoAlbum: (t.photoAlbum || []).map(a => ({ image: fixPath(a.image), caption: a.caption || '' })),
+    photoAlbum: exportAlbumSlides(t.photoAlbum),
     // Структурные поля (S21/S22)
     experienceUshu: t.experienceUshu || '',
     experienceCoach: t.experienceCoach || '',
@@ -601,6 +668,41 @@ const modules = {
   news: newsSlice(0, 8, true),
   newsAll: newsSlice(Infinity),
   newsFull: newsFullMap(),
+
+  /* ============================================
+     S166: Мероприятия — полные данные для events.html (список) и
+     event.html?id= (страница). Скрытые не экспортируются.
+     Порядок: по дате начала (новые первыми) — страницу сортирует и делит
+     на «планируемые/прошедшие» клиент по dateEnd.
+     ============================================ */
+  events: (db.events || [])
+    .filter(e => e && !e.hidden && e.name)
+    .slice()
+    .sort((a, b) => String(b.dateStart || '').localeCompare(String(a.dateStart || '')))
+    .map(e => ({
+      id: e.id,
+      name: String(e.name).slice(0, 60),
+      type: typeof e.type === 'string' ? e.type : '',
+      dateStart: String(e.dateStart || ''),
+      dateEnd: String(e.dateEnd || ''),
+      image: fixPath(e.image),
+      shortDescription: String(e.shortDescription || '').slice(0, 120),
+      description: e.description || '',
+      // Отзывы заносят администраторы; поля не строже, чем в остальном экспорте
+      reviews: (Array.isArray(e.reviews) ? e.reviews : []).map(r => ({
+        name: String(r.name || '').slice(0, 80),
+        text: String(r.text || '').slice(0, 1000),
+      })).filter(r => r.name || r.text),
+      photoAlbum: exportAlbumSlides(e.photoAlbum),
+      videos: (Array.isArray(e.videos) ? e.videos : [])
+        .map(v => {
+          const u = String(v.url || '').trim().slice(0, 300);
+          return { title: String(v.title || '').slice(0, 80), url: /^https?:\/\//i.test(u) ? u : fixPath(u) };
+        })
+        .filter(v => /^https?:\/\//i.test(v.url) || /^uploads\//i.test(v.url))
+        .slice(0, 15),
+      newsId: e.newsId != null ? e.newsId : null,
+    })),
 
   // S86: interval (сек) и position слайда доезжают до сайта — main.js их применяет
   // T6.2: скрытые слайды (hidden:true) на главную НЕ попадают — они видны только в админке

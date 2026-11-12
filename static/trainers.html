@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=45">
+  <link rel="stylesheet" href="css/style.css?v=48">
 </head>
 <body data-doc-title="Коллектив">
   <div id="header-container"></div>
@@ -29,19 +29,20 @@
   <div id="footer-container"></div>
   <button class="floating-call" onclick="openCallModal('Плавающая кнопка')" aria-label="Заказать звонок"><i class="icon-call"></i></button>
 
-  <script src="js/data/core.js?v=45"></script>
-  <script src="js/appearance.js?v=45"></script>
-  <script src="js/layout.js?v=45"></script>
-  <script src="js/seo.js?v=45"></script>
-  <script src="js/panels.js?v=45"></script>
-  <script src="js/data/trainers.js?v=45"></script>
-  <script src="js/data/staff.js?v=45"></script>
-  <script src="js/data/trainer-slider.js?v=45"></script>
-  <script src="js/header.js?v=45"></script>
-  <script src="js/footer.js?v=45"></script>
-  <script src="js/modal.js?v=45"></script>
-  <script src="js/lightbox.js?v=45"></script>
-  <script src="js/tiles.js?v=45"></script>
+  <script src="js/data/core.js?v=48"></script>
+  <script src="js/appearance.js?v=48"></script>
+  <script src="js/layout.js?v=48"></script>
+  <script src="js/seo.js?v=48"></script>
+  <script src="js/panels.js?v=48"></script>
+  <script src="js/data/trainers.js?v=48"></script>
+  <script src="js/data/staff.js?v=48"></script>
+  <script src="js/data/trainer-slider.js?v=48"></script>
+  <script src="js/header.js?v=48"></script>
+  <script src="js/footer.js?v=48"></script>
+  <script src="js/modal.js?v=48"></script>
+  <script src="js/slider-core.js?v=48"></script>
+  <script src="js/lightbox.js?v=48"></script>
+  <script src="js/tiles.js?v=48"></script>
   <script>
     (function () {
       const data = window.SITE_DATA || {};
@@ -103,35 +104,34 @@
 
       // T6.1: слайдер совместных фото (папка ,СОВМЕСТНЫЕ ФОТО → категория «Совместные фото»).
       // S138: выводится только при trainerSliderSettings.enabled === true (дефолт — выключен).
-      // Данные и экспорт trainer-slider.js не тронуты: S136 вернёт слайдер наполненным.
+      // S159: рендеринг и логика — общий движок js/slider-core.js (как у главного слайдера).
       const sliderSettings = (window.SITE_DATA && window.SITE_DATA.trainerSliderSettings) || {};
       const slides = (window.SITE_DATA && window.SITE_DATA.trainerSlider) || [];
       if (sliderSettings.enabled !== true || !slides.length) return;
       const wrap = document.getElementById('joint-slider');
       document.getElementById('joint-slider-section').hidden = false;
-      wrap.innerHTML = slides.map((s, i) => `
-        <div class="slide ${i === 0 ? 'active' : ''}">
-          <img src="${s.image}" alt="${s.caption || 'Совместное фото'}" loading="${i === 0 ? 'eager' : 'lazy'}">
-        </div>`).join('') + (slides.length > 1 ? `
-        <button class="slider-nav slider-prev" aria-label="Назад">‹</button>
-        <button class="slider-nav slider-next" aria-label="Вперёд">›</button>
-        <div class="slider-dots">${slides.map((_, i) => `<button class="slider-dot ${i === 0 ? 'active' : ''}" aria-label="Слайд ${i + 1}"></button>`).join('')}</div>` : '');
-      if (slides.length < 2) return;
+      if (!window.SliderCore) return;
 
-      const items = wrap.querySelectorAll('.slide');
-      const dots = wrap.querySelectorAll('.slider-dot');
-      let cur = 0;
-      const show = n => {
-        cur = (n + items.length) % items.length;
-        items.forEach((el2, i) => el2.classList.toggle('active', i === cur));
-        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
-      };
-      wrap.querySelector('.slider-prev').addEventListener('click', () => show(cur - 1));
-      wrap.querySelector('.slider-next').addEventListener('click', () => show(cur + 1));
-      dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
-      // S138: интервал прокрутки — из настройки (дефолт 5 с)
-      setInterval(() => show(cur + 1), (Number(sliderSettings.interval) > 0 ? Number(sliderSettings.interval) : 5) * 1000);
+      const gs = (window.SITE_DATA && window.SITE_DATA.sliderSettings) || {};
+      // Контейнер уже является слайдером (.slider) — mount кладёт контент внутрь,
+      // поэтому вариант оформления добавляем классом самому контейнеру.
+      wrap.classList.add('slider--embed', 'slider--joint');
+      window._jointSlider = SliderCore.mount(wrap, slides.map(s => ({
+        image: s.image, title: s.caption || ''
+      })), {
+        id: 'joint-slider',
+        cssClass: 'slider--embed slider--joint',
+        autoplay: gs.autoplay !== false,
+        showArrows: gs.showArrows !== false,
+        showDots: gs.showDots !== false,
+        interval: Number(sliderSettings.interval) > 0 ? Number(sliderSettings.interval) : 5,
+        onClick: function (slide) {
+          const img = slide.querySelector('img');
+          if (window.openLightbox && img) window.openLightbox(img.getAttribute('src'), img.getAttribute('alt'));
+        }
+      });
     })();
   </script>
+  <script src="js/visit-tracker.js?v=48"></script>
 </body>
 </html>

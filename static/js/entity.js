@@ -341,15 +341,64 @@
     return '<div class="entity-actions entity-cta">' + out.join('') + '</div>';
   }
 
-  // S62: «Фотоальбом» = горизонтальная карусель необрезанных фото
+  // S62 → S159: «Фотоальбом» = слайдер на том же движке, что и главный слайдер
+  // сайта (js/slider-core.js): та же разметка, overlay, точки/стрелки, автопрокрутка.
+  // Фолбэки: карусель (S62), затем сетка.
+  // Одни и те же настройки используют и рендер (albumHtml), и wire (renderEntity).
+  function albumSliderOpts() {
+    var gs = (window.SITE_DATA || {}).sliderSettings || {};
+    return {
+      id: 'entity-album',
+      cssClass: 'slider--embed',
+      autoplay: gs.autoplay !== false,
+      showArrows: gs.showArrows !== false,
+      showDots: gs.showDots !== false,
+      interval: Number(gs.albumInterval) > 0 ? Number(gs.albumInterval) : 6
+    };
+  }
+
+  // S167: альбом = слайдер. Кадры несут полный набор полей слайда
+  // (title/description/link/position/цвет/размер/отступы/overlay/interval) —
+  // SliderCore рендерит их ровно как главный слайдер главной страницы.
+  function albumSlides(album, altBase) {
+    return (Array.isArray(album) ? album : [])
+      .map(function (a, i) {
+        if (!a) return null;
+        if (a.hidden === true) return null; // скрытые кадры — как скрытые слайды главного слайдера
+        var image = typeof a === 'string' ? a : a.image;
+        if (!image) return null;
+        return {
+          image: image,
+          title: (a && (a.title || a.caption)) || (altBase ? altBase + ' — фото ' + (i + 1) : ''),
+          description: (a && a.description) || '',
+          link: (a && a.link) || '',
+          linkTarget: (a && a.linkTarget) || '_self',
+          interval: Number(a && a.interval) > 0 ? Number(a.interval) : 0,
+          position: (a && a.position) || '',
+          textColor: (a && a.textColor) || '',
+          textSize: Number(a && a.textSize) > 0 ? Number(a.textSize) : 0,
+          textMargin: (a && a.textMargin) || null,
+          overlay: (a && a.overlay) || null
+        };
+      })
+      .filter(Boolean);
+  }
+
   function albumHtml(album, altBase) {
-    if (!album || !album.length) return '';
-    // Если модуль карусели загружен — карусель (фото целиком, без crop)
+    var items = albumSlides(album, altBase);
+    if (!items.length) return '';
+    if (window.SliderCore && window.SliderCore.render) {
+      return '<h2 class="entity-subtitle">Фотоальбом</h2>' +
+        '<div id="album" class="entity-album">' +
+        window.SliderCore.render(items, albumSliderOpts()) +
+        '</div>';
+    }
+    // Если модуль слайдера не загружен — карусель (фото целиком, без crop)
     if (window.Carousel && window.Carousel.render) {
       return '<h2 class="entity-subtitle">Фотоальбом</h2>' +
         '<div id="album" class="entity-album">' + window.Carousel.render(album, altBase) + '</div>';
     }
-    // Фолбэк: старая сетка (если carousel.js не подключён)
+    // Фолбэк: старая сетка (если ни слайдер, ни карусель не подключены)
     var items = album.map(function (a) {
       return '<div class="album-item lightbox-zoom" data-full="' + a.image + '">' +
         '<img src="' + a.image + '" alt="' + esc(a.caption || altBase) + '" loading="lazy">' +
@@ -591,8 +640,18 @@
       }
     }
 
-    // S62: повесить обработчики карусели фотоальбома
-    if (window.Carousel && window.Carousel.initAll) window.Carousel.initAll(mount);
+    // S159: фотоальбом — слайдер на общем движке; навесить логику и lightbox по клику
+    if (window.SliderCore && window.SliderCore.initAll) {
+      var albumOpts = albumSliderOpts();
+      albumOpts.onClick = function (slide) {
+        if (!window.openLightbox) return;
+        var img = slide.querySelector('img');
+        window.openLightbox((img && img.getAttribute('src')) || '', img && img.getAttribute('alt'));
+      };
+      window.SliderCore.initAll(mount, albumOpts);
+    }
+    // S62: карусель фотоальбома — фолбэк, если SliderCore не загрузился
+    if (window.Carousel && window.Carousel.initAll && !window.SliderCore) window.Carousel.initAll(mount);
     // S132 п.4: переключатель «Доска / Таблица»
     if (window.ScheduleUI && window.ScheduleUI.initSwitches) window.ScheduleUI.initSwitches(mount);
     // S132 п.2 / S128 п.6: свайп фото в плитках (тренеры у программы, программы у тренера)

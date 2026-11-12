@@ -104,6 +104,15 @@ export function collectUrls(db, buildDateISO) {
     .forEach(p => push('page.html?url=' + encodeURIComponent(p.url),
       fallback, 'monthly', '0.5'));
 
+  // S166: мероприятия — страница раздела (если есть хоть одно видимое)
+  // и каждая видимая страница мероприятия
+  const visibleEvents = (db.events || []).filter(e => e && !e.hidden && e.name);
+  if (visibleEvents.length) {
+    push('events.html', fallback, 'weekly', '0.8');
+    visibleEvents.forEach(e => push('event.html?id=' + encodeURIComponent(e.id),
+      lastmodOf(e.updatedAt), 'monthly', '0.6'));
+  }
+
   // НЕ включаются: admin.html, lk.html, crm.html, album.html, 404.html, 500.html,
   // скрытые сущности (фильтр выше).
 
