@@ -36,26 +36,28 @@
 **Волна 6** — ✅ выполнена и задеплоена (коммиты `4ab61d2`…`3484ae8`);
 все исправленные тикеты в `done/` (S140–S146, S148–S150, S62, S63).
 
+**Волна 7** — ✅ выполнена (закрыта 2026-11-14). Все тикеты в `done/`.
+
+**Волна 8** — ✅ выполнена (закрыта 2026-11-14). Все тикеты в `done/`.
+
 Очередь:
+
+**Волна ARCH — новая архитектура (поставлена 2026-11-14): Docker + PostgreSQL + SSR, «никакой статики».**
+Концепция: всё в контейнерах (Postgres 17, Fastify-приложение, Caddy TLS), все данные в pg,
+страницы рендерятся на сервере из pg; дизайн не меняется (клиентский JS сохранён через
+инъекцию `window.SITE_DATA`). Цепочка зависимостей — по номерам.
 
 | Тикет | Статус | Описание |
 |-------|--------|----------|
-| [S155](activ/S155-lead-email-not-sent-critical.md) | 🟡 Код готов, ждёт деплоя | **КРИТИЧНО:** письмо из формы. Готово: журнал `logs/leads-email.log`, серверный `smtpPass` не затирается при мерже (источник истины — прод), шаблон письма = старый концепт (🐼/Желание/Срочно, без UA, время человекочитаемое), тема «🐼 Заявка:» + from — под фильтр Яндекса «Заявки с сайта», emailSent в UI, точная причина (страница+сущность+кнопка). Проверено исполнением. Ждёт деплоя и приёмки на проде |
-| [S156](activ/S156-sidebar-group-counters.md) | 🟡 Код готов, ждёт приёмки | Счётчики сабразделов в заголовках групп сайдбара: 2 цифры — активных / заглушек. Проверено jsdom (7 групп, БОТЫ 1/8) |
-| [S157](../tickets/activ/S157-schedule-chip-menu-fix.md) | ✅ Задеплоен | Меню чипа расписания на program.html и trainer.html (`selfProgram` терялся → чип был ссылкой без меню). Тесты, ?v=44 |
-| [S158](activ/S158-slider-redesign-tz.md) | 🟢 Код готов, ждёт деплоя | **Полная переработка слайдера:** описание, ссылка, цвет/размер/отступы текста, наложение (overlay), 9 позиций вместо 3, менеджер фото (popup grid + поиск + фильтр used/unused + загрузка), снят лимит 10 слайдов. Тесты 48 проверок, ?v=45 |
-| [S159](activ/S159-albums-use-slider-engine.md) | 🟢 Код готов, ждёт деплоя | **Все альбомы на SliderCore:** program/trainer/album/trainers используют общий движок `js/slider-core.js` вместо carousel.js. `albumInterval` в sliderSettings. Тесты + бамп ?v=47 |
-| [S160](activ/S160-photo-manager.md) | 🟢 Код готов, ждёт деплоя | **Менеджер фотографий в «Настройки сайта»:** обзор всех фото (используется/скрыто/не используется), статистика (всего/используется/занято на диске), удаление в корзину, выборка по scope (uploads/data), очистка ссылок в базе. Тесты |
-| [S162](activ/S162-slider-batch-save-fix.md) | 🟢 Код готов, ждёт деплоя | **Батч-редактирование слайдера:** `sanitizeSlides` НЕ выбрасывает слайды без картинки (сохраняются как hidden), кнопка «🗑 Удалить все скрытые» в редакторе. Тесты ✅ |
-| [S161](activ/S161-site-status-section.md) | 🕐 В разработке | **Раздел «📟 Статус»:** состояние сайта (версия, размеры, счётчики), состояние сервера (CPU/RAM/диск/uptime), посещаемость (пиксель + визиты по дням/неделям/месяцам, по разделам/страницам) |
-| [S163](activ/S163-visitor-tracking.md) | 🕐 В разработке | **Трекер посещаемости:** пиксель на страницах, серверный учёт заходов (IP, referer, URL, User-Agent, экран, язык), ротация 10000 визитов |
-| [S164](activ/S164-status-section.md) | 🕐 В разработке | **Суперраздел «Информация»:** «📟 Статус» (всегда открыт) + «🚨 Проблемы» (автодиагностика), кнопка состояния в шапке админки (цвет+цифры) |
-| [S165](activ/S165-link-preserve-order.md) | 🕐 В разработке | **Ссылки перепутаны при сохранении:** диагностика и фикс порядка/ID слайдов в sanitizeSlides |
-| [S166](activ/S166-events.md) | 🟢 Код готов, ждёт деплоя | **Мероприятия (events):** раздел в «Данные», 6 типов, photoAlbum (SliderCore), видео (YouTube/VK/Rutube/файл), seed (4 события), auto-news (создание/скрытие по дате), site-status (авто-новости, фото-ссылки, прошедшие события), ?v=46 |
-| [S167](activ/S167-album-slider.md) | 🟢 Код готов, ждёт деплоя | **Универсальный альбом-слайдер:** sanitizeAlbumSlides (12 полей), exportAlbumSlides (скрытые исключены), albumSlides (entity.js), galleryBlock (events.js), универсальный редактор (slideArr, renderSlideRow, slideField, slideToggleHidden, normalizeAlbumSlides, renderAlbumSlideEditor, albumRecords, pmTarget, drag-n-drop), ?v=47 |
-| [S168](activ/S168-stub-sections.md) | 🟢 Код готов, ждёт деплоя | **Заглушки разделов:** 25 stub-страниц (Информация: 3, Данные: 4, Настройки: 7, CRM: 8, Интеграции: 3), STUB_PAGES + renderStubPageSection, удалены сабразделы-заглушки CRM/Интеграции, hash-redirect, справка расширена |
-| [S169](activ/S169-md-preview-and-no-crop.md) | 🟢 Код готов, ждёт деплоя | **Markdown-редактор:** предпросмотр mode-split (вкладки Код/Сплит/Сайт), CSS предпросмотра; **Без обрезки фото:** все object-fit:cover → contain, height:auto (10+ селекторов style.css + lk.html), ?v=50 |
-| [S170](activ/S170-video-manager.md) | 🟢 Код готов, ждёт деплоя | **Менеджер видео:** аналог менеджера фото для видео (mp4/webm/mov/m4v/ogv), collectVideoUsage (news.video + events.videos), превью `<video>`, удаление в корзину, защита used, ?v=50 |
+| [ARCH-001](activ/ARCH-001-docker-compose-caddy.md) | 📋 Запланирован | Инфраструктура: docker-compose (db+app+proxy), Caddy TLS, тома, секреты. Прод не трогает |
+| [ARCH-002](activ/ARCH-002-postgres-schema-import.md) | 📋 Запланирован | Схема pg (~22 таблицы: контент/settings-JSONB/visits/leads/сессии), миграции, импорт из db.json/visits/leads |
+| [ARCH-003](activ/ARCH-003-fastify-admin-pg-adapter.md) | 📋 Запланирован | Fastify-каркас + pg-адаптер readDb/saveDb (кэш+транзакции), переезд админки 1:1 (60+ ручек) |
+| [ARCH-004](activ/ARCH-004-ssr-site-no-static.md) | 📋 Запланирован | SSR-сайт: 14 страниц (Eta), URL/404/S18-slug 1:1, meta/OG/sitemap живые, контент-кэш; упразднение export-static/js-data/?v= |
+| [ARCH-005](activ/ARCH-005-visits-leads-status-pg.md) | 📋 Запланирован | Пиксель/агрегаты посещаемости и лиды → SQL; «Статус/Проблемы» на pg-метрики; опц. sharp |
+| [ARCH-006](activ/ARCH-006-tests-migration.md) | 📋 Запланирован | Перенос ~875 проверок test-static → Vitest+supertest (шаблоны/API/юниты на pg-фикстурах), TESTS-MAP.md |
+| [ARCH-007](activ/ARCH-007-cutover.md) | 📋 Запланирован, withLord | Переключение прода: DNS/Caddy, прогрев, smoke, откат. Деплой-регламент здесь НЕ переписывается |
+
+> 📌 Процедура деплоя намеренно не трогается до ARCH-008 (`definded/`) — по указанию пользователя от 2026-11-14.
 
 **Приёмка волны S140–S150** — за пользователем (мобильная шапка S149, карусель дней S150,
 админка S144–S148). После успешной приёмки — старт работ по ROADMAP.
@@ -81,6 +83,7 @@
 | [MULTITICKET](definded/MULTITICKET.md) | 🕐 Отложен  | PostgreSQL миграция: T1–T4 выполнены, T5–T8 заблокированы |
 | [MULTITICKET-DANCESTUDIO](definded/MULTITICKET-DANCESTUDIO.md) | 🕐 Отложен  | DanceStudio: 1 выполнен (1.4), 14 заблокированы — ROADMAP п.2 |
 | [TICKET-DONOR-FORMAT](definded/TICKET-DONOR-FORMAT.md) | 🕐 Отложен  | Парсер донора: T1–T5 выполнены, T6–T9 ждут. См. `info/DONOR-FORMAT-ANALYSIS.md` |
+| [ARCH-008](definded/ARCH-008-deploy-regulation.md) | 🕐 Отложен (указание пользователя 2026-11-14) | Волна ARCH | Переписывание процедуры деплоя под Docker/PG/SSR (AGENTS.md, periodic, pg_dump-бэкапы, мержер). Разморозка — после ARCH-007 |
 
 #### 🟠 С участием пользователя (`activ/withLord/`)
 
@@ -123,6 +126,27 @@
 | [S152](done/S152-call-success-text-and-dance-integration.md) | 2026-11-10 | Текст успеха модалки из «Главных данных»; сабраздел 💃 Dance в Интеграциях |
 | [S153](done/S153-lead-email-notification.md) | 2026-11-10 | `sendLeadNotification` + исправлен `sendEmail404` (smtpHost/smtpUser); доработан в S155 |
 | [S154](done/S154-email-settings-move-to-bots.md) | 2026-11-10 | Почта → `#bots-email` в «БОТАХ» + 8 заглушек ботов + таблица маршрутов + напоминания о фото |
+
+**Волна 8 (закрыта 2026-11-14, ждёт деплоя):**
+
+| Файл | Дата закрытия | Примечание |
+|------|---------------|------------|
+| [S155](done/S155-lead-email-not-sent-critical.md) | 2026-11-14 | КРИТИЧНО: письмо из формы. Журнал логов, защита smtpPass, шаблон фильтра Яндекса, emailSent в UI |
+| [S156](done/S156-sidebar-group-counters.md) | 2026-11-14 | Счётчики активных/заглушек в заголовках групп сайдбара |
+| [S157](done/S157-schedule-chip-menu-fix.md) | 2026-11-14 | ✅ Задеплоен. Меню чипа на program.html и trainer.html |
+| [S158](done/S158-slider-redesign-tz.md) | 2026-11-14 | Полная переработка слайдера: описание, ссылка, цвет/размер/отступы, overlay, 9 позиций, менеджер фото, снят лимит 10 |
+| [S159](done/S159-albums-use-slider-engine.md) | 2026-11-14 | Все альбомы на SliderCore вместо carousel.js |
+| [S160](done/S160-photo-manager.md) | 2026-11-14 | Менеджер фото: обзор всех фото, статистика, удаление в корзину, scope uploads/data |
+| [S162](done/S162-slider-batch-save-fix.md) | 2026-11-14 | sanitizeSlides НЕ выбрасывает слайды без картинки, кнопка «удалить все скрытые» |
+| [S166](done/S166-events.md) | 2026-11-14 | Мероприятия: 6 типов, photoAlbum (SliderCore), видео, seed, auto-news |
+| [S167](done/S167-album-slider.md) | 2026-11-14 | Универсальный альбом-слайдер: 12 полей, drag-n-drop, универсальный редактор |
+| [S168](done/S168-stub-sections.md) | 2026-11-14 | 25 stub-страниц (Информация, Данные, Настройки, CRM, Интеграции) |
+| [S169](done/S169-md-preview-and-no-crop.md) | 2026-11-14 | Markdown-предпросмотр mode-split, все object-fit:cover → contain |
+| [S170](done/S170-video-manager.md) | 2026-11-14 | Менеджер видео: аналог менеджера фото для видео (mp4/webm/mov/m4v/ogv) |
+| [S161](done/S161-site-status-section.md) | 2026-11-14 | Раздел «📟 Статус»: API site-status, карточки сайта/сервера/посещаемости/проблем |
+| [S163](done/S163-visitor-tracking.md) | 2026-11-14 | Трекер посещаемости: visit-tracker.js (13 HTML), track-visit/get-visits, visits.json (20000, дедуп 15с) |
+| [S164](done/S164-status-section.md) | 2026-11-14 | Суперраздел «📋 Информация»: кнопка в шапке (цвет+цифры), «🚨 Проблемы» (автодиагностика) |
+| [S165](done/S165-link-preserve-order.md) | 2026-11-14 | sanitizeSlides сохраняет item.id и порядок массива, дубликаты через Set |
 
 **Волна 6 (закрыты 2026-11-09/10, задеплоены 2026-11-10):**
 

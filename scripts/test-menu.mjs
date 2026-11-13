@@ -26,13 +26,14 @@ const results = [];
 const check = (name, cond) => results.push([cond ? '✓' : '✗', name, cond]);
 
 // --- Разметка ---
+// S166: к «Программы» и «Коллектив» добавился дропдаун «Мероприятия» (events в базе)
 const desktop = document.querySelectorAll('[data-dropdown]');
-check('desktop dropdowns отрисованы (2: программы, коллектив)', desktop.length === 2);
+check('desktop dropdowns отрисованы (3: программы, коллектив, мероприятия — S166)', desktop.length === 3);
 check('у каждого есть .dropdown-toggle', [...desktop].every(d => !!d.querySelector('.dropdown-toggle')));
 check('у каждого есть .dropdown-menu', [...desktop].every(d => !!d.querySelector('.dropdown-menu')));
 
 const mgroups = document.querySelectorAll('[data-mgroup]');
-check('mobile аккордеоны отрисованы (2: программы, коллектив)', mgroups.length === 2);
+check('mobile аккордеоны отрисованы (3: +мероприятия — S166)', mgroups.length === 3);
 check('у каждого есть .m-group-list', [...mgroups].every(g => !!g.querySelector('.m-group-list')));
 
 // Пункты внутри

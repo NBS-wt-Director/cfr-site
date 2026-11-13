@@ -2,122 +2,10 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-12T18:00:17.294Z
+ * Сгенерировано: 2026-11-13T23:03:40.474Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.album = [
-  {
-    "id": 1922695592,
-    "image": "uploads/album/full/sovmestnye-foto-4.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-4.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 1922695593,
-    "image": "uploads/album/full/sovmestnye-foto-5.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-5.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 1922695594,
-    "image": "uploads/album/full/sovmestnye-foto-6.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-6.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 1922695596,
-    "image": "uploads/album/full/sovmestnye-foto-8.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-8.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 1922695597,
-    "image": "uploads/album/full/sovmestnye-foto-9.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-9.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412341,
-    "image": "uploads/album/full/sovmestnye-foto-10.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-10.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412342,
-    "image": "uploads/album/full/sovmestnye-foto-11.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-11.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412343,
-    "image": "uploads/album/full/sovmestnye-foto-12.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-12.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412344,
-    "image": "uploads/album/full/sovmestnye-foto-13.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-13.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412347,
-    "image": "uploads/album/full/sovmestnye-foto-16.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-16.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412350,
-    "image": "uploads/album/full/sovmestnye-foto-19.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-19.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412376,
-    "image": "uploads/album/full/sovmestnye-foto-22.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-22.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412377,
-    "image": "uploads/album/full/sovmestnye-foto-23.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-23.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
-  {
-    "id": 3319412378,
-    "image": "uploads/album/full/sovmestnye-foto-24.jpg",
-    "thumb": "uploads/album/thumb/sovmestnye-foto-24.jpg",
-    "title": "Совместные фото",
-    "category": "Совместные фото",
-    "date": ""
-  },
   {
     "id": 631754869,
     "image": "uploads/album/full/abzakovo-2015-1.jpg",
@@ -351,83 +239,11 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 1293589448,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-1.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-1.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589449,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-2.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-2.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589450,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-3.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-3.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589451,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-4.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-4.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589452,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-5.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-5.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589453,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-6.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-6.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589454,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-7.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-7.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589455,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-8.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-8.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 1293589456,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-9.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-9.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
     "id": 1948793347,
     "image": "uploads/album/full/bobrov-konstantin-1.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-1.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -435,7 +251,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-2.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-2.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -443,7 +259,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-3.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-3.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -451,31 +267,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-4.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-4.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
-    "id": 1948793352,
-    "image": "uploads/album/full/bobrov-konstantin-6.jpg",
-    "thumb": "uploads/album/thumb/bobrov-konstantin-6.jpg",
-    "title": "Бобров Константин",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
-    "id": 1948793353,
-    "image": "uploads/album/full/bobrov-konstantin-7.jpg",
-    "thumb": "uploads/album/thumb/bobrov-konstantin-7.jpg",
-    "title": "Бобров Константин",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
-    "id": 1948793354,
-    "image": "uploads/album/full/bobrov-konstantin-8.jpg",
-    "thumb": "uploads/album/thumb/bobrov-konstantin-8.jpg",
-    "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -483,37 +275,37 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-5.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-5.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
+    "date": ""
+  },
+  {
+    "id": 1948793352,
+    "image": "uploads/album/full/bobrov-konstantin-6.jpg",
+    "thumb": "uploads/album/thumb/bobrov-konstantin-6.jpg",
+    "title": "Бобров Константин",
+    "category": "Архив тренеров",
+    "date": ""
+  },
+  {
+    "id": 1948793353,
+    "image": "uploads/album/full/bobrov-konstantin-7.jpg",
+    "thumb": "uploads/album/thumb/bobrov-konstantin-7.jpg",
+    "title": "Бобров Константин",
+    "category": "Архив тренеров",
+    "date": ""
+  },
+  {
+    "id": 1948793354,
+    "image": "uploads/album/full/bobrov-konstantin-8.jpg",
+    "thumb": "uploads/album/thumb/bobrov-konstantin-8.jpg",
+    "title": "Бобров Константин",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
     "id": 1948793355,
     "image": "uploads/album/full/bobrov-konstantin-9.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-9.jpg",
-    "title": "Бобров Константин",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
-    "id": 4033746168,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-10.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-10.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 4033746169,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-11.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-11.jpg",
-    "title": "Бобров Константин",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 4033746170,
-    "image": "uploads/album/full/trenera-arhiv-bobrov-konstantin-12.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-bobrov-konstantin-12.jpg",
     "title": "Бобров Константин",
     "category": "Архив тренеров",
     "date": ""
@@ -523,7 +315,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-10.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-10.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -531,7 +323,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-11.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-11.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -539,7 +331,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/bobrov-konstantin-12.jpg",
     "thumb": "uploads/album/thumb/bobrov-konstantin-12.jpg",
     "title": "Бобров Константин",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -775,42 +567,10 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 4034283671,
-    "image": "uploads/album/full/boevye-napravleniya-borba-1.jpg",
-    "thumb": "uploads/album/thumb/boevye-napravleniya-borba-1.jpg",
-    "title": "Борьба",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 4034283672,
-    "image": "uploads/album/full/boevye-napravleniya-borba-2.jpg",
-    "thumb": "uploads/album/thumb/boevye-napravleniya-borba-2.jpg",
-    "title": "Борьба",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 4034283673,
-    "image": "uploads/album/full/boevye-napravleniya-borba-3.jpg",
-    "thumb": "uploads/album/thumb/boevye-napravleniya-borba-3.jpg",
-    "title": "Борьба",
-    "category": "Программы",
-    "date": ""
-  },
-  {
     "id": 2082853133,
     "image": "uploads/album/full/v-raspisanii-net-osnovy-massazha-1.jpg",
     "thumb": "uploads/album/thumb/v-raspisanii-net-osnovy-massazha-1.jpg",
-    "title": "в расписании нет Основы массажа",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 2992337669,
-    "image": "uploads/album/full/ozdorovitelnye-napravleniya-arhiv-v-raspisanii-net-osnovy-massazha-1.jpg",
-    "thumb": "uploads/album/thumb/ozdorovitelnye-napravleniya-arhiv-v-raspisanii-net-osnovy-massazha-1.jpg",
-    "title": "в расписании нет Основы массажа",
+    "title": "в расписании нет    Основы массажа",
     "category": "Программы",
     "date": ""
   },
@@ -1119,6 +879,14 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
+    "id": 3059261386,
+    "image": "uploads/album/full/glazyrina-ilona-16.jpg",
+    "thumb": "uploads/album/thumb/glazyrina-ilona-16.jpg",
+    "title": "Глазырина Илона",
+    "category": "Тренеры",
+    "date": ""
+  },
+  {
     "id": 3476618516,
     "image": "uploads/album/full/glazyrina-ilona-1.jpg",
     "thumb": "uploads/album/thumb/glazyrina-ilona-1.jpg",
@@ -1258,14 +1026,6 @@ window.SITE_DATA.album = [
     "id": 1018920803,
     "image": "uploads/album/full/foto-trenerov-glazyrina-ilona-9.jpg",
     "thumb": "uploads/album/thumb/foto-trenerov-glazyrina-ilona-9.jpg",
-    "title": "ГЛАЗЫРИНА ИЛОНА",
-    "category": "Фото тренеров",
-    "date": ""
-  },
-  {
-    "id": 3059261386,
-    "image": "uploads/album/full/glazyrina-ilona-16.jpg",
-    "thumb": "uploads/album/thumb/glazyrina-ilona-16.jpg",
     "title": "ГЛАЗЫРИНА ИЛОНА",
     "category": "Фото тренеров",
     "date": ""
@@ -1551,14 +1311,6 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 247560398,
-    "image": "uploads/album/full/izobrazitelnoe-iskusstvo-4-11.jpg",
-    "thumb": "uploads/album/thumb/izobrazitelnoe-iskusstvo-4-11.jpg",
-    "title": "Изобразительное искусство (4+)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
     "id": 267802877,
     "image": "uploads/album/full/izobrazitelnoe-iskusstvo-4-1.jpg",
     "thumb": "uploads/album/thumb/izobrazitelnoe-iskusstvo-4-1.jpg",
@@ -1631,27 +1383,11 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 3476764068,
-    "image": "uploads/album/full/trenera-arhiv-kazantsev-vladimir-1.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-kazantsev-vladimir-1.jpg",
-    "title": "Казанцев Владимир",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
-    "id": 3476764069,
-    "image": "uploads/album/full/trenera-arhiv-kazantsev-vladimir-2.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-kazantsev-vladimir-2.jpg",
-    "title": "Казанцев Владимир",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
     "id": 3623656255,
     "image": "uploads/album/full/kazantsev-vladimir-1.jpg",
     "thumb": "uploads/album/thumb/kazantsev-vladimir-1.jpg",
     "title": "Казанцев Владимир",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -1659,7 +1395,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/kazantsev-vladimir-2.jpg",
     "thumb": "uploads/album/thumb/kazantsev-vladimir-2.jpg",
     "title": "Казанцев Владимир",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -2127,14 +1863,6 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 1760720614,
-    "image": "uploads/album/full/kravets-oksana-borisovna-28.jpg",
-    "thumb": "uploads/album/thumb/kravets-oksana-borisovna-28.jpg",
-    "title": "Кравец Оксана Борисовна",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
     "id": 943688874,
     "image": "uploads/album/full/krepyshi-2-4-goda-10.jpg",
     "thumb": "uploads/album/thumb/krepyshi-2-4-goda-10.jpg",
@@ -2162,14 +1890,6 @@ window.SITE_DATA.album = [
     "id": 943688877,
     "image": "uploads/album/full/krepyshi-2-4-goda-13.jpg",
     "thumb": "uploads/album/thumb/krepyshi-2-4-goda-13.jpg",
-    "title": "Крепыши (2-4 года)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 943688878,
-    "image": "uploads/album/full/krepyshi-2-4-goda-14.jpg",
-    "thumb": "uploads/album/thumb/krepyshi-2-4-goda-14.jpg",
     "title": "Крепыши (2-4 года)",
     "category": "Программы",
     "date": ""
@@ -2471,14 +2191,6 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 362995440,
-    "image": "uploads/album/full/kuznetsov-aleksandr-vyacheslavovich-16.jpg",
-    "thumb": "uploads/album/thumb/kuznetsov-aleksandr-vyacheslavovich-16.jpg",
-    "title": "Кузнецов Александр Вячеславович",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
     "id": 1963257722,
     "image": "uploads/album/full/kuznetsov-aleksandr-vyacheslavovich-1.jpg",
     "thumb": "uploads/album/thumb/kuznetsov-aleksandr-vyacheslavovich-1.jpg",
@@ -2610,14 +2322,6 @@ window.SITE_DATA.album = [
     "id": 3446372236,
     "image": "uploads/album/full/lfk-ushu-10-15-let-8.jpg",
     "thumb": "uploads/album/thumb/lfk-ushu-10-15-let-8.jpg",
-    "title": "ЛФК УШУ (10-15 лет)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 3446372237,
-    "image": "uploads/album/full/lfk-ushu-10-15-let-9.jpg",
-    "thumb": "uploads/album/thumb/lfk-ushu-10-15-let-9.jpg",
     "title": "ЛФК УШУ (10-15 лет)",
     "category": "Программы",
     "date": ""
@@ -2759,14 +2463,6 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 1413080559,
-    "image": "uploads/album/full/oberyuhtin-ivan-9.jpg",
-    "thumb": "uploads/album/thumb/oberyuhtin-ivan-9.jpg",
-    "title": "Оберюхтин Иван",
-    "category": "Тренеры",
-    "date": ""
-  },
-  {
     "id": 3250350126,
     "image": "uploads/album/full/foto-trenerov-oberyuhtin-ivan-1.jpg",
     "thumb": "uploads/album/thumb/foto-trenerov-oberyuhtin-ivan-1.jpg",
@@ -2879,14 +2575,6 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 171605027,
-    "image": "uploads/album/full/ozdorovitelnoe-ushu-6-12-let-7.jpg",
-    "thumb": "uploads/album/thumb/ozdorovitelnoe-ushu-6-12-let-7.jpg",
-    "title": "Оздоровительное УШУ (6-12 лет)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
     "id": 1245684914,
     "image": "uploads/album/full/ofp-mech-1.jpg",
     "thumb": "uploads/album/thumb/ofp-mech-1.jpg",
@@ -2914,14 +2602,6 @@ window.SITE_DATA.album = [
     "id": 518192618,
     "image": "uploads/album/full/ofp-ushu-10-3.jpg",
     "thumb": "uploads/album/thumb/ofp-ushu-10-3.jpg",
-    "title": "ОФП УШУ (10+)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 518192619,
-    "image": "uploads/album/full/ofp-ushu-10-4.jpg",
-    "thumb": "uploads/album/thumb/ofp-ushu-10-4.jpg",
     "title": "ОФП УШУ (10+)",
     "category": "Программы",
     "date": ""
@@ -3259,7 +2939,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/polovnikova-tamara-11.jpg",
     "thumb": "uploads/album/thumb/polovnikova-tamara-11.jpg",
     "title": "Половникова Тамара",
-    "category": "Тренеры",
+    "category": "Фото тренеров",
     "date": ""
   },
   {
@@ -3267,21 +2947,13 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/polovnikova-tamara-12.jpg",
     "thumb": "uploads/album/thumb/polovnikova-tamara-12.jpg",
     "title": "Половникова Тамара",
-    "category": "Тренеры",
+    "category": "Фото тренеров",
     "date": ""
   },
   {
     "id": 2819392725,
     "image": "uploads/album/full/foto-trenerov-polovnikova-tamara-10.jpg",
     "thumb": "uploads/album/thumb/foto-trenerov-polovnikova-tamara-10.jpg",
-    "title": "Половникова Тамара",
-    "category": "Фото тренеров",
-    "date": ""
-  },
-  {
-    "id": 2819392726,
-    "image": "uploads/album/full/foto-trenerov-polovnikova-tamara-11.jpg",
-    "thumb": "uploads/album/thumb/foto-trenerov-polovnikova-tamara-11.jpg",
     "title": "Половникова Тамара",
     "category": "Фото тренеров",
     "date": ""
@@ -3447,19 +3119,11 @@ window.SITE_DATA.album = [
     "date": ""
   },
   {
-    "id": 1598950607,
-    "image": "uploads/album/full/trenera-arhiv-potorochin-stanislav-1.jpg",
-    "thumb": "uploads/album/thumb/trenera-arhiv-potorochin-stanislav-1.jpg",
-    "title": "Поторочин Станислав",
-    "category": "Архив тренеров",
-    "date": ""
-  },
-  {
     "id": 2650752298,
     "image": "uploads/album/full/potorochin-stanislav-1.jpg",
     "thumb": "uploads/album/thumb/potorochin-stanislav-1.jpg",
     "title": "Поторочин Станислав",
-    "category": "Тренеры",
+    "category": "Архив тренеров",
     "date": ""
   },
   {
@@ -3586,14 +3250,6 @@ window.SITE_DATA.album = [
     "id": 898767981,
     "image": "uploads/album/full/razvivayuschie-ushu-4-6-let-6.jpg",
     "thumb": "uploads/album/thumb/razvivayuschie-ushu-4-6-let-6.jpg",
-    "title": "Развивающие УШУ (4-6 лет)",
-    "category": "Программы",
-    "date": ""
-  },
-  {
-    "id": 898767982,
-    "image": "uploads/album/full/razvivayuschie-ushu-4-6-let-7.jpg",
-    "thumb": "uploads/album/thumb/razvivayuschie-ushu-4-6-let-7.jpg",
     "title": "Развивающие УШУ (4-6 лет)",
     "category": "Программы",
     "date": ""
@@ -3891,7 +3547,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/romanovskiy-nikolay-13.jpg",
     "thumb": "uploads/album/thumb/romanovskiy-nikolay-13.jpg",
     "title": "Романовский Николай",
-    "category": "Фото тренеров",
+    "category": "Тренеры",
     "date": ""
   },
   {
@@ -3899,7 +3555,7 @@ window.SITE_DATA.album = [
     "image": "uploads/album/full/romanovskiy-nikolay-14.jpg",
     "thumb": "uploads/album/thumb/romanovskiy-nikolay-14.jpg",
     "title": "Романовский Николай",
-    "category": "Фото тренеров",
+    "category": "Тренеры",
     "date": ""
   },
   {
@@ -4596,6 +4252,198 @@ window.SITE_DATA.album = [
     "thumb": "uploads/album/thumb/s-bolshim-rasshireniem-77.jpg",
     "title": "С большим расширением",
     "category": "Фото тренеров",
+    "date": ""
+  },
+  {
+    "id": 1922695589,
+    "image": "uploads/album/full/sovmestnye-foto-1.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-1.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695590,
+    "image": "uploads/album/full/sovmestnye-foto-2.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-2.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695591,
+    "image": "uploads/album/full/sovmestnye-foto-3.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-3.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695592,
+    "image": "uploads/album/full/sovmestnye-foto-4.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-4.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695593,
+    "image": "uploads/album/full/sovmestnye-foto-5.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-5.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695594,
+    "image": "uploads/album/full/sovmestnye-foto-6.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-6.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695595,
+    "image": "uploads/album/full/sovmestnye-foto-7.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-7.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695596,
+    "image": "uploads/album/full/sovmestnye-foto-8.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-8.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 1922695597,
+    "image": "uploads/album/full/sovmestnye-foto-9.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-9.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412341,
+    "image": "uploads/album/full/sovmestnye-foto-10.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-10.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412342,
+    "image": "uploads/album/full/sovmestnye-foto-11.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-11.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412343,
+    "image": "uploads/album/full/sovmestnye-foto-12.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-12.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412344,
+    "image": "uploads/album/full/sovmestnye-foto-13.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-13.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412345,
+    "image": "uploads/album/full/sovmestnye-foto-14.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-14.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412346,
+    "image": "uploads/album/full/sovmestnye-foto-15.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-15.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412347,
+    "image": "uploads/album/full/sovmestnye-foto-16.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-16.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412348,
+    "image": "uploads/album/full/sovmestnye-foto-17.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-17.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412349,
+    "image": "uploads/album/full/sovmestnye-foto-18.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-18.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412350,
+    "image": "uploads/album/full/sovmestnye-foto-19.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-19.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412374,
+    "image": "uploads/album/full/sovmestnye-foto-20.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-20.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412375,
+    "image": "uploads/album/full/sovmestnye-foto-21.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-21.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412376,
+    "image": "uploads/album/full/sovmestnye-foto-22.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-22.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412377,
+    "image": "uploads/album/full/sovmestnye-foto-23.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-23.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
+    "date": ""
+  },
+  {
+    "id": 3319412378,
+    "image": "uploads/album/full/sovmestnye-foto-24.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-24.jpg",
+    "title": "Совместные фото",
+    "category": "Совместные фото",
     "date": ""
   },
   {

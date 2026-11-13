@@ -71,8 +71,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   const board = d.createElement('div');
   board.innerHTML = w.ScheduleUI.weekBoard(w.SITE_DATA.scheduleTable);
   check('главная: доска = 7 колонок-дней (S32)', board.querySelectorAll('.week-col').length === 7);
-  check('главная: тренировки — овальные чипы со ссылками (S32)',
-    board.querySelectorAll('.week-chip[href^="program.html?id="]').length > 0 &&
+  // S151/S157: чип — кнопка с меню; ссылка на программу живёт в «Подробнее» (.chip-menu-more)
+  check('главная: тренировки — чипы с меню-ссылкой «Подробнее» (S32/S151)',
+    board.querySelectorAll('.chip-menu-more[href^="program.html?id="]').length > 0 &&
     board.querySelectorAll('.week-chip-time').length > 0);
   check('главная: чипы с режимом зал/онлайн/гибрид (S3)',
     board.querySelectorAll('.week-chip.mode-hall, .week-chip.mode-online, .week-chip.mode-hybrid').length > 0);
@@ -597,8 +598,11 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
         dp.querySelector('.entity-album .slider').getAttribute('data-slider-ready') !== null);
     }
   }
-  // На Яндекс.Диске нет папок с фото для этих трёх программ — обложку взять неоткуда (S28)
-  const NO_PHOTO_ON_DISK = ['Специальное ОФП (6-12 лет)', 'Основы работы с оружием', 'Массаж внутренних органов'];
+  // Нет обложек на диске — белым по белому (S28). Список актуализирован 2026-11-14
+  // по прод-данным: «Основы работы с оружием» переименованы на проде,
+  // Персональные тренировки/Сплит/Массаж добавлены на проде без фото (S17 — заполнение).
+  const NO_PHOTO_ON_DISK = ['Специальное ОФП (6-12 лет)', 'Координация. Основы работы с оружием в УШУ',
+    'Массаж внутренних органов', 'Персональные тренировки', 'Сплит', 'Массаж'];
   check('обложки: у всех видимых программ (кроме 3 без фото на диске) есть image и файл существует (S28)',
     flattenDb(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8')))
       .programs.filter(x => !x.hidden && !NO_PHOTO_ON_DISK.includes(x.name))

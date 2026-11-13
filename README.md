@@ -17,9 +17,9 @@
 | Компонент | Что это |
 |-----------|---------|
 | `static/` | Публичный сайт: чистый HTML + ES6 JS + один `css/style.css`. Без сборки. |
-| `static/admin.html` | Админка (вход по паролю из env, смена пароля в «Главных данных»). Группы сайдбара: ДАННЫЕ · ШАБЛОНЫ (8 отдельных разделов-заготовок) · НАСТРОЙКИ САЙТА · CRM · БОТЫ (почта `#bots-email` + 8 заглушек ботов) · ИНТЕГРАЦИИ · СПРАВКА. В заголовке каждой группы — счётчики «активных / заглушек» (S156) |
-| `scripts/admin-server.mjs` | Node-сервер (:3456): раздача сайта + API админки + запись `db.json` + авторегенерация статики. Запись пустого раздела поверх непустой базы блокируется (`validateDbData`, S140); HTML отдаётся с `Cache-Control: no-cache`. Заявки — `leads.json`, уведомления о них — SMTP (см. «📮 Заявки и почта») |
-| `db.json` | **Источник данных** (новости, программы, тренеры, расписание, цены, направления, залы, настройки, альбом) |
+| `static/admin.html` | Админка (вход по паролю из env, смена пароля в «Главных данных»). Группы сайдбара: ИНФОРМАЦИЯ (Статус + Проблемы + заглушки) · ДАННЫЕ (вкл. Мероприятия, Менеджер видео) · ШАБЛОНЫ · НАСТРОЙКИ САЙТА (вкл. Менеджер фото, Слайдер) · CRM · БОТЫ (почта `#bots-email` + 8 заглушек) · ИНТЕГРАЦИИ · СПРАВКА. Счётчики «активных / заглушек» в заголовках групп (S156); 25 разделов-заглушек (S168); кнопка состояния сайта в шапке (S164) |
+| `scripts/admin-server.mjs` | Node-сервер (:3456): раздача сайта + API админки + запись `db.json` + авторегенерация статики. Запись пустого раздела поверх непустой базы блокируется (`validateDbData`, S140); HTML отдаётся с `Cache-Control: no-cache`. Заявки — `leads.json`, уведомления — SMTP (см. «📮 Заявки и почта»). Визиты — `visits.json` (пиксель S163, ротация 20000), авто-новости мероприятий по дате (S166) |
+| `db.json` | **Источник данных** (новости, мероприятия, программы, тренеры, расписание, цены, направления, залы, настройки, альбом) |
 | `scripts/export-static.mjs` | Генератор `static/js/data/*.js` из `db.json` (+ sitemap.xml/robots.txt) |
 | `deploy/` | `deploy.sh`, PM2 (`ecosystem.config.js`), NGINX (`nginx-site.conf`) |
 | `tickets/` | Тикет-система (индекс — `tickets/README.md`) |
@@ -35,6 +35,7 @@
 | `directions.html` / `directions.html?id=` | Направления (группы программ), `?id=` — числовой id направления |
 | `trainers.html` / `trainer.html?id=` | «Коллектив» (тренеры) и страница тренера (`?id=` — slug ФИО или числовой id, S18) |
 | `news.html` | Новости (сетка, модалка с полным текстом, markdown) |
+| `events.html` / `event.html?id=` | Мероприятия (S166): слайдер будущих + плитка всех; страница события: описание, фотогалерея (SliderCore), видео (YouTube/VK/Rutube/файл), кнопка «Записаться». Auto-news: новость-анонс создаётся/скрывается по дате события |
 | `album.html` | Фотоальбом непривязанных фото |
 | `page.html?url=` | Ручные страницы из админки (markdown) |
 | `crm.html`, `lk.html` | Заглушки CRM и Личного кабинета |
@@ -52,7 +53,7 @@
 | `npm run night-sync` | Синхронизация новых файлов с диска (cron в 3:00) |
 | `npm run parse-price` | Парсинг прайса (.doc) → `settings.priceItems`/`discounts` |
 | `npm run test-menu` | Тесты меню (27 проверок) |
-| `npm run test-static` | Смоук-тесты статики (jsdom, 745 проверок) |
+| `npm run test-static` | Смоук-тесты статики (jsdom, 1039 проверок) |
 | `npm run pull-prod-news` | Стягивание новостей с боевого прода |
 | `npm run sync:from-server` | Синхронизация данных с сервера |
 
@@ -73,7 +74,7 @@ cd /home/cfr_balloo/sites/cfrsite && ./deploy/deploy.sh
 
 ```
 {
-  data:     { news, programs, trainers, schedule, prices, album },
+  data:     { news, events, programs, trainers, schedule, prices, album },
   settings: { appearance, siteSettings, scheduleSettings, emailConfig,
               globalDivider, sliderSettings, contacts, directions, halls,
               homeSections, priceItems, discounts, footerLinks,
@@ -84,7 +85,10 @@ cd /home/cfr_balloo/sites/cfrsite && ./deploy/deploy.sh
 ```
 
 - `db.json` — **коммитится** (~460 КБ), на сервере является источником истины (деплой его сохраняет).
+- `events[]` — мероприятия (S166): `dateStart/dateEnd`, `type` (6 видов), `photoAlbum` (поля как у слайдера),
+  `videos`, `newsId` — связь с новостью-анонсом (создаётся/скрывается автоматически по дате).
 - `leads.json` — **не коммитится**, только на сервере. Заявки с форм обратной связи.
+- `visits.json` — **не коммитится**. Кольцевой буфер посещений (пиксель `js/visit-tracker.js`, ротация 20000).
 - Бэкапы — в `backups/` (в `.gitignore`), правила — `AGENTS.md` → «💾 База данных».
 
 ## 📮 Заявки и почта (S151–S155)
@@ -98,6 +102,12 @@ cd /home/cfr_balloo/sites/cfrsite && ./deploy/deploy.sh
 | `/api/admin/get-leads` / `save-leads` | POST | чтение/запись заявок (CRM «Вызовы форм») |
 | `/api/admin/get-email-config` / `save-email-config` | POST | SMTP-настройки (раздел админки `#bots-email`) |
 | `/api/admin/send-test-email` | POST | тестовое письмо из админки |
+| `/api/admin/get-events` / `save-event` / `delete-event` | POST | мероприятия (S166), auto-news по дате |
+| `/api/admin/get-photo-manager` / `delete-photos` | POST | менеджер фото (S160): обзор/статистика/удаление в корзину |
+| `/api/admin/get-video-manager` / `delete-videos` | POST | менеджер видео (S170) |
+| `/api/admin/site-status` | POST | «📟 Статус» (S161/S164): сайт+сервер+посещаемость+автодиагностика |
+| `/api/admin/track-visit` | GET | пиксель посещаемости (S163), пишет `visits.json` |
+| `/api/admin/get-visits` | POST | статистика визитов (день/неделя/месяц/год, по страницам/разделам) |
 | `/api/admin/missing-photos` | GET | список сущностей без фото |
 | `/api/admin/send-reminder` | POST | письмо-напоминание о недостающих фото |
 

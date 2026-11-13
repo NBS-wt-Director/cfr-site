@@ -2,62 +2,28 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-12T18:00:17.294Z
+ * Сгенерировано: 2026-11-13T23:03:40.474Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.news = [
   {
-    "id": 1794485260521,
-    "title": "Открытое мероприятие: день открытых дверей",
+    "id": 1794499167076,
+    "title": "Семинар по функционалу В ЦФР \"Шифу Панда\".",
     "date": "2026-11-12",
-    "image": "uploads/covers/p-gimnastika-dlya-sustavov.jpg",
+    "image": "uploads/f60c4aabdd6627f9.jpeg",
     "coverTall": false,
-    "video": "",
-    "photos": [],
-    "showOnHome": true,
-    "category": "Мероприятия",
-    "pinned": false,
-    "programId": null,
-    "trainerId": null,
-    "updatedAt": "2026-11-12",
-    "preview": "📅 2026-12-20 10:00 открытое мероприятие Пробные тренировки по всем направлениям, знакомство с тренерами. Подробности, фото и запись: Открыть страницу мероприятия",
-    "long": false
-  },
-  {
-    "id": 1794485260520,
-    "title": "Семинар по функциональной подготовке",
-    "date": "2026-11-12",
-    "image": "uploads/covers/p-funktsionalnyy-trening.jpg",
-    "coverTall": false,
-    "video": "",
-    "photos": [],
-    "showOnHome": true,
-    "category": "Мероприятия",
-    "pinned": false,
-    "programId": null,
-    "trainerId": null,
-    "updatedAt": "2026-11-12",
-    "preview": "📅 2026-12-06 11:00 семинар Три часа практики: мобилизации, координация, работа с весом тела. Подробности, фото и запись: Открыть страницу мероприятия",
-    "long": false
-  },
-  {
-    "id": 1792825368937,
-    "title": "Функциональный семинар",
-    "date": "2026-10-24",
-    "image": "uploads/c2eff7068697ca6e.jpg",
-    "coverTall": true,
     "video": "",
     "photos": [
-      "uploads/2b4bbe73b61ad1ca.jpg",
-      "uploads/fd066475df1409ca.jpg"
+      "uploads/acee72f649e755cf.jpeg",
+      "uploads/ce8ef3b082a7d53d.jpeg"
     ],
     "showOnHome": true,
     "category": "",
-    "pinned": false,
+    "pinned": true,
     "programId": null,
     "trainerId": null,
-    "updatedAt": "",
-    "preview": "Центр функционального развития «Шифу Панда» приглашает на трехдневный семинар на базе отдыха «Энергетик», на берегу Исетского озера. Три дня будем тренироваться, разбирать функциональные возможности о…",
+    "updatedAt": "2026-11-12",
+    "preview": "⭐️ А ВЫ ПРАВИЛЬНО БЕГАЕТЕ? Вопрос странный, правда? Бегать мы умеем с двух лет. Никто нас этому не учил: просто однажды побежали — и всё. Посмотрите на людей в парке. Плечи подняты к ушам, кулаки сжат…",
     "long": true
   }
 ];

@@ -72,11 +72,19 @@ function parseArgs() {
   return {
     serverUrl,
     outputFile: outputFile || path.join(root, 'db-prod-sync.json'),
-    password: password ||
-      (fs.existsSync(path.join(root, '.env.local'))
-        ? fs.readFileSync(path.join(root, '.env.local'), 'utf-8').trim()
-        : 'ЦФР_2026.10.21')
+    password: password || readPasswordFromEnv() || 'ЦФР_2026.10.21'
   };
+}
+
+// Читает ADMIN_PASSWORD из .env.local / .env (значение ключа, а не весь файл).
+function readPasswordFromEnv() {
+  for (const f of ['.env.local', '.env']) {
+    const p = path.join(root, f);
+    if (!fs.existsSync(p)) continue;
+    const m = fs.readFileSync(p, 'utf-8').match(/^ADMIN_PASSWORD=(.*)$/m);
+    if (m && m[1].trim()) return m[1].trim();
+  }
+  return null;
 }
 
 function httpRequest(url, method, body, token) {

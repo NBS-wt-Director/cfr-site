@@ -2,10 +2,25 @@
  * AUTO-GENERATED — не редактируйте вручную.
  * Генератор: npm run static:export  (scripts/export-static.mjs)
  * Источник: db.json
- * Сгенерировано: 2026-11-12T18:00:17.294Z
+ * Сгенерировано: 2026-11-13T23:03:40.474Z
  */
 window.SITE_DATA = window.SITE_DATA || {};
 window.SITE_DATA.trainerSlider = [
+  {
+    "image": "uploads/album/full/sovmestnye-foto-1.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-1.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-2.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-2.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-3.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-3.jpg",
+    "caption": "Совместные фото"
+  },
   {
     "image": "uploads/album/full/sovmestnye-foto-4.jpg",
     "thumb": "uploads/album/thumb/sovmestnye-foto-4.jpg",
@@ -19,6 +34,11 @@ window.SITE_DATA.trainerSlider = [
   {
     "image": "uploads/album/full/sovmestnye-foto-6.jpg",
     "thumb": "uploads/album/thumb/sovmestnye-foto-6.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-7.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-7.jpg",
     "caption": "Совместные фото"
   },
   {
@@ -52,13 +72,43 @@ window.SITE_DATA.trainerSlider = [
     "caption": "Совместные фото"
   },
   {
+    "image": "uploads/album/full/sovmestnye-foto-14.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-14.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-15.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-15.jpg",
+    "caption": "Совместные фото"
+  },
+  {
     "image": "uploads/album/full/sovmestnye-foto-16.jpg",
     "thumb": "uploads/album/thumb/sovmestnye-foto-16.jpg",
     "caption": "Совместные фото"
   },
   {
+    "image": "uploads/album/full/sovmestnye-foto-17.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-17.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-18.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-18.jpg",
+    "caption": "Совместные фото"
+  },
+  {
     "image": "uploads/album/full/sovmestnye-foto-19.jpg",
     "thumb": "uploads/album/thumb/sovmestnye-foto-19.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-20.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-20.jpg",
+    "caption": "Совместные фото"
+  },
+  {
+    "image": "uploads/album/full/sovmestnye-foto-21.jpg",
+    "thumb": "uploads/album/thumb/sovmestnye-foto-21.jpg",
     "caption": "Совместные фото"
   },
   {
