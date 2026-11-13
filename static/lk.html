@@ -96,7 +96,7 @@ table { width:100%; border-spacing:0; border-collapse:collapse }
 #res-img { margin:0 0 0 8px !important }
 #sale-tabs tr:nth-child(even) { background-color:#f2f2f2 }
 #visit-tabs tr:hover, #res-tabs tr:hover { background-color:#f2f2f2 }
-#client-foto { display:none; min-width:128px; max-width:128px; margin:15px; border-radius:50%; object-fit:cover; cursor:pointer }
+#client-foto { display:none; min-width:128px; max-width:128px; margin:15px; border-radius:50%; object-fit:contain; cursor:pointer }
 #client-foto-div { width:158px; height:158px; cursor:pointer }
 #client-foto-input { display:none }
 #header-div { display:flex; flex-flow:row nowrap }
@@ -369,7 +369,7 @@ $('#tabs-3').html('<div class="left-margin gray">Нет покупок</div>');e
 $('#tabs-3').html(sPanel+'</table>');refreshReservations();preloader.fadeOut('slow');profileWin.dialog({dialogClass:"no-titlebar",width:'100%',show:{effect:'fade',duration:500},hide:{effect:'fade',duration:300},maxHeight:!isPortrait&&!isMobile?700:window.innerHeight,modal:false,create:function(event,ui){$(this).parent().css("maxWidth",isPortrait&&!isMobile?"800px":"600px");}});}
 </script>
 
-  <script src="js/visit-tracker.js?v=48"></script>
+  <script src="js/visit-tracker.js?v=50"></script>
 </body>
 
 </html>

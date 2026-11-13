@@ -51,6 +51,11 @@
 | [S163](activ/S163-visitor-tracking.md) | 🕐 В разработке | **Трекер посещаемости:** пиксель на страницах, серверный учёт заходов (IP, referer, URL, User-Agent, экран, язык), ротация 10000 визитов |
 | [S164](activ/S164-status-section.md) | 🕐 В разработке | **Суперраздел «Информация»:** «📟 Статус» (всегда открыт) + «🚨 Проблемы» (автодиагностика), кнопка состояния в шапке админки (цвет+цифры) |
 | [S165](activ/S165-link-preserve-order.md) | 🕐 В разработке | **Ссылки перепутаны при сохранении:** диагностика и фикс порядка/ID слайдов в sanitizeSlides |
+| [S166](activ/S166-events.md) | 🟢 Код готов, ждёт деплоя | **Мероприятия (events):** раздел в «Данные», 6 типов, photoAlbum (SliderCore), видео (YouTube/VK/Rutube/файл), seed (4 события), auto-news (создание/скрытие по дате), site-status (авто-новости, фото-ссылки, прошедшие события), ?v=46 |
+| [S167](activ/S167-album-slider.md) | 🟢 Код готов, ждёт деплоя | **Универсальный альбом-слайдер:** sanitizeAlbumSlides (12 полей), exportAlbumSlides (скрытые исключены), albumSlides (entity.js), galleryBlock (events.js), универсальный редактор (slideArr, renderSlideRow, slideField, slideToggleHidden, normalizeAlbumSlides, renderAlbumSlideEditor, albumRecords, pmTarget, drag-n-drop), ?v=47 |
+| [S168](activ/S168-stub-sections.md) | 🟢 Код готов, ждёт деплоя | **Заглушки разделов:** 25 stub-страниц (Информация: 3, Данные: 4, Настройки: 7, CRM: 8, Интеграции: 3), STUB_PAGES + renderStubPageSection, удалены сабразделы-заглушки CRM/Интеграции, hash-redirect, справка расширена |
+| [S169](activ/S169-md-preview-and-no-crop.md) | 🟢 Код готов, ждёт деплоя | **Markdown-редактор:** предпросмотр mode-split (вкладки Код/Сплит/Сайт), CSS предпросмотра; **Без обрезки фото:** все object-fit:cover → contain, height:auto (10+ селекторов style.css + lk.html), ?v=50 |
+| [S170](activ/S170-video-manager.md) | 🟢 Код готов, ждёт деплоя | **Менеджер видео:** аналог менеджера фото для видео (mp4/webm/mov/m4v/ogv), collectVideoUsage (news.video + events.videos), превью `<video>`, удаление в корзину, защита used, ?v=50 |
 
 **Приёмка волны S140–S150** — за пользователем (мобильная шапка S149, карусель дней S150,
 админка S144–S148). После успешной приёмки — старт работ по ROADMAP.

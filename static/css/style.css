@@ -518,7 +518,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   transition: opacity 1s ease-in-out;
 }
 .slide.active { opacity: 1; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide img { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
 /* S158: overlay — затемнение фото для читаемости текста */
 .slide-overlay {
@@ -672,7 +672,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   cursor: pointer;
   overflow: hidden;
 }
-.album-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.album-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .album-thumb.active { border-color: var(--color-primary, #6366f1); }
 
 @media (max-width: 768px) {
@@ -1077,7 +1077,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .tile-photo a,
 .tile-photo img { display: block; width: 100%; height: 100%; }
-.tile-photo img { object-fit: cover; }
+.tile-photo img { object-fit: contain; }
 /* Фолбэк-логотип (фото нет) — показываем целиком, без обрезки */
 .tile-photo img[src$="logo.png"] { object-fit: contain; padding: 5px; background: #fff; }
 
@@ -1180,9 +1180,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-/* S124: обложка в плитке новости — пропорция A4 вертикально (ш:в = 1:1.414), кроп по центру */
+/* S169: обложка новости показывается ЦЕЛИКОМ (без кропа) — natural ratio */
 .news-card .lightbox-zoom { display: block; }
-.news-card img { width: 100%; aspect-ratio: 1 / 1.414; height: auto; object-fit: cover; }
+.news-card img { width: 100%; height: auto; object-fit: contain; display: block; }
 .news-noimage { width: 100%; aspect-ratio: 1 / 1.414; height: auto; background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
 
 /* S125: новость с высокой обложкой (есть обложка И высота больше ширины)
@@ -1278,8 +1278,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .news-photos .news-photo img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border-radius: 0.5rem;
 }
 @media (max-width: 767px) {
@@ -1768,8 +1768,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .entity-cover {
   width: 100%;
   max-width: 640px;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border-radius: var(--card-border-radius);
   margin: 0 auto 1.5rem;
   display: block;
@@ -1779,9 +1779,9 @@ section[id] { scroll-margin-top: var(--header-h); }
 .entity-photo {
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 2 / 3;
+  height: auto;
   border-radius: var(--entity-photo-radius, var(--card-border-radius));
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   margin: 0 auto 1.5rem;
 }
@@ -1872,8 +1872,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .album-item img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -2556,8 +2556,8 @@ body[data-entity="trainer"] { overflow-x: clip; }
 .direction-cover img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 .direction-desc {
   color: var(--color-text-muted);
@@ -2571,7 +2571,7 @@ body[data-entity="trainer"] { overflow-x: clip; }
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }

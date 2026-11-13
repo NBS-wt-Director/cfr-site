@@ -5,7 +5,7 @@ import path from 'path';
 const files = ['album', 'crm', 'directions', 'index', 'lk', 'news',
   'page', 'program', 'programs', 'trainer', 'trainers'];
 
-const TAG = '<script src="js/visit-tracker.js?v=48"></script>';
+const TAG = '<script src="js/visit-tracker.js?v=50"></script>';
 let added = 0;
 
 for (const f of files) {

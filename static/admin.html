@@ -367,6 +367,33 @@
       border-left: 1px solid var(--border); background: #fff;
     }
     .md-editor-preview:empty::before { content: 'Предпросмотр появится здесь'; color: var(--text-secondary); font-size: 0.85rem; }
+    /* S169: типографика предпросмотра — как на сайте (.news-body/.entity-text),
+       чтобы администратор видел результат без знания markdown */
+    .md-editor-preview { line-height: 1.7; font-size: 0.92rem; color: #1e293b; }
+    .md-editor-preview h1, .md-editor-preview h2, .md-editor-preview h3,
+    .md-editor-preview h4, .md-editor-preview h5, .md-editor-preview h6 {
+      margin: 1rem 0 0.5rem; line-height: 1.3; color: #0f172a;
+    }
+    .md-editor-preview h1 { font-size: 1.5rem; }
+    .md-editor-preview h2 { font-size: 1.3rem; }
+    .md-editor-preview h3 { font-size: 1.15rem; }
+    .md-editor-preview h4, .md-editor-preview h5, .md-editor-preview h6 { font-size: 1rem; }
+    .md-editor-preview p { margin: 0 0 0.75rem; }
+    .md-editor-preview ul, .md-editor-preview ol { margin: 0 0 0.75rem; padding-left: 1.5rem; }
+    .md-editor-preview li { margin-bottom: 0.25rem; }
+    .md-editor-preview blockquote {
+      margin: 0.75rem 0; padding: 0.5rem 1rem; border-left: 4px solid #6366f1;
+      background: #f8fafc; color: #475569; border-radius: 0 6px 6px 0;
+    }
+    .md-editor-preview a { color: #6366f1; text-decoration: underline; }
+    .md-editor-preview img { max-width: 100%; height: auto; border-radius: 8px; margin: 0.5rem 0; }
+    .md-editor-preview hr { border: none; border-top: 1px solid #e2e8f0; margin: 1rem 0; }
+    .md-editor-preview code { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.85em; }
+    .md-editor-preview pre { background: #0f172a; color: #e2e8f0; padding: 0.75rem 1rem; border-radius: 8px; overflow-x: auto; margin: 0.75rem 0; }
+    .md-editor-preview pre code { background: none; color: inherit; padding: 0; }
+    .md-editor-preview table { border-collapse: collapse; margin: 0.75rem 0; width: 100%; font-size: 0.88rem; }
+    .md-editor-preview th, .md-editor-preview td { border: 1px solid #e2e8f0; padding: 0.4rem 0.6rem; text-align: left; }
+    .md-editor-preview th { background: #f8fafc; font-weight: 600; }
     .md-editor-body.mode-split .md-editor-textarea,
     .md-editor-body.mode-split .md-editor-preview { width: 50%; }
     .md-editor-dialog {
@@ -617,10 +644,13 @@
         <!-- 📋 ИНФОРМАЦИЯ (S164: суперраздел; группа всегда открыта при входе) -->
         <div class="sidebar-group">
           <div class="sidebar-group-header" data-group="info" onclick="toggleGroup(this)">📋 ИНФОРМАЦИЯ ▾</div>
-          <div class="sidebar-group-body open">
-            <a href="#status" data-section="status">📟 Статус</a>
-          </div>
-        </div>
+           <div class="sidebar-group-body open">
+             <a href="#status" data-section="status">📟 Статус</a>
+             <a href="#info-admin-log" data-section="info-admin-log" class="sidebar-wip">📜 Журнал действий админки (скоро)</a>
+             <a href="#info-crm-log" data-section="info-crm-log" class="sidebar-wip">📜 Журнал действий CRM (скоро)</a>
+             <a href="#info-reports" data-section="info-reports" class="sidebar-wip">📊 Отчёты по сайту (скоро)</a>
+           </div>
+         </div>
 
         <!-- 📦 ДАННЫЕ -->
         <div class="sidebar-group">
@@ -635,6 +665,12 @@
             <a href="#directions" data-section="directions">📁 Направления</a>
               <a href="#album" data-section="album">📸 Альбом</a>
               <a href="#events" data-section="events">🎪 Мероприятия</a>
+              <!-- S170: менеджер видео — по аналогии с менеджером фото -->
+              <a href="#video-manager" data-section="video-manager">🎬 Менеджер видео</a>
+              <a href="#goods" data-section="goods" class="sidebar-wip">🛒 Товары (скоро)</a>
+              <a href="#services" data-section="services" class="sidebar-wip">🧩 Доп. услуги (скоро)</a>
+              <a href="#inventory" data-section="inventory" class="sidebar-wip">📦 Инвентарь (скоро)</a>
+              <a href="#diary-fields" data-section="diary-fields" class="sidebar-wip">📓 Поля дневников самоконтроля (скоро)</a>
             </div>
          </div>
 
@@ -669,9 +705,17 @@
              <a href="#home-sections" data-section="home-sections">🧩 Разделы главной</a>
              <a href="#pages" data-section="pages">📄 Страницы</a>
              <a href="#footer-links" data-section="footer-links">🔗 Ссылки подвала</a>
-             <a href="#prices" data-section="prices">💰 Цены</a>
-             <a href="#discounts" data-section="discounts">🏷 Скидки</a>
-           </div>
+              <a href="#prices" data-section="prices">💰 Цены</a>
+              <a href="#discounts" data-section="discounts">🏷 Скидки</a>
+              <!-- S168: справочники инвентаря + карта помещений + красная зона -->
+              <a href="#inv-places" data-section="inv-places" class="sidebar-wip">📍 Места (скоро)</a>
+              <a href="#inv-kinds" data-section="inv-kinds" class="sidebar-wip">🔧 Виды инвентаря (скоро)</a>
+              <a href="#inv-types" data-section="inv-types" class="sidebar-wip">📐 Типы инвентаря (скоро)</a>
+              <a href="#inv-groups" data-section="inv-groups" class="sidebar-wip">📂 Группы инвентаря (скоро)</a>
+              <a href="#inv-entities" data-section="inv-entities" class="sidebar-wip">🏋️ Сущности инвентаря (скоро)</a>
+              <a href="#room-map" data-section="room-map" class="sidebar-wip">🗺 Карта помещений (скоро)</a>
+              <a href="#danger-zone" data-section="danger-zone" class="sidebar-wip">🔴 Красная зона (скоро)</a>
+            </div>
          </div>
 
         <!-- 📊 CRM -->
@@ -679,7 +723,15 @@
           <div class="sidebar-group-header" data-group="crm" onclick="toggleGroup(this)">📊 CRM ▸</div>
           <div class="sidebar-group-body">
             <a href="#crm-leads" data-section="crm-leads">📣 Вызовы форм</a>
-            <a href="#crm" data-section="crm" class="sidebar-wip">📊 CRM (скоро)</a>
+            <!-- S168: подразделы CRM вместо сабраздела-заглушки -->
+            <a href="#crm-users" data-section="crm-users" class="sidebar-wip">👥 Пользователи (скоро)</a>
+            <a href="#crm-perms" data-section="crm-perms" class="sidebar-wip">🔐 Права пользователей (скоро)</a>
+            <a href="#crm-modules" data-section="crm-modules" class="sidebar-wip">🧱 Модули (скоро)</a>
+            <a href="#crm-experimental" data-section="crm-experimental" class="sidebar-wip">🧪 Экспериментальные возможности (скоро)</a>
+            <a href="#crm-reports-owner" data-section="crm-reports-owner" class="sidebar-wip">📈 Отчёты собственнику (скоро)</a>
+            <a href="#crm-reports-accountant" data-section="crm-reports-accountant" class="sidebar-wip">📊 Отчёты бухгалтеру (скоро)</a>
+            <a href="#crm-lk-client" data-section="crm-lk-client" class="sidebar-wip">🙋 Личный кабинет клиента (скоро)</a>
+            <a href="#crm-lk-trainer" data-section="crm-lk-trainer" class="sidebar-wip">🏆 Личный кабинет тренера (скоро)</a>
           </div>
         </div>
 
@@ -704,7 +756,10 @@
           <div class="sidebar-group-header" data-group="integrations" onclick="toggleGroup(this)">🔗 ИНТЕГРАЦИИ ▸</div>
           <div class="sidebar-group-body">
             <a href="#integrations-dance" data-section="integrations-dance">💃 Dance (DanceStudio)</a>
-            <a href="#integrations" data-section="integrations" class="sidebar-wip">🔗 Интеграции (скоро)</a>
+            <!-- S168: подразделы интеграций вместо сабраздела-заглушки -->
+            <a href="#integrations-1c" data-section="integrations-1c" class="sidebar-wip">📒 1С (скоро)</a>
+            <a href="#integrations-social" data-section="integrations-social" class="sidebar-wip">🌐 Соцсети (скоро)</a>
+            <a href="#integrations-sms" data-section="integrations-sms" class="sidebar-wip">💬 СМС (скоро)</a>
           </div>
         </div>
 
@@ -1027,6 +1082,7 @@
 
   <div class="toast" id="toast"></div>
 
+  <script src="js/md.js?v=50"></script>
   <script>
     /* ============================================
        Утилиты
@@ -1165,6 +1221,10 @@
     const sections = [
       // 📋 ИНФОРМАЦИЯ (S164)
       { id: 'status', title: '📟 Статус', status: 'done', group: 'info' },
+      // S168: заглушки группы «Информация»
+      { id: 'info-admin-log', title: '📜 Журнал действий админки', status: 'skeleton', group: 'info-stub' },
+      { id: 'info-crm-log', title: '📜 Журнал действий CRM', status: 'skeleton', group: 'info-stub' },
+      { id: 'info-reports', title: '📊 Отчёты по сайту', status: 'skeleton', group: 'info-stub' },
       // ДАННЫЕ
       { id: 'news', title: '📰 Новости', status: 'done', group: 'data' },
       { id: 'programs', title: '🥋 Программы', status: 'done', group: 'data' },
@@ -1177,6 +1237,13 @@
       { id: 'album', title: '📸 Альбом', status: 'done', group: 'data' },
       // S166: мероприятия (смесь новостей/программ/альбома/страниц)
       { id: 'events', title: '🎪 Мероприятия', status: 'done', group: 'data' },
+      // S170: менеджер видео (по аналогии с менеджером фото)
+      { id: 'video-manager', title: '🎬 Менеджер видео', status: 'done', group: 'data' },
+      // S168: данные-заглушки
+      { id: 'goods', title: '🛒 Товары', status: 'skeleton', group: 'data-stub' },
+      { id: 'services', title: '🧩 Доп. услуги', status: 'skeleton', group: 'data-stub' },
+      { id: 'inventory', title: '📦 Инвентарь', status: 'skeleton', group: 'data-stub' },
+      { id: 'diary-fields', title: '📓 Поля дневников самоконтроля', status: 'skeleton', group: 'data-stub' },
       // S148: подразделы шаблонов — отдельные разделы сайдбара (8 шт.)
       { id: 'templates-mockups-home', title: '🏠 Макеты разделов главной', status: 'skeleton', group: 'templates-stub' },
       { id: 'templates-mockups-site', title: '🧩 Макеты разделов сайта', status: 'skeleton', group: 'templates-stub' },
@@ -1202,10 +1269,25 @@
       // S115: цены позициями и скидки (settings.priceItems / settings.discounts)
       { id: 'prices', title: '💰 Цены', status: 'done', group: 'settings' },
       { id: 'discounts', title: '🏷 Скидки', status: 'done', group: 'settings' },
+      // S168: справочники инвентаря + карта помещений + красная зона
+      { id: 'inv-places', title: '📍 Места', status: 'skeleton', group: 'settings-stub' },
+      { id: 'inv-kinds', title: '🔧 Виды инвентаря', status: 'skeleton', group: 'settings-stub' },
+      { id: 'inv-types', title: '📐 Типы инвентаря', status: 'skeleton', group: 'settings-stub' },
+      { id: 'inv-groups', title: '📂 Группы инвентаря', status: 'skeleton', group: 'settings-stub' },
+      { id: 'inv-entities', title: '🏋️ Сущности инвентаря', status: 'skeleton', group: 'settings-stub' },
+      { id: 'room-map', title: '🗺 Карта помещений', status: 'skeleton', group: 'settings-stub' },
+      { id: 'danger-zone', title: '🔴 Красная зона', status: 'skeleton', group: 'settings-stub' },
       // CRM
       { id: 'crm-leads', title: '📣 Вызовы форм', status: 'done', group: 'crm' },
-      // ЗАГЛУШКИ
-      { id: 'crm', title: '📊 CRM', status: 'wip', group: 'stubs' },
+      // S168: подразделы CRM вместо сабраздела-заглушки
+      { id: 'crm-users', title: '👥 Пользователи', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-perms', title: '🔐 Права пользователей', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-modules', title: '🧱 Модули', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-experimental', title: '🧪 Экспериментальные возможности', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-reports-owner', title: '📈 Отчёты собственнику', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-reports-accountant', title: '📊 Отчёты бухгалтеру', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-lk-client', title: '🙋 Личный кабинет клиента', status: 'skeleton', group: 'crm-stub' },
+      { id: 'crm-lk-trainer', title: '🏆 Личный кабинет тренера', status: 'skeleton', group: 'crm-stub' },
       // S154: БОТЫ — 1 рабочий раздел (почта) + 8 заглушек
       { id: 'bots-email', title: '✉️ Почта (SMTP, уведомления)', status: 'done', group: 'bots' },
       { id: 'bots-sms', title: '💬 СМС-рассылки', status: 'skeleton', group: 'bots-stub' },
@@ -1216,8 +1298,11 @@
       { id: 'bots-vk-group', title: '🌐 вк-группа', status: 'skeleton', group: 'bots-stub' },
       { id: 'bots-baloo', title: '🎈 балу-бот', status: 'skeleton', group: 'bots-stub' },
       { id: 'bots-tasks', title: '✅ Задачи для ботов', status: 'skeleton', group: 'bots-stub' },
+      // S168: подразделы Интеграций вместо сабраздела-заглушки
       { id: 'integrations-dance', title: '💃 Dance (DanceStudio)', status: 'done', group: 'integrations' },
-      { id: 'integrations', title: '🔗 Интеграции', status: 'wip', group: 'stubs' },
+      { id: 'integrations-1c', title: '📒 1С', status: 'skeleton', group: 'integrations-stub' },
+      { id: 'integrations-social', title: '🌐 Соцсети', status: 'skeleton', group: 'integrations-stub' },
+      { id: 'integrations-sms', title: '💬 СМС', status: 'skeleton', group: 'integrations-stub' },
       // СПРАВКА
       { id: 'help', title: '📖 Справка', status: 'done', group: 'help' },
       // S145: подразделы-заглушки «Справки»
@@ -1304,6 +1389,9 @@
         hash = 'templates-mockups-home';
         history.replaceState(null, '', '#' + hash);
       }
+      // S168: сабразделы-заглушки «CRM»/«Интеграции» удалены → рабочая страница группы
+      if (hash === 'crm') { hash = 'crm-leads'; history.replaceState(null, '', '#' + hash); }
+      if (hash === 'integrations') { hash = 'integrations-dance'; history.replaceState(null, '', '#' + hash); }
       openSection(hash);
     }
 
@@ -1322,17 +1410,12 @@
       const [statusText, statusClass] = STATUS[section.status] || STATUS.wip;
       const fields = getSectionFields(sectionId);
 
-      // Для заглушек — показываем краткую информацию
-      if (section.group === 'stubs') {
-        content.innerHTML = `
-          <div class="section-card">
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-              <h2>${section.title}</h2>
-              <span class="status-badge status-badge-wip">В разработке</span>
-            </div>
-            <p>Раздел в разработке. Функционал появится в будущих версиях.</p>
-          </div>
-        `;
+      // S168: подразделы-заглушки групп «Информация», «Данные», «Настройки сайта»,
+      // «CRM», «Интеграции» (единый рендер по данным STUB_PAGES)
+      if (section.group === 'info-stub' || section.group === 'data-stub' ||
+          section.group === 'settings-stub' || section.group === 'crm-stub' ||
+          section.group === 'integrations-stub') {
+        renderStubPageSection(section);
         return;
       }
 
@@ -1372,6 +1455,13 @@
       if (sectionId === 'photo-manager') {
         content.innerHTML = '';
         loadPhotoManagerSection();
+        return;
+      }
+
+      // S170: менеджер видео — полный обзор видеофайлов на сайте
+      if (sectionId === 'video-manager') {
+        content.innerHTML = '';
+        loadVideoManagerSection();
         return;
       }
 
@@ -3561,6 +3651,235 @@
       try { await phtFetch(); phtRender(); } catch {}
     }
 
+    // ── S170: Менеджер видео ───────────────────────────────────────────
+    // Обзор всех видеофайлов сайта (uploads/**): что используется, что скрыто,
+    // что не нужно. Устроен по аналогии с менеджером фото. Внешние ссылки
+    // (YouTube/VK/Rutube) файлами не являются и здесь не показываются.
+    const vid = { filter: 'all', q: '', page: 1, per: 48, stats: null, videos: [], total: 0, busy: false };
+
+    async function loadVideoManagerSection() {
+      const content = document.getElementById('admin-content');
+      const old = content.querySelector('#video-manager-card');
+      if (old) old.remove();
+      const box = document.createElement('div');
+      box.className = 'section-card';
+      box.id = 'video-manager-card';
+      box.innerHTML = '<p class="meta">Загрузка видео…</p>';
+      const card = content.querySelector('.section-card');
+      if (card) card.insertAdjacentElement('afterend', box); else content.appendChild(box);
+      try {
+        await vidFetch();
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Не удалось загрузить менеджер видео: ' +
+          escapeHtml(err.message) + '</p>';
+        return;
+      }
+      try {
+        vidRender();
+      } catch (err) {
+        box.innerHTML = '<p style="color:var(--danger);">Ошибка отрисовки: ' + escapeHtml(err.message) + '</p>';
+        console.error('vidRender:', err);
+      }
+    }
+
+    async function vidFetch() {
+      const res = await api('/api/admin/get-video-manager', {
+        method: 'POST',
+        body: JSON.stringify({ filter: vid.filter, q: vid.q, page: vid.page, per_page: vid.per }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const d = await res.json();
+      vid.videos = d.videos || [];
+      vid.total = d.total || 0;
+      vid.stats = d.stats || null;
+    }
+
+    async function vidReload() {
+      if (vid.busy) return;
+      vid.busy = true;
+      const btn = document.getElementById('vid-refresh');
+      if (btn) { btn.disabled = true; btn.textContent = 'Обновление…'; }
+      try {
+        await vidFetch();
+        vidRender();
+        showToast('Данные обновлены');
+      } catch (err) {
+        showToast('Не удалось обновить: ' + err.message, 'error');
+      } finally {
+        vid.busy = false;
+      }
+    }
+
+    // Метка статуса: «используется» — со ссылкой на страницу сайта
+    function vidStatusCell(video) {
+      const usages = video.usages || [];
+      if (video.status === 'used') {
+        const first = usages[0] || {};
+        const label = `<a href="${escapeHtml(first.url || '/')}" target="_blank" rel="noopener"
+            style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#e6f4ea;color:#1a7f37;
+                   font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid #a7d7b4;">используется</a>`;
+        if (usages.length === 1) return label;
+        return label + ` <span class="meta" style="font-size:.75rem;">(+${usages.length - 1})</span>` +
+          `<details style="margin-top:.2rem;"><summary style="cursor:pointer;font-size:.72rem;color:var(--text-secondary);">где</summary>` +
+          usages.map((x) => `<div style="font-size:.75rem;">· <a href="${escapeHtml(x.url || '/')}" target="_blank" rel="noopener">${escapeHtml(x.name || x.kind)}</a></div>`).join('') +
+          '</details>';
+      }
+      if (video.status === 'hidden') {
+        return `<span style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#fff8c5;color:#9a6700;
+                 font-size:.78rem;font-weight:600;border:1px solid #e7d38a;">скрыто</span>` +
+          `<details style="margin-top:.2rem;"><summary style="cursor:pointer;font-size:.72rem;color:var(--text-secondary);">кем скрыто</summary>` +
+          usages.map((x) => `<div style="font-size:.75rem;">· <a href="${escapeHtml(x.url || '/')}" target="_blank" rel="noopener">${escapeHtml(x.name || x.kind)}</a></div>`).join('') +
+          '</details>';
+      }
+      return `<span style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:#fdecee;color:#b3261e;
+               font-size:.78rem;font-weight:600;border:1px solid #f5b5b5;">не используется</span>`;
+    }
+
+    function vidRender() {
+      const box = document.getElementById('video-manager-card');
+      if (!box) return;
+      const s = vid.stats || {};
+      const chips = [['all', 'все'], ['used', 'используется'], ['hidden', 'скрыто'], ['unused', 'не используется']];
+      const pages = Math.max(1, Math.ceil(vid.total / vid.per));
+      const freeable = (s.bytes_unused || 0) + (s.bytes_hidden || 0);
+
+      const rows = vid.videos.map((v) => {
+        const src = '/' + v.path.replace(/^\/+/, '');
+        const canDelete = v.status !== 'used';
+        return `
+          <div class="vid-row" style="display:flex;align-items:flex-start;gap:.7rem;padding:.55rem .2rem;border-bottom:1px solid var(--border);">
+            <a href="${escapeHtml(src)}" target="_blank" rel="noopener" title="открыть в новой вкладке"
+               style="flex:0 0 auto;width:96px;height:64px;border-radius:6px;overflow:hidden;background:#000;display:block;">
+              <video src="${escapeHtml(src)}#t=1" preload="metadata" muted playsinline style="width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;"></video>
+            </a>
+            <div style="flex:1 1 auto;min-width:0;">
+              <div style="font-size:.82rem;word-break:break-all;">${escapeHtml(v.path)}</div>
+              <div class="meta" style="font-size:.75rem;">${phtBytes(v.bytes)}</div>
+            </div>
+            <div style="flex:0 0 auto;width:190px;">${vidStatusCell(v)}</div>
+            <div style="flex:0 0 auto;width:96px;text-align:right;">
+              ${canDelete ? `<button class="btn btn-sm btn-danger" onclick="vidDeleteOne('${encodeURIComponent(v.path)}')">Удалить</button>` : ''}
+            </div>
+          </div>`;
+      }).join('');
+
+      box.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+          <h2>🎬 Менеджер видео</h2>
+          <span class="status-badge status-badge-done">Обзор медиа</span>
+        </div>
+
+        <!-- Справка -->
+        <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin:0 0 .9rem;">
+          <div style="display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.9rem;">
+            <div><b>${s.files || 0}</b> видео всего</div>
+            <div><b style="color:#1a7f37;">${s.used || 0}</b> используется</div>
+            <div><b style="color:#9a6700;">${s.hidden || 0}</b> скрыто</div>
+            <div><b style="color:#b3261e;">${s.unused || 0}</b> не используется</div>
+            <div>занято на диске: <b>${phtBytes(s.bytes_total)}</b></div>
+          </div>
+          <div class="meta" style="margin-top:.5rem;font-size:.78rem;">
+            Здесь только локальные видеофайлы (uploads/*). Ссылки на YouTube / VK / Rutube — не файлы,
+            управляются в карточках мероприятий и новостей.<br>
+            Освободится при очистке скрытых и неиспользуемых: <b>${phtBytes(freeable)}</b>.
+            Файлы переносятся в <code>trash/uploads/&lt;дата&gt;</code> — место на диске освобождается после уборки корзины.
+            ${s.missing ? `<br><span style="color:#b3261e;">Битых ссылок в базе (файл не найден): ${s.missing}</span>` : ''}
+          </div>
+          ${s.missing && s.missing_list && s.missing_list.length ? `
+            <details style="margin-top:.4rem;"><summary style="cursor:pointer;font-size:.78rem;color:var(--text-secondary);">показать битые ссылки</summary>
+              ${s.missing_list.map((m) => `<div style="font-size:.75rem;">· ${escapeHtml(m.path)} <span class="meta">← ${escapeHtml((m.usages || []).map((u) => u.name || u.kind).join(', '))}</span></div>`).join('')}
+            </details>` : ''}
+        </div>
+
+        <!-- Действия и фильтры -->
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-bottom:.7rem;">
+          <button class="btn btn-danger" onclick="vidDeleteUnused()">🧹 Удалить неиспользуемые</button>
+          <div style="display:flex;gap:.3rem;flex-wrap:wrap;">
+            ${chips.map(([k, l]) => `<button class="btn btn-sm ${vid.filter === k ? 'btn-primary' : ''}" onclick="vidSetFilter('${k}')">${l}</button>`).join('')}
+          </div>
+          <input id="vid-q" class="input" style="flex:1 1 180px;min-width:160px;" placeholder="поиск по пути…" value="${escapeHtml(vid.q)}"
+                 onkeydown="if(event.key==='Enter')vidSetQuery(this.value)">
+          <button class="btn btn-sm" onclick="vidSetQuery(document.getElementById('vid-q').value)">Найти</button>
+        </div>
+
+        <p class="meta" style="margin-bottom:.4rem;">Показано ${vid.videos.length} из ${vid.total} (стр. ${vid.page} из ${pages})</p>
+        ${rows ? `<div>${rows}</div>` : '<p class="meta">Видеофайлов нет — загрузите видео в карточке мероприятия или новости.</p>'}
+
+        <!-- Пагинация + обновление -->
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.9rem;">
+          <div style="display:flex;gap:.4rem;">
+            <button class="btn btn-sm" onclick="vidSetPage(${vid.page - 1})" ${vid.page <= 1 ? 'disabled' : ''}>← Назад</button>
+            <button class="btn btn-sm" onclick="vidSetPage(${vid.page + 1})" ${vid.page >= pages ? 'disabled' : ''}>Вперёд →</button>
+          </div>
+          <button id="vid-refresh" class="btn btn-primary" onclick="vidReload()">🔄 Обновить данные</button>
+        </div>
+      `;
+    }
+
+    function vidSetFilter(v) { vid.filter = v; vid.page = 1; vidReload(); }
+    function vidSetQuery(v) { vid.q = String(v || '').trim(); vid.page = 1; vidReload(); }
+    function vidSetPage(v) { vid.page = Math.max(1, Number(v) || 1); vidReload(); }
+
+    async function vidDeleteOne(encPath) {
+      const rel = decodeURIComponent(encPath);
+      if (!confirm('Переместить в корзину?\n' + rel + '\n\nФайл попадёт в trash/uploads/ и будет убран из базы, если на него ссылаются скрытые объекты.')) return;
+      try {
+        const res = await api('/api/admin/delete-videos', { method: 'POST', body: JSON.stringify({ paths: [rel] }) });
+        const d = await res.json();
+        if (!res.ok) throw new Error(d.error || String(res.status));
+        if (!d.removed || !d.removed.length) {
+          showToast((d.skipped && d.skipped.length) ? 'Файл используется сайтом — не удалён' : (d.note || 'Файл не найден'), 'error');
+        } else {
+          showToast('Удалено: ' + phtBytes(d.freed_bytes) + ' → ' + (d.trash || 'корзина'));
+        }
+        await vidFetch(); vidRender();
+      } catch (err) {
+        showToast('Ошибка удаления: ' + err.message, 'error');
+      }
+    }
+
+    async function vidCollectUnused() {
+      const out = [];
+      let page = 1;
+      for (;;) {
+        const res = await api('/api/admin/get-video-manager', {
+          method: 'POST',
+          body: JSON.stringify({ filter: 'unused', page, per_page: 500 }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        const d = await res.json();
+        (d.videos || []).forEach((v) => out.push(v.path));
+        if (out.length >= (d.total || 0) || !(d.videos || []).length) break;
+        page++;
+        if (page > 40) break;
+      }
+      return out;
+    }
+
+    async function vidDeleteUnused() {
+      if (vid.busy) return;
+      vid.busy = true;
+      try {
+        const paths = await vidCollectUnused();
+        if (!paths.length) { showToast('Неиспользуемых видео нет', 'error'); return; }
+        const note = (vid.stats && vid.stats.bytes_unused) ? 'Освободится (после уборки корзины): ' + phtBytes(vid.stats.bytes_unused) + '.\n' : '';
+        if (!confirm('В корзину будут перемещены ' + paths.length + ' неиспользуемых видео.\n' + note +
+          '\nФайлы, на которые ссылается скрытый объект, удаляются и из базы. Продолжить?')) return;
+        for (let i = 0; i < paths.length; i += 200) {
+          const chunk = paths.slice(i, i + 200);
+          const res = await api('/api/admin/delete-videos', { method: 'POST', body: JSON.stringify({ paths: chunk }) });
+          const d = await res.json();
+          if (!res.ok) throw new Error(d.error || String(res.status));
+        }
+        showToast('Удалено неиспользуемых видео: ' + paths.length);
+      } catch (err) {
+        showToast('Ошибка очистки: ' + err.message, 'error');
+      } finally {
+        vid.busy = false;
+      }
+      try { await vidFetch(); vidRender(); } catch {}
+    }
+
     /* ============================================
        S164: раздел «Статус» (суперраздел «Информация»)
        Состояние сайта + состояние сервера + посещаемость + проблемы.
@@ -5647,7 +5966,12 @@
       // Категории
       const categories = {
         data: { title: '📦 Данные', sections: [] },
-        settings: { title: '⚙️ Настройки сайта', sections: [] }
+        settings: { title: '⚙️ Настройки сайта', sections: [] },
+        crm: { title: '📊 CRM', sections: [] },
+        integrations: { title: '🔗 Интеграции', sections: [] },
+        templates: { title: '🧩 Шаблоны', sections: [] },
+        bots: { title: '🤖 Боты', sections: [] },
+        info: { title: '📋 Информация', sections: [] }
       };
 
       const filtered = helpState.sections.filter(s => {
@@ -6225,7 +6549,7 @@
           ? '<div class="album-picker-grid">' + list.map(a => `
               <label class="album-pick${chosen.has(normImgPath(a.image)) ? ' picked' : ''}" data-img="${escapeHtml(a.image)}">
                 <input type="checkbox" ${chosen.has(normImgPath(a.image)) ? 'checked' : ''} style="width:auto;">
-                <img src="${fileUrl(a.thumb || a.image)}" loading="lazy" alt="">
+                <img src="${fileUrl(a.thumb || a.image)}" loading="lazy" alt="" onerror="this.closest('.album-pick').classList.add('broken')">
               </label>`).join('') + '</div>'
           : '<p class="meta">Банк кадров пуст: загрузите фото в раздел «Данные → Альбом».</p>');
       bankBox.querySelectorAll('.album-pick').forEach(el => {
@@ -6780,12 +7104,12 @@
             <button type="button" data-md="table" title="Конструктор таблицы">📋 Таблица</button>
           </div>
           <div class="md-editor-tabs">
-            <button type="button" data-tab="edit" class="active">✏️ Редактор</button>
-            <button type="button" data-tab="split">⇆ Сплит</button>
-            <button type="button" data-tab="preview">👁 Предпросмотр</button>
+            <button type="button" data-tab="edit">✏️ Код</button>
+            <button type="button" data-tab="split" class="active">⇆ Сплит</button>
+            <button type="button" data-tab="preview">👁 Как на сайте</button>
           </div>
-          <div class="md-editor-body mode-edit">
-            <textarea class="md-editor-textarea" placeholder="${escapeHtml(opts.placeholder || 'Текст в markdown…')}"></textarea>
+          <div class="md-editor-body mode-split">
+            <textarea class="md-editor-textarea" placeholder="${escapeHtml(opts.placeholder || 'Начните печатать. Форматируйте текст кнопками сверху — готовый вид справа.')}"></textarea>
             <div class="md-editor-preview"></div>
           </div>
         </div>
@@ -8510,7 +8834,7 @@
 
       const demoHtml = `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
 <base href="/">
-<link rel="stylesheet" href="/css/style.css?v=48">
+<link rel="stylesheet" href="/css/style.css?v=50">
 <style id="appearance-css">:root{${safeVars}}</style>
 <style>${safeCss}</style></head><body>
 <div class="container" style="padding:2rem;">
@@ -8818,11 +9142,11 @@
       if (!el) return;
       try {
         const [prog, tr, dirs, news, pages] = await Promise.all([
-          fetch('/js/data/programs.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/trainers.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/core.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/news-all.js?v=48').then(r => r.ok ? r.text() : '').catch(() => ''),
-          fetch('/js/data/pages.js?v=48').then(r => r.ok ? r.text() : '').catch(() => '')
+          fetch('/js/data/programs.js?v=50').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/trainers.js?v=50').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/core.js?v=50').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/news-all.js?v=50').then(r => r.ok ? r.text() : '').catch(() => ''),
+          fetch('/js/data/pages.js?v=50').then(r => r.ok ? r.text() : '').catch(() => '')
         ]);
         const count = (txt, re) => (String(txt).match(re) || []).length;
         const np = count(prog, /"id":/g);
@@ -9196,6 +9520,168 @@
           todo: ['Реестр задач всех ботов в одном месте', 'Планировщик (cron) с визуальным редактором', 'Лог выполнений и ошибок', 'Ручной запуск / пауза']
         }
       };
+
+      // S168: разделы-заглушки групп «Информация», «Данные», «Настройки сайта», «CRM», «Интеграции»
+      const STUB_PAGES = {
+        // 📋 ИНФОРМАЦИЯ
+        'info-admin-log': {
+          icon: '📜', group: 'info',
+          lead: 'Полный журнал действий в админке: кто, когда и что менял.',
+          todo: ['Логирование всех save-операций (раздел, запись, автор, время)', 'Таблица с фильтрами: период, пользователь, раздел', 'Просмотр diff (что было → что стало)', 'Хранение и ротация, экспорт в CSV']
+        },
+        'info-crm-log': {
+          icon: '📜', group: 'info',
+          lead: 'Журнал действий в CRM: заявки, клиенты, оплаты, сообщения ботов.',
+          todo: ['События CRM-модулей в едином журнале', 'Фильтры по клиенту / модулю / периоду', 'Связь с журналом админки (общий механизм)', 'Уведомления о подозрительных действиях']
+        },
+        'info-reports': {
+          icon: '📊', group: 'info',
+          lead: 'Отчёты по сайту: посещаемость, конверсия форм, популярные страницы.',
+          todo: ['Данные из трекера посещаемости (S163)', 'Отчёт по периодам: дни / недели / месяцы', 'Конверсия форм «Заказать звонок» в заявки', 'Выгрузка и отправка отчётов по расписанию']
+        },
+        // 📦 ДАННЫЕ
+        'goods': {
+          icon: '🛒', group: 'data',
+          lead: 'Учёт товаров центра: мерч, инвентарь в продажу, аксессуары.',
+          todo: ['Карточка товара: название, описание, фото, цена, остатки', 'Витрина товаров на сайте', 'Связь с ценами (прайс) и 1С', 'Приход / расход, минимальный остаток']
+        },
+        'services': {
+          icon: '🧩', group: 'data',
+          lead: 'Дополнительные услуги: массаж, баня, аренда зала, фотосъёмка.',
+          todo: ['Сущность «услуга»: название, описание, мастер, расписание', 'Сейчас услуги — позиции прайса; выделение в отдельную сущность', 'Запись на услугу с сайта', 'Отчёт по услугам для бухгалтерии']
+        },
+        'inventory': {
+          icon: '📦', group: 'data',
+          lead: 'Инвентарь центра: гири, маты, канаты, скакалки — учёт и движение.',
+          todo: ['Справочники: места / виды / типы / группы (раздел «Настройки сайта»)', 'Карточка единицы: вид, тип, место, ответственный, состояние', 'Приход / перемещение / списание', 'Инвентаризация и сроки годности']
+        },
+        'diary-fields': {
+          icon: '📓', group: 'data',
+          lead: 'Конструктор полей дневников самоконтроля учеников.',
+          todo: ['Типы полей: число / текст / выбор / шкала / дата', 'Шаблоны дневников (по программам и группам)', 'Наполнение — справочники из раздела «Данные»', 'Экспорт дневников для тренера']
+        },
+        // ⚙️ НАСТРОЙКИ САЙТА
+        'inv-places': {
+          icon: '📍', group: 'settings',
+          lead: 'Справочник мест: залы, площадки, точки хранения инвентаря.',
+          todo: ['Места связаны с инвентарём, занятиями и картой помещений', 'Иерархия: здание → этаж → помещение', 'Места вне залов (склад, раздевалка, улица)', 'Экспорт справочника']
+        },
+        'inv-kinds': {
+          icon: '🔧', group: 'settings',
+          lead: 'Справочник видов инвентаря: снаряды, покрытие, электроника, расходники.',
+          todo: ['Вид — верхний уровень классификации', 'Связь с типами и группами', 'Ответственный по виду', 'Нормы оснащённости по залам']
+        },
+        'inv-types': {
+          icon: '📐', group: 'settings',
+          lead: 'Справочник типов инвентаря внутри видов (например, гиря 16 / 24 / 32 кг).',
+          todo: ['Тип = вид + характеристики (вес, размер, материал)', 'Шаблоны описания характеристик', 'Учёт по типам в инвентаре', 'Связь с ценами (позиции прайса)']
+        },
+        'inv-groups': {
+          icon: '📂', group: 'settings',
+          lead: 'Группы инвентаря для отчётов и оснащённости занятий.',
+          todo: ['Произвольные группы поверх видов/типов', 'Оснащённость группы к занятию', 'Отчёты по группам', 'Ответственные и сроки проверки']
+        },
+        'inv-entities': {
+          icon: '🏋️', group: 'settings',
+          lead: 'Сущности инвентаря — конкретные единицы (не справочник, а список объектов).',
+          todo: ['Единица = тип + серийник/инвентарный номер', 'История перемещений и ремонтов', 'Фото и состояние (рабочий / списан)', 'Сверка с местами хранения']
+        },
+        'room-map': {
+          icon: '🗺', group: 'settings',
+          lead: 'Интерактивная карта помещений центра: план этажа с зонами, залами и точками инвентаря.',
+          todo: ['SVG-план помещений (рисуется по обмерам центра)', 'Клик по зоне → карточка: зал, расписание, инвентарь, фото', 'Наложение данных: места (inv-places), инвентарь, занятия', 'Печать плана и выгрузка для навигации']
+        },
+        'danger-zone': {
+          icon: '🔴', group: 'settings',
+          lead: 'Красная зона: опасные операции администрирования — только с двойным подтверждением.',
+          todo: ['Перезапуск админ-сервера и статики (pm2 restart, static:export)', 'Полная перегенерация всех данных сайта', 'Восстановление db.json из бэкапа', 'Сброс сессий и паролей админов', 'Каждая операция — бэкап + запись в журнал админки']
+        },
+        // 📊 CRM
+        'crm-users': {
+          icon: '👥', group: 'crm',
+          lead: 'Пользователи CRM: клиенты, тренеры, администраторы — единая база.',
+          todo: ['Карточка клиента (ДanceStudio-синхронизация)', 'Роли: клиент / тренер / админ / собственник', 'Связь с лидами и записями на занятия', 'История взаимодействий (звонки, письма, боты)']
+        },
+        'crm-perms': {
+          icon: '🔐', group: 'crm',
+          lead: 'Права пользователей CRM: кто что видит и может менять.',
+          todo: ['Матрица ролей × разделов × действий (чтение/запись/удаление)', 'Права на уровне полей (зарплаты, телефоны)', 'Журнал выдачи и смены прав', 'Наследование и временные доступы']
+        },
+        'crm-modules': {
+          icon: '🧱', group: 'crm',
+          lead: 'Модули CRM: подключение и настройка функциональных блоков.',
+          todo: ['Каталог модулей (запись, оплата, рассылки, дневники, склад)', 'Вкл/выкл модуля без остановки сайта', 'Зависимости модулей', 'Лицензии и порядок подключения (см. «Заказать/выбрать модуль»)']
+        },
+        'crm-experimental': {
+          icon: '🧪', group: 'crm',
+          lead: 'Экспериментальные возможности: фичи на обкатке, выключаются одним тумблером.',
+          todo: ['Реестр экспериментов с описанием и риском', 'Флаги вкл/выкл для каждого', 'Сбор метрик влияния', 'Промоушен в стабильные или откат']
+        },
+        'crm-reports-owner': {
+          icon: '📈', group: 'crm',
+          lead: 'Периодические отчёты собственнику: выручка, посещаемость, загрузка залов.',
+          todo: ['Наборы метрик для собственника (настраиваемые)', 'Отчёт по расписанию: день / неделя / месяц', 'Доставка: e-mail, PDF, ссылка в ЛК', 'Сравнение периодов и план/факт']
+        },
+        'crm-reports-accountant': {
+          icon: '📊', group: 'crm',
+          lead: 'Периодические отчёты бухгалтеру: поступления, выплаты тренерам, налоги.',
+          todo: ['Формы под требования бухгалтерии (1С-совместимые)', 'Выгрузки за период (CSV/XLS)', 'Автоматическая отправка по расписанию', 'Сверка с оплат через эквайринг/СБП']
+        },
+        'crm-lk-client': {
+          icon: '🙋', group: 'crm',
+          lead: 'Личный кабинет клиента: расписание, абонементы, дневник самоконтроля.',
+          todo: ['Вход по телефону/почте (ЛК на lk.html уже работает частично)', 'Мои занятия, абонементы, платежи', 'Дневник самоконтроля (поля — из «Данных»)', 'Отмены/переносы записи, уведомления']
+        },
+        'crm-lk-trainer': {
+          icon: '🏆', group: 'crm',
+          lead: 'Личный кабинет тренера: расписание групп, ученики, выплаты.',
+          todo: ['Мои группы и занятия (данные из расписания)', 'Журнал посещаемости и оплаты групп', 'Начисления (поле «оплата тренеру» в прайсе)', 'Обратная связь учеников, дневники']
+        },
+        // 🔗 ИНТЕГРАЦИИ
+        'integrations-1c': {
+          icon: '📒', group: 'integrations',
+          lead: 'Обмен с 1С: номенклатура, цены, поступления, реализации.',
+          todo: ['Формат обмена (CommerceML / API 1С)', 'Маппинг справочников (товары ↔ позиции прайса)', 'Расписание выгрузок и журнал ошибок', 'Тестовый контур перед включением']
+        },
+        'integrations-social': {
+          icon: '🌐', group: 'integrations',
+          lead: 'Интеграция с соцсетями: автопостинг новостей, единая лента.',
+          todo: ['Постинг в ВК/Telegram из новостей и мероприятий', 'Шаблоны постов (маски из «Шаблонов»)', 'Календарь публикаций', 'Отчёт о вовлечённости']
+        },
+        'integrations-sms': {
+          icon: '💬', group: 'integrations',
+          lead: 'СМС-шлюз: подтверждение записей, напоминания, рассылки.',
+          todo: ['Выбор и подключение провайдера (Эвотор/СМС-центр/МТС)', 'Шаблоны СМС (маски из «Шаблонов»)', 'Лимиты и анти-спам, журнал отправок', 'Стоимость и баланс на одном экране']
+        }
+      };
+
+      // Единый рендер заглушки + ссылки на соседние разделы той же группы
+      function renderStubPageSection(section) {
+        const content = document.getElementById('admin-content');
+        const stub = STUB_PAGES[section.id] || { icon: '🚧', group: section.group.replace('-stub', ''), lead: 'Раздел в разработке.', todo: [] };
+        const siblings = sections.filter(s => s.group === section.group && s.id !== section.id);
+        content.innerHTML = `
+          <div class="section-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+              <h2>${section.title}</h2>
+              <span class="status-badge status-badge-wip">В разработке</span>
+            </div>
+            <p style="margin:1rem 0;">${stub.lead}</p>
+            <div style="margin-top:2rem;padding:3rem 2rem;text-align:center;background:#f8fafc;border:2px dashed #d1d5db;border-radius:12px;">
+              <div style="font-size:4rem;margin-bottom:1rem;">${stub.icon}</div>
+              <h3 style="font-size:1.25rem;margin-bottom:0.75rem;">${section.title.replace(/^\S+\s/, '')}</h3>
+              <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Задел на будущее. Наполнение — отдельными тикетами.</p>
+              ${stub.todo.length ? `<ul style="display:inline-block;text-align:left;color:var(--text-secondary);font-size:0.9rem;">${stub.todo.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+            </div>
+            ${siblings.length ? `
+            <div style="margin-top:1.5rem;">
+              <strong style="color:var(--text-secondary);font-size:0.9rem;">Другие подразделы группы:</strong><br>
+              <span style="font-size:0.85rem;color:var(--text-secondary);">
+                ${siblings.map(s => `<a href="#${s.id}" onclick="event.preventDefault();openSection('${s.id}')" style="color:var(--primary);text-decoration:none;">${s.title}</a>`).join(' · ')}
+              </span>
+            </div>` : ''}
+          </div>`;
+      }
 
       function renderBotsStubSection(section) {
         const content = document.getElementById('admin-content');

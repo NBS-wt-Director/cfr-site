@@ -2934,15 +2934,17 @@ async function handleSendReminder(req, res) {
   // handleGetPhotoAlbum), поэтому файл считается «неиспользуемым» только когда
   // на него реально никто не ссылается.
   const PHOTO_EXTS_RE = /\.(jpg|jpeg|png|webp|gif|svg)$/i;
+  // S170: видеофайлы сайта (локальные; внешние ссылки youtube/vk/rutube — не файлы, не учитываются)
+  const VIDEO_EXTS_RE = /\.(mp4|webm|mov|m4v|ogv)$/i;
 
-  function walkUploads(dir, relBase, out) {
+  function walkUploads(dir, relBase, out, re = PHOTO_EXTS_RE) {
     let entries;
     try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
     for (const e of entries) {
       const abs = path.join(dir, e.name);
       const rel = relBase ? `${relBase}/${e.name}` : e.name;
-      if (e.isDirectory()) { walkUploads(abs, rel, out); continue; }
-      if (!e.isFile() || !PHOTO_EXTS_RE.test(e.name)) continue;
+      if (e.isDirectory()) { walkUploads(abs, rel, out, re); continue; }
+      if (!e.isFile() || !re.test(e.name)) continue;
       let size = 0, mtime = 0;
       try { const st = fs.statSync(abs); size = st.size; mtime = st.mtimeMs; } catch {}
       out.push({ path: rel, bytes: size, mtime });
@@ -3239,6 +3241,193 @@ async function handleSendReminder(req, res) {
       });
     } catch (err) {
       console.error('❌ Ошибка удаления фото:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // ── S170. Менеджер видео ─────────────────────────────────────────────
+  // Видео живут в static/uploads/** (загрузка через /api/admin/upload).
+  // Использование — изо всех разделов базы: новости (video), мероприятия
+  // (videos[].url). Внешние ссылки (youtube/vk/rutube, http…) — не файлы,
+  // в менеджере не участвуют.
+  function collectVideoUsage(db) {
+    const map = new Map();
+    const add = (raw, u) => {
+      if (typeof raw !== 'string') return;
+      let rel = raw.trim();
+      if (!rel || rel.startsWith('http') || rel.startsWith('data:')) return;
+      rel = rel.replace(/^\/+/, '');
+      if (!VIDEO_EXTS_RE.test(rel)) return;
+      let arr = map.get(rel);
+      if (!arr) { arr = []; map.set(rel, arr); }
+      if (!arr.some((x) => x.kind === u.kind && String(x.id) === String(u.id))) arr.push(u);
+    };
+    for (const n of (db.news || [])) {
+      add(n.video, { kind: 'news', id: n.id, name: n.title || 'Новость', url: `/news.html?id=${n.id}`, hidden: !!n.hidden });
+    }
+    for (const ev of (db.events || [])) {
+      for (const v of (ev.videos || [])) {
+        add(v && v.url, { kind: 'event', id: ev.id, name: `${ev.name || 'Мероприятие'} · видео${v.title ? ': ' + v.title : ''}`, url: `/event.html?id=${ev.id}`, hidden: !!ev.hidden });
+      }
+    }
+    return map;
+  }
+
+  // ── POST /api/admin/get-video-manager ─────────────────────────────────
+  async function handleGetVideoManager(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    try {
+      const body = (await readBody(req)) || {};
+      const u = new URL(req.url, 'http://localhost');
+      const p = (key, dflt) => (body[key] !== undefined && body[key] !== null && body[key] !== ''
+        ? body[key] : (u.searchParams.get(key) !== null ? u.searchParams.get(key) : dflt));
+      const filter = ['all', 'used', 'hidden', 'unused'].includes(p('filter', 'all')) ? p('filter', 'all') : 'all';
+      const query = String(p('q', p('query', '')) || '').trim().toLowerCase();
+      const page = Math.max(1, parseInt(p('page', '1'), 10) || 1);
+      const perPage = Math.min(500, Math.max(10, parseInt(p('per_page', '60'), 10) || 60));
+
+      const db = readDb();
+      const usage = collectVideoUsage(db);
+
+      const files = [];
+      walkUploads(path.join(root, 'static', 'uploads'), 'uploads', files, VIDEO_EXTS_RE);
+
+      const existing = new Set(files.map((f) => f.path));
+      const missing = [];
+      for (const [rel, usages] of usage) {
+        if (existing.has(rel)) continue;
+        missing.push({ path: rel, usages: usages.slice(0, 4) });
+      }
+
+      const videos = [];
+      let bytesTotal = 0, bytesUsed = 0, bytesHidden = 0, bytesUnused = 0;
+      let nUsed = 0, nHidden = 0, nUnused = 0;
+      for (const f of files) {
+        const usages = usage.get(f.path) || [];
+        const visible = usages.some((x) => !x.hidden);
+        const status = visible ? 'used' : (usages.length ? 'hidden' : 'unused');
+        bytesTotal += f.bytes;
+        if (status === 'used') { nUsed++; bytesUsed += f.bytes; }
+        else if (status === 'hidden') { nHidden++; bytesHidden += f.bytes; }
+        else { nUnused++; bytesUnused += f.bytes; }
+        if (filter !== 'all' && filter !== status) continue;
+        if (query && !f.path.toLowerCase().includes(query)) continue;
+        videos.push({ path: f.path, name: path.basename(f.path), bytes: f.bytes, mtime: f.mtime, status, usages });
+      }
+
+      const rank = { hidden: 0, unused: 1, used: 2 };
+      videos.sort((a, b) => (rank[a.status] - rank[b.status]) || a.path.localeCompare(b.path, 'ru'));
+
+      sendJSON(res, 200, {
+        videos: videos.slice((page - 1) * perPage, page * perPage),
+        total: videos.length,
+        page, per_page: perPage,
+        stats: {
+          files: files.length, used: nUsed, hidden: nHidden, unused: nUnused,
+          bytes_total: bytesTotal, bytes_used: bytesUsed,
+          bytes_hidden: bytesHidden, bytes_unused: bytesUnused,
+          missing: missing.length,
+          missing_list: missing.slice(0, 50),
+        },
+      });
+    } catch (err) {
+      console.error('❌ Ошибка менеджера видео:', err);
+      sendJSON(res, 500, { error: err.message });
+    }
+  }
+
+  // Чистка ссылок на удалённые видеофайлы.
+  function removeVideoRefs(db, removedSet) {
+    const hit = (v) => typeof v === 'string' && removedSet.has(v.trim().replace(/^\/+/, ''));
+    const cleared = { newsVideo: 0, eventVideos: 0 };
+    for (const n of (db.news || [])) {
+      if (hit(n.video)) { n.video = ''; cleared.newsVideo++; }
+    }
+    for (const ev of (db.events || [])) {
+      if (Array.isArray(ev.videos)) {
+        const before = ev.videos.length;
+        ev.videos = ev.videos.filter((v) => !(v && hit(v.url)));
+        cleared.eventVideos += before - ev.videos.length;
+      }
+    }
+    return cleared;
+  }
+
+  // ── POST /api/admin/delete-videos { paths: [...] } ───────────────────
+  // Как delete-photos: файлы НЕ удаляются напрямую — в trash/uploads/<ts>/,
+  // ссылки в базе чистятся, статика перегенерируется.
+  async function handleDeleteVideos(req, res) {
+    const token = extractTokenFromCookie(req.headers);
+    if (!isValidSession(token)) {
+      return sendJSON(res, 401, { error: 'Не авторизован' });
+    }
+    try {
+      const data = (await readBody(req)) || {};
+      const requested = Array.isArray(data.paths) ? data.paths : [];
+      if (!requested.length) return sendJSON(res, 400, { error: 'Не передан список путей' });
+      if (requested.length > 2000) return sendJSON(res, 400, { error: 'Слишком много файлов за раз (макс. 2000)' });
+
+      const rels = new Set();
+      for (const raw of requested) {
+        if (typeof raw !== 'string') continue;
+        const rel = raw.trim().replace(/^\/+/, '');
+        if (!rel || rel.includes('..')) continue;
+        if (!rel.startsWith('uploads/') && !rel.startsWith('data/')) continue;
+        if (!VIDEO_EXTS_RE.test(rel)) continue;
+        rels.add(rel);
+      }
+
+      const db = readDb();
+      const usage = collectVideoUsage(db);
+      const force = data.force === true;
+      const skipped = [];
+      if (!force) {
+        for (const rel of Array.from(rels)) {
+          const us = usage.get(rel) || [];
+          if (us.some((x) => !x.hidden)) {
+            rels.delete(rel);
+            skipped.push({ path: rel, reason: 'used', usages: us.slice(0, 3) });
+          }
+        }
+      }
+      if (!rels.size) {
+        return sendJSON(res, 200, { removed: [], freed_bytes: 0, skipped, note: 'Все файлы используются сайтом' });
+      }
+
+      const trashDir = path.join(root, 'trash', 'uploads', String(Date.now()));
+      const removed = [];
+      let freedBytes = 0;
+      for (const rel of rels) {
+        const abs = path.join(root, 'static', rel);
+        if (!fs.existsSync(abs)) continue;
+        const dest = path.join(trashDir, rel);
+        try {
+          fs.mkdirSync(path.dirname(dest), { recursive: true });
+          fs.renameSync(abs, dest);
+          let size = 0; try { size = fs.statSync(dest).size; } catch {}
+          freedBytes += size;
+          removed.push(rel);
+        } catch (e) { console.warn('⚠️ Не перенесён в корзину:', rel, e.message); }
+      }
+      if (!removed.length) return sendJSON(res, 200, { removed: [], freed_bytes: 0, skipped, note: 'Файлы не найдены' });
+
+      const removedSet = new Set(removed);
+      const cleared = removeVideoRefs(db, removedSet);
+      backupDB();
+      writeDb(db);
+      await regenerateStatic();
+
+      console.log(`🗑 В корзину: ${removed.length} видео (${(freedBytes / 1048576).toFixed(1)} МБ) → trash/uploads/${path.basename(trashDir)}`);
+      sendJSON(res, 200, {
+        removed, freed_bytes: freedBytes, cleared, skipped,
+        trash: `trash/uploads/${path.basename(trashDir)}`,
+        staticRegenerated: true,
+      });
+    } catch (err) {
+      console.error('❌ Ошибка удаления видео:', err);
       sendJSON(res, 500, { error: err.message });
     }
   }
@@ -4375,6 +4564,13 @@ const server = http.createServer(async (req, res) => {
   }
   if (pathname === '/api/admin/delete-photos' && method === 'POST') {
     return handleDeletePhotos(req, res);
+  }
+  // S170: менеджер видео (по аналогии с менеджером фото)
+  if (pathname === '/api/admin/get-video-manager' && method === 'POST') {
+    return handleGetVideoManager(req, res);
+  }
+  if (pathname === '/api/admin/delete-videos' && method === 'POST') {
+    return handleDeleteVideos(req, res);
   }
   if (pathname === '/api/admin/get-contacts' && method === 'POST') {
     return handleGetContacts(req, res);

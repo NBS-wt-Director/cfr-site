@@ -1255,13 +1255,16 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     btnTable.classList.contains('active') && !btnImages.classList.contains('active'));
 }
 
-// ── S110 (обновлено S124): плитка новости — пропорция обложки ──
+// ── S110 (обновлено S124, обновлено S169b: без обрезки) ──
 {
   const css = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
 
-  check('S110→S124: .news-card img — aspect-ratio A4 (1 / 1.414) + object-fit cover',
-    /\.news-card img \{[^}]*aspect-ratio: 1 \/ 1\.414[^}]*object-fit: cover[^}]*\}/.test(css));
-  check('S110→S124: .news-noimage — то же соотношение',
+  check('S169b: .news-card img — aspect-ratio убран, height:auto (фото целиком)',
+    /\.news-card img \{[^}]*height:\s*auto[^}]*\}/.test(css) &&
+    !/\.news-card img \{[^}]*aspect-ratio/.test(css));
+  check('S169b: .news-card img — object-fit cover больше нет',
+    !/\.news-card img \{[^}]*object-fit:\s*cover/.test(css));
+  check('S110→S124: .news-noimage — то же соотношение (A4-плейсхолдер сохранён)',
     /\.news-noimage \{[^}]*aspect-ratio: 1 \/ 1\.414/.test(css));
   check('S110: фиксированной высоты 200px у плитки больше нет',
     !/\.news-card img \{[^}]*height: 200px/.test(css));
@@ -1302,15 +1305,19 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // jsdom: фактический порядок в модалке
   const w = loadPage('index.html');
   const d = w.document;
-  const n = (Array.isArray(w.SITE_DATA.news) ? w.SITE_DATA.news : [])[0];
+  // S166: первые новости могут быть авто-новостями без фото/видео — берём новость с медиа,
+  // иначе проверка «фото/видео в news-media» падает на данных без галереи
+  const newsList = Array.isArray(w.SITE_DATA.news) ? w.SITE_DATA.news : [];
+  const n = newsList.find(x => x.image && ((x.photos || []).length || x.video)) || newsList[0];
   if (n && n.image) {
     w.openNewsModal(n.id);
     const bodyEl = d.getElementById('newsModalBody');
     const mediaEl = d.getElementById('newsModalMedia');
     check('S111: модалка — обложка (news-cover-float) первый дочерний элемент bodyEl',
       !!bodyEl.firstElementChild && bodyEl.firstElementChild.classList.contains('news-cover-float'));
+    const hasMedia = (n.photos || []).length || n.video;
     check('S111: модалка — фото/видео в news-media, не в body',
-      mediaEl.innerHTML.includes('news-photos') || mediaEl.querySelector('video') || mediaEl.innerHTML.length > 0);
+      !hasMedia || mediaEl.innerHTML.includes('news-photos') || !!mediaEl.querySelector('video') || mediaEl.innerHTML.length > 0);
     const allPhotos = bodyEl.querySelectorAll('img');
     const mediaPhotos = mediaEl.querySelectorAll('img');
     check('S111: модалка — в body только обложка, фото в media',
@@ -1344,7 +1351,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   const rawDb = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'db.json'), 'utf-8'));
   const nested = nestDb(flattenDb(rawDb));
   check('S113: footerLinks выживает nestDb',
-    Array.isArray(nested.settings?.footerLinks) && nested.settings.footerLinks.length === 7);
+    Array.isArray(nested.settings?.footerLinks) &&
+    nested.settings.footerLinks.length === flattenDb(rawDb).footerLinks.length &&
+    nested.settings.footerLinks.length >= 7);
   check('S113: footerLinks в db.json — обе группы',
     new Set(nested.settings.footerLinks.map(x => x.group)).size === 2);
 
@@ -1368,7 +1377,8 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   // Фактический рендер: 6 ссылок «Перейти к» + 1 партнёр
   const navLis = [...d.querySelectorAll('.footer-links')][0].querySelectorAll('li').length;
   const partLis = [...d.querySelectorAll('.footer-links')][1].querySelectorAll('li').length;
-  check('S113: подвал — 6 ссылок «Перейти к» из данных', navLis === 6);
+  // S166: добавилась ссылка events.html → 7 ссылок «Перейти к»
+  check('S113/S166: подвал — 7 ссылок «Перейти к» из данных', navLis === 7);
   check('S113: подвал — 1 партнёр из данных', partLis === 1);
 
   // Сервер: API + санитизация
@@ -1423,9 +1433,10 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     /sectionId === 'album'\) loadAlbumSection/.test(admin));
 
   // UI-редакторы
+  // S167: редактор переписан на универсальные функции (slideListHtml/renderSlideRow/onSlideDrop)
   check('S114: редактор слайдера (заголовок/интервал/позиция/картинка/👁🙈/удалить/порядок)',
     /loadSliderSection/.test(admin) && /uploadSliderImage/.test(admin) &&
-    /toggleSliderHidden/.test(admin) && /deleteSlide/.test(admin) && /onSliderDrop/.test(admin) &&
+    /toggleSliderHidden/.test(admin) && /deleteSlide/.test(admin) && /onSlideDrop/.test(admin) &&
     /addSlide/.test(admin));
   check('S114: редактор контактов (адрес/телефон/email/vk/соцсети/добавить/удалить)',
     /loadContactsSection/.test(admin) && /contactsState\.address/.test(admin) &&
@@ -1814,8 +1825,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   const css = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
   check('S123: .news-photos — flex-direction: row',
     /\.news-photos\s*\{[^}]*flex-direction:\s*row/.test(css));
-  check('S123: миниатюры одного размера (object-fit: cover)',
-    /\.news-photos \.news-photo img\s*\{[^}]*object-fit:\s*cover/.test(css));
+  check('S169b: .news-photos .news-photo img — без обрезки (cover убран, height:auto)',
+    /\.news-photos \.news-photo img\s*\{[^}]*height:\s*auto/.test(css) &&
+    !/\.news-photos \.news-photo img\s*\{[^}]*object-fit:\s*cover/.test(css));
   check('S123: мобильный брейкпоинт — строка со скроллом',
     /@media \(max-width: 767px\)[\s\S]{0,200}\.news-photos\s*\{[^}]*overflow-x:\s*auto/.test(css));
 }
@@ -1829,8 +1841,10 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   const newsHtml = read('news.html');
   const newsGridJs = read('js/news-grid.js');
 
-  check('S124: обложка A4-вертикаль (aspect-ratio: 1 / 1.414)',
-    /\.news-card img\s*\{[^}]*aspect-ratio:\s*1 \/ 1\.414/.test(css) &&
+  check('S169b: .news-card img — без aspect-ratio и cover (фото целиком)',
+    !/\.news-card img\s*\{[^}]*aspect-ratio/.test(css) &&
+    !/\.news-card img\s*\{[^}]*object-fit:\s*cover/.test(css));
+  check('S124: .news-noimage — плейсхолдер без обложки сохранён (A4)',
     /\.news-noimage\s*\{[^}]*aspect-ratio:\s*1 \/ 1\.414/.test(css));
   check('S125: сетка новостей — колонка = 150% стандартной ячейки (плитки тренеров)',
     /--news-tile-max:\s*calc\(1\.5 \* \(100% - var\(--tiles-gap\) \* \(var\(--tile-cols\) - 1\)\) \/ var\(--tile-cols\)\)/.test(css));
@@ -2316,13 +2330,16 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     !adminSrc.includes('data.db && data.db.album'));
   check('S146: нормализация медиа-путей normImgPath определена',
     /function normImgPath\(/.test(adminSrc));
-  check('S146: photoAlbum нормализуется при открытии модалки',
-    /\.map\(x => typeof x === 'string' \? x : x\.image\)\.filter\(Boolean\)\.map\(normImgPath\)/.test(adminSrc));
+  // S167: нормализация фотоальбома вынесена в normalizeAlbumSlides (единая для тренера/программы/события)
+  check('S167: photoAlbum нормализуется при открытии модалки (normalizeAlbumSlides)',
+    /editingTrainerAlbum = normalizeAlbumSlides\(trainer && trainer\.photoAlbum\)/.test(adminSrc) &&
+    /editingTrainerAlbum = normalizeAlbumSlides\(prog && prog\.photoAlbum\)/.test(adminSrc));
   check('S146: превью банка берёт thumb (лёгкие миниатюры вместо 300 КБ full)',
     /fileUrl\(a\.thumb \|\| a\.image\)/.test(adminSrc));
   check('S146: выбранные кадры вне банка показываются отдельным блоком',
-    /const outside = editingTrainerAlbum\.filter\(p => !byPath\.has\(normImgPath\(p\)\)\)/.test(adminSrc) &&
-    adminSrc.includes('вне общего альбома'));
+    // S167: универсальный редактор — все слайды (в том числе вне банка) рендерятся в slideListHtml
+    adminSrc.includes('function renderAlbumSlideEditor') &&
+    /slideListHtml\(key, arr\)/.test(adminSrc));
   check('S146: пустой банк объясняется пользователю, а не молчит',
     /Банк кадров пуст/.test(adminSrc));
 
@@ -2693,7 +2710,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S155: modal.js — buildReason', modalSrc.includes('buildReason'));
   check('S155: modal.js — isGeneric', modalSrc.includes('isGeneric'));
   check('S155: modal.js — pageName с URLSearchParams', modalSrc.includes('URLSearchParams'));
-  check('S155: modal.js — ?v=48', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=48'));
+  check('S155: modal.js — ?v=50', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('modal.js?v=50'));
 
   // 3. export-static.mjs: hasAlbum / programHasAlbum
   const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
@@ -2730,7 +2747,7 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S151: style.css — .chip-menu-btn', cssSrc.includes('.chip-menu-btn'));
 
   // 8. Бамп кэша: в index.html v=43 (S155)
-  check('S151/S155: index.html — ?v=48', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=48'));
+  check('S151/S155: index.html — ?v=50', fs.readFileSync(path.join(staticDir, 'index.html'), 'utf-8').includes('?v=50'));
 
   // 9. Рендер: weekBoard создаёт chip-menu с 3 кнопками
   const w = loadPage('index.html');
@@ -3021,11 +3038,11 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S158: CSS .slider-desc', cssSrc.includes('.slider-desc'));
   check('S158: CSS .slider-link', cssSrc.includes('.slider-link'));
 
-  // 4. Админка
-  check('S158: admin — description поле', adminSrc.includes('slidesState[${i}].description'));
-  check('S158: admin — link поле', adminSrc.includes('slidesState[${i}].link'));
-  check('S158: admin — textColor', adminSrc.includes('slidesState[${i}].textColor'));
-  check('S158: admin — textSize', adminSrc.includes('slidesState[${i}].textSize'));
+  // 4. Админка — S167: все поля слайда редактируются через slideField('main', i, ...)
+  check('S158: admin — description поле', adminSrc.includes("slideField('${key}', ${i}, 'description'"));
+  check('S158: admin — link поле (селект + slideField)', adminSrc.includes('sliderLinkSelectHtml') && adminSrc.includes("slideField(key, i, 'link'"));
+  check('S158: admin — textColor', adminSrc.includes("'textColor', this.value"));
+  check('S158: admin — textSize', adminSrc.includes("'textSize', this.value"));
   check('S158: admin — textMargin', adminSrc.includes('textMargin'));
   check('S158: admin — overlay', adminSrc.includes('overlay'));
   check('S158: admin — 9 позиций', adminSrc.includes('top-left') && adminSrc.includes('bottom-right'));
@@ -3050,9 +3067,9 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
   check('S158: admin — раздел slider рендерит только редактор (ранний return)',
     /if \(sectionId === 'slider'\) \{\s*content\.innerHTML = '';\s*loadSliderSection\(\);/.test(adminSrc));
   check('S158: admin — скрытые слайды в сворачиваемой группе',
-    adminSrc.includes('hiddenItems') && /🙈 Скрытые слайды/.test(adminSrc) && adminSrc.includes('<details'));
+    adminSrc.includes('Скрытые кадры') && adminSrc.includes('<details'));
   check('S158: admin — скрытые слайды без drag-handle (не мешают очереди)',
-    /renderItem\(s, i, false\)/.test(adminSrc));
+    /renderSlideRow\(key, s, i, false\)/.test(adminSrc));
   check('S158: admin — ссылка выбирается из списка (sliderLinkSelectHtml)',
     adminSrc.includes('function sliderLinkSelectHtml') && adminSrc.includes('<optgroup'));
   check('S158: admin — список целей строится из базы (страницы/программы/тренеры/новости)',
@@ -3233,6 +3250,216 @@ const visTrainers = db.trainers.filter(t => !t.hidden);
     adminSrc.includes('deleteHiddenSlides') && /🗑 Удалить все скрытые/.test(adminSrc));
   check('S162: admin — confirm перед удалением скрытых',
     /confirm\(.*скрытых слайдов/.test(adminSrc));
+}
+
+// ── S166: мероприятия (данные, страницы, видео-плеер, авто-новости) ──
+{
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  const read = p => fs.readFileSync(path.join(staticDir, p), 'utf-8');
+  const eventsJs = read('js/events.js');
+
+  // База
+  check('S166: db.events существует и не пустой', Array.isArray(db.events) && db.events.length > 0);
+  check('S166: события имеют id/name/dateStart', db.events.every(e => e.id && e.name && e.dateStart));
+
+  // Сервер
+  check('S166: server — EVENT_TYPES (6 типов)', /const EVENT_TYPES = \[[\s\S]*?\];/.test(serverSrc) &&
+    (serverSrc.match(/'семинар'|'тестирование'|'праздник'|'беседа'/g) || []).length >= 4);
+  check('S166: server — sanitizeEvents', serverSrc.includes('function sanitizeEvents'));
+  check('S166: server — videos срез 15',
+    /\.slice\(0,\s*15\)/.test(serverSrc));
+  check('S166: server — createNewsForEvent', serverSrc.includes('function createNewsForEvent'));
+  check('S166: server — applyEventTransitions', serverSrc.includes('function applyEventTransitions'));
+  check('S166: server — handleGetEvents', serverSrc.includes('function handleGetEvents'));
+  check('S166: server — handleSaveEvents', serverSrc.includes('function handleSaveEvents'));
+  check('S166: server — checkEventsTransitions (периодическая)', serverSrc.includes('function checkEventsTransitions') &&
+    /EVENTS_CHECK_MS|setInterval.*6.*ч|6\s*\*\s*60/.test(serverSrc));
+  check('S166: server — route /api/admin/get-events', /\/api\/admin\/get-events/.test(serverSrc));
+  check('S166: server — route /api/admin/save-events', /\/api\/admin\/save-events/.test(serverSrc));
+  check('S166: server — normalizeEventVideoUrl', serverSrc.includes('function normalizeEventVideoUrl'));
+
+  // Экспорт
+  check('S166: export — navEvents в core.js', exportSrc.includes('navEvents:'));
+  check('S166: export — events в core.js (полные)', exportSrc.includes('events:') && exportSrc.includes('photoAlbum'));
+
+  // Страницы
+  check('S166: events.html существует', fs.existsSync(path.join(staticDir, 'events.html')));
+  check('S166: event.html существует', fs.existsSync(path.join(staticDir, 'event.html')));
+  check('S166: events.html подключает events.js', /js\/events\.js/.test(read('events.html')));
+  check('S166: event.html подключает events.js', /js\/events\.js/.test(read('event.html')));
+
+  // events.js — видео-плеер
+  check('S166: events.js — videoEmbed функция', eventsJs.includes('function videoEmbed'));
+  check('S166: events.js — externalEmbedUrl', eventsJs.includes('function externalEmbedUrl'));
+  check('S166: events.js — YouTube nocookie embed', eventsJs.includes('youtube-nocookie.com/embed'));
+  check('S166: events.js — VK video_ext.php', eventsJs.includes('video_ext.php'));
+  check('S166: events.js — Rutube play/embed', eventsJs.includes('play/embed'));
+  check('S166: events.js — <video> для uploads/файлов', /<video[^>]+controls/.test(eventsJs));
+
+  // events.js — UI
+  check('S166: events.js — tile-event класс', eventsJs.includes('tile-event'));
+  check('S166: events.js — btn-event-signup', eventsJs.includes('btn-event-signup'));
+  check('S166: events.js — SliderCore для прошедших', /SliderCore\.render/.test(eventsJs));
+
+  // header.js — меню мероприятий
+  check('S166: header.js — navEvents фильтр', /navEvents/.test(read('js/header.js')));
+  check('S166: header.js — eventsMenuVisible', read('js/header.js').includes('eventsMenuVisible'));
+
+  // CSS
+  const css = read('css/style.css');
+  check('S166: CSS — .tile-event', css.includes('.tile-event'));
+  check('S166: CSS — .event-videos grid', /\.event-videos\s*\{/.test(css));
+  check('S166: CSS — .event-video-frame', css.includes('.event-video-frame'));
+  check('S166: CSS — .btn-event-signup', css.includes('.btn-event-signup'));
+
+  // Админка
+  check('S166: admin — loadEventsSection', adminSrc.includes('function loadEventsSection'));
+  check('S166: admin — event-modal', adminSrc.includes('id="event-modal"'));
+  check('S166: admin — saveEventForm submit', adminSrc.includes("addEventListener('submit', saveEventForm)"));
+  check('S166: admin — addEventVideoRow', adminSrc.includes('function addEventVideoRow'));
+  check('S166: admin — renderEventAlbumPicker', adminSrc.includes('function renderEventAlbumPicker'));
+}
+
+// ── S167: универсальный альбом-слайдер (все поля главного слайдера) ──
+{
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  const exportSrc = fs.readFileSync(path.join(__dirname, 'export-static.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+  const entitySrc = fs.readFileSync(path.join(staticDir, 'js', 'entity.js'), 'utf-8');
+  const eventsJs = fs.readFileSync(path.join(staticDir, 'js', 'events.js'), 'utf-8');
+
+  // sanitizeAlbumSlides — сервер
+  check('S167: server — sanitizeAlbumSlides функция', serverSrc.includes('function sanitizeAlbumSlides'));
+  check('S167: server — sanitizeAlbumSlides: position миграция',
+    /function sanitizeAlbumSlides[\s\S]{0,2500}SLIDE_POS_MIGRATE\[position\]/.test(serverSrc));
+  check('S167: server — sanitizeAlbumSlides: overlay', (serverSrc.match(/function sanitizeAlbumSlides[\s\S]{0,2000}/) || [''])[0].includes('overlay'));
+  check('S167: server — sanitizeAlbumSlides: textColor/textSize/textMargin', (serverSrc.match(/function sanitizeAlbumSlides[\s\S]{0,2500}/) || ['']).join('').includes('textColor'));
+  check('S167: server — sanitizeAlbumSlides: hidden', (serverSrc.match(/function sanitizeAlbumSlides[\s\S]{0,3000}/) || [''])[0].includes('hidden'));
+  check('S167: server — sanitizeAlbumSlides: срез 60', /sanitizeAlbumSlides[\s\S]{0,2000}\.slice\(0,\s*60\)/.test(serverSrc) ||
+    (serverSrc.match(/function sanitizeAlbumSlides[\s\S]{0,3000}/) || [''])[0].includes('60'));
+
+  // exportAlbumSlides — экспортёр
+  check('S167: export — exportAlbumSlides функция', exportSrc.includes('function exportAlbumSlides'));
+  check('S167: export — экспорт title', /exportAlbumSlides[\s\S]{0,800}title:/.test(exportSrc));
+  check('S167: export — экспорт position', /exportAlbumSlides[\s\S]{0,800}rec\.position/.test(exportSrc));
+  check('S167: export — экспорт overlay', /exportAlbumSlides[\s\S]{0,1200}rec\.overlay/.test(exportSrc));
+  check('S167: export — скрытые кадры НЕ экспортируются', /exportAlbumSlides[\s\S]{0,800}\.filter\(a\s*=>\s*!a\.hidden\)|exportAlbumSlides[\s\S]{0,1500}filter.*hidden/.test(exportSrc));
+
+  // entity.js — albumSlides
+  check('S167: entity.js — albumSlides функция', entitySrc.includes('function albumSlides'));
+  check('S167: entity.js — hidden === true пропускается', /hidden\s*===\s*true\s*\)?\s*return\s+null|hidden===true\).*null/.test(entitySrc));
+
+  // events.js — galleryBlock с SliderCore
+  check('S167: events.js — albumSliderOpts', eventsJs.includes('function albumSliderOpts'));
+  check('S167: events.js — SliderCore.render для галереи', /SliderCore\.render[\s\S]{0,200}gallery|gallery[\s\S]{0,200}SliderCore\.render|SliderCore\.render.*album/i.test(eventsJs));
+
+  // admin.html — универсальный редактор
+  check('S167: admin — slideArr функция', adminSrc.includes('function slideArr'));
+  check('S167: admin — renderSlideRow', adminSrc.includes('function renderSlideRow'));
+  check('S167: admin — normalizeAlbumSlides', adminSrc.includes('function normalizeAlbumSlides'));
+  check('S167: admin — renderAlbumSlideEditor', adminSrc.includes('function renderAlbumSlideEditor'));
+  check('S167: admin — albumRecords', adminSrc.includes('function albumRecords'));
+  check('S167: admin — pmTarget {key,idx}', adminSrc.includes('pmTarget'));
+  check('S167: admin — SLIDE_POSITIONS', adminSrc.includes('SLIDE_POSITIONS'));
+  check('S167: admin — slideStates (main/trainer/event)', adminSrc.includes('slideStates'));
+  check('S167: admin — slideField (редактирование)', adminSrc.includes('function slideField'));
+  check('S167: admin — slideToggleHidden', adminSrc.includes('slideToggleHidden'));
+  check('S167: admin — drag-n-drop слайдов', adminSrc.includes('onSlideDrag') || adminSrc.includes('slideDrag'));
+  check('S167: admin — photoAlbum: albumRecords в saveTrainerForm', /saveTrainerForm[\s\S]{0,3000}albumRecords/.test(adminSrc));
+  check('S167: admin — photoAlbum: albumRecords в saveEventForm', /saveEventForm[\s\S]{0,3000}albumRecords/.test(adminSrc));
+}
+
+// ── S168: разделы-заглушки в группах «Информация», «Данные», «Настройки сайта», «CRM», «Интеграции» ──
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+
+  const newSections = [
+    'info-admin-log', 'info-crm-log', 'info-reports',
+    'goods', 'services', 'inventory', 'diary-fields',
+    'inv-places', 'inv-kinds', 'inv-types', 'inv-groups', 'inv-entities', 'room-map', 'danger-zone',
+    'crm-users', 'crm-perms', 'crm-modules', 'crm-experimental',
+    'crm-reports-owner', 'crm-reports-accountant', 'crm-lk-client', 'crm-lk-trainer',
+    'integrations-1c', 'integrations-social', 'integrations-sms'
+  ];
+  for (const id of newSections) {
+    check(`S168: раздел ${id} в sections`, adminSrc.includes(`id: '${id}'`));
+    check(`S168: ссылка сайдбара ${id}`, adminSrc.includes(`data-section="${id}"`));
+  }
+  check('S168: старый сабраздел «CRM» (stub) удалён', !adminSrc.includes("id: 'crm', title: '📊 CRM'"));
+  check('S168: старый сабраздел «Интеграции» (stub) удалён', !adminSrc.includes("id: 'integrations', title: '🔗 Интеграции'"));
+  check('S168: STUB_PAGES содержит все 25 новых разделов', newSections.every(id => adminSrc.includes(`'${id}': {`)));
+  check('S168: renderStubPageSection (единый рендер заглушек)', adminSrc.includes('function renderStubPageSection'));
+  check('S168: диспетчер групп-заглушек в renderSection', /section\.group === 'info-stub'/.test(adminSrc) &&
+    /section\.group === 'crm-stub'/.test(adminSrc) && /section\.group === 'integrations-stub'/.test(adminSrc));
+  check('S168: редирект #crm → #crm-leads', /hash === 'crm'\)/.test(adminSrc));
+  check('S168: редирект #integrations → #integrations-dance', /hash === 'integrations'\)/.test(adminSrc));
+  check('S168: карта помещений — SVG-план в todo', /SVG-план/.test(adminSrc));
+  check('S168: красная зона — опасные операции с подтверждением', /двойным подтверждением|Сброс сессий/.test(adminSrc));
+}
+
+// ── S169: md-редактор — предпросмотр работает, admin не знает markdown ──
+{
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+
+  check('S169: md.js подключён в admin.html', /<script src="js\/md\.js\?v=\d+"><\/script>/.test(adminSrc));
+  check('S169: refreshPreview через window.MD.render', adminSrc.includes('window.MD.render(textarea.value)'));
+  check('S169: режим split по умолчанию (не голый markdown)', adminSrc.includes('md-editor-body mode-split'));
+  check('S169: вкладка «Как на сайте» (для не-MD-администраторов)', adminSrc.includes('👁 Как на сайте'));
+  check('S169: placeholder без «markdown»', !/Текст в markdown…/.test(adminSrc) &&
+    adminSrc.includes('Форматируйте текст кнопками'));
+  check('S169: стили предпросмотра (заголовки, списки, таблицы, цитаты)', adminSrc.includes('.md-editor-preview h1') &&
+    adminSrc.includes('.md-editor-preview table') && adminSrc.includes('.md-editor-preview blockquote'));
+}
+
+// ── S169b: фото на сайте НЕ обрезаются (object-fit: cover запрещён) ──
+{
+  const css = fs.readFileSync(path.join(staticDir, 'css', 'style.css'), 'utf-8');
+  check('S169: style.css — ни одного object-fit: cover', !/object-fit:\s*cover/.test(css));
+  check('S169: слайдер главной — contain', /\.slide img\s*\{[^}]*object-fit:\s*contain/.test(css));
+  check('S169: обложка новости — natural ratio (height:auto)', /news-card img[^}]*height:\s*auto/.test(css));
+  check('S169: entity-cover — без принудительного кропа', /\.entity-cover\s*\{[^}]*height:\s*auto/.test(css));
+  const lkHtml = fs.readFileSync(path.join(staticDir, 'lk.html'), 'utf-8');
+  check('S169: lk.html — аватар клиента без crop (contain)', /#client-foto[^}]*object-fit:contain/.test(lkHtml));
+}
+
+// ── S170: менеджер видео (по аналогии с менеджером фото) ──
+{
+  const serverSrc = fs.readFileSync(path.join(__dirname, 'admin-server.mjs'), 'utf-8');
+  const adminSrc = fs.readFileSync(path.join(staticDir, 'admin.html'), 'utf-8');
+
+  check('S170: server — VIDEO_EXTS_RE', serverSrc.includes('VIDEO_EXTS_RE'));
+  check('S170: server — walkUploads принимает regex', /function walkUploads\([^)]*re = PHOTO_EXTS_RE/.test(serverSrc));
+  check('S170: server — collectVideoUsage (news.video + event videos)',
+    serverSrc.includes('function collectVideoUsage') &&
+    /collectVideoUsage[\s\S]{0,1200}n\.video/.test(serverSrc) &&
+    /collectVideoUsage[\s\S]{0,1600}ev\.videos/.test(serverSrc));
+  check('S170: server — handleGetVideoManager', serverSrc.includes('function handleGetVideoManager'));
+  check('S170: server — removeVideoRefs чистит news.video и event videos',
+    serverSrc.includes('function removeVideoRefs') &&
+    /removeVideoRefs[\s\S]{0,600}n\.video = ''/.test(serverSrc) &&
+    /removeVideoRefs[\s\S]{0,900}ev\.videos = ev\.videos\.filter/.test(serverSrc));
+  check('S170: server — handleDeleteVideos (в корзину, не напрямую)',
+    serverSrc.includes('function handleDeleteVideos') &&
+    /handleDeleteVideos[\s\S]{0,3000}trash/.test(serverSrc) &&
+    /handleDeleteVideos[\s\S]{0,3500}backupDB\(\)/.test(serverSrc));
+  check('S170: server — route get-video-manager', /\/api\/admin\/get-video-manager/.test(serverSrc));
+  check('S170: server — route delete-videos', /\/api\/admin\/delete-videos/.test(serverSrc));
+
+  check('S170: admin — секция video-manager в ДАННЫХ',
+    adminSrc.includes("{ id: 'video-manager', title: '🎬 Менеджер видео', status: 'done', group: 'data' }"));
+  check('S170: admin — ссылка сайдбара', adminSrc.includes('data-section="video-manager"'));
+  check('S170: admin — диспатчер renderSection', /sectionId === 'video-manager'/.test(adminSrc));
+  check('S170: admin — loadVideoManagerSection', adminSrc.includes('function loadVideoManagerSection'));
+  check('S170: admin — vidFetch/vidRender/vidStatusCell',
+    adminSrc.includes('async function vidFetch') && adminSrc.includes('function vidRender') &&
+    adminSrc.includes('function vidStatusCell'));
+  check('S170: admin — vidDeleteOne + vidDeleteUnused (как pht)',
+    adminSrc.includes('async function vidDeleteOne') && adminSrc.includes('async function vidDeleteUnused'));
+  check('S170: admin — превью <video> в списке', /<video src=.*preload="metadata"/.test(adminSrc));
+  check('S170: admin — пояснение про внешние ссылки (YouTube/VK/Rutube)',
+    /YouTube \/ VK \/ Rutube/.test(adminSrc));
 }
 
 console.log(`\n${passed}/${passed + failed} пройдено`);
